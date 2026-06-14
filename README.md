@@ -67,13 +67,14 @@ Serve over **HTTPS** and at the **domain root** so the canonical URLs and
 
 Work through this checklist — most items are a global find-and-replace.
 
-### 4.1 Domain (required)
-Replace `https://www.webx.studio` everywhere with your real domain. It appears in:
-- every page's `<link rel="canonical">`, Open Graph & Twitter tags, JSON-LD
-- `robots.txt` (the `Sitemap:` line) and `sitemap.xml` (all `<loc>`)
+### 4.1 Domain
+The live domain is set to **`https://thewebx.in`** across every page's
+`<link rel="canonical">`, Open Graph & Twitter tags and JSON-LD, plus the
+`Sitemap:` line in `robots.txt` and all `<loc>` entries in `sitemap.xml`.
+If it ever changes, find-replace that one string.
 
 ### 4.2 Contact details
-- **Email** `hello@webx.studio` → your inbox (footers, contact page, JSON-LD, `assets/js/webx.js` mobile-menu link).
+- **Email** `hello@thewebx.in` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
 - **Phone** `+91 98765 43210` and the `tel:+919876543210` link in `contact.html` + JSON-LD.
 - **Address / city** `12th Main Road, Indiranagar, Bengaluru …` in `contact.html` + JSON-LD on `index.html`/`contact.html`.
 - **Geo** `geo.position` / `ICBM` / JSON-LD `geo` coordinates (currently Bengaluru `12.9716, 77.5946`).

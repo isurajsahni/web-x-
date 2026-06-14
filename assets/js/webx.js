@@ -258,8 +258,8 @@
       overlay.appendChild(item); items.push(item);
     });
     var foot = document.createElement('a');
-    foot.href = 'mailto:hello@webx.studio';
-    foot.textContent = 'hello@webx.studio';
+    foot.href = 'mailto:hello@thewebx.in';
+    foot.textContent = 'hello@thewebx.in';
     Object.assign(foot.style, { marginTop: '40px', fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: '#9A9AA2', textDecoration: 'none', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
     overlay.appendChild(foot); document.body.appendChild(overlay);
 
@@ -497,7 +497,7 @@
         if (btn) { btn.disabled = true; btn.dataset.label = btn.innerHTML; btn.textContent = 'Sending…'; }
         fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
           .then(function (res) { if (res.ok) { done(); } else { throw new Error('bad'); } })
-          .catch(function () { if (btn) { btn.disabled = false; if (btn.dataset.label) btn.innerHTML = btn.dataset.label; } window.alert('Sorry — something went wrong. Please email hello@webx.studio'); });
+          .catch(function () { if (btn) { btn.disabled = false; if (btn.dataset.label) btn.innerHTML = btn.dataset.label; } window.alert('Sorry — something went wrong. Please email hello@thewebx.in'); });
       } else { done(); }
     });
   }

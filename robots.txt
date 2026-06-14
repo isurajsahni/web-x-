@@ -10,4 +10,4 @@ Disallow: /screens/
 Disallow: /*.dc.html$
 
 # Sitemap (update the domain to your live domain)
-Sitemap: https://www.webx.studio/sitemap.xml
+Sitemap: https://thewebx.in/sitemap.xml
