@@ -249,10 +249,10 @@
     var btn = document.createElement('button');
     btn.setAttribute('aria-label', 'Toggle menu');
     btn.setAttribute('aria-expanded', 'false');
-    Object.assign(btn.style, { display: 'none', position: 'fixed', top: '14px', right: 'clamp(16px,5vw,72px)', width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,.18)', background: 'rgba(20,20,24,.7)', backdropFilter: 'blur(10px)', webkitBackdropFilter: 'blur(10px)', zIndex: '9200', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '6px', padding: '0 14px' });
+    Object.assign(btn.style, { display: 'none', width: '44px', height: '44px', borderRadius: '50%', border: '1px solid rgba(255,255,255,.18)', background: 'rgba(255,255,255,.04)', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '6px', padding: '0 13px', flex: '0 0 auto', cursor: 'pointer' });
     var l1 = document.createElement('span'), l2 = document.createElement('span');
     [l1, l2].forEach(function (l) { Object.assign(l.style, { display: 'block', width: '100%', height: '1.6px', background: '#EDEDED', borderRadius: '2px', transition: 'transform .35s cubic-bezier(.16,1,.3,1), opacity .25s ease' }); });
-    btn.appendChild(l1); btn.appendChild(l2); document.body.appendChild(btn);
+    btn.appendChild(l1); btn.appendChild(l2); header.appendChild(btn); // sits in the header bar, aligned with the logo
 
     var overlay = document.createElement('div');
     overlay.setAttribute('aria-hidden', 'true');
@@ -289,6 +289,7 @@
       l2.style.transform = v ? 'translateY(-3.8px) rotate(-45deg)' : 'none';
       document.body.style.overflow = v ? 'hidden' : '';
       if (lenis) { if (v) lenis.stop(); else lenis.start(); }
+      header.style.zIndex = v ? '9300' : '9000';   // lift header (logo + close button) above the overlay
       animated.forEach(function (el, i) {
         el.style.transitionDelay = (v ? 130 + i * 55 : 0) + 'ms';
         el.style.opacity = v ? '1' : '0';
