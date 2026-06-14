@@ -10,27 +10,42 @@
   var lerp = function (a, b, t) { return a + (b - a) * t; };
   var clamp = function (v, min, max) { return Math.max(min, Math.min(v, max)); };
 
-  /* ---------- Lenis-style smooth scroll (keeps native scrollTop -> sticky works) ---------- */
+  /* ---------- Smooth scroll (Lenis) ----------
+     Lenis does *real* scroll, so position:sticky, IntersectionObserver, the
+     parallax + pinned process section all keep working. Loaded from CDN on
+     demand; skipped entirely under prefers-reduced-motion, and it degrades to
+     native scroll if the CDN is unreachable. */
+  var lenis = null;
   function initSmoothScroll() {
-    if (reduce || matchMedia('(pointer: coarse)').matches) return;
-    var target = window.scrollY, current = window.scrollY, raf = null;
-    var maxScroll = function () { return document.documentElement.scrollHeight - window.innerHeight; };
-    function loop() {
-      current = lerp(current, target, 0.11);
-      if (Math.abs(target - current) < 0.4) { current = target; window.scrollTo(0, current); raf = null; return; }
-      window.scrollTo(0, current);
-      raf = requestAnimationFrame(loop);
+    if (reduce) return;                       // honour reduced-motion → native scroll
+    function setup() {
+      var L = window.Lenis; if (!L) return;
+      if (L.default) L = L.default;           // UMD/ESM interop
+      lenis = new L({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, touchMultiplier: 1.6 });
+      function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      // route the public scrollTo (back-to-top, page transitions) through Lenis
+      window.WebX._scrollTo = function (y) { lenis.scrollTo(y, { duration: 1.1 }); };
+      // smooth in-page anchors, offset for the fixed header, keep focus for a11y
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        var el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        lenis.scrollTo(el);                 // honours CSS scroll-margin-top (header offset)
+        el.setAttribute('tabindex', '-1');
+        el.focus({ preventScroll: true });
+      });
     }
-    function onWheel(e) {
-      if (e.ctrlKey) return;
-      e.preventDefault();
-      target = clamp(target + e.deltaY, 0, maxScroll());
-      if (raf === null) raf = requestAnimationFrame(loop);
-    }
-    window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('resize', function () { target = clamp(target, 0, maxScroll()); });
-    window.addEventListener('scroll', function () { if (raf === null) { current = window.scrollY; target = window.scrollY; } });
-    window.WebX._scrollTo = function (y) { target = clamp(y, 0, maxScroll()); if (raf === null) raf = requestAnimationFrame(loop); };
+    if (window.Lenis) { setup(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js';
+    s.defer = true;
+    s.onload = setup;
+    document.head.appendChild(s);          // onerror → native scroll remains
   }
 
   /* ---------- Custom cursor: dot (invert) + trailing ring + View label + {X} mark ---------- */
@@ -273,6 +288,7 @@
       l1.style.transform = v ? 'translateY(3.8px) rotate(45deg)' : 'none';
       l2.style.transform = v ? 'translateY(-3.8px) rotate(-45deg)' : 'none';
       document.body.style.overflow = v ? 'hidden' : '';
+      if (lenis) { if (v) lenis.stop(); else lenis.start(); }
       animated.forEach(function (el, i) {
         el.style.transitionDelay = (v ? 130 + i * 55 : 0) + 'ms';
         el.style.opacity = v ? '1' : '0';
@@ -337,68 +353,202 @@
      ============================================================ */
 
   /* Home: flowing violet hero canvas */
+  /* Home hero: Antigravity-style particle field + rotating dash-burst.
+     Dark theme — drawn additively ('lighter') so dots/lines/burst glow on
+     near-black. Gradient runs blue -> brand violet -> pink. Particles bend
+     toward the cursor (eased gravity) and drift with depth-based parallax. */
   function initHeroCanvas() {
     var canvas = document.querySelector('[data-hero-canvas]');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // blue -> violet (#9D5CFF brand) -> pink
+    var STOPS = [[79, 139, 255], [157, 92, 255], [255, 111, 216]];
+    function grad(t) {
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      var s = t * 2, i = s | 0, f = s - i, a = STOPS[i], b = STOPS[i + 1] || STOPS[i];
+      return ((a[0] + (b[0] - a[0]) * f) | 0) + ',' + ((a[1] + (b[1] - a[1]) * f) | 0) + ',' + ((a[2] + (b[2] - a[2]) * f) | 0);
+    }
+
+    var NB = [[0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]]; // forward-only grid neighbours
+    var parts = [], grid = [], used = [], cols = 0, rows = 0, cell = 0, linkDist = 120;
+    var pullR = 200, pull = 0.9, parallax = 26;
+
+    function build() {
+      var count = Math.round((w * h) / 2800);      // optimise by area
+      count = Math.max(50, Math.min(560, count));  // clamp (subtle behind text)
+      linkDist = w < 640 ? 92 : 120;
+      parts = new Array(count);
+      for (var i = 0; i < count; i++) {
+        var x = Math.random() * w, y = Math.random() * h;
+        var t = x / w + (Math.random() - 0.5) * 0.18;   // colour follows x
+        parts[i] = {
+          i: i, hx: x, hy: y, x: x, y: y, vx: 0, vy: 0,
+          ax: (Math.random() - 0.5) * 0.05, ay: (Math.random() - 0.5) * 0.05,
+          size: 0.6 + Math.random() * 1.7, depth: 0.35 + Math.random() * 0.65,
+          col: grad(t), ph: Math.random() * 6.283
+        };
+      }
+      cell = linkDist; cols = Math.ceil(w / cell) + 1; rows = Math.ceil(h / cell) + 1;
+      grid = new Array(cols * rows); used = [];
+    }
+
+    // burst state (positioned upper-right, away from the headline)
+    var bAngle = 0, bcx = 0, bcy = 0, bInner = 0, bOuter = 0, bRays = 130;
+
     function resize() {
       var r = canvas.getBoundingClientRect();
       w = Math.max(1, r.width); h = Math.max(1, r.height);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+      var sm = Math.min(w, h);
+      bcx = w * 0.82; bcy = h * 0.40;
+      bInner = sm * 0.10; bOuter = sm * 0.30;
+      bRays = w < 760 ? 72 : 104;
     }
-    resize(); window.addEventListener('resize', resize);
+
     var heroSection = canvas.closest('section');
     var headline = heroSection ? heroSection.querySelector('h1') : null;
     var fine = matchMedia('(pointer: fine)').matches;
-    var tmx = 0, tmy = 0, cmx = 0, cmy = 0; // target / current pointer offset, range -1..1
+    var tmx = 0, tmy = 0, cmx = 0, cmy = 0;                 // normalised parallax (-1..1)
+    var tpx = 0, tpy = 0, cpx = 0, cpy = 0, active = false; // pixel cursor for gravity
     if (fine && !reduce && heroSection) {
       heroSection.addEventListener('mousemove', function (e) {
-        var r = heroSection.getBoundingClientRect();
-        tmx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-        tmy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        var r = canvas.getBoundingClientRect();
+        tpx = e.clientX - r.left; tpy = e.clientY - r.top;
+        tmx = (tpx / r.width - 0.5) * 2; tmy = (tpy / r.height - 0.5) * 2;
+        active = true;
       });
-      heroSection.addEventListener('mouseleave', function () { tmx = 0; tmy = 0; });
+      heroSection.addEventListener('mouseleave', function () { tmx = 0; tmy = 0; active = false; });
     }
-    var blobs = [
-      { hue: 266, sat: 92, lig: 62, r: 0.62, ax: 0.20, ay: 0.16, sx: 0.11, sy: 0.07, px: 0.30, py: 0.32 },
-      { hue: 258, sat: 80, lig: 50, r: 0.55, ax: 0.18, ay: 0.20, sx: 0.08, sy: 0.13, px: 0.72, py: 0.60 },
-      { hue: 280, sat: 70, lig: 66, r: 0.42, ax: 0.22, ay: 0.14, sx: 0.15, sy: 0.10, px: 0.55, py: 0.82 },
-      { hue: 248, sat: 85, lig: 55, r: 0.48, ax: 0.16, ay: 0.18, sx: 0.09, sy: 0.16, px: 0.18, py: 0.70 }
-    ];
-    function draw(t) {
-      var time = t * 0.0001;
+
+    resize(); window.addEventListener('resize', resize);
+    cpx = tpx = w / 2; cpy = tpy = h / 2;
+
+    function updateField() {
+      var pr2 = pullR * pullR;
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.hx += p.ax; p.hy += p.ay;                         // ambient drift, wrapped
+        if (p.hx < 0) p.hx += w; else if (p.hx > w) p.hx -= w;
+        if (p.hy < 0) p.hy += h; else if (p.hy > h) p.hy -= h;
+        var tx = p.hx + cmx * parallax * p.depth, ty = p.hy + cmy * parallax * p.depth;
+        if (active) {                                        // eased gravity pull
+          var dx = cpx - p.x, dy = cpy - p.y, d2 = dx * dx + dy * dy;
+          if (d2 < pr2) { var d = Math.sqrt(d2) || 1, e = (1 - d / pullR); e *= e; tx += dx * e * pull; ty += dy * e * pull; }
+        }
+        p.vx += (tx - p.x) * 0.08; p.vy += (ty - p.y) * 0.08;
+        p.vx *= 0.82; p.vy *= 0.82; p.x += p.vx; p.y += p.vy;
+      }
+    }
+
+    function drawField(intro) {
+      var k;
+      for (k = 0; k < used.length; k++) grid[used[k]].length = 0; // reuse buckets
+      used.length = 0;
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        var gx = (p.x / cell) | 0, gy = (p.y / cell) | 0;
+        if (gx < 0) gx = 0; else if (gx >= cols) gx = cols - 1;
+        if (gy < 0) gy = 0; else if (gy >= rows) gy = rows - 1;
+        var idx = gy * cols + gx, b = grid[idx];
+        if (!b) b = grid[idx] = [];
+        if (b.length === 0) used.push(idx);
+        b.push(p);
+      }
+      var link2 = linkDist * linkDist;
+      ctx.lineWidth = 1;
+      for (var cy = 0; cy < rows; cy++) {
+        for (var cx = 0; cx < cols; cx++) {
+          var bucket = grid[cy * cols + cx];
+          if (!bucket) continue;
+          for (var n = 0; n < NB.length; n++) {
+            var ncx = cx + NB[n][0], ncy = cy + NB[n][1];
+            if (ncx < 0 || ncy < 0 || ncx >= cols || ncy >= rows) continue;
+            var other = grid[ncy * cols + ncx];
+            if (!other) continue;
+            var same = n === 0;
+            for (var ai = 0; ai < bucket.length; ai++) {
+              var a = bucket[ai];
+              for (var bi = 0; bi < other.length; bi++) {
+                var bb = other[bi];
+                if (same && bb.i <= a.i) continue;
+                var dx = a.x - bb.x, dy = a.y - bb.y, dd = dx * dx + dy * dy;
+                if (dd > link2) continue;
+                var al = (1 - Math.sqrt(dd) / linkDist) * 0.12 * intro;
+                if (al < 0.003) continue;
+                ctx.strokeStyle = 'rgba(' + a.col + ',' + al + ')';
+                ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(bb.x, bb.y); ctx.stroke();
+              }
+            }
+          }
+        }
+      }
+      var tw0 = performance.now() * 0.0015;
+      for (var j = 0; j < parts.length; j++) {
+        var q = parts[j], tw = 0.7 + Math.sin(tw0 + q.ph) * 0.3;
+        ctx.fillStyle = 'rgba(' + q.col + ',' + (0.6 * tw * intro) + ')';
+        ctx.beginPath(); ctx.arc(q.x, q.y, q.size, 0, 6.2832); ctx.fill();
+      }
+    }
+
+    function drawBurst(dt, intro) {
+      bAngle += 0.06 * dt;
+      var cx = bcx + cmx * 40, cy = bcy + cmy * 40, t = performance.now() * 0.001;
+      ctx.save(); ctx.translate(cx, cy);
+      var halo = ctx.createRadialGradient(0, 0, bInner * 0.2, 0, 0, bOuter * 1.18);
+      halo.addColorStop(0, 'rgba(157,92,255,' + (0.16 * intro) + ')');
+      halo.addColorStop(0.55, 'rgba(79,139,255,' + (0.06 * intro) + ')');
+      halo.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(0, 0, bOuter * 1.18, 0, 6.2832); ctx.fill();
+      ctx.rotate(bAngle); ctx.lineCap = 'round';
+      var span = bOuter - bInner;
+      for (var i = 0; i < bRays; i++) {
+        var a = (i / bRays) * 6.283, ca = Math.cos(a), sa = Math.sin(a);
+        var rgb = grad((i / bRays + t * 0.02) % 1);
+        var tw = 0.5 + Math.sin(t * 2 + i * 0.6) * 0.5, len = 24 * (0.6 + ((i * 7) % 5) / 5 * 0.9);
+        for (var s = 0; s < 2; s++) {
+          var r0 = bInner + span * (s / 2) + 6 + ((i * 13) % 7), r1 = Math.min(bOuter, r0 + len);
+          var alpha = (1 - r0 / bOuter) * 0.85 * tw * intro;
+          if (alpha < 0.01) continue;
+          // additive glow: a wide faint pass + a bright thin core (cheaper than shadowBlur)
+          ctx.beginPath(); ctx.moveTo(ca * r0, sa * r0); ctx.lineTo(ca * r1, sa * r1);
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + (alpha * 0.35) + ')'; ctx.lineWidth = 5.5; ctx.stroke();
+          ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha + ')'; ctx.lineWidth = 1.8; ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+
+    var intro = reduce ? 1 : 0;
+    function draw(dt) {
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = '#08070d'; ctx.fillRect(0, 0, w, h);
-      ctx.globalCompositeOperation = 'lighter';
-      var minDim = Math.min(w, h);
-      for (var i = 0; i < blobs.length; i++) {
-        var b = blobs[i];
-        var cx = (b.px + Math.sin(time * b.sx * 6.283 + b.hue) * b.ax) * w + cmx * 0.06 * w;
-        var cy = (b.py + Math.cos(time * b.sy * 6.283 + b.hue) * b.ay) * h + cmy * 0.06 * h;
-        var rad = b.r * minDim * (1 + 0.08 * Math.sin(time * 4 + b.hue));
-        var grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-        grd.addColorStop(0, 'hsla(' + b.hue + ',' + b.sat + '%,' + b.lig + '%,0.55)');
-        grd.addColorStop(0.5, 'hsla(' + b.hue + ',' + b.sat + '%,' + (b.lig - 10) + '%,0.18)');
-        grd.addColorStop(1, 'hsla(' + b.hue + ',' + b.sat + '%,' + b.lig + '%,0)');
-        ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 6.2832); ctx.fill();
-      }
+      ctx.globalCompositeOperation = 'lighter';            // additive glow on dark
+      updateField();
+      drawField(intro);
+      drawBurst(dt, intro);
       ctx.globalCompositeOperation = 'source-over';
     }
-    draw(performance.now());
-    window.addEventListener('resize', function () { draw(performance.now()); });
+
+    draw(0);
     if (reduce) return;
-    var raf, loop = function (t) {
+    var last = performance.now(), raf;
+    var loop = function (t) {
+      var dt = Math.min(0.05, (t - last) / 1000); last = t;
+      if (intro < 1) intro = Math.min(1, intro + dt * 0.8);
       cmx += (tmx - cmx) * 0.06; cmy += (tmy - cmy) * 0.06;
+      cpx += (tpx - cpx) * 0.12; cpy += (tpy - cpy) * 0.12;
       if (headline) headline.style.transform = 'translate3d(' + (cmx * 18).toFixed(2) + 'px,' + (cmy * 13).toFixed(2) + 'px,0)';
-      draw(t); raf = requestAnimationFrame(loop);
+      draw(dt); raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
     if (heroSection && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
-          if (e.isIntersecting) { if (!raf) raf = requestAnimationFrame(loop); }
+          if (e.isIntersecting) { if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
           else { if (raf) { cancelAnimationFrame(raf); raf = null; } }
         });
       }, { threshold: 0 });

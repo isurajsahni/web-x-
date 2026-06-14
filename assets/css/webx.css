@@ -11,6 +11,13 @@ body{background:#0A0A0A;color:#EDEDED;font-family:'Space Grotesk',sans-serif;ove
 img{max-width:100%;display:block}
 section[id]{scroll-margin-top:96px}
 
+/* ---------- Lenis smooth scroll ---------- */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
+
 /* custom-cursor pages hide the native cursor (desktop only) */
 @media (pointer:fine){
   html,body,a,button,summary{cursor:none}
