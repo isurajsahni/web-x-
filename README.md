@@ -67,11 +67,18 @@ Serve over **HTTPS** and at the **domain root** so the canonical URLs and
 
 Work through this checklist — most items are a global find-and-replace.
 
-### 4.1 Domain
-The live domain is set to **`https://thewebx.in`** across every page's
+### 4.1 Domain & clean URLs
+The live domain is set to **`https://www.thewebx.in`** across every page's
 `<link rel="canonical">`, Open Graph & Twitter tags and JSON-LD, plus the
 `Sitemap:` line in `robots.txt` and all `<loc>` entries in `sitemap.xml`.
 If it ever changes, find-replace that one string.
+
+Links use **extensionless / clean URLs** (`/work`, not `/work.html`). The files
+are still named `work.html` on disk — the host serves them without the extension.
+This works out of the box on GitHub Pages, Netlify, Vercel and Cloudflare Pages
+(they auto-resolve `/work` → `work.html` and 301-redirect `/work.html` → `/work`).
+If you move to a host that does *not* do this, either enable "clean/pretty URLs"
+there or restructure pages into folders (`work/index.html`).
 
 ### 4.2 Contact details
 - **Email** `hello@thewebx.in` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
