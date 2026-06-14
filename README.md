@@ -74,11 +74,17 @@ The live domain is set to **`https://www.thewebx.in`** across every page's
 If it ever changes, find-replace that one string.
 
 Links use **extensionless / clean URLs** (`/work`, not `/work.html`). The files
-are still named `work.html` on disk — the host serves them without the extension.
-This works out of the box on GitHub Pages, Netlify, Vercel and Cloudflare Pages
-(they auto-resolve `/work` → `work.html` and 301-redirect `/work.html` → `/work`).
-If you move to a host that does *not* do this, either enable "clean/pretty URLs"
-there or restructure pages into folders (`work/index.html`).
+are still named `work.html` on disk. The site is hosted on **Vercel**, so
+`vercel.json` enables this:
+
+```json
+{ "cleanUrls": true, "trailingSlash": false }
+```
+
+That makes Vercel serve `/work` from `work.html` and 308-redirect `/work.html`
+→ `/work`. **If you change hosts:** Netlify and Cloudflare Pages resolve clean
+URLs automatically; on GitHub Pages you'd instead put each page in its own
+folder (`work/index.html`) since it has no clean-URL setting.
 
 ### 4.2 Contact details
 - **Email** `hello@thewebx.in` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
