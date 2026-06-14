@@ -1,0 +1,13 @@
+# robots.txt — Web{X} Studio
+# Allow all well-behaved crawlers full access to the live site.
+User-agent: *
+Allow: /
+
+# Keep design-source / working artifacts out of the index
+# (these are not part of the deployed website)
+Disallow: /uploads/
+Disallow: /screens/
+Disallow: /*.dc.html$
+
+# Sitemap (update the domain to your live domain)
+Sitemap: https://www.webx.studio/sitemap.xml

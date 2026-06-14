@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# logs & OS cruft
+*.log
+.DS_Store
+Thumbs.db
+
+# local tooling / editor config
+.claude/
+
+# design-canvas source exports (intermediate format, not part of the live site)
+*.dc.html
+support.js
+webx-runtime.js
+
+# design-tool working artifacts
+screens/
+uploads/
+.thumbnail
