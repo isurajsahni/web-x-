@@ -50,12 +50,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .wx-work:hover .wx-work-rgb{opacity:.55}
 .wx-work:hover .wx-work-meta{transform:translateY(0);opacity:1}
 
-/* ---------- Project rows (work) ---------- */
-.wx-row{transition:padding-left .5s cubic-bezier(.16,1,.3,1),color .4s}
+/* ---------- Project rows (work) — name rolls up, violet copy rolls in from below ---------- */
+.wx-row{transition:padding-left .5s cubic-bezier(.16,1,.3,1)}
 .wx-row:hover{padding-left:clamp(10px,2vw,40px)}
-.wx-row:hover .wx-row-name{transform:translateY(-6px);color:#9D5CFF}
 .wx-row:hover .wx-row-arrow{opacity:1;transform:translateX(0)}
-.wx-row-name{display:block;transition:transform .5s cubic-bezier(.16,1,.3,1),color .4s}
+.wx-row-name{position:relative;display:block;overflow:hidden;line-height:1.15;color:transparent}
+.wx-row-name::before,.wx-row-name::after{content:attr(data-text);position:absolute;left:0;top:0;white-space:nowrap;transition:transform .55s cubic-bezier(.16,1,.3,1)}
+.wx-row-name::before{color:#EDEDED}
+.wx-row-name::after{color:#9D5CFF;transform:translateY(115%)}
+.wx-row:hover .wx-row-name::before{transform:translateY(-115%)}
+.wx-row:hover .wx-row-name::after{transform:translateY(0)}
 
 /* ---------- Team cards (studio) ---------- */
 .wx-team:hover .wx-team-img{filter:grayscale(0);transform:scale(1.04)}
