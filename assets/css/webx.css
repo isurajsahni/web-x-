@@ -87,6 +87,14 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-faq-body a{color:#9D5CFF;text-decoration:none}
 .wx-faq-body a:hover{text-decoration:underline}
 
+/* ---------- Capability cards: cursor-tracking spotlight ---------- */
+[data-cap-card]{--mx:50%;--my:50%}
+[data-cap-card]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;opacity:0;transition:opacity .45s ease;background:radial-gradient(circle 520px at var(--mx) var(--my),rgba(157,92,255,.16),transparent 60%)}
+@media (pointer:fine){[data-cap-card]:hover::after{opacity:1}}
+
+/* ---------- Selected-work cards: 3D tilt ---------- */
+.wx-work{will-change:transform}
+
 /* ---------- Responsive polish (was injected by the runtime) ---------- */
 @media (max-width:820px){
   [data-cap-card]{grid-template-columns:1fr !important}

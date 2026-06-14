@@ -349,6 +349,18 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize(); window.addEventListener('resize', resize);
+    var heroSection = canvas.closest('section');
+    var headline = heroSection ? heroSection.querySelector('h1') : null;
+    var fine = matchMedia('(pointer: fine)').matches;
+    var tmx = 0, tmy = 0, cmx = 0, cmy = 0; // target / current pointer offset, range -1..1
+    if (fine && !reduce && heroSection) {
+      heroSection.addEventListener('mousemove', function (e) {
+        var r = heroSection.getBoundingClientRect();
+        tmx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        tmy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      });
+      heroSection.addEventListener('mouseleave', function () { tmx = 0; tmy = 0; });
+    }
     var blobs = [
       { hue: 266, sat: 92, lig: 62, r: 0.62, ax: 0.20, ay: 0.16, sx: 0.11, sy: 0.07, px: 0.30, py: 0.32 },
       { hue: 258, sat: 80, lig: 50, r: 0.55, ax: 0.18, ay: 0.20, sx: 0.08, sy: 0.13, px: 0.72, py: 0.60 },
@@ -363,8 +375,8 @@
       var minDim = Math.min(w, h);
       for (var i = 0; i < blobs.length; i++) {
         var b = blobs[i];
-        var cx = (b.px + Math.sin(time * b.sx * 6.283 + b.hue) * b.ax) * w;
-        var cy = (b.py + Math.cos(time * b.sy * 6.283 + b.hue) * b.ay) * h;
+        var cx = (b.px + Math.sin(time * b.sx * 6.283 + b.hue) * b.ax) * w + cmx * 0.06 * w;
+        var cy = (b.py + Math.cos(time * b.sy * 6.283 + b.hue) * b.ay) * h + cmy * 0.06 * h;
         var rad = b.r * minDim * (1 + 0.08 * Math.sin(time * 4 + b.hue));
         var grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
         grd.addColorStop(0, 'hsla(' + b.hue + ',' + b.sat + '%,' + b.lig + '%,0.55)');
@@ -377,9 +389,12 @@
     draw(performance.now());
     window.addEventListener('resize', function () { draw(performance.now()); });
     if (reduce) return;
-    var raf, loop = function (t) { draw(t); raf = requestAnimationFrame(loop); };
+    var raf, loop = function (t) {
+      cmx += (tmx - cmx) * 0.06; cmy += (tmy - cmy) * 0.06;
+      if (headline) headline.style.transform = 'translate3d(' + (cmx * 18).toFixed(2) + 'px,' + (cmy * 13).toFixed(2) + 'px,0)';
+      draw(t); raf = requestAnimationFrame(loop);
+    };
     raf = requestAnimationFrame(loop);
-    var heroSection = canvas.closest('section');
     if (heroSection && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
@@ -538,6 +553,41 @@
     });
   }
 
+  /* Capability cards: cursor-tracking violet spotlight */
+  function initCardSpotlight() {
+    if (!matchMedia('(pointer: fine)').matches || reduce) return;
+    document.querySelectorAll('[data-cap-card]').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  /* Selected-work cards: 3D tilt that tracks the cursor */
+  function initCardTilt() {
+    if (!matchMedia('(pointer: fine)').matches || reduce) return;
+    document.querySelectorAll('.wx-work').forEach(function (card) {
+      var raf = null;
+      card.addEventListener('mouseenter', function () { card.style.transition = 'transform .12s ease-out'; });
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function () {
+          card.style.transform = 'perspective(900px) rotateY(' + (px * 7).toFixed(2) + 'deg) rotateX(' + (-py * 7).toFixed(2) + 'deg) scale(1.015)';
+        });
+      });
+      card.addEventListener('mouseleave', function () {
+        if (raf) cancelAnimationFrame(raf);
+        card.style.transition = 'transform .55s cubic-bezier(.16,1,.3,1)';
+        card.style.transform = 'none';
+      });
+    });
+  }
+
   /* ---------- Public API ---------- */
   window.WebX = {
     initAll: function () {
@@ -558,6 +608,7 @@
     window.WebX.initAll();
     initHeroCanvas(); initHeroRotator(); initClock(); initProcessBar();
     initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
+    initCardSpotlight(); initCardTilt();
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);
