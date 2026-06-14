@@ -509,6 +509,35 @@
     });
   }
 
+  /* Home FAQ: smooth height animation for native <details> (progressive enhancement) */
+  function initFaq() {
+    var items = document.querySelectorAll('details.wx-faq');
+    if (!items.length) return;
+    items.forEach(function (el) {
+      var summary = el.querySelector('summary');
+      var body = el.querySelector('.wx-faq-body');
+      if (!summary || !body || typeof el.animate !== 'function') return; // no WAAPI -> native toggle
+      var anim = null, closing = false, expanding = false;
+      var EASE = 'cubic-bezier(.16,1,.3,1)', DUR = reduce ? 0 : 440;
+      function finish(open) { el.open = open; anim = null; closing = expanding = false; el.style.height = ''; el.style.overflow = ''; }
+      function run(start, end, open) {
+        el.style.overflow = 'hidden';
+        if (anim) anim.cancel();
+        anim = el.animate({ height: [start + 'px', end + 'px'] }, { duration: DUR, easing: EASE });
+        anim.onfinish = function () { finish(open); };
+        anim.oncancel = function () { closing = expanding = false; };
+      }
+      function shrink() { closing = true; run(el.offsetHeight, summary.offsetHeight, false); }
+      function expand() { expanding = true; run(el.offsetHeight, summary.offsetHeight + body.offsetHeight, true); }
+      function openIt() { el.style.overflow = 'hidden'; el.style.height = el.offsetHeight + 'px'; el.open = true; requestAnimationFrame(expand); }
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (closing || !el.open) openIt();
+        else if (expanding || el.open) shrink();
+      });
+    });
+  }
+
   /* ---------- Public API ---------- */
   window.WebX = {
     initAll: function () {
@@ -528,7 +557,7 @@
   function boot() {
     window.WebX.initAll();
     initHeroCanvas(); initHeroRotator(); initClock(); initProcessBar();
-    initWorkPreview(); initContactForm(); wireBackTop();
+    initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);
