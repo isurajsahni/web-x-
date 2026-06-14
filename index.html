@@ -326,72 +326,162 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </article>
 </section>
 
-<!-- ============ DESIGN → PRODUCTION PIPELINE ============ -->
+<!-- ============ LIVE CONVERTER + CUSTOM BUILDS ============ -->
 <section id="figma-to-production" aria-labelledby="figma-prod-h" class="wx-d2p" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,72px) clamp(60px,9vh,110px);max-width:1500px;margin:0 auto;position:relative">
   <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(28px,4vh,44px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
     <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02.5)</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Design → Production</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Design → Production · Custom builds</span>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,4vw,80px);align-items:end;margin-bottom:clamp(50px,8vh,100px)">
-    <h2 id="figma-prod-h" data-reveal style="font-size:clamp(32px,5vw,76px);line-height:1.02;font-weight:600;letter-spacing:-.035em;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">Any design tool.<br><span style="color:#9D5CFF;font-style:italic;font-weight:500">Any platform.</span></h2>
-    <p data-reveal data-reveal-delay="120" style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:520px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Hand us a Figma file, a Photoshop comp, even a Canva mockup. We&rsquo;ll convert it into a pixel-perfect, responsive, production-ready website on the platform that fits your team.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,4vw,80px);align-items:end;margin-bottom:clamp(40px,6vh,72px)">
+    <h2 id="figma-prod-h" data-reveal style="font-size:clamp(34px,5.4vw,84px);line-height:.98;font-weight:600;letter-spacing:-.04em;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">Bring your design.<br><span style="color:#9D5CFF;font-style:italic;font-weight:500">Or build from scratch.</span></h2>
+    <p data-reveal data-reveal-delay="120" style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:520px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Hand us a Figma file, a Photoshop comp, even a Canva mockup &mdash; we&rsquo;ll ship it on the platform that fits your team. Or skip the platform entirely and let us build you something completely custom.</p>
   </div>
 
-  <div class="wx-d2p-grid" data-reveal data-reveal-delay="180" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
-
-    <!-- LEFT PANEL: design tools -->
-    <div class="wx-d2p-panel">
-      <span class="wx-d2p-label">You design in</span>
-      <ul class="wx-d2p-logos" role="list">
-        <li><img src="images/tools/figma.svg" alt="Figma" width="34" height="34" loading="lazy"><span>Figma</span></li>
-        <li><img src="images/tools/canva.svg" alt="Canva" width="34" height="34" loading="lazy"><span>Canva</span></li>
-        <li><img src="images/tools/photoshop.svg" alt="Adobe Photoshop" width="34" height="34" loading="lazy"><span>Photoshop</span></li>
-        <li><img src="images/tools/adobexd.svg" alt="Adobe XD" width="34" height="34" loading="lazy"><span>Adobe XD</span></li>
-        <li><img src="images/tools/sketch.svg" alt="Sketch" width="34" height="34" loading="lazy"><span>Sketch</span></li>
-      </ul>
+  <!-- =========================================================
+       LIVE CONVERTER — auto-cycling pair showcase
+       ========================================================= -->
+  <div class="wx-d2p-stage" data-reveal data-reveal-delay="180" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
+    <div class="wx-d2p-stage-bg" aria-hidden="true">
+      <span class="wx-d2p-orb wx-d2p-orb-1"></span>
+      <span class="wx-d2p-orb wx-d2p-orb-2"></span>
+      <span class="wx-d2p-orb wx-d2p-orb-3"></span>
     </div>
 
-    <!-- CENTER: animated connector -->
-    <div class="wx-d2p-flow" aria-hidden="true">
-      <span class="wx-d2p-flow-label">we convert</span>
-      <div class="wx-d2p-flow-track">
-        <span class="wx-d2p-flow-dot"></span>
-        <span class="wx-d2p-flow-dot"></span>
-        <span class="wx-d2p-flow-dot"></span>
-        <span class="wx-d2p-flow-dot"></span>
-        <span class="wx-d2p-flow-dot"></span>
+    <!-- LEFT card: design tool -->
+    <div class="wx-d2p-card wx-d2p-card-in">
+      <span class="wx-d2p-card-label">▲ Source · design tool</span>
+      <div class="wx-d2p-card-stage" data-d2p-stage="in">
+        <img class="is-active" src="images/tools/figma.png" alt="Figma" width="100" height="100" loading="lazy">
+        <img src="images/tools/canva.png" alt="Canva" width="100" height="100" loading="lazy">
+        <img src="images/tools/photoshop.png" alt="Photoshop" width="100" height="100" loading="lazy">
       </div>
-      <span class="wx-d2p-flow-arrow">→</span>
+      <div class="wx-d2p-card-name" data-d2p-name="in">Figma</div>
+      <div class="wx-d2p-card-meta">file · vector · prototype</div>
     </div>
 
-    <!-- RIGHT PANEL: production platforms -->
-    <div class="wx-d2p-panel">
-      <span class="wx-d2p-label">We ship to</span>
-      <ul class="wx-d2p-logos" role="list">
-        <li><img src="images/tools/webflow.svg" alt="Webflow" width="34" height="34" loading="lazy"><span>Webflow</span></li>
-        <li><img src="images/tools/wordpress.svg" alt="WordPress" width="34" height="34" loading="lazy"><span>WordPress</span></li>
-        <li><img src="images/tools/shopify.svg" alt="Shopify" width="34" height="34" loading="lazy"><span>Shopify</span></li>
-        <li><img src="images/tools/wix.svg" alt="Wix Studio" width="34" height="34" loading="lazy"><span>Wix Studio</span></li>
-        <li><img src="images/tools/squarespace.svg" alt="Squarespace" width="34" height="34" loading="lazy"><span>Squarespace</span></li>
-        <li>
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#fff"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          <span>HTML / Code</span>
-        </li>
-      </ul>
+    <!-- CENTER: animated bridge with flowing dots -->
+    <div class="wx-d2p-bridge" aria-hidden="true">
+      <svg class="wx-d2p-bridge-svg" viewBox="0 0 400 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="d2pgrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4F8BFF"/>
+            <stop offset="50%" stop-color="#9D5CFF"/>
+            <stop offset="100%" stop-color="#FF6FD8"/>
+          </linearGradient>
+        </defs>
+        <path class="wx-d2p-bridge-path" d="M0,60 C100,60 100,20 200,20 S300,100 400,60" fill="none" stroke="url(#d2pgrad)" stroke-width="2" opacity=".35"/>
+        <circle class="wx-d2p-bridge-orb" r="5" fill="#9D5CFF"/>
+        <circle class="wx-d2p-bridge-orb wx-d2p-bridge-orb-2" r="5" fill="#4F8BFF"/>
+        <circle class="wx-d2p-bridge-orb wx-d2p-bridge-orb-3" r="5" fill="#FF6FD8"/>
+      </svg>
+      <span class="wx-d2p-bridge-label" data-d2p-status>Converting <em>Figma → Webflow</em></span>
+    </div>
+
+    <!-- RIGHT card: platform -->
+    <div class="wx-d2p-card wx-d2p-card-out">
+      <span class="wx-d2p-card-label">▼ Output · platform</span>
+      <div class="wx-d2p-card-stage" data-d2p-stage="out">
+        <img class="is-active" src="images/tools/webflow.png" alt="Webflow" width="100" height="100" loading="lazy">
+        <img src="images/tools/wordpress.png" alt="WordPress" width="100" height="100" loading="lazy">
+        <img src="images/tools/shopify.png" alt="Shopify" width="100" height="100" loading="lazy">
+        <img src="images/tools/wix.png" alt="Wix Studio" width="100" height="100" loading="lazy">
+        <img src="images/tools/squarespace.png" alt="Squarespace" width="100" height="100" loading="lazy">
+        <img src="images/tools/unbounce.png" alt="Unbounce" width="100" height="100" loading="lazy">
+      </div>
+      <div class="wx-d2p-card-name" data-d2p-name="out">Webflow</div>
+      <div class="wx-d2p-card-meta">responsive · CMS · live</div>
     </div>
   </div>
 
-  <!-- secondary platforms strip + CTA -->
-  <div data-reveal data-reveal-delay="260" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:clamp(40px,6vh,72px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7A7A82;margin-right:8px">Also:</span>
-      <span class="wx-d2p-pill">Unbounce</span>
-      <span class="wx-d2p-pill">Framer</span>
-      <span class="wx-d2p-pill">Bubble</span>
-      <span class="wx-d2p-pill">Headless CMS</span>
+  <!-- =========================================================
+       MARQUEES — infinite scrolling logo strips
+       ========================================================= -->
+  <div class="wx-d2p-marquees" data-reveal data-reveal-delay="220" style="opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease">
+    <div class="wx-d2p-mq-row">
+      <span class="wx-d2p-mq-label">Design tools</span>
+      <div class="wx-d2p-mq" aria-hidden="true">
+        <div class="wx-d2p-mq-track">
+          <!-- 2x set for seamless loop -->
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
+          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
+          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Adobe XD</span>
+          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Sketch</span>
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Illustrator</span>
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
+          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
+          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Adobe XD</span>
+          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Sketch</span>
+          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Illustrator</span>
+        </div>
+      </div>
     </div>
-    <a data-transition href="contact" data-magnetic class="wx-uline" style="display:inline-flex;align-items:center;gap:10px;color:#EDEDED;text-decoration:none;font-size:15px;font-weight:500">Send us your file <span aria-hidden="true" style="color:#9D5CFF">→</span></a>
+    <div class="wx-d2p-mq-row wx-d2p-mq-row-rev">
+      <span class="wx-d2p-mq-label">Platforms</span>
+      <div class="wx-d2p-mq" aria-hidden="true">
+        <div class="wx-d2p-mq-track wx-d2p-mq-track-rev">
+          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
+          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
+          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
+          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
+          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
+          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
+          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
+          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Framer</span>
+          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
+          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
+          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
+          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
+          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
+          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
+          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
+          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Framer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       CUSTOM BUILDS — bento grid for Web Apps / ERP / Dashboards
+       ========================================================= -->
+  <div class="wx-d2p-bento" data-reveal data-reveal-delay="260" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
+    <article class="wx-d2p-bento-card wx-d2p-bento-hero">
+      <span class="wx-d2p-bento-eyebrow"><span aria-hidden="true">◆</span> Or going custom?</span>
+      <h3 class="wx-d2p-bento-title">We build it <em>from scratch.</em></h3>
+      <p class="wx-d2p-bento-copy">When no platform fits, we engineer one &mdash; custom web apps, ERP systems, SaaS and internal tools, built end-to-end.</p>
+      <div class="wx-d2p-bento-stack">
+        <span class="wx-d2p-pill">React</span>
+        <span class="wx-d2p-pill">Vue</span>
+        <span class="wx-d2p-pill">Next.js</span>
+        <span class="wx-d2p-pill">Node.js</span>
+        <span class="wx-d2p-pill">Python</span>
+        <span class="wx-d2p-pill">PostgreSQL</span>
+        <span class="wx-d2p-pill">MongoDB</span>
+      </div>
+    </article>
+    <article class="wx-d2p-bento-card wx-d2p-bento-svc">
+      <span class="wx-d2p-bento-num">01</span>
+      <h4>Custom Web Apps</h4>
+      <p>Internal tools, SaaS products, client portals &mdash; tailored to your workflow.</p>
+    </article>
+    <article class="wx-d2p-bento-card wx-d2p-bento-svc">
+      <span class="wx-d2p-bento-num">02</span>
+      <h4>ERP Systems</h4>
+      <p>Inventory, CRM, finance and ops &mdash; one cohesive system, built around your business.</p>
+    </article>
+    <article class="wx-d2p-bento-card wx-d2p-bento-svc">
+      <span class="wx-d2p-bento-num">03</span>
+      <h4>Dashboards &amp; APIs</h4>
+      <p>Real-time data, third-party integrations and admin panels that scale.</p>
+    </article>
+  </div>
+
+  <!-- CTA strip -->
+  <div data-reveal data-reveal-delay="320" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;margin-top:clamp(32px,5vh,56px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7A7A82">Also: Framer · Bubble · Headless CMS · Mobile</span>
+    <a data-transition href="contact" data-magnetic class="wx-uline" style="display:inline-flex;align-items:center;gap:10px;color:#EDEDED;text-decoration:none;font-size:15px;font-weight:500">Start a project <span aria-hidden="true" style="color:#9D5CFF">→</span></a>
   </div>
 </section>
 

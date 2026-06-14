@@ -754,12 +754,44 @@
     scrollTo: function (y) { if (window.WebX._scrollTo) window.WebX._scrollTo(y); else window.scrollTo(0, y); }
   };
 
+  /* ---------- Design → Production: auto-cycling pair showcase ----------
+     Cycles the active image in the "source" + "platform" stages on a fixed
+     beat, syncs the names and the "Converting X → Y" status pill. Pauses
+     when the user hovers the stage. Honours prefers-reduced-motion. */
+  function initD2pStage() {
+    var stage = document.querySelector('.wx-d2p-stage'); if (!stage) return;
+    var inImgs = stage.querySelectorAll('[data-d2p-stage="in"] img');
+    var outImgs = stage.querySelectorAll('[data-d2p-stage="out"] img');
+    var inName = stage.querySelector('[data-d2p-name="in"]');
+    var outName = stage.querySelector('[data-d2p-name="out"]');
+    var status = stage.querySelector('[data-d2p-status]');
+    if (!inImgs.length || !outImgs.length) return;
+    function nameOf(img) { return img.getAttribute('alt') || ''; }
+    function setActive(list, idx) {
+      list.forEach(function (im, i) { im.classList.toggle('is-active', i === idx); });
+    }
+    var i = 0, o = 0, paused = false;
+    stage.addEventListener('mouseenter', function () { paused = true; });
+    stage.addEventListener('mouseleave', function () { paused = false; });
+    function tick() {
+      if (paused) return;
+      i = (i + 1) % inImgs.length;
+      o = (o + 1) % outImgs.length;
+      setActive(inImgs, i); setActive(outImgs, o);
+      if (inName) inName.textContent = nameOf(inImgs[i]);
+      if (outName) outName.textContent = nameOf(outImgs[o]);
+      if (status) status.innerHTML = 'Converting <em>' + nameOf(inImgs[i]) + ' &rarr; ' + nameOf(outImgs[o]) + '</em>';
+    }
+    if (reduce) return;
+    setInterval(tick, 2200);
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     window.WebX.initAll();
     initHeroCanvas(); initHeroRotator(); initClock(); initProcessBar();
     initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
-    initCardSpotlight(); initCardTilt();
+    initCardSpotlight(); initCardTilt(); initD2pStage();
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);

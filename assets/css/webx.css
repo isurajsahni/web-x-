@@ -105,47 +105,94 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 /* ---------- Figma → Production tiles (legacy) ---------- */
 .wx-figma:hover{border-color:rgba(157,92,255,.5)!important;background:#100b18!important;transform:translateY(-3px)}
 
-/* ---------- Design → Production pipeline ---------- */
-.wx-d2p-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(20px,3vw,52px);align-items:stretch;position:relative}
-.wx-d2p-panel{position:relative;background:linear-gradient(180deg,#0f0f15 0%,#0b0b11 100%);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:clamp(28px,3.4vh,40px) clamp(24px,2.5vw,36px);overflow:hidden}
-.wx-d2p-panel::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 50% 0%,rgba(157,92,255,.10),transparent 70%);opacity:.7}
-.wx-d2p-label{position:relative;display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9D5CFF;margin-bottom:clamp(22px,3vh,32px)}
-.wx-d2p-logos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;position:relative}
-.wx-d2p-logos li{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:18px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,background .35s ease}
-.wx-d2p-logos li:hover{transform:translateY(-3px);border-color:rgba(157,92,255,.4);background:rgba(157,92,255,.06)}
-.wx-d2p-logos img,.wx-d2p-logos svg{width:30px;height:30px;object-fit:contain;filter:brightness(0) invert(1) opacity(.78);transition:filter .35s ease,transform .35s ease}
-.wx-d2p-logos li:hover img,.wx-d2p-logos li:hover svg{filter:none;transform:scale(1.08)}
-.wx-d2p-logos span{font-size:12.5px;font-weight:500;letter-spacing:-.005em;color:#EDEDED;text-align:center;line-height:1.2}
+/* ====================================================================
+   DESIGN → PRODUCTION — modern interactive section
+   ==================================================================== */
 
-/* center flow connector */
-.wx-d2p-flow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-width:110px;padding:0 4px}
-.wx-d2p-flow-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#7A7A82;writing-mode:vertical-rl;transform:rotate(180deg)}
-.wx-d2p-flow-track{position:relative;display:flex;align-items:center;justify-content:flex-start;height:6px;width:96px;border-radius:4px;background:linear-gradient(90deg,rgba(79,139,255,.18),rgba(157,92,255,.18) 50%,rgba(255,111,216,.18));overflow:hidden}
-.wx-d2p-flow-dot{position:absolute;top:50%;left:0;width:8px;height:8px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 12px rgba(157,92,255,.9);transform:translate(-50%,-50%);animation:wx-d2p-dash 2.6s linear infinite}
-.wx-d2p-flow-dot:nth-child(2){animation-delay:.5s;background:#4F8BFF;box-shadow:0 0 12px rgba(79,139,255,.9)}
-.wx-d2p-flow-dot:nth-child(3){animation-delay:1.0s;background:#FF6FD8;box-shadow:0 0 12px rgba(255,111,216,.9)}
-.wx-d2p-flow-dot:nth-child(4){animation-delay:1.5s}
-.wx-d2p-flow-dot:nth-child(5){animation-delay:2.0s;background:#4F8BFF;box-shadow:0 0 12px rgba(79,139,255,.9)}
-.wx-d2p-flow-arrow{font-size:22px;font-weight:600;color:#9D5CFF;line-height:1;text-shadow:0 0 14px rgba(157,92,255,.7)}
-@keyframes wx-d2p-dash{0%{left:-4%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:104%;opacity:0}}
+/* ---------- Live Converter stage ---------- */
+.wx-d2p-stage{position:relative;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:clamp(16px,2vw,28px);align-items:center;padding:clamp(36px,5vh,68px) clamp(28px,4vw,56px);border:1px solid rgba(255,255,255,.08);border-radius:28px;background:linear-gradient(180deg,#0E0E16 0%,#08080d 100%);overflow:hidden;min-height:clamp(280px,38vh,400px)}
+.wx-d2p-stage-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit}
+.wx-d2p-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;animation:wx-d2p-orb 14s ease-in-out infinite}
+.wx-d2p-orb-1{width:380px;height:380px;background:#4F8BFF;top:-120px;left:-80px}
+.wx-d2p-orb-2{width:440px;height:440px;background:#9D5CFF;top:-40px;left:35%;animation-delay:-4s}
+.wx-d2p-orb-3{width:360px;height:360px;background:#FF6FD8;bottom:-120px;right:-60px;animation-delay:-8s}
+@keyframes wx-d2p-orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.18)}}
 
-/* pills below the pipeline */
-.wx-d2p-pill{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.01em;color:#C8C8D0;padding:7px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);transition:border-color .3s ease,color .3s ease,background .3s ease}
+/* tool/platform cards in the stage */
+.wx-d2p-card{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(22px,3vh,32px) clamp(16px,2vw,28px);border-radius:24px;background:rgba(10,10,15,.55);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);min-height:clamp(220px,30vh,300px);text-align:center;transition:transform .6s cubic-bezier(.16,1,.3,1),border-color .4s ease,box-shadow .4s ease}
+.wx-d2p-card:hover{transform:translateY(-4px) scale(1.012);border-color:rgba(157,92,255,.45);box-shadow:0 24px 60px -28px rgba(157,92,255,.55)}
+.wx-d2p-card-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9D5CFF}
+.wx-d2p-card-stage{position:relative;width:clamp(82px,8vw,108px);height:clamp(82px,8vw,108px)}
+.wx-d2p-card-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(.7) rotate(-12deg);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1),filter .55s ease;filter:drop-shadow(0 12px 32px rgba(0,0,0,.55))}
+.wx-d2p-card-stage img.is-active{opacity:1;transform:scale(1) rotate(0);filter:drop-shadow(0 14px 36px rgba(157,92,255,.4))}
+.wx-d2p-card-name{font-size:clamp(20px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;color:#EDEDED;min-height:1.4em}
+.wx-d2p-card-meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82}
+
+/* center bridge with animated SVG path + dots */
+.wx-d2p-bridge{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px}
+.wx-d2p-bridge-svg{width:100%;max-width:340px;height:clamp(90px,12vh,140px);overflow:visible}
+.wx-d2p-bridge-path{stroke-dasharray:6 8;animation:wx-d2p-path 1.4s linear infinite}
+@keyframes wx-d2p-path{to{stroke-dashoffset:-28}}
+.wx-d2p-bridge-orb{filter:drop-shadow(0 0 8px currentColor);offset-path:path("M0,60 C100,60 100,20 200,20 S300,100 400,60");offset-rotate:0deg;animation:wx-d2p-orbmove 3.6s linear infinite}
+.wx-d2p-bridge-orb-2{animation-delay:-1.2s}
+.wx-d2p-bridge-orb-3{animation-delay:-2.4s}
+@keyframes wx-d2p-orbmove{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.wx-d2p-bridge-label{display:inline-block;padding:8px 16px;border-radius:100px;background:rgba(157,92,255,.08);border:1px solid rgba(157,92,255,.25);font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:#EDEDED;white-space:nowrap}
+.wx-d2p-bridge-label em{font-style:normal;color:#9D5CFF;font-weight:600}
+
+/* ---------- Marquees ---------- */
+.wx-d2p-marquees{margin-top:clamp(24px,4vh,40px);display:flex;flex-direction:column;gap:12px}
+.wx-d2p-mq-row{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:14px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.wx-d2p-mq-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A7A82;padding-left:clamp(4px,1vw,12px);white-space:nowrap}
+.wx-d2p-mq{position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.wx-d2p-mq-track{display:flex;gap:36px;width:max-content;animation:wx-d2p-mq 32s linear infinite;will-change:transform}
+.wx-d2p-mq-track-rev{animation-direction:reverse;animation-duration:38s}
+.wx-d2p-mq:hover .wx-d2p-mq-track{animation-play-state:paused}
+.wx-d2p-mq-track span{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#C8C8D0;white-space:nowrap;letter-spacing:-.005em;transition:color .25s ease,transform .25s ease}
+.wx-d2p-mq-track span:hover{color:#fff;transform:translateY(-1px)}
+.wx-d2p-mq-track img{width:26px;height:26px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+@keyframes wx-d2p-mq{to{transform:translateX(-50%)}}
+
+/* ---------- Bento: Custom Builds ---------- */
+.wx-d2p-bento{margin-top:clamp(40px,6vh,68px);display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto auto;gap:16px}
+.wx-d2p-bento-card{position:relative;padding:clamp(26px,3.4vh,38px) clamp(24px,2.6vw,36px);border-radius:24px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,#0F0B17 0%,#0A070F 100%);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
+.wx-d2p-bento-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 50% at 100% 0%,rgba(157,92,255,.14),transparent 60%);opacity:.7;transition:opacity .35s ease}
+.wx-d2p-bento-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.45);box-shadow:0 22px 50px -24px rgba(157,92,255,.5)}
+.wx-d2p-bento-card:hover::before{opacity:1}
+.wx-d2p-bento-hero{grid-column:1/2;grid-row:1/3;display:flex;flex-direction:column;gap:18px;background:linear-gradient(160deg,#160a24 0%,#0a0710 70%)}
+.wx-d2p-bento-eyebrow{position:relative;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9D5CFF}
+.wx-d2p-bento-eyebrow span{color:#FF6FD8;font-size:10px}
+.wx-d2p-bento-title{position:relative;font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.03em;line-height:1.04;margin:0}
+.wx-d2p-bento-title em{font-style:italic;font-weight:500;color:#9D5CFF}
+.wx-d2p-bento-copy{position:relative;font-size:clamp(14px,1.1vw,17px);line-height:1.6;color:#B8B8C0;margin:0}
+.wx-d2p-bento-stack{position:relative;display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+.wx-d2p-pill{display:inline-block;font-size:12px;font-weight:500;color:#C8C8D0;padding:6px 13px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);transition:border-color .3s ease,color .3s ease,background .3s ease}
 .wx-d2p-pill:hover{border-color:rgba(157,92,255,.5);color:#fff;background:rgba(157,92,255,.08)}
+.wx-d2p-bento-svc{display:flex;flex-direction:column;gap:10px;min-height:clamp(140px,18vh,180px)}
+.wx-d2p-bento-num{position:relative;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;color:#9D5CFF}
+.wx-d2p-bento-svc h4{position:relative;font-size:clamp(18px,1.7vw,23px);font-weight:600;letter-spacing:-.015em;margin:0}
+.wx-d2p-bento-svc p{position:relative;font-size:13.5px;line-height:1.55;color:#9A9AA2;margin:0}
 
-/* stack on narrower screens (panel | arrow | panel becomes vertical) */
-@media (max-width:960px){
-  .wx-d2p-grid{grid-template-columns:1fr;gap:clamp(14px,2vh,22px)}
-  .wx-d2p-flow{flex-direction:row;min-width:0;width:100%;justify-content:center;padding:6px 0}
-  .wx-d2p-flow-label{writing-mode:horizontal-tb;transform:none}
-  .wx-d2p-flow-track{width:140px;height:6px}
-  .wx-d2p-flow-arrow{transform:rotate(90deg)}
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .wx-d2p-bento{grid-template-columns:1fr 1fr}
+  .wx-d2p-bento-hero{grid-column:1/3;grid-row:auto}
+}
+@media (max-width:860px){
+  .wx-d2p-stage{grid-template-columns:1fr;gap:14px;min-height:0}
+  .wx-d2p-bridge{order:2;padding:8px 0}
+  .wx-d2p-card-out{order:3}
+  .wx-d2p-bridge-svg{height:80px;max-width:200px}
+  .wx-d2p-mq-row{grid-template-columns:1fr;gap:8px}
+  .wx-d2p-mq-label{padding-left:0}
 }
 @media (max-width:600px){
-  .wx-d2p-logos{grid-template-columns:repeat(2,1fr)}
+  .wx-d2p-bento{grid-template-columns:1fr}
+  .wx-d2p-bento-hero{grid-column:auto}
 }
 @media (prefers-reduced-motion: reduce){
-  .wx-d2p-flow-dot{animation:none;left:50%}
+  .wx-d2p-orb,.wx-d2p-bridge-path,.wx-d2p-bridge-orb,.wx-d2p-mq-track{animation:none!important}
+  .wx-d2p-card-stage img{transition:opacity .3s ease}
 }
 
 /* ---------- Responsive polish (was injected by the runtime) ---------- */
