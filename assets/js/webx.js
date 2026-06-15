@@ -626,8 +626,16 @@
       requestAnimationFrame(loop);
     })();
     rows.forEach(function (row) {
+      var img = row.getAttribute('data-img');
       var grad = row.getAttribute('data-grad');
-      row.addEventListener('mouseenter', function () { active = true; if (pimg) pimg.style.background = grad; preview.style.opacity = '1'; });
+      row.addEventListener('mouseenter', function () {
+        active = true;
+        if (pimg) {
+          if (img) { pimg.style.backgroundImage = 'url("' + img + '")'; pimg.style.backgroundSize = 'cover'; pimg.style.backgroundPosition = 'center'; pimg.style.background = pimg.style.background; }
+          else if (grad) { pimg.style.background = grad; }
+        }
+        preview.style.opacity = '1';
+      });
       row.addEventListener('mouseleave', function () { active = false; preview.style.opacity = '0'; });
     });
   }
