@@ -18,11 +18,13 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-stopped{overflow:hidden}
 .lenis.lenis-smooth iframe{pointer-events:none}
 
-/* custom-cursor pages hide the native cursor (desktop only) */
+/* custom-cursor pages hide the native cursor (desktop only).
+   Re-enabled by .wx-cursor-native on lowPower so weaker devices keep their cursor. */
 @media (pointer:fine){
   html,body,a,button,summary{cursor:none}
   input,textarea,select{cursor:text}
 }
+html.wx-cursor-native,html.wx-cursor-native body,html.wx-cursor-native a,html.wx-cursor-native button,html.wx-cursor-native summary{cursor:auto}
 
 /* ---------- Accessibility helpers ---------- */
 .wx-skip{position:fixed;top:-120px;left:16px;z-index:100001;background:#9D5CFF;color:#0A0A0A;
@@ -36,6 +38,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 /* When JS is unavailable (or hasn't booted), never hide reveal content */
 .no-js [data-reveal]{opacity:1!important;transform:none!important}
+
+/* ----- Paint perf: let the browser skip layout/paint for off-screen heavy sections.
+   These are tall and dense (capability stack, work grid, horizontal scroll, faq).
+   contain-intrinsic-size keeps the scroll position stable. */
+#capabilities,#work,#process,#faq,.wx-d2p-marquees,.wx-d2p-bento{content-visibility:auto;contain-intrinsic-size:1px 900px}
 
 /* ---------- Keyframes ---------- */
 @keyframes wx-grain{0%{transform:translate(0,0)}25%{transform:translate(-4%,3%)}50%{transform:translate(3%,-4%)}75%{transform:translate(-3%,-2%)}100%{transform:translate(2%,4%)}}

@@ -10,6 +10,18 @@
   var lerp = function (a, b, t) { return a + (b - a) * t; };
   var clamp = function (v, min, max) { return Math.max(min, Math.min(v, max)); };
 
+  /* Low-power mode: weaker laptops, integrated GPUs, smaller phones.
+     We drop the heaviest effects (custom cursor, card tilt, grain animation,
+     reduced particle field) so the page stays smooth on these devices. */
+  var lowPower = (function () {
+    var c = navigator.hardwareConcurrency || 8;
+    var m = navigator.deviceMemory || 8;       // GB; widely supported in Blink
+    var coarse = matchMedia('(pointer: coarse)').matches;
+    return reduce || coarse || c <= 4 || m <= 4;
+  })();
+  window.WebX = window.WebX || {};
+  window.WebX._lowPower = lowPower;
+
   /* ---------- Smooth scroll (Lenis) ----------
      Lenis does *real* scroll, so position:sticky, IntersectionObserver, the
      parallax + pinned process section all keep working. Loaded from CDN on
@@ -51,6 +63,7 @@
   /* ---------- Custom cursor: dot (invert) + trailing ring + View label + {X} mark ---------- */
   function initCursor() {
     if (matchMedia('(pointer: coarse)').matches) return;
+    if (lowPower) { document.documentElement.classList.add('wx-cursor-native'); return; }
     var dot = document.createElement('div'), ring = document.createElement('div'), label = document.createElement('div');
     Object.assign(dot.style, { position: 'fixed', left: '0', top: '0', width: '8px', height: '8px', borderRadius: '50%', background: '#fff', mixBlendMode: 'difference', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99999', transition: 'width .25s ease, height .25s ease' });
     Object.assign(ring.style, { position: 'fixed', left: '0', top: '0', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,.5)', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99998', mixBlendMode: 'difference', transition: 'width .3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1), background .3s, border-color .3s, opacity .3s' });
@@ -207,18 +220,35 @@
     if (reduce) return;
     var items = [].slice.call(document.querySelectorAll('[data-parallax]'));
     if (!items.length) return;
-    function onScroll() {
+    // Only animate items currently in view; skip the rest. Cuts per-frame work
+    // on long pages dramatically.
+    var visible = new Set();
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target);
+        });
+      }, { rootMargin: '20% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    } else { items.forEach(function (el) { visible.add(el); }); }
+
+    // rAF-throttle: scroll fires very fast (especially under smooth scroll),
+    // but we only paint once per animation frame.
+    var ticking = false;
+    function update() {
+      ticking = false;
       var vh = window.innerHeight;
-      items.forEach(function (el) {
+      visible.forEach(function (el) {
         var speed = parseFloat(el.getAttribute('data-parallax')) || 0.15;
         var rect = el.getBoundingClientRect();
         var center = rect.top + rect.height / 2 - vh / 2;
         el.style.transform = 'translate3d(0, ' + (-center * speed).toFixed(1) + 'px, 0) scale(1.18)';
       });
     }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    onScroll();
+    update();
   }
 
   /* ---------- Sticky header: hide on scroll down, show on up ---------- */
@@ -345,7 +375,12 @@
   function initGrain() {
     if (document.querySelector('[data-grain]')) return;
     var g = document.createElement('div'); g.setAttribute('data-grain', ''); g.setAttribute('aria-hidden', 'true');
-    Object.assign(g.style, { position: 'fixed', inset: '0', zIndex: '90000', pointerEvents: 'none', opacity: '.045', mixBlendMode: 'overlay', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", animation: 'wx-grain .5s steps(2) infinite' });
+    // Static grain texture only — the wx-grain keyframe used to repaint the
+    // entire viewport twice every 0.5s (constant full-screen invalidation,
+    // very expensive especially with mix-blend-mode). We keep the look with
+    // a still texture, which costs the GPU one composite.
+    Object.assign(g.style, { position: 'fixed', inset: '0', zIndex: '90000', pointerEvents: 'none', opacity: '.045', mixBlendMode: 'overlay', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" });
+    if (lowPower) g.style.display = 'none';   // skip entirely on weaker devices
     document.body.appendChild(g);
   }
 
@@ -362,7 +397,10 @@
     var canvas = document.querySelector('[data-hero-canvas]');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
-    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Lower DPR cap = far fewer fragments to shade per frame. The hero
+    // particle field is already soft & blurred; 1.5 is visually identical.
+    var dprCap = lowPower ? 1 : 1.5;
+    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, dprCap);
 
     // blue -> violet (#9D5CFF brand) -> pink
     var STOPS = [[79, 139, 255], [157, 92, 255], [255, 111, 216]];
@@ -377,9 +415,11 @@
     var pullR = 200, pull = 0.9, parallax = 26;
 
     function build() {
-      var count = Math.round((w * h) / 2800);      // optimise by area
-      count = Math.max(50, Math.min(560, count));  // clamp (subtle behind text)
-      linkDist = w < 640 ? 92 : 120;
+      // Denser denominator + tighter cap = lighter draw + lighter link search.
+      var denom = lowPower ? 6000 : 3600;
+      var maxParts = lowPower ? 160 : 360;
+      var count = Math.max(40, Math.min(maxParts, Math.round((w * h) / denom)));
+      linkDist = w < 640 ? 84 : (lowPower ? 96 : 110);
       parts = new Array(count);
       for (var i = 0; i < count; i++) {
         var x = Math.random() * w, y = Math.random() * h;
@@ -407,7 +447,7 @@
       var sm = Math.min(w, h);
       bcx = w * 0.82; bcy = h * 0.40;
       bInner = sm * 0.10; bOuter = sm * 0.30;
-      bRays = w < 760 ? 72 : 104;
+      bRays = lowPower ? (w < 760 ? 48 : 64) : (w < 760 ? 64 : 88);
     }
 
     var heroSection = canvas.closest('section');
@@ -714,19 +754,26 @@
 
   /* Capability cards: cursor-tracking violet spotlight */
   function initCardSpotlight() {
-    if (!matchMedia('(pointer: fine)').matches || reduce) return;
+    if (!matchMedia('(pointer: fine)').matches || reduce || lowPower) return;
     document.querySelectorAll('[data-cap-card]').forEach(function (card) {
+      var pending = false, mx = 0, my = 0;
       card.addEventListener('mousemove', function (e) {
         var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        mx = e.clientX - r.left; my = e.clientY - r.top;
+        if (pending) return;                          // rAF coalesce
+        pending = true;
+        requestAnimationFrame(function () {
+          card.style.setProperty('--mx', mx + 'px');
+          card.style.setProperty('--my', my + 'px');
+          pending = false;
+        });
       });
     });
   }
 
   /* Selected-work cards: 3D tilt that tracks the cursor */
   function initCardTilt() {
-    if (!matchMedia('(pointer: fine)').matches || reduce) return;
+    if (!matchMedia('(pointer: fine)').matches || reduce || lowPower) return;
     document.querySelectorAll('.wx-work').forEach(function (card) {
       var raf = null;
       card.addEventListener('mouseenter', function () { card.style.transition = 'transform .12s ease-out'; });
