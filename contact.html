@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <title>Contact Web{X} — Hire a Web Design &amp; SEO Agency in India</title>
 <meta name="description" content="Start a project with Web{X} Studio. Get a quote for landing page design, website development and SEO services. India-based, serving clients worldwide. We reply within 2 business days.">
-<meta name="keywords" content="contact web design agency India, hire web developer Bengaluru, get website quote, SEO services contact, landing page design enquiry">
+<meta name="keywords" content="contact web design agency India, hire web developer Ludhiana, get website quote, SEO services contact, landing page design enquiry">
 <meta name="author" content="Web{X} Studio">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.thewebx.in/contact">
@@ -43,12 +43,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="Contact Web{X} — Web Design &amp; SEO Agency in India">
 <meta name="twitter:description" content="Get a quote for landing pages, websites and SEO. India-based, serving worldwide.">
 <meta name="twitter:image" content="https://www.thewebx.in/og-image.png">
-<meta name="twitter:site" content="@webxstudio">
+<meta name="twitter:site" content="@theWebxOfficial">
 
-<meta name="geo.region" content="IN-KA">
-<meta name="geo.placename" content="Bengaluru, India">
-<meta name="geo.position" content="12.9716;77.5946">
-<meta name="ICBM" content="12.9716, 77.5946">
+<meta name="geo.region" content="IN-PB">
+<meta name="geo.placename" content="Ludhiana, India">
+<meta name="geo.position" content="30.9010;75.8573">
+<meta name="ICBM" content="30.9010, 75.8573">
 <meta name="theme-color" content="#0A0A0A">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -84,7 +84,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "url": "https://www.thewebx.in/",
       "email": "hello@thewebx.in",
       "telephone": "+91-98765-43210",
-      "address": { "@type": "PostalAddress", "streetAddress": "12th Main Road, Indiranagar", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560038", "addressCountry": "IN" },
+      "address": { "@type": "PostalAddress", "streetAddress": "Model Town", "addressLocality": "Ludhiana", "addressRegion": "Punjab", "postalCode": "141002", "addressCountry": "IN" },
       "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "hello@thewebx.in", "telephone": "+91-98765-43210", "areaServed": ["IN", "Worldwide"], "availableLanguage": ["English", "Hindi"] }
     },
     {
@@ -140,11 +140,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease">
         <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A7A82;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Studio</div>
-        <address style="font-size:17px;line-height:1.6;color:#C8C8D0;font-style:normal">12th Main Road, Indiranagar<br>Bengaluru, Karnataka 560038, India</address>
+        <address style="font-size:17px;line-height:1.6;color:#C8C8D0;font-style:normal">Model Town<br>Model Town, Ludhiana, Punjab 141002, India</address>
       </div>
       <div data-reveal data-reveal-delay="300" style="display:flex;gap:24px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease">
-        <a href="https://www.instagram.com/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Instagram</a>
-        <a href="https://x.com/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Twitter / X</a>
+        <a href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Instagram</a>
+        <a href="https://x.com/theWebxOfficial" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Twitter / X</a>
         <a href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">LinkedIn</a>
       </div>
     </div>
@@ -158,9 +158,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-size:16px;line-height:1.6;color:#9A9AA2;max-width:340px;margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
       </div>
 
-      <!-- Contact form. Set data-endpoint to your Formspree/Web3Forms/own URL to receive submissions.
-           Left blank, the form validates and shows the success panel (demo mode). -->
-      <form id="wx-contact-form" data-endpoint="" novalidate style="display:flex;flex-direction:column;gap:22px">
+      <!-- Contact form. Posts to /api/contact (Vercel serverless function) which
+           delivers leads to hello@thewebx.in via Resend. Set RESEND_API_KEY in
+           Vercel project env vars — see api/contact.js for the one-time setup. -->
+      <form id="wx-contact-form" data-endpoint="/api/contact" novalidate style="display:flex;flex-direction:column;gap:22px">
+        <!-- honeypot: real users never fill this; bots usually do. -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;height:0;width:0" />
         <div style="display:flex;flex-direction:column;gap:8px">
           <label for="wx-name" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9AA2;letter-spacing:.08em;text-transform:uppercase">Your name</label>
           <input id="wx-name" name="name" type="text" autocomplete="name" required aria-describedby="wx-name-err" placeholder="Jane Appleseed" style="background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 18px;font-size:16px;color:#EDEDED;font-family:'Space Grotesk',sans-serif;transition:border-color .3s" />
@@ -203,16 +206,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="mailto:hello@thewebx.in" class="wx-uline" style="font-size:clamp(18px,2vw,26px);color:#EDEDED;text-decoration:none">hello@thewebx.in</a>
     </div>
     <nav aria-label="Social" style="display:flex;gap:clamp(20px,3vw,46px);flex-wrap:wrap;align-items:flex-end">
-      <a href="https://www.instagram.com/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Instagram</a>
-      <a href="https://x.com/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Twitter / X</a>
+      <a href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Instagram</a>
+      <a href="https://x.com/theWebxOfficial" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Twitter / X</a>
       <a href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">LinkedIn</a>
-      <a href="https://dribbble.com/webxstudio" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Dribbble</a>
+      <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" class="wx-uline" style="font-size:15px;color:#B8B8C0;text-decoration:none">Dribbble</a>
     </nav>
     <button data-back-top data-magnetic type="button" style="background:transparent;border:1px solid rgba(255,255,255,.2);color:#EDEDED;border-radius:100px;padding:12px 20px;font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px">Back to top ↑</button>
   </div>
   <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:50px">
     <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A5A62">© 2026 Web{X} Studio — All rights reserved</span>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A5A62">Bengaluru, India · Designed &amp; built in-house</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5A5A62">Ludhiana, India · Designed &amp; built in-house</span>
   </div>
 
   <!-- Oversized brand wordmark — sits at the very bottom of the footer -->
