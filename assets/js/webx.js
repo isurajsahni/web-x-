@@ -21,15 +21,17 @@
   })();
   window.WebX = window.WebX || {};
   window.WebX._lowPower = lowPower;
+  if (lowPower) document.documentElement.classList.add('wx-low-power');
 
   /* ---------- Smooth scroll (Lenis) ----------
      Lenis does *real* scroll, so position:sticky, IntersectionObserver, the
      parallax + pinned process section all keep working. Loaded from CDN on
-     demand; skipped entirely under prefers-reduced-motion, and it degrades to
-     native scroll if the CDN is unreachable. */
+     demand; skipped entirely under prefers-reduced-motion or low-power, where
+     native scroll runs on the compositor thread and stays buttery without us
+     fighting the browser for the main thread. */
   var lenis = null;
   function initSmoothScroll() {
-    if (reduce) return;                       // honour reduced-motion → native scroll
+    if (reduce || lowPower) return;           // native scroll is smoother on weak devices
     function setup() {
       var L = window.Lenis; if (!L) return;
       if (L.default) L = L.default;           // UMD/ESM interop
@@ -217,7 +219,7 @@
 
   /* ---------- Parallax ---------- */
   function initParallax() {
-    if (reduce) return;
+    if (reduce || lowPower) return;       // parallax transforms during scroll thrash weak GPUs
     var items = [].slice.call(document.querySelectorAll('[data-parallax]'));
     if (!items.length) return;
     // Only animate items currently in view; skip the rest. Cuts per-frame work
@@ -255,17 +257,34 @@
   function initHeader() {
     var header = document.querySelector('[data-header]');
     if (!header) return;
-    var last = window.scrollY;
-    window.addEventListener('scroll', function () {
+    // backdrop-filter is recomposited on every scroll frame -- too expensive
+    // on weak GPUs, so on lowPower we fall back to an opaque dark background.
+    var bgScrolled = lowPower ? '#0E0E12' : 'rgba(10,10,10,.72)';
+    var blur = lowPower ? 'none' : 'blur(14px)';
+    var last = window.scrollY, ticking = false;
+    function update() {
+      ticking = false;
       if (window.WebX._menuOpen) { header.style.transform = 'translateY(0)'; return; }
       var y = window.scrollY;
       if (y > 80 && y > last) header.style.transform = 'translateY(-130%)'; else header.style.transform = 'translateY(0)';
-      header.style.background = y > 40 ? 'rgba(10,10,10,.72)' : 'transparent';
-      header.style.backdropFilter = y > 40 ? 'blur(14px)' : 'none';
-      header.style.webkitBackdropFilter = y > 40 ? 'blur(14px)' : 'none';
+      header.style.background = y > 40 ? bgScrolled : 'transparent';
+      header.style.backdropFilter = y > 40 ? blur : 'none';
+      header.style.webkitBackdropFilter = y > 40 ? blur : 'none';
       header.style.borderColor = y > 40 ? 'rgba(255,255,255,.08)' : 'rgba(255,255,255,0)';
       last = y;
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  }
+
+  /* ---------- "is scrolling" guard ----------
+     While the user is actively scrolling we toggle a body class. CSS uses it
+     to pause hover transforms / transitions that would otherwise repaint
+     while the page is moving — biggest visible flicker source on low-end. */
+  function initScrollGuard() {
+    var doc = document.documentElement, t = null;
+    function on() { doc.classList.add('wx-scrolling'); clearTimeout(t); t = setTimeout(off, 140); }
+    function off() { doc.classList.remove('wx-scrolling'); }
+    window.addEventListener('scroll', on, { passive: true });
   }
 
   /* ---------- Mobile nav: hamburger + fullscreen overlay ---------- */
@@ -660,11 +679,20 @@
     if (!preview || !rows.length) return;
     var mx = 0, my = 0, px = 0, py = 0, active = false;
     window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
-    (function loop() {
-      px += (mx - px) * 0.14; py += (my - py) * 0.14;
-      preview.style.transform = 'translate(' + (px - 170) + 'px, ' + (py - 120) + 'px) scale(' + (active ? 1 : 0.85) + ')';
-      requestAnimationFrame(loop);
-    })();
+    // Skip the perpetual rAF lerp on low-power. Snap the preview to the
+    // cursor instead of trailing it — same UX, zero per-frame work.
+    if (lowPower) {
+      window.addEventListener('mousemove', function () {
+        if (!active) return;
+        preview.style.transform = 'translate(' + (mx - 170) + 'px, ' + (my - 120) + 'px) scale(1)';
+      });
+    } else {
+      (function loop() {
+        px += (mx - px) * 0.14; py += (my - py) * 0.14;
+        preview.style.transform = 'translate(' + (px - 170) + 'px, ' + (py - 120) + 'px) scale(' + (active ? 1 : 0.85) + ')';
+        requestAnimationFrame(loop);
+      })();
+    }
     rows.forEach(function (row) {
       var img = row.getAttribute('data-img');
       var grad = row.getAttribute('data-grad');
@@ -814,7 +842,7 @@
     window.WebX.initAll();
     initHeroCanvas(); initHeroRotator(); initClock(); initProcessBar();
     initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
-    initCardSpotlight(); initCardTilt();
+    initCardSpotlight(); initCardTilt(); initScrollGuard();
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);

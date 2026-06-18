@@ -26,6 +26,33 @@ html.lenis,html.lenis body{height:auto}
 }
 html.wx-cursor-native,html.wx-cursor-native body,html.wx-cursor-native a,html.wx-cursor-native button,html.wx-cursor-native summary{cursor:auto}
 
+/* While the page is actively scrolling we pause any hover-driven transforms
+   and lower-priority transitions. Eliminates the per-frame composite churn
+   that flickered on weak GPUs. The class clears ~140ms after the last scroll. */
+html.wx-scrolling .wx-work,
+html.wx-scrolling .wx-d2p-bento-card,
+html.wx-scrolling [data-cap-card],
+html.wx-scrolling .wx-figma,
+html.wx-scrolling .wx-d2p-logos li,
+html.wx-scrolling .wx-pill,
+html.wx-scrolling .wx-d2p-pill{transition:none!important;animation-play-state:paused!important}
+html.wx-scrolling .wx-mq-track,html.wx-scrolling .wx-d2p-mq-track{animation-play-state:paused}
+
+/* Low-power: a wider sweep of cuts than just the JS gates. Marquees, drop-
+   shadows, will-change layer promotions and per-item transitions all add
+   composite cost during scroll — none of them are load-bearing for the
+   message of the page. */
+html.wx-low-power .wx-d2p-mq-track,
+html.wx-low-power .wx-d2p-mq-track-rev{animation:none!important}
+html.wx-low-power .wx-d2p-bento-card,
+html.wx-low-power .wx-d2p-bento-cta,
+html.wx-low-power .wx-d2p-bento-svc,
+html.wx-low-power .wx-faq,
+html.wx-low-power .wx-work,
+html.wx-low-power .wx-d2p-logos li{will-change:auto!important;box-shadow:none!important}
+html.wx-low-power .wx-d2p-bento-card:hover{transform:none!important;box-shadow:none!important}
+html.wx-low-power .wx-d2p-bento-cta:hover .wx-d2p-bento-cta-arrow{transform:none!important}
+
 /* ---------- Accessibility helpers ---------- */
 .wx-skip{position:fixed;top:-120px;left:16px;z-index:100001;background:#9D5CFF;color:#0A0A0A;
   padding:12px 20px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;
