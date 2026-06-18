@@ -158,10 +158,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-size:16px;line-height:1.6;color:#9A9AA2;max-width:340px;margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
       </div>
 
-      <!-- Contact form. Posts to /api/contact (Vercel serverless function) which
-           delivers leads to hello@thewebx.in via Resend. Set RESEND_API_KEY in
-           Vercel project env vars — see api/contact.js for the one-time setup. -->
-      <form id="wx-contact-form" data-endpoint="/api/contact" novalidate style="display:flex;flex-direction:column;gap:22px">
+      <!-- Contact form. POSTs to contact.php (PHP mail handler) which delivers
+           leads to hello@thewebx.in via PHP's mail() function. See contact.php
+           for the one-time setup — needs to be uploaded to a PHP-capable host
+           (Vercel does NOT execute PHP). If hosted on a different origin, set
+           data-endpoint to the absolute URL, e.g. https://contact.thewebx.in/contact.php -->
+      <form id="wx-contact-form" data-endpoint="contact.php" novalidate style="display:flex;flex-direction:column;gap:22px">
         <!-- honeypot: real users never fill this; bots usually do. -->
         <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;height:0;width:0" />
         <div style="display:flex;flex-direction:column;gap:8px">
