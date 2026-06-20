@@ -158,14 +158,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="font-size:16px;line-height:1.6;color:#9A9AA2;max-width:340px;margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
       </div>
 
-      <!-- Contact form. POSTs to contact.php (PHP mail handler) which delivers
-           leads to hello@thewebx.in via PHP's mail() function. See contact.php
-           for the one-time setup — needs to be uploaded to a PHP-capable host
-           (Vercel does NOT execute PHP). If hosted on a different origin, set
-           data-endpoint to the absolute URL, e.g. https://contact.thewebx.in/contact.php -->
-      <form id="wx-contact-form" data-endpoint="contact.php" novalidate style="display:flex;flex-direction:column;gap:22px">
-        <!-- honeypot: real users never fill this; bots usually do. -->
-        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;height:0;width:0" />
+      <!-- Contact form. POSTs lead data straight to Web3Forms
+           (https://web3forms.com), which emails every submission to the address
+           tied to the access_key below — here, hello@thewebx.in. No server and
+           no PHP required, so it works on static hosting like Vercel.
+
+           ►► ONE-TIME SETUP: grab a free access key at https://web3forms.com —
+              enter hello@thewebx.in and the key is emailed to you instantly
+              (no account, no domain verification). Paste it as the access_key
+              value on the hidden input below, then redeploy. Until a real key
+              is in place, every submission is rejected and the form errors.
+
+           The front-end (assets/js/webx.js → initContactForm) already POSTs the
+           FormData with Accept: application/json and reads { success:true } back,
+           so this handler needs no JS changes. -->
+      <form id="wx-contact-form" data-endpoint="https://api.web3forms.com/submit" novalidate style="display:flex;flex-direction:column;gap:22px">
+        <!-- ►► Web3Forms access key — REPLACE this value with your own key from web3forms.com. -->
+        <input type="hidden" name="access_key" value="13a88ecc-e9f0-4283-bac7-c075c9e925e3" />
+        <!-- How the lead shows up in your inbox. -->
+        <input type="hidden" name="subject" value="New lead from the thewebx.in contact form" />
+        <input type="hidden" name="from_name" value="Web{X} Website" />
+        <!-- Web3Forms native honeypot: real users leave it unchecked; bots that
+             tick every field get silently dropped as spam. -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
         <div style="display:flex;flex-direction:column;gap:8px">
           <label for="wx-name" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9AA2;letter-spacing:.08em;text-transform:uppercase">Your name</label>
           <input id="wx-name" name="name" type="text" autocomplete="name" required aria-describedby="wx-name-err" placeholder="Jane Appleseed" style="background:transparent;border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px 18px;font-size:16px;color:#EDEDED;font-family:'Space Grotesk',sans-serif;transition:border-color .3s" />

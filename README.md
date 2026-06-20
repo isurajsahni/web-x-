@@ -99,16 +99,19 @@ in the JSON-LD `sameAs` on `index.html`. Use real, working profiles (or delete t
 ones you don't have).
 
 ### 4.4 Contact form (make it actually send)
-The form validates client-side and, out of the box, just shows a success message
-(demo mode). To receive real submissions, create a free endpoint
-([Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com)) and put
-the URL on the form in `contact.html`:
+The form is wired to **[Web3Forms](https://web3forms.com)** — a free form-to-email
+service that works on static hosting like Vercel (no server / no PHP). It just
+needs **your** access key:
 
-```html
-<form id="wx-contact-form" data-endpoint="https://formspree.io/f/yourid" ...>
-```
+1. Go to [web3forms.com](https://web3forms.com), enter `hello@thewebx.in`, and the
+   access key (a UUID) is emailed to you instantly — no account, no DNS setup.
+2. In `contact.html`, replace `YOUR_WEB3FORMS_ACCESS_KEY` in the hidden
+   `access_key` input with that key.
+3. Redeploy. Submissions now land in `hello@thewebx.in` (free tier: 250/month).
 
-The script will `POST` the fields there and show the success panel on a 2xx response.
+The script `POST`s the fields to `data-endpoint` and shows the success panel on a
+2xx response. Want a different backend? Swap `data-endpoint` for a
+[Formspree](https://formspree.io) form URL instead — same contract.
 
 ### 4.5 Content (placeholders)
 Projects, the case study, team names, testimonials, stats and the FAQ **pricing in
