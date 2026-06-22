@@ -215,6 +215,65 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   [data-cap-card] h3 br{display:none}
 }
 
+/* ====================================================================
+   BLOG / ARTICLE — long-form prose, callouts, index cards
+   ==================================================================== */
+
+/* ---------- Article prose typography ---------- */
+.wx-prose{max-width:760px;margin:0 auto;font-size:clamp(16px,1.2vw,19px);line-height:1.78;color:#C2C2CA}
+.wx-prose>*+*{margin-top:1.4em}
+.wx-prose h2{font-size:clamp(26px,3.4vw,42px);font-weight:600;letter-spacing:-.025em;line-height:1.14;color:#EDEDED;margin-top:1.9em;scroll-margin-top:110px}
+.wx-prose h3{font-size:clamp(20px,2.2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.2;color:#EDEDED;margin-top:1.6em}
+.wx-prose p{margin:0}
+.wx-prose a{color:#9D5CFF;text-decoration:none;border-bottom:1px solid rgba(157,92,255,.4);transition:border-color .3s ease}
+.wx-prose a:hover{border-bottom-color:#9D5CFF}
+.wx-prose strong{color:#EDEDED;font-weight:600}
+.wx-prose ul,.wx-prose ol{padding-left:1.3em;display:flex;flex-direction:column;gap:.55em}
+.wx-prose li{line-height:1.65}
+.wx-prose li::marker{color:#9D5CFF}
+.wx-prose blockquote{margin:0;border-left:2px solid #9D5CFF;padding-left:clamp(20px,2.4vw,30px);font-size:clamp(20px,2.4vw,28px);line-height:1.4;font-weight:500;color:#EDEDED;letter-spacing:-.02em}
+.wx-prose figure{margin:0}
+.wx-prose hr{border:0;border-top:1px solid rgba(255,255,255,.1);margin:2.2em 0}
+.wx-prose-lead{font-size:clamp(19px,1.7vw,25px);line-height:1.5;color:#D8D8DE;font-weight:400;letter-spacing:-.01em}
+
+/* table for comparison posts */
+.wx-prose table{width:100%;border-collapse:collapse;font-size:clamp(14px,1.05vw,16px)}
+.wx-prose th,.wx-prose td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top}
+.wx-prose thead th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9D5CFF;font-weight:500}
+.wx-prose tbody td:first-child{color:#EDEDED;font-weight:500}
+
+/* key takeaway / callout box */
+.wx-callout{border:1px solid rgba(157,92,255,.3);background:#100b18;border-radius:18px;padding:clamp(22px,3vw,32px)}
+.wx-callout-label{display:block;color:#9D5CFF;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:12px}
+.wx-callout p{font-size:clamp(15px,1.15vw,18px);line-height:1.7;color:#D2D2DA;margin:0}
+
+/* in-article CTA strip */
+.wx-article-cta{margin-top:2.4em;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(160deg,#160a24 0%,#0a070f 75%);padding:clamp(28px,4vw,44px);text-align:center}
+.wx-article-cta h3{margin:0 0 12px!important;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.025em;color:#EDEDED}
+.wx-article-cta p{margin:0 0 24px;color:#9A9AA2;font-size:clamp(15px,1.1vw,17px);line-height:1.6}
+.wx-article-cta a{display:inline-flex;align-items:center;gap:12px;background:#9D5CFF;color:#0A0A0A;text-decoration:none;padding:15px 28px;border-radius:100px;font-size:15px;font-weight:600;border:0}
+
+/* ---------- Blog index cards ---------- */
+.wx-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(20px,2.6vw,34px)}
+.wx-blog-card{position:relative;display:flex;flex-direction:column;background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:clamp(26px,3vw,40px);text-decoration:none;color:inherit;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
+.wx-blog-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 50% at 100% 0%,rgba(157,92,255,.12),transparent 60%);opacity:0;transition:opacity .35s ease}
+.wx-blog-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.45);box-shadow:0 22px 50px -28px rgba(157,92,255,.5)}
+.wx-blog-card:hover::before{opacity:1}
+.wx-blog-cat{position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF;margin-bottom:18px}
+.wx-blog-card h2,.wx-blog-card h3{position:relative;font-size:clamp(21px,2.1vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.wx-blog-card p{position:relative;font-size:15px;line-height:1.6;color:#9A9AA2;margin-bottom:24px}
+.wx-blog-meta{position:relative;margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7A82;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wx-blog-arrow{color:#9D5CFF;font-size:18px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.wx-blog-card:hover .wx-blog-arrow{transform:translateX(5px)}
+.wx-blog-card-feat{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:clamp(20px,4vw,60px);background:linear-gradient(160deg,#140a20 0%,#0a070f 70%)}
+.wx-blog-card-feat>div{flex:1 1 340px;min-width:0}
+.wx-blog-card-feat h2{font-size:clamp(26px,3.4vw,44px);line-height:1.1}
+.wx-blog-card-feat p{font-size:clamp(15px,1.2vw,18px)}
+
+@media (max-width:600px){
+  .wx-prose blockquote{padding-left:18px}
+}
+
 /* ---------- Respect reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce){
   [data-reveal]{opacity:1 !important;transform:none !important}
