@@ -274,6 +274,17 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   .wx-prose blockquote{padding-left:18px}
 }
 
+/* ---------- Multilingual greeting preloader ----------
+   Styling lives here (loaded in <head>) so the loader is fully styled the
+   instant the deferred JS injects it — no flash of unstyled overlay. The
+   word text is set by JS; non-Latin scripts (Hindi/Japanese/Arabic/Punjabi)
+   fall back to the system UI font, so no extra web-font request is made. */
+.wx-greet-word{display:flex;align-items:center;gap:.42em;font-family:'Space Grotesk',sans-serif;
+  font-weight:600;font-size:clamp(38px,8vw,104px);letter-spacing:-.03em;line-height:1;color:#EDEDED;
+  white-space:nowrap;will-change:opacity,transform}
+.wx-greet-word::before{content:'';flex:0 0 auto;width:.32em;height:.32em;border-radius:50%;
+  background:#9D5CFF;box-shadow:0 0 26px #9D5CFF;transform:translateY(.03em)}
+
 /* ---------- Respect reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce){
   [data-reveal]{opacity:1 !important;transform:none !important}

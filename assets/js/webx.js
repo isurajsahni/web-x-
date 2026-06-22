@@ -355,27 +355,67 @@
     apply();
   }
 
-  /* ---------- Page-wipe transitions ---------- */
+  /* ---------- Page-wipe transitions + first-visit greeting ----------
+     First load of a session: a multilingual greeting cycles, then the overlay
+     wipes up to reveal the page. Every later navigation in the same session
+     uses the quick brand wipe only — so the heavier greeting plays once, not
+     on every page (the "optimized" part). Skipped entirely under reduced-motion. */
   function initPageTransition() {
     var overlay = document.createElement('div');
     Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#0A0A0A', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
     var mark = document.createElement('div');
     mark.innerHTML = 'Web<span style="color:#9D5CFF">{X}</span>';
     Object.assign(mark.style, { fontFamily: "'Space Grotesk', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
-    overlay.appendChild(mark); document.body.appendChild(overlay);
+    var greet = document.createElement('div');
+    greet.className = 'wx-greet-word';
+    greet.setAttribute('aria-hidden', 'true');
+    greet.style.display = 'none';
+    overlay.appendChild(mark); overlay.appendChild(greet); document.body.appendChild(overlay);
 
     if (!document.getElementById('wx-intro-kf')) {
       var st = document.createElement('style'); st.id = 'wx-intro-kf';
       st.textContent = '@keyframes wx-intro{0%{transform:translateY(0)}28%{transform:translateY(0)}100%{transform:translateY(-100%)}}';
       document.head.appendChild(st);
     }
-    function parkOverlay() { overlay.style.animation = 'none'; overlay.style.transition = 'none'; overlay.style.transform = 'translateY(100%)'; mark.style.opacity = '0'; }
-    if (!reduce) {
+    function parkOverlay() { overlay.style.animation = 'none'; overlay.style.transition = 'none'; overlay.style.transform = 'translateY(100%)'; mark.style.opacity = '0'; greet.style.display = 'none'; }
+    function liftAway(dur) {
+      overlay.style.animation = 'none';
+      overlay.style.transition = 'transform ' + dur + 's cubic-bezier(.76,0,.24,1)';
+      requestAnimationFrame(function () { overlay.style.transform = 'translateY(-100%)'; });
+      setTimeout(parkOverlay, dur * 1000 + 80);
+    }
+
+    var greeted = false;
+    try { greeted = sessionStorage.getItem('wx-greeted') === '1'; } catch (e) {}
+
+    if (reduce) {
+      parkOverlay();
+    } else if (!greeted) {
+      /* First visit of the session — cycle greetings, then wipe up. */
+      try { sessionStorage.setItem('wx-greeted', '1'); } catch (e) {}
+      // Hindi · French · Spanish · Italian · Japanese · Arabic · Punjabi (Ludhiana) · English.
+      // Non-Latin scripts fall back to the system font — no extra web-font load.
+      var greetings = ['नमस्ते', 'Bonjour', 'Hola', 'Ciao', 'こんにちは', 'مرحبا', 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'Hello'];
+      var gi = 0, step = lowPower ? 150 : 115;
+      overlay.style.transform = 'translateY(0)';
+      greet.style.display = 'flex';
+      greet.textContent = greetings[0];
+      var timer = setInterval(function () {
+        gi++;
+        if (gi >= greetings.length) {
+          clearInterval(timer);
+          setTimeout(function () { liftAway(0.85); }, step);
+          return;
+        }
+        greet.textContent = greetings[gi];
+      }, step);
+    } else {
+      /* Already greeted this session — quick brand wipe completes the nav. */
       overlay.style.transform = 'translateY(0)'; mark.style.opacity = '1';
       overlay.style.animation = 'wx-intro 1.15s cubic-bezier(.76,0,.24,1) forwards';
       setTimeout(function () { mark.style.opacity = '0'; }, 520);
       setTimeout(parkOverlay, 1250);
-    } else { parkOverlay(); }
+    }
 
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a[data-transition]');
@@ -384,6 +424,7 @@
       if (!href || href.charAt(0) === '#' || a.target === '_blank' || /^(mailto:|tel:)/.test(href)) return;
       e.preventDefault();
       if (reduce) { window.location.href = href; return; }
+      greet.style.display = 'none';
       overlay.style.transition = 'transform .7s cubic-bezier(.76,0,.24,1)';
       overlay.style.transform = 'translateY(0)'; mark.style.opacity = '1';
       setTimeout(function () { window.location.href = href; }, 720);
