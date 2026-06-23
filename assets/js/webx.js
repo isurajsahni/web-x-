@@ -383,11 +383,6 @@
     greet.style.display = 'none';
     overlay.appendChild(mark); overlay.appendChild(greet); document.body.appendChild(overlay);
 
-    if (!document.getElementById('wx-intro-kf')) {
-      var st = document.createElement('style'); st.id = 'wx-intro-kf';
-      st.textContent = '@keyframes wx-intro{0%{transform:translateY(0)}28%{transform:translateY(0)}100%{transform:translateY(-100%)}}';
-      document.head.appendChild(st);
-    }
     function parkOverlay() { overlay.style.animation = 'none'; overlay.style.transition = 'none'; overlay.style.transform = 'translateY(100%)'; mark.style.opacity = '0'; greet.style.display = 'none'; }
     function liftAway(dur) {
       overlay.style.animation = 'none';
@@ -396,18 +391,15 @@
       setTimeout(parkOverlay, dur * 1000 + 80);
     }
 
-    var greeted = false;
-    try { greeted = sessionStorage.getItem('wx-greeted') === '1'; } catch (e) {}
-
     if (reduce) {
       parkOverlay();
-    } else if (!greeted) {
-      /* First visit of the session — cycle greetings, then wipe up. */
-      try { sessionStorage.setItem('wx-greeted', '1'); } catch (e) {}
+    } else {
+      /* Every home-page load cycles the multilingual greeting, then wipes up.
+         Each word holds long enough to read (the old ~115ms felt like a flicker). */
       // Hindi · French · Spanish · Italian · Japanese · Arabic · Punjabi (Ludhiana) · English.
       // Non-Latin scripts fall back to the system font — no extra web-font load.
       var greetings = ['नमस्ते', 'Bonjour', 'Hola', 'Ciao', 'こんにちは', 'مرحبا', 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'Hello'];
-      var gi = 0, step = lowPower ? 150 : 115;
+      var gi = 0, step = lowPower ? 260 : 230;
       overlay.style.transform = 'translateY(0)';
       greet.style.display = 'flex';
       greet.textContent = greetings[0];
@@ -415,17 +407,12 @@
         gi++;
         if (gi >= greetings.length) {
           clearInterval(timer);
-          setTimeout(function () { liftAway(0.85); }, step);
+          // Hold the final "Hello" a beat longer before lifting the overlay.
+          setTimeout(function () { liftAway(0.85); }, step * 1.6);
           return;
         }
         greet.textContent = greetings[gi];
       }, step);
-    } else {
-      /* Already greeted this session — quick brand wipe completes the nav. */
-      overlay.style.transform = 'translateY(0)'; mark.style.opacity = '1';
-      overlay.style.animation = 'wx-intro 1.15s cubic-bezier(.76,0,.24,1) forwards';
-      setTimeout(function () { mark.style.opacity = '0'; }, 520);
-      setTimeout(parkOverlay, 1250);
     }
 
     document.addEventListener('click', function (e) {
