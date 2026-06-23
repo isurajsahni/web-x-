@@ -361,11 +361,22 @@
      uses the quick brand wipe only — so the heavier greeting plays once, not
      on every page (the "optimized" part). Skipped entirely under reduced-motion. */
   function initPageTransition() {
+    /* The preloader / intro overlay lives only on the home page (the main
+       page). On every other page we skip it entirely — no preloader, no
+       intro wipe — so exactly one preloader exists across the whole site. */
+    var path = location.pathname.toLowerCase().replace(/\/+$/, '');
+    var isHome = path === '' || /\/index(\.html)?$/.test(path) || !!document.querySelector('[data-hero-canvas]');
+    if (!isHome) return;
+
     var overlay = document.createElement('div');
     Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#0A0A0A', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
     var mark = document.createElement('div');
     mark.innerHTML = 'Web<span style="color:#9D5CFF">{X}</span>';
-    Object.assign(mark.style, { fontFamily: "'Space Grotesk', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
+    /* Absolutely centered so the invisible brand mark never takes layout
+       space next to the greeting word — that offset was pushing the greeting
+       off-centre. With the mark out of flow, the overlay's flex centering
+       lands the greeting word dead centre. */
+    Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Space Grotesk', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
     var greet = document.createElement('div');
     greet.className = 'wx-greet-word';
     greet.setAttribute('aria-hidden', 'true');
