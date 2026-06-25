@@ -88,7 +88,7 @@ folder (`work/index.html`) since it has no clean-URL setting.
 
 ### 4.2 Contact details
 - **Email** `hello@thewebx.in` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
-- **Phone** `+91 98765 43210` and the `tel:+919876543210` link in `contact.html` + JSON-LD.
+- **Phone** `+91 79733 86875` and the `tel:+917973386875` link in `contact.html` + JSON-LD.
 - **Address / city** `12th Main Road, Indiranagar, Bengaluru …` in `contact.html` + JSON-LD on `index.html`/`contact.html`.
 - **Geo** `geo.position` / `ICBM` / JSON-LD `geo` coordinates (currently Bengaluru `12.9716, 77.5946`).
 
