@@ -37,8 +37,6 @@ html.wx-scrolling .wx-d2p-logos li,
 html.wx-scrolling .wx-pill,
 html.wx-scrolling .wx-d2p-pill{transition:none!important;animation-play-state:paused!important}
 html.wx-scrolling .wx-mq-track,html.wx-scrolling .wx-d2p-mq-track{animation-play-state:paused}
-/* The Figma→platform ring keeps spinning during scroll — its rotation is the
-   whole point of the section, so it is intentionally exempt from the scroll pause. */
 
 /* Low-power: a wider sweep of cuts than just the JS gates. Marquees, drop-
    shadows, will-change layer promotions and per-item transitions all add
@@ -196,11 +194,10 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-f2p{margin-top:clamp(36px,6vh,64px);display:flex;flex-direction:column;align-items:center;gap:clamp(18px,3vh,32px)}
 .wx-f2p-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9D5CFF}
 .wx-f2p-eyebrow span{color:#FF6FD8;font-size:10px}
-.wx-f2p-stage{--r:clamp(260px,30vw,360px);width:100%;height:clamp(440px,52vh,560px);perspective:2200px;perspective-origin:50% 50%;display:flex;align-items:center;justify-content:center;position:relative;-webkit-mask-image:radial-gradient(140% 112% at 50% 50%,#000 74%,transparent 100%);mask-image:radial-gradient(140% 112% at 50% 50%,#000 74%,transparent 100%)}
-.wx-f2p-ring{position:relative;width:clamp(248px,24vw,280px);height:clamp(280px,34vh,310px);transform-style:preserve-3d;animation:wx-f2p-spin 34s linear infinite;will-change:transform}
-.wx-f2p:hover .wx-f2p-ring{animation-play-state:paused}
-@keyframes wx-f2p-spin{from{transform:rotateX(-7deg) rotateY(0)}to{transform:rotateX(-7deg) rotateY(360deg)}}
-.wx-f2p-card{position:absolute;top:50%;left:50%;width:clamp(248px,24vw,280px);min-height:clamp(280px,34vh,310px);box-sizing:border-box;padding:clamp(24px,2.8vh,32px) clamp(22px,2.2vw,28px);border-radius:22px;border:1px solid rgba(157,92,255,.22);background:linear-gradient(165deg,#160c24 0%,#0b0712 72%);box-shadow:0 30px 60px -30px rgba(157,92,255,.55),inset 0 1px 0 rgba(255,255,255,.05);display:flex;flex-direction:column;gap:12px;transform:translate(-50%,-50%) rotateY(calc(var(--i) * 72deg)) translateZ(var(--r));backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.wx-f2p-stage{width:100%;position:relative}
+.wx-f2p-ring{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(14px,1.6vw,20px);width:100%}
+.wx-f2p-card{box-sizing:border-box;padding:clamp(22px,2.6vh,30px) clamp(20px,2.2vw,26px);border-radius:20px;border:1px solid rgba(157,92,255,.22);background:linear-gradient(165deg,#160c24 0%,#0b0712 72%);box-shadow:0 24px 50px -32px rgba(157,92,255,.5),inset 0 1px 0 rgba(255,255,255,.05);display:flex;flex-direction:column;gap:12px;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
+.wx-f2p-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.45)}
 .wx-f2p-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(80% 55% at 50% 0%,rgba(157,92,255,.22),transparent 62%)}
 .wx-f2p-route{position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C8A8FF}
 .wx-f2p-flow{position:relative;display:flex;align-items:center;gap:14px;margin:2px 0 2px}
