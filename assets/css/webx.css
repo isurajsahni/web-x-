@@ -44,10 +44,8 @@ html.wx-scrolling .wx-mq-track,html.wx-scrolling .wx-d2p-mq-track{animation-play
    message of the page. */
 html.wx-low-power .wx-d2p-mq-track,
 html.wx-low-power .wx-d2p-mq-track-rev{animation:none!important}
-/* Low-power: drop the 3D ring to a flat, static grid (no perspective layers). */
-html.wx-low-power .wx-f2p-stage{perspective:none!important;height:auto!important;-webkit-mask-image:none!important;mask-image:none!important}
-html.wx-low-power .wx-f2p-ring{position:static!important;width:100%!important;height:auto!important;transform:none!important;animation:none!important;transform-style:flat!important;display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))!important;gap:14px!important}
-html.wx-low-power .wx-f2p-card{position:static!important;width:auto!important;min-height:0!important;transform:none!important;backface-visibility:visible!important;box-shadow:none!important}
+/* Low-power: trim the card glow/shadow and pause the arrow pulse. */
+html.wx-low-power .wx-f2p-card{box-shadow:none!important}
 html.wx-low-power .wx-f2p-arrow{animation:none!important}
 html.wx-low-power .wx-d2p-bento-card,
 html.wx-low-power .wx-d2p-bento-cta,
@@ -195,10 +193,10 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-f2p-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9D5CFF}
 .wx-f2p-eyebrow span{color:#FF6FD8;font-size:10px}
 .wx-f2p-stage{width:100%;position:relative}
-.wx-f2p-ring{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(14px,1.6vw,20px);width:100%}
-.wx-f2p-card{box-sizing:border-box;padding:clamp(22px,2.6vh,30px) clamp(20px,2.2vw,26px);border-radius:20px;border:1px solid rgba(157,92,255,.22);background:linear-gradient(165deg,#160c24 0%,#0b0712 72%);box-shadow:0 24px 50px -32px rgba(157,92,255,.5),inset 0 1px 0 rgba(255,255,255,.05);display:flex;flex-direction:column;gap:12px;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
-.wx-f2p-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.45)}
-.wx-f2p-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(80% 55% at 50% 0%,rgba(157,92,255,.22),transparent 62%)}
+.wx-f2p-ring{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,1.4vw,20px);width:100%}
+.wx-f2p-card{position:relative;box-sizing:border-box;padding:clamp(24px,2.6vh,30px) clamp(20px,2.2vw,26px);border-radius:20px;border:1px solid rgba(157,92,255,.2);background:linear-gradient(165deg,#160c24 0%,#0b0712 72%);box-shadow:0 24px 50px -32px rgba(157,92,255,.5),inset 0 1px 0 rgba(255,255,255,.05);display:flex;flex-direction:column;gap:12px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.wx-f2p-card:hover{transform:translateY(-5px);border-color:rgba(157,92,255,.5);box-shadow:0 30px 60px -30px rgba(157,92,255,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+.wx-f2p-card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(90% 60% at 50% 0%,rgba(157,92,255,.18),transparent 60%)}
 .wx-f2p-route{position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C8A8FF}
 .wx-f2p-flow{position:relative;display:flex;align-items:center;gap:14px;margin:2px 0 2px}
 .wx-f2p-flow img{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
@@ -222,19 +220,12 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   .wx-d2p-bento-hero{grid-column:auto}
 }
 
-/* Flatten the 3D ring into a readable grid where 3D is unwanted:
-   small screens, reduced-motion, or a low-power device. Same DOM. */
-@media (max-width:900px){
-  .wx-f2p-stage{perspective:none;height:auto;-webkit-mask-image:none;mask-image:none}
-  .wx-f2p-ring{position:static;width:100%;height:auto;transform:none!important;animation:none!important;transform-style:flat;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
-  .wx-f2p-card{position:static;width:auto;min-height:0;transform:none!important;backface-visibility:visible;-webkit-backface-visibility:visible}
-  .wx-f2p-arrow{animation:none}
-}
+/* Card grid steps down cleanly: 5 across → 3 → 2 → 1. */
+@media (max-width:1180px){.wx-f2p-ring{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.wx-f2p-ring{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.wx-f2p-ring{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){
   .wx-d2p-mq-track{animation:none!important}
-  .wx-f2p-stage{perspective:none;height:auto;-webkit-mask-image:none;mask-image:none}
-  .wx-f2p-ring{position:static;width:100%;height:auto;transform:none!important;animation:none!important;transform-style:flat;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
-  .wx-f2p-card{position:static;width:auto;min-height:0;transform:none!important;backface-visibility:visible;-webkit-backface-visibility:visible}
   .wx-f2p-arrow{animation:none}
 }
 
