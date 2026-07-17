@@ -604,7 +604,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="width:24px; height:24px; border-radius:50%; background:rgba(157, 92, 255, 0.15); color:var(--brand-purple); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:'Space Grotesk',sans-serif; flex-shrink:0;">1</div>
             <div>
               <h4 style="font-size:14px; font-weight:600; color:#FFFFFF; margin-bottom:4px;">Discovery Brief</h4>
-              <p style="font-size:13px; color:var(--contact-muted); line-height:1.5;">We review your project specs, requested services, and budget to align on core vision. Response in 24 hours.</p>
+              <p style="font-size:13px; color:var(--contact-muted); line-height:1.5;">We review your project specs, requested services, and scope to align on core vision. Response in 24 hours.</p>
             </div>
           </div>
           <div style="display:flex; gap:16px;">
@@ -641,29 +641,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input type="hidden" name="from_name" value="Web{X} Website" />
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
         
-        <!-- Hidden synced inputs for budget and services -->
+        <!-- Hidden synced inputs for services -->
         <input type="hidden" id="hidden-services" name="services" value="UX/UI Design" />
-        <input type="hidden" id="hidden-budget" name="budget" value="$5K - $15K" />
 
         <!-- Dynamic Service Selection Badges -->
-        <div style="margin-bottom: 8px;">
+        <div style="margin-bottom: 12px;">
           <span class="pills-label">I'm looking for...</span>
           <div class="pills-container" id="services-pills">
             <div class="pill-badge active" data-value="UX/UI Design">UX/UI Design</div>
             <div class="pill-badge" data-value="Web Development">Web Development</div>
             <div class="pill-badge" data-value="SEO &amp; Ranking">SEO &amp; Ranking</div>
             <div class="pill-badge" data-value="Full Product Launch">Full Product Launch</div>
-          </div>
-        </div>
-
-        <!-- Dynamic Budget Selection Badges -->
-        <div style="margin-bottom: 12px;">
-          <span class="pills-label">Estimated Budget</span>
-          <div class="pills-container" id="budget-pills">
-            <div class="pill-badge" data-value="&lt; $5K">&lt; $5K</div>
-            <div class="pill-badge active" data-value="$5K - $15K">$5K - $15K</div>
-            <div class="pill-badge" data-value="$15K - $30K">$15K - $30K</div>
-            <div class="pill-badge" data-value="$30K+">$30K+</div>
           </div>
         </div>
 
@@ -767,13 +755,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<!-- Interactive Badges Script for Services and Budget Selection -->
+<!-- Interactive Badges Script for Services Selection -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const servicePills = document.querySelectorAll('#services-pills .pill-badge');
-  const budgetPills = document.querySelectorAll('#budget-pills .pill-badge');
   const hiddenServices = document.getElementById('hidden-services');
-  const hiddenBudget = document.getElementById('hidden-budget');
 
   // Multi-select for Services
   servicePills.forEach(pill => {
@@ -784,15 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 .map(p => p.getAttribute('data-value'));
       
       hiddenServices.value = activeValues.join(', ') || 'None Selected';
-    });
-  });
-
-  // Single-select for Budget
-  budgetPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      budgetPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      hiddenBudget.value = pill.getAttribute('data-value');
     });
   });
 });
