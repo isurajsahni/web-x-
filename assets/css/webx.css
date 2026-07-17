@@ -470,8 +470,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #9D5CFF 0%, #B685FF 50%, #7B35FA 100%);
-  background-size: 200% 200%;
+  background: #9D5CFF;
   color: #FFFFFF !important;
   text-decoration: none;
   padding: 16px 32px;
@@ -479,11 +478,11 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   font-size: 16px;
   font-weight: 600;
   box-shadow: 0 8px 24px -8px rgba(157, 92, 255, 0.5);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  animation: wx-btn-glow 6s ease infinite;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .wx-btn-primary:hover {
+  background: #8A46EB;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 15px 30px -10px rgba(157, 92, 255, 0.65);
 }
