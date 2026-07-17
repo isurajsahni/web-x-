@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="geo.placename" content="Ludhiana, India">
 <meta name="geo.position" content="30.9010;75.8573">
 <meta name="ICBM" content="30.9010, 75.8573">
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#000000">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -152,52 +152,326 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="wx-skip" href="#main">Skip to content</a>
 
-<header data-header style="position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,72px);border-bottom:1px solid rgba(255,255,255,0);transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,backdrop-filter .4s,border-color .4s">
-  <a data-transition href="/" data-magnetic aria-label="Web{X} Studio — home" style="font-size:22px;font-weight:700;letter-spacing:-.03em;color:#EDEDED;text-decoration:none">Web<span style="color:#9D5CFF">{X}</span></a>
-  <nav aria-label="Primary" style="display:flex;gap:clamp(18px,2.4vw,40px);align-items:center">
-    <a data-transition href="work" class="wx-uline" style="font-size:14px;color:#EDEDED;text-decoration:none;letter-spacing:.01em">Work</a>
-    <a data-transition href="studio" class="wx-uline" style="font-size:14px;color:#EDEDED;text-decoration:none;letter-spacing:.01em">Studio</a>
-    <a data-transition href="blog" class="wx-uline" style="font-size:14px;color:#EDEDED;text-decoration:none;letter-spacing:.01em">Journal</a>
-    <a data-transition href="contact" data-magnetic style="font-size:14px;color:#0A0A0A;background:#EDEDED;text-decoration:none;padding:11px 20px;border-radius:100px;font-weight:500;display:inline-block">Let's talk</a>
-  </nav>
+<header data-header style="position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom, #000000 40%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);padding:24px clamp(16px, 4vw, 40px);pointer-events:none;">
+  <!-- Left Side Logo & Links -->
+  <div style="display:flex;align-items:center;gap:32px;pointer-events:auto;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;color:#EDEDED;">
+      <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:wx-spin 6s linear infinite;color:#9D5CFF;">
+        <circle cx="2" cy="7" r="1.2" fill="currentColor"/>
+        <circle cx="7" cy="2" r="1.2" fill="currentColor"/>
+        <circle cx="12" cy="7" r="1.2" fill="currentColor"/>
+        <circle cx="7" cy="12" r="1.2" fill="currentColor"/>
+        <circle cx="3.5" cy="3.5" r="1.2" fill="currentColor"/>
+        <circle cx="10.5" cy="3.5" r="1.2" fill="currentColor"/>
+        <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/>
+        <circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
+      </svg>
+      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
+    </a>
+    <div style="display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500;max-md:hidden;">
+      <a href="#work" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Explore</a>
+      <a href="careers" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Careers</a>
+    </div>
+  </div>
+
+  <!-- Right Side Actions -->
+  <div style="display:flex;align-items:center;gap:12px;pointer-events:auto;">
+    <a href="login" style="font-size:14px;color:#EDEDED;text-decoration:none;font-weight:500;padding:8px 16px;">Log in</a>
+    <a href="contact" style="font-size:14px;color:#000000;background:#EDEDED;text-decoration:none;padding:10px 20px;border-radius:100px;font-weight:500;transition:background 0.3s;" onmouseover="this.style.background='#ffffff'" onmouseout="this.style.background='#EDEDED'">Sign up</a>
+  </div>
 </header>
 
 <main id="main">
 <!-- ============ HERO ============ -->
-<section style="position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;padding:clamp(100px,14vh,144px) clamp(20px,5vw,72px) 0">
-  <canvas data-hero-canvas aria-hidden="true" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;display:block"></canvas>
-  <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;background:radial-gradient(120% 120% at 50% 0%,transparent 40%,rgba(10,10,10,.6) 100%),linear-gradient(180deg,rgba(10,10,10,.35),rgba(10,10,10,.0) 30%,rgba(10,10,10,.55))"></div>
+<section class="hero-orbit-section" data-hero-section style="background:#000000;color:#EDEDED;">
+  <!-- Gradient transition vignette at the bottom of the section -->
+  <div class="hero-gradient-overlay" aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;height:300px;pointer-events:none;z-index:2;background:linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.85) 65%, #000000 100%);"></div>
 
-  <div style="position:relative;z-index:3;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap">
-    <div data-reveal style="display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease">
-      <span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 14px #9D5CFF;flex:0 0 auto"></span>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:clamp(10px,1vw,12px);letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Independent digital studio — Est. 2019</span>
-    </div>
-  </div>
+  <!-- The Orbiting Gallery -->
+  <div class="orbit-wrapper">
+    <div class="orbit-container" data-orbit-container>
+      <!-- concentric Track 4: Outermost Ring (12 cards - margins & corners) -->
+      <div class="orbit-card" style="--init-angle: 15deg; --scatter-angle: 4deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 45deg; --scatter-angle: -5deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px); --card-h: clamp(75px, 6vw, 100px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 75deg; --scatter-angle: 3deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(90px, 7vw, 115px); --card-h: clamp(120px, 9.5vw, 155px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 105deg; --scatter-angle: -3deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 135deg; --scatter-angle: 5deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px); --card-h: clamp(75px, 6vw, 100px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 165deg; --scatter-angle: -4deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(90px, 7vw, 115px); --card-h: clamp(120px, 9.5vw, 155px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 195deg; --scatter-angle: 6deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 225deg; --scatter-angle: -2deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px); --card-h: clamp(75px, 6vw, 100px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 255deg; --scatter-angle: 4deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(90px, 7vw, 115px); --card-h: clamp(120px, 9.5vw, 155px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 285deg; --scatter-angle: -4deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 315deg; --scatter-angle: 3deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(100px, 8vw, 135px); --card-h: clamp(75px, 6vw, 100px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/rightway.avif" alt="Rightway App" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 345deg; --scatter-angle: -3deg; --radius: clamp(740px, 56vw, 900px); --card-w: clamp(90px, 7vw, 115px); --card-h: clamp(120px, 9.5vw, 155px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" />
+          </div>
+        </div>
+      </div>
 
-  <div style="position:relative;z-index:3;flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,5vh,64px) 0">
-    <h1 data-split data-split-auto style="font-size:clamp(39px,9vw,90px);line-height:.92;font-weight:700;letter-spacing:-.045em;margin:0">
-      <span data-split-line style="display:block">We build</span>
-      <span data-reveal data-reveal-delay="700" style="display:block;overflow:hidden;padding-bottom:.08em;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-        <span data-rotate style="display:inline-block;color:#9D5CFF;will-change:transform,opacity">experiences</span>
-      </span>
-      <span data-split-line style="display:block">that move people.</span>
-    </h1>
-  </div>
+      <!-- concentric Track 3: Outer Ring (10 cards) -->
+      <div class="orbit-card" style="--init-angle: 8deg; --scatter-angle: -6deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 44deg; --scatter-angle: 5deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px); --card-h: clamp(65px, 5.2vw, 88px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-01.avif" alt="UX Project 1" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 80deg; --scatter-angle: -4deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(75px, 6vw, 100px); --card-h: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-02.avif" alt="UX Project 2" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 116deg; --scatter-angle: 3deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-03.avif" alt="UX Project 3" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 152deg; --scatter-angle: -5deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px); --card-h: clamp(65px, 5.2vw, 88px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-04.avif" alt="UX Project 4" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 188deg; --scatter-angle: 4deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(75px, 6vw, 100px); --card-h: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 224deg; --scatter-angle: -3deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 260deg; --scatter-angle: 6deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px); --card-h: clamp(65px, 5.2vw, 88px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 296deg; --scatter-angle: -4deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(75px, 6vw, 100px); --card-h: clamp(100px, 8vw, 135px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 332deg; --scatter-angle: 3deg; --radius: clamp(560px, 44vw, 700px); --card-w: clamp(85px, 6.8vw, 115px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" />
+          </div>
+        </div>
+      </div>
 
-  <div style="position:relative;z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-bottom:clamp(18px,2.4vh,26px)">
-    <div style="flex:1 1 480px;display:flex;flex-direction:column;gap:clamp(20px,3vh,30px)">
-      <p data-reveal data-reveal-delay="260" style="max-width:600px;font-size:clamp(14px,1.1vw,17px);line-height:1.5;color:#9A9AA2;margin:0;opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease">An international web design, development &amp; SEO studio — building for founders and brands that refuse to be ignored, anywhere in the world.</p>
-      <div data-reveal data-reveal-delay="340" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease">
-        <a data-transition href="contact" data-magnetic style="display:inline-flex;align-items:center;gap:12px;background:#9D5CFF;color:#0A0A0A;text-decoration:none;padding:14px 24px;border-radius:100px;font-size:15px;font-weight:600;white-space:nowrap;box-shadow:0 16px 34px -14px rgba(157,92,255,.7)">Start a project <span aria-hidden="true" style="display:inline-flex;width:24px;height:24px;border-radius:50%;background:#0A0A0A;color:#9D5CFF;align-items:center;justify-content:center;font-size:14px">→</span></a>
-        <a href="#work" data-magnetic style="display:inline-flex;align-items:center;gap:10px;color:#EDEDED;text-decoration:none;padding:14px 24px;border-radius:100px;border:1px solid rgba(255,255,255,.22);font-size:15px;font-weight:500;white-space:nowrap;transition:border-color .3s ease,background .3s ease">See our work</a>
+      <!-- concentric Track 2: Middle Ring (8 cards) -->
+      <div class="orbit-card" style="--init-angle: 22deg; --scatter-angle: 5deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 67deg; --scatter-angle: -3deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px); --card-h: clamp(52px, 4.2vw, 72px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 112deg; --scatter-angle: 4deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(60px, 4.8vw, 80px); --card-h: clamp(80px, 6.4vw, 110px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 157deg; --scatter-angle: -5deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 202deg; --scatter-angle: 3deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px); --card-h: clamp(52px, 4.2vw, 72px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 247deg; --scatter-angle: -6deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(60px, 4.8vw, 80px); --card-h: clamp(80px, 6.4vw, 110px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/rightway.avif" alt="Rightway App" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 292deg; --scatter-angle: 2deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 337deg; --scatter-angle: -4deg; --radius: clamp(400px, 32vw, 500px); --card-w: clamp(70px, 5.6vw, 95px); --card-h: clamp(52px, 4.2vw, 72px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" />
+          </div>
+        </div>
+      </div>
+
+      <!-- concentric Track 1: Inner Ring (6 cards) -->
+      <div class="orbit-card" style="--init-angle: 35deg; --scatter-angle: -4deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(55px, 4.4vw, 75px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-01.avif" alt="UX Project 1" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 95deg; --scatter-angle: 3deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(55px, 4.4vw, 75px); --card-h: clamp(40px, 3.2vw, 55px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-02.avif" alt="UX Project 2" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 155deg; --scatter-angle: -5deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(45px, 3.6vw, 60px); --card-h: clamp(60px, 4.8vw, 80px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-03.avif" alt="UX Project 3" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 215deg; --scatter-angle: 4deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(55px, 4.4vw, 75px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/cap-04.avif" alt="UX Project 4" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 275deg; --scatter-angle: -2deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(55px, 4.4vw, 75px); --card-h: clamp(40px, 3.2vw, 55px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
+          </div>
+        </div>
+      </div>
+      <div class="orbit-card" style="--init-angle: 335deg; --scatter-angle: 5deg; --radius: clamp(240px, 20vw, 320px); --card-w: clamp(45px, 3.6vw, 60px); --card-h: clamp(60px, 4.8vw, 80px);">
+        <div class="orbit-card-rotator">
+          <div class="orbit-card-inner">
+            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
+          </div>
+        </div>
       </div>
     </div>
-    <a href="#work" data-magnetic aria-label="Scroll to selected work" style="display:inline-flex;align-items:center;gap:12px;margin-left:auto;text-decoration:none;color:#EDEDED;opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease" data-reveal data-reveal-delay="420">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Scroll</span>
-      <span aria-hidden="true" style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:14px;animation:wx-bob 1.8s ease-in-out infinite">↓</span>
-    </a>
   </div>
+
+  <!-- Center Content Backdrop Vignette Glow (Charcoal black soft radial fade - spans screen to shade cards from center to corners) -->
+  <div style="position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.98) 28%, rgba(0, 0, 0, 0.85) 45%, rgba(0, 0, 0, 0.20) 70%, transparent 90%);z-index:9;pointer-events:none;"></div>
+
+  <!-- Center Content: Branding & Headline -->
+  <div class="hero-center-content" data-reveal style="max-width:700px;z-index:10;pointer-events:none;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8A8A90;display:flex;align-items:center;gap:4px;">
+      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
+    </div>
+    <h1 style="font-size:clamp(44px, 7vw, 76px);font-weight:350;letter-spacing:-0.045em;color:#EDEDED;line-height:1.05;text-align:center;margin:12px 0 0;">
+      Design, code, & rank<br/>premium websites
+    </h1>
+    <p style="font-size:clamp(14px, 1.25vw, 17px);font-weight:400;color:#8A8A92;margin:16px auto 0;max-width:540px;line-height:1.6;text-align:center;">
+      We partner with ambitious founders to build high-performance websites optimized for stunning UX, clean code, and search rankings.
+    </p>
+    <div class="hero-center-buttons" style="margin-top:24px;pointer-events:auto;display:flex;align-items:center;justify-content:center;gap:16px;">
+      <a href="contact" class="wx-btn-primary">Let's talk</a>
+      <a href="#work" class="wx-btn-secondary">View work</a>
+    </div>
+  </div>
+</section>
 
   <div aria-hidden="true" style="position:relative;z-index:3;border-top:1px solid rgba(255,255,255,.1);padding:clamp(10px,1.3vh,15px) 0 clamp(14px,1.8vh,20px);overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)">
     <div style="display:inline-flex;gap:44px;animation:wx-marquee 30s linear infinite;will-change:transform;opacity:.55">
@@ -676,7 +950,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 data-reveal style="position:relative;font-size:clamp(46px,11vw,180px);font-weight:700;letter-spacing:-.05em;line-height:.84;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">Let's build<br>something <span style="font-style:italic;font-weight:600">unforgettable.</span></h2>
     <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;margin-top:clamp(40px,7vh,80px)">
       <p style="max-width:380px;font-size:clamp(15px,1.3vw,18px);line-height:1.5;color:rgba(10,10,10,.7)">Tell us what you're working on. We reply to every inquiry within two business days.</p>
-      <a data-transition href="contact" data-magnetic style="display:inline-flex;align-items:center;gap:18px;background:#0A0A0A;color:#EDEDED;text-decoration:none;padding:clamp(18px,2vw,24px) clamp(28px,3vw,40px);border-radius:100px;font-size:clamp(16px,1.5vw,20px);font-weight:600;white-space:nowrap">Start a project <span aria-hidden="true" style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#9D5CFF;color:#0A0A0A;align-items:center;justify-content:center;font-size:18px">→</span></a>
+      <a data-transition href="contact" data-magnetic style="display:inline-flex;align-items:center;gap:18px;background:#000000;color:#EDEDED;text-decoration:none;padding:clamp(18px,2vw,24px) clamp(28px,3vw,40px);border-radius:100px;font-size:clamp(16px,1.5vw,20px);font-weight:600;white-space:nowrap">Start a project <span aria-hidden="true" style="display:inline-flex;width:30px;height:30px;border-radius:50%;background:#9D5CFF;color:#000000;align-items:center;justify-content:center;font-size:18px">→</span></a>
     </div>
   </div>
 </section>

@@ -64,8 +64,7 @@
 
   /* ---------- Custom cursor: dot (invert) + trailing ring + View label + {X} mark ---------- */
   function initCursor() {
-    if (matchMedia('(pointer: coarse)').matches) return;
-    if (lowPower) { document.documentElement.classList.add('wx-cursor-native'); return; }
+    return;
     var dot = document.createElement('div'), ring = document.createElement('div'), label = document.createElement('div');
     Object.assign(dot.style, { position: 'fixed', left: '0', top: '0', width: '8px', height: '8px', borderRadius: '50%', background: '#fff', mixBlendMode: 'difference', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99999', transition: 'width .25s ease, height .25s ease' });
     Object.assign(ring.style, { position: 'fixed', left: '0', top: '0', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,.5)', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99998', mixBlendMode: 'difference', transition: 'width .3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1), background .3s, border-color .3s, opacity .3s' });
@@ -657,9 +656,9 @@
 
   /* Home: rotating hero word */
   function initHeroRotator() {
-    var el = document.querySelector('[data-rotate]');
+    var el = document.querySelector('[data-tagline-word]');
     if (!el) return;
-    var words = ['experiences', 'websites', 'landing pages', 'brands', 'results'];
+    var words = ['artists', 'designers', 'curators', 'creatives'];
     var i = 0; el.textContent = words[0];
     if (reduce) return;
     setInterval(function () {
@@ -672,7 +671,7 @@
         el.style.transition = 'transform .55s cubic-bezier(.16,1,.3,1), opacity .5s ease';
         el.style.transform = 'translateY(0)'; el.style.opacity = '1';
       }, 450);
-    }, 2400);
+    }, 2800);
   }
 
   /* Home/contact: local clock (India Standard Time) */
@@ -879,7 +878,7 @@
   /* ---------- Boot ---------- */
   function boot() {
     window.WebX.initAll();
-    initHeroCanvas(); initHeroRotator(); initClock(); initProcessBar();
+    initClock(); initProcessBar();
     initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
     initCardSpotlight(); initCardTilt(); initScrollGuard();
   }
