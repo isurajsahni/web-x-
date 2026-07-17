@@ -495,21 +495,158 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(01)</span>
     <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">What we do</span>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(20px,4vw,80px);align-items:start">
-    <h2 style="font-size:clamp(30px,4.4vw,68px);line-height:1.05;font-weight:600;letter-spacing:-.03em">
-      <span data-reveal style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">We turn ambitious</span>
-      <span data-reveal data-reveal-delay="90" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">ideas into <span style="color:#9D5CFF">living,</span></span>
-      <span data-reveal data-reveal-delay="180" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">breathing digital</span>
-      <span data-reveal data-reveal-delay="270" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">products.</span>
-    </h2>
-    <div style="display:flex;flex-direction:column;gap:26px;padding-top:10px">
-      <p data-reveal style="font-size:clamp(15px,1.2vw,19px);line-height:1.6;color:#B8B8C0;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">From landing page design and development to full website design, SEO and motion — strategy, design and engineering live under one roof. We obsess over the details most teams skip, because that's where high-converting products are won.</p>
-      <p data-reveal data-reveal-delay="120" style="font-size:clamp(15px,1.2vw,19px);line-height:1.6;color:#8A8A92;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Since 2019 we've partnered with founders, startups and global brands — from Ludhiana to the rest of the world — shipping work that wins attention and keeps it.</p>
-      <div data-reveal data-reveal-delay="220" style="display:flex;gap:40px;margin-top:14px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-        <div><div style="font-size:30px;font-weight:600;letter-spacing:-.02em">12+</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7A82;letter-spacing:.08em;text-transform:uppercase;margin-top:4px">Awards</div></div>
-        <div><div style="font-size:30px;font-weight:600;letter-spacing:-.02em">60+</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7A82;letter-spacing:.08em;text-transform:uppercase;margin-top:4px">Projects</div></div>
-        <div><div style="font-size:30px;font-weight:600;letter-spacing:-.02em">∞</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#7A7A82;letter-spacing:.08em;text-transform:uppercase;margin-top:4px">Pixels pushed</div></div>
+  
+  <style>
+    /* Concentric Overlapping Gradient Circles styling */
+    .orbit-stats-container {
+      position: relative;
+      width: 100%;
+      height: clamp(380px, 45vw, 540px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+    
+    .stat-circle {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: default;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .stat-circle-large {
+      width: clamp(220px, 25vw, 320px);
+      height: clamp(220px, 25vw, 320px);
+      background: radial-gradient(circle at 35% 35%, rgba(157, 92, 255, 0.18) 0%, rgba(15, 8, 30, 0.85) 70%);
+      border: 1px solid rgba(157, 92, 255, 0.25);
+      top: 5%;
+      right: 5%;
+      z-index: 10;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      animation: float-large 12s ease-in-out infinite alternate;
+    }
+    
+    .stat-circle-medium {
+      width: clamp(190px, 22vw, 270px);
+      height: clamp(190px, 22vw, 270px);
+      background: radial-gradient(circle at 35% 35%, rgba(123, 53, 250, 0.22) 0%, rgba(10, 5, 25, 0.9) 70%);
+      border: 1px solid rgba(123, 53, 250, 0.3);
+      top: 25%;
+      left: 15%;
+      z-index: 20;
+      padding: clamp(16px, 2.5vw, 26px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+      animation: float-medium 15s ease-in-out infinite alternate;
+    }
+    
+    .stat-circle-small {
+      width: clamp(160px, 18vw, 220px);
+      height: clamp(160px, 18vw, 220px);
+      background: radial-gradient(circle at 35% 35%, rgba(0, 242, 254, 0.14) 0%, rgba(5, 15, 20, 0.95) 70%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      bottom: 5%;
+      left: 8%;
+      z-index: 30;
+      padding: clamp(12px, 2vw, 20px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      animation: float-small 10s ease-in-out infinite alternate;
+    }
+    
+    .orbit-stats-container:hover .stat-circle {
+      opacity: 0.55;
+      filter: blur(2px) grayscale(20%);
+      transform: scale(0.95);
+    }
+    
+    .orbit-stats-container .stat-circle:hover {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: scale(1.06) !important;
+      z-index: 50 !important;
+      border-color: rgba(255, 255, 255, 0.4) !important;
+      box-shadow: 0 35px 70px rgba(157, 92, 255, 0.25);
+    }
+    
+    @keyframes float-large {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-15px) translateX(10px) rotate(3deg); }
+    }
+    
+    @keyframes float-medium {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(12px) translateX(-12px) rotate(-4deg); }
+    }
+    
+    @keyframes float-small {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(15px) translateX(8px) rotate(5deg); }
+    }
+  </style>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,100px);align-items:center">
+    <!-- Left: Convincing Copywriting -->
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <h2 style="font-size:clamp(30px,4vw,60px);line-height:1.08;font-weight:600;letter-spacing:-.03em">
+        <span data-reveal style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">We turn ambitious</span>
+        <span data-reveal data-reveal-delay="90" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">ideas into <span style="color:#9D5CFF">living,</span></span>
+        <span data-reveal data-reveal-delay="180" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">breathing digital</span>
+        <span data-reveal data-reveal-delay="270" style="display:block;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">products.</span>
+      </h2>
+      <p data-reveal data-reveal-delay="120" style="font-size:16px;line-height:1.6;color:#B8B8C0;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+        We partner with visionary founders and startups to ship custom websites that stand out, load instantly, and rank high. Strategy, high-fidelity UI/UX design, and premium engineering live under one single roof to convert traffic into revenue.
+      </p>
+      
+      <!-- Core expertise checkmarks -->
+      <div data-reveal data-reveal-delay="200" style="display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="color:#9D5CFF;font-size:16px">✦</span>
+          <span style="font-size:15px;color:#EDEDED;font-weight:500">Bespoke UI/UX Design Systems</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="color:#9D5CFF;font-size:16px">✦</span>
+          <span style="font-size:15px;color:#EDEDED;font-weight:500">100/100 Lighthouse Speed Engineering</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="color:#9D5CFF;font-size:16px">✦</span>
+          <span style="font-size:15px;color:#EDEDED;font-weight:500">Search Engine Dominance &amp; SEO Strategy</span>
+        </div>
       </div>
+    </div>
+    
+    <!-- Right: Three overlapping gradient circles visual widget -->
+    <div data-reveal data-reveal-delay="180" class="orbit-stats-container" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
+      
+      <!-- Circle 1: Established (Large) -->
+      <div class="stat-circle stat-circle-large">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(36px, 4vw, 54px);font-weight:700;letter-spacing:-0.03em;color:#FFFFFF;line-height:1">2019</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9D5CFF;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px;margin-bottom:6px">Established</span>
+        <p style="font-size:12px;line-height:1.4;color:#B8B8C0;margin:0">Designing and engineering web products globally from Ludhiana.</p>
+      </div>
+      
+      <!-- Circle 2: Projects (Medium) -->
+      <div class="stat-circle stat-circle-medium">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px, 3.5vw, 46px);font-weight:700;letter-spacing:-0.03em;color:#FFFFFF;line-height:1">60+</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9D5CFF;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px;margin-bottom:6px">Projects shipped</span>
+        <p style="font-size:12px;line-height:1.4;color:#B8B8C0;margin:0">High-performance custom sites driving actual revenue.</p>
+      </div>
+      
+      <!-- Circle 3: detail (Small) -->
+      <div class="stat-circle stat-circle-small">
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:clamp(28px, 3vw, 36px);font-weight:700;letter-spacing:-0.03em;color:#FFFFFF;line-height:1">100%</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#00F2FE;letter-spacing:0.1em;text-transform:uppercase;margin-top:6px;margin-bottom:4px">Detail Obsessed</span>
+        <p style="font-size:11px;line-height:1.4;color:#B8B8C0;margin:0">Pixel perfection and speed optimization.</p>
+      </div>
+      
     </div>
   </div>
 </section>
