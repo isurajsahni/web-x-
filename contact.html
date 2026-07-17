@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="geo.placename" content="Ludhiana, India">
 <meta name="geo.position" content="30.9010;75.8573">
 <meta name="ICBM" content="30.9010, 75.8573">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#030306">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -104,8 +104,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --contact-bg: #000000;
     --contact-text: #EDEDED;
     --contact-muted: #8A8A92;
-    --input-bg: #141416;
-    --input-border: rgba(255, 255, 255, 0.08);
     --brand-purple: #9D5CFF;
     --footer-bg: #000000;
     --footer-text: #EDEDED;
@@ -216,7 +214,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 2;
   }
   
-  /* Form components styling */
+  /* Form components styling with glassmorphism to blend with background */
   .form-group-row {
     display: flex;
     gap: 20px;
@@ -241,49 +239,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .form-input {
     width: 100%;
     height: 52px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 12px;
-    color: var(--contact-text);
+    color: var(--contact-text) !important;
     padding: 0 20px;
     font-size: 14px;
     font-family: inherit;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
   }
   
   .form-input::placeholder {
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.35);
   }
   
   .form-input:focus {
     outline: none;
-    background-color: #050505;
-    border-color: var(--brand-purple);
-    box-shadow: 0 0 0 2px rgba(157, 92, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--brand-purple) !important;
+    box-shadow: 0 0 20px rgba(157, 92, 255, 0.15);
   }
   
   .form-textarea {
     width: 100%;
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 12px;
-    color: var(--contact-text);
+    color: var(--contact-text) !important;
     padding: 16px 20px;
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
   }
   
   .form-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.35);
   }
   
   .form-textarea:focus {
     outline: none;
-    background-color: #050505;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--brand-purple) !important;
+    box-shadow: 0 0 20px rgba(157, 92, 255, 0.15);
+  }
+  
+  /* Interactive Budget & Service Badges */
+  .pills-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--contact-text);
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .pills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .pill-badge {
+    padding: 10px 18px;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #EDEDED;
+    font-size: 13px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .pill-badge:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .pill-badge.active {
+    background-color: var(--brand-purple);
     border-color: var(--brand-purple);
-    box-shadow: 0 0 0 2px rgba(157, 92, 255, 0.12);
+    color: #FFFFFF;
+    box-shadow: 0 8px 16px -4px rgba(157, 92, 255, 0.3);
   }
   
   /* Social icon circles */
@@ -500,10 +547,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Split Contact Pane with deep black styling -->
   <section class="contact-section">
     
-    <!-- Left column: Info coordinates -->
-    <div style="display:flex; flex-direction:column; gap:36px; position:relative; z-index:2;">
+    <!-- Left column: Info coordinates & Trust Factors -->
+    <div style="display:flex; flex-direction:column; gap:32px; position:relative; z-index:2;">
       <div>
         <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(38px, 6vw, 60px); font-weight:700; letter-spacing:-0.04em; color:#FFFFFF; line-height:1.1; margin-bottom:12px;">Get in touch</h1>
+        <p style="font-size:15px; color:var(--contact-muted); line-height:1.6; max-width:440px; margin-top:14px;">
+          Have a vision for your landing page, app, or ranking strategy? Let's turn it into a high-performance reality.
+        </p>
       </div>
       
       <div>
@@ -545,15 +595,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </a>
         </div>
       </div>
+
+      <!-- Trust Journey: What happens next? -->
+      <div style="margin-top: 20px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:#FFFFFF; margin-bottom:20px; letter-spacing:-0.01em;">Our Project Journey</h3>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="display:flex; gap:16px;">
+            <div style="width:24px; height:24px; border-radius:50%; background:rgba(157, 92, 255, 0.15); color:var(--brand-purple); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:'Space Grotesk',sans-serif; flex-shrink:0;">1</div>
+            <div>
+              <h4 style="font-size:14px; font-weight:600; color:#FFFFFF; margin-bottom:4px;">Discovery Brief</h4>
+              <p style="font-size:13px; color:var(--contact-muted); line-height:1.5;">We review your project specs, requested services, and budget to align on core vision. Response in 24 hours.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px;">
+            <div style="width:24px; height:24px; border-radius:50%; background:rgba(157, 92, 255, 0.15); color:var(--brand-purple); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:'Space Grotesk',sans-serif; flex-shrink:0;">2</div>
+            <div>
+              <h4 style="font-size:14px; font-weight:600; color:#FFFFFF; margin-bottom:4px;">Strategy Meeting</h4>
+              <p style="font-size:13px; color:var(--contact-muted); line-height:1.5;">We jump on a 15-minute call with our lead design &amp; engineering founders to map specific site blueprints.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px;">
+            <div style="width:24px; height:24px; border-radius:50%; background:rgba(157, 92, 255, 0.15); color:var(--brand-purple); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:'Space Grotesk',sans-serif; flex-shrink:0;">3</div>
+            <div>
+              <h4 style="font-size:14px; font-weight:600; color:#FFFFFF; margin-bottom:4px;">Roadmap &amp; Quote</h4>
+              <p style="font-size:13px; color:var(--contact-muted); line-height:1.5;">You receive a complete project breakdown with fixed upfront pricing, exact release milestones, and launch timelines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <!-- Right column: Interactive form card -->
+    <!-- Right column: Interactive onboarding form -->
     <div style="position:relative; z-index:2;">
       <!-- AJAX Success Screen -->
-      <div id="wx-contact-success" role="status" hidden style="border:1px solid rgba(157,92,255,.4); background:#141416; border-radius:20px; padding:clamp(32px, 4vw, 52px); text-align:center;">
+      <div id="wx-contact-success" role="status" hidden style="border:1px solid rgba(157,92,255,.4); background:#141416; border-radius:20px; padding:clamp(32px, 4vw, 52px); text-align:center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
         <div aria-hidden="true" style="width:64px; height:64px; border-radius:50%; background:#9D5CFF; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 24px">✓</div>
         <h2 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#FFFFFF; margin-bottom:12px">Message sent.</h2>
-        <p style="font-size:16px; line-height:1.6; color:var(--contact-muted); max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
+        <p style="font-size:16px; line-height:1.6; color:var(--contact-muted); max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within 24 hours.</p>
       </div>
       
       <!-- Submission Form -->
@@ -563,6 +641,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input type="hidden" name="from_name" value="Web{X} Website" />
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
         
+        <!-- Hidden synced inputs for budget and services -->
+        <input type="hidden" id="hidden-services" name="services" value="UX/UI Design" />
+        <input type="hidden" id="hidden-budget" name="budget" value="$5K - $15K" />
+
+        <!-- Dynamic Service Selection Badges -->
+        <div style="margin-bottom: 8px;">
+          <span class="pills-label">I'm looking for...</span>
+          <div class="pills-container" id="services-pills">
+            <div class="pill-badge active" data-value="UX/UI Design">UX/UI Design</div>
+            <div class="pill-badge" data-value="Web Development">Web Development</div>
+            <div class="pill-badge" data-value="SEO &amp; Ranking">SEO &amp; Ranking</div>
+            <div class="pill-badge" data-value="Full Product Launch">Full Product Launch</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Budget Selection Badges -->
+        <div style="margin-bottom: 12px;">
+          <span class="pills-label">Estimated Budget</span>
+          <div class="pills-container" id="budget-pills">
+            <div class="pill-badge" data-value="&lt; $5K">&lt; $5K</div>
+            <div class="pill-badge active" data-value="$5K - $15K">$5K - $15K</div>
+            <div class="pill-badge" data-value="$15K - $30K">$15K - $30K</div>
+            <div class="pill-badge" data-value="$30K+">$30K+</div>
+          </div>
+        </div>
+
         <div class="form-group-row">
           <div class="form-group">
             <label class="form-label" for="wx-name">Your Name</label>
@@ -579,7 +683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
         <div class="form-group full">
           <label class="form-label" for="wx-message">Message</label>
-          <textarea class="form-textarea" id="wx-message" name="message" required placeholder="Write something..." rows="5" aria-describedby="wx-message-err"></textarea>
+          <textarea class="form-textarea" id="wx-message" name="message" required placeholder="Tell us about your project features, timelines, or questions..." rows="4" aria-describedby="wx-message-err"></textarea>
           <span id="wx-message-err" data-err="message" role="alert" hidden style="font-size:12px; color:#ff3b30; font-family:'JetBrains Mono',monospace; margin-top:2px;">Tell us a little more (10+ characters)</span>
         </div>
         
@@ -662,6 +766,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </footer>
+
+<!-- Interactive Badges Script for Services and Budget Selection -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const servicePills = document.querySelectorAll('#services-pills .pill-badge');
+  const budgetPills = document.querySelectorAll('#budget-pills .pill-badge');
+  const hiddenServices = document.getElementById('hidden-services');
+  const hiddenBudget = document.getElementById('hidden-budget');
+
+  // Multi-select for Services
+  servicePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pill.classList.toggle('active');
+      
+      const activeValues = Array.from(document.querySelectorAll('#services-pills .pill-badge.active'))
+                                .map(p => p.getAttribute('data-value'));
+      
+      hiddenServices.value = activeValues.join(', ') || 'None Selected';
+    });
+  });
+
+  // Single-select for Budget
+  budgetPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      budgetPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      hiddenBudget.value = pill.getAttribute('data-value');
+    });
+  });
+});
+</script>
 
 </body>
 </html>
