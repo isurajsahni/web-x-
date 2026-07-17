@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="geo.placename" content="Ludhiana, India">
 <meta name="geo.position" content="30.9010;75.8573">
 <meta name="ICBM" content="30.9010, 75.8573">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#000000">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -99,12 +99,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <style>
-  /* Clayo-inspired Light Layout resets & variables */
+  /* Clayo-inspired Dark Layout resets & variables */
   :root {
-    --contact-bg: #FFFFFF;
-    --contact-text: #0E0E10;
-    --contact-muted: #6E6E77;
-    --input-bg: #F4F4F6;
+    --contact-bg: #000000;
+    --contact-text: #EDEDED;
+    --contact-muted: #8A8A92;
+    --input-bg: #141416;
+    --input-border: rgba(255, 255, 255, 0.08);
     --brand-purple: #9D5CFF;
     --footer-bg: #000000;
     --footer-text: #EDEDED;
@@ -117,18 +118,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'Inter', sans-serif;
   }
   
-  /* Header navigation adaptation for light background */
+  /* Header navigation styled consistently with homepage index.html */
   .contact-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 9000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 22px clamp(20px, 5vw, 72px);
     background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    transition: transform .5s cubic-bezier(.16,1,.3,1), background .4s, backdrop-filter .4s, border-color .4s;
     pointer-events: none;
   }
   
@@ -141,7 +144,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.03em;
-    color: #000000;
+    color: #EDEDED;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -156,14 +159,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   .contact-header nav a {
     font-size: 14px;
-    color: #55555C;
+    color: #9A9AA2;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
   }
   
   .contact-header nav a:hover {
-    color: #000000;
+    color: #EDEDED;
   }
   
   .contact-header .right-actions {
@@ -174,40 +177,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
   .contact-header .login-link {
     font-size: 14px;
-    color: #55555C;
+    color: #EDEDED;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+    padding: 8px 16px;
   }
   
   .contact-header .login-link:hover {
-    color: #000000;
+    color: #FFFFFF;
   }
   
   .contact-header .header-btn {
     font-size: 14px;
-    color: #FFFFFF;
-    background: #000000;
+    color: #000000;
+    background: #EDEDED;
     text-decoration: none;
-    padding: 10px 22px;
+    padding: 10px 20px;
     border-radius: 100px;
     font-weight: 500;
     transition: background 0.3s;
   }
   
   .contact-header .header-btn:hover {
-    background: #1E1E22;
+    background: #FFFFFF;
   }
   
   /* Split layout section */
   .contact-section {
-    padding: clamp(120px, 15vh, 180px) clamp(20px, 5vw, 72px) clamp(80px, 12vh, 140px);
+    padding: clamp(140px, 18vh, 210px) clamp(20px, 5vw, 72px) clamp(80px, 12vh, 140px);
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1.1fr;
     gap: clamp(40px, 6vw, 100px);
     align-items: start;
+    position: relative;
   }
   
   /* Form components styling */
@@ -236,7 +241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width: 100%;
     height: 52px;
     background-color: var(--input-bg);
-    border: 1px solid transparent;
+    border: 1px solid var(--input-border);
     border-radius: 12px;
     color: var(--contact-text);
     padding: 0 20px;
@@ -245,9 +250,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: all 0.3s ease;
   }
   
+  .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.22);
+  }
+  
   .form-input:focus {
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #050505;
     border-color: var(--brand-purple);
     box-shadow: 0 0 0 2px rgba(157, 92, 255, 0.12);
   }
@@ -255,7 +264,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .form-textarea {
     width: 100%;
     background-color: var(--input-bg);
-    border: 1px solid transparent;
+    border: 1px solid var(--input-border);
     border-radius: 12px;
     color: var(--contact-text);
     padding: 16px 20px;
@@ -265,9 +274,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: all 0.3s ease;
   }
   
+  .form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.22);
+  }
+  
   .form-textarea:focus {
     outline: none;
-    background-color: #FFFFFF;
+    background-color: #050505;
     border-color: var(--brand-purple);
     box-shadow: 0 0 0 2px rgba(157, 92, 255, 0.12);
   }
@@ -283,7 +296,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #000000;
+    background: rgba(255, 255, 255, 0.08);
     color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -297,23 +310,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: translateY(-2px);
   }
   
-  /* Submit Action button */
+  /* Submit Action button styled in official brand color #9D5CFF */
   .form-submit-btn {
     width: 100%;
     height: 52px;
     border-radius: 100px;
-    background: #000000;
+    background: var(--brand-purple);
     color: #FFFFFF;
     border: none;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
     margin-top: 10px;
   }
   
   .form-submit-btn:hover {
-    background: #1E1E22;
+    background: #8A46EB;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px -5px rgba(157, 92, 255, 0.4);
   }
   
   /* Footer elements overrides */
@@ -351,7 +366,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .contact-section {
       grid-template-columns: 1fr;
       gap: 60px;
-      padding-top: 100px;
+      padding-top: 120px;
     }
     .form-group-row {
       flex-direction: column;
@@ -367,7 +382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="wx-skip" href="#main">Skip to content</a>
 
-<!-- Clean Navbar styled for white backgrounds -->
+<!-- Clean Navbar styled consistently for black background -->
 <header class="contact-header">
   <a href="/" class="logo">
     <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:spin 6s linear infinite; color:#9D5CFF;">
@@ -395,28 +410,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <main id="main">
-  <!-- Split Contact Pane -->
+  <!-- Split Contact Pane with deep black styling -->
   <section class="contact-section">
+    <!-- Gradient glow behind to feel premium -->
+    <div aria-hidden="true" style="position:absolute;top:-10%;left:30%;width:50vw;height:50vw;max-width:700px;max-height:700px;border-radius:50%;filter:blur(100px);opacity:.22;background:radial-gradient(circle,var(--brand-purple),transparent 65%);pointer-events:none"></div>
     
     <!-- Left column: Info coordinates -->
-    <div style="display:flex; flex-direction:column; gap:36px;">
+    <div style="display:flex; flex-direction:column; gap:36px; position:relative; z-index:2;">
       <div>
-        <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(38px, 6vw, 60px); font-weight:700; letter-spacing:-0.04em; color:#000000; line-height:1.1; margin-bottom:12px;">Get in touch</h1>
+        <h1 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(38px, 6vw, 60px); font-weight:700; letter-spacing:-0.04em; color:#FFFFFF; line-height:1.1; margin-bottom:12px;">Get in touch</h1>
       </div>
       
       <div>
         <span style="font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--contact-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;">Email</span>
-        <a href="mailto:hello@thewebx.in" style="font-size:18px; font-weight:600; color:#000000; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#9D5CFF'" onmouseout="this.style.color='#000000'">hello@thewebx.in</a>
+        <a href="mailto:hello@thewebx.in" style="font-size:18px; font-weight:600; color:#EDEDED; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#9D5CFF'" onmouseout="this.style.color='#EDEDED'">hello@thewebx.in</a>
       </div>
       
       <div>
         <span style="font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--contact-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;">Phone</span>
-        <a href="tel:+917973386875" style="font-size:18px; font-weight:500; color:#000000; text-decoration:none;">+91 79733 86875</a>
+        <a href="tel:+917973386875" style="font-size:18px; font-weight:500; color:#EDEDED; text-decoration:none;">+91 79733 86875</a>
       </div>
       
       <div>
         <span style="font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--contact-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;">Address</span>
-        <address style="font-size:15px; line-height:1.6; color:#222225; font-style:normal;">
+        <address style="font-size:15px; line-height:1.6; color:#C8C8D0; font-style:normal;">
           Model Town<br>
           Tech District, Ludhiana, PB 141002<br>
           India
@@ -446,12 +463,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     
     <!-- Right column: Interactive form card -->
-    <div>
+    <div style="position:relative; z-index:2;">
       <!-- AJAX Success Screen -->
-      <div id="wx-contact-success" role="status" hidden style="border:1px solid rgba(157,92,255,.4); background:#F4F4F6; border-radius:20px; padding:clamp(32px, 4vw, 52px); text-align:center;">
+      <div id="wx-contact-success" role="status" hidden style="border:1px solid rgba(157,92,255,.4); background:#141416; border-radius:20px; padding:clamp(32px, 4vw, 52px); text-align:center;">
         <div aria-hidden="true" style="width:64px; height:64px; border-radius:50%; background:#9D5CFF; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 24px">✓</div>
-        <h2 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#000000; margin-bottom:12px">Message sent.</h2>
-        <p style="font-size:16px; line-height:1.6; color:#55555C; max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
+        <h2 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#FFFFFF; margin-bottom:12px">Message sent.</h2>
+        <p style="font-size:16px; line-height:1.6; color:var(--contact-muted); max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> — we read every message and reply within two business days.</p>
       </div>
       
       <!-- Submission Form -->
