@@ -265,7 +265,8 @@
       ticking = false;
       if (window.WebX._menuOpen) { header.style.transform = 'translateY(0)'; return; }
       var y = window.scrollY;
-      if (y > 80 && y > last) header.style.transform = 'translateY(-130%)'; else header.style.transform = 'translateY(0)';
+      // Always keep header visible (sticky)
+      header.style.transform = 'translateY(0)';
       header.style.background = y > 40 ? bgScrolled : 'transparent';
       header.style.backdropFilter = y > 40 ? blur : 'none';
       header.style.webkitBackdropFilter = y > 40 ? blur : 'none';
