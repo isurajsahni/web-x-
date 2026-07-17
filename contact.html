@@ -516,30 +516,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="mesh-glow purple-glow"></div>
 </div>
 
-<!-- Clean Navbar styled consistently for black background -->
-<header class="contact-header">
-  <a href="/" class="logo">
-    <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:spin 6s linear infinite; color:#9D5CFF;">
-      <circle cx="2" cy="7" r="1.2" fill="currentColor"/>
-      <circle cx="7" cy="2" r="1.2" fill="currentColor"/>
-      <circle cx="12" cy="7" r="1.2" fill="currentColor"/>
-      <circle cx="7" cy="12" r="1.2" fill="currentColor"/>
-      <circle cx="3.5" cy="3.5" r="1.2" fill="currentColor"/>
-      <circle cx="10.5" cy="3.5" r="1.2" fill="currentColor"/>
-      <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/>
-      <circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
-    </svg>
-    <span>Web<span style="color:#9D5CFF;">{X}</span></span>
-  </a>
-  <nav aria-label="Primary">
-    <a href="/#work">Explore</a>
-    <a href="studio">Studio</a>
-    <a href="blog">Journal</a>
-    <a href="/">Home</a>
-  </nav>
-  <div class="right-actions">
-    <a href="login" class="login-link">Log in</a>
-    <a href="contact" class="header-btn">Contact</a>
+<header data-header style="position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom, #000000 40%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);padding:24px clamp(16px, 4vw, 40px);pointer-events:none;">
+  <!-- Left: Logo only -->
+  <div style="display:flex;align-items:center;pointer-events:auto;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;color:#EDEDED;">
+      <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:wx-spin 6s linear infinite;color:#9D5CFF;">
+        <circle cx="2" cy="7" r="1.2" fill="currentColor"/>
+        <circle cx="7" cy="2" r="1.2" fill="currentColor"/>
+        <circle cx="12" cy="7" r="1.2" fill="currentColor"/>
+        <circle cx="7" cy="12" r="1.2" fill="currentColor"/>
+        <circle cx="3.5" cy="3.5" r="1.2" fill="currentColor"/>
+        <circle cx="10.5" cy="3.5" r="1.2" fill="currentColor"/>
+        <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/>
+        <circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
+      </svg>
+      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
+    </a>
+  </div>
+
+  <!-- Right: Nav links -->
+  <div style="display:flex;align-items:center;gap:24px;pointer-events:auto;">
+    <nav style="display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500;">
+      <a href="/#work" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Work</a>
+      <a href="/#about" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">About</a>
+      <a href="contact" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Contact</a>
+    </nav>
   </div>
 </header>
 
