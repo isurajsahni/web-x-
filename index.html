@@ -511,6 +511,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     
     /* Card 1 Glass card */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes card-glow-shift {
+      0%   { opacity: 0; transform: translateY(0%) translateX(0%) scale(1); }
+      30%  { opacity: 1; }
+      60%  { opacity: 0.6; transform: translateY(-6%) translateX(4%) scale(1.06); }
+      100% { opacity: 0; transform: translateY(0%) translateX(0%) scale(1); }
+    }
+    @keyframes card-glow-shift2 {
+      0%   { opacity: 0; transform: translateY(0%) translateX(0%) scale(1); }
+      25%  { opacity: 0.7; transform: translateY(8%) translateX(-5%) scale(1.08); }
+      70%  { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(0%) translateX(0%) scale(1); }
+    }
     .about-glass-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -523,6 +536,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle ambient gradient blobs inside card */
+    .about-glass-card::before,
+    .about-glass-card::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(55px);
+    }
+    .about-glass-card::before {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(157, 92, 255, 0.18) 0%, transparent 70%);
+      top: -60px;
+      right: -40px;
+      animation: card-glow-shift 7s ease-in-out infinite;
+    }
+    .about-glass-card::after {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(100, 60, 220, 0.12) 0%, transparent 70%);
+      bottom: -50px;
+      left: -30px;
+      animation: card-glow-shift2 9s ease-in-out infinite 2s;
+    }
+    /* Ensure all card children sit above the gradient blobs */
+    .about-glass-card > * {
+      position: relative;
+      z-index: 1;
     }
     .about-glass-card:hover {
       border-color: rgba(157, 92, 255, 0.3);
@@ -726,7 +772,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Card 1: Features & CTA -->
     <div data-reveal data-reveal-delay="120" class="about-glass-card" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
       <div>
-        <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:spin 6s linear infinite; color:#9D5CFF; margin-bottom: 20px;">
+        <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:wx-spin 6s linear infinite; color:#9D5CFF; margin-bottom: 20px;">
           <circle cx="2" cy="7" r="1.2" fill="currentColor"/>
           <circle cx="7" cy="2" r="1.2" fill="currentColor"/>
           <circle cx="12" cy="7" r="1.2" fill="currentColor"/>
