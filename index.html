@@ -988,97 +988,294 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </section>
 
-<!-- ============ SERVICES - sticky stack ============ -->
-<section id="services" style="padding:0 clamp(20px,5vw,72px) clamp(40px,8vh,100px);max-width:1500px;margin:0 auto">
-  <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(28px,5vh,52px)">
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02)</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Capabilities</span>
+<!-- ============ CAPABILITIES - Horizontal gradient cards ============ -->
+<section id="services" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px) clamp(60px,10vh,120px);max-width:1500px;margin:0 auto">
+
+  <style>
+    /* ---------- Layout ---------- */
+    .wx-cap-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: clamp(24px,4vw,80px);
+      margin-bottom: clamp(48px,8vh,80px);
+    }
+    .wx-cap-header p {
+      font-size: clamp(15px,1.2vw,18px);
+      line-height: 1.65;
+      color: #9A9AA2;
+      max-width: 480px;
+      margin: 0;
+    }
+    .wx-cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: clamp(12px,1.5vw,20px);
+    }
+
+    /* ---------- Card ---------- */
+    .wx-cap-card {
+      position: relative;
+      border-radius: 20px;
+      padding: clamp(20px,2.5vw,32px) clamp(18px,2vw,28px) clamp(22px,3vw,36px);
+      background: #0D0D11;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-height: clamp(300px,38vh,440px);
+      cursor: default;
+      transition: transform .55s cubic-bezier(.16,1,.3,1),
+                  box-shadow .55s ease,
+                  border-color .4s ease;
+    }
+    .wx-cap-card:hover {
+      transform: translateY(-16px) !important;
+      box-shadow: 0 30px 60px rgba(0,0,0,.55), 0 8px 20px rgba(0,0,0,.3);
+      border-color: rgba(157,92,255,.3);
+    }
+
+    /* ---------- Content above gradient ---------- */
+    .wx-cap-card > :not(.wx-cap-grad) { position: relative; z-index: 2; }
+
+    /* ---------- Gradient fill container ---------- */
+    .wx-cap-grad {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: #0D0D11;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .wx-cap-card:hover .wx-cap-grad { opacity: 1; }
+
+    /* ---- Aurora glowing blobs (Purple/Pink/Lavender) ---- */
+    .wx-cap-glow-1 {
+      position: absolute;
+      bottom: -60px;
+      left: -40px;
+      width: 220px;
+      height: 220px;
+      background: #7c3aed; /* Darker Purple */
+      filter: blur(50px);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: capGlowMove1 3.5s ease-in-out infinite alternate;
+    }
+    .wx-cap-glow-2 {
+      position: absolute;
+      bottom: -80px;
+      right: -40px;
+      width: 240px;
+      height: 240px;
+      background: #c026d3; /* Darker Pink/Magenta */
+      filter: blur(55px);
+      border-radius: 50%;
+      opacity: 0.65;
+      animation: capGlowMove2 3s ease-in-out infinite alternate;
+    }
+    .wx-cap-glow-3 {
+      position: absolute;
+      bottom: -30px;
+      left: 20%;
+      width: 190px;
+      height: 190px;
+      background: #4f46e5; /* Darker Lavender/Indigo */
+      filter: blur(45px);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: capGlowMove3 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes capGlowMove1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, -20px) scale(1.15); }
+    }
+    @keyframes capGlowMove2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, -30px) scale(1.1); }
+    }
+    @keyframes capGlowMove3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(20px, -15px) scale(1.2); }
+    }
+
+    /* ---------- Number ---------- */
+    .wx-cap-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(157,92,255,.65);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wx-cap-num::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(157,92,255,.18);
+    }
+    .wx-cap-card:hover .wx-cap-num         { color: rgba(255,255,255,.85); }
+    .wx-cap-card:hover .wx-cap-num::after  { background: rgba(255,255,255,.2); }
+
+    /* ---------- Title ---------- */
+    .wx-cap-title {
+      font-size: clamp(22px,2.2vw,34px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      color: #EDEDED;
+      margin: 0 0 10px;
+    }
+    .wx-cap-card:hover .wx-cap-title { color: #fff; }
+
+    /* ---------- Description ---------- */
+    .wx-cap-desc {
+      font-size: clamp(13px,1vw,14px);
+      line-height: 1.6;
+      color: #6E6E78;
+      margin: 0;
+      transition: color .3s;
+    }
+    .wx-cap-card:hover .wx-cap-desc { color: rgba(255,255,255,.8); }
+
+    /* ---------- Tags ---------- */
+    .wx-cap-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+    }
+    .wx-cap-tag {
+      font-size: 12px;
+      color: rgba(255,255,255,.45);
+      border: 1px solid rgba(255,255,255,.09);
+      padding: 4px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: border-color .3s, color .3s, background .3s;
+    }
+    .wx-cap-card:hover .wx-cap-tag {
+      border-color: rgba(255,255,255,.3);
+      color: #fff;
+      background: rgba(255,255,255,.12);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .wx-cap-grid   { grid-template-columns: repeat(2,1fr); }
+      .wx-cap-header { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px)  { .wx-cap-grid { grid-template-columns: 1fr; } }
+  </style>
+
+  <!-- Section header -->
+  <div class="wx-cap-header">
+    <div>
+      <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02)</span>
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Capabilities</span>
+      </div>
+      <h2 data-reveal data-reveal-delay="80" style="font-size:clamp(34px,5.4vw,84px);font-weight:600;letter-spacing:-.04em;line-height:1.02;margin:0;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">
+        Zero to<br><span style="color:#9D5CFF">capabilities.</span>
+      </h2>
+    </div>
+    <p data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      From pixel-perfect UI to code that ships - we cover every layer of your digital presence. Design, build, rank, and scale. All under one roof.
+    </p>
   </div>
 
-  <article data-cap-card style="position:relative;background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:clamp(28px,4vw,56px);top:90px;position:sticky;box-shadow:0 -30px 60px rgba(0,0,0,.5);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,52px);align-items:center">
-    <div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px">
-      <div style="font-family:'Satoshi', sans-serif;font-size:13px;color:#9D5CFF">01 / Website Design</div>
-      <span aria-hidden="true" style="font-size:clamp(26px,3vw,44px);color:#9D5CFF;opacity:.5">✦</span>
-    </div>
-    <h3 style="font-size:clamp(34px,6vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:clamp(20px,4vh,38px) 0 clamp(18px,2.5vh,26px)">Designs that <br>convert.</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;max-width:680px">
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">UI / UX design</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Landing pages</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Responsive design</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Design systems</span>
-    </div>
-    </div>
-    <div data-cap-media style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.1);background:#0a0712">
-      <img src="images/cap-01.avif" alt="Conversion-focused website and landing page design mockup by Web{X} Studio" width="1200" height="900" loading="lazy" decoding="async" data-parallax="0.06" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
-      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,6,15,.5))"></div>
-      <div style="position:absolute;left:18px;bottom:16px;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)">Demo</div>
-    </div>
-  </article>
+  <!-- Cards -->
+  <div class="wx-cap-grid">
 
-  <article data-cap-card style="position:relative;background:#101015;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:clamp(28px,4vw,56px);top:108px;position:sticky;margin-top:34px;box-shadow:0 -30px 60px rgba(0,0,0,.5);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,52px);align-items:center">
-    <div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px">
-      <div style="font-family:'Satoshi', sans-serif;font-size:13px;color:#9D5CFF">02 / Development</div>
-      <span aria-hidden="true" style="font-size:clamp(26px,3vw,44px);color:#9D5CFF;opacity:.5">✦</span>
+    <div class="wx-cap-card" data-reveal style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <div class="wx-cap-grad">
+        <div class="wx-cap-glow-1"></div>
+        <div class="wx-cap-glow-2"></div>
+        <div class="wx-cap-glow-3"></div>
+      </div>
+      <span class="wx-cap-num">01</span>
+      <div>
+        <h3 class="wx-cap-title">Website<br>Design</h3>
+        <p class="wx-cap-desc">Bespoke interfaces that convert visitors into clients.</p>
+      </div>
+      <div class="wx-cap-tags">
+        <span class="wx-cap-tag">UI / UX</span>
+        <span class="wx-cap-tag">Landing pages</span>
+        <span class="wx-cap-tag">Responsive</span>
+        <span class="wx-cap-tag">Design systems</span>
+      </div>
     </div>
-    <h3 style="font-size:clamp(34px,6vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:clamp(20px,4vh,38px) 0 clamp(18px,2.5vh,26px)">Built to <br>last.</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;max-width:680px">
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Website development</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Headless CMS</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Web apps</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Integrations</span>
-    </div>
-    </div>
-    <div data-cap-media style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.1);background:#0a0712">
-      <img src="images/cap-02.avif" alt="Custom website development and headless CMS dashboard interface" width="1200" height="900" loading="lazy" decoding="async" data-parallax="0.06" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
-      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,6,15,.5))"></div>
-      <div style="position:absolute;left:18px;bottom:16px;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)">Demo</div>
-    </div>
-  </article>
 
-  <article data-cap-card style="position:relative;background:#12121a;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:clamp(28px,4vw,56px);top:126px;position:sticky;margin-top:34px;box-shadow:0 -30px 60px rgba(0,0,0,.5);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,52px);align-items:center">
-    <div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px">
-      <div style="font-family:'Satoshi', sans-serif;font-size:13px;color:#9D5CFF">03 / SEO &amp; Performance</div>
-      <span aria-hidden="true" style="font-size:clamp(26px,3vw,44px);color:#9D5CFF;opacity:.5">✦</span>
+    <div class="wx-cap-card" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <div class="wx-cap-grad">
+        <div class="wx-cap-glow-1"></div>
+        <div class="wx-cap-glow-2"></div>
+        <div class="wx-cap-glow-3"></div>
+      </div>
+      <span class="wx-cap-num">02</span>
+      <div>
+        <h3 class="wx-cap-title">Web<br>Development</h3>
+        <p class="wx-cap-desc">Fast, scalable code on the platform that fits your goals.</p>
+      </div>
+      <div class="wx-cap-tags">
+        <span class="wx-cap-tag">Webflow</span>
+        <span class="wx-cap-tag">WordPress</span>
+        <span class="wx-cap-tag">Shopify</span>
+        <span class="wx-cap-tag">Custom code</span>
+      </div>
     </div>
-    <h3 style="font-size:clamp(34px,6vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:clamp(20px,4vh,38px) 0 clamp(18px,2.5vh,26px)">Found &amp; <br>fast.</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;max-width:680px">
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">SEO optimization</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Speed optimization</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Core Web Vitals</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Analytics</span>
-    </div>
-    </div>
-    <div data-cap-media style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.1);background:#0a0712">
-      <img src="images/cap-03.avif" alt="SEO and Core Web Vitals performance dashboard showing improved Google ranking" width="1200" height="900" loading="lazy" decoding="async" data-parallax="0.06" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
-      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,6,15,.5))"></div>
-      <div style="position:absolute;left:18px;bottom:16px;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)">Demo</div>
-    </div>
-  </article>
 
-  <article data-cap-card style="position:relative;background:#15131e;border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:clamp(28px,4vw,56px);top:144px;position:sticky;margin-top:34px;box-shadow:0 -30px 60px rgba(0,0,0,.5);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,52px);align-items:center">
-    <div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px">
-      <div style="font-family:'Satoshi', sans-serif;font-size:13px;color:#9D5CFF">04 / ERP Software</div>
-      <span aria-hidden="true" style="font-size:clamp(26px,3vw,44px);color:#9D5CFF;opacity:.5">✦</span>
+    <div class="wx-cap-card" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <div class="wx-cap-grad">
+        <div class="wx-cap-glow-1"></div>
+        <div class="wx-cap-glow-2"></div>
+        <div class="wx-cap-glow-3"></div>
+      </div>
+      <span class="wx-cap-num">03</span>
+      <div>
+        <h3 class="wx-cap-title">SEO &amp;<br>Performance</h3>
+        <p class="wx-cap-desc">Rank higher, load faster. 100/100 Lighthouse from day one.</p>
+      </div>
+      <div class="wx-cap-tags">
+        <span class="wx-cap-tag">SEO</span>
+        <span class="wx-cap-tag">Core Web Vitals</span>
+        <span class="wx-cap-tag">Speed audits</span>
+        <span class="wx-cap-tag">Analytics</span>
+      </div>
     </div>
-    <h3 style="font-size:clamp(34px,6vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1.02;margin:clamp(20px,4vh,38px) 0 clamp(18px,2.5vh,26px)">Systems that <br>scale.</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;max-width:680px">
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">ERP development</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Dashboards</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Automation</span>
-      <span style="font-size:13px;color:#B8B8C0;border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:100px">Custom software</span>
+
+    <div class="wx-cap-card" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <div class="wx-cap-grad">
+        <div class="wx-cap-glow-1"></div>
+        <div class="wx-cap-glow-2"></div>
+        <div class="wx-cap-glow-3"></div>
+      </div>
+      <span class="wx-cap-num">04</span>
+      <div>
+        <h3 class="wx-cap-title">ERP &amp;<br>Web Apps</h3>
+        <p class="wx-cap-desc">Custom dashboards and ERPs that scale with your business.</p>
+      </div>
+      <div class="wx-cap-tags">
+        <span class="wx-cap-tag">ERP</span>
+        <span class="wx-cap-tag">Dashboards</span>
+        <span class="wx-cap-tag">Automation</span>
+        <span class="wx-cap-tag">Custom software</span>
+      </div>
     </div>
-    </div>
-    <div data-cap-media style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.1);background:#0a0712">
-      <img src="images/cap-04.avif" alt="Custom ERP software dashboard with business automation by Web{X} Studio" width="1200" height="900" loading="lazy" decoding="async" data-parallax="0.06" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
-      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,6,15,.5))"></div>
-      <div style="position:absolute;left:18px;bottom:16px;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6)">Demo</div>
-    </div>
-  </article>
+
+  </div>
+
+  
+
 </section>
+
 
 <!-- ============ LIVE CONVERTER + CUSTOM BUILDS ============ -->
 <section id="figma-to-production" aria-labelledby="figma-prod-h" class="wx-d2p" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,72px) clamp(60px,9vh,110px);max-width:1500px;margin:0 auto;position:relative">
