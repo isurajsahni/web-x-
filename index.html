@@ -1279,86 +1279,297 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ LIVE CONVERTER + CUSTOM BUILDS ============ -->
 <section id="figma-to-production" aria-labelledby="figma-prod-h" class="wx-d2p" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,72px) clamp(60px,9vh,110px);max-width:1500px;margin:0 auto;position:relative">
-  <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(28px,4vh,44px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02.5)</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Design → Production · Custom builds</span>
+
+  <style>
+    /* ---- Platform Conversion List ---- */
+    .wx-f2p-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .wx-f2p-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* Dark frosted glass background */
+      background: rgba(255, 255, 255, 0.015);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      padding: clamp(16px, 2vw, 22px) clamp(20px, 3vw, 36px);
+      gap: 28px;
+      transition:
+        border-color 0.4s ease,
+        background-color 0.4s ease,
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s ease;
+      cursor: default;
+    }
+
+    .wx-f2p-row:hover {
+      border-color: rgba(157, 92, 255, 0.3);
+      background: rgba(157, 92, 255, 0.035);
+      transform: translateY(-4px);
+      box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.5),
+        inset 0 0 12px rgba(157, 92, 255, 0.05);
+    }
+
+    /* Left Column: Flow Badge (Figma → Platform) & Heading */
+    .wx-f2p-flow-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-shrink: 0;
+      min-width: clamp(280px, 32vw, 420px);
+    }
+
+    /* Logo flow wrapper (frosted glass pill badge) */
+    .wx-f2p-logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 6px 14px;
+      border-radius: 100px;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+    .wx-f2p-row:hover .wx-f2p-logo-wrapper {
+      background: rgba(157, 92, 255, 0.08);
+      border-color: rgba(157, 92, 255, 0.2);
+    }
+
+    .wx-f2p-logo-img {
+      width: clamp(22px, 2.2vw, 28px);
+      height: clamp(22px, 2.2vw, 28px);
+      object-fit: contain;
+      display: block;
+    }
+
+    .wx-f2p-arrow-symbol {
+      font-size: clamp(14px, 1.5vw, 18px);
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .wx-f2p-row:hover .wx-f2p-arrow-symbol {
+      color: rgba(157, 92, 255, 0.7);
+    }
+
+    /* Figma to Webflow Text Label */
+    .wx-f2p-name {
+      font-size: clamp(18px, 1.8vw, 23px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #EDEDED;
+      transition: color 0.3s;
+    }
+    .wx-f2p-row:hover .wx-f2p-name {
+      color: #FFFFFF;
+    }
+
+    /* Center Column: Description Support Text */
+    .wx-f2p-desc-center {
+      font-size: clamp(13px, 1.05vw, 15px);
+      line-height: 1.6;
+      color: #8A8A92;
+      flex-grow: 1;
+      max-width: 660px;
+      transition: color 0.3s;
+      margin: 0;
+    }
+    .wx-f2p-row:hover .wx-f2p-desc-center {
+      color: #C8C8D0;
+    }
+
+    /* Right Column: Circular Icon Button */
+    .wx-f2p-arrow-right {
+      width: clamp(40px, 4.2vw, 46px);
+      height: clamp(40px, 4.2vw, 46px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: rgba(255, 255, 255, 0.45);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .wx-f2p-arrow-right svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      transition: transform 0.3s;
+    }
+
+    .wx-f2p-row:hover .wx-f2p-arrow-right {
+      background: #9D5CFF;
+      border-color: #9D5CFF;
+      color: #FFFFFF;
+    }
+    .wx-f2p-row:hover .wx-f2p-arrow-right svg {
+      transform: rotate(45deg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 990px) {
+      .wx-f2p-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .wx-f2p-desc-center {
+        max-width: 100%;
+      }
+      .wx-f2p-arrow-right {
+        align-self: flex-end;
+      }
+    }
+  </style>
+
+  <!-- Headings and Subtext Stacked (Modern alignment, centered/left stacked) -->
+  <div style="max-width: 800px; margin-bottom: clamp(48px, 8vh, 80px);">
+    <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02.5)</span>
+      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Design &rarr; Production &middot; Custom builds</span>
+    </div>
+    <h2 id="figma-prod-h" data-reveal data-reveal-delay="80" style="font-size:clamp(34px,5vw,68px);line-height:1.1;font-weight:600;letter-spacing:-.045em;margin:0 0 20px;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;color:#EDEDED">
+      Bring your designs to life.<br><span style="color:#9D5CFF">Or build from scratch.</span>
+    </h2>
+    <p data-reveal data-reveal-delay="160" style="font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#9A9AA2;margin:0;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      Hand us a Figma file, a Photoshop comp, or a Canva mockup. We turn it into pixel-perfect, lightning-fast builds on the platform that fits your business goals. Fully custom, editable, and ready to scale.
+    </p>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,4vw,80px);align-items:center;margin-bottom:clamp(40px,6vh,72px)">
-    <h2 id="figma-prod-h" data-reveal style="font-size:clamp(34px,5.4vw,84px);line-height:1.05;font-weight:600;letter-spacing:-.04em;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;margin:0">Bring your design.<br><span style="color:#9D5CFF;font-weight:600">Or build from scratch.</span></h2>
-    <p data-reveal data-reveal-delay="120" style="font-size:clamp(15px,1.2vw,18px);line-height:1.65;color:#9A9AA2;max-width:560px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;margin:0;align-self:center">Hand us a Figma file, a Photoshop comp, even a Canva mockup - we turn it into pixel-perfect <strong style="color:#C8C8D0;font-weight:500">website design</strong>, <strong style="color:#C8C8D0;font-weight:500">landing page development</strong> and <strong style="color:#C8C8D0;font-weight:500">ecommerce website</strong> builds. Figma to Webflow, WordPress, Shopify, Wix Studio or Unbounce - on the platform that fits your team, or fully custom from scratch.</p>
-  </div>
+  <!-- Cards List -->
+  <div class="wx-f2p-list" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
 
-  <!-- =========================================================
-       3D CONVERSION RING - Figma → platform pipelines
-       Auto-rotating 3D carousel. Card text stays in the DOM
-       for crawlers; ring flattens to a grid on mobile / reduced
-       motion / low-power (see .wx-f2p rules in webx.css).
-       ========================================================= -->
-  <div class="wx-f2p" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
-    <span class="wx-f2p-eyebrow"><span aria-hidden="true">◆</span> Figma to anything - pick your platform</span>
-    <div class="wx-f2p-stage">
-      <div class="wx-f2p-ring" role="list" aria-label="Figma to platform conversion services">
-
-        <article class="wx-f2p-card" role="listitem" style="--i:0">
-          <span class="wx-f2p-route">Figma <span aria-hidden="true">&rarr;</span> Webflow</span>
-          <div class="wx-f2p-flow" aria-hidden="true">
-            <img src="images/tools/figma.png" alt="" width="44" height="44">
-            <span class="wx-f2p-arrow">&rarr;</span>
-            <img src="images/tools/webflow.png" alt="" width="44" height="44">
-          </div>
-          <h3 class="wx-f2p-title">Webflow website design</h3>
-          <p class="wx-f2p-desc">Pixel-perfect Figma to Webflow builds for marketing sites and landing page development.</p>
-        </article>
-
-        <article class="wx-f2p-card" role="listitem" style="--i:1">
-          <span class="wx-f2p-route">Figma <span aria-hidden="true">&rarr;</span> Unbounce</span>
-          <div class="wx-f2p-flow" aria-hidden="true">
-            <img src="images/tools/figma.png" alt="" width="44" height="44">
-            <span class="wx-f2p-arrow">&rarr;</span>
-            <img src="images/tools/unbounce.png" alt="" width="44" height="44">
-          </div>
-          <h3 class="wx-f2p-title">Unbounce landing pages</h3>
-          <p class="wx-f2p-desc">High-converting Figma to Unbounce landing page development for paid ad campaigns.</p>
-        </article>
-
-        <article class="wx-f2p-card" role="listitem" style="--i:2">
-          <span class="wx-f2p-route">Figma <span aria-hidden="true">&rarr;</span> WordPress</span>
-          <div class="wx-f2p-flow" aria-hidden="true">
-            <img src="images/tools/figma.png" alt="" width="44" height="44">
-            <span class="wx-f2p-arrow">&rarr;</span>
-            <img src="images/tools/wordpress.png" alt="" width="44" height="44">
-          </div>
-          <h3 class="wx-f2p-title">WordPress development</h3>
-          <p class="wx-f2p-desc">Custom Figma to WordPress website design - CMS, blogs and content-driven sites.</p>
-        </article>
-
-        <article class="wx-f2p-card" role="listitem" style="--i:3">
-          <span class="wx-f2p-route">Figma <span aria-hidden="true">&rarr;</span> Wix Studio</span>
-          <div class="wx-f2p-flow" aria-hidden="true">
-            <img src="images/tools/figma.png" alt="" width="44" height="44">
-            <span class="wx-f2p-arrow">&rarr;</span>
-            <img src="images/tools/wix.png" alt="" width="44" height="44">
-          </div>
-          <h3 class="wx-f2p-title">Wix Studio sites</h3>
-          <p class="wx-f2p-desc">Figma to Wix Studio website design - fast, client-editable and built to scale.</p>
-        </article>
-
-        <article class="wx-f2p-card" role="listitem" style="--i:4">
-          <span class="wx-f2p-route">Figma <span aria-hidden="true">&rarr;</span> Shopify</span>
-          <div class="wx-f2p-flow" aria-hidden="true">
-            <img src="images/tools/figma.png" alt="" width="44" height="44">
-            <span class="wx-f2p-arrow">&rarr;</span>
-            <img src="images/tools/shopify.png" alt="" width="44" height="44">
-          </div>
-          <h3 class="wx-f2p-title">Shopify ecommerce</h3>
-          <p class="wx-f2p-desc">Figma to Shopify ecommerce website design and conversion-ready online stores.</p>
-        </article>
-
+    <!-- Row 1: Webflow -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <img src="images/tools/webflow.png" alt="Webflow logo" class="wx-f2p-logo-img">
+        </div>
+        <span class="wx-f2p-name">Figma to Webflow</span>
+      </div>
+      <p class="wx-f2p-desc-center">Pixel-perfect Webflow builds for marketing sites and landing pages - client-editable and animation-rich.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
       </div>
     </div>
-    <p class="wx-f2p-caption">Figma to Webflow, Unbounce, WordPress, Wix &amp; Shopify - one design, shipped on any platform.</p>
+
+    <!-- Row 2: WordPress -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <img src="images/tools/wordpress.png" alt="WordPress logo" class="wx-f2p-logo-img">
+        </div>
+        <span class="wx-f2p-name">Figma to WordPress</span>
+      </div>
+      <p class="wx-f2p-desc-center">Custom WordPress themes from your Figma - CMS, blogs and content-driven sites without builder bloat.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 3: Shopify -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <img src="images/tools/shopify.png" alt="Shopify logo" class="wx-f2p-logo-img">
+        </div>
+        <span class="wx-f2p-name">Figma to Shopify</span>
+      </div>
+      <p class="wx-f2p-desc-center">Your Figma design turned into a conversion-ready Shopify store - custom Liquid theme, no marketplace template.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 4: Unbounce -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <img src="images/tools/unbounce.png" alt="Unbounce logo" class="wx-f2p-logo-img">
+        </div>
+        <span class="wx-f2p-name">Figma to Unbounce</span>
+      </div>
+      <p class="wx-f2p-desc-center">High-converting Unbounce landing pages built pixel-perfect from your design - ready for paid traffic.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 5: HTML -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <img src="images/tools/html.png" alt="HTML logo" class="wx-f2p-logo-img">
+        </div>
+        <span class="wx-f2p-name">Figma to HTML</span>
+      </div>
+      <p class="wx-f2p-desc-center">Clean, semantic HTML/CSS/JS from your Figma - the fastest, most portable version of your design.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Row 6: React -->
+    <div class="wx-f2p-row">
+      <div class="wx-f2p-flow-left">
+        <div class="wx-f2p-logo-wrapper">
+          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
+          <span class="wx-f2p-arrow-symbol">&rarr;</span>
+          <!-- Inline custom React logo SVG inside wrapper -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348" class="wx-f2p-logo-img" style="color: #61dafb; fill: none; width: clamp(22px, 2.2vw, 28px); height: clamp(22px, 2.2vw, 28px); display: block;">
+            <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
+            <g stroke="#61dafb" stroke-width="1.2">
+              <ellipse rx="11" ry="4.2"/>
+              <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+              <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+            </g>
+          </svg>
+        </div>
+        <span class="wx-f2p-name">Figma to React</span>
+      </div>
+      <p class="wx-f2p-desc-center">Production React/Next.js components from your Figma - typed, tested and ready for your codebase.</p>
+      <div class="wx-f2p-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
   </div>
+
 
   <!-- =========================================================
        MARQUEES - infinite scrolling logo strips
