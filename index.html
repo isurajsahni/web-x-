@@ -1851,15 +1851,89 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ CTA ============ -->
 <section style="padding:clamp(40px,7vh,90px) clamp(20px,5vw,72px);position:relative">
-  <div style="position:relative;max-width:1500px;margin:0 auto;border-radius:clamp(24px,3vw,40px);overflow:hidden;background:#9D5CFF;color:#0A0A0A;padding:clamp(48px,9vw,140px) clamp(28px,5vw,90px)">
-    <div aria-hidden="true" style="position:absolute;inset:0;opacity:.5;mix-blend-mode:soft-light;background:radial-gradient(50% 60% at 80% 10%,#ffffff,transparent 55%),radial-gradient(50% 60% at 10% 90%,#5a2db8,transparent 55%);animation:wx-mesh 16s ease-in-out infinite;pointer-events:none"></div>
-    <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:clamp(28px,5vh,48px)">
-      <span style="display:inline-flex;align-items:center;gap:10px;background:rgba(10,10,10,.12);border:1px solid rgba(10,10,10,.2);border-radius:100px;padding:9px 16px;font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#0A0A0A;animation:wx-pulse 1.6s ease-in-out infinite"></span>Booking Q3 2026</span>
-      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(10,10,10,.6)">Have a project in mind?</span>
+  <style>
+    /* ---------- Glowing Aurora Blobs for CTA ---------- */
+    .wx-cta-glow-container {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+      background: #0D0D11;
+    }
+    .wx-cta-glow-1 {
+      position: absolute;
+      bottom: -150px;
+      left: -100px;
+      width: clamp(300px, 35vw, 550px);
+      height: clamp(300px, 35vw, 550px);
+      background: #7c3aed; /* Dark Purple */
+      filter: blur(100px);
+      border-radius: 50%;
+      opacity: 0.75;
+      animation: ctaGlowMove1 8s ease-in-out infinite;
+    }
+    .wx-cta-glow-2 {
+      position: absolute;
+      top: -180px;
+      right: -100px;
+      width: clamp(320px, 38vw, 600px);
+      height: clamp(320px, 38vw, 600px);
+      background: #c026d3; /* Magenta */
+      filter: blur(110px);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: ctaGlowMove2 7s ease-in-out infinite;
+    }
+    .wx-cta-glow-3 {
+      position: absolute;
+      bottom: -100px;
+      left: 30%;
+      width: clamp(260px, 30vw, 480px);
+      height: clamp(260px, 30vw, 480px);
+      background: #4f46e5; /* Indigo/Lavender */
+      filter: blur(90px);
+      border-radius: 50%;
+      opacity: 0.65;
+      animation: ctaGlowMove3 9s ease-in-out infinite;
+    }
+    @keyframes ctaGlowMove1 {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(90px, -70px) scale(1.2); }
+      66% { transform: translate(-50px, -110px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    @keyframes ctaGlowMove2 {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(-110px, -60px) scale(1.15); }
+      66% { transform: translate(70px, -120px) scale(0.95); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    @keyframes ctaGlowMove3 {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(60px, -100px) scale(0.9); }
+      66% { transform: translate(-90px, 40px) scale(1.25); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+  </style>
+
+  <div style="position:relative;max-width:1500px;margin:0 auto;border-radius:clamp(24px,3vw,40px);overflow:hidden;background:#0D0D11;border:1px solid rgba(255, 255, 255, 0.08);color:#ffffff;padding:clamp(32px,6vw,100px) clamp(28px,5vw,90px)">
+    <!-- Animating background gradient blobs -->
+    <div class="wx-cta-glow-container" aria-hidden="true">
+      <div class="wx-cta-glow-1"></div>
+      <div class="wx-cta-glow-2"></div>
+      <div class="wx-cta-glow-3"></div>
     </div>
-    <h2 data-reveal style="position:relative;font-size:clamp(46px,11vw,180px);font-weight:700;letter-spacing:-.05em;line-height:.84;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">Let's build<br>something <span style="font-style:italic;font-weight:600">unforgettable.</span></h2>
-    <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;margin-top:clamp(40px,7vh,80px)">
-      <p style="max-width:380px;font-size:clamp(15px,1.3vw,18px);line-height:1.5;color:rgba(10,10,10,.7)">Tell us what you're working on. We reply to every inquiry within two business days.</p>
+
+    <!-- Content Card -->
+    <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:clamp(24px,4vh,40px);z-index:2">
+      <span style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:9px 16px;font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#ffffff;"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#00FF66;animation:wx-pulse 1.6s ease-in-out infinite"></span>Booking Q3 2026</span>
+      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)">Have a project in mind?</span>
+    </div>
+    <h2 data-reveal style="position:relative;font-size:clamp(36px,8.5vw,135px);font-weight:700;letter-spacing:-.05em;line-height:.88;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;z-index:2;color:#ffffff;margin:0;">Let's build<br>something <span style="font-weight:700;color:#ffffff;">unforgettable.</span></h2>
+    <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;margin-top:clamp(32px,5vh,60px);z-index:2">
+      <p style="max-width:420px;font-size:clamp(14px,1.1vw,16px);line-height:1.6;color:rgba(255,255,255,.7);margin:0">Tell us what you're working on. We reply to every inquiry within two business days.</p>
       <a data-transition href="contact" data-magnetic class="wx-btn-animated">
         <span class="wx-btn-label">Start a project</span>
         <span class="wx-btn-circle">
