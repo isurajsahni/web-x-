@@ -68,10 +68,10 @@
     var dot = document.createElement('div'), ring = document.createElement('div'), label = document.createElement('div');
     Object.assign(dot.style, { position: 'fixed', left: '0', top: '0', width: '8px', height: '8px', borderRadius: '50%', background: '#fff', mixBlendMode: 'difference', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99999', transition: 'width .25s ease, height .25s ease' });
     Object.assign(ring.style, { position: 'fixed', left: '0', top: '0', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,.5)', transform: 'translate(-50%,-50%)', pointerEvents: 'none', zIndex: '99998', mixBlendMode: 'difference', transition: 'width .3s cubic-bezier(.16,1,.3,1), height .3s cubic-bezier(.16,1,.3,1), background .3s, border-color .3s, opacity .3s' });
-    Object.assign(label.style, { position: 'fixed', left: '0', top: '0', transform: 'translate(-50%,-50%) scale(0)', borderRadius: '50%', width: '74px', height: '74px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#9D5CFF', color: '#0A0A0A', fontFamily: "'Space Grotesk', sans-serif", fontWeight: '600', fontSize: '13px', letterSpacing: '.04em', textTransform: 'uppercase', pointerEvents: 'none', zIndex: '99997', transition: 'transform .35s cubic-bezier(.16,1,.3,1)' });
+    Object.assign(label.style, { position: 'fixed', left: '0', top: '0', transform: 'translate(-50%,-50%) scale(0)', borderRadius: '50%', width: '74px', height: '74px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#9D5CFF', color: '#0A0A0A', fontFamily: "'Satoshi', sans-serif", fontWeight: '600', fontSize: '13px', letterSpacing: '.04em', textTransform: 'uppercase', pointerEvents: 'none', zIndex: '99997', transition: 'transform .35s cubic-bezier(.16,1,.3,1)' });
     label.textContent = 'View';
     var xmark = document.createElement('div');
-    Object.assign(xmark.style, { position: 'fixed', left: '0', top: '0', transform: 'translate(-50%,-50%)', fontFamily: "'Space Grotesk', sans-serif", fontWeight: '700', fontSize: '13px', letterSpacing: '-.02em', color: '#9D5CFF', pointerEvents: 'none', zIndex: '99996', whiteSpace: 'nowrap', transition: 'opacity .3s ease, transform .3s cubic-bezier(.16,1,.3,1)', textShadow: '0 0 12px rgba(157,92,255,.6)' });
+    Object.assign(xmark.style, { position: 'fixed', left: '0', top: '0', transform: 'translate(-50%,-50%)', fontFamily: "'Satoshi', sans-serif", fontWeight: '700', fontSize: '13px', letterSpacing: '-.02em', color: '#9D5CFF', pointerEvents: 'none', zIndex: '99996', whiteSpace: 'nowrap', transition: 'opacity .3s ease, transform .3s cubic-bezier(.16,1,.3,1)', textShadow: '0 0 12px rgba(157,92,255,.6)' });
     xmark.innerHTML = '{X}';
     document.body.appendChild(ring); document.body.appendChild(dot); document.body.appendChild(xmark); document.body.appendChild(label);
 
@@ -317,7 +317,7 @@
       item.href = a.getAttribute('href');
       if (a.hasAttribute('data-transition')) item.setAttribute('data-transition', '');
       item.textContent = (a.textContent || '').replace('← ', '').trim();
-      Object.assign(item.style, { fontFamily: "'Space Grotesk', sans-serif", fontWeight: '600', letterSpacing: '-.03em', fontSize: 'clamp(38px,11vw,72px)', lineHeight: '1.18', color: '#EDEDED', textDecoration: 'none', opacity: '0', transform: 'translateY(24px)', transition: 'opacity .5s ease, transform .6s cubic-bezier(.16,1,.3,1), color .3s ease' });
+      Object.assign(item.style, { fontFamily: "'Satoshi', sans-serif", fontWeight: '600', letterSpacing: '-.03em', fontSize: 'clamp(38px,11vw,72px)', lineHeight: '1.18', color: '#EDEDED', textDecoration: 'none', opacity: '0', transform: 'translateY(24px)', transition: 'opacity .5s ease, transform .6s cubic-bezier(.16,1,.3,1), color .3s ease' });
       item.addEventListener('click', function () { setOpen(false); });
       overlay.appendChild(item); items.push(item);
     });
@@ -376,7 +376,7 @@
        space next to the greeting word — that offset was pushing the greeting
        off-centre. With the mark out of flow, the overlay's flex centering
        lands the greeting word dead centre. */
-    Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Space Grotesk', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
+    Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Satoshi', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
     var greet = document.createElement('div');
     greet.className = 'wx-greet-word';
     greet.setAttribute('aria-hidden', 'true');

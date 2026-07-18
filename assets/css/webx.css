@@ -1,4 +1,92 @@
 /* ============================================================
+   Satoshi Font Family Definitions
+   ============================================================ */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-BoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../satoshi/Satoshi-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================================
    Web{X} Studio — shared stylesheet
    Extracted & consolidated from the original design canvas.
    Loaded by every page (cache-friendly across the whole site).
@@ -6,7 +94,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{background:#000000;color:#EDEDED;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+body{background:#000000;color:#EDEDED;font-family:'Satoshi',sans-serif;overflow-x:hidden}
 ::selection{background:#9D5CFF;color:#0A0A0A}
 img{max-width:100%;display:block}
 section[id]{scroll-margin-top:96px}
@@ -300,7 +388,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
    instant the deferred JS injects it — no flash of unstyled overlay. The
    word text is set by JS; non-Latin scripts (Hindi/Japanese/Arabic/Punjabi)
    fall back to the system UI font, so no extra web-font request is made. */
-.wx-greet-word{display:flex;align-items:center;gap:.42em;font-family:'Space Grotesk',sans-serif;
+.wx-greet-word{display:flex;align-items:center;gap:.42em;font-family:'Satoshi',sans-serif;
   font-weight:600;font-size:clamp(38px,8vw,104px);letter-spacing:-.03em;line-height:1;color:#EDEDED;
   white-space:nowrap;will-change:opacity,transform}
 .wx-greet-word::before{content:'';flex:0 0 auto;width:.32em;height:.32em;border-radius:50%;
@@ -553,11 +641,70 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 }
 
 @keyframes wx-btn-glow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(157,92,255,0); }
+  50%       { box-shadow: 0 0 20px 5px rgba(157,92,255,0.20); }
+}
+
+.wx-btn-animated {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 6px;
+  background: #ffffff;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  animation: wx-btn-glow 3s ease-in-out infinite;
+  width: fit-content;
+  border: none;
+}
+.wx-btn-animated .wx-btn-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;
+  font-family: 'Satoshi', sans-serif;
+  letter-spacing: 0.01em;
+  padding: 0 16px 0 20px;
+  transition: opacity 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+              max-width 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+              padding 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 180px;
+  overflow: hidden;
+  display: block;
+}
+.wx-btn-animated .wx-btn-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #9D5CFF;
+  border-radius: 100px;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.2s ease;
+  overflow: hidden;
+}
+.wx-btn-animated .wx-btn-arrow {
+  flex-shrink: 0;
+  transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* Hover: text slides out, circle fills pill */
+.wx-btn-animated:hover .wx-btn-label {
+  opacity: 0;
+  transform: translateX(-12px);
+  max-width: 0;
+  padding: 0;
+}
+.wx-btn-animated:hover .wx-btn-circle {
+  width: 170px;
+  background: #8A46EB;
+}
+.wx-btn-animated:hover .wx-btn-arrow {
+  width: 30px;
 }
 
