@@ -691,75 +691,176 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <!-- Dark Clayo-inspired Footer section -->
-<footer class="footer-light-connect">
-  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:48px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.08);">
-    <!-- Left footer column -->
-    <div style="display:flex; flex-direction:column; gap:20px; max-width:380px;">
-      <p style="font-size:14px; line-height:1.6; color:var(--footer-muted);">
-        We partner with ambitious founders to design, code, and rank premium high-performance websites built for growth.
-      </p>
-      <div style="display:flex;">
-        <a class="social-circle-footer" href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-          </svg>
-        </a>
-        <a class="social-circle-footer" href="https://x.com/theWebxOfficial" target="_blank" rel="noopener" aria-label="Twitter X">
-          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-        <a class="social-circle-footer" href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
+<!-- ============ FOOTER ============ -->
+<footer style="border-top:1px solid rgba(255,255,255,.08);padding:clamp(60px,10vh,110px) clamp(20px,5vw,72px) 40px;background:#000000;position:relative">
+  <style>
+    /* ---------- Converto Style Footer Grid ---------- */
+    .wx-footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+      gap: clamp(30px, 4vw, 60px);
+      padding-bottom: clamp(40px, 6vh, 80px);
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .wx-footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .wx-footer-brand-col {
+      gap: 20px;
+      max-width: 340px;
+    }
+
+    .wx-footer-logo-text {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #9bb0ff 0%, #9D5CFF 50%, #c061ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0;
+      width: fit-content;
+      user-select: none;
+    }
+
+    .wx-footer-desc {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #8E8E93;
+      margin: 0;
+    }
+
+    .wx-footer-heading {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .wx-footer-link {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      color: #8E8E93;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      width: fit-content;
+    }
+
+    .wx-footer-link:hover {
+      color: #ffffff;
+      transform: translateX(2px);
+    }
+
+    .wx-footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 1500px;
+      margin: 0 auto;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      color: #5A5A62;
+    }
+
+    .wx-footer-bottom-meta {
+      color: #5A5A62;
+    }
+
+    /* Tablet breakpoint */
+    @media (max-width: 1024px) {
+      .wx-footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+      }
+      .wx-footer-brand-col {
+        grid-column: span 3;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 640px) {
+      .wx-footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .wx-footer-brand-col {
+        grid-column: span 2;
+      }
+    }
+  </style>
+
+  <!-- Responsive Footer Grid -->
+  <div class="wx-footer-grid">
     
-    <!-- Right footer links (columns) -->
-    <div style="display:grid; grid-template-columns:repeat(3, 110px); gap:clamp(30px, 4vw, 60px); justify-items:start;">
-      <!-- Column 1 -->
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <span style="font-family:'Satoshi',sans-serif; font-size:11px; color:#FFFFFF; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Agency</span>
-        <a href="/" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Home</a>
-        <a href="/#work" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Work</a>
-        <a href="studio" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Studio</a>
-        <a href="blog" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Journal</a>
-      </div>
-      
-      <!-- Column 2 -->
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <span style="font-family:'Satoshi',sans-serif; font-size:11px; color:#FFFFFF; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Services</span>
-        <a href="/#services" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">UX Design</a>
-        <a href="/#services" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Web Dev</a>
-        <a href="/#services" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">SEO Rank</a>
-        <a href="login" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Preloader</a>
-      </div>
-      
-      <!-- Column 3 -->
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <span style="font-family:'Satoshi',sans-serif; font-size:11px; color:#FFFFFF; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;">Contact</span>
-        <a href="contact" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Get Quote</a>
-        <a href="mailto:hello@thewebx.in" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Support</a>
-        <a href="/#faq" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">FAQ</a>
-        <a href="contact" style="font-size:13px; color:var(--footer-muted); transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='#8A8A92'">Location</a>
-      </div>
+    <!-- Column 1: Brand Info -->
+    <div class="wx-footer-col wx-footer-brand-col">
+      <h3 class="wx-footer-logo-text">Web{X}</h3>
+      <p class="wx-footer-desc">
+        Web{X} is a digital design & development agency specializing in high-performance web applications, custom products, and SEO.
+      </p>
     </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="wx-footer-col">
+      <span class="wx-footer-heading">Quick link</span>
+      <a data-transition href="./" class="wx-footer-link">Home</a>
+      <a data-transition href="studio" class="wx-footer-link">About us</a>
+      <a data-transition href="work" class="wx-footer-link">Projects</a>
+      <a data-transition href="contact" class="wx-footer-link">Contact us</a>
+    </div>
+
+    <!-- Column 3: Company Services -->
+    <div class="wx-footer-col">
+      <span class="wx-footer-heading">Company</span>
+      <a href="studio" class="wx-footer-link">Services</a>
+      <a href="work" class="wx-footer-link">Case Studies</a>
+      <a href="contact" class="wx-footer-link">Hire Us</a>
+      <a href="studio" class="wx-footer-link">Our Studio</a>
+    </div>
+
+    <!-- Column 4: Contact Info -->
+    <div class="wx-footer-col">
+      <span class="wx-footer-heading">Contact</span>
+      <a data-transition href="blog" class="wx-footer-link">Blog</a>
+      <a href="mailto:hello@thewebx.in" class="wx-footer-link">hello@thewebx.in</a>
+      <a href="tel:+917973386875" class="wx-footer-link">+91 79733 86875</a>
+    </div>
+
+    <!-- Column 5: Social Channels -->
+    <div class="wx-footer-col">
+      <span class="wx-footer-heading">Social</span>
+      <a href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" class="wx-footer-link">Instagram</a>
+      <a href="https://x.com/theWebxOfficial" target="_blank" rel="noopener" class="wx-footer-link">Twitter / X</a>
+      <a href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" class="wx-footer-link">LinkedIn</a>
+      <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" class="wx-footer-link">Dribbble</a>
+    </div>
+
   </div>
-  
-  <!-- Oversized Clayo brand wordmark footer layout -->
-  <div aria-hidden="true" style="overflow:hidden; line-height:0; padding:clamp(50px, 9vh, 90px) 0 10px; margin:0 calc(-1 * clamp(20px, 5vw, 72px)) 0; display:flex; align-items:center; justify-content:center;">
-    <div style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(72px, 24vw, 360px); line-height:0.85; letter-spacing:-0.05em; text-align:center; white-space:nowrap; background:linear-gradient(180deg,#9D5CFF 0%,#B685FF 40%,#7B35FA 75%,rgba(157,92,255,0.06) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; user-select:none;">Web{X}</div>
+
+  <!-- Bottom Copyright Row -->
+  <div class="wx-footer-bottom">
+    <span>© 2026 Web{X} Studio - All rights reserved.</span>
+    <span class="wx-footer-bottom-meta">Designed &amp; built in-house · Ludhiana, India</span>
   </div>
-  
-  <div style="display:flex; justify-content:between; flex-wrap:wrap; gap:16px; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.05); justify-content:space-between;">
-    <div style="font-family:'Satoshi', sans-serif; font-size:12px; color:var(--footer-muted);">
-      © 2026 Web{X} Studio - All rights reserved
-    </div>
-    <div style="font-family:'Satoshi', sans-serif; font-size:12px; color:var(--footer-muted); text-align:right;">
-      Ludhiana, India · Designed &amp; built in-house
-    </div>
+
+  <!-- Oversized brand wordmark - sits at the very bottom of the footer -->
+  <div aria-hidden="true" style="overflow:hidden;line-height:0;padding:clamp(40px,8vh,90px) clamp(16px,3vw,40px) 0;margin:0 calc(-1 * clamp(20px,5vw,72px)) calc(-1 * 40px)">
+    <div style="font-family:'Satoshi',sans-serif;font-weight:700;font-size:clamp(72px,24vw,360px);line-height:.85;letter-spacing:-.05em;text-align:center;white-space:nowrap;background:linear-gradient(180deg,#9bb0ff 0%,#9D5CFF 42%,#c061ff 72%,rgba(157,92,255,.06) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none">Web{X}</div>
   </div>
 </footer>
 
