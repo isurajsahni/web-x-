@@ -1,5 +1,5 @@
 /* ============================================================
-   Web{X} Studio — motion + interaction runtime
+   Web{X} Studio - motion + interaction runtime
    Pure vanilla, self-contained, no framework dependency.
    Auto-boots on DOMContentLoaded and wires every page module
    that is present in the DOM.
@@ -279,7 +279,7 @@
   /* ---------- "is scrolling" guard ----------
      While the user is actively scrolling we toggle a body class. CSS uses it
      to pause hover transforms / transitions that would otherwise repaint
-     while the page is moving — biggest visible flicker source on low-end. */
+     while the page is moving - biggest visible flicker source on low-end. */
   function initScrollGuard() {
     var doc = document.documentElement, t = null;
     function on() { doc.classList.add('wx-scrolling'); clearTimeout(t); t = setTimeout(off, 140); }
@@ -358,12 +358,12 @@
   /* ---------- Page-wipe transitions + first-visit greeting ----------
      First load of a session: a multilingual greeting cycles, then the overlay
      wipes up to reveal the page. Every later navigation in the same session
-     uses the quick brand wipe only — so the heavier greeting plays once, not
+     uses the quick brand wipe only - so the heavier greeting plays once, not
      on every page (the "optimized" part). Skipped entirely under reduced-motion. */
   function initPageTransition() {
     /* The preloader / intro overlay lives only on the home page (the main
-       page). On every other page we skip it entirely — no preloader, no
-       intro wipe — so exactly one preloader exists across the whole site. */
+       page). On every other page we skip it entirely - no preloader, no
+       intro wipe - so exactly one preloader exists across the whole site. */
     var path = location.pathname.toLowerCase().replace(/\/+$/, '');
     var isHome = path === '' || /\/index(\.html)?$/.test(path) || !!document.querySelector('[data-hero-canvas]');
     if (!isHome) return;
@@ -373,7 +373,7 @@
     var mark = document.createElement('div');
     mark.innerHTML = 'Web<span style="color:#9D5CFF">{X}</span>';
     /* Absolutely centered so the invisible brand mark never takes layout
-       space next to the greeting word — that offset was pushing the greeting
+       space next to the greeting word - that offset was pushing the greeting
        off-centre. With the mark out of flow, the overlay's flex centering
        lands the greeting word dead centre. */
     Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Satoshi', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
@@ -397,7 +397,7 @@
       /* Every home-page load cycles the multilingual greeting, then wipes up.
          Each word holds long enough to read (the old ~115ms felt like a flicker). */
       // Hindi · French · Spanish · Italian · Japanese · Arabic · Punjabi (Ludhiana) · English.
-      // Non-Latin scripts fall back to the system font — no extra web-font load.
+      // Non-Latin scripts fall back to the system font - no extra web-font load.
       var greetings = ['नमस्ते', 'Bonjour', 'Hola', 'Ciao', 'こんにちは', 'مرحبا', 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'Hello'];
       var gi = 0, step = lowPower ? 260 : 230;
       overlay.style.transform = 'translateY(0)';
@@ -433,7 +433,7 @@
   function initGrain() {
     if (document.querySelector('[data-grain]')) return;
     var g = document.createElement('div'); g.setAttribute('data-grain', ''); g.setAttribute('aria-hidden', 'true');
-    // Static grain texture only — the wx-grain keyframe used to repaint the
+    // Static grain texture only - the wx-grain keyframe used to repaint the
     // entire viewport twice every 0.5s (constant full-screen invalidation,
     // very expensive especially with mix-blend-mode). We keep the look with
     // a still texture, which costs the GPU one composite.
@@ -443,12 +443,12 @@
   }
 
   /* ============================================================
-     Page modules — each is a no-op unless its markup is present
+     Page modules - each is a no-op unless its markup is present
      ============================================================ */
 
   /* Home: flowing violet hero canvas */
   /* Home hero: Antigravity-style particle field + rotating dash-burst.
-     Dark theme — drawn additively ('lighter') so dots/lines/burst glow on
+     Dark theme - drawn additively ('lighter') so dots/lines/burst glow on
      near-black. Gradient runs blue -> brand violet -> pink. Particles bend
      toward the cursor (eased gravity) and drift with depth-based parallax. */
   function initHeroCanvas() {
@@ -719,7 +719,7 @@
     var mx = 0, my = 0, px = 0, py = 0, active = false;
     window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; });
     // Skip the perpetual rAF lerp on low-power. Snap the preview to the
-    // cursor instead of trailing it — same UX, zero per-frame work.
+    // cursor instead of trailing it - same UX, zero per-frame work.
     if (lowPower) {
       window.addEventListener('mousemove', function () {
         if (!active) return;
@@ -778,7 +778,7 @@
         if (btn) { btn.disabled = true; btn.dataset.label = btn.innerHTML; btn.textContent = 'Sending…'; }
         fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
           .then(function (res) { if (res.ok) { done(); } else { throw new Error('bad'); } })
-          .catch(function () { if (btn) { btn.disabled = false; if (btn.dataset.label) btn.innerHTML = btn.dataset.label; } window.alert('Sorry — something went wrong. Please email hello@thewebx.in'); });
+          .catch(function () { if (btn) { btn.disabled = false; if (btn.dataset.label) btn.innerHTML = btn.dataset.label; } window.alert('Sorry - something went wrong. Please email hello@thewebx.in'); });
       } else { done(); }
     });
   }
