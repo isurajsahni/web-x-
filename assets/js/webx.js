@@ -369,7 +369,7 @@
     if (!isHome) return;
 
     var overlay = document.createElement('div');
-    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#0A0A0A', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
+    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#000000', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
     var mark = document.createElement('div');
     mark.innerHTML = 'Web<span style="color:#9D5CFF">{X}</span>';
     /* Absolutely centered so the invisible brand mark never takes layout
