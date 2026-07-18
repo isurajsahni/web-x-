@@ -451,7 +451,6 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   position: relative;
   width: 0;
   height: 0;
-  animation: orbit-rotate 28s linear infinite;
   will-change: transform;
   pointer-events: auto; /* Enable hover/clicks on cards */
 }

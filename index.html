@@ -922,6 +922,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       const statsRow = document.querySelector('.stats-row');
       if (statsRow) statsObserver.observe(statsRow);
+
+      // --- Interactive Orbit Scroll Speed modulation ---
+      const orbitContainer = document.querySelector('[data-orbit-container]');
+      const heroSection = document.querySelector('.hero-orbit-section');
+      
+      if (orbitContainer && heroSection) {
+        let currentAngle = 0;
+        const baseSpeed = 12.86; // 360deg / 28s
+        let speedMultiplier = 1;
+        let lastTime = performance.now();
+        let isHovered = false;
+
+        heroSection.addEventListener('mouseenter', () => { isHovered = true; });
+        heroSection.addEventListener('mouseleave', () => { isHovered = false; });
+
+        // Wheel scroll trigger
+        window.addEventListener('wheel', (e) => {
+          if (isHovered) {
+            // Boost speed multiplier based on scroll intensity
+            const boost = Math.min(6.0, Math.abs(e.deltaY) * 0.018);
+            speedMultiplier += boost;
+            if (speedMultiplier > 9.0) speedMultiplier = 9.0; // cap at 9x speed
+          }
+        }, { passive: true });
+
+        // Touch swipe trigger for mobile devices (tracks multi-directional speed)
+        let lastTouchX = 0;
+        let lastTouchY = 0;
+        heroSection.addEventListener('touchstart', (e) => {
+          if (e.touches.length > 0) {
+            lastTouchX = e.touches[0].clientX;
+            lastTouchY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+
+        heroSection.addEventListener('touchmove', (e) => {
+          if (e.touches.length > 0) {
+            const currentTouchX = e.touches[0].clientX;
+            const currentTouchY = e.touches[0].clientY;
+            
+            const diffX = currentTouchX - lastTouchX;
+            const diffY = currentTouchY - lastTouchY;
+            const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+            
+            lastTouchX = currentTouchX;
+            lastTouchY = currentTouchY;
+
+            // Apply a speed boost relative to the touch dragging velocity
+            const boost = Math.min(5.0, distance * 0.08);
+            speedMultiplier += boost;
+            if (speedMultiplier > 9.0) speedMultiplier = 9.0;
+          }
+        }, { passive: true });
+
+        // Rotation Animation Frame Loop
+        const animateOrbits = (timestamp) => {
+          let dt = (timestamp - lastTime) / 1000;
+          lastTime = timestamp;
+
+          // Cap dt to prevent frame lag spikes
+          if (dt > 0.1) dt = 0.1;
+
+          // Exponentially decay multiplier back to 1.0 (baseline)
+          speedMultiplier += (1.0 - speedMultiplier) * 0.045; // 4.5% decay per frame
+
+          // Update angle
+          currentAngle += (baseSpeed * speedMultiplier) * dt;
+          currentAngle = currentAngle % 360;
+
+          // Apply rotation transform inline
+          orbitContainer.style.transform = `rotate(${currentAngle.toFixed(3)}deg)`;
+
+          requestAnimationFrame(animateOrbits);
+        };
+
+        requestAnimationFrame(animateOrbits);
+      }
     });
   </script>
 
