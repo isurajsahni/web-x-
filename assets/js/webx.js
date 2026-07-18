@@ -308,7 +308,7 @@
     Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '9100', background: 'rgba(9,9,11,.97)', backdropFilter: 'blur(22px)', webkitBackdropFilter: 'blur(22px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', padding: '0 clamp(24px,8vw,48px)', transform: 'translateY(-100%)', transition: 'transform .6s cubic-bezier(.76,0,.24,1)', pointerEvents: 'none' });
     var eyebrow = document.createElement('div');
     eyebrow.textContent = 'Menu';
-    Object.assign(eyebrow.style, { fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#9D5CFF', marginBottom: '24px', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
+    Object.assign(eyebrow.style, { fontFamily: "'Satoshi', sans-serif", fontSize: '12px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#9D5CFF', marginBottom: '24px', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
     overlay.appendChild(eyebrow);
 
     var items = [];
@@ -324,7 +324,7 @@
     var foot = document.createElement('a');
     foot.href = 'mailto:hello@thewebx.in';
     foot.textContent = 'hello@thewebx.in';
-    Object.assign(foot.style, { marginTop: '40px', fontFamily: "'JetBrains Mono', monospace", fontSize: '15px', color: '#9A9AA2', textDecoration: 'none', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
+    Object.assign(foot.style, { marginTop: '40px', fontFamily: "'Satoshi', sans-serif", fontSize: '15px', color: '#9A9AA2', textDecoration: 'none', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
     overlay.appendChild(foot); document.body.appendChild(overlay);
 
     var open = false, animated = [eyebrow].concat(items, [foot]);
