@@ -2008,18 +2008,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     /* ---------- Floating Backdrop Emojis & Line art ---------- */
-    .wx-test-backdrop-emoji {
+    .wx-test-ambient-glow {
       position: absolute;
+      width: clamp(300px, 45vw, 650px);
+      height: clamp(300px, 45vw, 650px);
+      background: radial-gradient(circle, rgba(155, 176, 255, 0.07) 0%, rgba(157, 92, 255, 0.03) 45%, rgba(0, 0, 0, 0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 1;
-      opacity: 0.28;
+      animation: wxTestGlowMotion 18s ease-in-out infinite alternate;
       will-change: transform;
-      animation: wxEmojiFloat 8s ease-in-out infinite alternate;
     }
 
-    @keyframes wxEmojiFloat {
-      0% { transform: translate3d(0, 0, 0) scale(1); }
-      100% { transform: translate3d(0, -15px, 0) scale(1.1); }
+    @keyframes wxTestGlowMotion {
+      0% { transform: translate(-50%, -50%) translate3d(-35px, 25px, 0); }
+      100% { transform: translate(-50%, -50%) translate3d(35px, -25px, 0); }
     }
 
     /* ---------- Responsive Breakpoint ---------- */
@@ -2074,17 +2079,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         width: 100%;
       }
       
-      .wx-test-backdrop-emoji, .wx-test-line-art {
+      .wx-test-line-art, .wx-test-ambient-glow {
         display: none !important;
       }
     }
   </style>
 
-  <!-- Floating iOS Style Backdrop Emojis in empty spaces -->
-  <div class="wx-test-backdrop-emoji" style="top: 22%; left: 34%; font-size: 28px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.25));">✨</div>
-  <div class="wx-test-backdrop-emoji" style="bottom: 24%; right: 38%; font-size: 26px; filter: drop-shadow(0 0 8px rgba(255,69,0,0.25)); animation-delay: 1.5s;">🔥</div>
-  <div class="wx-test-backdrop-emoji" style="top: 38%; right: 32%; font-size: 26px; filter: drop-shadow(0 0 8px rgba(0,255,100,0.2)); animation-delay: 0.8s;">👍</div>
-  <div class="wx-test-backdrop-emoji" style="bottom: 32%; left: 28%; font-size: 24px; filter: drop-shadow(0 0 8px rgba(157,92,255,0.25)); animation-delay: 2.2s;">🚀</div>
+  <!-- Mild Ambient Motion Gradient Glow -->
+  <div class="wx-test-ambient-glow"></div>
 
   <!-- Hand-drawn style pointer lines (Line arts) -->
   <svg class="wx-test-line-art" style="position: absolute; left: 34%; bottom: 35%; width: 50px; height: 50px; opacity: 0.22; pointer-events: none; z-index: 1;" viewBox="0 0 50 50">
@@ -2099,7 +2101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Center Text Content -->
   <div class="wx-test-center">
     <span class="wx-test-subtitle">We are building digital products &amp;</span>
-    <h2 class="wx-test-title">Loved by founders who value speed &amp; design</h2>
+    <h2 class="wx-test-title">Loved by founders who value speed &amp; design <span style="font-size: 0.95em; filter: drop-shadow(0 0 10px rgba(255,215,0,0.35)); line-height: 1; display: inline-block; vertical-align: middle; margin-left: 2px;">✨</span></h2>
   </div>
 
   <!-- Interactive 3D Parallax Bubble Layout -->
