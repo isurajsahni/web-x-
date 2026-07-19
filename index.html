@@ -2140,98 +2140,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </div>
 
-  <!-- Custom Pink Neon Pointer Cursor (exactly matches screenshot) -->
+  </div>
+
+  <!-- Custom Auto-Play Gradient Pointer Cursor (replicates screenshot style but auto-moves) -->
   <style>
-    .wx-test-cursor {
+    .wx-test-auto-cursor {
       position: absolute;
       pointer-events: none;
-      z-index: 99;
-      opacity: 0;
-      transform: translate(-3px, -2px) rotate(-10deg);
-      transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    @media (min-width: 901px) {
-      .wx-testimonials-section {
-        cursor: none !important;
-      }
-      .wx-testimonials-section a, 
-      .wx-testimonials-section .wx-test-bubble,
-      .wx-testimonials-section img {
-        cursor: none !important;
-      }
+      z-index: 10;
+      opacity: 1;
+      transform: translate(-4px, -4px) rotate(-10deg);
+      transition: left 1.2s cubic-bezier(0.25, 1, 0.5, 1), top 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, opacity 0.4s ease;
     }
   </style>
 
-  <div class="wx-test-cursor" id="wx-test-custom-cursor">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="filter: drop-shadow(0 3px 6px rgba(255, 121, 198, 0.35));">
-      <!-- High fidelity custom pink cursor matching screenshot exactly -->
-      <path d="M6 3 L26 15 L16 17 L22 27 L17 29 L11 19 L6 23 Z" fill="#ff79c6" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+  <div class="wx-test-auto-cursor" id="wx-test-auto-cursor" style="left: 50%; top: 50%;">
+    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" style="filter: drop-shadow(0 3px 8px rgba(157, 92, 255, 0.45));">
+      <defs>
+        <linearGradient id="wx-auto-cursor-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#9bb0ff" />
+          <stop offset="50%" stop-color="#9D5CFF" />
+          <stop offset="100%" stop-color="#c061ff" />
+        </linearGradient>
+      </defs>
+      <!-- High fidelity custom gradient arrow cursor -->
+      <path d="M6 3 L26 15 L16 17 L22 27 L17 29 L11 19 L6 23 Z" fill="url(#wx-auto-cursor-grad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
     </svg>
   </div>
 
-  <!-- Interactive Parallax & Cursor Follow JS Script -->
+  <!-- Interactive Parallax & Auto-Play Guided Tour JS Script -->
   <script>
     (function() {
-      const section = document.querySelector('.wx-testimonials-section');
       const container = document.getElementById('wx-testimonials-container');
       const items = container ? container.querySelectorAll('.wx-test-item') : [];
-      const cursor = document.getElementById('wx-test-custom-cursor');
+      const autoCursor = document.getElementById('wx-test-auto-cursor');
       
-      if (container && items.length > 0) {
-        window.addEventListener('mousemove', (e) => {
-          if (window.innerWidth <= 900) return; // Skip on mobile
-          
-          const rect = container.getBoundingClientRect();
-          // Calculate center offset for parallax
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          
-          const mouseX = e.clientX - centerX;
-          const mouseY = e.clientY - centerY;
+      if (!container || items.length === 0 || !autoCursor) return;
 
-          // Parallax movement for bubbles
-          items.forEach((item) => {
-            const factor = parseFloat(item.getAttribute('data-parallax-factor')) || 0.03;
-            const tx = mouseX * factor;
-            const ty = mouseY * factor;
-            item.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-          });
+      // ---------- Parallax Mouse Interaction (Bubbles React to Mouse) ----------
+      window.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 900) return;
+        
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
 
-          // Custom pink cursor follow coordinates relative to section top/left
-          if (cursor && section) {
-            const sectRect = section.getBoundingClientRect();
-            const cx = e.clientX - sectRect.left;
-            const cy = e.clientY - sectRect.top;
-            cursor.style.left = `${cx}px`;
-            cursor.style.top = `${cy}px`;
-          }
+        items.forEach((item) => {
+          const factor = parseFloat(item.getAttribute('data-parallax-factor')) || 0.03;
+          const tx = mouseX * factor;
+          const ty = mouseY * factor;
+          item.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
         });
+      });
 
-        // Toggle custom cursor opacity & hover scaling
-        if (section && cursor) {
-          section.addEventListener('mouseenter', () => {
-            if (window.innerWidth > 900) cursor.style.opacity = '1';
-          });
-          section.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            items.forEach((item) => {
-              item.style.transform = 'translate3d(0, 0, 0)';
-            });
-          });
+      // Reset parallax on mouse leave
+      document.addEventListener('mouseleave', () => {
+        items.forEach((item) => {
+          item.style.transform = 'translate3d(0, 0, 0)';
+        });
+      });
 
-          // Handle bubble hover to scale custom cursor
-          const bubbles = container.querySelectorAll('.wx-test-bubble');
-          bubbles.forEach(bubble => {
-            bubble.addEventListener('mouseenter', () => {
-              cursor.style.transform = 'translate(-3px, -2px) scale(1.3) rotate(-5deg)';
-            });
-            bubble.addEventListener('mouseleave', () => {
-              cursor.style.transform = 'translate(-3px, -2px) scale(1) rotate(-10deg)';
-            });
-          });
-        }
+      // ---------- Auto-Play Guided Tour Logic ----------
+      let currentIndex = 0;
+      let autoplayInterval = null;
+
+      function getBubbleCenter(item) {
+        const bubble = item.querySelector('.wx-test-bubble');
+        
+        // Calculate bubble positions relative to the container
+        const itemLeft = item.offsetLeft;
+        const itemTop = item.offsetTop;
+        const bubbleLeft = bubble.offsetLeft;
+        const bubbleTop = bubble.offsetTop;
+        
+        // Place the cursor tip close to the border of the bubble
+        const isLeft = item.classList.contains('wx-layout-left');
+        const xOffset = isLeft ? (bubbleLeft + 15) : (bubbleLeft + bubble.offsetWidth - 15);
+        const yOffset = bubbleTop + bubble.offsetHeight / 2;
+        
+        return {
+          x: itemLeft + xOffset,
+          y: itemTop + yOffset
+        };
       }
+
+      function runAutoplayStep() {
+        if (window.innerWidth <= 900) {
+          autoCursor.style.opacity = '0';
+          return;
+        }
+
+        const currentItem = items[currentIndex];
+        const coords = getBubbleCenter(currentItem);
+        
+        // 1. Move gradient cursor to current testimonial bubble center
+        autoCursor.style.left = `${coords.x}px`;
+        autoCursor.style.top = `${coords.y}px`;
+        autoCursor.style.opacity = '1';
+        
+        // 2. Wait for cursor move transition to complete (1.2s), then click expand
+        setTimeout(() => {
+          // Simulate cursor click press (scale down)
+          autoCursor.style.transform = 'translate(-4px, -4px) scale(0.8) rotate(-10deg)';
+          
+          setTimeout(() => {
+            // Restore scale
+            autoCursor.style.transform = 'translate(-4px, -4px) scale(1) rotate(-10deg)';
+            
+            // Expand the target bubble, collapse all others
+            items.forEach((item, idx) => {
+              const bubble = item.querySelector('.wx-test-bubble');
+              if (idx === currentIndex) {
+                bubble.classList.add('wx-expanded');
+              } else {
+                bubble.classList.remove('wx-expanded');
+              }
+            });
+            
+            // Increment index for next step
+            currentIndex = (currentIndex + 1) % items.length;
+          }, 150);
+        }, 1200);
+      }
+
+      // Start Autoplay
+      function startAutoplay() {
+        autoplayInterval = setInterval(runAutoplayStep, 4500);
+        runAutoplayStep();
+      }
+
+      function stopAutoplay() {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+        autoCursor.style.opacity = '0';
+      }
+
+      // Initial run
+      startAutoplay();
+
+      // Pause tour and hide auto-cursor when user hovers manually to prevent conflicts
+      container.addEventListener('mouseenter', () => {
+        stopAutoplay();
+      });
+
+      container.addEventListener('mouseleave', () => {
+        startAutoplay();
+      });
     })();
   </script>
 </section>
