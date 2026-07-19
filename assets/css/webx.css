@@ -120,12 +120,6 @@ html.wx-scrolling .wx-pill,
 html.wx-scrolling .wx-d2p-pill{transition:none!important;animation-play-state:paused!important}
 html.wx-scrolling .wx-mq-track,html.wx-scrolling .wx-d2p-mq-track{animation-play-state:paused}
 
-/* Low-power: a wider sweep of cuts than just the JS gates. Marquees, drop-
-   shadows, will-change layer promotions and per-item transitions all add
-   composite cost during scroll - none of them are load-bearing for the
-   message of the page. */
-html.wx-low-power .wx-d2p-mq-track,
-html.wx-low-power .wx-d2p-mq-track-rev{animation:none!important}
 /* Low-power: trim the card glow/shadow and pause the arrow pulse. */
 html.wx-low-power .wx-f2p-card{box-shadow:none!important}
 html.wx-low-power .wx-f2p-arrow{animation:none!important}
