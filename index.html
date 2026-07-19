@@ -396,16 +396,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span>Web<span class="wx-logo-purple">{X}</span></span>
     </a>
 
-    <!-- Center: Links (Point back to homepage anchors for correct subpage routing) -->
+    <!-- Center: Links (Point to dedicated subpages directly) -->
     <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
-      <a href="/#work" class="wx-nav-link">Work</a>
-      <a href="/#about" class="wx-nav-link">About</a>
-      <a href="contact" class="wx-nav-link">Contact</a>
+      <a href="work.html" class="wx-nav-link">Work</a>
+      <a href="studio.html" class="wx-nav-link">About</a>
+      <a href="contact.html" class="wx-nav-link">Contact</a>
     </div>
 
     <!-- Right: CTA & Hamburger Toggle -->
     <div class="wx-nav-cta-wrap">
-      <a href="contact" class="wx-btn-animated">
+      <a href="contact.html" class="wx-btn-animated">
         <span class="wx-btn-label">Let's connect</span>
         <span class="wx-btn-circle">
           <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -459,6 +459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   })();
 </script>
+
 
 
 
@@ -2343,15 +2344,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       100% { transform: translate3d(20px, -25px, 0) rotate(2deg) scale(1.02); }
     }
 
+    /* ---------- Mobile Marquee Slider Layout (Hidden on Desktop) ---------- */
+    .wx-test-mobile-marquee-container {
+      display: none;
+    }
+
+    .wx-test-marquee-card {
+      width: 320px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      margin: 0;
+      text-align: left;
+    }
+
+    .wx-test-marquee-quote {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #111115;
+      margin: 0;
+    }
+
+    .wx-test-marquee-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .wx-test-marquee-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      background: #111115;
+    }
+
+    .wx-test-marquee-name {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #9bb0ff; /* Lavender */
+      line-height: 1.2;
+    }
+
+    .wx-test-marquee-desc {
+      display: block;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 9.5px;
+      font-weight: 500;
+      color: #8a8a8f;
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
     /* ---------- Responsive Breakpoint ---------- */
     @media (max-width: 900px) {
       .wx-testimonials-section {
         min-height: auto;
-        padding: 60px 0;
+        padding: 60px 0 80px;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: 40px;
+        gap: 20px;
       }
 
       .wx-test-center {
@@ -2360,42 +2422,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
 
       .wx-test-bubble-container {
-        position: relative;
-        display: flex;
-        overflow-x: auto;
+        display: none !important;
+      }
+
+      .wx-test-mobile-marquee-container {
+        display: block !important;
         width: 100%;
-        padding: 10px 24px 30px;
-        gap: 16px;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
+        overflow: hidden;
+        margin-top: 28px;
       }
 
-      .wx-test-bubble-container::-webkit-scrollbar {
-        display: none;
-      }
-
-      .wx-test-item-wrap {
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        flex: 0 0 280px;
-        scroll-snap-align: start;
-        transform: none !important;
-      }
-
-      .wx-test-item {
-        animation: none !important;
-        transform: none !important;
-      }
-
-      .wx-test-bubble {
-        max-width: 100%;
-        width: 100%;
-      }
-      
-      .wx-test-line-art, .wx-test-aurora-bg, .wx-test-edge-fade-top, .wx-test-edge-fade-bottom {
+      .wx-test-line-art, .wx-test-aurora-bg, .wx-test-edge-fade-top, .wx-test-edge-fade-bottom, #wx-test-auto-cursor {
         display: none !important;
       }
     }
@@ -2602,6 +2639,259 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Arrowhead path shape matching images/arrowhead.svg exactly, border removed -->
       <path d="M4.5 0.79 v22.42 l6.56 -6.57 h9.29 L4.5 0.79 z" fill="url(#wx-auto-cursor-grad)"/>
     </svg>
+  </div>
+
+  <!-- Mobile Marquee Testimonials Slider Container (Visible on Mobile <= 900px only) -->
+  <div class="wx-test-mobile-marquee-container">
+    <div class="wx-testimonial-marquee">
+      <!-- Set 1 (Cards 1 to 6) -->
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Maya Okonkwo</span>
+            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Daniel Reyes</span>
+            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Priya Anand</span>
+            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Sarah Jenkins</span>
+            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Li Wei</span>
+            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card">
+        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Alex Patel</span>
+            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set 2 (Cards 1 to 6) -->
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Maya Okonkwo</span>
+            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Daniel Reyes</span>
+            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Priya Anand</span>
+            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Sarah Jenkins</span>
+            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Li Wei</span>
+            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Alex Patel</span>
+            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set 3 (Cards 1 to 6) -->
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Maya Okonkwo</span>
+            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Daniel Reyes</span>
+            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Priya Anand</span>
+            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Sarah Jenkins</span>
+            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Li Wei</span>
+            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Alex Patel</span>
+            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Set 4 (Cards 1 to 6) -->
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Maya Okonkwo</span>
+            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Daniel Reyes</span>
+            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Priya Anand</span>
+            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Sarah Jenkins</span>
+            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Li Wei</span>
+            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
+          </div>
+        </div>
+      </div>
+      <div class="wx-test-marquee-card" aria-hidden="true">
+        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
+        <div class="wx-test-marquee-author">
+          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
+          <div>
+            <span class="wx-test-marquee-name">Alex Patel</span>
+            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Interactive Parallax & Auto-Play Guided Tour JS Script -->
