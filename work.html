@@ -217,29 +217,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     left: 0;
   }
 
-  /* Right-side CTA button */
+  /* Right-side CTA button wrappers */
   .wx-nav-cta-wrap {
     display: flex;
     align-items: center;
     gap: 12px;
   }
   
-  .wx-nav-cta-btn {
-    font-family: 'Satoshi', sans-serif;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(135deg, #7c3aed, #9D5CFF);
-    padding: 9px 20px;
-    border-radius: 30px;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(157, 92, 255, 0.2);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-  }
-  
-  .wx-nav-cta-btn:hover {
-    transform: translateY(-1.5px);
-    box-shadow: 0 8px 25px rgba(157, 92, 255, 0.35);
+  /* Scale down the animated button slightly to fit navigation proportions */
+  .wx-navbar .wx-btn-animated {
+    transform: scale(0.88);
+    transform-origin: right center;
+    margin-right: -4px;
   }
 
   /* Hamburger Menu for Mobile screens */
@@ -278,6 +267,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       border-radius: 40px !important;
     }
     
+    .wx-navbar .wx-btn-animated {
+      transform: scale(0.82);
+    }
+
     .wx-nav-hamburger {
       display: flex;
     }
@@ -309,11 +302,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       transform: translateY(0);
       opacity: 1;
       pointer-events: auto;
-    }
-
-    .wx-nav-cta-btn {
-      padding: 8px 16px;
-      font-size: 12.5px;
     }
     
     /* Hamburger cross transformation on click */
@@ -352,7 +340,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Right: CTA & Hamburger Toggle -->
     <div class="wx-nav-cta-wrap">
-      <a href="contact" class="wx-nav-cta-btn">Book a call</a>
+      <a href="contact" class="wx-btn-animated">
+        <span class="wx-btn-label">Let's connect</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          </svg>
+        </span>
+      </a>
       
       <button class="wx-nav-hamburger" id="wx-nav-hamburger" aria-label="Toggle Navigation Menu">
         <span></span>
@@ -399,6 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   })();
 </script>
+
 
 
 
