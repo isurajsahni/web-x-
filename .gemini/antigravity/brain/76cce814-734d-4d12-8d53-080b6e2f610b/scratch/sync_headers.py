@@ -30,19 +30,36 @@ def sync_headers():
         with open(filename, 'r') as f:
             content = f.read()
 
-        start_marker = '<header data-header'
-        end_marker = '</header>'
-
+        # Search for the newly injected block
+        start_marker = '<!-- ============ PREMIUM FLOATING GLASS NAVIGATION ============ -->'
         start_idx = content.find(start_marker)
-        end_idx = content.find(end_marker)
-
-        if start_idx != -1 and end_idx != -1:
-            replaced_content = content[:start_idx] + new_header + content[end_idx + len(end_marker):]
-            with open(filename, 'w') as f:
-                f.write(replaced_content)
-            print(f"Successfully synced header in {filename}")
+        
+        if start_idx != -1:
+            # Find the closing </script> tag after this block
+            end_marker = '</script>'
+            end_idx = content.find(end_marker, start_idx)
+            
+            if end_idx != -1:
+                replaced_content = content[:start_idx] + new_header + content[end_idx + len(end_marker):]
+                with open(filename, 'w') as f:
+                    f.write(replaced_content)
+                print(f"Successfully synced centered header in {filename}")
+            else:
+                print(f"Error: end_marker not found in {filename}")
         else:
-            print(f"Warning: Header markers not found in {filename}")
+            # Fallback if the file still has the old header format
+            fallback_start = '<header data-header'
+            fallback_end = '</header>'
+            fallback_start_idx = content.find(fallback_start)
+            fallback_end_idx = content.find(fallback_end)
+            
+            if fallback_start_idx != -1 and fallback_end_idx != -1:
+                replaced_content = content[:fallback_start_idx] + new_header + content[fallback_end_idx + len(fallback_end):]
+                with open(filename, 'w') as f:
+                    f.write(replaced_content)
+                print(f"Successfully synced fallback header in {filename}")
+            else:
+                print(f"Critical error: No header markers found in {filename}")
 
 if __name__ == "__main__":
     sync_headers()
