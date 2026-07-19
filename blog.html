@@ -95,11 +95,219 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="wx-skip" href="#main">Skip to content</a>
 
-<header data-header style="position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom, #000000 40%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);padding:24px clamp(16px, 4vw, 40px);pointer-events:none;">
-  <!-- Left: Logo only -->
-  <div style="display:flex;align-items:center;pointer-events:auto;">
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;color:#EDEDED;">
-      <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:wx-spin 6s linear infinite;color:#9D5CFF;">
+<!-- ============ PREMIUM FLOATING GLASS NAVIGATION ============ -->
+<style>
+  /* ---------- Premium Floating Glass Navbar ---------- */
+  .wx-nav-container {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, 1100px);
+    z-index: 9000;
+    pointer-events: none; /* Let click pass through container margin */
+    transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .wx-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px 10px 28px;
+    border-radius: 40px;
+    background: rgba(10, 10, 12, 0.35);
+    backdrop-filter: blur(20px) saturate(195%);
+    -webkit-backdrop-filter: blur(20px) saturate(195%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.25), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    pointer-events: auto; /* Re-enable pointer events for navigation */
+    transition: 
+      background-color 0.4s ease, 
+      border-color 0.4s ease, 
+      padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s ease;
+  }
+
+  /* Scrolled State Transition (Apple / Stripe Premium style) */
+  .wx-navbar.wx-scrolled {
+    background: rgba(8, 8, 10, 0.75);
+    border-color: rgba(255, 255, 255, 0.12);
+    padding: 8px 12px 8px 24px;
+    box-shadow: 
+      0 12px 45px rgba(0, 0, 0, 0.4), 
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Logo block */
+  .wx-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 19px;
+    color: #EDEDED;
+    transition: transform 0.2s ease;
+  }
+  .wx-nav-logo:hover {
+    transform: scale(1.02);
+  }
+  .wx-nav-logo-svg {
+    animation: wx-spin 6s linear infinite;
+    color: #9D5CFF;
+  }
+  .wx-logo-purple {
+    color: #9D5CFF;
+  }
+
+  /* Centered Nav Links */
+  .wx-nav-links-wrap {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .wx-nav-link {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.25s ease;
+    position: relative;
+    padding: 6px 0;
+  }
+  .wx-nav-link:hover {
+    color: #ffffff;
+  }
+  /* Elegant indicator underline */
+  .wx-nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #9D5CFF;
+    transition: width 0.25s ease, left 0.25s ease;
+  }
+  .wx-nav-link:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  /* Right-side CTA button */
+  .wx-nav-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .wx-nav-cta-btn {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #7c3aed, #9D5CFF);
+    padding: 9px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(157, 92, 255, 0.2);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  
+  .wx-nav-cta-btn:hover {
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 25px rgba(157, 92, 255, 0.35);
+  }
+
+  /* Hamburger Menu for Mobile screens */
+  .wx-nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 9005;
+  }
+  
+  .wx-nav-hamburger span {
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  /* ---------- Mobile Breakpoint ---------- */
+  @media (max-width: 768px) {
+    .wx-nav-container {
+      top: 16px;
+    }
+    
+    .wx-navbar {
+      padding: 10px 16px 10px 20px;
+    }
+    
+    .wx-nav-hamburger {
+      display: flex;
+    }
+    
+    /* Dropdown styling for mobile glass menu */
+    .wx-nav-links-wrap {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 12px;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 24px;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      transform: translateY(-15px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    
+    .wx-nav-links-wrap.wx-active {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .wx-nav-cta-btn {
+      padding: 8px 16px;
+      font-size: 12.5px;
+    }
+    
+    /* Hamburger cross transformation on click */
+    .wx-nav-hamburger.wx-active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .wx-nav-hamburger.wx-active span:nth-child(2) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+</style>
+
+<header class="wx-nav-container" data-header>
+  <div class="wx-navbar" id="wx-navbar">
+    <!-- Left: Logo -->
+    <a href="/" class="wx-nav-logo">
+      <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="wx-nav-logo-svg">
         <circle cx="2" cy="7" r="1.2" fill="currentColor"/>
         <circle cx="7" cy="2" r="1.2" fill="currentColor"/>
         <circle cx="12" cy="7" r="1.2" fill="currentColor"/>
@@ -109,19 +317,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/>
         <circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
       </svg>
-      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
+      <span>Web<span class="wx-logo-purple">{X}</span></span>
     </a>
-  </div>
 
-  <!-- Right: Nav links -->
-  <div style="display:flex;align-items:center;gap:24px;pointer-events:auto;">
-    <nav style="display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500;">
-      <a href="/#work" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Work</a>
-      <a href="/#about" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">About</a>
-      <a href="contact" style="color:#9A9AA2;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#EDEDED'" onmouseout="this.style.color='#9A9AA2'">Contact</a>
-    </nav>
+    <!-- Center: Links (Point back to homepage anchors for correct subpage routing) -->
+    <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
+      <a href="/#work" class="wx-nav-link">Work</a>
+      <a href="/#about" class="wx-nav-link">About</a>
+      <a href="contact" class="wx-nav-link">Contact</a>
+    </div>
+
+    <!-- Right: CTA & Hamburger Toggle -->
+    <div class="wx-nav-cta-wrap">
+      <a href="contact" class="wx-nav-cta-btn">Book a call</a>
+      
+      <button class="wx-nav-hamburger" id="wx-nav-hamburger" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  (function() {
+    const navbar = document.getElementById('wx-navbar');
+    const hamburger = document.getElementById('wx-nav-hamburger');
+    const linksWrap = document.getElementById('wx-nav-links-wrap');
+
+    // 1. Scroll styling trigger (adds Scrolled status class)
+    if (navbar) {
+      const handleScroll = () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add('wx-scrolled');
+        } else {
+          navbar.classList.remove('wx-scrolled');
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll(); // Trigger initially in case of page refresh down the fold
+    }
+
+    // 2. Mobile menu toggle
+    if (hamburger && linksWrap) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('wx-active');
+        linksWrap.classList.toggle('wx-active');
+      });
+      
+      // Close dropdown menu when link is clicked
+      const links = linksWrap.querySelectorAll('.wx-nav-link');
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('wx-active');
+          linksWrap.classList.remove('wx-active');
+        });
+      });
+    }
+  })();
+</script>
+
 
 <main id="main">
 <!-- intro -->
