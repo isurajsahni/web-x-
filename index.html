@@ -1811,6 +1811,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-testimonials-section {
       width: 100%;
       user-select: none;
+      /* Feathered mask to blend the background aurora glows seamlessly into the page */
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000000 10%, #000000 90%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000000 10%, #000000 90%, transparent 100%);
     }
 
     .wx-test-center {
@@ -1823,20 +1826,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     .wx-test-subtitle {
       font-family: 'Satoshi', sans-serif;
-      font-size: clamp(14px, 1.2vw, 18px);
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 12px;
+      font-size: clamp(13px, 1.1vw, 16px);
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 14px;
       font-weight: 500;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .wx-test-title {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(32px, 4.4vw, 64px);
-      font-weight: 700;
+      font-weight: 600; /* Sophisticated semibold weight */
       color: #ffffff;
       line-height: 1.15;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em; /* Premium tight letter-spacing */
       margin: 0;
     }
 
@@ -1917,8 +1921,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-test-designation {
       font-family: 'Satoshi', sans-serif;
       font-size: 10px;
-      font-weight: 500;
-      color: #7c7c82; /* Muted designation text */
+      font-weight: 400; /* Regular weight for optimal legibility at 10px */
+      color: #8a8a8f; /* Lighter, cleaner grey */
       text-align: center;
       max-width: 90px;
       line-height: 1.25;
