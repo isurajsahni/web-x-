@@ -1804,32 +1804,436 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- ============ TESTIMONIALS ============ -->
-<section style="padding:clamp(40px,8vh,90px) 0 clamp(90px,15vh,180px);overflow:hidden">
-  <div style="display:flex;align-items:center;gap:14px;margin:0 clamp(20px,5vw,72px) clamp(34px,6vh,60px)">
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(05)</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Kind words</span>
+<section class="wx-testimonials-section" style="padding:clamp(60px,10vh,110px) 0 clamp(90px,15vh,180px);background:#000000;position:relative;overflow:hidden;min-height:clamp(680px,85vh,920px);display:flex;align-items:center;justify-content:center;">
+  
+  <style>
+    /* ---------- Testimonials Floating Layout ---------- */
+    .wx-testimonials-section {
+      width: 100%;
+      user-select: none;
+    }
+
+    .wx-test-center {
+      text-align: center;
+      max-width: 800px;
+      z-index: 3;
+      position: relative;
+      pointer-events: none;
+    }
+
+    .wx-test-subtitle {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(14px, 1.2vw, 18px);
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 12px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .wx-test-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(32px, 4.4vw, 64px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    /* Floating bubble container */
+    .wx-test-bubble-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    /* Floating item wrapper */
+    .wx-test-item {
+      position: absolute;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      z-index: 2;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Staggered float animation fallback (translating vertically using margin-top) */
+    @keyframes wxTestFloatAnim {
+      0% { margin-top: 0px; }
+      50% { margin-top: -12px; }
+      100% { margin-top: 0px; }
+    }
+
+    .wx-test-item:nth-child(1) { animation: wxTestFloatAnim 6s ease-in-out infinite; animation-delay: 0s; }
+    .wx-test-item:nth-child(2) { animation: wxTestFloatAnim 7s ease-in-out infinite; animation-delay: 1s; }
+    .wx-test-item:nth-child(3) { animation: wxTestFloatAnim 8s ease-in-out infinite; animation-delay: 2s; }
+    .wx-test-item:nth-child(4) { animation: wxTestFloatAnim 6.5s ease-in-out infinite; animation-delay: 0.5s; }
+    .wx-test-item:nth-child(5) { animation: wxTestFloatAnim 7.5s ease-in-out infinite; animation-delay: 1.5s; }
+    .wx-test-item:nth-child(6) { animation: wxTestFloatAnim 8.5s ease-in-out infinite; animation-delay: 2.5s; }
+
+    /* Left layout: Avatar on left, bubble on right */
+    .wx-layout-left {
+      flex-direction: row;
+    }
+
+    /* Right layout: Bubble on left, avatar on right */
+    .wx-layout-right {
+      flex-direction: row-reverse;
+    }
+
+    .wx-test-avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .wx-test-img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      background: #111115;
+    }
+
+    .wx-test-name {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff79c6; /* Vibrant pink matching screenshot styling */
+      text-align: center;
+    }
+
+    /* Speech bubble style */
+    .wx-test-bubble {
+      background: #121216;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 14px 20px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #E4E4E9;
+      max-width: 250px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .wx-test-bubble:hover {
+      background: #16161c;
+      border-color: rgba(157, 92, 255, 0.35);
+      transform: scale(1.03);
+    }
+
+    /* Inner text elements with height transition */
+    .wx-test-bubble-inner {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .wx-test-short-txt {
+      margin: 0;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .wx-test-full-txt {
+      min-height: 0;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    /* Expanded state when clicked */
+    .wx-test-bubble.wx-expanded {
+      max-width: 330px;
+      background: #151022;
+      border-color: rgba(157, 92, 255, 0.5);
+      box-shadow: 0 15px 35px rgba(157, 92, 255, 0.12);
+    }
+
+    .wx-test-bubble.wx-expanded .wx-test-short-txt {
+      display: none;
+    }
+
+    .wx-test-bubble.wx-expanded .wx-test-bubble-inner {
+      grid-template-rows: 1fr;
+    }
+
+    /* Left bubble tail pointing left to avatar */
+    .wx-layout-left .wx-test-bubble::after {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 20px;
+      width: 8px;
+      height: 12px;
+      background: inherit;
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Right bubble tail pointing right to avatar */
+    .wx-layout-right .wx-test-bubble::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      top: 20px;
+      width: 8px;
+      height: 12px;
+      background: inherit;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ---------- Responsive Breakpoint ---------- */
+    @media (max-width: 900px) {
+      .wx-testimonials-section {
+        min-height: auto;
+        padding: 60px 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 40px;
+      }
+
+      .wx-test-center {
+        padding: 0 24px;
+        pointer-events: auto;
+      }
+
+      .wx-test-bubble-container {
+        position: relative;
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        padding: 10px 24px 30px;
+        gap: 16px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .wx-test-bubble-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .wx-test-item {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        flex: 0 0 280px;
+        scroll-snap-align: start;
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .wx-test-bubble {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- Center Text Content -->
+  <div class="wx-test-center">
+    <span class="wx-test-subtitle">We are building digital products &amp;</span>
+    <h2 class="wx-test-title">Loved by founders who value speed &amp; design</h2>
   </div>
-  <div class="wx-testimonial-marquee">
-    <!-- Group 1 -->
-    <figure style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span aria-hidden="true" style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#9D5CFF,#3a1d6e)"></span><span><span style="display:block;font-size:14px;font-weight:600">Maya Okonkwo</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CEO, Nova Finance</span></span></figcaption></figure>
-    <figure style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"The most detail-obsessed team we've worked with. Every interaction feels considered. It's rare and it shows."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span aria-hidden="true" style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff8a4c,#2a1410)"></span><span><span style="display:block;font-size:14px;font-weight:600">Daniel Reyes</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">Founder, Atlas Studio</span></span></figcaption></figure>
-    <figure style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"They didn't just design a website, they gave our brand a pulse. Sales, board, customers - everyone noticed."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span aria-hidden="true" style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#4cffd0,#06231f)"></span><span><span style="display:block;font-size:14px;font-weight:600">Priya Anand</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CMO, Field Goods</span></span></figcaption></figure>
 
-    <!-- Group 2 -->
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#9D5CFF,#3a1d6e)"></span><span><span style="display:block;font-size:14px;font-weight:600">Maya Okonkwo</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CEO, Nova Finance</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"The most detail-obsessed team we've worked with. Every interaction feels considered. It's rare and it shows."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff8a4c,#2a1410)"></span><span><span style="display:block;font-size:14px;font-weight:600">Daniel Reyes</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">Founder, Atlas Studio</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"They didn't just design a website, they gave our brand a pulse. Sales, board, customers - everyone noticed."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#4cffd0,#06231f)"></span><span><span style="display:block;font-size:14px;font-weight:600">Priya Anand</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CMO, Field Goods</span></span></figcaption></figure>
+  <!-- Interactive 3D Parallax Bubble Layout -->
+  <div class="wx-test-bubble-container" id="wx-testimonials-container">
+    
+    <!-- Bubble 1: Top-Left (Maya Okonkwo, 28) -->
+    <div class="wx-test-item wx-layout-left" style="top: 10%; left: 6%;" data-parallax-factor="0.04">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+        <span class="wx-test-name">Maya, 28</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">Web{X} reframed our entire product story in three weeks...</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled in less than a month!</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- Group 3 -->
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#9D5CFF,#3a1d6e)"></span><span><span style="display:block;font-size:14px;font-weight:600">Maya Okonkwo</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CEO, Nova Finance</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"The most detail-obsessed team we've worked with. Every interaction feels considered. It's rare and it shows."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff8a4c,#2a1410)"></span><span><span style="display:block;font-size:14px;font-weight:600">Daniel Reyes</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">Founder, Atlas Studio</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"They didn't just design a website, they gave our brand a pulse. Sales, board, customers - everyone noticed."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#4cffd0,#06231f)"></span><span><span style="display:block;font-size:14px;font-weight:600">Priya Anand</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CMO, Field Goods</span></span></figcaption></figure>
+    <!-- Bubble 2: Top-Right (Sarah Jenkins, 27) -->
+    <div class="wx-test-item wx-layout-right" style="top: 15%; right: 6%;" data-parallax-factor="-0.03">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+        <span class="wx-test-name">Sarah, 27</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">Exceptional craft &amp; motion. Our conversions doubled.</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- Group 4 -->
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#9D5CFF,#3a1d6e)"></span><span><span style="display:block;font-size:14px;font-weight:600">Maya Okonkwo</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CEO, Nova Finance</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"The most detail-obsessed team we've worked with. Every interaction feels considered. It's rare and it shows."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff8a4c,#2a1410)"></span><span><span style="display:block;font-size:14px;font-weight:600">Daniel Reyes</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">Founder, Atlas Studio</span></span></figcaption></figure>
-    <figure aria-hidden="true" style="width:min(86vw,440px);background:#0E0E12;border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:22px;margin:0"><blockquote style="font-size:18px;line-height:1.55;color:#D8D8DE;margin:0">"They didn't just design a website, they gave our brand a pulse. Sales, board, customers - everyone noticed."</blockquote><figcaption style="display:flex;align-items:center;gap:12px;margin-top:auto"><span style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#4cffd0,#06231f)"></span><span><span style="display:block;font-size:14px;font-weight:600">Priya Anand</span><span style="display:block;font-family:'Satoshi',sans-serif;font-size:11px;color:#7A7A82">CMO, Field Goods</span></span></figcaption></figure>
+    <!-- Bubble 3: Middle-Left (Daniel Reyes, 31) -->
+    <div class="wx-test-item wx-layout-left" style="top: 45%; left: 3%;" data-parallax-factor="0.05">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar3.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+        <span class="wx-test-name">Daniel, 31</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">The most detail-obsessed team. Every detail feels considered.</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">The most detail-obsessed team we've ever worked with. Every single transition and micro-interaction feels considered. It's rare and it shows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble 4: Middle-Right (Li Wei, 25) -->
+    <div class="wx-test-item wx-layout-right" style="top: 50%; right: 3%;" data-parallax-factor="-0.04">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar1.jpg" alt="Li Wei" loading="lazy" decoding="async">
+        <span class="wx-test-name">Li Wei, 25</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">Async updates were clear, professional, and on schedule.</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble 5: Bottom-Left (Priya Anand, 29) -->
+    <div class="wx-test-item wx-layout-left" style="bottom: 10%; left: 16%;" data-parallax-factor="0.03">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar2.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+        <span class="wx-test-name">Priya, 29</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">They didn't just design a website, they gave our brand a pulse.</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble 6: Bottom-Right (Alex Rivera, 33) -->
+    <div class="wx-test-item wx-layout-right" style="bottom: 12%; right: 15%;" data-parallax-factor="-0.05">
+      <div class="wx-test-avatar-wrap">
+        <img class="wx-test-img" src="images/avatar3.jpg" alt="Alex Rivera" loading="lazy" decoding="async">
+        <span class="wx-test-name">Alex, 33</span>
+      </div>
+      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+        <span class="wx-test-short-txt">Clean code, fast speeds, and brilliant design sense.</span>
+        <div class="wx-test-bubble-inner">
+          <p class="wx-test-full-txt">Clean code, fast loading speeds, and brilliant design sense. Our SEO went up instantly and we saw page load times drop to under 0.8 seconds.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <!-- Custom Pink Neon Pointer Cursor (exactly matches screenshot) -->
+  <style>
+    .wx-test-cursor {
+      position: absolute;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0;
+      transform: translate(-3px, -2px) rotate(-10deg);
+      transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    @media (min-width: 901px) {
+      .wx-testimonials-section {
+        cursor: none !important;
+      }
+      .wx-testimonials-section a, 
+      .wx-testimonials-section .wx-test-bubble,
+      .wx-testimonials-section img {
+        cursor: none !important;
+      }
+    }
+  </style>
+
+  <div class="wx-test-cursor" id="wx-test-custom-cursor">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="filter: drop-shadow(0 3px 6px rgba(255, 121, 198, 0.35));">
+      <!-- High fidelity custom pink cursor matching screenshot exactly -->
+      <path d="M6 3 L26 15 L16 17 L22 27 L17 29 L11 19 L6 23 Z" fill="#ff79c6" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Interactive Parallax & Cursor Follow JS Script -->
+  <script>
+    (function() {
+      const section = document.querySelector('.wx-testimonials-section');
+      const container = document.getElementById('wx-testimonials-container');
+      const items = container ? container.querySelectorAll('.wx-test-item') : [];
+      const cursor = document.getElementById('wx-test-custom-cursor');
+      
+      if (container && items.length > 0) {
+        window.addEventListener('mousemove', (e) => {
+          if (window.innerWidth <= 900) return; // Skip on mobile
+          
+          const rect = container.getBoundingClientRect();
+          // Calculate center offset for parallax
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          const mouseX = e.clientX - centerX;
+          const mouseY = e.clientY - centerY;
+
+          // Parallax movement for bubbles
+          items.forEach((item) => {
+            const factor = parseFloat(item.getAttribute('data-parallax-factor')) || 0.03;
+            const tx = mouseX * factor;
+            const ty = mouseY * factor;
+            item.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+          });
+
+          // Custom pink cursor follow coordinates relative to section top/left
+          if (cursor && section) {
+            const sectRect = section.getBoundingClientRect();
+            const cx = e.clientX - sectRect.left;
+            const cy = e.clientY - sectRect.top;
+            cursor.style.left = `${cx}px`;
+            cursor.style.top = `${cy}px`;
+          }
+        });
+
+        // Toggle custom cursor opacity & hover scaling
+        if (section && cursor) {
+          section.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 900) cursor.style.opacity = '1';
+          });
+          section.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            items.forEach((item) => {
+              item.style.transform = 'translate3d(0, 0, 0)';
+            });
+          });
+
+          // Handle bubble hover to scale custom cursor
+          const bubbles = container.querySelectorAll('.wx-test-bubble');
+          bubbles.forEach(bubble => {
+            bubble.addEventListener('mouseenter', () => {
+              cursor.style.transform = 'translate(-3px, -2px) scale(1.3) rotate(-5deg)';
+            });
+            bubble.addEventListener('mouseleave', () => {
+              cursor.style.transform = 'translate(-3px, -2px) scale(1) rotate(-10deg)';
+            });
+          });
+        }
+      }
+    })();
+  </script>
 </section>
 
 <!-- ============ FAQ (SEO) ============ -->
