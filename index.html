@@ -1849,29 +1849,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 2;
     }
 
-    /* Floating item wrapper */
-    .wx-test-item {
+    /* Outer wrapper for absolute positioning and JS parallax (GPU accelerated translate3d) */
+    .wx-test-item-wrap {
       position: absolute;
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
       z-index: 2;
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Staggered float animation fallback (translating vertically using margin-top) */
-    @keyframes wxTestFloatAnim {
-      0% { margin-top: 0px; }
-      50% { margin-top: -12px; }
-      100% { margin-top: 0px; }
+    /* Inner block for smooth 60fps vertical floating (GPU accelerated transform) */
+    .wx-test-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      will-change: transform;
     }
 
-    .wx-test-item:nth-child(1) { animation: wxTestFloatAnim 6s ease-in-out infinite; animation-delay: 0s; }
-    .wx-test-item:nth-child(2) { animation: wxTestFloatAnim 7s ease-in-out infinite; animation-delay: 1s; }
-    .wx-test-item:nth-child(3) { animation: wxTestFloatAnim 8s ease-in-out infinite; animation-delay: 2s; }
-    .wx-test-item:nth-child(4) { animation: wxTestFloatAnim 6.5s ease-in-out infinite; animation-delay: 0.5s; }
-    .wx-test-item:nth-child(5) { animation: wxTestFloatAnim 7.5s ease-in-out infinite; animation-delay: 1.5s; }
-    .wx-test-item:nth-child(6) { animation: wxTestFloatAnim 8.5s ease-in-out infinite; animation-delay: 2.5s; }
+    @keyframes wxTestFloatAnim {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -12px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* Staggered float animation times */
+    .wx-test-item-wrap:nth-child(1) .wx-test-item { animation: wxTestFloatAnim 6s ease-in-out infinite; }
+    .wx-test-item-wrap:nth-child(2) .wx-test-item { animation: wxTestFloatAnim 7s ease-in-out infinite; animation-delay: 1s; }
+    .wx-test-item-wrap:nth-child(3) .wx-test-item { animation: wxTestFloatAnim 8s ease-in-out infinite; animation-delay: 2s; }
+    .wx-test-item-wrap:nth-child(4) .wx-test-item { animation: wxTestFloatAnim 6.5s ease-in-out infinite; animation-delay: 0.5s; }
+    .wx-test-item-wrap:nth-child(5) .wx-test-item { animation: wxTestFloatAnim 7.5s ease-in-out infinite; animation-delay: 1.5s; }
+    .wx-test-item-wrap:nth-child(6) .wx-test-item { animation: wxTestFloatAnim 8.5s ease-in-out infinite; animation-delay: 2.5s; }
 
     /* Left layout: Avatar on left, bubble on right */
     .wx-layout-left {
@@ -1887,7 +1892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       flex-shrink: 0;
     }
 
@@ -1904,30 +1909,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       font-family: 'Satoshi', sans-serif;
       font-size: 12px;
       font-weight: 600;
-      color: #ff79c6; /* Vibrant pink matching screenshot styling */
+      color: #9bb0ff; /* Vibrant brand lavender color */
       text-align: center;
+      line-height: 1.2;
     }
 
-    /* Speech bubble style */
+    .wx-test-designation {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: #7c7c82; /* Muted designation text */
+      text-align: center;
+      max-width: 90px;
+      line-height: 1.25;
+    }
+
+    /* Speech bubble style - White background, no borders, dark text */
     .wx-test-bubble {
-      background: #121216;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      border: none;
       border-radius: 22px;
       padding: 14px 20px;
       font-family: 'Satoshi', sans-serif;
       font-size: 13.5px;
       line-height: 1.5;
-      color: #E4E4E9;
+      color: #111115;
       max-width: 250px;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: background-color 0.3s ease, transform 0.3s ease, max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
       cursor: pointer;
     }
 
     .wx-test-bubble:hover {
-      background: #16161c;
-      border-color: rgba(157, 92, 255, 0.35);
+      background: #f4f4f6;
       transform: scale(1.03);
     }
 
@@ -1948,7 +1963,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-test-full-txt {
       min-height: 0;
       margin: 0;
-      color: rgba(255, 255, 255, 0.85);
+      color: #2c2c2e;
       font-size: 13.5px;
       line-height: 1.55;
     }
@@ -1956,9 +1971,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* Expanded state when clicked */
     .wx-test-bubble.wx-expanded {
       max-width: 330px;
-      background: #151022;
-      border-color: rgba(157, 92, 255, 0.5);
-      box-shadow: 0 15px 35px rgba(157, 92, 255, 0.12);
+      background: #ffffff;
+      box-shadow: 0 15px 35px rgba(255, 255, 255, 0.04), 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
     .wx-test-bubble.wx-expanded .wx-test-short-txt {
@@ -1979,7 +1993,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       height: 12px;
       background: inherit;
       clip-path: polygon(100% 0, 0 50%, 100% 100%);
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Right bubble tail pointing right to avatar */
@@ -1992,7 +2005,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       height: 12px;
       background: inherit;
       clip-path: polygon(0 0, 100% 50%, 0 100%);
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ---------- Floating Backdrop Emojis & Line art ---------- */
+    .wx-test-backdrop-emoji {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.28;
+      will-change: transform;
+      animation: wxEmojiFloat 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes wxEmojiFloat {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(0, -15px, 0) scale(1.1); }
     }
 
     /* ---------- Responsive Breakpoint ---------- */
@@ -2026,7 +2053,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         display: none;
       }
 
-      .wx-test-item {
+      .wx-test-item-wrap {
         position: relative !important;
         top: auto !important;
         left: auto !important;
@@ -2034,6 +2061,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         bottom: auto !important;
         flex: 0 0 280px;
         scroll-snap-align: start;
+        transform: none !important;
+      }
+
+      .wx-test-item {
         animation: none !important;
         transform: none !important;
       }
@@ -2042,8 +2073,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         max-width: 100%;
         width: 100%;
       }
+      
+      .wx-test-backdrop-emoji, .wx-test-line-art {
+        display: none !important;
+      }
     }
   </style>
+
+  <!-- Floating iOS Style Backdrop Emojis in empty spaces -->
+  <div class="wx-test-backdrop-emoji" style="top: 22%; left: 34%; font-size: 28px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.25));">✨</div>
+  <div class="wx-test-backdrop-emoji" style="bottom: 24%; right: 38%; font-size: 26px; filter: drop-shadow(0 0 8px rgba(255,69,0,0.25)); animation-delay: 1.5s;">🔥</div>
+  <div class="wx-test-backdrop-emoji" style="top: 38%; right: 32%; font-size: 26px; filter: drop-shadow(0 0 8px rgba(0,255,100,0.2)); animation-delay: 0.8s;">👍</div>
+  <div class="wx-test-backdrop-emoji" style="bottom: 32%; left: 28%; font-size: 24px; filter: drop-shadow(0 0 8px rgba(157,92,255,0.25)); animation-delay: 2.2s;">🚀</div>
+
+  <!-- Hand-drawn style pointer lines (Line arts) -->
+  <svg class="wx-test-line-art" style="position: absolute; left: 34%; bottom: 35%; width: 50px; height: 50px; opacity: 0.22; pointer-events: none; z-index: 1;" viewBox="0 0 50 50">
+    <path d="M 5,45 C 15,35 10,15 35,25" fill="none" stroke="#9bb0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 28,18 L 38,26 L 27,33" fill="none" stroke="#9bb0ff" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <svg class="wx-test-line-art" style="position: absolute; right: 31%; top: 28%; width: 45px; height: 45px; opacity: 0.22; pointer-events: none; z-index: 1; transform: scaleX(-1) rotate(15deg);" viewBox="0 0 50 50">
+    <path d="M 5,45 C 15,35 10,15 35,25" fill="none" stroke="#ff79c6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 28,18 L 38,26 L 27,33" fill="none" stroke="#ff79c6" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
 
   <!-- Center Text Content -->
   <div class="wx-test-center">
@@ -2054,117 +2105,154 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Interactive 3D Parallax Bubble Layout -->
   <div class="wx-test-bubble-container" id="wx-testimonials-container">
     
-    <!-- Bubble 1: Top-Left (Maya Okonkwo, 28) -->
-    <div class="wx-test-item wx-layout-left" style="top: 10%; left: 6%;" data-parallax-factor="0.04">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-        <span class="wx-test-name">Maya, 28</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">Web{X} reframed our entire product story in three weeks...</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled in less than a month!</p>
+    <!-- Bubble 1: Top-Left (Maya Okonkwo, CEO, Nova Finance) -->
+    <div class="wx-test-item-wrap" style="top: 8%; left: 5%;" data-parallax-factor="0.04">
+      <div class="wx-test-item wx-layout-left">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+          <span class="wx-test-name">Maya</span>
+          <span class="wx-test-designation">CEO, Nova Finance</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">Web{X} reframed our entire product story in three weeks...</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled in less than a month!</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bubble 2: Top-Right (Sarah Jenkins, 27) -->
-    <div class="wx-test-item wx-layout-right" style="top: 15%; right: 6%;" data-parallax-factor="-0.03">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-        <span class="wx-test-name">Sarah, 27</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">Exceptional craft &amp; motion. Our conversions doubled.</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</p>
+    <!-- Bubble 2: Top-Right (Sarah Jenkins, Product Lead, Elevate) -->
+    <div class="wx-test-item-wrap" style="top: 14%; right: 5%;" data-parallax-factor="-0.03">
+      <div class="wx-test-item wx-layout-right">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+          <span class="wx-test-name">Sarah</span>
+          <span class="wx-test-designation">Product Lead, Elevate</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">Exceptional craft &amp; motion. Our conversions doubled.</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bubble 3: Middle-Left (Daniel Reyes, 31) -->
-    <div class="wx-test-item wx-layout-left" style="top: 45%; left: 3%;" data-parallax-factor="0.05">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar3.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-        <span class="wx-test-name">Daniel, 31</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">The most detail-obsessed team. Every detail feels considered.</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">The most detail-obsessed team we've ever worked with. Every single transition and micro-interaction feels considered. It's rare and it shows.</p>
+    <!-- Bubble 3: Middle-Left (Daniel Reyes, Founder, Atlas Studio) -->
+    <div class="wx-test-item-wrap" style="top: 45%; left: 2%;" data-parallax-factor="0.05">
+      <div class="wx-test-item wx-layout-left">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar3.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+          <span class="wx-test-name">Daniel</span>
+          <span class="wx-test-designation">Founder, Atlas Studio</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">The most detail-obsessed team. Every detail feels considered.</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">The most detail-obsessed team we've ever worked with. Every single transition and micro-interaction feels considered. It's rare and it shows.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bubble 4: Middle-Right (Li Wei, 25) -->
-    <div class="wx-test-item wx-layout-right" style="top: 50%; right: 3%;" data-parallax-factor="-0.04">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar1.jpg" alt="Li Wei" loading="lazy" decoding="async">
-        <span class="wx-test-name">Li Wei, 25</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">Async updates were clear, professional, and on schedule.</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless.</p>
+    <!-- Bubble 4: Middle-Right (Li Wei, Founder, Nexus SaaS) -->
+    <div class="wx-test-item-wrap" style="top: 50%; right: 2%;" data-parallax-factor="-0.04">
+      <div class="wx-test-item wx-layout-right">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar1.jpg" alt="Li Wei" loading="lazy" decoding="async">
+          <span class="wx-test-name">Li Wei</span>
+          <span class="wx-test-designation">Founder, Nexus SaaS</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">Async updates were clear, professional, and on schedule.</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bubble 5: Bottom-Left (Priya Anand, 29) -->
-    <div class="wx-test-item wx-layout-left" style="bottom: 10%; left: 16%;" data-parallax-factor="0.03">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar2.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-        <span class="wx-test-name">Priya, 29</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">They didn't just design a website, they gave our brand a pulse.</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look.</p>
+    <!-- Bubble 5: Bottom-Left (Priya Anand, CMO, Field Goods) -->
+    <div class="wx-test-item-wrap" style="bottom: 8%; left: 14%;" data-parallax-factor="0.03">
+      <div class="wx-test-item wx-layout-left">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar2.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+          <span class="wx-test-name">Priya</span>
+          <span class="wx-test-designation">CMO, Field Goods</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">They didn't just design a website, they gave our brand a pulse.</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Bubble 6: Bottom-Right (Alex Rivera, 33) -->
-    <div class="wx-test-item wx-layout-right" style="bottom: 12%; right: 15%;" data-parallax-factor="-0.05">
-      <div class="wx-test-avatar-wrap">
-        <img class="wx-test-img" src="images/avatar3.jpg" alt="Alex Rivera" loading="lazy" decoding="async">
-        <span class="wx-test-name">Alex, 33</span>
-      </div>
-      <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-        <span class="wx-test-short-txt">Clean code, fast speeds, and brilliant design sense.</span>
-        <div class="wx-test-bubble-inner">
-          <p class="wx-test-full-txt">Clean code, fast loading speeds, and brilliant design sense. Our SEO went up instantly and we saw page load times drop to under 0.8 seconds.</p>
+    <!-- Bubble 6: Bottom-Right (Alex Rivera, Tech Lead, Quartz) -->
+    <div class="wx-test-item-wrap" style="bottom: 10%; right: 13%;" data-parallax-factor="-0.05">
+      <div class="wx-test-item wx-layout-right">
+        <div class="wx-test-avatar-wrap">
+          <img class="wx-test-img" src="images/avatar3.jpg" alt="Alex Rivera" loading="lazy" decoding="async">
+          <span class="wx-test-name">Alex</span>
+          <span class="wx-test-designation">Tech Lead, Quartz</span>
+        </div>
+        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
+          <span class="wx-test-short-txt">Clean code, fast speeds, and brilliant design sense.</span>
+          <div class="wx-test-bubble-inner">
+            <p class="wx-test-full-txt">Clean code, fast loading speeds, and brilliant design sense. Our SEO went up instantly and we saw page load times drop to under 0.8 seconds.</p>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
-  </div>
-
-  <!-- Custom Auto-Play Gradient Pointer Cursor (replicates screenshot style but auto-moves) -->
+  <!-- Custom Auto-Play Gradient Pointer Cursor (arrowhead path with motion gradient fill) -->
   <style>
     .wx-test-auto-cursor {
       position: absolute;
       pointer-events: none;
       z-index: 10;
       opacity: 1;
-      transform: translate(-4px, -4px) rotate(-10deg);
+      transform: translate(-2px, -2px) rotate(-10deg);
       transition: left 1.2s cubic-bezier(0.25, 1, 0.5, 1), top 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, opacity 0.4s ease;
     }
+
+    /* Animating stops to create a fluid liquid gradient motion inside the arrowhead */
+    @keyframes wxAutoStop1 {
+      0% { stop-color: #7c3aed; }
+      50% { stop-color: #c026d3; }
+      100% { stop-color: #4f46e5; }
+    }
+    @keyframes wxAutoStop2 {
+      0% { stop-color: #c026d3; }
+      50% { stop-color: #4f46e5; }
+      100% { stop-color: #7c3aed; }
+    }
+    @keyframes wxAutoStop3 {
+      0% { stop-color: #4f46e5; }
+      50% { stop-color: #7c3aed; }
+      100% { stop-color: #c026d3; }
+    }
+
+    .wx-auto-s1 { animation: wxAutoStop1 4s linear infinite alternate; }
+    .wx-auto-s2 { animation: wxAutoStop2 4s linear infinite alternate; }
+    .wx-auto-s3 { animation: wxAutoStop3 4s linear infinite alternate; }
   </style>
 
   <div class="wx-test-auto-cursor" id="wx-test-auto-cursor" style="left: 50%; top: 50%;">
-    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" style="filter: drop-shadow(0 3px 8px rgba(157, 92, 255, 0.45));">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="filter: drop-shadow(0 3px 8px rgba(157, 92, 255, 0.45));">
       <defs>
         <linearGradient id="wx-auto-cursor-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#9bb0ff" />
-          <stop offset="50%" stop-color="#9D5CFF" />
-          <stop offset="100%" stop-color="#c061ff" />
+          <stop offset="0%" stop-color="#7c3aed" class="wx-auto-s1" />
+          <stop offset="50%" stop-color="#c026d3" class="wx-auto-s2" />
+          <stop offset="100%" stop-color="#4f46e5" class="wx-auto-s3" />
         </linearGradient>
       </defs>
-      <!-- High fidelity custom gradient arrow cursor -->
-      <path d="M6 3 L26 15 L16 17 L22 27 L17 29 L11 19 L6 23 Z" fill="url(#wx-auto-cursor-grad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Arrowhead path shape matching images/arrowhead.svg exactly, border removed -->
+      <path d="M4.5 0.79 v22.42 l6.56 -6.57 h9.29 L4.5 0.79 z" fill="url(#wx-auto-cursor-grad)"/>
     </svg>
   </div>
 
@@ -2172,7 +2260,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     (function() {
       const container = document.getElementById('wx-testimonials-container');
-      const items = container ? container.querySelectorAll('.wx-test-item') : [];
+      const items = container ? container.querySelectorAll('.wx-test-item-wrap') : [];
       const autoCursor = document.getElementById('wx-test-auto-cursor');
       
       if (!container || items.length === 0 || !autoCursor) return;
@@ -2217,7 +2305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const bubbleTop = bubble.offsetTop;
         
         // Place the cursor tip close to the border of the bubble
-        const isLeft = item.classList.contains('wx-layout-left');
+        const isLeft = item.querySelector('.wx-test-item').classList.contains('wx-layout-left');
         const xOffset = isLeft ? (bubbleLeft + 15) : (bubbleLeft + bubble.offsetWidth - 15);
         const yOffset = bubbleTop + bubble.offsetHeight / 2;
         
@@ -2244,11 +2332,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // 2. Wait for cursor move transition to complete (1.2s), then click expand
         setTimeout(() => {
           // Simulate cursor click press (scale down)
-          autoCursor.style.transform = 'translate(-4px, -4px) scale(0.8) rotate(-10deg)';
+          autoCursor.style.transform = 'translate(-2px, -2px) scale(0.8) rotate(-10deg)';
           
           setTimeout(() => {
             // Restore scale
-            autoCursor.style.transform = 'translate(-4px, -4px) scale(1) rotate(-10deg)';
+            autoCursor.style.transform = 'translate(-2px, -2px) scale(1) rotate(-10deg)';
             
             // Expand the target bubble, collapse all others
             items.forEach((item, idx) => {
