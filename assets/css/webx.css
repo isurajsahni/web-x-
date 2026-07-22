@@ -538,7 +538,15 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   opacity: 1;
 }
 
-
+/* Desktop hero orbit: enlarge every thumbnail ~13px (keeps centring) */
+@media (min-width: 769px) {
+  .hero-orbit-section .orbit-card {
+    width: calc(var(--card-w, 100px) + 13px);
+    height: calc(var(--card-h, var(--card-w, 100px)) + 13px);
+    margin-left: calc((var(--card-w, 100px) + 13px) / -2);
+    margin-top: calc((var(--card-h, var(--card-w, 100px)) + 13px) / -2);
+  }
+}
 
 /* Responsive adjustments for smaller viewports */
 @media (max-width: 768px) {
@@ -566,12 +574,12 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 
 @media (max-width: 480px) {
   .orbit-track-4 {
-    --radius: clamp(260px, 62vw, 360px);
+    --radius: clamp(285px, 70vw, 380px);
     --card-w: clamp(38px, 9vw, 46px);
     --card-h: clamp(50px, 12vw, 60px);
   }
   .orbit-track-3 {
-    --radius: clamp(200px, 48vw, 280px);
+    --radius: clamp(195px, 47vw, 270px);
     --card-w: clamp(32px, 7.5vw, 40px);
     --card-h: clamp(42px, 10vw, 52px);
   }
@@ -587,6 +595,28 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   }
   .hero-orbit-section {
     padding-top: 140px;
+  }
+}
+
+/* Mobile hero orbit: larger thumbnails + tighter 15px corners */
+@media (max-width: 768px) {
+  .hero-orbit-section .orbit-card {
+    width: calc(var(--card-w) + 18px);
+    height: calc(var(--card-h, var(--card-w)) + 18px);
+    margin-left: calc((var(--card-w) + 18px) / -2);
+    margin-top: calc((var(--card-h, var(--card-w)) + 18px) / -2);
+  }
+  .hero-orbit-section .orbit-card-inner {
+    border-radius: 15px;
+  }
+  /* Reduce clutter on mobile: hide the two inner rings entirely, then thin
+     each outer ring by half — hiding alternate cards keeps the survivors
+     evenly spaced (track-4 at 60deg, track-3 at 72deg) so they stay aligned */
+  .hero-orbit-section .orbit-track-1,
+  .hero-orbit-section .orbit-track-2,
+  .hero-orbit-section .orbit-track-4:nth-child(even),
+  .hero-orbit-section .orbit-track-3:nth-child(even) {
+    display: none;
   }
 }
 
