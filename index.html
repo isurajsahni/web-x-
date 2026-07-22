@@ -777,7 +777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     .about-card-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 2fr 3fr;
       gap: clamp(20px, 2.5vw, 36px);
       margin-top: 40px;
       margin-bottom: 60px;
@@ -871,7 +871,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .about-image-card:hover video {
       transform: scale(1.05);
     }
-    
+
+    /* Card 3 — mini orbiting gallery (mirrors the hero orbit) */
+    .about-orbit-card {
+      background: #000000;
+      container-type: inline-size; /* lets the orbit radius scale to the card width (cqw) */
+    }
+    /* Enlarge every orbit thumbnail ~16px over its base size (keeps centring) */
+    .about-orbit-card .orbit-card {
+      width: calc(var(--card-w, 60px) + 16px);
+      height: calc(var(--card-h, var(--card-w, 60px)) + 16px);
+      margin-left: calc((var(--card-w, 60px) + 16px) / -2);
+      margin-top: calc((var(--card-h, var(--card-w, 60px)) + 16px) / -2);
+    }
+    /* Independent CSS spin (hero uses scroll-driven JS on a single container) */
+    .about-orbit-card .orbit-container {
+      animation: orbit-rotate 46s linear infinite;
+    }
+    /* Cancel the .about-image-card full-bleed rule for the orbit thumbnails */
+    .about-orbit-card .orbit-card-inner img {
+      position: static;
+      top: auto;
+      left: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Neutralise the whole-card hover zoom, keep per-card hover lift */
+    .about-orbit-card:hover .orbit-card-inner img {
+      transform: none;
+    }
+    .about-orbit-card .orbit-card-inner:hover img {
+      transform: scale(1.06);
+    }
+
     /* Card 3 Stack card */
     .about-stack-card {
       background: rgba(255, 255, 255, 0.02);
@@ -1124,15 +1157,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </div>
 
-    <!-- Card 2: Featured Video Mockup -->
-    <div data-reveal data-reveal-delay="200" class="about-image-card" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-      <video src="images/MobileMockupVideo.mp4" autoplay loop muted playsinline></video>
-      <div style="position:absolute; top:20px; left:20px; background:rgba(3,3,6,0.5); border:1px solid rgba(255,255,255,0.1); padding:8px 16px; border-radius:100px; font-size:12px; color:#FFFFFF; font-weight:500; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index: 5;">Bespoke UI/UX</div>
-    </div>
-
-    <!-- Card 3: Featured Video Mockup -->
-    <div data-reveal data-reveal-delay="280" class="about-image-card" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
-      <video src="images/ThirdCardVideo.mp4" autoplay loop muted playsinline></video>
+    <!-- Card 2: Live orbiting gallery (mini hero) around "Design. Develop. Grow." -->
+    <div data-reveal data-reveal-delay="280" class="about-image-card about-orbit-card" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
+      <div class="orbit-wrapper">
+        <div class="orbit-container">
+          <!-- Inner ring -->
+          <div class="orbit-card" style="--init-angle:20deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(56px,5.8vw,76px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:92deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(48px,5vw,66px);--card-h:clamp(48px,5vw,66px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:164deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(34px,3.6vw,46px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:236deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(46px,4.8vw,64px);--card-h:clamp(46px,4.8vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:308deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(56px,5.8vw,76px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="" loading="lazy" /></div></div></div>
+          <!-- Outer ring -->
+          <div class="orbit-card" style="--init-angle:0deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(50px,5.4vw,72px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:51deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(60px,6.4vw,84px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:103deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(38px,4vw,52px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:154deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(46px,4.9vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:206deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(64px,6.8vw,90px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:257deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(46px,4.9vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="" loading="lazy" /></div></div></div>
+          <div class="orbit-card" style="--init-angle:309deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(38px,4vw,52px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="" loading="lazy" /></div></div></div>
+        </div>
+      </div>
+      <!-- Soft vignette so the centre text stays readable over passing cards -->
+      <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(circle at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.1) 55%, transparent 75%);z-index:3;pointer-events:none;"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 24px;z-index:4;pointer-events:none;">
+        <h3 style="font-size:clamp(20px,2.6vw,34px);font-weight:600;letter-spacing:-0.02em;color:#FFFFFF;margin:0;text-align:center;line-height:1.15;white-space:nowrap;font-family:'Satoshi',sans-serif;">Design. Develop. Deliver.</h3>
+      </div>
+      <div style="position:absolute; top:20px; left:20px; background:rgba(3,3,6,0.5); border:1px solid rgba(255,255,255,0.1); padding:8px 16px; border-radius:100px; font-size:12px; color:#FFFFFF; font-weight:500; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index: 5;">Selected work</div>
     </div>
   </div>
 
