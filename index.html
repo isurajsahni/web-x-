@@ -156,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>
   /* ---------- Premium Floating Glass Navbar ---------- */
   .wx-nav-container {
-    position: fixed;
+    position: absolute;
     top: 24px;
     left: 0;
     right: 0;
@@ -1786,211 +1786,147 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
   </div>
 
-  <!-- Cards List -->
-  <div class="wx-f2p-list" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">
-
-    <!-- Row 1: Webflow -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <img src="images/tools/webflow.png" alt="Webflow logo" class="wx-f2p-logo-img">
-        </div>
-        <span class="wx-f2p-name">Figma to Webflow</span>
-      </div>
-      <p class="wx-f2p-desc-center">Pixel-perfect Webflow builds for marketing sites and landing pages - client-editable and animation-rich.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Row 2: WordPress -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <img src="images/tools/wordpress.png" alt="WordPress logo" class="wx-f2p-logo-img">
-        </div>
-        <span class="wx-f2p-name">Figma to WordPress</span>
-      </div>
-      <p class="wx-f2p-desc-center">Custom WordPress themes from your Figma - CMS, blogs and content-driven sites without builder bloat.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Row 3: Shopify -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <img src="images/tools/shopify.png" alt="Shopify logo" class="wx-f2p-logo-img">
-        </div>
-        <span class="wx-f2p-name">Figma to Shopify</span>
-      </div>
-      <p class="wx-f2p-desc-center">Your Figma design turned into a conversion-ready Shopify store - custom Liquid theme, no marketplace template.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Row 4: Unbounce -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <img src="images/tools/unbounce.png" alt="Unbounce logo" class="wx-f2p-logo-img">
-        </div>
-        <span class="wx-f2p-name">Figma to Unbounce</span>
-      </div>
-      <p class="wx-f2p-desc-center">High-converting Unbounce landing pages built pixel-perfect from your design - ready for paid traffic.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Row 5: HTML -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <img src="images/tools/html.png" alt="HTML logo" class="wx-f2p-logo-img">
-        </div>
-        <span class="wx-f2p-name">Figma to HTML</span>
-      </div>
-      <p class="wx-f2p-desc-center">Clean, semantic HTML/CSS/JS from your Figma - the fastest, most portable version of your design.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Row 6: React -->
-    <div class="wx-f2p-row">
-      <div class="wx-f2p-flow-left">
-        <div class="wx-f2p-logo-wrapper">
-          <img src="images/tools/figma.png" alt="Figma logo" class="wx-f2p-logo-img">
-          <span class="wx-f2p-arrow-symbol">&rarr;</span>
-          <!-- Inline custom React logo SVG inside wrapper -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348" class="wx-f2p-logo-img" style="color: #61dafb; fill: none; width: clamp(22px, 2.2vw, 28px); height: clamp(22px, 2.2vw, 28px); display: block;">
-            <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
-            <g stroke="#61dafb" stroke-width="1.2">
-              <ellipse rx="11" ry="4.2"/>
-              <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-              <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
-            </g>
-          </svg>
-        </div>
-        <span class="wx-f2p-name">Figma to React</span>
-      </div>
-      <p class="wx-f2p-desc-center">Production React/Next.js components from your Figma - typed, tested and ready for your codebase.</p>
-      <div class="wx-f2p-arrow-right" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-        </svg>
-      </div>
-    </div>
-
-  </div>
-
-
   <!-- =========================================================
-       MARQUEES - infinite scrolling logo strips
+       TOOLS ORBIT - full-section animated field of tool/platform icons around the {X} mark
        ========================================================= -->
-  <div class="wx-d2p-marquees" data-reveal data-reveal-delay="220" style="opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease">
-    <div class="wx-d2p-mq-row">
-      <span class="wx-d2p-mq-label">Design tools</span>
-      <div class="wx-d2p-mq" aria-hidden="true">
-        <div class="wx-d2p-mq-track">
-          <!-- 4x set for seamless loop -->
-          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
-          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
-          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
-          <span><img src="images/tools/adobe_xd.svg" alt="" width="32" height="32">Adobe XD</span>
-          <span><img src="images/tools/sketch.svg" alt="" width="32" height="32">Sketch</span>
-          <span><img src="images/tools/illustrator.svg" alt="" width="32" height="32">Illustrator</span>
-          
-          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
-          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
-          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
-          <span><img src="images/tools/adobe_xd.svg" alt="" width="32" height="32">Adobe XD</span>
-          <span><img src="images/tools/sketch.svg" alt="" width="32" height="32">Sketch</span>
-          <span><img src="images/tools/illustrator.svg" alt="" width="32" height="32">Illustrator</span>
-          
-          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
-          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
-          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
-          <span><img src="images/tools/adobe_xd.svg" alt="" width="32" height="32">Adobe XD</span>
-          <span><img src="images/tools/sketch.svg" alt="" width="32" height="32">Sketch</span>
-          <span><img src="images/tools/illustrator.svg" alt="" width="32" height="32">Illustrator</span>
-          
-          <span><img src="images/tools/figma.png" alt="" width="32" height="32">Figma</span>
-          <span><img src="images/tools/canva.png" alt="" width="32" height="32">Canva</span>
-          <span><img src="images/tools/photoshop.png" alt="" width="32" height="32">Photoshop</span>
-          <span><img src="images/tools/adobe_xd.svg" alt="" width="32" height="32">Adobe XD</span>
-          <span><img src="images/tools/sketch.svg" alt="" width="32" height="32">Sketch</span>
-          <span><img src="images/tools/illustrator.svg" alt="" width="32" height="32">Illustrator</span>
-        </div>
+  <style>
+    .wx-torbit{
+      position:relative;width:100%;
+      margin:clamp(18px,4vh,44px) 0 clamp(24px,6vh,60px);
+    }
+    .wx-torbit-cap{
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
+      font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.14em;
+      text-transform:uppercase;color:#9A9AA2;text-align:center;margin-bottom:clamp(8px,2vh,18px);
+    }
+    .wx-torbit-cap b{color:#EDEDED;font-weight:600;}
+    .wx-torbit-cap i{width:4px;height:4px;border-radius:50%;background:#9D5CFF;display:inline-block;}
+
+    .wx-torbit-stage{
+      position:relative;width:100%;
+      height:100vh;
+      display:grid;place-items:center;
+      overflow:hidden;
+      /* OVERLAY: dissolve the icon field toward every edge of the section */
+      -webkit-mask:
+         linear-gradient(90deg,transparent 0,#000 15%,#000 85%,transparent 100%),
+         linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+      -webkit-mask-composite:source-in;
+      mask:
+         linear-gradient(90deg,transparent 0,#000 15%,#000 85%,transparent 100%),
+         linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+      mask-composite:intersect;
+    }
+    /* soft dark vignette behind the centre so the {X} mark reads clearly */
+    .wx-torbit-stage::after{
+      content:"";position:absolute;inset:0;pointer-events:none;z-index:4;
+      background:radial-gradient(circle at center, rgba(3,3,6,.85) 0, rgba(3,3,6,.5) 70px, transparent 165px);
+    }
+
+    .wx-torbit-ring{position:absolute;inset:0;will-change:transform;}
+    .wx-torbit-ring--1{animation:orbit-rotate 30s linear infinite;}
+    .wx-torbit-ring--2{animation:orbit-rotate 44s linear infinite reverse;}
+    .wx-torbit-ring--3{animation:orbit-rotate 62s linear infinite;}
+
+    .wx-torbit-item{
+      position:absolute;top:50%;left:50%;
+      transform:translate(-50%,-50%) rotate(var(--a)) translate(var(--r));
+    }
+    .wx-torbit-ring--1 .wx-torbit-item{--r:clamp(96px,12vw,182px);}
+    .wx-torbit-ring--2 .wx-torbit-item{--r:clamp(172px,22vw,312px);}
+    .wx-torbit-ring--3 .wx-torbit-item{--r:clamp(248px,33vw,452px);}
+
+    /* de-angle cancels placement angle, spin cancels ring rotation -> icons stay upright */
+    .wx-torbit-deangle{transform:rotate(calc(-1 * var(--a)));}
+    .wx-torbit-ring--1 .wx-torbit-spin{animation:orbit-rotate 30s linear infinite reverse;}
+    .wx-torbit-ring--2 .wx-torbit-spin{animation:orbit-rotate 44s linear infinite;}
+    .wx-torbit-ring--3 .wx-torbit-spin{animation:orbit-rotate 62s linear infinite reverse;}
+
+    .wx-torbit-chip{
+      width:clamp(44px,6vw,62px);height:clamp(44px,6vw,62px);
+      display:grid;place-items:center;border-radius:15px;
+      background:rgba(255,255,255,0.045);
+      border:1px solid rgba(255,255,255,0.09);
+      -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      box-shadow:0 8px 22px -12px rgba(0,0,0,.85);
+      transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s;
+    }
+    .wx-torbit-chip img{width:56%;height:56%;object-fit:contain;pointer-events:none;}
+    .wx-torbit-chip:hover{
+      transform:scale(1.14);
+      border-color:rgba(157,92,255,.55);
+      box-shadow:0 16px 36px -12px rgba(157,92,255,.5);
+    }
+
+    .wx-torbit-core{
+      position:relative;z-index:5;
+      width:clamp(84px,11vw,128px);height:clamp(84px,11vw,128px);
+      filter:drop-shadow(0 0 36px rgba(157,92,255,.5));
+      animation:wx-torbit-breathe 6s ease-in-out infinite;
+    }
+    .wx-torbit-core svg{width:100%;height:100%;display:block;border-radius:26px;}
+    @keyframes wx-torbit-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+    @media (prefers-reduced-motion: reduce){
+      .wx-torbit-ring,.wx-torbit-spin,.wx-torbit-core{animation:none !important;}
+    }
+    @media (max-width:600px){
+      .wx-torbit-chip{border-radius:13px;}
+      .wx-torbit-stage{height:100vh;}
+    }
+  </style>
+
+  <div class="wx-torbit" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease">
+    <div class="wx-torbit-cap"><b>Design tools</b><i></i><b>Platforms</b><i></i><span>everything we build with</span></div>
+
+    <div class="wx-torbit-stage" aria-hidden="true">
+      <!-- Ring 1 (inner) -->
+      <div class="wx-torbit-ring wx-torbit-ring--1">
+        <span class="wx-torbit-item" style="--a:0deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/figma.png" alt="Figma" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:72deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/canva.png" alt="Canva" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:144deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/photoshop.png" alt="Photoshop" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:216deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/framer.svg" alt="Framer" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:288deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/sketch.svg" alt="Sketch" loading="lazy"></span></span></span></span>
       </div>
-    </div>
-    <div class="wx-d2p-mq-row wx-d2p-mq-row-rev">
-      <span class="wx-d2p-mq-label">Platforms</span>
-      <div class="wx-d2p-mq" aria-hidden="true">
-        <div class="wx-d2p-mq-track wx-d2p-mq-track-rev">
-          <!-- 4x set for seamless loop -->
-          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
-          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
-          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
-          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
-          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
-          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
-          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
-          <span><img src="images/tools/framer.svg" alt="" width="32" height="32">Framer</span>
-          
-          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
-          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
-          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
-          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
-          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
-          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
-          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
-          <span><img src="images/tools/framer.svg" alt="" width="32" height="32">Framer</span>
-          
-          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
-          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
-          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
-          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
-          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
-          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
-          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
-          <span><img src="images/tools/framer.svg" alt="" width="32" height="32">Framer</span>
-          
-          <span><img src="images/tools/webflow.png" alt="" width="32" height="32">Webflow</span>
-          <span><img src="images/tools/wordpress.png" alt="" width="32" height="32">WordPress</span>
-          <span><img src="images/tools/shopify.png" alt="" width="32" height="32">Shopify</span>
-          <span><img src="images/tools/wix.png" alt="" width="32" height="32">Wix Studio</span>
-          <span><img src="images/tools/squarespace.png" alt="" width="32" height="32">Squarespace</span>
-          <span><img src="images/tools/unbounce.png" alt="" width="32" height="32">Unbounce</span>
-          <span><img src="images/tools/html.png" alt="" width="32" height="32">HTML/CSS/JS</span>
-          <span><img src="images/tools/framer.svg" alt="" width="32" height="32">Framer</span>
-        </div>
+      <!-- Ring 2 (middle) -->
+      <div class="wx-torbit-ring wx-torbit-ring--2">
+        <span class="wx-torbit-item" style="--a:22.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/webflow.png" alt="Webflow" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:67.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/wordpress.png" alt="WordPress" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:112.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/shopify.png" alt="Shopify" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:157.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/wix.png" alt="Wix Studio" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:202.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/squarespace.png" alt="Squarespace" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:247.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/unbounce.png" alt="Unbounce" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:292.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/html.png" alt="HTML/CSS/JS" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:337.5deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/illustrator.svg" alt="Illustrator" loading="lazy"></span></span></span></span>
+      </div>
+      <!-- Ring 3 (outer) -->
+      <div class="wx-torbit-ring wx-torbit-ring--3">
+        <span class="wx-torbit-item" style="--a:18deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/adobe_xd.svg" alt="Adobe XD" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:54deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/shopify.png" alt="Shopify" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:90deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/figma.png" alt="Figma" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:126deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/wordpress.png" alt="WordPress" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:162deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/photoshop.png" alt="Photoshop" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:198deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/webflow.png" alt="Webflow" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:234deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/canva.png" alt="Canva" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:270deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/wix.png" alt="Wix Studio" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:306deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/html.png" alt="HTML/CSS/JS" loading="lazy"></span></span></span></span>
+        <span class="wx-torbit-item" style="--a:342deg"><span class="wx-torbit-deangle"><span class="wx-torbit-spin"><span class="wx-torbit-chip"><img src="images/tools/framer.svg" alt="Framer" loading="lazy"></span></span></span></span>
+      </div>
+      <!-- Center: the {X} brand mark (matches favicon) -->
+      <div class="wx-torbit-core">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Web{X}">
+          <rect width="100" height="100" rx="22" fill="#0A0A0A"/>
+          <rect x="1.25" y="1.25" width="97.5" height="97.5" rx="20.75" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M37 30 c-7 0 -10 3 -10 9 v5 c0 5 -3 7 -6 7 c3 0 6 2 6 7 v5 c0 6 3 9 10 9" stroke="#EDEDED" stroke-width="6"/>
+            <path d="M63 30 c7 0 10 3 10 9 v5 c0 5 3 7 6 7 c-3 0 -6 2 -6 7 v5 c0 6 -3 9 -10 9" stroke="#EDEDED" stroke-width="6"/>
+            <path d="M42 39 L58 61 M58 39 L42 61" stroke="#9D5CFF" stroke-width="9"/>
+          </g>
+        </svg>
       </div>
     </div>
   </div>
+
 
   <!-- =========================================================
        CUSTOM BUILDS - bento grid for Web Apps / ERP / Dashboards
