@@ -434,57 +434,24 @@
     .wx-navbar { padding: 0; }
     .wx-nav-logo { padding: 10px 18px; font-size: 17px; }
 
+    /* Mobile navigates via the floating FAB drawer from the start —
+       the old inline hamburger, its pill and the center dropdown are dropped. */
     .wx-navbar .wx-nav-socials { display: none !important; }
-
-    .wx-nav-cta-wrap {
-      pointer-events: auto;
-      padding: 13px 15px;
-      background: rgba(10, 10, 12, 0.35);
-      -webkit-backdrop-filter: blur(20px) saturate(195%);
-      backdrop-filter: blur(20px) saturate(195%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 40px;
-    }
-    .wx-nav-hamburger { display: flex; }
-
+    .wx-nav-cta-wrap { display: none !important; }
+    .wx-nav-hamburger { display: none !important; }
+    .wx-nav-links-wrap { display: none !important; }
     .wx-mega { display: none !important; }
     .wx-nav-caret { display: none; }
 
-    .wx-nav-links-wrap {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      margin-top: 12px;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 6px;
-      padding: 16px;
-      border-radius: 24px;
-      background: rgba(10, 10, 12, 0.95);
-      -webkit-backdrop-filter: blur(30px);
-      backdrop-filter: blur(30px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-      transform: translateY(-15px);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
-      z-index: 9001;
+    /* FAB is visible immediately (no scroll needed) on mobile */
+    .wx-fab {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      top: 14px;
+      width: 48px;
+      height: 48px;
     }
-    .wx-nav-links-wrap.wx-active { transform: translateY(0); opacity: 1; pointer-events: auto; }
-    .wx-nav-item { width: 100%; }
-    .wx-nav-link {
-      width: 100%;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 12px 0;
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .wx-nav-hamburger.wx-active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .wx-nav-hamburger.wx-active span:nth-child(2) { transform: translateY(-6px) rotate(-45deg); }
   }
   `;
 
