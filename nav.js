@@ -243,12 +243,13 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(157, 92, 255, 0.28);
     text-decoration: none;
     transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
   .wx-nav-social svg { width: 16px; height: 16px; }
-  .wx-nav-social:hover { color: #fff; background: rgba(157, 92, 255, 0.18); transform: translateY(-2px); }
+  .wx-nav-social:hover { color: #fff; background: #9D5CFF; transform: translateY(-2px); }
 
   /* Hamburger */
   .wx-nav-hamburger {
@@ -452,7 +453,7 @@
       opacity: 1;
       transform: none;
       pointer-events: auto;
-      top: 14px;
+      top: 33px;
       width: 48px;
       height: 48px;
     }
