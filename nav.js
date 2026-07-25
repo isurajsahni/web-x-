@@ -88,7 +88,7 @@
     color: #EDEDED;
   }
   .wx-nav-logo:hover { transform: scale(1.02); }
-  .wx-nav-logo-svg { animation: wx-spin 6s linear infinite; color: #9D5CFF; }
+  .wx-nav-logo-svg { width: 30px; height: 30px; border-radius: 8px; display: block; }
   .wx-logo-purple { color: #9D5CFF; }
   @keyframes wx-spin { to { transform: rotate(360deg); } }
 
@@ -462,12 +462,7 @@
   <header class="wx-nav-container" data-header>
     <div class="wx-navbar" id="wx-navbar">
       <a href="index.html" class="wx-nav-logo">
-        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="wx-nav-logo-svg">
-          <circle cx="2" cy="7" r="1.2" fill="currentColor"/><circle cx="7" cy="2" r="1.2" fill="currentColor"/>
-          <circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="7" cy="12" r="1.2" fill="currentColor"/>
-          <circle cx="3.5" cy="3.5" r="1.2" fill="currentColor"/><circle cx="10.5" cy="3.5" r="1.2" fill="currentColor"/>
-          <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/><circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
-        </svg>
+        <img src="logo-white.svg" alt="Web{X}" class="wx-nav-logo-svg" width="30" height="30" />
         <span>Web<span class="wx-logo-purple">{X}</span></span>
       </a>
 
