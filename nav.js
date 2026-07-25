@@ -54,7 +54,6 @@
   }
 
   /* Shared glass surface for floating pieces */
-  .wx-nav-logo,
   .wx-nav-links-wrap,
   .wx-nav-socials {
     pointer-events: auto;
@@ -67,7 +66,6 @@
     transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  .wx-navbar.wx-scrolled .wx-nav-logo,
   .wx-navbar.wx-scrolled .wx-nav-links-wrap,
   .wx-navbar.wx-scrolled .wx-nav-socials {
     background: rgba(8, 8, 10, 0.75);
@@ -78,17 +76,23 @@
   /* Logo */
   .wx-nav-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 11px 22px;
+    gap: 4px;
+    padding: 4px 8px;
+    pointer-events: auto;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     text-decoration: none;
     font-family: 'Satoshi', sans-serif;
     font-weight: 700;
-    font-size: 19px;
     color: #EDEDED;
   }
   .wx-nav-logo:hover { transform: scale(1.02); }
-  .wx-nav-logo-svg { width: 30px; height: 30px; border-radius: 8px; display: block; }
+  .wx-nav-logo-svg { width: 50px; height: 50px; display: block; }
+  .wx-nav-logo-word { width: 50px; text-align: center; font-size: 15px; line-height: 1; letter-spacing: 0.01em; }
   .wx-logo-purple { color: #9D5CFF; }
   @keyframes wx-spin { to { transform: rotate(360deg); } }
 
@@ -432,7 +436,7 @@
   @media (max-width: 820px) {
     .wx-nav-container { top: 16px; }
     .wx-navbar { padding: 0; }
-    .wx-nav-logo { padding: 10px 18px; font-size: 17px; }
+    .wx-nav-logo { padding: 6px 12px; }
 
     /* Mobile navigates via the floating FAB drawer from the start —
        the old inline hamburger, its pill and the center dropdown are dropped. */
@@ -453,6 +457,30 @@
       height: 48px;
     }
   }
+
+  /* WhatsApp floating button (bottom-right, sitewide) */
+  .wx-wa-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9500;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #9D5CFF;
+    box-shadow: 0 8px 24px rgba(157, 92, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .wx-wa-fab svg { width: 30px; height: 30px; display: block; }
+  .wx-wa-fab:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(157, 92, 255, 0.6); }
+  @media (max-width: 820px) {
+    .wx-wa-fab { width: 52px; height: 52px; right: 16px; bottom: 16px; }
+    .wx-wa-fab svg { width: 27px; height: 27px; }
+  }
   `;
 
   /* ------------------------------------------------------------------ */
@@ -462,8 +490,8 @@
   <header class="wx-nav-container" data-header>
     <div class="wx-navbar" id="wx-navbar">
       <a href="index.html" class="wx-nav-logo">
-        <img src="logo-white.svg" alt="Web{X}" class="wx-nav-logo-svg" width="30" height="30" />
-        <span>Web<span class="wx-logo-purple">{X}</span></span>
+        <img src="logo-white.svg" alt="Web{X}" class="wx-nav-logo-svg" width="50" height="50" />
+        <span class="wx-nav-logo-word">Web<span class="wx-logo-purple">{X}</span></span>
       </a>
 
       <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
@@ -546,7 +574,11 @@
       <a href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M6.94 5.5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.4h3.06V21H3.4V8.4Zm5.02 0h2.93v1.72h.04c.41-.77 1.4-1.58 2.89-1.58 3.09 0 3.66 2.03 3.66 4.68V21h-3.05v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94V21H8.42V8.4Z"/></svg></a>
       <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" aria-label="Dribbble"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.8"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
     </div>
-  </aside>`;
+  </aside>
+
+  <a href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20your%20pricing%20plans." class="wx-wa-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.695.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>`;
 
   /* ------------------------------------------------------------------ */
   /* 3. Init                                                            */
