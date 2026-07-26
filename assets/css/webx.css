@@ -355,7 +355,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-article-cta{margin-top:2.4em;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(160deg,#160a24 0%,#0a070f 75%);padding:clamp(28px,4vw,44px);text-align:center}
 .wx-article-cta h3{margin:0 0 12px!important;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.025em;color:#EDEDED}
 .wx-article-cta p{margin:0 0 24px;color:#9A9AA2;font-size:clamp(15px,1.1vw,17px);line-height:1.6}
-.wx-article-cta a{display:inline-flex;align-items:center;gap:12px;background:#9D5CFF;color:#0A0A0A;text-decoration:none;padding:15px 28px;border-radius:100px;font-size:15px;font-weight:600;border:0}
+.wx-article-cta a:not(.wx-btn-animated){display:inline-flex;align-items:center;gap:12px;background:#9D5CFF;color:#0A0A0A;text-decoration:none;padding:15px 28px;border-radius:100px;font-size:15px;font-weight:600;border:0}
 
 /* ---------- Blog index cards ---------- */
 .wx-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(20px,2.6vw,34px)}
