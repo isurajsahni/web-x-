@@ -497,6 +497,7 @@
 
       <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
         <div class="wx-nav-item"><a href="index.html" class="wx-nav-link" data-nav="home">Home</a></div>
+        <div class="wx-nav-item"><a href="services.html" class="wx-nav-link" data-nav="services">Services</a></div>
         <div class="wx-nav-item"><a href="work.html" class="wx-nav-link" data-nav="work">Work</a></div>
         <div class="wx-nav-item"><a href="studio.html" class="wx-nav-link" data-nav="about">About</a></div>
         <div class="wx-nav-item" id="wx-res-item">
@@ -565,6 +566,7 @@
   <aside class="wx-drawer" id="wx-drawer" aria-hidden="true">
     <span class="wx-drawer-eyebrow">Menu</span>
     <a href="index.html" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="services.html" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="work.html" class="wx-drawer-link" data-nav="work">Work <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="studio.html" class="wx-drawer-link" data-nav="about">About <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="blog.html" class="wx-drawer-link" data-nav="resources">Resources <span class="wx-drawer-arrow">&#8599;</span></a>
@@ -616,6 +618,7 @@
 
     var match = 'home';
     if (file === 'index.html') match = 'home';
+    else if (file === 'services.html' || file.indexOf('figma-to') === 0) match = 'services';
     else if (file === 'work.html' || file.indexOf('case-study') === 0) match = 'work';
     else if (file === 'studio.html') match = 'about';
     else if (file === 'blog.html' || file.indexOf('blog-') === 0) match = 'resources';
