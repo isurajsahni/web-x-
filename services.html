@@ -85,7 +85,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "SEO & Performance", "description": "Technical SEO, Core Web Vitals and speed optimisation for higher rankings.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
         { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "ERP & Web Apps", "description": "Custom dashboards, ERP systems and web applications that scale with your business.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
         { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Figma to Webflow", "url": "https://www.thewebx.in/figma-to-webflow", "description": "Pixel-perfect, hand-built conversion of Figma designs into fast, CMS-ready Webflow sites.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
-        { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Figma to WordPress", "url": "https://www.thewebx.in/figma-to-wordpress", "description": "Custom-built conversion of Figma designs into fast, easy-to-edit WordPress sites.", "provider": { "@id": "https://www.thewebx.in/#organization" } } }
+        { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Figma to WordPress", "url": "https://www.thewebx.in/figma-to-wordpress", "description": "Custom-built conversion of Figma designs into fast, easy-to-edit WordPress sites.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
+        { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Figma to Shopify", "url": "https://www.thewebx.in/figma-to-shopify", "description": "Pixel-perfect conversion of Figma designs into fast, conversion-ready Shopify stores with editable Online Store 2.0 sections.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
+        { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Figma to Framer", "url": "https://www.thewebx.in/figma-to-framer", "description": "Pixel-perfect conversion of Figma designs into fast, motion-rich Framer sites with the Framer CMS.", "provider": { "@id": "https://www.thewebx.in/#organization" } } },
+        { "@type": "ListItem", "position": 9, "item": { "@type": "Service", "name": "Figma to Unbounce", "url": "https://www.thewebx.in/figma-to-unbounce", "description": "Pixel-perfect conversion of Figma designs into fast, high-converting Unbounce landing pages ready for A/B testing and paid campaigns.", "provider": { "@id": "https://www.thewebx.in/#organization" } } }
       ]
     }
   ]
@@ -93,54 +96,87 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <style>
-  /* ---- Services hub local styles ---- */
-  .svcx-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px)}
-  .svcx-eyebrow span{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-  .svcx-eyebrow .svcx-eyebrow-num{color:#9D5CFF}
-  .svcx-eyebrow .svcx-eyebrow-txt{color:#9A9AA2}
+  /* ============================================================
+     Services hub — polished / atmospheric redesign
+     ============================================================ */
 
-  .svcx-section{padding:clamp(20px,4vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,80px);max-width:1500px;margin:0 auto}
+  /* ---- Ambient page glow (sits above black body bg, below content) ---- */
+  .svcx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .svcx-bg span{position:absolute;border-radius:50%;filter:blur(130px);opacity:.55}
+  .svcx-bg .g1{top:-14%;left:-8%;width:60vw;height:60vw;max-width:840px;max-height:840px;background:radial-gradient(circle,rgba(124,58,237,.42),transparent 68%)}
+  .svcx-bg .g2{top:26%;right:-14%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(79,70,229,.3),transparent 70%);opacity:.4}
+  .svcx-bg .g3{bottom:-18%;left:22%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(192,38,211,.22),transparent 72%);opacity:.35}
+  main#main{position:relative;z-index:1}
 
-  /* Core services grid */
-  .svcx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(18px,2vw,26px);margin-top:clamp(32px,5vh,56px)}
-  .svcx-card{position:relative;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0));text-decoration:none;color:inherit;transition:border-color .4s ease,transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease}
-  .svcx-card:hover{border-color:rgba(157,92,255,.5);transform:translateY(-4px);box-shadow:0 24px 60px -30px rgba(157,92,255,.55)}
+  .svcx-eyebrow{display:inline-flex;align-items:center;gap:11px;margin-bottom:clamp(16px,2.5vh,24px);padding:7px 14px 7px 12px;border:1px solid rgba(157,92,255,.22);border-radius:100px;background:rgba(157,92,255,.06)}
+  .svcx-eyebrow span{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .svcx-eyebrow .svcx-eyebrow-num{color:#B98BFF;font-family:'JetBrains Mono',monospace}
+  .svcx-eyebrow .svcx-eyebrow-txt{color:#C9C9D2}
+  .svcx-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 0 4px rgba(157,92,255,.16)}
+
+  .svcx-section{padding:clamp(20px,4vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,80px);max-width:1500px;margin:0 auto;position:relative}
+
+  /* ---- Core services grid ---- */
+  .svcx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(18px,1.6vw,24px);margin-top:clamp(32px,5vh,56px)}
+  .svcx-card{position:relative;isolation:isolate;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.09);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.008));text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .4s ease}
+  .svcx-card:hover{transform:translateY(-8px);border-color:rgba(157,92,255,.35);box-shadow:0 34px 80px -34px rgba(157,92,255,.6),0 10px 30px -20px rgba(0,0,0,.8)}
+  /* animated gradient-border glow on hover */
+  .svcx-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(157,92,255,.9),rgba(192,38,211,.35) 45%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s ease;pointer-events:none;z-index:4}
+  .svcx-card:hover::after{opacity:1}
   .svcx-card-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0E0E12}
-  .svcx-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
-  .svcx-card:hover .svcx-card-media img{transform:scale(1.05)}
-  .svcx-card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,8,0) 40%,rgba(5,5,8,.72) 100%)}
-  .svcx-card-num{position:absolute;top:16px;left:18px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:12px;color:#EDEDED;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14);padding:5px 10px;border-radius:100px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-  .svcx-card-body{display:flex;flex-direction:column;flex-grow:1;padding:24px 24px 26px}
-  .svcx-card-body h3{font-size:clamp(20px,1.7vw,24px);font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
-  .svcx-card-body p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#9A9AA2;margin:0 0 18px}
+  .svcx-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:saturate(1.02)}
+  .svcx-card:hover .svcx-card-media img{transform:scale(1.07);filter:saturate(1.12)}
+  .svcx-card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,8,0) 32%,rgba(8,6,14,.55) 78%,rgba(8,6,14,.9) 100%)}
+  /* purple wash that blooms on hover */
+  .svcx-card-media::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 120%,rgba(157,92,255,.4),transparent 60%);opacity:0;transition:opacity .5s ease}
+  .svcx-card:hover .svcx-card-media::before{opacity:1}
+  .svcx-card-num{position:absolute;top:16px;left:16px;z-index:3;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#EDEDED;background:rgba(10,8,16,.5);border:1px solid rgba(255,255,255,.16);padding:5px 11px;border-radius:100px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .svcx-card-body{display:flex;flex-direction:column;flex-grow:1;padding:26px 26px 28px}
+  .svcx-card-kicker{font-family:'Satoshi',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E6FD6;margin:0 0 12px}
+  .svcx-card-body h3{font-size:clamp(21px,1.8vw,26px);font-weight:600;letter-spacing:-.025em;margin:0 0 11px;color:#F4F2FA}
+  .svcx-card-body p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.62;color:#9A9AA2;margin:0 0 20px}
   .svcx-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
-  .svcx-tag{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.02em;color:#C9C9D2;border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:6px 12px;background:rgba(255,255,255,.02)}
-  .svcx-card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08)}
-  .svcx-card-foot span{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9D5CFF}
-  .svcx-card-arrow{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);transition:background .35s,border-color .35s,color .35s,transform .35s}
+  .svcx-tag{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.02em;color:#C9C9D2;border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:6px 12px;background:rgba(255,255,255,.02);transition:border-color .35s,color .35s,background .35s}
+  .svcx-card:hover .svcx-tag{border-color:rgba(157,92,255,.3);color:#EDEBFA;background:rgba(157,92,255,.08)}
+  .svcx-card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+  .svcx-card-foot span{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#B98BFF}
+  .svcx-card-arrow{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);transition:background .35s,border-color .35s,color .35s,transform .35s}
   .svcx-card-arrow svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;transition:transform .35s}
-  .svcx-card:hover .svcx-card-arrow{background:#9D5CFF;border-color:#9D5CFF;color:#fff}
+  .svcx-card:hover .svcx-card-arrow{background:#9D5CFF;border-color:#9D5CFF;color:#fff;transform:rotate(0)}
   .svcx-card:hover .svcx-card-arrow svg{transform:translate(2px,-2px)}
 
-  /* Figma-to-X conversion cards */
-  .svcx-conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:clamp(16px,1.6vw,22px);margin-top:clamp(32px,5vh,56px)}
-  .svcx-conv{position:relative;display:flex;flex-direction:column;gap:18px;padding:26px 24px 24px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));text-decoration:none;color:inherit;transition:border-color .4s ease,transform .4s cubic-bezier(.16,1,.3,1)}
-  .svcx-conv:hover{border-color:rgba(157,92,255,.5);transform:translateY(-4px)}
+  /* ---- Figma-to-X conversion cards ---- */
+  .svcx-conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:clamp(16px,1.4vw,22px);margin-top:clamp(32px,5vh,56px)}
+  .svcx-conv{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:18px;padding:26px 24px 24px;border:1px solid rgba(255,255,255,.09);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.008));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s ease,box-shadow .5s ease}
+  .svcx-conv:hover{transform:translateY(-6px);border-color:rgba(157,92,255,.35);box-shadow:0 28px 60px -34px rgba(157,92,255,.5)}
+  .svcx-conv::before{content:"";position:absolute;top:-40%;right:-30%;width:70%;height:80%;border-radius:50%;background:radial-gradient(circle,rgba(157,92,255,.28),transparent 65%);filter:blur(30px);opacity:0;transition:opacity .5s ease;z-index:-1}
+  .svcx-conv:hover::before{opacity:1}
   .svcx-conv-head{display:flex;align-items:center;gap:14px}
-  .svcx-conv-logo{width:46px;height:46px;border-radius:13px;flex-shrink:0;display:grid;place-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1)}
+  .svcx-conv-logo{width:48px;height:48px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:border-color .4s,background .4s}
+  .svcx-conv:hover .svcx-conv-logo{border-color:rgba(157,92,255,.35);background:rgba(157,92,255,.09)}
   .svcx-conv-logo img{width:56%;height:56%;object-fit:contain}
   .svcx-conv-flow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.02em;color:#7A7A82}
   .svcx-conv-flow b{color:#EDEDED;font-weight:500}
-  .svcx-conv h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0}
+  .svcx-conv h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0;color:#F4F2FA}
   .svcx-conv p{font-family:'Satoshi',sans-serif;font-size:14px;line-height:1.6;color:#9A9AA2;margin:0}
   .svcx-conv-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px}
   .svcx-conv-live{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;color:#8FE3B0}
   .svcx-conv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#43D391;box-shadow:0 0 0 4px rgba(67,211,145,.14)}
   .svcx-conv-soon{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82;border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 11px}
-  .svcx-conv-arrow{color:#9D5CFF;font-size:15px;transition:transform .35s}
-  .svcx-conv:hover .svcx-conv-arrow{transform:translateX(3px)}
-  .svcx-conv--soon{opacity:.72}
+  .svcx-conv-arrow{color:#B98BFF;font-size:15px;transition:transform .35s}
+  .svcx-conv:hover .svcx-conv-arrow{transform:translateX(4px)}
+  .svcx-conv--soon{opacity:.66}
   .svcx-conv--soon:hover{opacity:1}
+
+  /* ---- Custom-build strip ---- */
+  .svcx-strip{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;border:1px solid rgba(157,92,255,.2);border-radius:24px;padding:clamp(26px,3vw,40px) clamp(24px,3.4vw,44px);background:linear-gradient(120deg,rgba(157,92,255,.12),rgba(124,58,237,.04) 55%,transparent)}
+  .svcx-strip::before{content:"";position:absolute;top:-60%;left:-10%;width:50%;height:200%;background:radial-gradient(circle,rgba(157,92,255,.22),transparent 60%);filter:blur(40px);pointer-events:none}
+  .svcx-strip h3{font-size:clamp(19px,1.7vw,24px);font-weight:600;letter-spacing:-.025em;margin:0 0 8px;color:#F4F2FA}
+  .svcx-strip p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#B5B5C0;margin:0;max-width:520px}
+
+  /* ---- Final CTA glow ---- */
+  .svcx-cta{position:relative;overflow:hidden}
+  .svcx-cta::before{content:"";position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:min(90vw,900px);height:60%;background:radial-gradient(ellipse at center,rgba(157,92,255,.28),transparent 70%);filter:blur(50px);pointer-events:none}
 </style>
 </head>
 <body>
@@ -154,25 +190,140 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="nav.js" defer></script>
 
 <main id="main">
+<!-- ambient page glow -->
+<div class="svcx-bg" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
 <article>
 
-<!-- ============ HERO ============ -->
-<section style="padding:clamp(130px,20vh,220px) clamp(20px,5vw,72px) clamp(20px,4vh,48px);max-width:1000px;margin:0 auto">
-  <nav aria-label="Breadcrumb" data-reveal style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82;margin-bottom:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <a href="./" class="wx-uline" style="color:#9A9AA2;text-decoration:none">Home</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Services</span>
-  </nav>
-  <h1 data-reveal data-reveal-delay="60" style="font-size:clamp(34px,5.6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.02;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Everything we build, <span style="color:#9D5CFF">in one place</span>.</h1>
-  <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="margin-top:26px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">From a single high-converting landing page to a custom ERP that runs your business &mdash; and the pixel-perfect Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you&rsquo;re after and we&rsquo;ll shape the rest.</p>
-  <div data-reveal data-reveal-delay="220" style="margin-top:36px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-      <span class="wx-btn-label">Start a project</span>
-      <span class="wx-btn-circle">
-        <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-        </svg>
-      </span>
-    </a>
+<!-- ============ HERO (orbiting gallery — mirrors home page) ============ -->
+<section class="hero-orbit-section" data-hero-section style="background:#000000;color:#EDEDED;">
+  <!-- Gradient transition vignette at the bottom of the section -->
+  <div class="hero-gradient-overlay" aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;height:180px;pointer-events:none;z-index:2;background:linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.8) 75%, #000000 100%);"></div>
+
+  <!-- The Orbiting Gallery -->
+  <div class="orbit-wrapper">
+    <div class="orbit-container" data-orbit-container>
+      <!-- concentric Track 4 -->
+      <div class="orbit-card orbit-track-4" style="--init-angle: 15deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 45deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 75deg; --tilt-angle: 15deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 105deg; --tilt-angle: -10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 135deg; --tilt-angle: 8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 165deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 195deg; --tilt-angle: 11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 225deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 255deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 285deg; --tilt-angle: -9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 315deg; --tilt-angle: 14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="Rightway App" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-4" style="--init-angle: 345deg; --tilt-angle: -12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" /></div></div></div>
+      <!-- concentric Track 3 -->
+      <div class="orbit-card orbit-track-3" style="--init-angle: 8deg; --tilt-angle: -10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 44deg; --tilt-angle: 14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="UX Project 1" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 80deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="UX Project 2" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 116deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="UX Project 3" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 152deg; --tilt-angle: -15deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-04.avif" alt="UX Project 4" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 188deg; --tilt-angle: 9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 224deg; --tilt-angle: -11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 260deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 296deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-3" style="--init-angle: 332deg; --tilt-angle: 10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" /></div></div></div>
+      <!-- concentric Track 2 -->
+      <div class="orbit-card orbit-track-2" style="--init-angle: 22deg; --tilt-angle: 11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 67deg; --tilt-angle: -9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 112deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 157deg; --tilt-angle: -12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 202deg; --tilt-angle: 8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 247deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="Rightway App" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 292deg; --tilt-angle: 10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-2" style="--init-angle: 337deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" /></div></div></div>
+      <!-- concentric Track 1 -->
+      <div class="orbit-card orbit-track-1" style="--init-angle: 35deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="UX Project 1" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-1" style="--init-angle: 95deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="UX Project 2" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-1" style="--init-angle: 155deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="UX Project 3" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-1" style="--init-angle: 215deg; --tilt-angle: 9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-04.avif" alt="UX Project 4" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-1" style="--init-angle: 275deg; --tilt-angle: -11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
+      <div class="orbit-card orbit-track-1" style="--init-angle: 335deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
+    </div>
   </div>
+
+  <!-- Center Content Backdrop Vignette Glow -->
+  <div style="position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 55%);z-index:9;pointer-events:none;"></div>
+
+  <!-- Center Content: Branding & Headline -->
+  <div class="hero-center-content" data-reveal style="max-width:760px;z-index:10;pointer-events:none;">
+    <nav aria-label="Breadcrumb" style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82;pointer-events:auto">
+      <a href="./" class="wx-uline" style="color:#9A9AA2;text-decoration:none">Home</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Services</span>
+    </nav>
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8A8A90;display:flex;align-items:center;gap:4px;">
+      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
+    </div>
+    <h1 style="font-size:clamp(36px, 5.2vw, 56px);font-weight:500;letter-spacing:-0.045em;color:#EDEDED;line-height:1.05;text-align:center;margin:0;">
+      Everything we build,<br/>in one place
+    </h1>
+    <p style="font-size:clamp(14px, 1.1vw, 16px);font-weight:400;color:#8A8A92;margin:0 auto;max-width:560px;line-height:1.6;text-align:center;">
+      From a high-converting landing page to a custom ERP &mdash; plus the pixel-perfect Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you&rsquo;re after.
+    </p>
+    <div class="hero-center-buttons" style="margin-top:8px;pointer-events:auto;display:flex;align-items:center;justify-content:center;">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
+        <span class="wx-btn-label">Start a project</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Orbit rotation loop (mirrors home page hero) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const orbitContainer = document.querySelector('[data-orbit-container]');
+      const heroSection = document.querySelector('.hero-orbit-section');
+      if (!orbitContainer || !heroSection) return;
+
+      let currentAngle = 0;
+      const baseSpeed = 12.86; // 360deg / 28s
+      let speedMultiplier = 1;
+      let lastTime = performance.now();
+      let isHovered = false;
+
+      heroSection.addEventListener('mouseenter', () => { isHovered = true; });
+      heroSection.addEventListener('mouseleave', () => { isHovered = false; });
+
+      window.addEventListener('wheel', (e) => {
+        if (isHovered) {
+          const boost = Math.min(6.0, Math.abs(e.deltaY) * 0.018);
+          speedMultiplier += boost;
+          if (speedMultiplier > 9.0) speedMultiplier = 9.0;
+        }
+      }, { passive: true });
+
+      let lastTouchX = 0, lastTouchY = 0;
+      heroSection.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) { lastTouchX = e.touches[0].clientX; lastTouchY = e.touches[0].clientY; }
+      }, { passive: true });
+      heroSection.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const dx = e.touches[0].clientX - lastTouchX, dy = e.touches[0].clientY - lastTouchY;
+          lastTouchX = e.touches[0].clientX; lastTouchY = e.touches[0].clientY;
+          const boost = Math.min(5.0, Math.sqrt(dx*dx + dy*dy) * 0.08);
+          speedMultiplier += boost;
+          if (speedMultiplier > 9.0) speedMultiplier = 9.0;
+        }
+      }, { passive: true });
+
+      const animateOrbits = (timestamp) => {
+        let dt = (timestamp - lastTime) / 1000;
+        lastTime = timestamp;
+        if (dt > 0.1) dt = 0.1;
+        speedMultiplier += (1.0 - speedMultiplier) * 0.045;
+        currentAngle = (currentAngle + (baseSpeed * speedMultiplier) * dt) % 360;
+        orbitContainer.style.transform = `rotate(${currentAngle.toFixed(3)}deg)`;
+        requestAnimationFrame(animateOrbits);
+      };
+      requestAnimationFrame(animateOrbits);
+    });
+  </script>
 </section>
 
 <!-- ============ CORE SERVICES ============ -->
@@ -193,6 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="images/cap-design.webp" alt="Website design service - bespoke UI/UX and interface design by Web{X}" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
+        <p class="svcx-card-kicker">Design</p>
         <h3>Website Design</h3>
         <p>Bespoke, conversion-focused interfaces that turn visitors into clients &mdash; from landing pages to full design systems.</p>
         <div class="svcx-tags">
@@ -214,6 +366,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="images/cap-development.webp" alt="Web development service - fast, scalable builds on Webflow, WordPress, Shopify and custom code by Web{X}" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
+        <p class="svcx-card-kicker">Build</p>
         <h3>Web Development</h3>
         <p>Fast, scalable code on the platform that fits your goals &mdash; Webflow, WordPress, Shopify or fully custom.</p>
         <div class="svcx-tags">
@@ -235,6 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="images/cap-seo.webp" alt="SEO and performance service - Core Web Vitals, technical SEO and speed optimisation by Web{X}" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
+        <p class="svcx-card-kicker">Rank</p>
         <h3>SEO &amp; Performance</h3>
         <p>Rank higher, load faster. Technical SEO and 100/100 Lighthouse scores baked in from day one.</p>
         <div class="svcx-tags">
@@ -256,6 +410,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="images/cap-erp.webp" alt="ERP and web app development service - custom dashboards and business software by Web{X}" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
+        <p class="svcx-card-kicker">Automate</p>
         <h3>ERP &amp; Web Apps</h3>
         <p>Custom dashboards, ERP systems and internal tools that scale with your business, built end-to-end.</p>
         <div class="svcx-tags">
@@ -313,28 +468,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-    <a href="contact" class="svcx-conv svcx-conv--soon" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Shopify conversion - ask us">
+    <a href="figma-to-shopify" class="svcx-conv" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Shopify conversion service">
       <div class="svcx-conv-head">
         <span class="svcx-conv-logo"><img src="images/tools/shopify.png" alt="Shopify"></span>
         <span class="svcx-conv-flow">Figma &rarr; <b>Shopify</b></span>
       </div>
       <h3>Figma to Shopify</h3>
-      <p>Conversion-ready storefronts from your design. Ask us about your build.</p>
+      <p>Conversion-ready storefronts with editable Online Store 2.0 sections.</p>
       <div class="svcx-conv-foot">
-        <span class="svcx-conv-soon">Coming soon</span>
+        <span class="svcx-conv-live">Live</span>
         <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
       </div>
     </a>
 
-    <a href="contact" class="svcx-conv svcx-conv--soon" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Framer conversion - ask us">
+    <a href="figma-to-framer" class="svcx-conv" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Framer conversion service">
       <div class="svcx-conv-head">
         <span class="svcx-conv-logo"><img src="images/tools/framer.svg" alt="Framer"></span>
         <span class="svcx-conv-flow">Figma &rarr; <b>Framer</b></span>
       </div>
       <h3>Figma to Framer</h3>
-      <p>Motion-rich Framer sites straight from your Figma. Ask us about your build.</p>
+      <p>Motion-rich Framer sites, hand-built with the CMS set up for your team.</p>
       <div class="svcx-conv-foot">
-        <span class="svcx-conv-soon">Coming soon</span>
+        <span class="svcx-conv-live">Live</span>
+        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
+      </div>
+    </a>
+
+    <a href="figma-to-unbounce" class="svcx-conv" data-reveal data-reveal-delay="320" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Unbounce conversion service">
+      <div class="svcx-conv-head">
+        <span class="svcx-conv-logo"><img src="images/tools/unbounce.png" alt="Unbounce"></span>
+        <span class="svcx-conv-flow">Figma &rarr; <b>Unbounce</b></span>
+      </div>
+      <h3>Figma to Unbounce</h3>
+      <p>High-converting landing pages, A/B-ready and built for paid campaigns.</p>
+      <div class="svcx-conv-foot">
+        <span class="svcx-conv-live">Live</span>
         <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
       </div>
     </a>
@@ -342,11 +510,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- Custom builds strip -->
-  <div data-reveal data-reveal-delay="120" style="margin-top:clamp(28px,5vh,48px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px clamp(22px,3vw,34px);background:linear-gradient(120deg,rgba(157,92,255,.08),rgba(255,255,255,0))">
+  <div class="svcx-strip" data-reveal data-reveal-delay="120" style="margin-top:clamp(28px,5vh,48px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
       <div>
-        <h3 style="font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.02em;margin:0 0 6px">No platform fits? We build from scratch.</h3>
-        <p style="font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#9A9AA2;margin:0">Custom web apps, SaaS and ERP systems engineered end-to-end in React, Vue, Next.js, Node &amp; Python.</p>
+        <h3>No platform fits? We build from scratch.</h3>
+        <p>Custom web apps, SaaS and ERP systems engineered end-to-end in React, Vue, Next.js, Node &amp; Python.</p>
       </div>
       <a data-transition href="contact" data-magnetic class="wx-btn-animated">
         <span class="wx-btn-label">Discuss a custom build</span>
@@ -356,13 +523,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </svg>
         </span>
       </a>
-    </div>
   </div>
 </section>
 
 <!-- next/footer CTA -->
-<a data-transition href="contact" style="display:block;text-decoration:none;color:inherit;border-top:1px solid rgba(255,255,255,.1)">
-  <section style="padding:clamp(70px,12vh,150px) clamp(20px,5vw,72px);text-align:center">
+<a data-transition href="contact" class="svcx-cta" style="display:block;text-decoration:none;color:inherit;border-top:1px solid rgba(255,255,255,.1)">
+  <section style="padding:clamp(70px,12vh,150px) clamp(20px,5vw,72px);text-align:center;position:relative;z-index:1">
     <div style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2;margin-bottom:24px">Ready when you are</div>
     <h2 data-reveal style="font-size:clamp(40px,9vw,140px);font-weight:700;letter-spacing:-.04em;line-height:.9;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Let's talk <span style="color:#9D5CFF">&rarr;</span></h2>
   </section>
