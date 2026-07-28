@@ -96,6 +96,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <style>
   /* ---- Service page local styles ---- */
+  .wx-svc-flow{display:inline-flex;align-items:center;gap:14px;margin-bottom:30px}
+  .wx-svc-flow-logo{width:54px;height:54px;border-radius:15px;flex-shrink:0;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+  .wx-svc-flow-logo img{width:56%;height:56%;object-fit:contain}
+  .wx-svc-flow-arrow{width:20px;height:20px;color:#9D5CFF;flex-shrink:0}
   .wx-svc-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
   .wx-svc-badge{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.02em;color:#C9C9D2;
     border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.02)}
@@ -137,6 +141,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav aria-label="Breadcrumb" data-reveal style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82;margin-bottom:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
     <a href="services" class="wx-uline" style="color:#9A9AA2;text-decoration:none">Services</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Figma to Shopify</span>
   </nav>
+  <div class="wx-svc-flow" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease" aria-label="Figma to Shopify">
+    <span class="wx-svc-flow-logo"><img src="images/tools/figma.png" alt="Figma" width="30" height="30"></span>
+    <svg class="wx-svc-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <span class="wx-svc-flow-logo"><img src="images/tools/shopify.png" alt="Shopify" width="30" height="30"></span>
+  </div>
   <h1 data-reveal data-reveal-delay="60" style="font-size:clamp(34px,5.6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.02;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Figma to Shopify, built to <span style="color:#9D5CFF">convert</span>.</h1>
   <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="margin-top:26px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Hand us your Figma file &mdash; we hand back a fast, conversion-ready Shopify store that matches your design at every breakpoint. No bloated theme, no template you have to fight. Just clean, editable Online Store 2.0 sections your team can actually run.</p>
   <div class="wx-svc-badges" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
