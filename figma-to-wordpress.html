@@ -55,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/webx.css">
+<link rel="stylesheet" href="assets/css/service.css">
 <script src="assets/js/webx.js" defer></script>
 
 <script type="application/ld+json">
@@ -94,35 +95,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
-<style>
-  /* ---- Service page local styles ---- */
-  .wx-svc-flow{display:inline-flex;align-items:center;gap:14px;margin-bottom:30px}
-  .wx-svc-flow-logo{width:54px;height:54px;border-radius:15px;flex-shrink:0;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
-  .wx-svc-flow-logo img{width:56%;height:56%;object-fit:contain}
-  .wx-svc-flow-arrow{width:20px;height:20px;color:#9D5CFF;flex-shrink:0}
-  .wx-svc-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-  .wx-svc-badge{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.02em;color:#C9C9D2;
-    border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:8px 16px;background:rgba(255,255,255,.02)}
-  .wx-svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin:36px 0}
-  .wx-svc-card{border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:26px 24px;
-    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));transition:border-color .35s ease,transform .35s ease}
-  .wx-svc-card:hover{border-color:rgba(157,92,255,.5);transform:translateY(-3px)}
-  .wx-svc-card h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0 0 10px}
-  .wx-svc-card p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#9A9AA2;margin:0}
-  .wx-svc-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:#9D5CFF;margin-bottom:14px;display:block}
-  .wx-svc-steps{list-style:none;padding:0;margin:34px 0;counter-reset:step}
-  .wx-svc-steps li{position:relative;padding:22px 0 22px 64px;border-top:1px solid rgba(255,255,255,.09);counter-increment:step}
-  .wx-svc-steps li:last-child{border-bottom:1px solid rgba(255,255,255,.09)}
-  .wx-svc-steps li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:22px;
-    font-family:'JetBrains Mono',monospace;font-size:14px;color:#9D5CFF;font-weight:500}
-  .wx-svc-steps h3{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}
-  .wx-svc-steps p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#9A9AA2;margin:0}
-  .wx-svc-check{list-style:none;padding:0;margin:26px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px 30px}
-  .wx-svc-check li{position:relative;padding-left:30px;font-family:'Satoshi',sans-serif;font-size:15px;line-height:1.55;color:#C9C9D2}
-  .wx-svc-check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%,#c061ff,#9D5CFF);box-shadow:0 0 0 4px rgba(157,92,255,.12)}
-  .wx-svc-check li::after{content:"";position:absolute;left:6px;top:8px;width:6px;height:3px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
-</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -134,114 +106,195 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ GLOBAL FLOATING GLASS NAVIGATION (nav.js) ============ -->
 <script src="nav.js" defer></script>
 
-<main id="main">
+<main id="main" class="svcp">
+<div class="svcp-bg" aria-hidden="true"><span class="b1"></span><span class="b2"></span></div>
 <article>
-<!-- hero -->
-<section style="padding:clamp(130px,20vh,220px) clamp(20px,5vw,72px) clamp(20px,4vh,48px);max-width:900px;margin:0 auto">
-  <nav aria-label="Breadcrumb" data-reveal style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7A7A82;margin-bottom:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <a href="services" class="wx-uline" style="color:#9A9AA2;text-decoration:none">Services</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Figma to WordPress</span>
-  </nav>
-  <div class="wx-svc-flow" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease" aria-label="Figma to WordPress">
-    <span class="wx-svc-flow-logo"><img src="images/tools/figma.png" alt="Figma" width="30" height="30"></span>
-    <svg class="wx-svc-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    <span class="wx-svc-flow-logo"><img src="images/tools/wordpress.png" alt="WordPress" width="30" height="30"></span>
+
+<!-- ============ HERO ============ -->
+<section class="svcp-hero">
+  <div>
+    <nav class="svcp-hero-crumb" aria-label="Breadcrumb" data-reveal style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
+      <a href="services" class="wx-uline">Services</a> &nbsp;/&nbsp; <span style="color:var(--svc)">Figma to WordPress</span>
+    </nav>
+    <div class="svcp-flow" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease" aria-label="Figma to WordPress">
+      <span class="svcp-flow-node"><img src="images/tools/figma.png" alt="Figma">Figma</span>
+      <svg class="svcp-flow-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <span class="svcp-flow-node"><img src="images/tools/wordpress.png" alt="WordPress">WordPress</span>
+    </div>
+    <h1 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">Figma to WordPress, <span class="svcp-hl">custom-built</span>.</h1>
+    <p class="svcp-hero-lead" data-reveal data-reveal-delay="140" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">Hand us your Figma file &mdash; we hand back a fast, responsive WordPress site that matches your design and that your team can actually edit. Custom theme or page builder, structured content, no bloat. WordPress the way it should be built.</p>
+    <div class="svcp-cta-row" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
+        <span class="wx-btn-label">Get a fixed quote</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          </svg>
+        </span>
+      </a>
+      <a data-transition href="work" class="svcp-btn-ghost">See our work</a>
+    </div>
+    <div class="svcp-badges" data-reveal data-reveal-delay="260" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
+      <span class="svcp-badge">Pixel-perfect at every breakpoint</span>
+      <span class="svcp-badge">Custom theme or Elementor</span>
+      <span class="svcp-badge">Easy for your team to edit</span>
+    </div>
   </div>
-  <h1 data-reveal data-reveal-delay="60" style="font-size:clamp(34px,5.6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.02;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Figma to WordPress, <span style="color:#9D5CFF">custom-built</span>.</h1>
-  <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="margin-top:26px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Hand us your Figma file &mdash; we hand back a fast, responsive WordPress site that matches your design and that your team can actually edit. Custom theme or page builder, structured content, no bloat. WordPress the way it should be built.</p>
-  <div class="wx-svc-badges" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <span class="wx-svc-badge">Pixel-perfect at every breakpoint</span>
-    <span class="wx-svc-badge">Custom theme or Elementor</span>
-    <span class="wx-svc-badge">Easy for your team to edit</span>
-    <span class="wx-svc-badge">SEO-clean &amp; fast</span>
-  </div>
-  <div data-reveal data-reveal-delay="260" style="margin-top:36px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-      <span class="wx-btn-label">Get a fixed quote</span>
-      <span class="wx-btn-circle">
-        <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-        </svg>
-      </span>
-    </a>
+
+  <div class="svcp-visual" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)" aria-hidden="true">
+    <figure class="svcp-frame svcp-frame--fig">
+      <span class="svcp-tag-fig">design.fig</span>
+      <img src="images/work/tmc.avif" alt="" loading="eager" decoding="async">
+    </figure>
+    <figure class="svcp-frame svcp-frame--out">
+      <div class="svcp-win-bar"><i></i><i></i><i></i><span class="svcp-win-url">yourbrand.com</span></div>
+      <div class="svcp-win-shot"><img src="images/work/gpsfdk.avif" alt="" loading="eager" decoding="async"></div>
+      <span class="svcp-tag-out">Live in WordPress</span>
+    </figure>
   </div>
 </section>
 
-<!-- body -->
-<section style="padding:clamp(20px,4vh,40px) clamp(20px,5vw,72px) clamp(60px,10vh,110px)">
-  <div class="wx-prose" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+<!-- ============ STATS STRIP ============ -->
+<div class="svcp-stats" data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div class="svcp-stats-inner">
+    <div class="svcp-stat"><b>48<span>h</span></b><p>Fixed quote turnaround</p></div>
+    <div class="svcp-stat"><b>100<span>/100</span></b><p>Lighthouse-ready builds</p></div>
+    <div class="svcp-stat"><b>2</b><p>Revision rounds included</p></div>
+    <div class="svcp-stat"><b>1:1</b><p>Pixel match to your Figma</p></div>
+  </div>
+</div>
 
-    <p>Your Figma design is polished and signed off &mdash; now it needs to become a WordPress site your business runs on. That handoff is where a lot of designs get watered down: a stretched premium theme, plugins fighting each other, a page builder that bloats every load, and a back end no one on your team dares to touch. At <a href="/">Web{X}</a> we specialise in that step. We turn Figma into <strong>custom-built WordPress</strong> that stays faithful to your design, loads fast, and is genuinely easy to edit.</p>
+<!-- ============ WHAT YOU GET ============ -->
+<section class="svcp-section" aria-labelledby="svcp-feat-h">
+  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <span class="svcp-eyebrow"><b>(01)</b> What you get</span>
+    <h2 class="svcp-h2" id="svcp-feat-h">Everything the handoff usually <span class="svcp-hl">loses</span>.</h2>
+    <p class="svcp-lead">A finished Figma looks incredible &mdash; then a stretched theme, fighting plugins and a bloated page builder water it down. We rebuild it by hand so none of that happens.</p>
+  </div>
 
-    <div class="wx-callout">
-      <span class="wx-callout-label">In one line</span>
-      <p>Send us a Figma link. We build it in WordPress &mdash; pixel-perfect, responsive, SEO-clean and structured for editing &mdash; as a lean custom theme or a tidy page-builder setup, whichever suits your team.</p>
+  <div class="svcp-bento">
+    <div class="svcp-feature" data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">01</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 1v3M12 20v3M23 12h-3M4 12H1"/></svg></span>
+      <h3>Pixel-perfect build</h3>
+      <p>Every section matches your Figma &mdash; type scale, spacing, colour, grid &mdash; across desktop, tablet and mobile, not just the frame you designed.</p>
     </div>
+    <div class="svcp-feature" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">02</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg></span>
+      <h3>Custom theme or builder</h3>
+      <p>A lightweight custom theme with ACF, or a clean Elementor/Gutenberg setup &mdash; matched to who maintains the site.</p>
+    </div>
+    <div class="svcp-feature" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">03</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+      <h3>Editable, structured content</h3>
+      <p>Custom fields and reusable blocks so your team updates text, images and posts safely &mdash; no code, no broken layouts.</p>
+    </div>
+    <div class="svcp-feature" data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">04</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M4 4l7 16 2.5-6.5L20 11z"/></svg></span>
+      <h3>The right plugins, no bloat</h3>
+      <p>Only what the site needs &mdash; SEO, forms, security, caching &mdash; vetted, configured and kept lean for speed.</p>
+    </div>
+    <div class="svcp-feature" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">05</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 12l5-5"/><path d="M21 3v5h-5"/></svg></span>
+      <h3>Speed &amp; SEO baked in</h3>
+      <p>Optimised images, caching, semantic markup, meta and Open Graph, alt text and schema &mdash; ready to rank from day one.</p>
+    </div>
+    <div class="svcp-feature" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-fnum">06</span>
+      <span class="svcp-fic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></svg></span>
+      <h3>Handover &amp; training</h3>
+      <p>A short Loom walkthrough, a clean install, and a real human to answer questions after launch.</p>
+    </div>
+  </div>
+</section>
 
-    <h2>What you get</h2>
-    <div class="wx-svc-grid">
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">01</span>
-        <h3>Pixel-perfect build</h3>
-        <p>Every section matches your Figma &mdash; type scale, spacing, colour, grid &mdash; across desktop, tablet and mobile, not just the frame you designed.</p>
-      </div>
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">02</span>
-        <h3>Custom theme or builder</h3>
-        <p>A lightweight custom theme with ACF, or a clean Elementor/Gutenberg setup &mdash; matched to who maintains the site.</p>
-      </div>
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">03</span>
-        <h3>Editable, structured content</h3>
-        <p>Custom fields and reusable blocks so your team updates text, images and posts safely &mdash; no code, no broken layouts.</p>
-      </div>
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">04</span>
-        <h3>The right plugins, no bloat</h3>
-        <p>Only what the site needs &mdash; SEO, forms, security, caching &mdash; vetted, configured and kept lean for speed.</p>
-      </div>
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">05</span>
-        <h3>Speed &amp; SEO baked in</h3>
-        <p>Optimised images, caching, semantic markup, meta and Open Graph, alt text and schema &mdash; ready to rank from day one.</p>
-      </div>
-      <div class="wx-svc-card">
-        <span class="wx-svc-num">06</span>
-        <h3>Handover &amp; training</h3>
-        <p>A short Loom walkthrough, a clean install, and a real human to answer questions after launch.</p>
+<!-- ============ PROCESS ============ -->
+<section class="svcp-section" aria-labelledby="svcp-proc-h" style="padding-top:0">
+  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <span class="svcp-eyebrow"><b>(02)</b> The process</span>
+    <h2 class="svcp-h2" id="svcp-proc-h">From Figma link to <span class="svcp-hl">live site</span>.</h2>
+    <p class="svcp-lead">Five clear stages, a fixed timeline, and a staging link you can watch update the whole way through.</p>
+  </div>
+
+  <div class="svcp-steps">
+    <div class="svcp-step" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-step-n">Step 01</span>
+      <h3>Share your Figma</h3>
+      <p>Send the file and a quick note on scope, functionality and any integrations. Fixed quote and timeline back within two business days.</p>
+    </div>
+    <div class="svcp-step" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-step-n">Step 02</span>
+      <h3>We build in WordPress</h3>
+      <p>Rebuilt section by section as a custom theme or page-builder layout, responsive from the first breakpoint, on a clean, secure install. Staging link included.</p>
+    </div>
+    <div class="svcp-step" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-step-n">Step 03</span>
+      <h3>Content, functionality &amp; polish</h3>
+      <p>We wire up custom fields, forms, blog or product structures and any integrations, then pressure-test every breakpoint, hover and empty state.</p>
+    </div>
+    <div class="svcp-step" data-reveal data-reveal-delay="180" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-step-n">Step 04</span>
+      <h3>Review &amp; revisions</h3>
+      <p>You review against Figma; we refine until it matches. Two rounds of revisions included on every build.</p>
+    </div>
+    <div class="svcp-step" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-step-n">Step 05</span>
+      <h3>Launch &amp; handover</h3>
+      <p>We migrate to your host, connect your domain, run final QA, SEO and security checks, publish, and hand over with a walkthrough for your team.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY / HAND-BUILT ============ -->
+<section class="svcp-section" aria-labelledby="svcp-why-h" style="padding-top:0">
+  <div class="svcp-split">
+    <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+      <span class="svcp-eyebrow"><b>(03)</b> Why hand-built</span>
+      <h2 class="svcp-h2" id="svcp-why-h">Auto-export is fast. It&rsquo;s also a <span class="svcp-hl">trap</span>.</h2>
+      <p class="svcp-lead">WordPress still powers a huge share of the web because it&rsquo;s flexible, familiar and yours to own &mdash; content, hosting and data all under your control. But that only pays off if it&rsquo;s built well. A stretched marketplace theme with a dozen plugins can turn a beautiful Figma design into a slow, fragile site. We build lean &mdash; a custom theme or a disciplined page-builder setup &mdash; so you keep WordPress&rsquo;s freedom without the bloat.</p>
+      <blockquote class="svcp-quote">A design is only as good as the site it becomes. We make sure nothing is lost in translation.</blockquote>
+    </div>
+    <div class="svcp-vs" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+      <div class="svcp-vs-row">
+        <div class="svcp-vs-col svcp-vs-bad">
+          <p class="svcp-vs-h">Auto-export plugins</p>
+          <ul>
+            <li>Tangled, duplicated markup</li>
+            <li>Breaks on real content</li>
+            <li>Shaky responsiveness</li>
+            <li>Bloated, slow page loads</li>
+            <li>Nobody can maintain it</li>
+          </ul>
+        </div>
+        <div class="svcp-vs-col svcp-vs-good">
+          <p class="svcp-vs-h">Web{X} hand-built</p>
+          <ul>
+            <li>Clean custom theme or builder</li>
+            <li>Editable, structured content</li>
+            <li>Responsive at every breakpoint</li>
+            <li>Optimised for Core Web Vitals</li>
+            <li>Handover your team can run</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <h2>How the process works</h2>
-    <ol class="wx-svc-steps">
-      <li>
-        <h3>Share your Figma</h3>
-        <p>Send the file and a quick note on scope, functionality and any integrations. We review it and come back with a fixed quote and timeline &mdash; usually within two business days.</p>
-      </li>
-      <li>
-        <h3>We build in WordPress</h3>
-        <p>We rebuild your design section by section as a custom theme or page-builder layout, responsive from the first breakpoint, on a clean, secure install. You get a staging link to follow along.</p>
-      </li>
-      <li>
-        <h3>Content, functionality &amp; polish</h3>
-        <p>We wire up custom fields, forms, blog or product structures and any integrations, then pressure-test every breakpoint, hover and empty state.</p>
-      </li>
-      <li>
-        <h3>Review &amp; revisions</h3>
-        <p>You review against Figma; we refine until it matches. Two rounds of revisions are included on every build.</p>
-      </li>
-      <li>
-        <h3>Launch &amp; handover</h3>
-        <p>We migrate to your host, connect your domain, run final QA, SEO and security checks, publish, and hand over with a walkthrough so your team can take it from here.</p>
-      </li>
-    </ol>
+<!-- ============ INCLUDED + PRICING ============ -->
+<section class="svcp-section" aria-labelledby="svcp-incl-h" style="padding-top:0">
+  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <span class="svcp-eyebrow"><b>(04)</b> Included &amp; pricing</span>
+    <h2 class="svcp-h2" id="svcp-incl-h">One fixed number. <span class="svcp-hl">Everything</span> in it.</h2>
+    <p class="svcp-lead">No hourly mystery meter. Every Figma-to-WordPress build ships with the essentials below &mdash; you approve the price before we start.</p>
+  </div>
 
-    <h2>Why WordPress &mdash; and why custom-built</h2>
-    <p>WordPress still powers a huge share of the web because it&rsquo;s flexible, familiar and yours to own &mdash; content, hosting and data all under your control. But that only pays off if it&rsquo;s built well. A stretched marketplace theme with a dozen plugins can turn a beautiful Figma design into a slow, fragile site. We build lean &mdash; a custom theme or a disciplined page-builder setup &mdash; so you keep WordPress&rsquo;s freedom without the bloat.</p>
-
-    <blockquote>A design is only as good as the site it becomes. We make sure nothing is lost in translation.</blockquote>
-
-    <h2>What&rsquo;s included in every build</h2>
-    <ul class="wx-svc-check">
+  <div class="svcp-incl" data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <ul>
       <li>Fully responsive across all devices</li>
       <li>Pixel-accurate to your Figma file</li>
       <li>Custom theme or page-builder setup</li>
@@ -253,51 +306,98 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>Custom domain &amp; host migration</li>
       <li>Two rounds of revisions</li>
     </ul>
+  </div>
 
-    <div class="wx-callout">
-      <span class="wx-callout-label">Typical investment</span>
-      <p>A single landing page usually starts around <strong>$450&ndash;$800 (₹38,000&ndash;₹68,000)</strong>. A full business site with a custom theme, CMS and integrations typically lands between <strong>$1,500 and $6,000</strong>, depending on page count, functionality and integrations. You get a fixed number before we start &mdash; no hourly mystery meter.</p>
+  <div class="svcp-price">
+    <div class="svcp-price-card" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <h3>Landing page</h3>
+      <p class="svcp-price-sub">One high-converting page, built to ship in days.</p>
+      <div class="svcp-price-amt">$450<span>&ndash;$800</span></div>
+      <div class="svcp-price-inr">₹38,000&ndash;₹68,000</div>
+      <ul>
+        <li>Single responsive page</li>
+        <li>Custom theme or builder</li>
+        <li>SEO &amp; meta setup</li>
+        <li>4&ndash;6 business days</li>
+      </ul>
     </div>
-
-    <div class="wx-article-cta">
-      <h3>Have a Figma design ready to build?</h3>
-      <p>Send it over with your scope and deadline. We&rsquo;ll reply with a clear, itemised Figma-to-WordPress quote &mdash; usually within two business days.</p>
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-        <span class="wx-btn-label">Start your project</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-          </svg>
-        </span>
-      </a>
+    <div class="svcp-price-card svcp-price-card--feat" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+      <span class="svcp-price-tag">Most popular</span>
+      <h3>Business site</h3>
+      <p class="svcp-price-sub">Full multi-page site with a CMS your team runs.</p>
+      <div class="svcp-price-amt">$1,500<span>&ndash;$6,000</span></div>
+      <div class="svcp-price-inr">Scales with pages &amp; integrations</div>
+      <ul>
+        <li>5&ndash;8 unique templates</li>
+        <li>Custom fields &amp; content structures</li>
+        <li>Forms &amp; integrations</li>
+        <li>Typically 2&ndash;4 weeks</li>
+      </ul>
     </div>
+  </div>
+  <p class="svcp-price-note">Prices depend on page count, functionality and integrations &mdash; you get a fixed, itemised quote before we start.</p>
+</section>
 
-    <h2>Figma to WordPress FAQs</h2>
-
-    <h3>How long does a build take?</h3>
-    <p>A single landing page is usually 4&ndash;6 business days. A 5&ndash;8 page business site with a CMS typically takes 2&ndash;4 weeks. We commit to a fixed timeline with your quote.</p>
-
-    <h3>Custom theme or page builder?</h3>
-    <p>Both, depending on who maintains the site. We build lightweight custom themes (often with ACF and the block editor) when performance and control matter most, or Elementor/Gutenberg when your team wants to edit visually. We recommend the right fit for your case.</p>
-
-    <h3>Will it look exactly like my Figma?</h3>
-    <p>Yes &mdash; pixel-perfect at every breakpoint. Where Figma leaves gaps (hover states, mobile, empty states), we flag them and design sensible defaults with you rather than guessing.</p>
-
-    <h3>Is it easy for my team to edit?</h3>
-    <p>Yes. We structure custom fields and editable blocks so your team can update text, images and posts safely &mdash; without breaking the design or touching code.</p>
-
-    <hr>
-    <p style="font-size:15px;color:#7A7A82">Prefer another platform? We also build <a href="figma-to-webflow">Figma to Webflow</a>, <a href="figma-to-shopify">Figma to Shopify</a>, <a href="figma-to-framer">Figma to Framer</a> and <a href="figma-to-unbounce">Figma to Unbounce</a>. Or explore <a href="work">our work</a> and <a href="studio">the studio</a>.</p>
-
+<!-- ============ FAQ ============ -->
+<section class="svcp-section" aria-labelledby="svcp-faq-h" style="padding-top:0">
+  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <span class="svcp-eyebrow"><b>(05)</b> FAQs</span>
+    <h2 class="svcp-h2" id="svcp-faq-h" style="margin-bottom:clamp(28px,4vh,44px)">Figma to WordPress, answered.</h2>
+  </div>
+  <div data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <details class="wx-faq">
+      <summary>How long does a build take?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
+      <div class="wx-faq-body">A single landing page is usually 4&ndash;6 business days. A 5&ndash;8 page business site with a CMS typically takes 2&ndash;4 weeks. We commit to a fixed timeline with your quote.</div>
+    </details>
+    <details class="wx-faq">
+      <summary>Custom theme or page builder?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
+      <div class="wx-faq-body">Both, depending on who maintains the site. We build lightweight custom themes (often with ACF and the block editor) when performance and control matter most, or Elementor/Gutenberg when your team wants to edit visually. We recommend the right fit for your case.</div>
+    </details>
+    <details class="wx-faq">
+      <summary>Will it look exactly like my Figma?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
+      <div class="wx-faq-body">Yes &mdash; pixel-perfect at every breakpoint. Where Figma leaves gaps (hover states, mobile, empty states), we flag them and design sensible defaults with you rather than guessing.</div>
+    </details>
+    <details class="wx-faq">
+      <summary>Is it easy for my team to edit?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
+      <div class="wx-faq-body">Yes. We structure custom fields and editable blocks so your team can update text, images and posts safely &mdash; without breaking the design or touching code.</div>
+    </details>
   </div>
 </section>
 
-<!-- next/footer CTA -->
-<a data-transition href="contact" style="display:block;text-decoration:none;color:inherit;border-top:1px solid rgba(255,255,255,.1)">
-  <section style="padding:clamp(70px,12vh,150px) clamp(20px,5vw,72px);text-align:center">
-    <div style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2;margin-bottom:24px">Ready when you are</div>
-    <h2 data-reveal style="font-size:clamp(40px,9vw,140px);font-weight:700;letter-spacing:-.04em;line-height:.9;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Let's talk <span style="color:#9D5CFF">&rarr;</span></h2>
-  </section>
+<!-- ============ OTHER PLATFORMS ============ -->
+<section class="svcp-section" aria-labelledby="svcp-rel-h" style="padding-top:0">
+  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <span class="svcp-eyebrow"><b>(06)</b> Other platforms</span>
+    <h2 class="svcp-h2" id="svcp-rel-h">Prefer a different stack?</h2>
+  </div>
+  <div class="svcp-rel" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <a data-transition href="figma-to-webflow">
+      <span class="svcp-rel-logo"><img src="images/tools/webflow.png" alt="Webflow"></span>
+      <span>Figma to Webflow</span>
+      <small>Pixel-perfect &amp; CMS-ready <b>&rarr;</b></small>
+    </a>
+    <a data-transition href="figma-to-shopify">
+      <span class="svcp-rel-logo"><img src="images/tools/shopify.png" alt="Shopify"></span>
+      <span>Figma to Shopify</span>
+      <small>Conversion-ready store <b>&rarr;</b></small>
+    </a>
+    <a data-transition href="figma-to-framer">
+      <span class="svcp-rel-logo"><img src="images/tools/framer.svg" alt="Framer"></span>
+      <span>Figma to Framer</span>
+      <small>Motion-rich &amp; fast <b>&rarr;</b></small>
+    </a>
+    <a data-transition href="figma-to-unbounce">
+      <span class="svcp-rel-logo"><img src="images/tools/unbounce.png" alt="Unbounce"></span>
+      <span>Figma to Unbounce</span>
+      <small>A/B-ready landers <b>&rarr;</b></small>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<a data-transition href="contact" class="svcp-final">
+  <div class="svcp-final-k">Ready when you are</div>
+  <h2 data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Let's talk <span>&rarr;</span></h2>
 </a>
 </article>
 </main>
