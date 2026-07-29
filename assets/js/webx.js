@@ -124,14 +124,18 @@
     if (reduce) { els.forEach(function (el) { el.style.opacity = '1'; el.style.transform = 'none'; }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          var el = en.target, delay = parseFloat(el.getAttribute('data-reveal-delay') || '0');
-          el.style.transitionDelay = delay + 'ms';
-          requestAnimationFrame(function () { el.style.opacity = '1'; el.style.transform = 'none'; });
-          io.unobserve(el);
-        }
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        // Elements taller than the viewport can never reach a 0.15 ratio, so
+        // reveal them the moment they enter; keep the 15% cue for normal blocks.
+        var tall = en.boundingClientRect.height > window.innerHeight;
+        if (!tall && en.intersectionRatio < 0.15) return;
+        var delay = parseFloat(el.getAttribute('data-reveal-delay') || '0');
+        el.style.transitionDelay = delay + 'ms';
+        requestAnimationFrame(function () { el.style.opacity = '1'; el.style.transform = 'none'; });
+        io.unobserve(el);
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: [0, 0.15], rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (el) { io.observe(el); });
   }
 
