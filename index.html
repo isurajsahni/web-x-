@@ -1469,8 +1469,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </style>
 
   <!-- Headings and Subtext Stacked (Modern alignment, centered/left stacked) -->
-  <div style="max-width: 800px; margin-bottom: clamp(48px, 8vh, 80px);">
-    <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+  <div style="max-width: 800px; margin:0 auto clamp(48px, 8vh, 80px); text-align:center;">
+    <div data-reveal style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
       <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02.5)</span>
       <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Design &rarr; Production &middot; Custom builds</span>
     </div>
@@ -1765,933 +1765,351 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- ============ TESTIMONIALS ============ -->
-<section class="wx-testimonials-section" style="padding:clamp(60px,10vh,110px) 0 clamp(90px,15vh,180px);background:#000000;position:relative;overflow:hidden;min-height:clamp(680px,85vh,920px);display:flex;align-items:center;justify-content:center;">
-  
+<section class="wx-testimonials-section">
+
   <style>
-    /* ---------- Testimonials Floating Layout ---------- */
-    .wx-testimonials-section {
-      width: 100%;
-      user-select: none;
-      /* Feathered mask to blend the background aurora glows seamlessly into the page */
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000000 10%, #000000 90%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, #000000 10%, #000000 90%, transparent 100%);
+    /* ===================== TESTIMONIALS — Spotlight Concept ===================== */
+    .wx-testimonials-section{
+      position:relative;
+      width:100%;
+      background:#000000;
+      overflow:hidden;
+      padding:clamp(72px,11vh,130px) clamp(20px,5vw,72px) clamp(80px,13vh,150px);
+      -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      mask-image:linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
     }
 
-    .wx-test-center {
-      text-align: center;
-      max-width: 800px;
-      z-index: 3;
-      position: relative;
-      pointer-events: none;
+    /* Ambient brand glow (keeps the site's aurora language) */
+    .wx-tst-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+    .wx-tst-glow{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform;}
+    .wx-tst-glow.g1{width:520px;height:520px;top:-8%;left:6%;
+      background:radial-gradient(circle, rgba(155,176,255,.12) 0%, rgba(157,92,255,.06) 45%, rgba(0,0,0,0) 70%);
+      animation:wxTstGlow1 20s ease-in-out infinite alternate;}
+    .wx-tst-glow.g2{width:560px;height:560px;bottom:-12%;right:4%;
+      background:radial-gradient(circle, rgba(192,97,255,.11) 0%, rgba(79,70,229,.05) 45%, rgba(0,0,0,0) 70%);
+      animation:wxTstGlow2 24s ease-in-out infinite alternate;}
+    @keyframes wxTstGlow1{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(40px,30px,0) scale(1.06)}}
+    @keyframes wxTstGlow2{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-30px,-24px,0) scale(.96)}}
+
+    .wx-tst-inner{
+      position:relative;z-index:2;
+      max-width:960px;margin:0 auto;
+      display:flex;flex-direction:column;align-items:center;text-align:center;
     }
 
-    .wx-test-subtitle {
-      font-family: 'Satoshi', sans-serif;
-      font-size: clamp(13px, 1.1vw, 16px);
-      color: rgba(255, 255, 255, 0.45);
-      margin-bottom: 8px; /* Tighter grouping space */
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    /* ---------- Heading ---------- */
+    .wx-tst-eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'Satoshi', sans-serif;font-size:12px;font-weight:600;
+      letter-spacing:.16em;text-transform:uppercase;color:#9A9AA2;
+      margin-bottom:clamp(16px,2.4vh,24px);
+    }
+    .wx-tst-eyebrow i{width:5px;height:5px;border-radius:50%;background:#9D5CFF;display:inline-block;
+      box-shadow:0 0 10px rgba(157,92,255,.8);}
+    .wx-tst-title{
+      font-family:'Outfit', 'Satoshi', sans-serif;
+      font-size:clamp(30px,4.4vw,60px);font-weight:600;line-height:1.1;
+      letter-spacing:-.03em;color:#ffffff;margin:0 0 clamp(36px,6vh,60px);
+    }
+    .wx-tst-title .wx-tst-spark{
+      font-size:.92em;line-height:1;display:inline-block;vertical-align:middle;margin-left:4px;
+      filter:drop-shadow(0 0 10px rgba(157,92,255,.45));
     }
 
-    .wx-test-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(32px, 4.4vw, 64px);
-      font-weight: 600; /* Sophisticated semibold weight */
-      color: #ffffff;
-      line-height: 1.1; /* Tighter and cleaner alignment */
-      letter-spacing: -0.025em; /* Premium tight letter-spacing */
-      margin: 0;
+    /* ---------- Spotlight stage (all slides stacked in one grid cell) ---------- */
+    .wx-tst-stage{position:relative;width:100%;max-width:820px;}
+    .wx-tst-quotemark{
+      font-family:'Outfit', Georgia, serif;font-size:clamp(70px,12vw,130px);line-height:.7;
+      font-weight:700;margin:0 auto clamp(6px,1.4vh,16px);height:.55em;
+      background:linear-gradient(120deg,#9bb0ff 0%,#9D5CFF 50%,#c061ff 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+      user-select:none;
+    }
+    .wx-tst-slides{display:grid;}
+    .wx-tst-slide{
+      grid-area:1 / 1;
+      display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3.5vh,32px);
+      opacity:0;visibility:hidden;transform:translateY(14px);
+      transition:opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1), visibility .55s;
+      pointer-events:none;
+    }
+    .wx-tst-slide.is-active{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .wx-tst-quote{
+      font-family:'Satoshi', sans-serif;
+      font-size:clamp(18px,2.5vw,30px);font-weight:500;line-height:1.5;letter-spacing:-.01em;
+      color:#EDEDED;margin:0;max-width:760px;
+    }
+    .wx-tst-author{display:flex;align-items:center;gap:14px;}
+    .wx-tst-author-img{
+      width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0;
+      border:2px solid rgba(255,255,255,.1);background:#111115;
+    }
+    .wx-tst-author-meta{text-align:left;display:flex;flex-direction:column;gap:2px;}
+    .wx-tst-author-name{font-family:'Satoshi', sans-serif;font-size:15px;font-weight:700;color:#ffffff;line-height:1.2;}
+    .wx-tst-author-role{font-family:'JetBrains Mono','Satoshi',monospace;font-size:11.5px;font-weight:500;
+      letter-spacing:.02em;color:#9A9AA2;line-height:1.2;}
+
+    /* ---------- Controls: avatar tabs + arrows ---------- */
+    .wx-tst-controls{
+      display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,18px);
+      margin-top:clamp(40px,6vh,64px);flex-wrap:wrap;
+    }
+    .wx-tst-arrow{
+      width:42px;height:42px;flex-shrink:0;border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+      color:#C9C9D2;transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
+    }
+    .wx-tst-arrow:hover{background:rgba(157,92,255,.14);border-color:rgba(157,92,255,.5);color:#fff;transform:translateY(-1px);}
+    .wx-tst-arrow svg{width:16px;height:16px;}
+    .wx-tst-tabs{display:flex;align-items:center;gap:clamp(8px,1.3vw,14px);}
+    .wx-tst-tab{
+      position:relative;width:46px;height:46px;padding:0;border:0;background:transparent;
+      border-radius:50%;cursor:pointer;flex-shrink:0;
+      transition:transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    .wx-tst-tab img{
+      width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;
+      background:#111115;filter:grayscale(60%);opacity:.55;
+      border:2px solid transparent;
+      transition:filter .3s ease,opacity .3s ease,border-color .3s ease;
+    }
+    .wx-tst-tab::after{
+      content:"";position:absolute;inset:-4px;border-radius:50%;
+      background:linear-gradient(120deg,#9bb0ff,#9D5CFF,#c061ff);
+      opacity:0;transition:opacity .3s ease;z-index:-1;
+    }
+    .wx-tst-tab:hover img{filter:grayscale(0);opacity:.85;}
+    .wx-tst-tab.is-active{transform:scale(1.12);}
+    .wx-tst-tab.is-active img{filter:grayscale(0);opacity:1;border-color:#000;}
+    .wx-tst-tab.is-active::after{opacity:1;}
+    .wx-tst-tab:focus-visible{outline:2px solid #9D5CFF;outline-offset:3px;}
+    .wx-tst-arrow:focus-visible{outline:2px solid #9D5CFF;outline-offset:2px;}
+
+    /* ---------- Autoplay progress bar ---------- */
+    .wx-tst-progress{
+      width:min(220px,60%);height:2px;border-radius:2px;margin-top:clamp(26px,4vh,38px);
+      background:rgba(255,255,255,.09);overflow:hidden;
+    }
+    .wx-tst-progress span{
+      display:block;height:100%;width:100%;transform-origin:left center;transform:scaleX(0);
+      background:linear-gradient(90deg,#9bb0ff,#9D5CFF,#c061ff);
+    }
+    .wx-tst-progress span.is-running{animation:wxTstBar var(--wx-tst-dur,6000ms) linear forwards;}
+    .wx-tst-progress span.is-paused{animation-play-state:paused;}
+    @keyframes wxTstBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:600px){
+      .wx-tst-quote{font-size:clamp(17px,5vw,21px);}
+      .wx-tst-tab{width:40px;height:40px;}
+      .wx-tst-arrow{width:38px;height:38px;}
+      .wx-tst-controls{gap:8px;}
+      .wx-tst-tabs{gap:7px;}
     }
 
-    /* Floating bubble container */
-    .wx-test-bubble-container {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
-
-    /* Outer wrapper for absolute positioning and JS parallax (GPU accelerated translate3d) */
-    .wx-test-item-wrap {
-      position: absolute;
-      z-index: 2;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Inner block for smooth 60fps vertical floating (GPU accelerated transform) */
-    .wx-test-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      will-change: transform;
-    }
-
-    @keyframes wxTestFloatAnim {
-      0% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(0, -12px, 0); }
-      100% { transform: translate3d(0, 0, 0); }
-    }
-
-    /* Staggered float animation times */
-    .wx-test-item-wrap:nth-child(1) .wx-test-item { animation: wxTestFloatAnim 6s ease-in-out infinite; }
-    .wx-test-item-wrap:nth-child(2) .wx-test-item { animation: wxTestFloatAnim 7s ease-in-out infinite; animation-delay: 1s; }
-    .wx-test-item-wrap:nth-child(3) .wx-test-item { animation: wxTestFloatAnim 8s ease-in-out infinite; animation-delay: 2s; }
-    .wx-test-item-wrap:nth-child(4) .wx-test-item { animation: wxTestFloatAnim 6.5s ease-in-out infinite; animation-delay: 0.5s; }
-    .wx-test-item-wrap:nth-child(5) .wx-test-item { animation: wxTestFloatAnim 7.5s ease-in-out infinite; animation-delay: 1.5s; }
-    .wx-test-item-wrap:nth-child(6) .wx-test-item { animation: wxTestFloatAnim 8.5s ease-in-out infinite; animation-delay: 2.5s; }
-
-    /* Left layout: Avatar on left, bubble on right */
-    .wx-layout-left {
-      flex-direction: row;
-    }
-
-    /* Right layout: Bubble on left, avatar on right */
-    .wx-layout-right {
-      flex-direction: row-reverse;
-    }
-
-    .wx-test-avatar-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    .wx-test-img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.08);
-      background: #111115;
-    }
-
-    .wx-test-name {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: #9bb0ff; /* Vibrant brand lavender color */
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    .wx-test-designation {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 10px;
-      font-weight: 500; /* Bolder medium weight for highlighting */
-      color: #b3b3b8; /* Brighter grey color for high legibility */
-      text-align: center;
-      max-width: 90px;
-      line-height: 1.25;
-    }
-
-    /* Speech bubble style - White background, no borders, dark text */
-    .wx-test-bubble {
-      background: #ffffff;
-      border: none;
-      border-radius: 22px;
-      padding: 14px 20px;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: #111115;
-      max-width: 250px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transition: background-color 0.3s ease, transform 0.3s ease, max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .wx-test-bubble:hover {
-      background: #f4f4f6;
-      transform: scale(1.03);
-    }
-
-    /* Inner text elements with height transition */
-    .wx-test-bubble-inner {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow: hidden;
-    }
-
-    .wx-test-short-txt {
-      margin: 0;
-      display: block;
-      transition: opacity 0.3s ease;
-    }
-
-    .wx-test-full-txt {
-      min-height: 0;
-      margin: 0;
-      color: #2c2c2e;
-      font-size: 13.5px;
-      line-height: 1.55;
-    }
-
-    /* Expanded state when clicked */
-    .wx-test-bubble.wx-expanded {
-      max-width: 330px;
-      background: #ffffff;
-      box-shadow: 0 15px 35px rgba(255, 255, 255, 0.04), 0 15px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    .wx-test-bubble.wx-expanded .wx-test-short-txt {
-      display: none;
-    }
-
-    .wx-test-bubble.wx-expanded .wx-test-bubble-inner {
-      grid-template-rows: 1fr;
-    }
-
-    /* Left bubble tail pointing left to avatar */
-    .wx-layout-left .wx-test-bubble::after {
-      content: "";
-      position: absolute;
-      left: -8px;
-      top: 20px;
-      width: 8px;
-      height: 12px;
-      background: inherit;
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
-    }
-
-    /* Right bubble tail pointing right to avatar */
-    .wx-layout-right .wx-test-bubble::after {
-      content: "";
-      position: absolute;
-      right: -8px;
-      top: 20px;
-      width: 8px;
-      height: 12px;
-      background: inherit;
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-    }
-
-    /* ---------- Northern Lights (Aurora) Styled Background ---------- */
-    .wx-test-aurora-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .wx-aurora-wave {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      top: 30%;
-      left: 10%;
-      background: radial-gradient(circle, rgba(155, 176, 255, 0.12) 0%, rgba(157, 92, 255, 0.06) 45%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(80px);
-      animation: wxAuroraWave1 18s ease-in-out infinite alternate;
-      will-change: transform;
-    }
-
-    .wx-aurora-wave-2 {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      bottom: 25%;
-      right: 8%;
-      background: radial-gradient(circle, rgba(192, 97, 255, 0.1) 0%, rgba(79, 70, 229, 0.05) 45%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(85px);
-      animation: wxAuroraWave2 22s ease-in-out infinite alternate;
-      will-change: transform;
-    }
-
-    @keyframes wxAuroraWave1 {
-      0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      50% { transform: translate3d(40px, -20px, 0) rotate(3deg) scale(1.03); }
-      100% { transform: translate3d(-30px, 30px, 0) rotate(-2deg) scale(0.97); }
-    }
-
-    @keyframes wxAuroraWave2 {
-      0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      50% { transform: translate3d(-30px, 15px, 0) rotate(-3deg) scale(0.98); }
-      100% { transform: translate3d(20px, -25px, 0) rotate(2deg) scale(1.02); }
-    }
-
-    /* ---------- Mobile Marquee Slider Layout (Hidden on Desktop) ---------- */
-    .wx-test-mobile-marquee-container {
-      display: none;
-    }
-
-    .wx-test-marquee-card {
-      width: 320px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex-shrink: 0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      margin: 0;
-      text-align: left;
-    }
-
-    .wx-test-marquee-quote {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: #111115;
-      margin: 0;
-    }
-
-    .wx-test-marquee-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: auto;
-    }
-
-    .wx-test-marquee-img {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.08);
-      background: #111115;
-    }
-
-    .wx-test-marquee-name {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #9bb0ff; /* Lavender */
-      line-height: 1.2;
-    }
-
-    .wx-test-marquee-desc {
-      display: block;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 9.5px;
-      font-weight: 500;
-      color: #8a8a8f;
-      margin-top: 2px;
-      line-height: 1.2;
-    }
-
-    /* ---------- Responsive Breakpoint ---------- */
-    @media (max-width: 900px) {
-      .wx-testimonials-section {
-        min-height: auto;
-        padding: 60px 0 80px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 20px;
-      }
-
-      .wx-test-center {
-        padding: 0 24px;
-        pointer-events: auto;
-      }
-
-      .wx-test-bubble-container {
-        display: none !important;
-      }
-
-      .wx-test-mobile-marquee-container {
-        display: block !important;
-        width: 100%;
-        overflow: hidden;
-        margin-top: 28px;
-      }
-
-      .wx-test-line-art, .wx-test-aurora-bg, .wx-test-edge-fade-top, .wx-test-edge-fade-bottom, #wx-test-auto-cursor {
-        display: none !important;
-      }
-    }
-
-    /* Top and bottom solid shading overlays for robust blending */
-    .wx-test-edge-fade-top {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 140px;
-      background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0) 100%);
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .wx-test-edge-fade-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 140px;
-      background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%);
-      pointer-events: none;
-      z-index: 2;
+    @media (prefers-reduced-motion: reduce){
+      .wx-tst-glow{animation:none !important;}
+      .wx-tst-slide{transition:opacity .2s ease;transform:none;}
+      .wx-tst-progress span.is-running{animation:none;transform:scaleX(1);}
     }
   </style>
 
-  <!-- Mild Northern Lights Aurora Background -->
-  <div class="wx-test-aurora-bg">
-    <div class="wx-aurora-wave"></div>
-    <div class="wx-aurora-wave-2"></div>
+  <!-- Ambient brand glow -->
+  <div class="wx-tst-aurora" aria-hidden="true">
+    <div class="wx-tst-glow g1"></div>
+    <div class="wx-tst-glow g2"></div>
   </div>
 
-  <!-- Top and Bottom Black Shading Overlays to blend section seamlessly -->
-  <div class="wx-test-edge-fade-top"></div>
-  <div class="wx-test-edge-fade-bottom"></div>
+  <div class="wx-tst-inner">
 
-  <!-- Hand-drawn style pointer lines (Line arts - brought to front, pointing to title) -->
-  <svg class="wx-test-line-art" style="position: absolute; left: 25%; top: 48%; width: 70px; height: 70px; opacity: 0.75; pointer-events: none; z-index: 4;" viewBox="0 0 50 50">
-    <path d="M 5,45 C 15,35 10,15 35,25" fill="none" stroke="#9bb0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 28,18 L 38,26 L 27,33" fill="none" stroke="#9bb0ff" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
-  <svg class="wx-test-line-art" style="position: absolute; right: 26%; top: 30%; width: 75px; height: 75px; opacity: 0.75; pointer-events: none; z-index: 4; transform: rotate(140deg);" viewBox="0 0 50 50">
-    <path d="M 5,45 C 15,35 10,15 35,25" fill="none" stroke="#ff79c6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M 28,18 L 38,26 L 27,33" fill="none" stroke="#ff79c6" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
+    <span class="wx-tst-eyebrow"><i></i>Testimonials</span>
+    <h2 class="wx-tst-title">Loved by founders who value speed &amp; design<span class="wx-tst-spark">&#10024;</span></h2>
 
-  <!-- Center Text Content -->
-  <div class="wx-test-center">
-    <span class="wx-test-subtitle">We are building digital products &amp;</span>
-    <h2 class="wx-test-title">Loved by founders who value speed &amp; design <span style="font-size: 0.95em; filter: drop-shadow(0 0 10px rgba(255,215,0,0.35)); line-height: 1; display: inline-block; vertical-align: middle; margin-left: 2px;">✨</span></h2>
-  </div>
+    <div class="wx-tst-stage">
+      <div class="wx-tst-quotemark" aria-hidden="true">&ldquo;</div>
 
-  <!-- Interactive 3D Parallax Bubble Layout -->
-  <div class="wx-test-bubble-container" id="wx-testimonials-container">
-    
-    <!-- Bubble 1: Top-Left (Maya Okonkwo, CEO, Nova Finance) -->
-    <div class="wx-test-item-wrap" style="top: 8%; left: 5%;" data-parallax-factor="0.04">
-      <div class="wx-test-item wx-layout-left">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-          <span class="wx-test-name">Maya</span>
-          <span class="wx-test-designation">CEO, Nova Finance</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">Web{X} reframed our entire product story in three weeks...</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled in less than a month!</p>
-          </div>
-        </div>
+      <div class="wx-tst-slides" id="wx-tst-slides">
+
+        <figure class="wx-tst-slide is-active">
+          <blockquote class="wx-tst-quote">Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us - our demo requests tripled in less than a month!</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Maya Okonkwo</span>
+              <span class="wx-tst-author-role">CEO, Nova Finance</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="wx-tst-slide">
+          <blockquote class="wx-tst-quote">Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Sarah Jenkins</span>
+              <span class="wx-tst-author-role">Product Lead, Elevate</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="wx-tst-slide">
+          <blockquote class="wx-tst-quote">The most detail-obsessed team we've ever worked with. Every single transition and micro-interaction feels considered. It's rare and it shows.</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar3.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Daniel Reyes</span>
+              <span class="wx-tst-author-role">Founder, Atlas Studio</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="wx-tst-slide">
+          <blockquote class="wx-tst-quote">Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless.</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar1.jpg" alt="Li Wei" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Li Wei</span>
+              <span class="wx-tst-author-role">Founder, Nexus SaaS</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="wx-tst-slide">
+          <blockquote class="wx-tst-quote">They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look.</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar2.jpg" alt="Priya Anand" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Priya Anand</span>
+              <span class="wx-tst-author-role">CMO, Field Goods</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="wx-tst-slide">
+          <blockquote class="wx-tst-quote">Clean code, fast loading speeds, and brilliant design sense. Our SEO went up instantly and we saw page load times drop to under 0.8 seconds.</blockquote>
+          <figcaption class="wx-tst-author">
+            <img class="wx-tst-author-img" src="images/avatar3.jpg" alt="Alex Rivera" loading="lazy" decoding="async">
+            <span class="wx-tst-author-meta">
+              <span class="wx-tst-author-name">Alex Rivera</span>
+              <span class="wx-tst-author-role">Tech Lead, Quartz</span>
+            </span>
+          </figcaption>
+        </figure>
+
       </div>
     </div>
 
-    <!-- Bubble 2: Top-Right (Sarah Jenkins, Product Lead, Elevate) -->
-    <div class="wx-test-item-wrap" style="top: 14%; right: 5%;" data-parallax-factor="-0.03">
-      <div class="wx-test-item wx-layout-right">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-          <span class="wx-test-name">Sarah</span>
-          <span class="wx-test-designation">Product Lead, Elevate</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">Exceptional craft &amp; motion. Our conversions doubled.</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</p>
-          </div>
-        </div>
+    <div class="wx-tst-controls">
+      <button type="button" class="wx-tst-arrow" id="wx-tst-prev" aria-label="Previous testimonial">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="wx-tst-tabs" id="wx-tst-tabs" role="tablist" aria-label="Choose a testimonial">
+        <button type="button" class="wx-tst-tab is-active" role="tab" aria-selected="true" aria-label="Maya Okonkwo, CEO, Nova Finance"><img src="images/avatar1.jpg" alt="" loading="lazy" decoding="async"></button>
+        <button type="button" class="wx-tst-tab" role="tab" aria-selected="false" aria-label="Sarah Jenkins, Product Lead, Elevate"><img src="images/avatar2.jpg" alt="" loading="lazy" decoding="async"></button>
+        <button type="button" class="wx-tst-tab" role="tab" aria-selected="false" aria-label="Daniel Reyes, Founder, Atlas Studio"><img src="images/avatar3.jpg" alt="" loading="lazy" decoding="async"></button>
+        <button type="button" class="wx-tst-tab" role="tab" aria-selected="false" aria-label="Li Wei, Founder, Nexus SaaS"><img src="images/avatar1.jpg" alt="" loading="lazy" decoding="async"></button>
+        <button type="button" class="wx-tst-tab" role="tab" aria-selected="false" aria-label="Priya Anand, CMO, Field Goods"><img src="images/avatar2.jpg" alt="" loading="lazy" decoding="async"></button>
+        <button type="button" class="wx-tst-tab" role="tab" aria-selected="false" aria-label="Alex Rivera, Tech Lead, Quartz"><img src="images/avatar3.jpg" alt="" loading="lazy" decoding="async"></button>
       </div>
+
+      <button type="button" class="wx-tst-arrow" id="wx-tst-next" aria-label="Next testimonial">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
 
-    <!-- Bubble 3: Middle-Left (Daniel Reyes, Founder, Atlas Studio) -->
-    <div class="wx-test-item-wrap" style="top: 45%; left: 2%;" data-parallax-factor="0.05">
-      <div class="wx-test-item wx-layout-left">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar3.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-          <span class="wx-test-name">Daniel</span>
-          <span class="wx-test-designation">Founder, Atlas Studio</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">The most detail-obsessed team. Every detail feels considered.</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">The most detail-obsessed team we've ever worked with. Every single transition and micro-interaction feels considered. It's rare and it shows.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bubble 4: Middle-Right (Li Wei, Founder, Nexus SaaS) -->
-    <div class="wx-test-item-wrap" style="top: 50%; right: 2%;" data-parallax-factor="-0.04">
-      <div class="wx-test-item wx-layout-right">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar1.jpg" alt="Li Wei" loading="lazy" decoding="async">
-          <span class="wx-test-name">Li Wei</span>
-          <span class="wx-test-designation">Founder, Nexus SaaS</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">Async updates were clear, professional, and on schedule.</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bubble 5: Bottom-Left (Priya Anand, CMO, Field Goods) -->
-    <div class="wx-test-item-wrap" style="bottom: 8%; left: 14%;" data-parallax-factor="0.03">
-      <div class="wx-test-item wx-layout-left">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar2.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-          <span class="wx-test-name">Priya</span>
-          <span class="wx-test-designation">CMO, Field Goods</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">They didn't just design a website, they gave our brand a pulse.</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bubble 6: Bottom-Right (Alex Rivera, Tech Lead, Quartz) -->
-    <div class="wx-test-item-wrap" style="bottom: 10%; right: 13%;" data-parallax-factor="-0.05">
-      <div class="wx-test-item wx-layout-right">
-        <div class="wx-test-avatar-wrap">
-          <img class="wx-test-img" src="images/avatar3.jpg" alt="Alex Rivera" loading="lazy" decoding="async">
-          <span class="wx-test-name">Alex</span>
-          <span class="wx-test-designation">Tech Lead, Quartz</span>
-        </div>
-        <div class="wx-test-bubble" onclick="this.classList.toggle('wx-expanded')">
-          <span class="wx-test-short-txt">Clean code, fast speeds, and brilliant design sense.</span>
-          <div class="wx-test-bubble-inner">
-            <p class="wx-test-full-txt">Clean code, fast loading speeds, and brilliant design sense. Our SEO went up instantly and we saw page load times drop to under 0.8 seconds.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="wx-tst-progress" aria-hidden="true"><span id="wx-tst-bar"></span></div>
 
   </div>
 
-  <!-- Custom Auto-Play Gradient Pointer Cursor (arrowhead path with motion gradient fill) -->
-  <style>
-    .wx-test-auto-cursor {
-      position: absolute;
-      pointer-events: none;
-      z-index: 10;
-      opacity: 1;
-      transform: translate(-2px, -2px) rotate(-10deg);
-      transition: left 1.2s cubic-bezier(0.25, 1, 0.5, 1), top 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease, opacity 0.4s ease;
-    }
-
-    /* Animating stops to create a fluid liquid gradient motion inside the arrowhead */
-    @keyframes wxAutoStop1 {
-      0% { stop-color: #7c3aed; }
-      50% { stop-color: #c026d3; }
-      100% { stop-color: #4f46e5; }
-    }
-    @keyframes wxAutoStop2 {
-      0% { stop-color: #c026d3; }
-      50% { stop-color: #4f46e5; }
-      100% { stop-color: #7c3aed; }
-    }
-    @keyframes wxAutoStop3 {
-      0% { stop-color: #4f46e5; }
-      50% { stop-color: #7c3aed; }
-      100% { stop-color: #c026d3; }
-    }
-
-    .wx-auto-s1 { animation: wxAutoStop1 4s linear infinite alternate; }
-    .wx-auto-s2 { animation: wxAutoStop2 4s linear infinite alternate; }
-    .wx-auto-s3 { animation: wxAutoStop3 4s linear infinite alternate; }
-  </style>
-
-  <div class="wx-test-auto-cursor" id="wx-test-auto-cursor" style="left: 50%; top: 50%;">
-    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="filter: drop-shadow(0 3px 8px rgba(157, 92, 255, 0.45));">
-      <defs>
-        <linearGradient id="wx-auto-cursor-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#7c3aed" class="wx-auto-s1" />
-          <stop offset="50%" stop-color="#c026d3" class="wx-auto-s2" />
-          <stop offset="100%" stop-color="#4f46e5" class="wx-auto-s3" />
-        </linearGradient>
-      </defs>
-      <!-- Arrowhead path shape matching images/arrowhead.svg exactly, border removed -->
-      <path d="M4.5 0.79 v22.42 l6.56 -6.57 h9.29 L4.5 0.79 z" fill="url(#wx-auto-cursor-grad)"/>
-    </svg>
-  </div>
-
-  <!-- Mobile Marquee Testimonials Slider Container (Visible on Mobile <= 900px only) -->
-  <div class="wx-test-mobile-marquee-container">
-    <div class="wx-testimonial-marquee">
-      <!-- Set 1 (Cards 1 to 6) -->
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Maya Okonkwo</span>
-            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Daniel Reyes</span>
-            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Priya Anand</span>
-            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Sarah Jenkins</span>
-            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Li Wei</span>
-            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card">
-        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Alex Patel</span>
-            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 2 (Cards 1 to 6) -->
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Maya Okonkwo</span>
-            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Daniel Reyes</span>
-            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Priya Anand</span>
-            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Sarah Jenkins</span>
-            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Li Wei</span>
-            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Alex Patel</span>
-            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 3 (Cards 1 to 6) -->
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Maya Okonkwo</span>
-            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Daniel Reyes</span>
-            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Priya Anand</span>
-            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Sarah Jenkins</span>
-            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Li Wei</span>
-            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Alex Patel</span>
-            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Set 4 (Cards 1 to 6) -->
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Web{X} reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Maya Okonkwo" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Maya Okonkwo</span>
-            <span class="wx-test-marquee-desc">CEO, Nova Finance</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"The most detail-obsessed team we've worked with. Every single transition and micro-interaction feels considered. It's rare and it shows."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Daniel Reyes" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Daniel Reyes</span>
-            <span class="wx-test-marquee-desc">Founder, Atlas Studio</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"They didn't just design a website, they gave our brand a pulse. Sales teams, board members, and clients - everyone noticed and loved the new look."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Priya Anand" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Priya Anand</span>
-            <span class="wx-test-marquee-desc">CMO, Field Goods</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Exceptional craft and motion. Our conversion rate doubled and the site load speed went down to milliseconds. Incredibly satisfied!"</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar2.jpg" alt="Sarah Jenkins" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Sarah Jenkins</span>
-            <span class="wx-test-marquee-desc">Product Lead, Elevate</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with. They made the entire remote process effortless."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar3.jpg" alt="Li Wei" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Li Wei</span>
-            <span class="wx-test-marquee-desc">Founder, Nexus SaaS</span>
-          </div>
-        </div>
-      </div>
-      <div class="wx-test-marquee-card" aria-hidden="true">
-        <p class="wx-test-marquee-quote">"Clean code, fast speeds, and brilliant design sense. They translated our complex platform requirements into a beautiful, intuitive frontend."</p>
-        <div class="wx-test-marquee-author">
-          <img class="wx-test-marquee-img" src="images/avatar1.jpg" alt="Alex Patel" loading="lazy" decoding="async">
-          <div>
-            <span class="wx-test-marquee-name">Alex Patel</span>
-            <span class="wx-test-marquee-desc">Tech Lead, Quartz</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Interactive Parallax & Auto-Play Guided Tour JS Script -->
   <script>
-    (function() {
-      const container = document.getElementById('wx-testimonials-container');
-      const items = container ? container.querySelectorAll('.wx-test-item-wrap') : [];
-      const autoCursor = document.getElementById('wx-test-auto-cursor');
-      
-      if (!container || items.length === 0 || !autoCursor) return;
+    (function(){
+      var root = document.querySelector('.wx-testimonials-section');
+      if(!root) return;
+      var slides = Array.prototype.slice.call(root.querySelectorAll('.wx-tst-slide'));
+      var tabs   = Array.prototype.slice.call(root.querySelectorAll('.wx-tst-tab'));
+      var bar    = root.querySelector('#wx-tst-bar');
+      var prevBtn = root.querySelector('#wx-tst-prev');
+      var nextBtn = root.querySelector('#wx-tst-next');
+      if(!slides.length || !tabs.length) return;
 
-      // ---------- Parallax Mouse Interaction (Bubbles React to Mouse) ----------
-      window.addEventListener('mousemove', (e) => {
-        if (window.innerWidth <= 900) return;
-        
-        const rect = container.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const mouseX = e.clientX - centerX;
-        const mouseY = e.clientY - centerY;
+      var DURATION = 6000;
+      var current = 0;
+      var timer = null;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        items.forEach((item) => {
-          const factor = parseFloat(item.getAttribute('data-parallax-factor')) || 0.03;
-          const tx = mouseX * factor;
-          const ty = mouseY * factor;
-          item.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+      function restartBar(){
+        if(!bar || reduce) return;
+        bar.classList.remove('is-running','is-paused');
+        // force reflow so the animation restarts cleanly
+        void bar.offsetWidth;
+        bar.classList.add('is-running');
+      }
+
+      function show(index){
+        current = (index + slides.length) % slides.length;
+        for(var i=0;i<slides.length;i++){
+          var on = (i === current);
+          slides[i].classList.toggle('is-active', on);
+          if(tabs[i]){
+            tabs[i].classList.toggle('is-active', on);
+            tabs[i].setAttribute('aria-selected', on ? 'true' : 'false');
+          }
+        }
+        restartBar();
+      }
+
+      function next(){ show(current + 1); }
+      function prev(){ show(current - 1); }
+
+      function start(){
+        if(reduce) return;
+        stop();
+        timer = setInterval(next, DURATION);
+        restartBar();
+      }
+      function stop(){
+        if(timer){ clearInterval(timer); timer = null; }
+      }
+      function pauseBar(){ if(bar) bar.classList.add('is-paused'); }
+      function resumeBar(){ if(bar) bar.classList.remove('is-paused'); }
+
+      tabs.forEach(function(tab, i){
+        tab.addEventListener('click', function(){ show(i); start(); });
+        tab.addEventListener('keydown', function(e){
+          if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+            e.preventDefault();
+            var n = (i + 1) % tabs.length; tabs[n].focus(); show(n); start();
+          } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+            e.preventDefault();
+            var p = (i - 1 + tabs.length) % tabs.length; tabs[p].focus(); show(p); start();
+          }
         });
       });
 
-      // Reset parallax on mouse leave
-      document.addEventListener('mouseleave', () => {
-        items.forEach((item) => {
-          item.style.transform = 'translate3d(0, 0, 0)';
-        });
+      if(nextBtn) nextBtn.addEventListener('click', function(){ next(); start(); });
+      if(prevBtn) prevBtn.addEventListener('click', function(){ prev(); start(); });
+
+      // Pause autoplay while the user is interacting with the section
+      root.addEventListener('mouseenter', function(){ stop(); pauseBar(); });
+      root.addEventListener('mouseleave', function(){ resumeBar(); start(); });
+      root.addEventListener('focusin', function(){ stop(); pauseBar(); });
+      root.addEventListener('focusout', function(){
+        if(!root.contains(document.activeElement)){ resumeBar(); start(); }
       });
 
-      // ---------- Auto-Play Guided Tour Logic ----------
-      let currentIndex = 0;
-      let autoplayInterval = null;
-
-      function getBubbleCenter(item) {
-        const bubble = item.querySelector('.wx-test-bubble');
-        
-        // Calculate bubble positions relative to the container
-        const itemLeft = item.offsetLeft;
-        const itemTop = item.offsetTop;
-        const bubbleLeft = bubble.offsetLeft;
-        const bubbleTop = bubble.offsetTop;
-        
-        // Place the cursor tip close to the border of the bubble
-        const isLeft = item.querySelector('.wx-test-item').classList.contains('wx-layout-left');
-        const xOffset = isLeft ? (bubbleLeft + 15) : (bubbleLeft + bubble.offsetWidth - 15);
-        const yOffset = bubbleTop + bubble.offsetHeight / 2;
-        
-        return {
-          x: itemLeft + xOffset,
-          y: itemTop + yOffset
-        };
+      // Only autoplay while the section is in view (saves work when off-screen)
+      if('IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(en){
+            if(en.isIntersecting){ start(); } else { stop(); }
+          });
+        }, { threshold: 0.25 });
+        io.observe(root);
+      } else {
+        start();
       }
-
-      function runAutoplayStep() {
-        if (window.innerWidth <= 900) {
-          autoCursor.style.opacity = '0';
-          return;
-        }
-
-        const currentItem = items[currentIndex];
-        const coords = getBubbleCenter(currentItem);
-        
-        // 1. Move gradient cursor to current testimonial bubble center
-        autoCursor.style.left = `${coords.x}px`;
-        autoCursor.style.top = `${coords.y}px`;
-        autoCursor.style.opacity = '1';
-        
-        // 2. Wait for cursor move transition to complete (1.2s), then click expand
-        setTimeout(() => {
-          // Simulate cursor click press (scale down)
-          autoCursor.style.transform = 'translate(-2px, -2px) scale(0.8) rotate(-10deg)';
-          
-          setTimeout(() => {
-            // Restore scale
-            autoCursor.style.transform = 'translate(-2px, -2px) scale(1) rotate(-10deg)';
-            
-            // Expand the target bubble, collapse all others
-            items.forEach((item, idx) => {
-              const bubble = item.querySelector('.wx-test-bubble');
-              if (idx === currentIndex) {
-                bubble.classList.add('wx-expanded');
-              } else {
-                bubble.classList.remove('wx-expanded');
-              }
-            });
-            
-            // Increment index for next step
-            currentIndex = (currentIndex + 1) % items.length;
-          }, 150);
-        }, 1200);
-      }
-
-      // Start Autoplay
-      function startAutoplay() {
-        autoplayInterval = setInterval(runAutoplayStep, 4500);
-        runAutoplayStep();
-      }
-
-      function stopAutoplay() {
-        if (autoplayInterval) {
-          clearInterval(autoplayInterval);
-          autoplayInterval = null;
-        }
-        autoCursor.style.opacity = '0';
-      }
-
-      // Initial run
-      startAutoplay();
-
-      // Pause tour and hide auto-cursor when user hovers manually to prevent conflicts
-      container.addEventListener('mouseenter', () => {
-        stopAutoplay();
-      });
-
-      container.addEventListener('mouseleave', () => {
-        startAutoplay();
-      });
     })();
   </script>
 </section>
