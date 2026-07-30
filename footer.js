@@ -117,6 +117,7 @@
       <div class="wx-footer-col">
         <span class="wx-footer-heading">Services</span>
         <a data-transition href="services" class="wx-footer-link">All services</a>
+        <a data-transition href="web-development-agency-ludhiana" class="wx-footer-link">Web Development Ludhiana</a>
         <a data-transition href="figma-to-webflow" class="wx-footer-link">Figma to Webflow</a>
         <a data-transition href="figma-to-wordpress" class="wx-footer-link">Figma to WordPress</a>
         <a data-transition href="work" class="wx-footer-link">Case studies</a>
