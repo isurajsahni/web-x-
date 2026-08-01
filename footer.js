@@ -191,7 +191,6 @@
           <img src="logo-white.svg" alt="Web{X}" width="40" height="40" style="border-radius:10px;display:block;" />
           <span class="wx-footer-logo-text">Web{X}</span>
         </a>
-        <p class="wx-footer-address">Model Town Tech District, Ludhiana, Punjab 141002, India</p>
         <div class="wx-footer-top-contact">
           <a href="mailto:hello@thewebx.in" class="wx-footer-contact-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -231,6 +230,7 @@
             <a data-transition href="./" class="wx-footer-link">Home</a>
             <a data-transition href="studio" class="wx-footer-link">About us</a>
             <a data-transition href="work" class="wx-footer-link">Work</a>
+            <a data-transition href="careers" class="wx-footer-link">Careers</a>
           </div>
 
           <div class="wx-footer-col">
