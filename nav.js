@@ -23,12 +23,16 @@
     z-index: 9000;
     pointer-events: none;
     transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* The header creates its own stacking context, so the hamburger cannot
+       rise above the drawer (9401) on its own — lift the whole header while
+       the menu is open, otherwise the close icon paints underneath it. */
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
     border-radius: 40px !important;
   }
+  .wx-nav-container.wx-menu-open { z-index: 9402; }
 
   /* Full-width transparent bar: logo left, links pill center, socials right */
   .wx-navbar {
@@ -251,78 +255,29 @@
   .wx-nav-social svg { width: 16px; height: 16px; }
   .wx-nav-social:hover { color: #fff; background: #9D5CFF; transform: translateY(-2px); }
 
-  /* Hamburger */
+  /* Hamburger — lives inside the bar, high-contrast so it reads on dark pages */
   .wx-nav-hamburger {
     display: none;
     pointer-events: auto;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 22px;
-    height: 14px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 9005;
-  }
-  .wx-nav-hamburger span {
-    width: 100%;
-    height: 2px;
-    background: #ffffff;
-    border-radius: 2px;
-    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
-  }
-
-  /* ---------- Scroll-triggered compact state + FAB ---------- */
-  /* When scrolled, the pill nav collapses toward the top-right and the
-     hamburger FAB grows out of that same corner — reads as one morph. */
-  .wx-navbar.wx-nav-away { pointer-events: none; }
-  .wx-navbar.wx-nav-away .wx-nav-logo {
-    opacity: 0;
-    transform: translateX(-34px) scale(0.9);
-  }
-  .wx-navbar.wx-nav-away .wx-nav-links-wrap {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.85);
-  }
-  .wx-navbar.wx-nav-away .wx-nav-cta-wrap {
-    opacity: 0;
-    transform: translateX(30px) scale(0.6);
-  }
-
-  .wx-fab {
-    position: fixed;
-    top: 22px;
-    right: clamp(16px, 4vw, 36px);
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(12, 12, 15, 0.55);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(157, 92, 255, 0.22);
+    border: 1px solid rgba(157, 92, 255, 0.5);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);
     cursor: pointer;
     padding: 0;
-    z-index: 9402;
-    opacity: 0;
-    transform: scale(0.3) rotate(-110deg);
-    pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease;
+    z-index: 9405;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
-  .wx-fab.wx-show {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    transition-delay: 0.12s;
-  }
-  .wx-fab:hover { background: rgba(157, 92, 255, 0.35); }
+  .wx-nav-hamburger:active { transform: scale(0.94); }
+  .wx-nav-hamburger.wx-open { background: rgba(157, 92, 255, 0.5); border-color: #9D5CFF; }
 
-  .wx-fab-lines { position: relative; width: 22px; height: 14px; }
-  .wx-fab-lines span {
+  .wx-burger-lines { position: relative; width: 20px; height: 14px; }
+  .wx-burger-lines span {
     position: absolute;
     left: 0;
     width: 100%;
@@ -331,12 +286,12 @@
     border-radius: 2px;
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
   }
-  .wx-fab-lines span:nth-child(1) { top: 0; }
-  .wx-fab-lines span:nth-child(2) { top: 6px; }
-  .wx-fab-lines span:nth-child(3) { top: 12px; }
-  .wx-fab.wx-open .wx-fab-lines span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  .wx-fab.wx-open .wx-fab-lines span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .wx-fab.wx-open .wx-fab-lines span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .wx-burger-lines span:nth-child(1) { top: 0; }
+  .wx-burger-lines span:nth-child(2) { top: 6px; }
+  .wx-burger-lines span:nth-child(3) { top: 12px; }
+  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
   /* Backdrop */
   .wx-drawer-scrim {
@@ -435,28 +390,52 @@
 
   /* ---------- Mobile ---------- */
   @media (max-width: 820px) {
-    .wx-nav-container { top: 16px; }
-    .wx-navbar { padding: 0; }
-    .wx-nav-logo { padding: 6px 12px; }
+    /* Edge-to-edge sticky bar instead of the floating pill */
+    .wx-nav-container {
+      top: 0;
+      width: 100%;
+      border-radius: 0 !important;
+    }
+    .wx-navbar {
+      pointer-events: auto;
+      padding: 8px 16px;
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      background: rgba(10, 10, 12, 0.72) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      backdrop-filter: blur(18px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .wx-navbar.wx-scrolled {
+      background: rgba(8, 8, 10, 0.92) !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
+    }
 
-    /* Mobile navigates via the floating FAB drawer from the start —
-       the old inline hamburger, its pill and the center dropdown are dropped. */
+    /* Mark only — the wordmark is dropped on mobile to keep the bar slim */
+    .wx-nav-logo { flex-direction: row; gap: 8px; padding: 0; }
+    .wx-nav-logo-svg { width: 40px; height: 40px; }
+    .wx-nav-logo-word { display: none; }
+
+    /* While the drawer is open the bar floats bare over it, so the close
+       icon and logo read against the drawer surface, not a second panel. */
+    .wx-nav-container.wx-menu-open .wx-navbar {
+      background: transparent !important;
+      border-bottom-color: transparent !important;
+      box-shadow: none !important;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    /* Links + socials collapse into the drawer; only the burger stays */
     .wx-navbar .wx-nav-socials { display: none !important; }
-    .wx-nav-cta-wrap { display: none !important; }
-    .wx-nav-hamburger { display: none !important; }
+    .wx-nav-cta-wrap { display: flex !important; gap: 0; }
+    .wx-nav-hamburger { display: flex !important; }
     .wx-nav-links-wrap { display: none !important; }
     .wx-mega { display: none !important; }
     .wx-nav-caret { display: none; }
 
-    /* FAB is visible immediately (no scroll needed) on mobile */
-    .wx-fab {
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
-      top: 33px;
-      width: 48px;
-      height: 48px;
-    }
+    /* Drawer clears the bar */
+    .wx-drawer { padding-top: 92px; }
   }
 
   /* WhatsApp floating button (bottom-right, sitewide) */
@@ -550,16 +529,12 @@
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.8"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
         </div>
-        <button class="wx-nav-hamburger" id="wx-nav-hamburger" aria-label="Toggle Navigation Menu">
-          <span></span><span></span>
+        <button class="wx-nav-hamburger" id="wx-nav-hamburger" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span class="wx-burger-lines"><span></span><span></span><span></span></span>
         </button>
       </div>
     </div>
   </header>
-
-  <button class="wx-fab" id="wx-fab" aria-label="Open menu" aria-expanded="false">
-    <span class="wx-fab-lines"><span></span><span></span><span></span></span>
-  </button>
 
   <div class="wx-drawer-scrim" id="wx-drawer-scrim"></div>
 
@@ -607,7 +582,6 @@
     var navbar = header.querySelector('#wx-navbar');
     var hamburger = header.querySelector('#wx-nav-hamburger');
     var linksWrap = header.querySelector('#wx-nav-links-wrap');
-    var fab = document.getElementById('wx-fab');
     var drawer = document.getElementById('wx-drawer');
     var scrim = document.getElementById('wx-drawer-scrim');
 
@@ -632,34 +606,24 @@
       if (activeDrawer) activeDrawer.classList.add('wx-current');
     }
 
-    // -- Scroll: darken pills, then hand off to the floating FAB --
-    var revealAt = function () { return Math.min(window.innerHeight * 0.7, 620); };
+    // -- Scroll: the bar stays pinned everywhere, glass just darkens --
     if (navbar) {
       var onScroll = function () {
-        var y = window.scrollY;
-        if (y > 20) navbar.classList.add('wx-scrolled');
+        if (window.scrollY > 20) navbar.classList.add('wx-scrolled');
         else navbar.classList.remove('wx-scrolled');
-
-        if (y > revealAt()) {
-          navbar.classList.add('wx-nav-away');
-          if (fab) fab.classList.add('wx-show');
-        } else {
-          navbar.classList.remove('wx-nav-away');
-          if (fab) fab.classList.remove('wx-show');
-          closeDrawer();
-        }
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     }
 
-    // -- Floating FAB drawer --
+    // -- Drawer, opened from the in-bar hamburger --
     function openDrawer() {
       if (!drawer) return;
       drawer.classList.add('wx-open');
       scrim.classList.add('wx-open');
-      fab.classList.add('wx-open');
-      fab.setAttribute('aria-expanded', 'true');
+      header.classList.add('wx-menu-open');
+      hamburger.classList.add('wx-open');
+      hamburger.setAttribute('aria-expanded', 'true');
       drawer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
@@ -667,13 +631,14 @@
       if (!drawer || !drawer.classList.contains('wx-open')) return;
       drawer.classList.remove('wx-open');
       scrim.classList.remove('wx-open');
-      fab.classList.remove('wx-open');
-      fab.setAttribute('aria-expanded', 'false');
+      header.classList.remove('wx-menu-open');
+      hamburger.classList.remove('wx-open');
+      hamburger.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
-    if (fab) {
-      fab.addEventListener('click', function () {
+    if (hamburger && drawer) {
+      hamburger.addEventListener('click', function () {
         if (drawer.classList.contains('wx-open')) closeDrawer();
         else openDrawer();
       });
@@ -682,6 +647,11 @@
         l.addEventListener('click', closeDrawer);
       });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+      // Rotating to landscape / resizing past the breakpoint must not strand
+      // the drawer open with body scroll locked.
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 820) closeDrawer();
+      });
     }
 
     // -- Resources mega dropdown (desktop hover) --
@@ -695,20 +665,6 @@
       resItem.addEventListener('focusin', open);
       resItem.addEventListener('focusout', close);
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') resItem.classList.remove('wx-open'); });
-    }
-
-    // -- Mobile menu toggle --
-    if (hamburger && linksWrap) {
-      hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('wx-active');
-        linksWrap.classList.toggle('wx-active');
-      });
-      linksWrap.querySelectorAll('.wx-nav-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-          hamburger.classList.remove('wx-active');
-          linksWrap.classList.remove('wx-active');
-        });
-      });
     }
   }
 
