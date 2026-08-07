@@ -206,7 +206,7 @@
       <div class="wx-footer-main">
         <div class="wx-footer-left">
           <p class="wx-footer-desc">
-            Web{X} is a digital design &amp; development agency specializing in high-performance web applications, custom products, and SEO.
+            Web{X} Studio is a digital design &amp; development agency specializing in high-performance web applications, custom products, and SEO.
           </p>
           <div class="wx-footer-socials">
             <a href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Instagram">

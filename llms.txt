@@ -8,7 +8,7 @@ Web{X} Studio (https://www.thewebxstudio.com) delivers website design, web devel
 - [Home](https://www.thewebxstudio.com/): International web design, landing page & SEO agency.
 - [Services](https://www.thewebxstudio.com/services): Website design, web development, SEO & performance, ERP & web apps, and Figma-to-code conversion.
 - [Work](https://www.thewebxstudio.com/work): Selected web design, development and SEO projects built to convert and rank.
-- [Studio](https://www.thewebxstudio.com/studio): About Web{X} — a small, senior team of designers and engineers.
+- [Studio](https://www.thewebxstudio.com/studio): About Web{X} Studio — a small, senior team of designers and engineers.
 - [Contact](https://www.thewebxstudio.com/contact): Start a project or request a quote (reply within 2 business days).
 - [Careers](https://www.thewebxstudio.com/careers): Open roles at the studio.
 - [Web Development Agency in Ludhiana](https://www.thewebxstudio.com/web-development-agency-ludhiana): Local service page — websites, SEO and web apps in Ludhiana.
