@@ -1,0 +1,47 @@
+# Web{X} Studio
+
+> Web{X} Studio is an international web design, development and SEO agency based in Ludhiana, India, building high-converting landing pages, websites and search-optimised digital products for founders and brands across India and worldwide.
+
+Web{X} Studio (https://www.thewebxstudio.com) delivers website design, web development, SEO & performance, ERP & web apps, and pixel-perfect Figma-to-code conversion (Webflow, WordPress, Shopify, Framer, Unbounce). Design, engineering and motion under one roof. The studio serves founders and brands in India, the UK, the US and the Gulf. Contact: hello@thewebxstudio.com.
+
+## Core pages
+- [Home](https://www.thewebxstudio.com/): International web design, landing page & SEO agency.
+- [Services](https://www.thewebxstudio.com/services): Website design, web development, SEO & performance, ERP & web apps, and Figma-to-code conversion.
+- [Work](https://www.thewebxstudio.com/work): Selected web design, development and SEO projects built to convert and rank.
+- [Studio](https://www.thewebxstudio.com/studio): About Web{X} — a small, senior team of designers and engineers.
+- [Contact](https://www.thewebxstudio.com/contact): Start a project or request a quote (reply within 2 business days).
+- [Careers](https://www.thewebxstudio.com/careers): Open roles at the studio.
+- [Web Development Agency in Ludhiana](https://www.thewebxstudio.com/web-development-agency-ludhiana): Local service page — websites, SEO and web apps in Ludhiana.
+
+## Case studies
+- [GPSFDK — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
+- [GPSFDK ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
+- [Rightway Water Purifier — Brand & Website](https://www.thewebxstudio.com/case-study-rightway)
+- [Nova Finance — Fintech Web Design & Development](https://www.thewebxstudio.com/case-study-nova-finance)
+
+## Figma-to-code services
+- [Figma to Webflow](https://www.thewebxstudio.com/figma-to-webflow): Pixel-perfect Webflow conversion.
+- [Figma to WordPress](https://www.thewebxstudio.com/figma-to-wordpress): Custom WordPress theme conversion.
+- [Figma to Shopify](https://www.thewebxstudio.com/figma-to-shopify): Custom Shopify store conversion.
+- [Figma to Framer](https://www.thewebxstudio.com/figma-to-framer): Motion-rich Framer conversion.
+- [Figma to Unbounce](https://www.thewebxstudio.com/figma-to-unbounce): High-converting Unbounce landing pages.
+
+## Blog & guides
+- [Blog home](https://www.thewebxstudio.com/blog): Practical guides on web design, development, conversion and SEO.
+- [What Is Website Development? A Complete 2026 Guide](https://www.thewebxstudio.com/blog-what-is-website-development)
+- [The Website Development Process: 7 Steps to Launch (2026)](https://www.thewebxstudio.com/blog-website-development-process)
+- [Types of Website Development: Front-End, Back-End & Full-Stack](https://www.thewebxstudio.com/blog-types-of-website-development)
+- [Website Development Services: What's Included & How to Choose](https://www.thewebxstudio.com/blog-website-development-services)
+- [Custom Website Development vs Website Builders (2026)](https://www.thewebxstudio.com/blog-custom-website-development-vs-builders)
+- [How Long Does Website Development Take? A 2026 Timeline](https://www.thewebxstudio.com/blog-how-long-website-development-takes)
+- [How Much Does a Website Cost in 2026? A Transparent Pricing Guide](https://www.thewebxstudio.com/blog-website-cost)
+- [Landing Page vs Website: Which Does Your Business Need?](https://www.thewebxstudio.com/blog-landing-page-vs-website)
+- [Core Web Vitals in 2026: How Site Speed Decides Your Google Ranking](https://www.thewebxstudio.com/blog-core-web-vitals)
+- [How to Choose a Web Design Agency: A Founder's Guide to Hiring Globally](https://www.thewebxstudio.com/blog-choosing-web-design-agency)
+
+## Regional guides (Punjab, India)
+- [Web Design Company in Ludhiana (2026): Costs & How to Choose](https://www.thewebxstudio.com/blog-web-design-company-ludhiana)
+- [How Much Does a Website Cost in Punjab? 2026 Price Guide](https://www.thewebxstudio.com/blog-website-cost-punjab)
+- [Website Development in Amritsar, Jalandhar & Mohali (2026)](https://www.thewebxstudio.com/blog-website-development-punjab-cities)
+- [How to Find the Best Web Design Company in Punjab (2026)](https://www.thewebxstudio.com/blog-best-web-design-company-punjab)
+- [Why Every Punjab Business Needs an SEO-Ready Website in 2026](https://www.thewebxstudio.com/blog-punjab-business-website)

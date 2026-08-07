@@ -68,7 +68,7 @@ Serve over **HTTPS** and at the **domain root** so the canonical URLs and
 Work through this checklist — most items are a global find-and-replace.
 
 ### 4.1 Domain & clean URLs
-The live domain is set to **`https://www.thewebx.in`** across every page's
+The live domain is set to **`https://www.thewebxstudio.com`** across every page's
 `<link rel="canonical">`, Open Graph & Twitter tags and JSON-LD, plus the
 `Sitemap:` line in `robots.txt` and all `<loc>` entries in `sitemap.xml`.
 If it ever changes, find-replace that one string.
@@ -87,7 +87,7 @@ URLs automatically; on GitHub Pages you'd instead put each page in its own
 folder (`work/index.html`) since it has no clean-URL setting.
 
 ### 4.2 Contact details
-- **Email** `hello@thewebx.in` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
+- **Email** `hello@thewebxstudio.com` — make sure this mailbox actually exists (or change it). Used in footers, the contact page, JSON-LD and the mobile-menu link in `assets/js/webx.js`.
 - **Phone** `+91 79733 86875` and the `tel:+917973386875` link in `contact.html` + JSON-LD.
 - **Address / city** `12th Main Road, Indiranagar, Bengaluru …` in `contact.html` + JSON-LD on `index.html`/`contact.html`.
 - **Geo** `geo.position` / `ICBM` / JSON-LD `geo` coordinates (currently Bengaluru `12.9716, 77.5946`).
@@ -103,11 +103,11 @@ The form is wired to **[Web3Forms](https://web3forms.com)** — a free form-to-e
 service that works on static hosting like Vercel (no server / no PHP). It just
 needs **your** access key:
 
-1. Go to [web3forms.com](https://web3forms.com), enter `hello@thewebx.in`, and the
+1. Go to [web3forms.com](https://web3forms.com), enter `hello@thewebxstudio.com`, and the
    access key (a UUID) is emailed to you instantly — no account, no DNS setup.
 2. In `contact.html`, replace `YOUR_WEB3FORMS_ACCESS_KEY` in the hidden
    `access_key` input with that key.
-3. Redeploy. Submissions now land in `hello@thewebx.in` (free tier: 250/month).
+3. Redeploy. Submissions now land in `hello@thewebxstudio.com` (free tier: 250/month).
 
 The script `POST`s the fields to `data-endpoint` and shows the success panel on a
 2xx response. Want a different backend? Swap `data-endpoint` for a

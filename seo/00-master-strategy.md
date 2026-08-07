@@ -1,6 +1,6 @@
 # Web{X} — Global SEO Master Strategy
 
-> Goal: Establish Web{X} (https://www.thewebx.in) as a globally authoritative website design & development agency across the US, Canada, UK, Australia, Germany, France, Singapore, Netherlands, UAE, Ireland, New Zealand, and Worldwide.
+> Goal: Establish Web{X} (https://www.thewebxstudio.com) as a globally authoritative website design & development agency across the US, Canada, UK, Australia, Germany, France, Singapore, Netherlands, UAE, Ireland, New Zealand, and Worldwide.
 > Scope: **Global, service + topical authority.** Not Ludhiana / Punjab / local-India intent.
 > This file is the strategic brain. `01-landing-pages.md` = the page architecture (150+). `02-blog-ideas.md` = the topical-authority layer (300+).
 
@@ -135,8 +135,8 @@ Deploy JSON-LD (you already inject `application/ld+json`). Recommended graph per
 - **Organization** (once, on Home; reference by `@id` elsewhere):
 ```json
 {
-  "@context":"https://schema.org","@type":"Organization","@id":"https://www.thewebx.in/#org",
-  "name":"Web{X} Studio","url":"https://www.thewebx.in/","logo":"https://www.thewebx.in/logo-mark.svg",
+  "@context":"https://schema.org","@type":"Organization","@id":"https://www.thewebxstudio.com/#org",
+  "name":"Web{X} Studio","url":"https://www.thewebxstudio.com/","logo":"https://www.thewebxstudio.com/logo-mark.svg",
   "sameAs":["https://twitter.com/theWebxOfficial","https://www.linkedin.com/company/…","https://www.instagram.com/…","https://clutch.co/…"],
   "contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"…","areaServed":["US","CA","GB","AU","DE","FR","SG","NL","AE","IE","NZ"],"availableLanguage":["en","de","fr"]}]
 }
@@ -211,7 +211,7 @@ Examples:
 
 ## 26. Canonical strategy
 
-- **Self-referencing canonical on every page** (you do this). Absolute URLs with `https://www.thewebx.in`, `www` version, no trailing slash except root.
+- **Self-referencing canonical on every page** (you do this). Absolute URLs with `https://www.thewebxstudio.com`, `www` version, no trailing slash except root.
 - Pick **one** host (`www`) — 301 non-www → www (and http → https). Confirm in `vercel.json`.
 - Comparison pages `a-vs-b` and `b-vs-a`: build **one**, canonical the other to it (or just don't build the reverse).
 - Programmatic near-duplicates: each must be genuinely unique so none needs to canonical to another. If two country pages are ~identical, you have a differentiation problem, not a canonical one.
