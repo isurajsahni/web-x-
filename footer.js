@@ -209,14 +209,11 @@
             Web{X} Studio is a digital design &amp; development agency specializing in high-performance web applications, custom products, and SEO.
           </p>
           <div class="wx-footer-socials">
-            <a href="https://www.instagram.com/thewebx.official" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Instagram">
+            <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Instagram">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
             <a href="https://x.com/theWebxOfficial" target="_blank" rel="noopener" class="wx-social-btn" aria-label="X (Twitter)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"></path></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/webxstudio" target="_blank" rel="noopener" class="wx-social-btn" aria-label="LinkedIn">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S.02 4.88.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8.5h4.5V23H.25V8.5zM8.5 8.5h4.3v1.98h.06c.6-1.13 2.06-2.32 4.24-2.32 4.54 0 5.38 2.99 5.38 6.87V23h-4.5v-6.42c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V23H8.5V8.5z"></path></svg>
             </a>
             <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Dribbble">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path></svg>
