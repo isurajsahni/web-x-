@@ -30,77 +30,12 @@
     background: var(--ink);
     color: var(--text);
     border-top: 1px solid var(--line);
-    padding: 0 20px 34px;
+    padding: clamp(56px,8vh,96px) 20px 34px;
     overflow: hidden;
     font-family: 'Satoshi', sans-serif;
   }
   .wx-footer-inner { max-width: 1340px; margin: 0 auto; }
 
-  /* ---- CTA strip ---- */
-  .wx-footer-cta {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(20px,4vw,56px);
-    flex-wrap: wrap;
-    background: var(--raise);
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: clamp(26px,4vw,44px) clamp(24px,4vw,48px);
-    margin: clamp(44px,7vh,84px) 0 clamp(40px,6vh,68px);
-    overflow: hidden;
-  }
-  .wx-footer-cta::before {
-    content: '';
-    position: absolute;
-    inset: -60% 40% 40% -20%;
-    background: radial-gradient(closest-side, rgba(157,92,255,.35), transparent 70%);
-    pointer-events: none;
-  }
-  .wx-footer-cta > * { position: relative; }
-  .wx-footer-cta h2 {
-    font-size: clamp(22px,2.6vw,34px);
-    font-weight: 700;
-    letter-spacing: -.03em;
-    line-height: 1.15;
-    margin: 0;
-    max-width: 18ch;
-    text-wrap: balance;
-  }
-  .wx-footer-cta p {
-    margin: 10px 0 0;
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: var(--muted);
-    max-width: 40ch;
-  }
-  .wx-footer-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px 14px 26px;
-    border-radius: 100px;
-    background: var(--brand);
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -.01em;
-    white-space: nowrap;
-    box-shadow: 0 14px 32px -12px rgba(157,92,255,.8);
-    transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
-  }
-  .wx-footer-btn span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.18);
-  }
-  .wx-footer-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -12px rgba(157,92,255,.95); }
 
   /* ---- Main ---- */
   .wx-footer-main {
@@ -167,10 +102,13 @@
   .wx-footer-link:hover { color: var(--text); transform: translateX(3px); }
 
   /* ---- Contact row ---- */
+  /* Email pinned left, phone pinned right */
   .wx-footer-contact {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: clamp(18px,4vw,64px);
+    gap: 20px clamp(18px,4vw,64px);
     padding: clamp(26px,4vh,38px) 0;
     border-bottom: 1px solid var(--line);
   }
@@ -208,18 +146,11 @@
 
   /* ---- Legal bar ---- */
   .wx-footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 14px;
     padding-top: 26px;
+    text-align: center;
     font-size: 12.5px;
     color: var(--dim);
   }
-  .wx-footer-legal { display: flex; gap: 22px; flex-wrap: wrap; }
-  .wx-footer-legal a { color: var(--dim); text-decoration: none; transition: color .2s ease; }
-  .wx-footer-legal a:hover { color: var(--muted); }
 
   /* ---- Closing wordmark ---- */
   .wx-footer-mega {
@@ -251,8 +182,8 @@
     .wx-footer-cols { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
   }
   @media (max-width: 560px) {
-    .wx-footer-cta { flex-direction: column; align-items: flex-start; }
-    .wx-footer-bottom { flex-direction: column; align-items: flex-start; }
+    /* Side-by-side contact would squeeze both to a couple of words per line */
+    .wx-footer-contact { justify-content: flex-start; }
   }`;
 
   /* ------------------------------------------------------------------ */
@@ -261,19 +192,6 @@
   var HTML = `
   <footer class="wx-footer" data-wx-footer>
     <div class="wx-footer-inner">
-
-      <section class="wx-footer-cta">
-        <div>
-          <h2>Have a project in mind? Let's build it.</h2>
-          <p>Tell us what you're planning. We'll come back with a clear scope, a fixed price, and a timeline.</p>
-        </div>
-        <a data-transition href="contact" class="wx-footer-btn">
-          Start a project
-          <span aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12.175 9H0V7h12.175L6.575 1.4 8 0l8 8-8 8-1.425-1.4z" fill="currentColor"/></svg>
-          </span>
-        </a>
-      </section>
 
       <div class="wx-footer-main">
         <div class="wx-footer-left">
@@ -354,11 +272,6 @@
 
       <div class="wx-footer-bottom">
         <span>&copy; 2026 Web{X} Studio &mdash; All rights reserved.</span>
-        <nav class="wx-footer-legal" aria-label="Legal">
-          <a data-transition href="contact">Contact</a>
-          <a data-transition href="blog">Blog</a>
-          <a href="sitemap.xml">Sitemap</a>
-        </nav>
       </div>
 
     </div>
