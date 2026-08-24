@@ -508,7 +508,15 @@
     /* Links + socials collapse into the drawer; only the burger stays */
     .wx-navbar .wx-nav-socials { display: none !important; }
     .wx-nav-cta-wrap { display: flex !important; gap: 0; }
-    .wx-nav-hamburger { display: flex !important; }
+    /* Smaller on phones — 56px is sized for the desktop condensed state, where
+       it stands alone as the whole nav. */
+    .wx-nav-hamburger { display: flex !important; width: 46px; height: 46px; }
+    .wx-burger-lines { width: 20px; height: 13px; }
+    .wx-burger-lines span { height: 2px; }
+    .wx-burger-lines span:nth-child(2) { top: 5.5px; }
+    .wx-burger-lines span:nth-child(3) { top: 11px; }
+    .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
     .wx-nav-links-wrap { display: none !important; }
     .wx-mega { display: none !important; }
     .wx-nav-caret { display: none; }
