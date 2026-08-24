@@ -381,7 +381,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @media (max-width: 860px) {
       /* All 5 cards fit at mobile width, so the deck stays whole — it just
          scales down and overlaps a little tighter. */
-      .fan-card { width: clamp(84px, 23vw, 130px); margin-inline: -12px; }
+      /* !important is required to beat the base rule's own !important width,
+         otherwise the deck keeps its 124px floor and runs off both edges. */
+      .fan-card { width: clamp(84px, 23vw, 130px) !important; margin-inline: -12px; }
       .fan-tag-l { left: 0; top: 2%; }
       .fan-tag-r { right: 0; top: 0; }
     }
@@ -391,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .hero-fan h1 br { display: none; }
       .hero-fan h1 { max-width: 18ch; }
       /* Deck sits tighter and the handle pills would hang off both edges */
-      .fan-card { width: clamp(72px, 20vw, 104px); margin-inline: -10px; }
+      .fan-card { width: clamp(62px, 17vw, 96px) !important; margin-inline: -8px; }
       .fan-tag { display: none; }
       .hero-fan-cta { width: 100%; flex-direction: column; align-items: stretch; }
       .hero-fan-cta > a { justify-content: center; }
@@ -517,6 +519,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @keyframes wx-trust-scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
+    }
+    /* The per-logo heights are fixed pixels, so without this the wide wordmarks
+       (Tukunen, VFM) stay desktop-sized and only two fit on a phone screen. */
+    @media (max-width: 620px) {
+      .wx-trust-track { gap: 34px; }
+      .wx-trust-logo { height: 26px; }
+      .wx-trust-logo--sm { height: 21px; }
+      .wx-trust-logo--lg { height: 36px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .wx-trust-track { animation: none; flex-wrap: wrap; justify-content: center; }
@@ -2404,7 +2414,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     @media (max-width: 900px) {
       .wx-proc-inner { grid-template-columns: 1fr; gap: clamp(34px,5vh,48px); }
+      /* Must drop out of sticky once stacked — otherwise the intro pins in
+         place and the timeline scrolls straight over the top of it. */
+      .wx-proc-aside { position: static; }
       .wx-proc-aside h2 { max-width: none; }
+      .wx-proc-aside h2 br { display: none; }
     }
   </style>
 
