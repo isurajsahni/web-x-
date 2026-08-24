@@ -45,18 +45,8 @@
     padding-bottom: clamp(34px,5vh,54px);
     border-bottom: 1px solid var(--line);
   }
-  .wx-footer-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: var(--text);
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-  }
+  .wx-footer-brand { display: inline-flex; text-decoration: none; }
   .wx-footer-brand img { display: block; border-radius: 10px; }
-  .wx-footer-brand em { color: var(--brand); font-style: normal; }
   .wx-footer-desc {
     margin: 20px 0 26px;
     font-size: 14.5px;
@@ -195,9 +185,8 @@
 
       <div class="wx-footer-main">
         <div class="wx-footer-left">
-          <a href="index.html" class="wx-footer-brand">
-            <img src="logo-white.svg" alt="Web{X}" width="40" height="40" />
-            Web<em>{X}</em> Studio
+          <a href="index.html" class="wx-footer-brand" aria-label="Web{X} Studio — home">
+            <img src="logo-white.svg" alt="Web{X} Studio" width="40" height="40" />
           </a>
           <p class="wx-footer-desc">
             A digital design &amp; development agency building high-performance websites, custom products, and the SEO that keeps them found.
