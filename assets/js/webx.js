@@ -368,9 +368,18 @@
     /* The preloader / intro overlay lives only on the home page (the main
        page). On every other page we skip it entirely - no preloader, no
        intro wipe - so exactly one preloader exists across the whole site. */
+    /* Fired once the intro overlay is out of the way (or was never shown), so
+       hero entrance animations can start on cue instead of guessing a delay.
+       Sets a flag too, since listeners may attach after this runs. */
+    function announceIntroDone() {
+      if (window.__wxIntroDone) return;
+      window.__wxIntroDone = true;
+      document.dispatchEvent(new CustomEvent('wx:intro-done'));
+    }
+
     var path = location.pathname.toLowerCase().replace(/\/+$/, '');
     var isHome = path === '' || /\/index(\.html)?$/.test(path) || !!document.querySelector('[data-hero-canvas]');
-    if (!isHome) return;
+    if (!isHome) { announceIntroDone(); return; }
 
     var overlay = document.createElement('div');
     Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#000000', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
@@ -392,11 +401,15 @@
       overlay.style.animation = 'none';
       overlay.style.transition = 'transform ' + dur + 's cubic-bezier(.76,0,.24,1)';
       requestAnimationFrame(function () { overlay.style.transform = 'translateY(-100%)'; });
+      /* Cue the hero part-way through the wipe so the cards are already flying
+         in as the page is revealed, rather than starting on bare white. */
+      setTimeout(announceIntroDone, dur * 1000 * 0.35);
       setTimeout(parkOverlay, dur * 1000 + 80);
     }
 
     if (reduce) {
       parkOverlay();
+      announceIntroDone();
     } else {
       /* Every home-page load cycles the multilingual greeting, then wipes up.
          Each word holds long enough to read (the old ~115ms felt like a flicker). */
@@ -698,15 +711,20 @@
     var bar = document.querySelector('[data-progress]');
     if (!section || !bar) return;
     var nums = [].slice.call(document.querySelectorAll('[data-process-num]'));
+    var wrap = bar.parentNode;
     function onScroll() {
       var rect = section.getBoundingClientRect();
       var total = section.offsetHeight - window.innerHeight;
       var p = Math.max(0, Math.min(-rect.top / total, 1));
       bar.style.width = (25 + p * 75) + '%';
+      /* Hide the track once the section is fully scrolled past. The sticky
+         inner has unstuck at the bottom by then, so the bar would otherwise
+         appear as a full-width line sitting on top of the next section. */
+      wrap.style.opacity = (p >= 1) ? '0' : '1';
       var active = Math.min(nums.length - 1, Math.floor(p * nums.length + 0.001));
       nums.forEach(function (n, i) {
         if (i === active) { n.style.color = '#9D5CFF'; n.style.opacity = '.9'; }
-        else { n.style.color = '#EDEDED'; n.style.opacity = '.12'; }
+        else { n.style.color = '#1A1A1A'; n.style.opacity = '.12'; }
       });
     }
     window.addEventListener('scroll', onScroll, { passive: true });

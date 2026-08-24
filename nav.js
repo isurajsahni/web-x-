@@ -19,7 +19,8 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: min(94vw, 1280px);
+    /* Matches the site-wide section wrapper: 1340px cap, 20px gutters. */
+    width: min(100% - 40px, 1340px);
     z-index: 9000;
     pointer-events: none;
     transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -61,20 +62,20 @@
   .wx-nav-links-wrap,
   .wx-nav-socials {
     pointer-events: auto;
-    background: rgba(10, 10, 12, 0.35);
+    background: rgba(255, 255, 255, 0.65);
     -webkit-backdrop-filter: blur(20px) saturate(195%);
     backdrop-filter: blur(20px) saturate(195%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
     border-radius: 40px;
     transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
   .wx-navbar.wx-scrolled .wx-nav-links-wrap,
   .wx-navbar.wx-scrolled .wx-nav-socials {
-    background: rgba(8, 8, 10, 0.75);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 12px 45px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 45px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
   }
 
   /* Logo */
@@ -92,7 +93,7 @@
     text-decoration: none;
     font-family: 'Satoshi', sans-serif;
     font-weight: 700;
-    color: #EDEDED;
+    color: #1A1A1A;
   }
   .wx-nav-logo:hover { transform: scale(1.02); }
   .wx-nav-logo-svg { width: 50px; height: 50px; display: block; }
@@ -117,23 +118,23 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 1;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.55);
     text-decoration: none;
     padding: 9px 18px;
     border-radius: 22px;
     white-space: nowrap;
     transition: color 0.25s ease, background-color 0.25s ease;
   }
-  .wx-nav-link:hover { color: #ffffff; background: rgba(255, 255, 255, 0.07); }
+  .wx-nav-link:hover { color: #9D5CFF; background: rgba(157, 92, 255, 0.08); }
 
-  /* Active / current page — filled light pill */
+  /* Active / current page — filled purple pill */
   .wx-nav-link.wx-current {
-    color: #0b0b0d;
-    background: rgba(255, 255, 255, 0.92);
+    color: #ffffff;
+    background: #9D5CFF;
     font-weight: 600;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+    box-shadow: 0 4px 14px rgba(157, 92, 255, 0.3);
   }
-  .wx-nav-link.wx-current:hover { background: #ffffff; color: #0b0b0d; }
+  .wx-nav-link.wx-current:hover { background: #8A4AE6; color: #ffffff; }
 
   .wx-nav-caret { transition: transform 0.3s ease; opacity: 0.7; }
   .wx-nav-item.wx-open .wx-nav-caret { transform: rotate(180deg); }
@@ -247,13 +248,13 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(157, 92, 255, 0.28);
+    color: #1A1A1A;
+    background: rgba(157, 92, 255, 0.12);
     text-decoration: none;
     transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
   }
   .wx-nav-social svg { width: 16px; height: 16px; }
-  .wx-nav-social:hover { color: #fff; background: #9D5CFF; transform: translateY(-2px); }
+  .wx-nav-social:hover { color: #ffffff; background: #9D5CFF; transform: translateY(-2px); }
 
   /* Hamburger — lives inside the bar, high-contrast so it reads on dark pages */
   .wx-nav-hamburger {
@@ -321,12 +322,18 @@
     -webkit-backdrop-filter: blur(30px) saturate(180%);
     backdrop-filter: blur(30px) saturate(180%);
     border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -30px 0 80px rgba(0,0,0,0.5);
+    /* No shadow while closed: the drawer is parked off-screen right, and a
+       leftward-cast shadow bleeds ~110px back onto the page down the whole
+       right edge. Invisible on dark pages, obvious on light ones. */
+    box-shadow: none;
     transform: translateX(100%);
-    transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease;
     z-index: 9401;
   }
-  .wx-drawer.wx-open { transform: translateX(0); }
+  .wx-drawer.wx-open {
+    transform: translateX(0);
+    box-shadow: -30px 0 80px rgba(0,0,0,0.5);
+  }
 
   .wx-drawer-eyebrow {
     font-family: 'Satoshi', sans-serif;
@@ -401,14 +408,14 @@
       padding: 8px 16px;
       padding-left: max(16px, env(safe-area-inset-left));
       padding-right: max(16px, env(safe-area-inset-right));
-      background: rgba(10, 10, 12, 0.72) !important;
+      background: rgba(255, 255, 255, 0.8) !important;
       -webkit-backdrop-filter: blur(18px) saturate(180%);
       backdrop-filter: blur(18px) saturate(180%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
     }
     .wx-navbar.wx-scrolled {
-      background: rgba(8, 8, 10, 0.92) !important;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08) !important;
     }
 
     /* Mark only — the wordmark is dropped on mobile to keep the bar slim */
@@ -470,7 +477,7 @@
   <header class="wx-nav-container" data-header>
     <div class="wx-navbar" id="wx-navbar">
       <a href="index.html" class="wx-nav-logo">
-        <img src="logo-white.svg" alt="Web{X}" class="wx-nav-logo-svg" width="50" height="50" />
+        <img src="logo-black.svg" alt="Web{X}" class="wx-nav-logo-svg" width="50" height="50" />
         <span class="wx-nav-logo-word">Web<span class="wx-logo-purple">{X}</span></span>
       </a>
 

@@ -93,7 +93,15 @@
    ============================================================ */
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+/* The scrollbar gutter paints the CANVAS background, which propagates from
+   <body> unless <html> sets one. Body is black, so a transparent track showed
+   a black strip down the right edge next to the white hero — giving <html> its
+   own white background fixes the gutter without touching the page theme. */
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:#FFFFFF;scrollbar-color:rgba(157,92,255,.35) #FFFFFF}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#FFFFFF}
+::-webkit-scrollbar-thumb{background:rgba(157,92,255,.25);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:rgba(157,92,255,.45)}
 body{background:#000000;color:#EDEDED;font-family:'Satoshi',sans-serif;overflow-x:hidden}
 ::selection{background:#9D5CFF;color:#0A0A0A}
 img{max-width:100%;display:block}
@@ -166,7 +174,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .wx-uline:hover::after{transform:scaleX(1);transform-origin:left}
 
 /* ---------- Selected-work cards (home) ---------- */
-.wx-work:hover .wx-work-img{transform:scale(1.06)}
 .wx-work:hover .wx-work-rgb{opacity:.55}
 .wx-work:hover .wx-work-meta{transform:translateY(0);opacity:1}
 
@@ -383,7 +390,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-blog-card-feat .wx-blog-card-media{flex:1 1 320px;min-width:0;margin:0;border-radius:16px;aspect-ratio:16/10}
 
 /* ---------- Related posts (end of article) ---------- */
-.wx-related{max-width:1200px;margin:0 auto;padding:clamp(30px,6vh,72px) clamp(20px,5vw,72px) clamp(10px,2vh,24px);border-top:1px solid rgba(255,255,255,.1)}
+.wx-related{max-width:1340px;margin:0 auto;padding:clamp(30px,6vh,72px) 20px clamp(10px,2vh,24px);border-top:1px solid rgba(255,255,255,.1)}
 .wx-related-label{font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2;margin-bottom:clamp(22px,3vh,34px)}
 
 @media (max-width:600px){
@@ -422,7 +429,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   justify-content: center;
   overflow: hidden;
   padding: 100px 20px;
-  background: #000000;
+  background: linear-gradient(145deg, #FFFFFF 0%, #F5F0FF 35%, #EDE4FF 65%, #F8F5FF 100%);
 }
 
 /* Center Content: Brand Title & Headline */
@@ -523,9 +530,9 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   transform: rotate(var(--tilt-angle, 0deg));
   border-radius: clamp(14px, 1.2vw, 24px);
   overflow: hidden;
-  background: #141416;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.85);
+  background: #F0F0F2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
   cursor: pointer;
   pointer-events: auto;
@@ -696,7 +703,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
   position: relative;
   animation: wx-btn-glow 3s ease-in-out infinite;
   width: fit-content;
-  border: none;
+  border: 1px solid rgba(0,0,0,0.12);
 }
 .wx-btn-animated .wx-btn-label {
   font-size: 15px;
@@ -745,6 +752,17 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-btn-animated:hover .wx-btn-arrow {
   width: 30px;
 }
+.wx-btn-animated--purple {
+  border-color: transparent;
+  background: #9D5CFF;
+  background-image: linear-gradient(150deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, rgba(157, 92, 255, .06) 100%);
+  box-shadow: 0 12px 28px -10px rgba(157, 92, 255, 0.7);
+}
+.wx-btn-animated--purple .wx-btn-label { color: #fff; }
+.wx-btn-animated--purple .wx-btn-circle { background: #fff; }
+.wx-btn-animated--purple .wx-btn-arrow path { fill: #9D5CFF; }
+.wx-btn-animated--purple:hover .wx-btn-circle { background: #fff; }
+.wx-btn-animated--purple:hover .wx-btn-arrow path { fill: #7C3AED; }
 
 .wx-testimonial-marquee {
   display: flex;
@@ -762,4 +780,3 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
     transform: translateX(-25%);
   }
 }
-

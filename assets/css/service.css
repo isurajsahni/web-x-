@@ -23,7 +23,7 @@
   background:radial-gradient(circle,var(--svc-soft),transparent 70%);opacity:.5}
 
 /* ---- shared section shell ---- */
-.svcp-section{max-width:1240px;margin:0 auto;padding:clamp(56px,9vh,120px) clamp(20px,5vw,72px)}
+.svcp-section{max-width:1340px;margin:0 auto;padding:clamp(56px,9vh,120px) 20px}
 .svcp-eyebrow{display:inline-flex;align-items:center;gap:11px;padding:7px 15px 7px 13px;
   border:1px solid var(--svc-line);border-radius:100px;background:var(--svc-ghost);
   font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C9C9D2}
@@ -38,7 +38,7 @@
 
 /* ============ HERO ============ */
 .svcp-hero{position:relative;max-width:1320px;margin:0 auto;
-  padding:clamp(128px,19vh,210px) clamp(20px,5vw,72px) clamp(40px,6vh,72px);
+  padding:clamp(128px,19vh,210px) 20px clamp(40px,6vh,72px);
   display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,72px);align-items:center}
 .svcp-hero-crumb{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.08em;
   text-transform:uppercase;color:#7A7A82;margin-bottom:26px}
@@ -94,7 +94,7 @@
 .svcp-tag-out{bottom:4%;right:4%;color:#fff;background:var(--svc);box-shadow:0 10px 24px -10px var(--svc)}
 
 /* ============ STATS STRIP ============ */
-.svcp-stats{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+.svcp-stats{max-width:1340px;margin:0 auto;padding:0 20px}
 .svcp-stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
   border:1px solid rgba(255,255,255,.09);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.06)}
 .svcp-stat{background:#0B0B0F;padding:clamp(22px,3vw,32px) clamp(18px,2.4vw,28px)}
@@ -192,7 +192,7 @@
   line-height:1.5;color:#B5B5C0}
 .svcp-price-card li::before{content:"";position:absolute;left:2px;top:5px;width:12px;height:7px;
   border-left:2px solid var(--svc);border-bottom:2px solid var(--svc);transform:rotate(-45deg)}
-.svcp-price-note{max-width:1240px;margin:22px auto 0;padding:0 clamp(20px,5vw,72px);
+.svcp-price-note{max-width:1340px;margin:22px auto 0;padding:0 20px;
   font-family:'Satoshi',sans-serif;font-size:14px;color:#7A7A82;line-height:1.6}
 
 /* ============ RELATED PLATFORMS ============ */
@@ -214,7 +214,7 @@
 /* ============ FINAL CTA ============ */
 .svcp-final{position:relative;overflow:hidden;display:block;text-decoration:none;color:inherit;
   border-top:1px solid rgba(255,255,255,.1);text-align:center;
-  padding:clamp(70px,12vh,150px) clamp(20px,5vw,72px)}
+  padding:clamp(70px,12vh,150px) 20px}
 .svcp-final::before{content:"";position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);
   width:min(90vw,900px);height:60%;background:radial-gradient(ellipse at center,var(--svc-soft),transparent 70%);
   filter:blur(50px);pointer-events:none}

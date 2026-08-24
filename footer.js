@@ -14,11 +14,11 @@
   var CSS = `
   .wx-footer {
     border-top: 1px solid rgba(255,255,255,.08);
-    padding: clamp(60px,10vh,110px) clamp(20px,5vw,72px) 40px;
+    padding: clamp(60px,10vh,110px) 20px 40px;
     background: #000000;
     position: relative;
   }
-  .wx-footer-inner { max-width: 1500px; margin: 0 auto; }
+  .wx-footer-inner { max-width:1340px; margin: 0 auto; }
 
   /* ---- Top row ---- */
   .wx-footer-top {
@@ -253,7 +253,7 @@
 
     </div>
 
-    <div aria-hidden="true" style="overflow:hidden;line-height:0;padding:clamp(40px,8vh,90px) clamp(16px,3vw,40px) 0;margin:0 calc(-1 * clamp(20px,5vw,72px)) calc(-1 * 40px)">
+    <div aria-hidden="true" style="overflow:hidden;line-height:0;padding:clamp(40px,8vh,90px) clamp(16px,3vw,40px) 0;margin:0 calc(-1 * 20px) calc(-1 * 40px)">
       <div style="font-family:'Satoshi',sans-serif;font-weight:700;font-size:clamp(72px,24vw,360px);line-height:.85;letter-spacing:-.05em;text-align:center;white-space:nowrap;background:linear-gradient(180deg,#9bb0ff 0%,#9D5CFF 42%,#c061ff 72%,rgba(157,92,255,.06) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none">Web{X}</div>
     </div>
   </footer>`;

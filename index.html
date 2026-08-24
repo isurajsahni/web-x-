@@ -68,7 +68,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/webx.css?v=2.2">
 <script src="assets/js/webx.js" defer></script>
@@ -173,302 +173,296 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main">
 <!-- ============ HERO ============ -->
-<section class="hero-orbit-section" data-hero-section style="background:#000000;color:#EDEDED;">
-  <!-- Gradient transition vignette at the bottom of the section -->
-  <div class="hero-gradient-overlay" aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;height:180px;pointer-events:none;z-index:2;background:linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.8) 75%, #000000 100%);"></div>
+<section class="hero-fan" data-hero-section>
+  <style>
+    .hero-fan {
+      position: relative;
+      background: #FFFFFF url('images/hero-bg.png') center top / cover no-repeat;
+      overflow: hidden;
+    }
+    .hero-fan-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: clamp(130px,17vh,190px) 20px clamp(60px,9vh,110px);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-fan h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(34px, 5.4vw, 68px);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.04;
+      color: #1A1A1A;
+      margin: 0;
+      max-width: 20ch;
+      text-wrap: balance;
+    }
+    /* Eyebrow above the heading — sparkle · label · sparkle */
+    .hero-fan-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 clamp(18px, 2.4vh, 26px);
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(13px, 1.05vw, 16px);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: #1A1A1A;
+    }
+    .hero-fan-eyebrow svg { flex: 0 0 auto; color: #9D5CFF; }
+    /* Brand gradient clipped to the glyphs. Angled off pure vertical so the
+       near-transparent tail stop clears the baseline instead of washing out
+       the bottom of the letters. */
+    .wx-grad-text {
+      background: linear-gradient(160deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, rgba(157, 92, 255, .06) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
 
-  <!-- The Orbiting Gallery -->
-  <div class="orbit-wrapper">
-    <div class="orbit-container" data-orbit-container>
-      <!-- concentric Track 4 -->
-      <div class="orbit-card orbit-track-4" style="--init-angle: 15deg; --tilt-angle: 12deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 45deg; --tilt-angle: -8deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 75deg; --tilt-angle: 15deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 105deg; --tilt-angle: -10deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 135deg; --tilt-angle: 8deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 165deg; --tilt-angle: -14deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 195deg; --tilt-angle: 11deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 225deg; --tilt-angle: -7deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 255deg; --tilt-angle: 13deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 285deg; --tilt-angle: -9deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 315deg; --tilt-angle: 14deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/rightway.avif" alt="Rightway App" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 345deg; --tilt-angle: -12deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" />
-          </div>
-        </div>
-      </div>
-            <!-- concentric Track 3 -->
-      <div class="orbit-card orbit-track-3" style="--init-angle: 8deg; --tilt-angle: -10deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 44deg; --tilt-angle: 14deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-01.avif" alt="UX Project 1" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 80deg; --tilt-angle: -8deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-02.avif" alt="UX Project 2" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 116deg; --tilt-angle: 12deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-03.avif" alt="UX Project 3" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 152deg; --tilt-angle: -15deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-04.avif" alt="UX Project 4" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 188deg; --tilt-angle: 9deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 224deg; --tilt-angle: -11deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 260deg; --tilt-angle: 13deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 296deg; --tilt-angle: -7deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 332deg; --tilt-angle: 10deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" />
-          </div>
-        </div>
-      </div>
-            <!-- concentric Track 2 -->
-      <div class="orbit-card orbit-track-2" style="--init-angle: 22deg; --tilt-angle: 11deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 67deg; --tilt-angle: -9deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 112deg; --tilt-angle: 13deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 157deg; --tilt-angle: -12deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 202deg; --tilt-angle: 8deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 247deg; --tilt-angle: -14deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/rightway.avif" alt="Rightway App" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 292deg; --tilt-angle: 10deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 337deg; --tilt-angle: -7deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" />
-          </div>
-        </div>
-      </div>
-            <!-- concentric Track 1 -->
-      <div class="orbit-card orbit-track-1" style="--init-angle: 35deg; --tilt-angle: -8deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-01.avif" alt="UX Project 1" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 95deg; --tilt-angle: 12deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-02.avif" alt="UX Project 2" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 155deg; --tilt-angle: -14deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-03.avif" alt="UX Project 3" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 215deg; --tilt-angle: 9deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/cap-04.avif" alt="UX Project 4" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 275deg; --tilt-angle: -11deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" />
-          </div>
-        </div>
-      </div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 335deg; --tilt-angle: 13deg;">
-        <div class="orbit-card-rotator">
-          <div class="orbit-card-inner">
-            <img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    /* ---------- Fanned card deck ---------- */
+    .hero-fan-deck {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin: clamp(38px,6vh,64px) 0 clamp(26px,4vh,44px);
+      /* room for the outer cards' rotation + drop so nothing clips */
+      padding: 34px 0 60px;
+    }
+    .fan-card {
+      position: relative;
+      width: clamp(124px, 20vw, 262px) !important;
+      aspect-ratio: 3 / 3.5;
+      flex: 0 0 auto;
+      margin-inline: clamp(-34px, -2.6vw, -18px);
+      border-radius: clamp(12px, 1.1vw, 18px);
+      overflow: hidden;
+      background: #F4F2F8;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 18px 38px -16px rgba(26, 20, 48, 0.34);
+      /* --r and --y are set per card so the deck reads as a smooth arc */
+      transform: rotate(var(--r)) translateY(var(--y));
+      transform-origin: 50% 100%;
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+    }
+    .fan-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    /* ---------- Entrance: cards fly in from off-screen and stack ----------
+       Parked state uses --fx/--fy/--fr (a distinct origin per card). The deck
+       gets .is-in once the intro overlay clears, and each card transitions to
+       its resting --r/--y. Guarded by :not(.is-in) so the resting transform
+       above stays the single source of truth for the final position. */
+    .hero-fan-deck:not(.is-in) .fan-card {
+      opacity: 0;
+      transform: translate3d(var(--fx), var(--fy), 0) rotate(var(--fr)) scale(.88);
+    }
+    .hero-fan-deck.is-in .fan-card {
+      opacity: 1;
+      transform: rotate(var(--r)) translateY(var(--y));
+      transition: transform 1s cubic-bezier(.18,.82,.28,1), opacity .55s ease;
+      transition-delay: var(--d, 0s);
+    }
+    .hero-fan-deck:not(.is-in) .fan-tag { opacity: 0; transform: translateY(-10px); }
+    .hero-fan-deck.is-in .fan-tag {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .5s ease .75s, transform .6s cubic-bezier(.18,.82,.28,1) .75s;
+    }
+    /* Hover must out-rank .is-in (same specificity would let source order win)
+       and must not inherit the entrance stagger delay. */
+    .hero-fan-deck.is-in .fan-card:hover {
+      transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+      transition-delay: 0s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      /* No flight — cards are simply present, wherever the deck state is. */
+      .hero-fan-deck .fan-card,
+      .hero-fan-deck:not(.is-in) .fan-card {
+        opacity: 1;
+        transform: rotate(var(--r)) translateY(var(--y));
+        transition: none;
+      }
+      .hero-fan-deck .fan-tag,
+      .hero-fan-deck:not(.is-in) .fan-tag { opacity: 1; transform: none; transition: none; }
+    }
 
-  <!-- Center Content Backdrop Vignette Glow (Charcoal black soft radial fade - spans screen to shade cards from center to corners) -->
-  <div style="position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 55%);z-index:9;pointer-events:none;"></div>
+    /* Lift only — no scale, matching the rest of the hero */
+    .fan-card:hover {
+      transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
+      box-shadow: 0 26px 52px -18px rgba(157, 92, 255, 0.5);
+      z-index: 20;
+    }
 
-  <!-- Center Content: Branding & Headline -->
-  <div class="hero-center-content" data-reveal style="max-width:700px;z-index:10;pointer-events:none;">
-    <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8A8A90;display:flex;align-items:center;gap:4px;">
-      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
-    </div>
-    <h1 style="font-size:clamp(36px, 5.2vw, 56px);font-weight:500;letter-spacing:-0.045em;color:#EDEDED;line-height:1.05;text-align:center;margin:12px 0 0;">
-      <span style="display:block;text-wrap:balance">Design, code, & rank</span>
-      <span style="display:block;text-wrap:balance">premium websites</span>
-    </h1>
-    <p style="font-size:clamp(14px, 1.1vw, 16px);font-weight:400;color:#8A8A92;margin:16px auto 0;max-width:540px;line-height:1.6;text-align:center;">
-      We partner with ambitious founders to build high-performance websites optimized for stunning UX, clean code, and search rankings.
+    /* Floating handle pills */
+    .fan-tag {
+      position: absolute;
+      z-index: 25;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 15px;
+      border-radius: 100px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+      box-shadow: 0 8px 22px -8px rgba(26, 20, 48, 0.45);
+    }
+    /* the little tail that makes it read as a chat bubble */
+    .fan-tag::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: inherit;
+      transform: rotate(45deg);
+    }
+    .fan-tag-l { left: 4%;  top: 8%;  background: #9D5CFF; }
+    .fan-tag-l::after { left: 18px; }
+    .fan-tag-r { right: 4%; top: 3%;  background: #6E8BFF; }
+    .fan-tag-r::after { right: 18px; }
+
+    .hero-fan-sub {
+      font-size: clamp(14px, 1.15vw, 17px);
+      color: #555560;
+      line-height: 1.6;
+      max-width: 52ch;
+      margin: 0;
+    }
+    .hero-fan-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: clamp(22px,3.4vh,34px);
+    }
+    .hero-fan-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 100px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, background-color .3s ease;
+    }
+    .hero-fan-btn-primary {
+      color: #FFFFFF;
+      background-color: #9D5CFF;
+      background-image: linear-gradient(150deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, rgba(157, 92, 255, .06) 100%);
+      box-shadow: 0 12px 28px -10px rgba(157, 92, 255, 0.7);
+    }
+    .hero-fan-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -10px rgba(157, 92, 255, 0.85); }
+    .hero-fan-btn-ghost {
+      color: #1A1A1A;
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.14);
+    }
+    .hero-fan-btn-ghost:hover { background: rgba(157, 92, 255, 0.07); border-color: rgba(157, 92, 255, 0.45); }
+
+    @media (max-width: 860px) {
+      /* All 5 cards fit at mobile width, so the deck stays whole — it just
+         scales down and overlaps a little tighter. */
+      .fan-card { width: clamp(84px, 23vw, 130px); margin-inline: -12px; }
+      .fan-tag-l { left: 0; top: 2%; }
+      .fan-tag-r { right: 0; top: 0; }
+    }
+  </style>
+
+  <!-- Decorative edge panels. Deliberately pushed past the section's left and
+       right edges so only a slice of each shows — the section's overflow:hidden
+       does the cropping. Projects differ from the deck so the hero surfaces
+       more of the portfolio rather than repeating the same five shots. -->
+
+  <div class="hero-fan-inner">
+    <p class="hero-fan-eyebrow" data-reveal>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      Digital experiences built for growth
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
     </p>
-    <div class="hero-center-buttons" style="margin-top:28px;pointer-events:auto;display:flex;align-items:center;justify-content:center;">
-      <a href="contact" class="wx-btn-animated">
+    <h1 data-reveal>Web design &amp; development agency that <span class="wx-grad-text">grows your business</span></h1>
+
+    <div class="hero-fan-deck">
+      <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager"></div>
+      <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/gpsfdk.avif" alt="GPSFDK project preview" loading="eager"></div>
+      <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="eager"></div>
+      <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation project preview" loading="eager"></div>
+      <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/erp-gpsfdk.avif" alt="GPSFDK ERP One project preview" loading="eager"></div>
+
+      <span class="fan-tag fan-tag-l" aria-hidden="true">@uttampublic</span>
+      <span class="fan-tag fan-tag-r" aria-hidden="true">@narseva</span>
+    </div>
+
+    <p class="hero-fan-sub">We design and build modern, high-performing websites that help businesses look professional, connect with their audience, and turn visitors into customers.</p>
+
+    <div class="hero-fan-cta">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
         <span class="wx-btn-label">Start a project</span>
         <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </a>
+      <a data-transition href="work" data-magnetic class="wx-btn-animated">
+        <span class="wx-btn-label">See our work</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
           </svg>
         </span>
       </a>
     </div>
   </div>
+
+  <script>
+    /* Deal the deck once the intro overlay clears. webx.js fires wx:intro-done
+       and sets __wxIntroDone, so this works whether the script runs before or
+       after that moment. The timeout is a safety net: if the intro never fires
+       (script error, blocked asset) the cards must still appear — a hero that
+       stays invisible is far worse than one that skips its animation. */
+    (function () {
+      var hero = document.currentScript.parentNode;
+      var deck = hero.querySelector('.hero-fan-deck');
+      if (!deck) return;
+      var dealt = false;
+      function deal() {
+        if (dealt) return;
+        dealt = true;
+        deck.classList.add('is-in');
+        /* Section-level too: the corner art sits outside the deck and keys off
+           .hero-fan.is-in. */
+        hero.classList.add('is-in');
+      }
+      if (window.__wxIntroDone) requestAnimationFrame(deal);
+      else document.addEventListener('wx:intro-done', deal, { once: true });
+      setTimeout(deal, 4000);
+    })();
+  </script>
 </section>
 
 <!-- ============ ABOUT / INTRO (WHAT WE DO) ============ -->
-<section style="padding:clamp(100px,18vh,220px) clamp(20px,5vw,72px) clamp(60px,10vh,110px);max-width:1500px;margin:0 auto">
+<section style="background:#FFFFFF;color:#1A1A1A">
+  <div style="padding:clamp(100px,18vh,220px) 20px clamp(60px,10vh,110px);max-width:1340px;margin:0 auto">
   
   <style>
     /* Section 1 & 2 Marwa-inspired grid styling */
@@ -503,8 +497,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       100% { opacity: 0; transform: translateY(0%) translateX(0%) scale(1); }
     }
     .about-glass-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 24px;
       padding: clamp(24px, 3vw, 36px);
       display: flex;
@@ -560,7 +554,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       position: relative;
       height: 100%;
       min-height: 400px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
     .about-image-card img,
     .about-image-card video {
@@ -577,43 +571,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       transform: scale(1.05);
     }
 
-    /* Card 3 — mini orbiting gallery (mirrors the hero orbit) */
-    .about-orbit-card {
-      background: #000000;
-      container-type: inline-size; /* lets the orbit radius scale to the card width (cqw) */
+    /* ---------- Card 2 replacement: open full-height project marquee ----------
+       No card chrome — the columns run the full height of the grid row and are
+       faded out top and bottom by a mask, so the work reads as part of the page
+       rather than something boxed in. */
+    .about-marquee-wrap {
+      position: relative;
+      height: 100%;
+      min-height: clamp(520px, 74vh, 780px);
+      /* Viewport-relative so cards scale with page height rather than being
+         locked to an aspect ratio derived from column width. */
+      --about-card-h: clamp(260px, 40vh, 470px);
     }
-    /* Enlarge every orbit thumbnail ~16px over its base size (keeps centring) */
-    .about-orbit-card .orbit-card {
-      width: calc(var(--card-w, 60px) + 16px);
-      height: calc(var(--card-h, var(--card-w, 60px)) + 16px);
-      margin-left: calc((var(--card-w, 60px) + 16px) / -2);
-      margin-top: calc((var(--card-h, var(--card-w, 60px)) + 16px) / -2);
+    /* The mask lives here, on the scroller only. Putting it on the wrapper
+       would fade the title and badge out along with the images. */
+    .about-marquee {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      /* flex-start, not the default stretch: each column must size to its own
+         content height, or translateY(-50%) would span half the container
+         instead of half the cards and the loop would visibly jump. */
+      align-items: flex-start;
+      justify-content: center;
+      gap: clamp(14px, 1.6vw, 22px);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
     }
-    /* Independent CSS spin (hero uses scroll-driven JS on a single container) */
-    .about-orbit-card .orbit-container {
-      animation: orbit-rotate 46s linear infinite;
+    .about-marquee-col { flex: 1 1 0; min-width: 0; will-change: transform; }
+    .about-marquee-up   { animation: about-scroll-up   var(--dur, 26s) linear infinite; }
+    .about-marquee-down { animation: about-scroll-down var(--dur, 30s) linear infinite; }
+    @keyframes about-scroll-up   { from { transform: translateY(0); }     to { transform: translateY(-50%); } }
+    @keyframes about-scroll-down { from { transform: translateY(-50%); }  to { transform: translateY(0); } }
+    /* A uniform per-card margin (never a flex gap) keeps every item the same
+       height, so -50% lands exactly on the duplicate — a gap leaves a seam. */
+    .about-marquee-card {
+      width: 100%;
+      height: var(--about-card-h);
+      margin-bottom: clamp(14px, 1.6vw, 22px);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #F4F2F8;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 30px -14px rgba(26, 20, 48, 0.28);
     }
-    /* Cancel the .about-image-card full-bleed rule for the orbit thumbnails */
-    .about-orbit-card .orbit-card-inner img {
-      position: static;
-      top: auto;
-      left: auto;
+    .about-marquee-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
-    /* Neutralise the whole-card hover zoom, keep per-card hover lift */
-    .about-orbit-card:hover .orbit-card-inner img {
-      transform: none;
+    .about-marquee-title {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      z-index: 4;
+      pointer-events: none;
     }
-    .about-orbit-card .orbit-card-inner:hover img {
-      transform: scale(1.06);
+    .about-marquee-title h3 {
+      margin: 0;
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(19px, 2.4vw, 32px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #1A1A1A;
+      text-align: center;
+      /* Bare text, no pill. A soft white glow is the only thing keeping it
+         legible where a dark project screenshot passes behind it. */
+      text-shadow: 0 2px 16px rgba(255, 255, 255, 0.95), 0 0 44px rgba(255, 255, 255, 0.85);
+    }
+    .about-marquee-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 5;
+      background: #9D5CFF;
+      border: 1px solid rgba(157, 92, 255, 0.55);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #FFFFFF;
+      box-shadow: 0 8px 22px -10px rgba(157, 92, 255, 0.8);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .about-marquee-up, .about-marquee-down { animation: none; }
+    }
+    @media (max-width: 900px) {
+      .about-marquee-wrap { min-height: clamp(420px, 60vh, 560px); }
     }
 
     /* Card 3 Stack card */
     .about-stack-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 24px;
       padding: clamp(24px, 3vw, 36px);
       position: relative;
@@ -646,7 +703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       border-radius: 12px;
       object-fit: cover;
       box-shadow: 0 10px 24px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.10);
       transition: transform 0.3s, z-index 0.3s;
     }
     .tilted-img:hover {
@@ -660,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       grid-template-columns: repeat(4, 1fr);
       gap: 30px;
       padding-top: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
       margin-bottom: 0px;
     }
     
@@ -669,7 +726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       font-size: clamp(36px, 4.5vw, 68px);
       font-weight: 700;
       letter-spacing: -0.04em;
-      color: #FFFFFF;
+      color:#1A1A1A;
       line-height: 1;
       margin-bottom: 8px;
     }
@@ -677,7 +734,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .stat-label {
       font-family: 'Satoshi', sans-serif;
       font-size: 11px;
-      color: #7A7A82;
+      color:#6B6B70;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
@@ -691,8 +748,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     
     .choose-card-tall {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 24px;
       padding: clamp(24px, 3vw, 36px);
       min-height: 440px;
@@ -718,8 +775,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     
     .choose-mini-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(0, 0, 0, 0.025);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 20px;
       padding: clamp(20px, 2.5vw, 30px);
       flex: 1;
@@ -745,8 +802,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      border: 2px solid #030306;
-      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      color:#1A1A1A;
       font-size: 9px;
       font-weight: 700;
       display: flex;
@@ -777,9 +834,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="what-we-do-grid">
     <div data-reveal style="display:flex;align-items:center;gap:14px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
       <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(01)</span>
-      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">About Web{X} Studio</span>
+      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#555560">About Web{X} Studio</span>
     </div>
-    <p data-reveal data-reveal-delay="100" style="font-size:clamp(18px,2.4vw,28px);line-height:1.35;font-weight:350;letter-spacing:-.02em;color:#EDEDED;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">
+    <p data-reveal data-reveal-delay="100" style="font-size:clamp(18px,2.4vw,28px);line-height:1.35;font-weight:350;letter-spacing:-.02em;color:#1A1A1A;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">
       Since 2019, our team has designed, developed, and ranked high-performance web products, guiding ambitious founders from Ludhiana to the global stage.
     </p>
   </div>
@@ -798,56 +855,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <circle cx="3.5" cy="10.5" r="1.2" fill="currentColor"/>
           <circle cx="10.5" cy="10.5" r="1.2" fill="currentColor"/>
         </svg>
-        <h3 style="font-size:22px; font-weight:600; color:#FFFFFF; margin-bottom:10px; font-family:'Satoshi',sans-serif; letter-spacing:-0.02em;">Bespoke Design.</h3>
-        <p style="font-size:14px; color:#9A9AA2; line-height:1.6; margin:0;">We don't use templates. Every pixel is intentional, built to convert, built to rank, and built to make your brand the one people remember.</p>
+        <h3 style="font-size:28px; font-weight:600; color:#1A1A1A; margin-bottom:12px; font-family:'Satoshi',sans-serif; letter-spacing:-0.025em; line-height:1.15;">Designed, Not Downloaded.</h3>
+        <p style="font-size:18px; color:#555560; line-height:1.6; margin:0;">No themes. No page builders. Every layout is designed from scratch around your brand, engineered for speed, and structured for search — so your site works as hard as you do.</p>
       </div>
 
       <!-- Service Tags -->
       <div style="display:flex; flex-wrap:wrap; gap:8px;">
-        <span style="font-size:11px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:5px 12px; border-radius:100px; font-weight:500;">UI/UX Design</span>
-        <span style="font-size:11px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:5px 12px; border-radius:100px; font-weight:500;">Web Development</span>
-        <span style="font-size:11px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:5px 12px; border-radius:100px; font-weight:500;">SEO & Growth</span>
-        <span style="font-size:11px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:5px 12px; border-radius:100px; font-weight:500;">Brand Identity</span>
+        <span style="font-size:13px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:6px 14px; border-radius:100px; font-weight:500;">UI/UX Design</span>
+        <span style="font-size:13px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:6px 14px; border-radius:100px; font-weight:500;">Web Development</span>
+        <span style="font-size:13px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:6px 14px; border-radius:100px; font-weight:500;">SEO & Growth</span>
+        <span style="font-size:13px; color:#9D5CFF; background:rgba(157,92,255,0.1); border:1px solid rgba(157,92,255,0.25); padding:6px 14px; border-radius:100px; font-weight:500;">Brand Identity</span>
       </div>
 
       <!-- Feature Checklist -->
       <div style="display:flex; flex-direction:column; gap:11px;">
-        <p style="font-size:11.5px; color:#7A7A82; margin:0 0 2px; text-transform:uppercase; letter-spacing:0.09em; font-weight:500;">What you get</p>
-        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#EDEDED; line-height:1.45;">
+        <p style="font-size:12.5px; color:#6B6B70; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.09em; font-weight:600;">What you get</p>
+        <div style="display:flex; align-items:flex-start; gap:11px; font-size:16px; color:#1A1A1A; line-height:1.5;">
           <span style="color:#9D5CFF; margin-top:1px; flex-shrink:0;">✦</span>
-          <span>Custom UI/UX systems built around your brand & user psychology</span>
+          <span>Custom UI/UX built around your brand and how your customers actually think</span>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#EDEDED; line-height:1.45;">
+        <div style="display:flex; align-items:flex-start; gap:11px; font-size:16px; color:#1A1A1A; line-height:1.5;">
           <span style="color:#9D5CFF; margin-top:1px; flex-shrink:0;">✦</span>
-          <span>100/100 Lighthouse performance - fast load, better rankings</span>
+          <span>100/100 Lighthouse performance &mdash; faster pages rank higher and convert better</span>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#EDEDED; line-height:1.45;">
+        <div style="display:flex; align-items:flex-start; gap:11px; font-size:16px; color:#1A1A1A; line-height:1.5;">
           <span style="color:#9D5CFF; margin-top:1px; flex-shrink:0;">✦</span>
-          <span>High-impact SEO architecture - from on-page to technical audits</span>
+          <span>SEO built into the architecture from day one, not bolted on afterwards</span>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#EDEDED; line-height:1.45;">
+        <div style="display:flex; align-items:flex-start; gap:11px; font-size:16px; color:#1A1A1A; line-height:1.5;">
           <span style="color:#9D5CFF; margin-top:1px; flex-shrink:0;">✦</span>
-          <span>Conversion-first layouts engineered to turn visitors into clients</span>
+          <span>Conversion-first layouts engineered to turn visitors into real enquiries</span>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#EDEDED; line-height:1.45;">
+        <div style="display:flex; align-items:flex-start; gap:11px; font-size:16px; color:#1A1A1A; line-height:1.5;">
           <span style="color:#9D5CFF; margin-top:1px; flex-shrink:0;">✦</span>
-          <span>Mobile-first, pixel-perfect responsiveness across every device</span>
+          <span>Pixel-perfect and mobile-first on every screen your customers use</span>
         </div>
       </div>
 
       <!-- Social Proof Strip -->
-      <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; align-items:center; gap:12px;">
+      <div style="border-top:1px solid rgba(0, 0, 0, 0.08); padding-top:16px; display:flex; align-items:center; gap:12px;">
         <div style="display:flex;">
-          <img src="images/avatar1.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #0a0a0a;">
-          <img src="images/avatar2.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #0a0a0a;margin-left:-9px;">
-          <img src="images/avatar3.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #0a0a0a;margin-left:-9px;">
+          <img src="images/avatar1.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;">
+          <img src="images/avatar2.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;margin-left:-9px;">
+          <img src="images/avatar3.jpg" alt="Client" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;margin-left:-9px;">
         </div>
         <div>
-          <p style="font-size:12px; color:#EDEDED; margin:0; font-weight:500;">Trusted by 60+ founders</p>
-          <p style="font-size:11px; color:#6A6A72; margin:0;">across India &amp; globally</p>
+          <p style="font-size:14px; color:#1A1A1A; margin:0; font-weight:600;">Trusted by 60+ founders</p>
+          <p style="font-size:13px; color:#555560; margin:0;">across India &amp; globally</p>
         </div>
         <div style="margin-left:auto;">
-          <span style="color:#F59E0B; font-size:13px; letter-spacing:1px;">★★★★★</span>
+          <span style="color:#F59E0B; font-size:15px; letter-spacing:1px;">★★★★★</span>
         </div>
       </div>
 
@@ -862,32 +919,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </div>
 
-    <!-- Card 2: Live orbiting gallery (mini hero) around "Design. Develop. Grow." -->
-    <div data-reveal data-reveal-delay="280" class="about-image-card about-orbit-card" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
-      <div class="orbit-wrapper">
-        <div class="orbit-container">
-          <!-- Inner ring -->
-          <div class="orbit-card" style="--init-angle:20deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(56px,5.8vw,76px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:92deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(48px,5vw,66px);--card-h:clamp(48px,5vw,66px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:164deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(34px,3.6vw,46px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:236deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(46px,4.8vw,64px);--card-h:clamp(46px,4.8vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:308deg;--radius:clamp(120px,22cqw,220px);--card-w:clamp(44px,4.6vw,60px);--card-h:clamp(56px,5.8vw,76px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="" loading="lazy" /></div></div></div>
-          <!-- Outer ring -->
-          <div class="orbit-card" style="--init-angle:0deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(50px,5.4vw,72px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:51deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(60px,6.4vw,84px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:103deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(38px,4vw,52px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:154deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(46px,4.9vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:206deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(64px,6.8vw,90px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:257deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(46px,4.9vw,64px);--card-h:clamp(46px,4.9vw,64px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="" loading="lazy" /></div></div></div>
-          <div class="orbit-card" style="--init-angle:309deg;--radius:clamp(190px,45cqw,365px);--card-w:clamp(50px,5.4vw,72px);--card-h:clamp(38px,4vw,52px);"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="" loading="lazy" /></div></div></div>
+    <!-- Card 2 slot: open full-height project marquee (no card box).
+         Each column's list is duplicated verbatim so the -50% keyframe lands
+         exactly on the copy — do not edit one half without the other. -->
+    <div data-reveal data-reveal-delay="280" class="about-marquee-wrap" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
+      <div class="about-marquee" aria-hidden="true">
+        <div class="about-marquee-col about-marquee-up" style="--dur:26s;">
+          <div class="about-marquee-card"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/gpsfdk.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/rightway.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/automa.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/gpsfdk.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/rightway.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/automa.avif" alt="" loading="lazy"></div>
+        </div>
+        <div class="about-marquee-col about-marquee-down" style="--dur:30s;">
+          <div class="about-marquee-card"><img src="images/work/Narseva%20Foundation.webp" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/erp-gpsfdk.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/vibely.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/tmc.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/Narseva%20Foundation.webp" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/erp-gpsfdk.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/vibely.avif" alt="" loading="lazy"></div>
+          <div class="about-marquee-card"><img src="images/work/tmc.avif" alt="" loading="lazy"></div>
         </div>
       </div>
-      <!-- Soft vignette so the centre text stays readable over passing cards -->
-      <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(circle at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.1) 55%, transparent 75%);z-index:3;pointer-events:none;"></div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 24px;z-index:4;pointer-events:none;">
-        <h3 style="font-size:clamp(20px,2.6vw,34px);font-weight:600;letter-spacing:-0.02em;color:#FFFFFF;margin:0;text-align:center;line-height:1.15;white-space:nowrap;font-family:'Satoshi',sans-serif;">Design. Develop. Deliver.</h3>
-      </div>
-      <div style="position:absolute; top:20px; left:20px; background:rgba(3,3,6,0.5); border:1px solid rgba(255,255,255,0.1); padding:8px 16px; border-radius:100px; font-size:12px; color:#FFFFFF; font-weight:500; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index: 5;">Selected work</div>
+      <span class="about-marquee-badge">Selected work</span>
     </div>
   </div>
 
@@ -1028,10 +1086,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   </script>
 
+  </div>
 </section>
 
 <!-- ============ CAPABILITIES - Horizontal gradient cards ============ -->
-<section id="services" style="padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px) clamp(60px,10vh,120px);max-width:1500px;margin:0 auto">
+<section id="services" style="background:#F5F4F9;color:#1A1A1A">
+  <div style="padding:clamp(80px,12vh,160px) 20px clamp(60px,10vh,120px);max-width:1340px;margin:0 auto">
 
   <style>
     /* ---------- Layout ---------- */
@@ -1045,179 +1105,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-cap-header p {
       font-size: clamp(15px,1.2vw,18px);
       line-height: 1.65;
-      color: #9A9AA2;
+      color: #555560;
       max-width: 480px;
       margin: 0;
     }
-    .wx-cap-grid {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: clamp(12px,1.5vw,20px);
+    /* ---------- Capability rows ----------
+       Editorial list instead of a card grid: each capability is a full-width
+       row divided by hairlines. Hover is deliberately quiet — a faint tint,
+       a purple accent bar growing down the left, and the arrow sliding out. */
+    .wx-cap-list {
+      margin-top: clamp(40px,6vh,72px);
+      border-top: 1px solid rgba(0,0,0,.10);
     }
-
-    /* ---------- Card ---------- */
-    .wx-cap-card {
+    .wx-cap-row {
       position: relative;
-      border-radius: 20px;
-      padding: clamp(20px,2.5vw,32px) clamp(18px,2vw,28px) clamp(22px,3vw,36px);
-      background: #0D0D11;
-      border: 1px solid rgba(255,255,255,.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      min-height: clamp(300px,38vh,440px);
-      cursor: default;
-      transition: transform .55s cubic-bezier(.16,1,.3,1),
-                  box-shadow .55s ease,
-                  border-color .4s ease;
-    }
-    .wx-cap-card:hover {
-      transform: translateY(-16px) !important;
-      box-shadow: 0 30px 60px rgba(0,0,0,.55), 0 8px 20px rgba(0,0,0,.3);
-      border-color: rgba(157,92,255,.3);
-    }
-
-    /* ---------- Content above gradient ---------- */
-    .wx-cap-card > :not(.wx-cap-grad) { position: relative; z-index: 2; }
-
-    /* ---------- Gradient fill container ---------- */
-    .wx-cap-grad {
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      overflow: hidden;
-      opacity: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: #0D0D11;
-      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .wx-cap-card:hover .wx-cap-grad { opacity: 1; }
-
-    /* ---- Aurora glowing blobs (Purple/Pink/Lavender) ---- */
-    .wx-cap-glow-1 {
-      position: absolute;
-      bottom: -60px;
-      left: -40px;
-      width: 220px;
-      height: 220px;
-      background: #7c3aed; /* Darker Purple */
-      filter: blur(50px);
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: capGlowMove1 3.5s ease-in-out infinite alternate;
-    }
-    .wx-cap-glow-2 {
-      position: absolute;
-      bottom: -80px;
-      right: -40px;
-      width: 240px;
-      height: 240px;
-      background: #c026d3; /* Darker Pink/Magenta */
-      filter: blur(55px);
-      border-radius: 50%;
-      opacity: 0.65;
-      animation: capGlowMove2 3s ease-in-out infinite alternate;
-    }
-    .wx-cap-glow-3 {
-      position: absolute;
-      bottom: -30px;
-      left: 20%;
-      width: 190px;
-      height: 190px;
-      background: #4f46e5; /* Darker Lavender/Indigo */
-      filter: blur(45px);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: capGlowMove3 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes capGlowMove1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(30px, -20px) scale(1.15); }
-    }
-    @keyframes capGlowMove2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-30px, -30px) scale(1.1); }
-    }
-    @keyframes capGlowMove3 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(20px, -15px) scale(1.2); }
-    }
-
-    /* ---------- Number ---------- */
-    .wx-cap-num {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(157,92,255,.65);
-      display: flex;
+      display: grid;
+      grid-template-columns: 68px minmax(190px,1fr) 1.5fr auto;
       align-items: center;
-      gap: 10px;
+      gap: clamp(16px,2.4vw,40px);
+      padding: clamp(26px,3.4vh,40px) clamp(14px,1.6vw,26px);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+      text-decoration: none;
+      color: inherit;
+      transition: background-color .35s ease;
     }
-    .wx-cap-num::after {
+    /* Accent bar grows from the top down the left edge */
+    .wx-cap-row::before {
       content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(157,92,255,.18);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(180deg, #9bb0ff 0%, #9D5CFF 55%, #c061ff 100%);
+      transition: height .4s cubic-bezier(.16,1,.3,1);
     }
-    .wx-cap-card:hover .wx-cap-num         { color: rgba(255,255,255,.85); }
-    .wx-cap-card:hover .wx-cap-num::after  { background: rgba(255,255,255,.2); }
+    .wx-cap-row:hover { background-color: rgba(157,92,255,.045); }
+    .wx-cap-row:hover::before { height: 100%; }
 
-    /* ---------- Title ---------- */
+    .wx-cap-num {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      color: rgba(157,92,255,.75);
+      transition: color .35s ease;
+    }
+    .wx-cap-row:hover .wx-cap-num { color: #7C3AED; }
+
     .wx-cap-title {
-      font-size: clamp(22px,2.2vw,34px);
+      font-size: clamp(21px,2.1vw,30px);
       font-weight: 600;
       letter-spacing: -.03em;
-      line-height: 1.1;
-      color: #EDEDED;
-      margin: 0 0 10px;
-      /* wrap by width, not by hard <br> - keeps the 2-line rhythm on every breakpoint */
-      max-width: 13ch;
-      text-wrap: balance;
-    }
-    .wx-cap-card:hover .wx-cap-title { color: #fff; }
-
-    /* ---------- Description ---------- */
-    .wx-cap-desc {
-      font-size: clamp(13px,1vw,14px);
-      line-height: 1.6;
-      color: #6E6E78;
+      line-height: 1.15;
+      color: #1A1A1A;
       margin: 0;
-      transition: color .3s;
+      text-wrap: balance;
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
     }
-    .wx-cap-card:hover .wx-cap-desc { color: rgba(255,255,255,.8); }
+    .wx-cap-row:hover .wx-cap-title { transform: translateX(6px); }
 
-    /* ---------- Tags ---------- */
-    .wx-cap-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: auto;
+    .wx-cap-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555560;
+      margin: 0;
     }
+
+    .wx-cap-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
     .wx-cap-tag {
-      font-size: 12px;
-      color: rgba(255,255,255,.45);
-      border: 1px solid rgba(255,255,255,.09);
-      padding: 4px 12px;
+      font-size: 13px;
+      color: #6B6B70;
+      border: 1px solid rgba(0,0,0,.10);
+      background: #FFFFFF;
+      padding: 5px 13px;
       border-radius: 100px;
       white-space: nowrap;
-      transition: border-color .3s, color .3s, background .3s;
+      transition: border-color .35s, color .35s, background .35s;
     }
-    .wx-cap-card:hover .wx-cap-tag {
-      border-color: rgba(255,255,255,.3);
-      color: #fff;
-      background: rgba(255,255,255,.12);
+    .wx-cap-row:hover .wx-cap-tag {
+      border-color: rgba(157,92,255,.3);
+      color: #7C3AED;
+      background: rgba(157,92,255,.06);
+    }
+
+    .wx-cap-arrow {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9D5CFF;
+      border: 1px solid rgba(157,92,255,.28);
+      transition: transform .4s cubic-bezier(.16,1,.3,1), background-color .35s, color .35s;
+    }
+    .wx-cap-row:hover .wx-cap-arrow {
+      background-color: #9D5CFF;
+      color: #FFFFFF;
+      transform: translateX(5px);
     }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1100px) {
-      .wx-cap-grid   { grid-template-columns: repeat(2,1fr); }
       .wx-cap-header { grid-template-columns: 1fr; }
+      /* Description drops out first — title + tags carry the row */
+      .wx-cap-row { grid-template-columns: 54px 1fr auto; }
+      .wx-cap-desc { display: none; }
     }
-    @media (max-width: 600px)  { .wx-cap-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) {
+      .wx-cap-row {
+        grid-template-columns: 1fr auto;
+        align-items: start;
+        row-gap: 12px;
+      }
+      .wx-cap-num { grid-column: 1 / -1; }
+      .wx-cap-tags { grid-column: 1 / -1; justify-content: flex-start; }
+      .wx-cap-arrow { grid-row: 2; }
+    }
   </style>
 
   <!-- Section header -->
@@ -1225,7 +1230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(16px,2.5vh,24px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
         <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(02)</span>
-        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Capabilities</span>
+        <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#555560">Capabilities</span>
       </div>
       <h2 data-reveal data-reveal-delay="80" style="font-size:clamp(34px,5.4vw,84px);font-weight:600;letter-spacing:-.04em;line-height:1.02;margin:0;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">
         Zero to<br><span style="color:#9D5CFF">capabilities.</span>
@@ -1237,88 +1242,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- Cards -->
-  <div class="wx-cap-grid">
+  <!-- Capabilities as an editorial list. Each row links through to the
+       matching part of the services page. -->
+  <div class="wx-cap-list">
 
-    <div class="wx-cap-card" data-reveal style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
-      <div class="wx-cap-grad">
-        <div class="wx-cap-glow-1"></div>
-        <div class="wx-cap-glow-2"></div>
-        <div class="wx-cap-glow-3"></div>
-      </div>
+    <a href="services" class="wx-cap-row" data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <span class="wx-cap-num">01</span>
-      <div>
-        <h3 class="wx-cap-title">Website Design</h3>
-        <p class="wx-cap-desc">Bespoke interfaces that convert visitors into clients.</p>
-      </div>
+      <h3 class="wx-cap-title">Website Design</h3>
+      <p class="wx-cap-desc">Bespoke interfaces that convert visitors into clients.</p>
       <div class="wx-cap-tags">
         <span class="wx-cap-tag">UI / UX</span>
         <span class="wx-cap-tag">Landing pages</span>
-        <span class="wx-cap-tag">Responsive</span>
         <span class="wx-cap-tag">Design systems</span>
+        <span class="wx-cap-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="wx-cap-card" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
-      <div class="wx-cap-grad">
-        <div class="wx-cap-glow-1"></div>
-        <div class="wx-cap-glow-2"></div>
-        <div class="wx-cap-glow-3"></div>
-      </div>
+    <a href="services" class="wx-cap-row" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <span class="wx-cap-num">02</span>
-      <div>
-        <h3 class="wx-cap-title">Web Development</h3>
-        <p class="wx-cap-desc">Fast, scalable code on the platform that fits your goals.</p>
-      </div>
+      <h3 class="wx-cap-title">Web Development</h3>
+      <p class="wx-cap-desc">Fast, scalable code on the platform that fits your goals.</p>
       <div class="wx-cap-tags">
         <span class="wx-cap-tag">Webflow</span>
         <span class="wx-cap-tag">WordPress</span>
-        <span class="wx-cap-tag">Shopify</span>
         <span class="wx-cap-tag">Custom code</span>
+        <span class="wx-cap-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="wx-cap-card" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
-      <div class="wx-cap-grad">
-        <div class="wx-cap-glow-1"></div>
-        <div class="wx-cap-glow-2"></div>
-        <div class="wx-cap-glow-3"></div>
-      </div>
+    <a href="services" class="wx-cap-row" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <span class="wx-cap-num">03</span>
-      <div>
-        <h3 class="wx-cap-title">SEO &amp; Performance</h3>
-        <p class="wx-cap-desc">Rank higher, load faster. 100/100 Lighthouse from day one.</p>
-      </div>
+      <h3 class="wx-cap-title">SEO &amp; Performance</h3>
+      <p class="wx-cap-desc">Rank higher, load faster. 100/100 Lighthouse from day one.</p>
       <div class="wx-cap-tags">
         <span class="wx-cap-tag">SEO</span>
         <span class="wx-cap-tag">Core Web Vitals</span>
         <span class="wx-cap-tag">Speed audits</span>
-        <span class="wx-cap-tag">Analytics</span>
+        <span class="wx-cap-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="wx-cap-card" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
-      <div class="wx-cap-grad">
-        <div class="wx-cap-glow-1"></div>
-        <div class="wx-cap-glow-2"></div>
-        <div class="wx-cap-glow-3"></div>
-      </div>
+    <a href="services" class="wx-cap-row" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <span class="wx-cap-num">04</span>
-      <div>
-        <h3 class="wx-cap-title">ERP &amp; Web Apps</h3>
-        <p class="wx-cap-desc">Custom dashboards and ERPs that scale with your business.</p>
-      </div>
+      <h3 class="wx-cap-title">ERP &amp; Web Apps</h3>
+      <p class="wx-cap-desc">Custom dashboards and ERPs that scale with your business.</p>
       <div class="wx-cap-tags">
         <span class="wx-cap-tag">ERP</span>
         <span class="wx-cap-tag">Dashboards</span>
         <span class="wx-cap-tag">Automation</span>
-        <span class="wx-cap-tag">Custom software</span>
+        <span class="wx-cap-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </div>
-    </div>
+    </a>
 
   </div>
 
   
 
+  </div>
 </section>
 
 
@@ -1677,122 +1665,124 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============ SELECTED WORK ============ -->
-<section id="work" style="padding:clamp(100px,16vh,200px) clamp(20px,5vw,72px) clamp(60px,10vh,120px);max-width:1500px;margin:0 auto">
+<section id="work" style="background:#F5F4F9;color:#1A1A1A">
+  <div style="padding:clamp(100px,16vh,200px) 20px clamp(60px,10vh,120px);max-width:1340px;margin:0 auto">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:clamp(40px,7vh,80px)">
     <div>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
         <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(03)</span>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">Selected work</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#555560">Selected work</span>
       </div>
       <h2 data-reveal style="font-size:clamp(34px,5.4vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">Recent obsessions</h2>
     </div>
-    <a data-transition href="work" data-magnetic class="wx-uline" style="font-family:'Satoshi', sans-serif;font-size:13px;color:#EDEDED;text-decoration:none;letter-spacing:.05em;text-transform:uppercase">All projects →</a>
+    <a data-transition href="work" data-magnetic class="wx-uline" style="font-family:'Satoshi', sans-serif;font-size:13px;color:#1A1A1A;text-decoration:none;letter-spacing:.05em;text-transform:uppercase">All projects →</a>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(24px,3vw,48px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px">
     <a href="https://uttampublichighschool.vercel.app/" target="_blank" rel="noopener" data-cursor="view" class="wx-work" aria-label="Uttam Public High School - school website design & development by Web{X} Studio" style="text-decoration:none;color:inherit;display:block">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#0E0E12">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School website designed and developed by Web{X} Studio" loading="lazy" decoding="async" data-parallax="0.12" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">Uttam Public High School</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'26</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'26</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">Education · Web design · Development ↗</p>
     </a>
     <a href="https://www.narsevafoundation.com/" target="_blank" rel="noopener" data-cursor="view" class="wx-work" aria-label="Nar Seva Foundation - NGO website design & development by Web{X} Studio" style="text-decoration:none;color:inherit;display:block;margin-top:clamp(0px,6vw,80px)">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#0E0E12">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation website designed and developed by Web{X} Studio" loading="lazy" decoding="async" data-parallax="0.12" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">Nar Seva Foundation</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'26</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'26</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">NGO · Web design · Development ↗</p>
     </a>
 
     <a data-transition href="case-study-gpsfdk" data-cursor="view" class="wx-work" aria-label="GPSFDK - read the luxury ecommerce brand & website case study by Web{X} Studio" style="text-decoration:none;color:inherit;display:block">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#0E0E12">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/gpsfdk.avif" alt="GPSFDK.com homepage - Right to Luxury canvas and nameplates ecommerce site" loading="lazy" decoding="async" width="1600" height="1200" data-parallax="0.12" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">GPSFDK.com</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'26</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'26</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">Brand · Ecommerce · Case study →</p>
     </a>
 
     <a data-transition href="case-study-erp" data-cursor="view" class="wx-work" aria-label="GPSFDK ERP One - read the custom ERP software case study by Web{X} Studio" style="text-decoration:none;color:inherit;display:block;margin-top:clamp(0px,6vw,80px)">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#101015">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/erp-gpsfdk.avif" alt="GPSFDK ERP One dashboard - custom ERP for HR, projects, finance and tenders" loading="lazy" decoding="async" width="1600" height="1200" data-parallax="0.16" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">GPSFDK ERP One</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'26</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'26</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">ERP · Web app · Case study →</p>
     </a>
 
     <a href="https://vibelybydevsuraj.webflow.io/" target="_blank" rel="noopener" data-cursor="view" class="wx-work" aria-label="Vibely - SaaS landing page built in Webflow by Web{X} Studio" style="text-decoration:none;color:inherit;display:block">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#12121a">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/vibely.avif" alt="Vibely SaaS landing page built in Webflow by Web{X} Studio" loading="lazy" decoding="async" width="2400" height="1800" data-parallax="0.14" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">Vibely</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'25</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'25</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">SaaS · Webflow · Landing</p>
     </a>
 
     <a href="https://automabydevsuraj.webflow.io/" target="_blank" rel="noopener" data-cursor="view" class="wx-work" aria-label="Automa - landing page built in Webflow by Web{X} Studio" style="text-decoration:none;color:inherit;display:block;margin-top:clamp(0px,6vw,80px)">
-      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;border:1px solid rgba(255,255,255,.07);background:#15131e">
+      <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:49/40;border:1px solid rgba(0,0,0,.08);background:#EFEDF4">
         <img class="wx-work-img" src="images/work/automa.avif" alt="Automa SaaS landing page built in Webflow by Web{X} Studio" loading="lazy" decoding="async" width="2400" height="1800" data-parallax="0.1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)">
         <div class="wx-work-rgb" style="position:absolute;inset:0;opacity:0;mix-blend-mode:screen;background:linear-gradient(90deg,rgba(255,0,80,.4),transparent 40%,transparent 60%,rgba(0,200,255,.4));transition:opacity .4s"></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:20px">
         <h3 style="font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.02em">Automa</h3>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82">'25</span>
+        <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B70">'25</span>
       </div>
       <p class="wx-work-meta" style="font-family:'Satoshi', sans-serif;font-size:12px;color:#9D5CFF;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;transform:translateY(8px);opacity:.6;transition:transform .4s,opacity .4s">Webflow · Landing</p>
     </a>
   </div>
+  </div>
 </section>
 
 <!-- ============ PROCESS - horizontal pinned ============ -->
-<section id="process" data-horizontal style="position:relative;height:360vh">
+<section id="process" data-horizontal style="position:relative;height:360vh;background:#FFFFFF;color:#1A1A1A">
   <div data-proc-inner style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center">
-    <div data-proc-head style="position:absolute;top:clamp(28px,6vh,64px);left:clamp(20px,5vw,72px);display:flex;align-items:center;gap:14px;z-index:5">
+    <div data-proc-head style="position:absolute;top:clamp(28px,6vh,64px);left:20px;display:flex;align-items:center;gap:14px;z-index:5">
       <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(04)</span>
-      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA2">How we work</span>
+      <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#555560">How we work</span>
     </div>
-    <div data-horizontal-track style="display:flex;gap:clamp(20px,3vw,48px);padding:0 clamp(20px,5vw,72px);will-change:transform;align-items:center">
+    <div data-horizontal-track style="display:flex;gap:clamp(20px,3vw,48px);padding:0 20px;will-change:transform;align-items:center">
       <div style="flex:0 0 auto;width:min(82vw,560px)">
         <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#9D5CFF;opacity:.9;transition:color .45s ease,opacity .45s ease">01</div>
         <h3 style="font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.02em;margin:24px 0 16px">Discover</h3>
-        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:440px">We dig into your business, audience and ambition. Workshops, audits and a sharp strategic POV that sets the direction for everything after.</p>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#555560;max-width:440px">We dig into your business, audience and ambition. Workshops, audits and a sharp strategic POV that sets the direction for everything after.</p>
       </div>
       <div style="flex:0 0 auto;width:min(82vw,560px)">
-        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#EDEDED;opacity:.12;transition:color .45s ease,opacity .45s ease">02</div>
+        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#1A1A1A;opacity:.12;transition:color .45s ease,opacity .45s ease">02</div>
         <h3 style="font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.02em;margin:24px 0 16px">Define</h3>
-        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:440px">Concepts, narrative and the core visual idea. We pressure-test directions early so we commit to the boldest one with confidence.</p>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#555560;max-width:440px">Concepts, narrative and the core visual idea. We pressure-test directions early so we commit to the boldest one with confidence.</p>
       </div>
       <div style="flex:0 0 auto;width:min(82vw,560px)">
-        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#EDEDED;opacity:.12;transition:color .45s ease,opacity .45s ease">03</div>
+        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#1A1A1A;opacity:.12;transition:color .45s ease,opacity .45s ease">03</div>
         <h3 style="font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.02em;margin:24px 0 16px">Design &amp; Build</h3>
-        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:440px">Design and engineering move in lockstep. Real components, real motion, real data - no throwaway mockups, no surprises at handoff.</p>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#555560;max-width:440px">Design and engineering move in lockstep. Real components, real motion, real data - no throwaway mockups, no surprises at handoff.</p>
       </div>
-      <div style="flex:0 0 auto;width:min(82vw,560px);padding-right:clamp(20px,5vw,72px)">
-        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#EDEDED;opacity:.12;transition:color .45s ease,opacity .45s ease">04</div>
+      <div style="flex:0 0 auto;width:min(82vw,560px);padding-right:20px">
+        <div data-process-num style="font-size:clamp(80px,12vw,200px);font-weight:700;letter-spacing:-.05em;line-height:.8;color:#1A1A1A;opacity:.12;transition:color .45s ease,opacity .45s ease">04</div>
         <h3 style="font-size:clamp(28px,3.2vw,48px);font-weight:600;letter-spacing:-.02em;margin:24px 0 16px">Launch &amp; Evolve</h3>
-        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#9A9AA2;max-width:440px">We ship, measure and keep refining. Great products are never finished - they grow with your business.</p>
+        <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#555560;max-width:440px">We ship, measure and keep refining. Great products are never finished - they grow with your business.</p>
       </div>
     </div>
-    <div data-progress-wrap style="position:absolute;bottom:clamp(28px,6vh,64px);left:clamp(20px,5vw,72px);right:clamp(20px,5vw,72px);height:2px;background:rgba(255,255,255,.1)">
+    <div data-progress-wrap style="position:absolute;bottom:clamp(28px,6vh,64px);left:20px;right:20px;height:2px;background:rgba(0,0,0,.12)">
       <div data-progress style="width:25%;height:100%;background:#9D5CFF;transition:width .1s linear"></div>
     </div>
   </div>
@@ -1808,21 +1798,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-testimonials-section{
       position:relative;
       width:100%;
-      background:#000000;
-      overflow:hidden;
-      padding:clamp(72px,11vh,130px) clamp(20px,5vw,72px) clamp(80px,13vh,150px);
-      -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
-      mask-image:linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      background:#F5F4F9;overflow:hidden;
+      /* Overlap the section above by 1px. Smooth-scroll lands section
+         boundaries at fractional pixels, and adjacent backgrounds meeting on
+         a non-integer edge antialias a hairline between them — the "divider"
+         line at the top of the pale band. A 1px negative margin makes the
+         seam land off-screen instead of on a subpixel. */
+      margin-top:-1px;
+      padding:clamp(72px,11vh,130px) 20px clamp(80px,13vh,150px);
+      /* Mask removed — on the old dark theme it faded the section into the
+         black body, but on the pale band it just reveals that black body
+         through the transparent stops as bands top and bottom. */
     }
 
     /* Ambient brand glow (keeps the site's aurora language) */
     .wx-tst-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
     .wx-tst-glow{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform;}
     .wx-tst-glow.g1{width:520px;height:520px;top:-8%;left:6%;
-      background:radial-gradient(circle, rgba(155,176,255,.12) 0%, rgba(157,92,255,.06) 45%, rgba(0,0,0,0) 70%);
+      background:radial-gradient(circle, rgba(155,176,255,.30) 0%, rgba(157,92,255,.14) 45%, rgba(0,0,0,0) 70%);
       animation:wxTstGlow1 20s ease-in-out infinite alternate;}
     .wx-tst-glow.g2{width:560px;height:560px;bottom:-12%;right:4%;
-      background:radial-gradient(circle, rgba(192,97,255,.11) 0%, rgba(79,70,229,.05) 45%, rgba(0,0,0,0) 70%);
+      background:radial-gradient(circle, rgba(192,97,255,.28) 0%, rgba(79,70,229,.12) 45%, rgba(0,0,0,0) 70%);
       animation:wxTstGlow2 24s ease-in-out infinite alternate;}
     @keyframes wxTstGlow1{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(40px,30px,0) scale(1.06)}}
     @keyframes wxTstGlow2{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-30px,-24px,0) scale(.96)}}
@@ -1837,7 +1833,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-tst-eyebrow{
       display:inline-flex;align-items:center;gap:10px;
       font-family:'Satoshi', sans-serif;font-size:12px;font-weight:600;
-      letter-spacing:.16em;text-transform:uppercase;color:#9A9AA2;
+      letter-spacing:.16em;text-transform:uppercase;color:#555560;
       margin-bottom:clamp(16px,2.4vh,24px);
     }
     .wx-tst-eyebrow i{width:5px;height:5px;border-radius:50%;background:#9D5CFF;display:inline-block;
@@ -1845,7 +1841,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-tst-title{
       font-family:'Outfit', 'Satoshi', sans-serif;
       font-size:clamp(30px,4.4vw,60px);font-weight:600;line-height:1.1;
-      letter-spacing:-.03em;color:#ffffff;margin:0 0 clamp(36px,6vh,60px);
+      letter-spacing:-.03em;color:#1A1A1A;margin:0 0 clamp(36px,6vh,60px);
     }
     .wx-tst-title .wx-tst-spark{
       font-size:.92em;line-height:1;display:inline-block;vertical-align:middle;margin-left:4px;
@@ -1873,17 +1869,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-tst-quote{
       font-family:'Satoshi', sans-serif;
       font-size:clamp(18px,2.5vw,30px);font-weight:500;line-height:1.5;letter-spacing:-.01em;
-      color:#EDEDED;margin:0;max-width:760px;
+      color:#1A1A1A;margin:0;max-width:760px;
     }
     .wx-tst-author{display:flex;align-items:center;gap:14px;}
     .wx-tst-author-img{
       width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0;
-      border:2px solid rgba(255,255,255,.1);background:#111115;
+      border:2px solid #FFFFFF;background:#EFEDF4;
     }
     .wx-tst-author-meta{text-align:left;display:flex;flex-direction:column;gap:2px;}
-    .wx-tst-author-name{font-family:'Satoshi', sans-serif;font-size:15px;font-weight:700;color:#ffffff;line-height:1.2;}
+    .wx-tst-author-name{font-family:'Satoshi', sans-serif;font-size:15px;font-weight:700;color:#1A1A1A;line-height:1.2;}
     .wx-tst-author-role{font-family:'JetBrains Mono','Satoshi',monospace;font-size:11.5px;font-weight:500;
-      letter-spacing:.02em;color:#9A9AA2;line-height:1.2;}
+      letter-spacing:.02em;color:#555560;line-height:1.2;}
 
     /* ---------- Controls: avatar tabs + arrows ---------- */
     .wx-tst-controls{
@@ -1892,11 +1888,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     .wx-tst-arrow{
       width:42px;height:42px;flex-shrink:0;border-radius:50%;
-      border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);
+      border:1px solid rgba(0,0,0,.14);background:rgba(0,0,0,.03);
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
-      color:#C9C9D2;transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
+      color:#555560;transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease;
     }
-    .wx-tst-arrow:hover{background:rgba(157,92,255,.14);border-color:rgba(157,92,255,.5);color:#fff;transform:translateY(-1px);}
+    .wx-tst-arrow:hover{background:rgba(157,92,255,.10);border-color:rgba(157,92,255,.5);color:#7C3AED;transform:translateY(-1px);}
     .wx-tst-arrow svg{width:16px;height:16px;}
     .wx-tst-tabs{display:flex;align-items:center;gap:clamp(8px,1.3vw,14px);}
     .wx-tst-tab{
@@ -1906,7 +1902,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     .wx-tst-tab img{
       width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;
-      background:#111115;filter:grayscale(60%);opacity:.55;
+      background:#EFEDF4;filter:grayscale(60%);opacity:.55;
       border:2px solid transparent;
       transition:filter .3s ease,opacity .3s ease,border-color .3s ease;
     }
@@ -1917,7 +1913,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     .wx-tst-tab:hover img{filter:grayscale(0);opacity:.85;}
     .wx-tst-tab.is-active{transform:scale(1.12);}
-    .wx-tst-tab.is-active img{filter:grayscale(0);opacity:1;border-color:#000;}
+    .wx-tst-tab.is-active img{filter:grayscale(0);opacity:1;border-color:#F5F4F9;}
     .wx-tst-tab.is-active::after{opacity:1;}
     .wx-tst-tab:focus-visible{outline:2px solid #9D5CFF;outline-offset:3px;}
     .wx-tst-arrow:focus-visible{outline:2px solid #9D5CFF;outline-offset:2px;}
@@ -1925,7 +1921,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* ---------- Autoplay progress bar ---------- */
     .wx-tst-progress{
       width:min(220px,60%);height:2px;border-radius:2px;margin-top:clamp(26px,4vh,38px);
-      background:rgba(255,255,255,.09);overflow:hidden;
+      background:rgba(0,0,0,.09);overflow:hidden;
     }
     .wx-tst-progress span{
       display:block;height:100%;width:100%;transform-origin:left center;transform:scaleX(0);
@@ -2150,355 +2146,304 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 </section>
 
-<section id="faq" style="padding:clamp(60px,10vh,120px) clamp(20px,5vw,72px) clamp(80px,12vh,160px);max-width:1500px;margin:0 auto;border-top:none;position:relative;overflow:hidden;">
+<section id="faq" style="background:#FFFFFF;color:#1A1A1A;position:relative;overflow:hidden;">
+  <div style="padding:clamp(60px,10vh,120px) 20px clamp(80px,12vh,160px);max-width:1340px;margin:0 auto;border-top:none;position:relative;overflow:hidden;">
 
   <style>
-    /* ---------- Glowing Vertical Wave Background Pattern ---------- */
-    .wx-faq-wave-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.08; /* Subtly lowered opacity for premium ambient feel */
-    }
-
-    .wx-faq-wave-path {
-      fill: none;
-      stroke: url(#wx-faq-wave-gradient);
-      stroke-width: 50px; /* Thinner and sleeker wave ribbon */
-      stroke-linecap: round;
-    }
-
-    /* Vertical animation: gentle translation shifts */
-    .wx-faq-wave-1 {
-      animation: faqWaveMotion1 16s ease-in-out infinite alternate;
-    }
-
-    .wx-faq-wave-2 {
-      animation: faqWaveMotion2 20s ease-in-out infinite alternate;
-    }
-
-    @keyframes faqWaveMotion1 {
-      0% { transform: translateY(-15px) scaleY(0.97); }
-      100% { transform: translateY(15px) scaleY(1.03); }
-    }
-
-    @keyframes faqWaveMotion2 {
-      0% { transform: translateY(15px) scaleY(1.03); }
-      100% { transform: translateY(-15px) scaleY(0.97); }
-    }
-
-    /* ---------- FAQ Cards Container ---------- */
-    .wx-faq-card-stack {
-      max-width: 820px;
-      margin: 0 auto;
+    /* ---------- FAQ — split editorial layout ----------
+       Two columns: left is a sticky brief with heading + contact CTA; right is
+       a plain numbered accordion list, one question expanded at a time. No
+       card chrome, just hairlines between items — the list reads as text
+       rather than a stack of packaged widgets. */
+    .wx-faq-split {
+      display: grid;
+      grid-template-columns: minmax(300px, 5fr) minmax(0, 7fr);
+      gap: clamp(40px, 6vw, 96px);
+      align-items: start;
       position: relative;
       z-index: 2;
     }
-
-    /* FAQ Card Item */
-    .wx-faq-card {
-      background: rgba(255, 255, 255, 0.02); /* Deep dark translucency */
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      margin-bottom: 12px; /* Tighter cleaner gap */
-      cursor: pointer;
-      transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      padding: clamp(20px, 2.5vh, 26px) clamp(24px, 3.5vw, 36px);
-      position: relative;
-      user-select: none;
-      z-index: 2;
+    @media (max-width: 900px) {
+      .wx-faq-split { grid-template-columns: 1fr; gap: 40px; }
     }
 
-    .wx-faq-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px); /* Micro-translate for responsive UX */
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Active expanded state */
-    .wx-faq-card.wx-active {
-      border-color: rgba(157, 92, 255, 0.35);
-      background: rgba(157, 92, 255, 0.03);
-      box-shadow: 0 15px 35px rgba(157, 92, 255, 0.05);
-    }
-
-    .wx-faq-card-header {
+    /* Left column ----------------------------------------------------- */
+    .wx-faq-left {
+      position: sticky;
+      top: clamp(90px, 12vh, 120px);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
+      flex-direction: column;
+      gap: clamp(18px, 2.4vh, 28px);
     }
-
-    .wx-faq-question {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(16px, 1.25vw, 18.5px);
-      font-weight: 500; /* Semibold/Medium instead of heavy Bold */
-      color: #E4E4E9; /* Softer white for improved readability */
+    @media (max-width: 900px) {
+      .wx-faq-left { position: static; }
+    }
+    .wx-faq-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      align-self: flex-start;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #7C3AED;
+    }
+    .wx-faq-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.55;
+    }
+    .wx-faq-heading {
       margin: 0;
-      line-height: 1.35;
+      font-family: 'Outfit', 'Satoshi', sans-serif;
+      font-size: clamp(34px, 4vw, 56px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #1A1A1A;
+      text-wrap: balance;
+    }
+    .wx-faq-heading em {
+      font-style: normal;
+      background: linear-gradient(160deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, rgba(157, 92, 255, .35) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .wx-faq-sub {
+      margin: 0;
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.6;
+      color: #555560;
+      max-width: 34ch;
+    }
+    .wx-faq-contact-card {
+      margin-top: clamp(10px, 2vh, 24px);
+      padding: clamp(22px, 3vh, 28px) clamp(22px, 2.6vw, 32px);
+      border-radius: 20px;
+      border: 1px solid rgba(157, 92, 255, 0.22);
+      background: linear-gradient(135deg, rgba(155, 176, 255, 0.10) 0%, rgba(157, 92, 255, 0.10) 45%, rgba(192, 97, 255, 0.10) 100%);
+    }
+    .wx-faq-contact-card h4 {
+      margin: 0 0 6px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1A1A1A;
+    }
+    .wx-faq-contact-card p {
+      margin: 0 0 16px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #555560;
+    }
+    .wx-faq-contact-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 100px;
+      background-color: #9D5CFF;
+      background-image: linear-gradient(150deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, rgba(157, 92, 255, .35) 100%);
+      color: #FFFFFF;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 22px -10px rgba(157, 92, 255, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wx-faq-contact-card a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px -10px rgba(157, 92, 255, 0.75);
+    }
+    .wx-faq-contact-card a svg { transition: transform 0.3s ease; }
+    .wx-faq-contact-card a:hover svg { transform: translateX(3px); }
+
+    /* Right column: accordion list ----------------------------------- */
+    .wx-faq-list {
+      border-top: 1px solid rgba(0, 0, 0, 0.10);
+    }
+    .wx-faq-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+      padding: clamp(20px, 2.6vh, 28px) 0;
+      cursor: pointer;
+      transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .wx-faq-summary {
+      display: grid;
+      grid-template-columns: 44px 1fr 32px;
+      gap: clamp(14px, 1.6vw, 22px);
+      align-items: center;
+    }
+    .wx-faq-num {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(157, 92, 255, 0.7);
       transition: color 0.3s ease;
     }
-
-    .wx-faq-card:hover .wx-faq-question,
-    .wx-faq-card.wx-active .wx-faq-question {
-      color: #ffffff;
+    .wx-faq-q {
+      margin: 0;
+      font-family: 'Outfit', 'Satoshi', sans-serif;
+      font-size: clamp(17px, 1.3vw, 20px);
+      font-weight: 500;
+      line-height: 1.35;
+      color: #1A1A1A;
+      transition: color 0.3s ease;
     }
-
-    /* Circular arrow/chevron button */
-    .wx-faq-circle-btn {
+    /* Plus / cross toggle — a single SVG rotated on open. */
+    .wx-faq-toggle {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      color: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.14);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease;
-      flex-shrink: 0;
+      color: #1A1A1A;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
-
-    .wx-faq-card:hover .wx-faq-circle-btn {
-      background: rgba(255, 255, 255, 0.14);
+    .wx-faq-toggle svg { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .wx-faq-item:hover .wx-faq-toggle {
+      border-color: rgba(157, 92, 255, 0.5);
+      color: #7C3AED;
     }
+    .wx-faq-item:hover .wx-faq-q { color: #7C3AED; }
+    .wx-faq-item:hover .wx-faq-num { color: #7C3AED; }
 
-    .wx-faq-card.wx-active .wx-faq-circle-btn {
-      transform: rotate(180deg);
-      background: #ffffff;
-      color: #0A0A0A;
-    }
-
-    /* Smooth Height Transition wrapper using CSS Grid */
-    .wx-faq-body-wrap {
+    /* Answer body — grid-rows trick for a height transition without JS. */
+    .wx-faq-body {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.4s ease;
+      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  margin-top 0.4s ease;
+      margin-top: 0;
+    }
+    .wx-faq-body > div {
+      min-height: 0;
       overflow: hidden;
     }
-
-    .wx-faq-card.wx-active .wx-faq-body-wrap {
-      grid-template-rows: 1fr;
-      margin-top: 14px;
-    }
-
     .wx-faq-answer {
-      min-height: 0;
-      font-family: 'Satoshi', sans-serif;
-      font-size: clamp(14px, 1.1vw, 15.5px);
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.55);
-    }
-
-    .wx-faq-answer p {
       margin: 0;
-    }
-
-    /* ---------- Contact Banner at bottom ---------- */
-    .wx-faq-contact-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
-      /* FIX: Premium glowing gradient background matching the screenshot style */
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(192, 38, 211, 0.1) 50%, rgba(79, 70, 229, 0.1) 100%);
-      border: 1px solid rgba(157, 92, 255, 0.28);
-      border-radius: 20px;
-      padding: clamp(20px, 3vh, 32px) clamp(24px, 3.5vw, 36px);
-      margin-top: 24px;
-      position: relative;
-      z-index: 2;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .wx-faq-contact-left {
-      max-width: 500px;
-    }
-
-    .wx-faq-contact-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(16px, 1.25vw, 18.5px);
-      font-weight: 600;
-      color: #ffffff;
-      margin: 0 0 6px;
-    }
-
-    .wx-faq-contact-desc {
+      padding-right: clamp(0px, 4vw, 44px);
       font-family: 'Satoshi', sans-serif;
-      font-size: clamp(13px, 1.05vw, 14.5px);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.55);
-      margin: 0;
+      font-size: clamp(14px, 1.05vw, 16px);
+      line-height: 1.65;
+      color: #555560;
     }
-
-    .wx-faq-contact-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-      color: #0A0A0A;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 12px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    .wx-faq-item.is-open .wx-faq-body {
+      grid-template-rows: 1fr;
+      margin-top: 18px;
     }
-
-    .wx-faq-contact-btn:hover {
-      background: #ECECEF;
-      transform: translateY(-2px);
+    .wx-faq-item.is-open .wx-faq-toggle {
+      transform: rotate(45deg);
+      background: #9D5CFF;
+      border-color: #9D5CFF;
+      color: #FFFFFF;
     }
+    .wx-faq-item.is-open .wx-faq-q { color: #7C3AED; }
+    .wx-faq-item.is-open .wx-faq-num { color: #7C3AED; }
 
-    @media (max-width: 640px) {
-      .wx-faq-contact-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-        padding: 24px 20px;
-      }
-      .wx-faq-contact-btn {
-        width: 100%;
-        text-align: center;
-        padding: 14px 20px;
-      }
-    }
-
-    /* ---------- Subtle Small-radius Ambient Glow Orb ---------- */
-    .wx-faq-ambient-glow {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      width: clamp(280px, 35vw, 380px);
-      height: clamp(280px, 35vw, 380px);
-      background: radial-gradient(circle, rgba(157, 92, 255, 0.25) 0%, rgba(192, 38, 211, 0.12) 40%, rgba(79, 70, 229, 0.04) 70%, transparent 100%);
-      filter: blur(55px);
-      border-radius: 50%;
-      z-index: 1;
-      pointer-events: none;
-      animation: faqAmbientMove 12s ease-in-out infinite alternate;
-    }
-
-    @keyframes faqAmbientMove {
-      0% { transform: translate(-50%, -50%) translate(-60px, -30px) scale(0.9); }
-      50% { transform: translate(-50%, -50%) translate(50px, 40px) scale(1.1); }
-      100% { transform: translate(-50%, -50%) translate(-20px, -50px) scale(0.95); }
+    /* Mobile: number column collapses so the question gets full width. */
+    @media (max-width: 560px) {
+      .wx-faq-summary { grid-template-columns: 1fr 32px; }
+      .wx-faq-num { display: none; }
     }
   </style>
 
-  <!-- Subtle Motion Gradient Ambient Glow -->
-  <div class="wx-faq-ambient-glow" aria-hidden="true"></div>
+  <div class="wx-faq-split">
+    <!-- Left brief -->
+    <div class="wx-faq-left" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+      <span class="wx-faq-eyebrow">FAQ</span>
+      <h2 class="wx-faq-heading">Questions we hear <em>a lot.</em></h2>
+      <p class="wx-faq-sub">The essentials on timeline, scope, SEO and how we work together. Anything else, drop us a line.</p>
 
-  <!-- Header section matching new layout -->
-  <div style="text-align: center; max-width: 800px; margin: 0 auto clamp(40px, 6vh, 60px); position: relative; z-index: 2;">
-    <!-- Small Category Pill -->
-    <span style="display:inline-flex;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:6px 14px;font-family:'Satoshi', sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#ffffff;margin-bottom:18px;">FAQ</span>
-    
-    <h2 data-reveal style="font-size: clamp(34px, 4.4vw, 64px); font-weight: 700; letter-spacing: -0.03em; color: #ffffff; margin: 0 0 14px; font-family: 'Outfit', sans-serif; line-height: 1.1;">
-      Frequently asked questions
-    </h2>
-    <p data-reveal data-reveal-delay="70" style="font-family: 'Satoshi', sans-serif; font-size: clamp(13px, 1vw, 15px); color: #8E8E93; margin: 0;">
-      Thousand question, we will give you the answers
-    </p>
+      <div class="wx-faq-contact-card">
+        <h4>Still have questions?</h4>
+        <p>We usually reply within a working day — sooner if you catch us in a slow week.</p>
+        <a data-transition href="contact">
+          Contact us
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right accordion -->
+    <div class="wx-faq-list" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+
+      <div class="wx-faq-item is-open" onclick="this.classList.toggle('is-open')">
+        <div class="wx-faq-summary">
+          <span class="wx-faq-num">01</span>
+          <h3 class="wx-faq-q">How long does it take to design and develop a website?</h3>
+          <span class="wx-faq-toggle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <div class="wx-faq-body"><div><p class="wx-faq-answer">A focused landing page takes about 2–3 weeks. A complete website design and development project usually runs 5–10 weeks across discovery, design, build and launch — depending on content readiness and revision rounds.</p></div></div>
+      </div>
+
+      <div class="wx-faq-item" onclick="this.classList.toggle('is-open')">
+        <div class="wx-faq-summary">
+          <span class="wx-faq-num">02</span>
+          <h3 class="wx-faq-q">Do you offer SEO services and can you improve my Google ranking?</h3>
+          <span class="wx-faq-toggle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <div class="wx-faq-body"><div><p class="wx-faq-answer">Yes. SEO is built into every site we ship — clean semantic HTML, fast Core Web Vitals, structured data and on-page optimization. We also offer ongoing SEO retainers focused on keyword strategy, content and measurable ranking growth.</p></div></div>
+      </div>
+
+      <div class="wx-faq-item" onclick="this.classList.toggle('is-open')">
+        <div class="wx-faq-summary">
+          <span class="wx-faq-num">03</span>
+          <h3 class="wx-faq-q">What's the difference between a landing page and a full website?</h3>
+          <span class="wx-faq-toggle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <div class="wx-faq-body"><div><p class="wx-faq-answer">A landing page is a single, focused page built to convert one audience for one goal — a campaign, product or ad. A full website is a multi-page experience covering your whole brand, services and content. We design and develop both.</p></div></div>
+      </div>
+
+      <div class="wx-faq-item" onclick="this.classList.toggle('is-open')">
+        <div class="wx-faq-summary">
+          <span class="wx-faq-num">04</span>
+          <h3 class="wx-faq-q">Do you work with clients outside India?</h3>
+          <span class="wx-faq-toggle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <div class="wx-faq-body"><div><p class="wx-faq-answer">Absolutely. We're based in Ludhiana and work with founders and brands across India and worldwide, collaborating remotely across time zones with async updates and clear milestones.</p></div></div>
+      </div>
+
+      <div class="wx-faq-item" onclick="this.classList.toggle('is-open')">
+        <div class="wx-faq-summary">
+          <span class="wx-faq-num">05</span>
+          <h3 class="wx-faq-q">Which technologies do you build with?</h3>
+          <span class="wx-faq-toggle" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+        <div class="wx-faq-body"><div><p class="wx-faq-answer">We build fast, accessible sites with modern HTML, CSS and JavaScript, and scale up to headless CMS, React/Next.js, web apps and custom ERP software when a project needs it. Every build is optimized for speed, SEO and easy editing.</p></div></div>
+      </div>
+
+    </div>
   </div>
-
-  <!-- Smooth Interactive FAQ Card Stack -->
-  <div class="wx-faq-card-stack">
-    
-    <!-- Item 1 (Expanded by default) -->
-    <div class="wx-faq-card wx-active" onclick="this.classList.toggle('wx-active')">
-      <div class="wx-faq-card-header">
-        <h4 class="wx-faq-question">How long does it take to design and develop a website?</h4>
-        <span class="wx-faq-circle-btn">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <div class="wx-faq-body-wrap">
-        <div class="wx-faq-answer">
-          <p>A focused landing page takes about 2-3 weeks. A complete website design and development project usually runs 5-10 weeks across discovery, design, build and launch - depending on content readiness and revision rounds.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Item 2 -->
-    <div class="wx-faq-card" onclick="this.classList.toggle('wx-active')">
-      <div class="wx-faq-card-header">
-        <h4 class="wx-faq-question">Do you offer SEO services and can you improve my Google ranking?</h4>
-        <span class="wx-faq-circle-btn">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <div class="wx-faq-body-wrap">
-        <div class="wx-faq-answer">
-          <p>Yes. SEO is built into every site we ship - clean semantic HTML, fast Core Web Vitals, structured data and on-page optimization. We also offer ongoing SEO retainers focused on keyword strategy, content and measurable ranking growth.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Item 3 -->
-    <div class="wx-faq-card" onclick="this.classList.toggle('wx-active')">
-      <div class="wx-faq-card-header">
-        <h4 class="wx-faq-question">What's the difference between a landing page and a full website?</h4>
-        <span class="wx-faq-circle-btn">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <div class="wx-faq-body-wrap">
-        <div class="wx-faq-answer">
-          <p>A landing page is a single, focused page built to convert one audience for one goal - a campaign, product or ad. A full website is a multi-page experience covering your whole brand, services and content. We design and develop both.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Item 4 -->
-    <div class="wx-faq-card" onclick="this.classList.toggle('wx-active')">
-      <div class="wx-faq-card-header">
-        <h4 class="wx-faq-question">Do you work with clients outside India?</h4>
-        <span class="wx-faq-circle-btn">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <div class="wx-faq-body-wrap">
-        <div class="wx-faq-answer">
-          <p>Absolutely. We're based in Ludhiana and work with founders and brands across India and worldwide, collaborating remotely across time zones with async updates and clear milestones.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Item 5 -->
-    <div class="wx-faq-card" onclick="this.classList.toggle('wx-active')">
-      <div class="wx-faq-card-header">
-        <h4 class="wx-faq-question">Which technologies do you build with?</h4>
-        <span class="wx-faq-circle-btn">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="3" fill="none"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <div class="wx-faq-body-wrap">
-        <div class="wx-faq-answer">
-          <p>We build fast, accessible sites with modern HTML, CSS and JavaScript, and scale up to headless CMS, React/Next.js, web apps and custom ERP software when a project needs it. Every build is optimized for speed, SEO and easy editing.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Contact Banner exactly matching mockup -->
-    <div class="wx-faq-contact-banner">
-      <div class="wx-faq-contact-left">
-        <h4 class="wx-faq-contact-title">Still have questions?</h4>
-        <p class="wx-faq-contact-desc">Can't find the answer to your question? Send us an email and we'll get back to you as soon as possible!</p>
-      </div>
-      <a data-transition href="contact" class="wx-faq-contact-btn">Contact Us</a>
-    </div>
-
   </div>
 </section>
 
 <!-- ============ CTA ============ -->
-<section style="padding:clamp(40px,7vh,90px) clamp(20px,5vw,72px);position:relative">
+<section style="background:#FFFFFF;padding:clamp(40px,7vh,90px) 20px;position:relative">
   <style>
     /* ---------- Glowing Aurora Blobs for CTA ---------- */
     .wx-cta-glow-container {
@@ -2566,7 +2511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   </style>
 
-  <div style="position:relative;max-width:1500px;margin:0 auto;border-radius:clamp(24px,3vw,40px);overflow:hidden;background:#0D0D11;border:1px solid rgba(255, 255, 255, 0.08);color:#ffffff;padding:clamp(32px,6vw,100px) clamp(28px,5vw,90px)">
+  <div style="position:relative;max-width:1340px;margin:0 auto;border-radius:clamp(24px,3vw,40px);overflow:hidden;background:#0D0D11;border:1px solid rgba(255, 255, 255, 0.08);color:#ffffff;padding:clamp(32px,6vw,100px) clamp(28px,5vw,90px)">
     <!-- Animating background gradient blobs -->
     <div class="wx-cta-glow-container" aria-hidden="true">
       <div class="wx-cta-glow-1"></div>
