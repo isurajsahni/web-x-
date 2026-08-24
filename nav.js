@@ -262,12 +262,12 @@
     pointer-events: auto;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    background: rgba(157, 92, 255, 0.22);
-    border: 1px solid rgba(157, 92, 255, 0.5);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #9D5CFF;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 12px 30px -8px rgba(157, 92, 255, 0.75), inset 0 1px 0 rgba(255,255,255,0.25);
     cursor: pointer;
     padding: 0;
     z-index: 9405;
@@ -275,24 +275,24 @@
     transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   }
   .wx-nav-hamburger:active { transform: scale(0.94); }
-  .wx-nav-hamburger.wx-open { background: rgba(157, 92, 255, 0.5); border-color: #9D5CFF; }
+  .wx-nav-hamburger.wx-open { background: #8247E5; border-color: rgba(255,255,255,0.4); }
 
-  .wx-burger-lines { position: relative; width: 20px; height: 14px; }
+  .wx-burger-lines { position: relative; width: 24px; height: 16px; }
   .wx-burger-lines span {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 2.5px;
     background: #ffffff;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease;
   }
   .wx-burger-lines span:nth-child(1) { top: 0; }
-  .wx-burger-lines span:nth-child(2) { top: 6px; }
-  .wx-burger-lines span:nth-child(3) { top: 12px; }
-  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .wx-burger-lines span:nth-child(2) { top: 6.75px; }
+  .wx-burger-lines span:nth-child(3) { top: 13.5px; }
+  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(1) { transform: translateY(6.75px) rotate(45deg); }
   .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(3) { transform: translateY(-6.75px) rotate(-45deg); }
 
   /* ---------- Desktop condense ----------
      Past the scroll threshold the whole bar folds up into a single hamburger
@@ -698,10 +698,11 @@
         if (!condensed && y > CONDENSE_IN) condensed = true;
         else if (condensed && y < CONDENSE_OUT) condensed = false;
 
-        /* Never leave the bar folded while the drawer is open — the drawer's
-           own close button is that same burger. */
-        var open = header && header.classList.contains('wx-menu-open');
-        navbar.classList.toggle('wx-condensed', condensed && !open);
+        /* Stays condensed while the drawer is open: the drawer IS the menu, so
+           unfolding the bar behind it would show two menus at once. The burger
+           itself is kept visible by the .wx-menu-open rule — it doubles as the
+           drawer's close button. */
+        navbar.classList.toggle('wx-condensed', condensed);
       };
 
       window.addEventListener('scroll', onScroll, { passive: true });

@@ -2593,8 +2593,154 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="wx-testimonials-section">
+<!-- ============ TESTIMONIALS — dual marquee ============ -->
+<section class="wx-tm" aria-label="Testimonials">
+  <style>
+    .wx-tm {
+      background: #F1F1F5;
+      color: #1A1A1A;
+      padding: clamp(64px,10vh,120px) 0 clamp(64px,10vh,120px);
+      overflow: hidden;
+    }
+    .wx-tm-head { text-align: center; padding: 0 20px; margin-bottom: clamp(34px,5vh,54px); }
+    .wx-tm-head h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(28px,3.6vw,46px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #6C2BD9;
+      margin: 0;
+    }
+    /* Rows scroll in opposite directions; edges fade so the loop has no seam */
+    .wx-tm-row {
+      position: relative;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .wx-tm-row + .wx-tm-row { margin-top: clamp(16px,2vw,24px); }
+    .wx-tm-track {
+      display: flex;
+      width: max-content;
+      gap: clamp(16px,2vw,24px);
+      padding-inline: clamp(8px,1vw,12px);
+      will-change: transform;
+    }
+    .wx-tm-row--a .wx-tm-track { animation: wx-tm-left 46s linear infinite; }
+    .wx-tm-row--b .wx-tm-track { animation: wx-tm-right 52s linear infinite; }
+    @keyframes wx-tm-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes wx-tm-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .wx-tm-row:hover .wx-tm-track { animation-play-state: paused; }
+
+    .wx-tm-card {
+      flex: 0 0 auto;
+      width: clamp(280px,26vw,360px);
+      background: #FFFFFF;
+      border-radius: clamp(12px,1.1vw,16px);
+      padding: clamp(20px,1.9vw,26px);
+      box-shadow: 0 14px 34px -20px rgba(40,16,90,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .wx-tm-stars { display: flex; gap: 3px; color: #F5B301; }
+    .wx-tm-card blockquote {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(13px,1.02vw,15px);
+      line-height: 1.65;
+      color: #43434D;
+      margin: 0;
+      flex: 1;
+    }
+    .wx-tm-by { display: flex; align-items: center; gap: 12px; }
+    .wx-tm-avatar {
+      width: 40px; height: 40px; flex: 0 0 auto;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(157,92,255,0.13);
+      color: #7C3AED;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .wx-tm-name { font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 700; color: #1A1A1A; line-height: 1.25; }
+    .wx-tm-role { font-family: 'Satoshi', sans-serif; font-size: 12px; color: #6B6B75; line-height: 1.3; }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-tm-track { animation: none !important; flex-wrap: wrap; justify-content: center; width: auto; }
+      .wx-tm-row { -webkit-mask-image: none; mask-image: none; }
+    }
+  </style>
+
+  <div class="wx-tm-head">
+    <span class="wx-pill">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      Testimonials
+    </span>
+    <h2 data-reveal>Success Stories</h2>
+  </div>
+
+  <!-- Row A -->
+  <div class="wx-tm-row wx-tm-row--a">
+    <div class="wx-tm-track" data-tm-track>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>Web{X} Studio reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">MO</span><span><span class="wx-tm-name">Maya Okonkwo</span><br><span class="wx-tm-role">CEO, Nova Finance</span></span></figcaption>
+      </figure>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">SJ</span><span><span class="wx-tm-name">Sarah Jenkins</span><br><span class="wx-tm-role">Product Lead, Elevate</span></span></figcaption>
+      </figure>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>The most detail-obsessed team we've ever worked with. Every transition and micro-interaction feels considered. It's rare and it shows.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">DR</span><span><span class="wx-tm-name">Daniel Reyes</span><br><span class="wx-tm-role">Founder, Atlas Studio</span></span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Row B -->
+  <div class="wx-tm-row wx-tm-row--b">
+    <div class="wx-tm-track" data-tm-track>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with — they made the whole remote process effortless.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">LW</span><span><span class="wx-tm-name">Li Wei</span><br><span class="wx-tm-role">Founder, Nexus SaaS</span></span></figcaption>
+      </figure>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>They didn't just design a website, they gave our brand a pulse. Sales teams, board members, clients — everyone noticed the new look.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">PA</span><span><span class="wx-tm-name">Priya Anand</span><br><span class="wx-tm-role">CMO, Field Goods</span></span></figcaption>
+      </figure>
+      <figure class="wx-tm-card">
+        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+        <blockquote>Clean code, fast loading, and brilliant design sense. Our SEO went up instantly and page load times dropped to under 0.8 seconds.</blockquote>
+        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">AR</span><span><span class="wx-tm-name">Alex Rivera</span><br><span class="wx-tm-role">Tech Lead, Quartz</span></span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <script>
+    /* Duplicate each row's cards so the -50% keyframe lands the copy exactly
+       where the original started — a seamless loop. Done in JS rather than by
+       hand so the markup carries each quote only once. */
+    (function () {
+      var tracks = document.querySelectorAll('[data-tm-track]');
+      Array.prototype.forEach.call(tracks, function (track) {
+        var originals = Array.prototype.slice.call(track.children);
+        originals.forEach(function (card) {
+          var copy = card.cloneNode(true);
+          copy.setAttribute('aria-hidden', 'true');
+          track.appendChild(copy);
+        });
+      });
+    })();
+  </script>
+</section>
+
+<!-- ============ TESTIMONIALS — legacy, hidden ============ -->
+<section class="wx-testimonials-section" data-legacy-hidden style="display:none">
 
   <style>
     /* ===================== TESTIMONIALS — Spotlight Concept ===================== */
