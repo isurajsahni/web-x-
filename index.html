@@ -385,6 +385,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .fan-tag-l { left: 0; top: 2%; }
       .fan-tag-r { right: 0; top: 0; }
     }
+    @media (max-width: 620px) {
+      /* The forced break is tuned for desktop measure; on a phone it strands
+         "agency that" on its own line, so let the copy wrap naturally. */
+      .hero-fan h1 br { display: none; }
+      .hero-fan h1 { max-width: 18ch; }
+      /* Deck sits tighter and the handle pills would hang off both edges */
+      .fan-card { width: clamp(72px, 20vw, 104px); margin-inline: -10px; }
+      .fan-tag { display: none; }
+      .hero-fan-cta { width: 100%; flex-direction: column; align-items: stretch; }
+      .hero-fan-cta > a { justify-content: center; }
+    }
   </style>
 
   <!-- Decorative edge panels. Deliberately pushed past the section's left and
@@ -398,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Digital experiences built for growth
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
     </p>
-    <h1 data-reveal>Web design &amp; development<br>agency that <span class="wx-grad-text">grows your business</span></h1>
+    <h1 data-reveal>Web design &amp; development <br>agency that <span class="wx-grad-text">grows your business</span></h1>
 
     <div class="hero-fan-deck">
       <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager"></div>
