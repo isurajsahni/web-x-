@@ -294,6 +294,78 @@
   .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .wx-nav-hamburger.wx-open .wx-burger-lines span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+  /* ---------- Desktop condense ----------
+     Past the scroll threshold the whole bar folds up into a single hamburger
+     in the top-right. Each piece collapses toward that corner in sequence —
+     links first, then the logo, then the socials pill shrinking onto its own
+     right edge, which is exactly where the burger pops in — so it reads as the
+     navbar turning into the burger rather than one swapping for the other. */
+  @media (min-width: 821px) {
+    .wx-nav-cta-wrap { position: relative; }
+
+    /* Present but inert until condensed, so it can actually transition
+       (a display:none -> flex swap would just snap). */
+    .wx-nav-hamburger {
+      display: flex;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      opacity: 0;
+      transform: translateY(-50%) scale(0.4) rotate(-30deg);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background 0.25s ease, border-color 0.25s ease;
+    }
+    .wx-nav-hamburger:active { transform: translateY(-50%) scale(0.94); }
+
+    .wx-navbar.wx-condensed .wx-nav-logo,
+    .wx-navbar.wx-condensed .wx-nav-links-wrap,
+    .wx-navbar.wx-condensed .wx-nav-socials { pointer-events: none; }
+
+    .wx-navbar.wx-condensed .wx-nav-links-wrap {
+      opacity: 0;
+      transform: translateX(90px) scale(0.72);
+      filter: blur(5px);
+      transform-origin: 100% 50%;
+    }
+    .wx-navbar.wx-condensed .wx-nav-logo {
+      opacity: 0;
+      transform: translate(34px, -8px) scale(0.7);
+      transition-delay: 0.05s;
+    }
+    .wx-navbar.wx-condensed .wx-nav-socials {
+      opacity: 0;
+      transform: scale(0.5);
+      transform-origin: 100% 50%;
+      transition-delay: 0.08s;
+    }
+    .wx-navbar.wx-condensed .wx-nav-hamburger {
+      opacity: 1;
+      transform: translateY(-50%) scale(1) rotate(0deg);
+      pointer-events: auto;
+      transition-delay: 0.16s;
+    }
+    /* Expanding back: burger leaves first, then the bar unfolds */
+    .wx-navbar .wx-nav-links-wrap { transition-delay: 0.12s; }
+    .wx-navbar .wx-nav-logo { transition-delay: 0.08s; }
+    .wx-navbar .wx-nav-socials { transition-delay: 0.05s; }
+
+    /* An open drawer must never leave the bar half-collapsed behind it */
+    .wx-nav-container.wx-menu-open .wx-navbar .wx-nav-hamburger {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wx-navbar .wx-nav-logo,
+      .wx-navbar .wx-nav-links-wrap,
+      .wx-navbar .wx-nav-socials,
+      .wx-nav-hamburger { transition: none; filter: none; }
+    }
+  }
+
   /* Backdrop */
   .wx-drawer-scrim {
     position: fixed;
@@ -609,14 +681,33 @@
       if (activeDrawer) activeDrawer.classList.add('wx-current');
     }
 
-    // -- Scroll: the bar stays pinned everywhere, glass just darkens --
+    // -- Scroll: glass darkens at 20px; past 300px the bar folds into the
+    //    hamburger (desktop only — below 820px it is already burger-only).
+    //    A 60px hysteresis band stops it flip-flopping when the user hovers
+    //    right on the threshold.
     if (navbar) {
+      var CONDENSE_IN = 300;
+      var CONDENSE_OUT = 240;
+      var condensed = false;
+
       var onScroll = function () {
-        if (window.scrollY > 20) navbar.classList.add('wx-scrolled');
+        var y = window.scrollY;
+        if (y > 20) navbar.classList.add('wx-scrolled');
         else navbar.classList.remove('wx-scrolled');
+
+        if (!condensed && y > CONDENSE_IN) condensed = true;
+        else if (condensed && y < CONDENSE_OUT) condensed = false;
+
+        /* Never leave the bar folded while the drawer is open — the drawer's
+           own close button is that same burger. */
+        var open = header && header.classList.contains('wx-menu-open');
+        navbar.classList.toggle('wx-condensed', condensed && !open);
       };
+
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+      /* Re-evaluate when the menu opens/closes so the two states stay in sync */
+      navbar.wxSyncCondense = onScroll;
     }
 
     // -- Drawer, opened from the in-bar hamburger --
@@ -629,6 +720,7 @@
       hamburger.setAttribute('aria-expanded', 'true');
       drawer.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      if (navbar && navbar.wxSyncCondense) navbar.wxSyncCondense();
     }
     function closeDrawer() {
       if (!drawer || !drawer.classList.contains('wx-open')) return;
@@ -639,6 +731,7 @@
       hamburger.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (navbar && navbar.wxSyncCondense) navbar.wxSyncCondense();
     }
     if (hamburger && drawer) {
       hamburger.addEventListener('click', function () {
