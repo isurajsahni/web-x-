@@ -704,33 +704,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       margin-top: clamp(70px,11vh,130px);
     }
-    /* Concentric rings: painted before the white panel so the panel covers
-       their lower half — only the arcs above the arch show, on the lavender. */
+    /* Concentric rings, inside the white About panel — they rise up from the
+       bottom-center of the section (clipped by the panel's overflow). */
     .wx-about2-rings {
       position: absolute;
-      top: 0;
       left: 50%;
-      width: min(1120px, 160vw);
+      bottom: -58%;
+      width: min(1200px, 175vw);
       aspect-ratio: 1;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       border-radius: 50%;
       background: repeating-radial-gradient(circle at 50% 50%,
-        rgba(157,92,255,0.16) 0 1px, transparent 1px 80px);
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0 62%, transparent 82%);
-              mask-image: radial-gradient(circle at 50% 50%, #000 0 62%, transparent 82%);
+        rgba(157,92,255,0.14) 0 1px, transparent 1px 80px);
       pointer-events: none;
+      z-index: 0;
     }
     .wx-about2 {
       position: relative;
+      overflow: hidden;
       background: #FFFFFF;
       color: #1A1A1A;
-      border-top-left-radius: 50% clamp(56px,7vw,120px);
-      border-top-right-radius: 50% clamp(56px,7vw,120px);
+      border-top-left-radius: 50% clamp(90px,12vw,210px);
+      border-top-right-radius: 50% clamp(90px,12vw,210px);
     }
     .wx-about2-inner {
+      position: relative;
+      z-index: 1;
       max-width: 900px;
       margin: 0 auto;
-      padding: clamp(30px,5vh,56px) 20px clamp(70px,12vh,150px);
+      padding: clamp(144px,calc(6vh + 100px),160px) 20px clamp(70px,12vh,150px);
       text-align: center;
     }
     .wx-about2-pill {
@@ -787,8 +789,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </style>
 
   <div class="wx-about2-stage">
-    <div class="wx-about2-rings" aria-hidden="true"></div>
     <div class="wx-about2">
+    <div class="wx-about2-rings" aria-hidden="true"></div>
     <div class="wx-about2-inner">
     <span class="wx-about2-pill">
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
