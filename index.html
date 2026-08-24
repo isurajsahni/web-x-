@@ -652,9 +652,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </style>
 
   <div class="wx-svc2-inner">
-    <span class="wx-svc2-pill">
+    <span class="wx-pill">
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
-      Our Services
+      Our services
     </span>
 
     <div class="wx-svc2-head">
@@ -735,24 +735,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       padding: clamp(144px,calc(6vh + 100px),160px) 20px clamp(70px,12vh,150px);
       text-align: center;
     }
-    .wx-about2-pill {
+    /* Global .wx-pill, lifted onto the crest of the arch */
+    .wx-about2 .wx-pill {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 17px;
-      border-radius: 100px;
-      background: #FFFFFF;
-      border: 1px solid rgba(26,20,48,0.14);
-      color: #1A1A1A;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      margin: clamp(-52px,-6vh,-34px) 0 clamp(22px,3vh,30px);
+      margin-top: clamp(-52px,-6vh,-34px);
       box-shadow: 0 8px 22px -12px rgba(26,20,48,0.35);
     }
-    .wx-about2-pill svg { color: #9D5CFF; }
     .wx-about2 h2 {
       font-family: 'Manrope', sans-serif;
       font-size: clamp(26px,3.4vw,42px);
@@ -792,7 +780,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wx-about2">
     <div class="wx-about2-rings" aria-hidden="true"></div>
     <div class="wx-about2-inner">
-    <span class="wx-about2-pill">
+    <span class="wx-pill">
       <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
       About us
     </span>
@@ -2195,10 +2183,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="padding:clamp(100px,16vh,200px) 20px clamp(60px,10vh,120px);max-width:1340px;margin:0 auto">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:clamp(40px,7vh,80px)">
     <div>
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(03)</span>
-        <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#555560">Selected work</span>
-      </div>
+      <span class="wx-pill">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+        Selected work
+      </span>
       <h2 data-reveal style="font-size:clamp(34px,5.4vw,84px);font-weight:600;letter-spacing:-.03em;line-height:1;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">Recent obsessions</h2>
     </div>
     <a data-transition href="work" data-magnetic class="wx-uline" style="font-family:'Satoshi', sans-serif;font-size:13px;color:#1A1A1A;text-decoration:none;letter-spacing:.05em;text-transform:uppercase">All projects →</a>
@@ -2279,8 +2267,297 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ PROCESS - horizontal pinned ============ -->
-<section id="process" data-horizontal style="position:relative;height:360vh;background:#FFFFFF;color:#1A1A1A">
+<!-- ============ OUR PROCESS ============ -->
+<section id="process" class="wx-proc" aria-label="Our process">
+  <style>
+    .wx-proc {
+      background: #F6F4FC;
+      color: #1A1A1A;
+    }
+    .wx-proc-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: clamp(70px,11vh,140px) 20px clamp(70px,11vh,140px);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(40px,6vw,96px);
+      align-items: start;
+    }
+    /* Section label uses the global .wx-pill */
+    /* Left column pins while the timeline scrolls past it */
+    .wx-proc-aside {
+      position: sticky;
+      top: clamp(96px,13vh,140px);
+      align-self: start;
+    }
+    .wx-proc-aside h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(24px,2.9vw,40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.14;
+      margin: 0 0 clamp(14px,2vh,20px);
+      max-width: 14ch;
+    }
+    .wx-proc-aside h2 span { color: #9D5CFF; }
+    .wx-proc-aside > p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(13px,1vw,15px);
+      line-height: 1.6;
+      color: #555560;
+      margin: 0 0 clamp(20px,3vh,28px);
+      max-width: 36ch;
+    }
+    /* Decorative squiggle beside the CTA, as in the reference */
+    .wx-proc-cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .wx-proc-squiggle { width: clamp(84px,8vw,118px); height: auto; flex: 0 0 auto; display: block; }
+
+    /* ---------- Timeline ---------- */
+    .wx-proc-list {
+      --icon: 48px;
+      position: relative;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    /* One continuous rail spanning first icon centre → last icon centre, with a
+       single fill that tracks scroll. --track-top/--track-h/--fill are written
+       by the script below (measured, so they stay right at any breakpoint). */
+    .wx-proc-list::before,
+    .wx-proc-list::after {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      left: calc(var(--icon) / 2 - 1px);
+      top: var(--track-top, 0px);
+      height: var(--track-h, 0px);
+      width: 2px;
+      border-radius: 2px;
+    }
+    .wx-proc-list::before { background: rgba(157,92,255,0.18); }
+    .wx-proc-list::after {
+      background: #9D5CFF;
+      transform: scaleY(var(--fill, 0));
+      transform-origin: 50% 0;
+    }
+    .wx-proc-step {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: var(--icon) 1fr;
+      column-gap: clamp(18px,2.1vw,30px);
+      padding-bottom: clamp(48px,7.5vh,92px);
+      /* Steps sit dimmed until they reach the middle of the viewport, then
+         settle to full strength (see the observer at the end of the section). */
+      opacity: .3;
+      transform: translateY(12px);
+      transition: opacity .65s ease, transform .65s cubic-bezier(.16,1,.3,1);
+    }
+    .wx-proc-step.is-active { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-proc-step { opacity: 1; transform: none; transition: none; }
+      .wx-proc-list::after { transform: scaleY(1); }
+      .wx-proc-icon { transition: none; }
+    }
+    .wx-proc-step:last-child { padding-bottom: 0; }
+    .wx-proc-icon {
+      position: relative;
+      z-index: 1;
+      width: var(--icon);
+      height: var(--icon);
+      border-radius: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #9D5CFF;
+      background: rgba(157,92,255,0.13);
+      transition: background-color .5s ease, color .5s ease;
+    }
+    /* Icon fills solid as the rail reaches it */
+    .wx-proc-step.is-active .wx-proc-icon { background: #9D5CFF; color: #FFFFFF; }
+    .wx-proc-step h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(19px,1.75vw,26px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin: 8px 0 12px;
+    }
+    .wx-proc-step p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(14px,1.15vw,17px);
+      line-height: 1.7;
+      color: #555560;
+      margin: 0;
+      max-width: 52ch;
+    }
+    @media (max-width: 900px) {
+      .wx-proc-inner { grid-template-columns: 1fr; gap: clamp(34px,5vh,48px); }
+      .wx-proc-aside h2 { max-width: none; }
+    }
+  </style>
+
+  <div class="wx-proc-inner">
+    <div class="wx-proc-aside">
+      <span class="wx-pill">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+        Our process
+      </span>
+      <h2 data-reveal>What can you expect working with <span>Web{X} Studio</span>?</h2>
+      <p data-reveal data-reveal-delay="80">A clear, proven process that takes your website from the first conversation to launch — and keeps it growing long after.</p>
+      <div class="wx-proc-cta" data-reveal data-reveal-delay="140">
+        <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
+          <span class="wx-btn-label">Get started today</span>
+          <span class="wx-btn-circle">
+            <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+            </svg>
+          </span>
+        </a>
+        <img class="wx-proc-squiggle" src="images/process-arrow.svg" alt="" aria-hidden="true" width="118" height="39" loading="lazy">
+      </div>
+    </div>
+
+    <ol class="wx-proc-list">
+      <li class="wx-proc-step">
+        <span class="wx-proc-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.2 3.5h3l1.5 3.7-2 1.4a11.5 11.5 0 0 0 5.2 5.2l1.4-2 3.7 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.2 5.7a2 2 0 0 1 2-2.2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h3>Discovery call</h3>
+          <p>We learn about your business, goals, and audience — then walk you through our work and the right approach for you.</p>
+        </div>
+      </li>
+
+      <li class="wx-proc-step">
+        <span class="wx-proc-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 4.5 3.5 6.8v12.7L9 17.2m0-12.7 6 2.3m-6-2.3v12.7m6-10.4 5.5-2.3v12.7L15 19.5m0-12.7v12.7m0 0-6-2.3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h3>Strategy &amp; structure</h3>
+          <p>We plan your sitemap, page structure, and content so every page has a clear purpose and a path to conversion.</p>
+        </div>
+      </li>
+
+      <li class="wx-proc-step">
+        <span class="wx-proc-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 4.5 19.5 8.5 8.8 19.2l-5 1 1-5L15.5 4.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        <div>
+          <h3>Design</h3>
+          <p>We design modern, on-brand pages built around your customer — shared with you for feedback at every step.</p>
+        </div>
+      </li>
+
+      <li class="wx-proc-step">
+        <span class="wx-proc-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 8.5 4.5 12l4 3.5M15.5 8.5 19.5 12l-4 3.5M13.5 5l-3 14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div>
+          <h3>Development</h3>
+          <p>We build it fast, responsive, and SEO-ready — clean code, tested across devices, with everything set up to perform.</p>
+        </div>
+      </li>
+
+      <li class="wx-proc-step">
+        <span class="wx-proc-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 3.5c3.5 0 7 3.5 7 7 0 4-4 8.5-8.5 10.5C10 19 5.5 15 5.5 11c0-3.5 3.5-7.5 8-7.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="13" cy="10" r="2.3" stroke="currentColor" stroke-width="1.7"/></svg>
+        </span>
+        <div>
+          <h3>Launch &amp; optimize</h3>
+          <p>We launch, track how it performs, and keep improving it with updates, SEO, and ongoing support.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <script>
+    /* Timeline reveal: each step sits dimmed until it rises past the middle of
+       the viewport, then locks to full strength.
+
+       Deliberately not using the shared [data-reveal] system — that one writes
+       an inline opacity:1, which would override the dimmed resting state this
+       effect depends on.
+
+       Also deliberately a scroll check rather than an IntersectionObserver on a
+       centre band: a fast flick or an anchor jump can carry a step straight
+       past a narrow band without ever firing, stranding it dim forever. Testing
+       "has this step's top passed the line" is monotonic, so every step above
+       the line is caught no matter how it got there. */
+    (function () {
+      var steps = [].slice.call(document.querySelectorAll('.wx-proc-step'));
+      if (!steps.length) return;
+
+      var list = document.querySelector('.wx-proc-list');
+      var icons = [].slice.call(document.querySelectorAll('.wx-proc-icon'));
+      if (!list || icons.length < 2) return;
+
+      var pending = steps.slice();
+      var queued = false;
+      var trackTop = 0, trackH = 0;
+
+      /* Measure the rail: first icon centre → last icon centre. Done from the
+         live boxes so it survives any breakpoint or font-size change. */
+      function measure() {
+        var lr = list.getBoundingClientRect();
+        var f = icons[0].getBoundingClientRect();
+        var l = icons[icons.length - 1].getBoundingClientRect();
+        var fc = f.top + f.height / 2;
+        trackTop = fc - lr.top;
+        trackH = (l.top + l.height / 2) - fc;
+        list.style.setProperty('--track-top', trackTop + 'px');
+        list.style.setProperty('--track-h', trackH + 'px');
+      }
+
+      function update() {
+        queued = false;
+        var line = window.innerHeight * 0.6;
+
+        for (var i = pending.length - 1; i >= 0; i--) {
+          if (pending[i].getBoundingClientRect().top < line) {
+            pending[i].classList.add('is-active');
+            pending.splice(i, 1);
+          }
+        }
+
+        /* Fill follows the same line the steps key off, so the rail arrives at
+           each icon exactly as that icon lights up. */
+        var railTopVp = list.getBoundingClientRect().top + trackTop;
+        var f = trackH > 0 ? (line - railTopVp) / trackH : 0;
+        list.style.setProperty('--fill', Math.max(0, Math.min(1, f)));
+      }
+
+      function onScroll() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+      }
+
+      function onResize() { measure(); onScroll(); }
+
+      /* Reduced motion: still draw the rail and light the steps, just without
+         tying any of it to scrolling. */
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        measure();
+        steps.forEach(function (s) { s.classList.add('is-active'); });
+        list.style.setProperty('--fill', 1);
+        window.addEventListener('resize', measure);
+        return;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize);
+      /* Late-loading webfonts reflow the steps, which moves the icon centres. */
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
+
+      measure();
+      update();
+    })();
+  </script>
+</section>
+
+<!-- ============ PROCESS - horizontal pinned — legacy, hidden ============ -->
+<section id="process-legacy" data-horizontal-legacy data-legacy-hidden style="display:none;position:relative;height:360vh;background:#FFFFFF;color:#1A1A1A">
   <div data-proc-inner style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center">
     <div data-proc-head style="position:absolute;top:clamp(28px,6vh,64px);left:20px;display:flex;align-items:center;gap:14px;z-index:5">
       <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF">(04)</span>

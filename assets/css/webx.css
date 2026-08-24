@@ -102,8 +102,24 @@ html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;backgr
 ::-webkit-scrollbar-track{background:#FFFFFF}
 ::-webkit-scrollbar-thumb{background:rgba(157,92,255,.25);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(157,92,255,.45)}
-body{background:#000000;color:#EDEDED;font-family:'Satoshi',sans-serif;overflow-x:hidden}
+/* overflow-x:clip stops sideways overflow the same way `hidden` does, but
+   without turning body into a scroll container — which would silently disable
+   position:sticky anywhere on the page. `hidden` stays first as the fallback
+   for browsers that don't support clip. */
+body{background:#000000;color:#EDEDED;font-family:'Satoshi',sans-serif;overflow-x:hidden;overflow-x:clip}
 ::selection{background:#9D5CFF;color:#0A0A0A}
+
+/* ---------- Global section label pill ----------
+   The single eyebrow treatment for every section heading across the site
+   (replaces the old "(0X) Label" hairlines). Pair with .wx-pill-sparkle for
+   the leading mark. .wx-pill--solid is the purple-on-white variant. */
+.wx-pill{display:inline-flex;align-items:center;gap:7px;padding:8px 17px;border-radius:100px;background:#FFFFFF;border:1px solid rgba(26,20,48,.14);color:#1A1A1A;font-family:'Satoshi',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;line-height:1;text-transform:none;margin:0 0 clamp(20px,3vh,28px)}
+.wx-pill svg{flex:0 0 auto;color:#9D5CFF}
+.wx-pill--solid{background:#9D5CFF;border-color:transparent;color:#FFFFFF}
+.wx-pill--solid svg{color:#FFFFFF}
+/* On dark/purple backgrounds keep the pill readable */
+.wx-pill--onDark{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.28);color:#FFFFFF}
+.wx-pill--onDark svg{color:#FFFFFF}
 img{max-width:100%;display:block}
 section[id]{scroll-margin-top:96px}
 
