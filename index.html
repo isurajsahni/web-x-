@@ -459,6 +459,84 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 </section>
 
+<!-- ============ TRUST / LOGO MARQUEE ============ -->
+<section class="wx-trust" aria-label="Brands we've worked with">
+  <style>
+    .wx-trust {
+      background: #FFFFFF;
+      padding: clamp(40px, 6vh, 72px) 0;
+      overflow: hidden;
+    }
+    .wx-trust-label {
+      text-align: center;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9A9AA2;
+      margin: 0 0 clamp(26px, 4vh, 40px);
+    }
+    /* Viewport: fades the logos into the page edges so the loop has no seam. */
+    .wx-trust-viewport {
+      position: relative;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    /* Track holds two identical logo sets side by side; translating it -50%
+       lands the second set exactly where the first began → seamless loop. */
+    .wx-trust-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      gap: clamp(48px, 7vw, 96px);
+      padding-inline: clamp(24px, 3.5vw, 48px);
+      animation: wx-trust-scroll 32s linear infinite;
+      will-change: transform;
+    }
+    .wx-trust:hover .wx-trust-track { animation-play-state: paused; }
+    .wx-trust-logo {
+      flex: 0 0 auto;
+      height: clamp(30px, 4vw, 46px);
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.55;
+      transition: filter .35s ease, opacity .35s ease;
+    }
+    .wx-trust-logo:hover { filter: grayscale(0); opacity: 1; }
+    @keyframes wx-trust-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-trust-track { animation: none; flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+
+  <p class="wx-trust-label">Trusted by teams we've built for</p>
+
+  <div class="wx-trust-viewport">
+    <div class="wx-trust-track">
+      <!-- Set 1 -->
+      <img class="wx-trust-logo" src="images/trust-logo/uttam-logo.png" alt="Uttam Public High School" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/narseva-logo.png" alt="Nar Seva Foundation" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/right-way-logo.png" alt="Rightway" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/katyal-logo.png" alt="Katyal" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/TUKUNEN-logo.png" alt="Tukunen" loading="lazy">
+      <!-- Set 2 (duplicate for the seamless loop) -->
+      <img class="wx-trust-logo" src="images/trust-logo/uttam-logo.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/narseva-logo.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/right-way-logo.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/katyal-logo.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/vfm-logo.png" alt="" aria-hidden="true" loading="lazy">
+      <img class="wx-trust-logo" src="images/trust-logo/TUKUNEN-logo.png" alt="" aria-hidden="true" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <!-- ============ ABOUT / INTRO (WHAT WE DO) ============ -->
 <section style="background:#FFFFFF;color:#1A1A1A">
   <div style="padding:clamp(100px,18vh,220px) 20px clamp(60px,10vh,110px);max-width:1340px;margin:0 auto">
