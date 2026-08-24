@@ -3095,7 +3095,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 </section>
 
-<section id="faq" style="background:#FFFFFF;color:#1A1A1A;position:relative;overflow:hidden;">
+<section id="faq-legacy" data-legacy-hidden style="display:none;background:#FFFFFF;color:#1A1A1A;position:relative;overflow:hidden;">
   <div style="padding:clamp(60px,10vh,120px) 20px clamp(80px,12vh,160px);max-width:1340px;margin:0 auto;border-top:none;position:relative;overflow:hidden;">
 
   <style>
@@ -3389,6 +3389,227 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="wx-faq2" aria-label="Frequently asked questions">
+  <style>
+    .wx-faq2 {
+      background: #FFFFFF;
+      color: #1A1A1A;
+    }
+    .wx-faq2-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: clamp(70px,11vh,140px) 20px clamp(70px,11vh,140px);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(40px,6vw,96px);
+      align-items: start;
+    }
+    .wx-faq2-aside {
+      position: sticky;
+      top: clamp(96px,13vh,140px);
+      align-self: start;
+    }
+    .wx-faq2-aside h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(26px,3.2vw,44px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 0 0 clamp(16px,2.2vh,22px);
+      max-width: 16ch;
+    }
+    .wx-faq2-aside h2 span { color: #9D5CFF; }
+    .wx-faq2-aside p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(13px,1vw,15px);
+      line-height: 1.65;
+      color: #555560;
+      margin: 0 0 14px;
+      max-width: 38ch;
+    }
+    .wx-faq2-mail {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(13px,1vw,15px);
+      font-weight: 600;
+      color: #9D5CFF;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(157,92,255,.4);
+      transition: border-color .25s ease, color .25s ease;
+    }
+    .wx-faq2-mail:hover { color: #7C3AED; border-bottom-color: #7C3AED; }
+
+    /* ---------- Accordion ---------- */
+    .wx-faq2-list { border-top: 1px solid rgba(26,20,48,0.12); }
+    .wx-faq2-item { border-bottom: 1px solid rgba(26,20,48,0.12); }
+    .wx-faq2-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: clamp(20px,2.6vh,26px) 2px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(15px,1.25vw,19px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.4;
+      color: #1A1A1A;
+      transition: color .25s ease;
+    }
+    .wx-faq2-q:hover { color: #9D5CFF; }
+    .wx-faq2-item.is-open .wx-faq2-q { color: #9D5CFF; }
+    /* +/− built from two bars: the vertical one collapses when open */
+    .wx-faq2-icon {
+      position: relative;
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+    }
+    .wx-faq2-icon::before,
+    .wx-faq2-icon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .25s ease;
+    }
+    .wx-faq2-icon::before { width: 18px; height: 2px; transform: translate(-50%,-50%); }
+    .wx-faq2-icon::after  { width: 2px; height: 18px; transform: translate(-50%,-50%); }
+    .wx-faq2-item.is-open .wx-faq2-icon::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+    /* 0fr -> 1fr animates the panel open without measuring any heights */
+    .wx-faq2-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .38s cubic-bezier(.16,1,.3,1);
+    }
+    .wx-faq2-item.is-open .wx-faq2-panel { grid-template-rows: 1fr; }
+    .wx-faq2-panel > div { overflow: hidden; }
+    .wx-faq2-panel p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(13px,1.05vw,15.5px);
+      line-height: 1.7;
+      color: #555560;
+      margin: 0;
+      padding: 0 40px clamp(22px,3vh,28px) 2px;
+      max-width: 62ch;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-faq2-panel, .wx-faq2-icon::before, .wx-faq2-icon::after { transition: none; }
+    }
+    @media (max-width: 900px) {
+      .wx-faq2-inner { grid-template-columns: 1fr; gap: clamp(30px,5vh,44px); }
+      .wx-faq2-aside { position: static; }
+      .wx-faq2-aside h2 { max-width: none; }
+    }
+  </style>
+
+  <div class="wx-faq2-inner">
+    <div class="wx-faq2-aside">
+      <span class="wx-pill">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+        FAQ
+      </span>
+      <h2 data-reveal>We <span>build</span> the answers.</h2>
+      <p data-reveal data-reveal-delay="80">We're sure you have some questions. These are the ones we get asked most often.</p>
+      <p data-reveal data-reveal-delay="120">Did we miss your question?<br>Email us at: <a class="wx-faq2-mail" href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a></p>
+    </div>
+
+    <div class="wx-faq2-list" data-faq2>
+      <div class="wx-faq2-item is-open">
+        <button class="wx-faq2-q" type="button" aria-expanded="true" aria-controls="faq-p1" id="faq-q1">
+          How much does a website cost?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p1" role="region" aria-labelledby="faq-q1">
+          <div><p>It depends on scope — a focused landing page, a full marketing site, and an ecommerce build are very different projects. We scope every project individually and quote a fixed price up front, in INR or USD, so there are no surprises once we start.</p></div>
+        </div>
+      </div>
+
+      <div class="wx-faq2-item">
+        <button class="wx-faq2-q" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-q2">
+          How long does a project take?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p2" role="region" aria-labelledby="faq-q2">
+          <div><p>Most marketing sites go live in 3–6 weeks, landing pages in about a week, and larger ecommerce or web-app builds take longer. You get a clear timeline after the discovery call, plus regular updates so you always know where things stand.</p></div>
+        </div>
+      </div>
+
+      <div class="wx-faq2-item">
+        <button class="wx-faq2-q" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-q3">
+          Do you handle SEO as well as design?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p3" role="region" aria-labelledby="faq-q3">
+          <div><p>Yes — design, development, and SEO all happen in-house. Every build ships with clean semantic markup, fast Core Web Vitals, and proper on-page SEO from day one, rather than being bolted on after launch.</p></div>
+        </div>
+      </div>
+
+      <div class="wx-faq2-item">
+        <button class="wx-faq2-q" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-q4">
+          Will I be able to update the site myself?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p4" role="region" aria-labelledby="faq-q4">
+          <div><p>Absolutely. We build on a CMS that suits your team, then hand over with a walkthrough and documentation so you can edit content, add pages, and publish without needing us for every change.</p></div>
+        </div>
+      </div>
+
+      <div class="wx-faq2-item">
+        <button class="wx-faq2-q" type="button" aria-expanded="false" aria-controls="faq-p5" id="faq-q5">
+          What happens after the site launches?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p5" role="region" aria-labelledby="faq-q5">
+          <div><p>Launch is the starting line, not the finish. We stay on for monitoring, updates, and ongoing SEO and conversion improvements — so the site keeps getting better as your business grows.</p></div>
+        </div>
+      </div>
+
+      <div class="wx-faq2-item">
+        <button class="wx-faq2-q" type="button" aria-expanded="false" aria-controls="faq-p6" id="faq-q6">
+          Do you work with clients outside India?
+          <span class="wx-faq2-icon" aria-hidden="true"></span>
+        </button>
+        <div class="wx-faq2-panel" id="faq-p6" role="region" aria-labelledby="faq-q6">
+          <div><p>Yes — we work with founders and teams worldwide and are used to running projects fully remote across time zones, with async updates and scheduled calls that fit your working hours.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Accordion: one panel open at a time. The open/closed state lives entirely
+       on the .is-open class (CSS animates 0fr -> 1fr), so nothing here has to
+       measure or set heights. */
+    (function () {
+      var list = document.querySelector('[data-faq2]');
+      if (!list) return;
+      var items = [].slice.call(list.querySelectorAll('.wx-faq2-item'));
+
+      list.addEventListener('click', function (e) {
+        var btn = e.target.closest('.wx-faq2-q');
+        if (!btn || !list.contains(btn)) return;
+
+        var item = btn.parentNode;
+        var willOpen = !item.classList.contains('is-open');
+
+        items.forEach(function (other) {
+          var open = other === item && willOpen;
+          other.classList.toggle('is-open', open);
+          other.querySelector('.wx-faq2-q').setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      });
+    })();
+  </script>
 </section>
 
 <!-- ============ CTA ============ -->
