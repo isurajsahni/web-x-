@@ -39,6 +39,8 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Careers](https://www.thewebxstudio.com/careers): Open roles at the studio.
 - [Web Development Agency in Ludhiana](https://www.thewebxstudio.com/web-development-agency-ludhiana): Local service page — websites, SEO and web apps in Ludhiana.
 
+- [Landing Page Design & CRO](https://www.thewebxstudio.com/landing-page-design): High-converting landing page design, build and conversion rate optimisation.
+
 ## Case studies
 - [GPSFDK — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
 - [GPSFDK ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
