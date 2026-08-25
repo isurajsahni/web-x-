@@ -58,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta name="twitter:site" content="@theWebxOfficial">
 
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -66,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/webx.css">
 <link rel="stylesheet" href="assets/css/service.css">
@@ -85,7 +85,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "image": "https://www.thewebxstudio.com/og-image.png",
       "email": "hello@thewebxstudio.com",
       "telephone": "+91-79733-86875",
-      "priceRange": "₹₹",
       "address": { "@type": "PostalAddress", "streetAddress": "Model Town", "addressLocality": "Ludhiana", "addressRegion": "Punjab", "postalCode": "141002", "addressCountry": "IN" },
       "geo": { "@type": "GeoCoordinates", "latitude": 30.9010, "longitude": 75.8573 },
       "areaServed": [
@@ -119,7 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How much does a website cost in Ludhiana?", "acceptedAnswer": { "@type": "Answer", "text": "A professional business website in Ludhiana typically costs ₹25,000–₹1,20,000 depending on pages, design and features. Ecommerce stores usually range ₹60,000–₹3,00,000, and custom web apps start higher. We give a fixed, itemised quote before we start — no hourly surprises." } },
+        { "@type": "Question", "name": "How much does a website cost in Ludhiana?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on how many pages you need, how custom the design is, and whether you need ecommerce or a web app on top. After a short scoping call we send a fixed, itemised quote covering the whole build — so you know the number before any work begins, with no hourly surprises." } },
         { "@type": "Question", "name": "Are you actually based in Ludhiana?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Web{X} Studio is a Ludhiana-based studio. We work with businesses across Ludhiana and Punjab in person and over calls, and also serve clients in the UK, US and the Gulf — so you get local availability with international-standard quality." } },
         { "@type": "Question", "name": "How long does it take to build a website?", "acceptedAnswer": { "@type": "Answer", "text": "A landing page is usually 3–5 business days. A standard business website takes 1–3 weeks, and an ecommerce store or web app 3–8 weeks, depending on scope. You get a fixed timeline with your quote." } },
         { "@type": "Question", "name": "Do you help the website rank on Google in Ludhiana?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every build ships with clean technical SEO, fast Core Web Vitals and on-page optimisation. We also offer local SEO — Google Business Profile setup, local keywords and citations — to help you show up for searches like ‘web development agency in Ludhiana’." } },
@@ -132,6 +131,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
 </script>
+
+<style>
+  /* Page ground. webx.css still paints <body> black site-wide. */
+  body{background:#FFFFFF;color:#1A1A1A}
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+
+  /* ---------------------------------------------------------------
+     Light-theme overrides for assets/css/service.css and the shared
+     .wx-faq block in webx.css. Both are still authored for the black
+     ground the figma-to-* pages use, so this page restates only the
+     colour-bearing declarations. Same selectors, later in the cascade.
+     --------------------------------------------------------------- */
+
+  /* ambient wash - the glows were tuned for black, so drop the alpha */
+  .svcp-bg .b1{opacity:.5}
+  .svcp-bg .b2{opacity:.3}
+
+  /* section shell */
+  .svcp-eyebrow{color:#43434D}
+  .svcp-h2{color:#1A1A1A}
+  .svcp-lead{color:#43434D}
+
+  /* hero */
+  .svcp-hero-crumb{color:#6B6B75}
+  .svcp-hero-crumb a{color:#6B6B75}
+  .svcp-hero h1{color:#1A1A1A}
+  .svcp-hero-lead{color:#43434D}
+  .svcp-flow{border-color:rgba(0,0,0,.10);background:#F5F4F9}
+  .svcp-flow-node{color:#43434D}
+  .svcp-btn-ghost{border-color:rgba(0,0,0,.14);color:#1A1A1A}
+
+  .svcp-badge{color:#43434D;border-color:rgba(0,0,0,.10);background:#F5F4F9}
+
+  /* hero visual */
+  .svcp-frame{box-shadow:0 30px 70px -34px rgba(40,16,90,.38),0 0 0 1px rgba(0,0,0,.08)}
+  .svcp-frame--fig{border-color:rgba(0,0,0,.10)}
+  .svcp-frame--out{background:#FFFFFF;border-color:rgba(0,0,0,.10)}
+  .svcp-win-bar{background:#F5F4F9;border-bottom-color:rgba(0,0,0,.08)}
+  .svcp-win-bar i{background:#C9C6D4}
+  .svcp-win-url{color:#6B6B75}
+  .svcp-tag-fig{color:#1A1A1A;background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.12)}
+
+  /* stats strip */
+  .svcp-stats-inner{border-color:rgba(0,0,0,.10);background:rgba(0,0,0,.10);
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-stat{background:#FFFFFF}
+  .svcp-stat b{color:#1A1A1A}
+  .svcp-stat p{color:#6B6B75}
+
+  /* feature bento */
+  .svcp-feature{border-color:rgba(0,0,0,.10);background:#FFFFFF;
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-feature h3{color:#1A1A1A}
+  .svcp-feature p{color:#43434D}
+  .svcp-fnum{color:#6B6B75}
+
+  /* process timeline */
+  .svcp-step::before{background:rgba(0,0,0,.12)}
+  .svcp-step h3{color:#1A1A1A}
+  .svcp-step p{color:#6B6B75}
+
+  /* split / why */
+  .svcp-quote{color:#1A1A1A}
+  .svcp-vs{border-color:rgba(0,0,0,.10);background:#FFFFFF;
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-vs-col+.svcp-vs-col{border-left-color:rgba(0,0,0,.08)}
+  .svcp-vs-bad .svcp-vs-h{color:#6B6B75}
+  .svcp-vs li{color:#555560}
+  .svcp-vs-bad li::before{color:#6B6B75}
+
+  /* included checklist */
+  .svcp-incl{border-color:rgba(0,0,0,.10);background:#F6F2FF}
+  .svcp-incl li{color:#43434D}
+
+  /* pricing */
+  .svcp-price-card{border-color:rgba(0,0,0,.10);background:#FFFFFF;
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-price-card--feat{background:linear-gradient(160deg,#F6F2FF,#FFFFFF 60%)}
+  .svcp-price-card h3{color:#1A1A1A}
+  .svcp-price-sub{color:#6B6B75}
+  .svcp-price-amt{color:#1A1A1A}
+  .svcp-price-amt span{color:#6B6B75}
+  .svcp-price-card ul{border-top-color:rgba(0,0,0,.08)}
+  .svcp-price-card li{color:#555560}
+  .svcp-price-note{color:#6B6B75}
+
+  /* related platforms */
+  .svcp-rel a{border-color:rgba(0,0,0,.10);background:#FFFFFF;
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-rel a:hover{background:#F6F2FF}
+  .svcp-rel-logo{border-color:rgba(0,0,0,.10);background:#F5F4F9}
+  .svcp-rel span{color:#1A1A1A}
+  .svcp-rel small{color:#6B6B75}
+
+  /* final CTA */
+  .svcp-final{border-top-color:rgba(0,0,0,.10)}
+  .svcp-final-k{color:#6B6B75}
+  .svcp-final h2{color:#1A1A1A}
+
+  @media (max-width:720px){
+    .svcp-vs-col+.svcp-vs-col{border-left:0;border-top:1px solid rgba(0,0,0,.08)}
+  }
+
+  /* shared FAQ accordion (webx.css) */
+  .wx-faq{border-color:rgba(0,0,0,.10);background:#FFFFFF;
+    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .wx-faq:hover{border-color:rgba(0,0,0,.18)}
+  .wx-faq[open]{border-color:rgba(157,92,255,.45);background:#F6F2FF;
+    box-shadow:0 20px 50px -30px rgba(157,92,255,.45)}
+  .wx-faq summary{color:#1A1A1A}
+  .wx-faq summary:hover{color:#6C2BD9}
+  .wx-faq[open] summary{color:#6C2BD9}
+  .wx-faq-ico{border-color:rgba(0,0,0,.16)}
+  .wx-faq[open] .wx-faq-ico::before,.wx-faq[open] .wx-faq-ico::after{background:#FFFFFF}
+  .wx-faq-body{color:#43434D}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -344,14 +459,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
     <span class="svcp-eyebrow"><b>(05)</b> Pricing</span>
     <h2 class="svcp-h2" id="svcp-price-h">Honest pricing for <span class="svcp-hl">Ludhiana</span> businesses.</h2>
-    <p class="svcp-lead">Real starting points in INR. You approve a fixed, itemised quote before any work begins.</p>
+    <p class="svcp-lead">Every project is scoped and quoted on its own. You approve a fixed, itemised quote before any work begins &mdash; no hourly meter, no surprises.</p>
   </div>
 
   <div class="svcp-price">
     <div class="svcp-price-card" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <h3>Business website</h3>
       <p class="svcp-price-sub">A polished 5&ndash;10 page site that wins trust and enquiries.</p>
-      <div class="svcp-price-amt">₹25k<span>&ndash;₹1.2L</span></div>
+      <div class="svcp-price-amt">Fixed quote<span> in 48h</span></div>
       <div class="svcp-price-inr">Most local businesses &amp; service firms</div>
       <ul>
         <li>Bespoke, mobile-first design</li>
@@ -364,7 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="svcp-price-tag">Most popular</span>
       <h3>Ecommerce &amp; custom</h3>
       <p class="svcp-price-sub">Online stores, web apps and ERP built to scale.</p>
-      <div class="svcp-price-amt">₹60k<span>&ndash;₹3L+</span></div>
+      <div class="svcp-price-amt">Scoped<span> &amp; itemised</span></div>
       <div class="svcp-price-inr">Stores, platforms &amp; custom software</div>
       <ul>
         <li>Store or custom app build</li>
@@ -424,7 +539,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
     <details class="wx-faq">
       <summary>How much does a website cost in Ludhiana?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
-      <div class="wx-faq-body">A professional business website in Ludhiana typically costs ₹25,000&ndash;₹1,20,000 depending on pages, design and features. Ecommerce stores usually range ₹60,000&ndash;₹3,00,000, and custom web apps start higher. You get a fixed, itemised quote before we start.</div>
+      <div class="wx-faq-body">It depends on how many pages you need, how custom the design is, and whether you need ecommerce or a web app on top. After a short scoping call we send a fixed, itemised quote covering the whole build &mdash; so you know the number before any work begins.</div>
     </details>
     <details class="wx-faq">
       <summary>Are you actually based in Ludhiana?<span class="wx-faq-ico" aria-hidden="true"></span></summary>

@@ -14,24 +14,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | Web{X} Studio</title>
   <meta name="description" content="Log in or create your Web{X} Studio account to manage your high-performance design, code, and SEO projects.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#FFFFFF">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     /* Premium Resets and Variables */
     :root {
-      --bg-black: #000000;
-      --card-bg: #0C0C0E;
-      --input-bg: #141416;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.2);
+      --bg-page: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --card-shadow: 0 14px 34px -22px rgba(40, 16, 90, 0.28);
+      --panel-bg: #F6F2FF;
+      --input-bg: #F5F4F9;
+      --border-color: rgba(0, 0, 0, 0.10);
+      --border-hover: rgba(0, 0, 0, 0.22);
       --brand-lavender: #9D5CFF;
-      --text-main: #EDEDED;
-      --text-muted: #8A8A92;
+      --brand-deep: #7C3AED;
+      --text-main: #1A1A1A;
+      --text-body: #43434D;
+      --text-muted: #6B6B75;
       --transition-speed: 0.3s;
     }
     
@@ -42,7 +46,7 @@
     }
     
     body {
-      background-color: var(--bg-black);
+      background-color: var(--bg-page);
       color: var(--text-main);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
@@ -121,14 +125,14 @@
       min-height: 640px;
       display: flex;
       overflow: hidden;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+      box-shadow: var(--card-shadow);
       position: relative;
     }
-    
+
     /* Left Panel: Glowing Mesh Gradient & Steps */
     .left-panel {
       flex: 1.1;
-      background: #050505;
+      background: var(--panel-bg);
       padding: 56px;
       display: flex;
       flex-direction: column;
@@ -146,7 +150,9 @@
       pointer-events: none;
       z-index: 1;
       filter: blur(80px);
-      opacity: 0.85;
+      /* the blobs were tuned to glow on black; on a light panel the same
+         alphas turn to mud, so both the layer and the stops are pulled back */
+      opacity: 0.5;
       will-change: transform;
     }
     
@@ -159,7 +165,7 @@
     .blob-1 {
       width: 320px;
       height: 320px;
-      background: radial-gradient(circle, rgba(157, 92, 255, 0.5) 0%, rgba(157, 92, 255, 0) 70%);
+      background: radial-gradient(circle, rgba(157, 92, 255, 0.20) 0%, rgba(157, 92, 255, 0) 70%);
       top: -60px;
       left: -60px;
       animation: blob-1-move 28s ease-in-out infinite alternate;
@@ -168,7 +174,7 @@
     .blob-2 {
       width: 380px;
       height: 380px;
-      background: radial-gradient(circle, rgba(123, 53, 250, 0.45) 0%, rgba(123, 53, 250, 0) 70%);
+      background: radial-gradient(circle, rgba(123, 53, 250, 0.18) 0%, rgba(123, 53, 250, 0) 70%);
       bottom: -120px;
       right: -120px;
       animation: blob-2-move 32s ease-in-out infinite alternate;
@@ -177,7 +183,7 @@
     .blob-3 {
       width: 280px;
       height: 280px;
-      background: radial-gradient(circle, rgba(31, 0, 77, 0.85) 0%, rgba(31, 0, 77, 0) 70%);
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(124, 58, 237, 0) 70%);
       top: 35%;
       left: 25%;
       animation: blob-3-move 24s ease-in-out infinite alternate;
@@ -217,7 +223,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
+      color: var(--text-body);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -226,17 +232,17 @@
     }
     
     .panel-title {
-      font-family: 'Satoshi', sans-serif;
+      font-family: 'Satoshi', 'Manrope', sans-serif;
       font-size: clamp(28px, 3.5vw, 38px);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      color: #FFFFFF;
+      color: var(--text-main);
       margin-bottom: 16px;
     }
     
     .panel-subtext {
-      color: rgba(255, 255, 255, 0.65);
+      color: var(--text-body);
       font-size: 15px;
       line-height: 1.6;
       max-width: 380px;
@@ -256,26 +262,28 @@
       gap: 16px;
       padding: 14px 20px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      color: rgba(255, 255, 255, 0.5);
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--text-muted);
       font-size: 14px;
       font-weight: 500;
       transition: all var(--transition-speed) ease;
     }
     
+    /* on the lavender panel a white pill no longer reads as "current",
+       so the active step carries the brand purple and white type instead */
     .step-pill.active {
-      background: #FFFFFF;
-      border-color: #FFFFFF;
-      color: #000000;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+      background: var(--brand-deep);
+      border-color: var(--brand-deep);
+      color: #FFFFFF;
+      box-shadow: 0 10px 25px -8px rgba(124, 58, 237, 0.55);
     }
     
     .step-num {
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -285,8 +293,8 @@
     }
     
     .step-pill.active .step-num {
-      background: #000000;
-      color: #FFFFFF;
+      background: #FFFFFF;
+      color: var(--brand-deep);
     }
     
     /* Right Panel: Form */
@@ -303,7 +311,7 @@
     }
     
     .form-title {
-      font-family: 'Satoshi', sans-serif;
+      font-family: 'Satoshi', 'Manrope', sans-serif;
       font-size: 28px;
       font-weight: 500;
       color: var(--text-main);
@@ -342,7 +350,7 @@
     
     .social-btn:hover {
       border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.02);
+      background: #F5F4F9;
       transform: translateY(-1px);
     }
     
@@ -351,7 +359,7 @@
       display: flex;
       align-items: center;
       text-align: center;
-      color: rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
@@ -362,7 +370,7 @@
     .divider::before, .divider::after {
       content: '';
       flex: 1;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.10);
     }
     
     .divider:not(:empty)::before {
@@ -429,7 +437,7 @@
     }
     
     .form-input::placeholder {
-      color: rgba(255, 255, 255, 0.22);
+      color: var(--text-muted);
     }
     
     .pwd-toggle {
@@ -537,12 +545,17 @@
       }
     }
   </style>
+  <style>
+    /* Page ground. webx.css still paints <body> black site-wide. */
+    body{background:#FFFFFF;color:#1A1A1A}
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+  </style>
 </head>
 <body>
 
 <header>
   <a href="/" class="logo">
-    <img class="logo-icon" src="logo-white.svg" alt="Web{X}" width="30" height="30" style="border-radius:8px;display:block;" />
+    <img class="logo-icon" src="logo-black.svg" alt="Web{X}" width="30" height="30" style="border-radius:8px;display:block;" />
     <span>Web<span style="color:#9D5CFF;">{X}</span></span>
   </a>
   <a href="/" class="back-btn">

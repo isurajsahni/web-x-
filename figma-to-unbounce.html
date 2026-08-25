@@ -53,7 +53,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta name="twitter:site" content="@theWebxOfficial">
 
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -61,7 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/webx.css">
 <link rel="stylesheet" href="assets/css/service.css">
@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         { "@type": "Question", "name": "How long does a Figma to Unbounce build take?", "acceptedAnswer": { "@type": "Answer", "text": "A single landing page is usually 2-4 business days. A campaign set with variants and multiple pages typically takes 1-2 weeks, depending on the number of unique layouts, forms and integrations. We give a fixed timeline with the quote." } },
         { "@type": "Question", "name": "Will the Unbounce page look exactly like my Figma design?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We build pixel-perfect from your Figma file - spacing, type, colour and layout match your design at every breakpoint. Where Figma leaves gaps (mobile, form states, thank-you pages) we flag them and design sensible defaults with you." } },
         { "@type": "Question", "name": "Can you set up A/B tests and variants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We build variants for A/B testing, wire up Smart Traffic where it helps, and structure the page so your marketing team can duplicate and test without a developer - and we hand over a short Loom walkthrough." } },
-        { "@type": "Question", "name": "How much does Figma to Unbounce cost?", "acceptedAnswer": { "@type": "Answer", "text": "A single landing page typically starts around $300-$600 (about ₹25,000-₹50,000). A campaign set with variants and multiple pages usually lands between $800 and $2,000. Price depends on layout count, forms and integrations." } },
+        { "@type": "Question", "name": "How much does Figma to Unbounce cost?", "acceptedAnswer": { "@type": "Answer", "text": "Every Figma to Unbounce build is quoted as one fixed number rather than an hourly rate. Cost is driven by the number of layouts and variants, the forms and integrations involved, and how much A/B testing setup you need. After a short scoping call we send a fixed, itemised quote and a timeline, and that number does not change once you approve it." } },
         { "@type": "Question", "name": "Do you connect forms, CRM and tracking?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We wire up lead forms, CRM and email tools, conversion tracking, and analytics or tag manager events - so every campaign click is measured from the first launch." } }
       ]
     }
@@ -104,6 +104,107 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </script>
 
+<style>
+  /* ------------------------------------------------------------------
+     LIGHT THEME - figma-to-X service page.
+     webx.css still paints <body> black site-wide, and assets/css/service.css
+     is the shared (still-dark) figma-to-X design system, so this page claims
+     the white ground and re-tones every .svcp-* token locally.
+     ------------------------------------------------------------------ */
+  body{background:#FFFFFF;color:#1A1A1A}
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+
+  /* accent vars retuned for a white ground */
+  :root{
+    --svc-soft:rgba(157,92,255,.14);
+    --svc-ghost:rgba(157,92,255,.07);
+    --svc-line:rgba(124,58,237,.30);
+  }
+
+  /* ---- shared section shell ---- */
+  .svcp-eyebrow{color:#43434D}
+  .svcp-eyebrow b{color:#7C3AED}
+  .svcp-h2{color:#1A1A1A}
+  .svcp-lead{color:#43434D}
+
+  /* ---- hero ---- */
+  .svcp-hero-crumb{color:#6B6B75}
+  .svcp-hero-crumb a{color:#43434D}
+  .svcp-hero h1{color:#1A1A1A}
+  .svcp-hero-lead{color:#43434D}
+  .svcp-flow{border-color:rgba(0,0,0,.10);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-flow-node{color:#43434D}
+  .svcp-btn-ghost{border-color:rgba(0,0,0,.14);background:#FFFFFF;color:#1A1A1A}
+  .svcp-badge{color:#43434D;border-color:rgba(0,0,0,.10);background:#FFFFFF}
+  .svcp-frame{box-shadow:0 30px 70px -34px rgba(40,16,90,.35),0 0 0 1px rgba(0,0,0,.08)}
+  .svcp-frame--fig{border-color:rgba(0,0,0,.08)}
+  .svcp-frame--out{background:#FFFFFF;border-color:rgba(0,0,0,.08)}
+  .svcp-win-bar{background:#F5F4F9;border-bottom-color:rgba(0,0,0,.08)}
+  .svcp-win-bar i{background:#D6D3DE}
+  .svcp-win-url{color:#6B6B75}
+  .svcp-tag-fig{color:#1A1A1A;background:rgba(255,255,255,.86);border-color:rgba(0,0,0,.10)}
+
+  /* ---- stats strip (inner background paints the 1px cell gaps) ---- */
+  .svcp-stats-inner{border-color:rgba(0,0,0,.10);background:rgba(0,0,0,.10);box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-stat{background:#FFFFFF}
+  .svcp-stat b{color:#1A1A1A}
+  .svcp-stat p{color:#6B6B75}
+
+  /* ---- feature bento ---- */
+  .svcp-feature{border-color:rgba(0,0,0,.09);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-feature:hover{box-shadow:0 26px 56px -32px rgba(124,58,237,.38)}
+  .svcp-feature h3{color:#1A1A1A}
+  .svcp-feature p{color:#555560}
+  .svcp-fnum{color:#6B6B75}
+
+  /* ---- process timeline ---- */
+  .svcp-step::before{background:rgba(0,0,0,.12)}
+  .svcp-step-n{color:#7C3AED}
+  .svcp-step h3{color:#1A1A1A}
+  .svcp-step p{color:#555560}
+
+  /* ---- split / why ---- */
+  .svcp-quote{color:#1A1A1A}
+  .svcp-vs{border-color:rgba(0,0,0,.09);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-vs-col+.svcp-vs-col{border-left-color:rgba(0,0,0,.08)}
+  .svcp-vs-bad .svcp-vs-h{color:#6B6B75}
+  .svcp-vs-good .svcp-vs-h{color:#7C3AED}
+  .svcp-vs li{color:#555560}
+  .svcp-vs-bad li::before{color:#6B6B75}
+
+  /* ---- included checklist ---- */
+  .svcp-incl{border-color:rgba(0,0,0,.09);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-incl li{color:#43434D}
+
+  /* ---- pricing ---- */
+  .svcp-price-card{border-color:rgba(0,0,0,.10);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-price-card--feat{border-color:rgba(124,58,237,.30);background:linear-gradient(160deg,#F6F2FF,#FFFFFF 62%)}
+  .svcp-price-tag{color:#7C3AED}
+  .svcp-price-card h3{color:#1A1A1A}
+  .svcp-price-sub{color:#6B6B75}
+  .svcp-price-amt{color:#1A1A1A}
+  .svcp-price-amt span{color:#6B6B75}
+  .svcp-price-card ul{border-top-color:rgba(0,0,0,.08)}
+  .svcp-price-card li{color:#555560}
+  .svcp-price-note{color:#6B6B75}
+
+  /* ---- related platforms ---- */
+  .svcp-rel a{color:#1A1A1A;border-color:rgba(0,0,0,.09);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
+  .svcp-rel a:hover{border-color:rgba(157,92,255,.35);background:#FAF8FF}
+  .svcp-rel-logo{border-color:rgba(0,0,0,.08);background:#F5F4F9}
+  .svcp-rel span{color:#1A1A1A}
+  .svcp-rel small{color:#6B6B75}
+  .svcp-rel small b{color:#7C3AED}
+
+  /* ---- final CTA ---- */
+  .svcp-final{border-top-color:rgba(0,0,0,.10)}
+  .svcp-final-k{color:#6B6B75}
+  .svcp-final h2{color:#1A1A1A}
+
+  @media (max-width:720px){
+    .svcp-vs-col+.svcp-vs-col{border-top-color:rgba(0,0,0,.08)}
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -123,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="svcp-hero">
   <div>
     <nav class="svcp-hero-crumb" aria-label="Breadcrumb" data-reveal style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
-      <a href="services" class="wx-uline">Services</a> &nbsp;/&nbsp; <span style="color:var(--svc)">Figma to Unbounce</span>
+      <a href="services" class="wx-uline">Services</a> &nbsp;/&nbsp; <span style="color:#7C3AED">Figma to Unbounce</span>
     </nav>
     <div class="svcp-flow" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease" aria-label="Figma to Unbounce">
       <span class="svcp-flow-node"><img src="images/tools/figma.png" alt="Figma">Figma</span>
@@ -321,8 +422,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="svcp-price-card" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
       <h3>Landing page</h3>
       <p class="svcp-price-sub">One high-converting page, built to ship in days.</p>
-      <div class="svcp-price-amt">$300<span>&ndash;$600</span></div>
-      <div class="svcp-price-inr">₹25,000&ndash;₹50,000</div>
+      <div class="svcp-price-amt">Fixed quote</div>
       <ul>
         <li>Single responsive page</li>
         <li>Form, CRM &amp; tracking setup</li>
@@ -334,8 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="svcp-price-tag">Most popular</span>
       <h3>Campaign set</h3>
       <p class="svcp-price-sub">Multiple pages with variants your team can test.</p>
-      <div class="svcp-price-amt">$800<span>&ndash;$2,000</span></div>
-      <div class="svcp-price-inr">Scales with pages &amp; integrations</div>
+      <div class="svcp-price-amt">Fixed quote</div>
       <ul>
         <li>Multiple landing pages</li>
         <li>A/B variants &amp; Smart Traffic</li>
@@ -344,7 +443,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
   </div>
-  <p class="svcp-price-note">Prices depend on layout count, forms and integrations &mdash; you get a fixed, itemised quote before we start.</p>
+  <p class="svcp-price-note">Every build is scoped to what it actually needs &mdash; layout count, forms and integrations all move the number. After a short scoping call you get a fixed, itemised quote, and it doesn&rsquo;t change once you approve it.</p>
 </section>
 
 <!-- ============ FAQ ============ -->

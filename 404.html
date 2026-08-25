@@ -33,16 +33,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="The page you're looking for has moved or no longer exists. Head back to Web{X} Studio - web design, landing pages & SEO.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://www.thewebxstudio.com/404.html">
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/webx.css">
 <script src="assets/js/webx.js" defer></script>
+<style>
+  /* Page ground. webx.css still paints <body> black site-wide. */
+  body{background:#FFFFFF;color:#1A1A1A}
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -62,11 +67,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <main id="main" style="position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(120px,18vh,200px) 20px clamp(60px,10vh,120px);overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;top:20%;left:50%;width:60vw;height:60vw;max-width:760px;max-height:760px;transform:translateX(-50%);border-radius:50%;filter:blur(80px);opacity:.32;background:radial-gradient(circle,rgba(157,92,255,.7),transparent 65%);animation:wx-mesh 18s ease-in-out infinite;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;top:20%;left:50%;width:60vw;height:60vw;max-width:760px;max-height:760px;transform:translateX(-50%);border-radius:50%;filter:blur(80px);opacity:.32;background:radial-gradient(circle,rgba(157,92,255,.5),transparent 65%);animation:wx-mesh 18s ease-in-out infinite;pointer-events:none"></div>
   <div style="position:relative">
     <div style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF;margin-bottom:24px">Error 404</div>
     <h1 style="font-size:clamp(72px,20vw,260px);font-weight:700;letter-spacing:-.05em;line-height:.86;margin:0">4<span style="color:#9D5CFF">0</span>4</h1>
-    <p style="max-width:440px;margin:28px auto 0;font-size:clamp(15px,1.4vw,19px);line-height:1.6;color:#9A9AA2">This page wandered off. The link may be broken or the page may have moved - let's get you back on track.</p>
+    <p style="max-width:440px;margin:28px auto 0;font-size:clamp(15px,1.4vw,19px);line-height:1.6;color:#6B6B75">This page wandered off. The link may be broken or the page may have moved - let's get you back on track.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:44px">
       <a data-transition href="/" data-magnetic class="wx-btn-animated">
         <span class="wx-btn-label">Back home</span>
@@ -76,7 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </svg>
         </span>
       </a>
-      <a data-transition href="work" data-magnetic class="wx-uline" style="display:inline-flex;align-items:center;padding:18px 12px;color:#EDEDED;text-decoration:none;font-size:16px;font-weight:500">View our work</a>
+      <a data-transition href="work" data-magnetic class="wx-uline" style="display:inline-flex;align-items:center;padding:18px 12px;color:#1A1A1A;text-decoration:none;font-size:16px;font-weight:500">View our work</a>
     </div>
   </div>
 </main>
