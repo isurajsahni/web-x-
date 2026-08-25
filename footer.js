@@ -12,29 +12,38 @@
   /* 1. Styles                                                          */
   /* ------------------------------------------------------------------ */
   var CSS = `
-  /* Ground is a violet-biased near-black rather than pure #000 — it seats
-     better against the light sections above it. Type stays on Satoshi, which
-     webx.css loads on every page; Manrope is only linked on the homepage, so
-     using it here would silently fall back to system sans site-wide. */
+  /* Ground is the same paper texture the hero and closing CTA use, so the
+     page ends on one continuous surface. Type stays on Satoshi, which webx.css
+     loads on every page; Manrope is only linked on the homepage, so using it
+     here would silently fall back to system sans site-wide. */
   .wx-footer {
-    --ink: #0A0810;
-    --raise: #15121F;
-    --line: rgba(255,255,255,.09);
-    --text: #F2F0F7;
-    --muted: #8A8598;
-    --dim: #56525F;
+    --ink: #FFFFFF;
+    --raise: #F5F4F9;
+    --line: rgba(0,0,0,.10);
+    --text: #1A1A1A;
+    --muted: #55555F;
+    --dim: #6B6B75;
     --brand: #9D5CFF;
     --brand-lo: #9BB0FF;
     --brand-hi: #C061FF;
     position: relative;
-    background: var(--ink);
+    background: var(--ink) url('images/hero-bg.png') center bottom / cover no-repeat;
     color: var(--text);
     border-top: 1px solid var(--line);
     padding: clamp(56px,8vh,96px) 20px 34px;
     overflow: hidden;
     font-family: 'Satoshi', sans-serif;
   }
-  .wx-footer-inner { max-width: 1340px; margin: 0 auto; }
+  /* Texture is faint, but a top-down wash keeps the join with the CTA above
+     invisible and stops the artwork competing with the small print. */
+  .wx-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.42) 20%, rgba(255,255,255,.12) 55%, rgba(255,255,255,.12) 100%);
+    pointer-events: none;
+  }
+  .wx-footer-inner { position: relative; z-index: 1; max-width: 1340px; margin: 0 auto; }
 
 
   /* ---- Main ---- */
@@ -63,8 +72,8 @@
     height: 40px;
     border-radius: 50%;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,.03);
-    color: var(--muted);
+    background: rgba(255,255,255,.65);
+    color: var(--text);
     transition: color .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease;
   }
   .wx-social-btn:hover { color: #fff; background: var(--brand); border-color: var(--brand); transform: translateY(-2px); }
@@ -186,7 +195,7 @@
       <div class="wx-footer-main">
         <div class="wx-footer-left">
           <a href="index.html" class="wx-footer-brand" aria-label="Web{X} Studio — home">
-            <img src="logo-white.svg" alt="Web{X} Studio" width="40" height="40" />
+            <img src="logo-black.svg" alt="Web{X} Studio" width="40" height="40" />
           </a>
           <p class="wx-footer-desc">
             A digital design &amp; development agency building high-performance websites, custom products, and the SEO that keeps them found.
