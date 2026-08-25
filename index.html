@@ -4098,8 +4098,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          shrink to the track so the overflow centres, instead of the deck
          growing past the panel and bleeding to the right only. */
       .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); min-width: 0; }
-      .wx-cta4-deck .fan-card { width: 174px !important; }
-      .wx-cta4-deck .fan-card--lead { width: 35vw !important; --y: -13vw; bottom: -10px; }
+      /* Both cards scale on the same vw ramp so the pair keeps its ratio
+         across the range. A flat outer against a fluid centre had the centre
+         at 1.8x the outer by 900px, with the row stranded in a wide panel. */
+      .wx-cta4-deck .fan-card { width: clamp(174px,34vw,300px) !important; }
+      .wx-cta4-deck .fan-card--lead { width: clamp(131px,26vw,232px) !important; --y: clamp(-96px,-13vw,-42px); bottom: -10px; }
     }
   </style>
 
