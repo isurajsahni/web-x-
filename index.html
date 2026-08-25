@@ -402,7 +402,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       /* The deck used to supply the space under the heading */
       .hero-fan-sub { margin-top: clamp(22px,3.5vh,32px); }
       .hero-fan-cta { width: 100%; flex-direction: column; align-items: center; }
-      .hero-fan-cta > a { width: 100%; max-width: 300px; justify-content: center; }
+      /* Pills hug their label — stretching them to the column width made
+         them read as form fields rather than buttons. */
+      .hero-fan-cta > a { width: auto; }
     }
   </style>
 
@@ -4007,9 +4009,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-cta2-stage {
       position: relative;
       z-index: 1;
-      align-self: end;
-      padding-top: clamp(84px,10vw,146px);
-      margin-bottom: clamp(-24px,-1.3vw,-9px);
+      align-self: center;
+      padding: clamp(20px,2.6vw,40px) clamp(16px,2.2vw,36px) clamp(20px,2.6vw,40px) 0;
     }
     /* Soft bloom so the devices sit on the purple instead of floating over it */
     .wx-cta2-stage::before {
@@ -4022,70 +4023,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       pointer-events: none;
     }
 
-    /* Two project shots, layered. These images are angled presentation
-       compositions rather than flat screenshots, so they are shown as cards
-       in their own right instead of being posted into a device bezel. */
-    .wx-cta2-shot {
-      border-radius: clamp(10px,1.3vw,18px);
-      overflow: hidden;
-      background: #FFFFFF;
-      margin: 0;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.45),
-                  0 44px 74px -36px rgba(28,6,68,0.72);
-    }
-    .wx-cta2-shot img { display: block; width: 100%; height: auto; }
-
-    .wx-cta2-shot--wide {
+    /* Project deck — the hero's fan, trimmed to three cards. .fan-card
+       carries the shared look (white edge, radius, lift on hover) so the two
+       decks stay in step; only the sizing and the entrance are scoped here. */
+    .wx-cta2-deck {
       position: relative;
-      margin-right: clamp(-64px,-3.2vw,-18px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      /* room for the outer cards' rotation so they do not clip on the card */
+      padding: clamp(16px,2.2vw,30px) 0 clamp(24px,3.4vw,46px);
     }
-    .wx-cta2-shot--wide img {
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    /* Sits in front, centred on the wide shot and rising above its top edge.
-       Centring uses translate so the float keyframes keep transform to
-       themselves and the two never overwrite each other. */
-    .wx-cta2-shot--tall {
-      position: absolute;
-      left: 50%;
-      translate: -50% 0;
-      top: clamp(26px,3vw,44px);
-      width: 46%;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.55),
-                  0 54px 80px -30px rgba(24,4,60,0.85);
-      animation: wx-cta2-float 6s ease-in-out infinite;
-    }
-    .wx-cta2-shot--tall img {
-      aspect-ratio: 9 / 10;
-      object-fit: cover;
-      object-position: center;
-    }
-    /* Neck + foot below the wide shot. The card crops it, which is what
-       reads as "this carries on past the frame". */
-    .wx-cta2-stand {
-      display: block;
-      width: clamp(30px,3.4vw,52px);
-      height: clamp(26px,3.4vw,54px);
-      margin: 0 auto;
-      background: linear-gradient(rgba(255,255,255,0.42), rgba(255,255,255,0.26));
-    }
-    .wx-cta2-stand::after {
-      content: "";
-      display: block;
-      width: clamp(104px,11vw,178px);
-      height: clamp(9px,1vw,14px);
-      margin: 0 auto;
-      border-radius: clamp(5px,0.6vw,8px) clamp(5px,0.6vw,8px) 0 0;
-      background: rgba(255,255,255,0.42);
-    }
-    @keyframes wx-cta2-float {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-12px); }
+    /* Outranks the global .fan-card width, including its 860px override. */
+    .wx-cta2-deck .fan-card {
+      width: clamp(94px,12.6vw,180px) !important;
+      margin-inline: clamp(-26px,-1.8vw,-14px);
     }
 
+    /* Entrance mirrors the hero: parked at --fx/--fy/--fr, released by .is-in
+       when the section scrolls up. Offsets stay small — the purple card crops
+       anything outside it, so a viewport-sized flight would just vanish. */
+    .wx-cta2-deck:not(.is-in) .fan-card {
+      opacity: 0;
+      transform: translate3d(var(--fx), var(--fy), 0) rotate(var(--fr)) scale(.9);
+    }
+    .wx-cta2-deck.is-in .fan-card {
+      opacity: 1;
+      transform: rotate(var(--r)) translateY(var(--y));
+      transition: transform .9s cubic-bezier(.18,.82,.28,1), opacity .5s ease;
+      transition-delay: var(--d, 0s);
+    }
+    /* Hover must out-rank .is-in and must not inherit the entrance stagger. */
+    .wx-cta2-deck.is-in .fan-card:hover {
+      transform: rotate(var(--r)) translateY(calc(var(--y) - 14px));
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+      transition-delay: 0s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-cta2-deck .fan-card,
+      .wx-cta2-deck:not(.is-in) .fan-card {
+        opacity: 1;
+        transform: rotate(var(--r)) translateY(var(--y));
+        transition: none;
+      }
+    }
     /* ---------------- Stacked ---------------- */
     @media (max-width: 900px) {
       .wx-cta2-card {
@@ -4100,15 +4081,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .wx-cta2-copy p { margin-inline: auto; }
       .wx-cta2-copy .wx-btn-animated { margin: 0 auto; }
       .wx-cta2-stage {
-        padding: clamp(54px,13vw,88px) clamp(24px,6vw,48px) 0;
+        padding: clamp(20px,5vw,36px) clamp(24px,6vw,48px) clamp(8px,2vw,16px);
         margin-bottom: -6%;
       }
-      .wx-cta2-shot--wide { margin-right: 0; }
-      .wx-cta2-shot--tall { width: 44%; top: clamp(10px,3vw,22px); }
+      .wx-cta2-deck .fan-card { width: clamp(86px,23vw,132px) !important; margin-inline: -14px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .wx-cta2-shot--tall { animation: none; }
     }
   </style>
 
@@ -4131,15 +4110,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="wx-cta2-stage">
-      <figure class="wx-cta2-shot wx-cta2-shot--wide">
-        <img src="images/work/rightway.avif" alt="Rightway Purifier website designed and built by Web{X} Studio" loading="lazy" decoding="async">
-      </figure>
-      <span class="wx-cta2-stand" aria-hidden="true"></span>
-      <figure class="wx-cta2-shot wx-cta2-shot--tall">
-        <img src="images/work/fitness-tracker.avif" alt="Fitness tracker app designed and built by Web{X} Studio" loading="lazy" decoding="async">
-      </figure>
+      <div class="wx-cta2-deck">
+        <div class="fan-card" style="--r:-12deg; --y:30px; --fx:-72px; --fy:44px; --fr:-34deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="lazy" decoding="async"></div>
+        <div class="fan-card" style="--r:0deg; --y:0px; --fx:0px; --fy:68px; --fr:14deg; --d:.1s;"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="lazy" decoding="async"></div>
+        <div class="fan-card" style="--r:12deg; --y:30px; --fx:72px; --fy:44px; --fr:34deg; --d:.2s;"><img src="images/work/erp-gpsfdk.avif" alt="GPSFDK ERP One project preview" loading="lazy" decoding="async"></div>
+      </div>
     </div>
   </div>
+
+  <script>
+    /* Release the deck when the CTA scrolls up, same .is-in contract the hero
+       uses — just triggered by view rather than by the intro overlay. */
+    (function () {
+      var deck = document.querySelector(".wx-cta2-deck");
+      if (!deck) return;
+      if (!window.IntersectionObserver) { deck.classList.add("is-in"); return; }
+      new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting) return;
+        deck.classList.add("is-in");
+        obs.disconnect();
+      }, { threshold: 0.25 }).observe(deck);
+    })();
+  </script>
 </section>
 </main>
 
