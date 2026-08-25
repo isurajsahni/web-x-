@@ -185,12 +185,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .svcx-conv--soon{opacity:.66}
   .svcx-conv--soon:hover{opacity:1}
 
-  /* ---- Custom-build strip ---- */
-  .svcx-strip{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;border:1px solid rgba(157,92,255,.2);border-radius:24px;padding:clamp(26px,3vw,40px) clamp(24px,3.4vw,44px);background:linear-gradient(120deg,rgba(157,92,255,.12),rgba(124,58,237,.04) 55%,transparent)}
-  .svcx-strip::before{content:"";position:absolute;top:-60%;left:-10%;width:50%;height:200%;background:radial-gradient(circle,rgba(157,92,255,.22),transparent 60%);filter:blur(40px);pointer-events:none}
-  .svcx-strip h3{font-size:clamp(19px,1.7vw,24px);font-weight:600;letter-spacing:-.025em;margin:0 0 8px;color:#1A1A1A}
-  .svcx-strip p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#555560;margin:0;max-width:520px}
-
+  /* ---- Custom build: the sixth card in the set ----
+     It used to be a full-width strip under the grid, which read as a separate
+     component. Same shell as the other five now, marked out by tint rather
+     than by shape — and it completes the 3x2. */
+  .svcx-conv--custom{border-color:rgba(157,92,255,.28);background:linear-gradient(150deg,rgba(157,92,255,.10),rgba(157,92,255,.03) 58%,#FFFFFF)}
+  .svcx-conv--custom:hover{border-color:rgba(157,92,255,.48)}
+  .svcx-conv--custom .svcx-conv-logo{background:rgba(157,92,255,.12);border-color:rgba(157,92,255,.22);color:#7C3AED}
+  .svcx-conv--custom .svcx-conv-logo svg{width:22px;height:22px}
+  .svcx-conv-note{font-family:'Satoshi',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7C3AED}
 </style>
 </head>
 <body>
@@ -506,22 +509,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </a>
 
-  </div>
 
-  <!-- Custom builds strip -->
-  <div class="svcx-strip" data-reveal data-reveal-delay="120" style="margin-top:clamp(28px,5vh,48px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-      <div>
-        <h3>No platform fits? We build from scratch.</h3>
-        <p>Custom web apps, SaaS and ERP systems engineered end-to-end in React, Vue, Next.js, Node &amp; Python.</p>
+    <a data-transition href="contact" class="svcx-conv svcx-conv--custom" data-reveal data-reveal-delay="360" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Custom build service by Web{X} Studio">
+      <div class="svcx-conv-head">
+        <span class="svcx-conv-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17 3 12l5-5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
+        <span class="svcx-conv-flow">Figma &rarr; <b>Custom code</b></span>
       </div>
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-        <span class="wx-btn-label">Discuss a custom build</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-          </svg>
-        </span>
-      </a>
+      <h3>No platform fits? We build from scratch.</h3>
+      <p>Custom web apps, SaaS and ERP systems engineered end-to-end in React, Vue, Next.js, Node &amp; Python.</p>
+      <div class="svcx-conv-foot">
+        <span class="svcx-conv-note">Discuss a custom build</span>
+        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
+      </div>
+    </a>
   </div>
 </section>
 
