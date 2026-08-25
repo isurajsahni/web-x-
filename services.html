@@ -191,9 +191,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .svcx-strip h3{font-size:clamp(19px,1.7vw,24px);font-weight:600;letter-spacing:-.025em;margin:0 0 8px;color:#1A1A1A}
   .svcx-strip p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#555560;margin:0;max-width:520px}
 
-  /* ---- Final CTA glow ---- */
-  .svcx-cta{position:relative;overflow:hidden}
-  .svcx-cta::before{content:"";position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:min(90vw,900px);height:60%;background:radial-gradient(ellipse at center,rgba(157,92,255,.20),transparent 70%);filter:blur(50px);pointer-events:none}
 </style>
 </head>
 <body>
@@ -528,13 +525,254 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- next/footer CTA -->
-<a data-transition href="contact" class="svcx-cta" style="display:block;text-decoration:none;color:inherit;border-top:1px solid rgba(0,0,0,.08)">
-  <section style="padding:clamp(70px,12vh,150px) 20px;text-align:center;position:relative;z-index:1">
-    <div style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75;margin-bottom:24px">Ready when you are</div>
-    <h2 data-reveal style="font-family:'Manrope', sans-serif;font-size:clamp(40px,9vw,140px);font-weight:700;letter-spacing:-.04em;line-height:.9;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Let's talk <span style="color:#9D5CFF">&rarr;</span></h2>
-  </section>
-</a>
+<!-- ============ CTA (mirrors the home page) ============ -->
+<section class="wx-cta4" aria-label="Start a project">
+  <style>
+    /* .fan-card base, mirrored from the home page hero so the deck renders
+       here too. It is not in webx.css, so the two copies must stay in step. */
+    .fan-card {
+      position: relative;
+      width: clamp(124px, 20vw, 262px) !important;
+      aspect-ratio: 3 / 3.5;
+      flex: 0 0 auto;
+      margin-inline: clamp(-34px, -2.6vw, -18px);
+      border-radius: clamp(12px, 1.1vw, 18px);
+      overflow: hidden;
+      background: #F4F2F8;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 18px 38px -16px rgba(26, 20, 48, 0.34);
+      transform: rotate(var(--r)) translateY(var(--y));
+      transform-origin: 50% 100%;
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+    }
+    .fan-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .fan-card:hover {
+      transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
+      box-shadow: 0 26px 52px -18px rgba(157, 92, 255, 0.5);
+      z-index: 20;
+    }
+    .wx-cta4 {
+      background: #FFFFFF;
+      padding: var(--wx-sec-y) 20px;
+    }
+    .wx-cta4-card {
+      position: relative;
+      max-width: 1340px;
+      margin: 0 auto;
+      background: #9D5CFF;
+      border-radius: clamp(24px,3vw,40px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: clamp(20px,3vw,48px);
+      color: #FFFFFF;
+    }
+
+    /* ---------------- Left: the copy ---------------- */
+    .wx-cta4-copy {
+      position: relative;
+      z-index: 2;
+      padding: clamp(40px,5.4vw,90px) 0 clamp(40px,5.4vw,90px) clamp(28px,5vw,80px);
+    }
+    .wx-cta4-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: clamp(20px,3vh,32px);
+    }
+    .wx-cta4-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      padding: 8px 15px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .wx-cta4-badge i {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #00FF66;
+      animation: wx-pulse 1.6s ease-in-out infinite;
+    }
+    .wx-cta4-kicker {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .wx-cta4-copy h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(30px,4.2vw,60px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      margin: 0;
+      color: #FFFFFF;
+      text-wrap: balance;
+    }
+    .wx-cta4-copy p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(14px,1.1vw,16px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.82);
+      max-width: 42ch;
+      margin: clamp(16px,2.4vh,24px) 0 clamp(26px,3.6vh,38px);
+    }
+
+    /* ---------------- Right: the fanned deck ----------------
+       Same .fan-card language as the hero. The two outer cards splay and sit
+       low; the middle one stays upright, rides higher and takes the front, so
+       the group reads as a stack rather than a row. The card's overflow crops
+       the bottom edge, which is what makes it feel like it carries on. */
+    .wx-cta4-deck {
+      position: relative;
+      z-index: 1;
+      align-self: end;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 0;
+      padding-top: clamp(40px,5vw,86px);
+      margin-bottom: clamp(-20px, -5.4vw, -36px);
+      margin-right: 46px;
+    }
+    /* Bloom so the stack sits on the purple rather than floating over it */
+    .wx-cta4-deck::before {
+      content: '';
+      position: absolute;
+      left: 50%; bottom: 6%;
+      width: 116%; aspect-ratio: 1.2;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 66%);
+      pointer-events: none;
+    }
+    /* Outranks the global .fan-card width, including its 860px override. */
+    .wx-cta4-deck .fan-card {
+      width: clamp(136px,18vw,270px) !important;
+      /* The global .fan-card pulls a negative margin-inline for the hero deck.
+         Here the gap is the layout, and on the absolute centre that margin
+         would also drag it off the midpoint — so clear it. */
+      margin-inline: 0;
+      box-shadow: 0 30px 60px -26px rgba(28,6,68,0.55);
+    }
+    /* The centre card: upright, smaller, raised, and in front. */
+    .wx-cta4-deck .fan-card--lead {
+      /* Required. Without it the card does not go static — it falls back to the
+         global .fan-card position:relative, which keeps it in flow and turns
+         left:50% into a 429px nudge instead of a placement. */
+      position: absolute;
+      left: 50%;
+      bottom: -60px;
+      /* Centring uses translate so the rotate/raise keeps transform to itself. */
+      translate: -50% 0;
+      width: clamp(136px,18.5vw,278px) !important;
+      aspect-ratio: 3 / 3.75;
+      /* Clears the taller outer cards and then some, so it breaks the skyline. */
+      --y: clamp(-150px,-9.2vw,-60px);
+      z-index: 3;
+    }
+
+    .wx-cta4-deck:not(.is-in) .fan-card {
+      opacity: 0;
+      transform: translate3d(var(--fx), var(--fy), 0) rotate(var(--fr)) scale(.9);
+    }
+    .wx-cta4-deck.is-in .fan-card {
+      opacity: 1;
+      transform: rotate(var(--r)) translateY(var(--y));
+      transition: transform .9s cubic-bezier(.18,.82,.28,1), opacity .5s ease;
+      transition-delay: var(--d, 0s);
+    }
+    /* Hover must out-rank .is-in and must not inherit the entrance stagger. */
+    .wx-cta4-deck.is-in .fan-card:hover {
+      transform: rotate(var(--r)) translateY(calc(var(--y) - 14px));
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+      transition-delay: 0s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wx-cta4-deck .fan-card,
+      .wx-cta4-deck:not(.is-in) .fan-card {
+        opacity: 1;
+        transform: rotate(var(--r)) translateY(var(--y));
+        transition: none;
+      }
+    }
+
+    /* ---------------- Stacked ---------------- */
+    @media (max-width: 900px) {
+      .wx-cta4-card { grid-template-columns: 1fr; gap: 0; }
+      .wx-cta4-copy {
+        padding: clamp(32px,7vw,56px) clamp(24px,6vw,48px) 0;
+        text-align: center;
+      }
+      .wx-cta4-meta { justify-content: center; }
+      .wx-cta4-copy p { margin-inline: auto; }
+      .wx-cta4-copy .wx-btn-animated { margin: 0 auto; }
+      .wx-cta4-deck {
+        padding: 120px 5vw 0;
+        margin-bottom: -26px;
+      }
+      /* Cards are now wider than the column. min-width:0 lets the grid item
+         shrink to the track so the overflow centres, instead of the deck
+         growing past the panel and bleeding to the right only. */
+      .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); min-width: 0; }
+      /* Both cards scale on the same vw ramp so the pair keeps its ratio
+         across the range. A flat outer against a fluid centre had the centre
+         at 1.8x the outer by 900px, with the row stranded in a wide panel. */
+      .wx-cta4-deck .fan-card { width: clamp(148px,29vw,250px) !important; }
+      .wx-cta4-deck .fan-card--lead { width: clamp(166px,32.5vw,280px) !important; --y: clamp(-96px,-13vw,-42px); bottom: -10px; }
+    }
+  </style>
+
+  <div class="wx-cta4-card">
+    <div class="wx-cta4-copy">
+      <div class="wx-cta4-meta">
+        <span class="wx-cta4-badge"><i aria-hidden="true"></i>Booking Q3 2026</span>
+        <span class="wx-cta4-kicker">Have a project in mind?</span>
+      </div>
+      <h2 data-reveal>Ready to grow your business online?</h2>
+      <p>Tell us what you're working on. We reply to every inquiry within two business days — with a real opinion, not a form letter.</p>
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
+        <span class="wx-btn-label">Start a project</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="wx-cta4-deck">
+      <div class="fan-card" style="--r:-9deg; --y:0px; --fx:-70px; --fy:46px; --fr:-30deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="lazy" decoding="async"></div>
+      <div class="fan-card fan-card--lead" style="--r:0deg; --fx:0px; --fy:70px; --fr:10deg; --d:.14s;"><img src="images/work/fitness-tracker.avif" alt="Innovative Fitness app project preview" loading="lazy" decoding="async"></div>
+      <div class="fan-card" style="--r:9deg; --y:0px; --fx:70px; --fy:46px; --fr:30deg; --d:.07s;"><img src="images/work/erp-gpsfdk.avif" alt="GPSFDK ERP One project preview" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+
+  <script>
+    /* Release the deck when the CTA scrolls up — same .is-in contract the hero
+       uses, just triggered by view rather than by the intro overlay. */
+    (function () {
+      var deck = document.querySelector('.wx-cta4-deck');
+      if (!deck) return;
+      if (!window.IntersectionObserver) { deck.classList.add('is-in'); return; }
+      new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting) return;
+        deck.classList.add('is-in');
+        obs.disconnect();
+      }, { threshold: 0.25 }).observe(deck);
+    })();
+  </script>
+</section>
 </article>
 </main>
 
