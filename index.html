@@ -4014,6 +4014,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       display: flex;
       justify-content: center;
       align-items: flex-end;
+      gap: clamp(28px,3.8vw,58px);
       padding-top: clamp(40px,5vw,86px);
       margin-bottom: clamp(-20px, -5.4vw, -36px);
       margin-right: clamp(-104px,-5.6vw,-34px);
@@ -4031,11 +4032,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* Outranks the global .fan-card width, including its 860px override. */
     .wx-cta4-deck .fan-card {
       width: clamp(152px,20vw,300px) !important;
-      margin-inline: clamp(-58px,-3.7vw,-28px);
+      /* The global .fan-card pulls a negative margin-inline for the hero deck.
+         Here the gap is the layout, and on the absolute centre that margin
+         would also drag it off the midpoint — so clear it. */
+      margin-inline: 0;
       box-shadow: 0 30px 60px -26px rgba(28,6,68,0.55);
     }
     /* The centre card: upright, smaller, raised, and in front. */
     .wx-cta4-deck .fan-card--lead {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      /* Centring uses translate so the rotate/raise keeps transform to itself. */
+      translate: -50% 0;
       width: clamp(142px,18.6vw,280px) !important;
       aspect-ratio: 3 / 3.75;
       /* Clears the taller outer cards and then some, so it breaks the skyline. */
@@ -4083,8 +4092,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         padding: clamp(34px,9vw,58px) clamp(20px,5vw,40px) 0;
         margin-bottom: clamp(-56px,-11vw,-28px);
       }
-      .wx-cta4-deck { margin-right: 0; }
-      .wx-cta4-deck .fan-card { width: clamp(104px,27vw,164px) !important; margin-inline: -20px; }
+      .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); }
+      .wx-cta4-deck .fan-card { width: clamp(104px,27vw,164px) !important; }
       .wx-cta4-deck .fan-card--lead { width: clamp(88px,22vw,138px) !important; --y: clamp(-84px,-13vw,-36px); }
     }
   </style>
