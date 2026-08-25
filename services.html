@@ -208,7 +208,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .svcx-hero {
       position: relative;
       overflow: hidden;
-      padding: clamp(150px,20vh,225px) 20px clamp(70px,10vh,110px);
+      /* Same paper ground as the home hero, so the two openings match. */
+      background: #FFFFFF url('images/hero-bg.png') center top / cover no-repeat;
+      /* Full-height opening, same svh unit the home hero uses so mobile browser
+         chrome does not cause a jump on scroll. */
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(120px,16vh,170px) 20px clamp(80px,12vh,130px);
       text-align: center;
     }
     /* One soft bloom instead of three drifting blur layers */
@@ -223,6 +231,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   rgba(157,92,255,0.16) 0%,
                   rgba(157,92,255,0.06) 42%,
                   rgba(157,92,255,0) 72%);
+      pointer-events: none;
+    }
+    /* overflow:hidden cuts the texture and bloom dead at the bottom edge;
+       this fades them into the white section below so there is no seam. */
+    .svcx-hero::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: clamp(90px,13vh,170px);
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #FFFFFF 100%);
       pointer-events: none;
     }
     .svcx-hero-inner {
