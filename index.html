@@ -95,7 +95,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "geo": { "@type": "GeoCoordinates", "latitude": 30.9010, "longitude": 75.8573 },
       "areaServed": [ { "@type": "Country", "name": "India" }, { "@type": "Place", "name": "Worldwide" } ],
       "knowsAbout": ["Web Design", "Landing Page Design", "Landing Page Development", "Website Design and Development", "Ecommerce Web Design", "Brand Identity Design", "Search Engine Optimization", "Core Web Vitals", "Speed Optimization", "UI/UX Design", "ERP Software Development"],
-      "sameAs": ["https://www.instagram.com/thewebx.studio", "https://x.com/theWebxOfficial", "https://dribbble.com/hello-webx"],
+      "sameAs": ["https://www.instagram.com/thewebx.studio", "https://x.com/Thewebxstudio", "https://dribbble.com/hello-webx"],
       "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "18:30" },
       "makesOffer": {
         "@type": "OfferCatalog",
@@ -171,6 +171,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<!-- ============ SECTION RHYTHM — one knob for every band ============ -->
+<style>:root { --wx-sec-y: 120px; }</style>
+
 <main id="main">
 <!-- ============ HERO ============ -->
 <section class="hero-fan" data-hero-section>
@@ -185,7 +188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       max-width: 1340px;
       margin: 0 auto;
-      padding: clamp(130px,17vh,190px) 20px clamp(60px,9vh,110px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
       min-height: 100svh;
       display: flex;
       flex-direction: column;
@@ -480,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <style>
     .wx-trust {
       background: #FFFFFF;
-      padding: clamp(40px, 6vh, 72px) 0;
+      padding: var(--wx-sec-y) 0;
       overflow: hidden;
     }
     .wx-trust-label {
@@ -572,7 +575,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
-      padding: clamp(64px,11vh,140px) 20px clamp(40px,6vh,72px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
     }
     .wx-svc2-pill {
       display: inline-flex;
@@ -726,7 +729,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-about2-stage {
       position: relative;
       z-index: 1;
-      margin-top: clamp(70px,11vh,130px);
+      margin-top: 0;
     }
     /* Concentric rings, inside the white About panel — they rise up from the
        bottom-center of the section (clipped by the panel's overflow). */
@@ -756,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       max-width: 900px;
       margin: 0 auto;
-      padding: clamp(144px,calc(6vh + 100px),160px) 20px clamp(70px,12vh,150px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
       text-align: center;
     }
     /* Global .wx-pill, lifted onto the crest of the arch */
@@ -833,7 +836,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       max-width: 1412px;
       margin: 0 auto;
-      padding: clamp(64px,10vh,120px) 20px clamp(56px,9vh,110px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
     }
     .wx-why-title {
       font-family: 'Manrope', sans-serif;
@@ -2205,7 +2208,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ SELECTED WORK ============ -->
 <section id="work" style="background:#F5F4F9;color:#1A1A1A">
-  <div style="padding:clamp(100px,16vh,200px) 20px clamp(60px,10vh,120px);max-width:1340px;margin:0 auto">
+  <div style="padding:var(--wx-sec-y) 20px var(--wx-sec-y);max-width:1340px;margin:0 auto">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:clamp(40px,7vh,80px)">
     <div>
       <span class="wx-pill">
@@ -2302,7 +2305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-proc-inner {
       max-width: 1340px;
       margin: 0 auto;
-      padding: clamp(70px,11vh,140px) 20px clamp(70px,11vh,140px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
       display: grid;
       grid-template-columns: 1fr 1.15fr;
       gap: clamp(40px,6vw,96px);
@@ -2628,7 +2631,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-tm {
       background: #F1F1F5;
       color: #1A1A1A;
-      padding: clamp(64px,10vh,120px) 0 clamp(64px,10vh,120px);
+      padding: var(--wx-sec-y) 0;
       overflow: hidden;
     }
     .wx-tm-head { text-align: center; padding: 0 20px; margin-bottom: clamp(34px,5vh,54px); }
@@ -2641,25 +2644,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       color: #6C2BD9;
       margin: 0;
     }
-    /* Rows scroll in opposite directions; edges fade so the loop has no seam */
+
+    /* Each row is a real horizontal scroller. The drift is a rAF nudging
+       scrollLeft, so the auto-scroll, a mouse drag and a trackpad swipe all
+       move the same thing and never fight each other. Edges fade so the
+       cloned half wraps around with no visible seam. */
     .wx-tm-row {
       position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
               mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
+    .wx-tm-row::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    .wx-tm-row.is-grabbing { cursor: grabbing; }
+    /* No text selection or stray link hits for the duration of a drag */
+    .wx-tm-row.is-grabbing .wx-tm-card { pointer-events: none; user-select: none; }
     .wx-tm-row + .wx-tm-row { margin-top: clamp(16px,2vw,24px); }
     .wx-tm-track {
       display: flex;
       width: max-content;
       gap: clamp(16px,2vw,24px);
       padding-inline: clamp(8px,1vw,12px);
-      will-change: transform;
     }
-    .wx-tm-row--a .wx-tm-track { animation: wx-tm-left 46s linear infinite; }
-    .wx-tm-row--b .wx-tm-track { animation: wx-tm-right 52s linear infinite; }
-    @keyframes wx-tm-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
-    @keyframes wx-tm-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-    .wx-tm-row:hover .wx-tm-track { animation-play-state: paused; }
 
     .wx-tm-card {
       flex: 0 0 auto;
@@ -2694,10 +2705,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     .wx-tm-name { font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 700; color: #1A1A1A; line-height: 1.25; }
     .wx-tm-role { font-family: 'Satoshi', sans-serif; font-size: 12px; color: #6B6B75; line-height: 1.3; }
-    @media (prefers-reduced-motion: reduce) {
-      .wx-tm-track { animation: none !important; flex-wrap: wrap; justify-content: center; width: auto; }
-      .wx-tm-row { -webkit-mask-image: none; mask-image: none; }
+
+    /* ---- Mobile: one swipeable slider with dots, instead of two marquees ---- */
+    .wx-tm-mobile { display: none; }
+    @media (max-width: 768px) {
+      .wx-tm-rows { display: none; }
+      .wx-tm-mobile { display: block; }
     }
+    .wx-tm-slides {
+      --wx-tm-cw: min(82vw, 340px);
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      /* Side inset equal to the leftover half-width, so the first and last
+         card can sit dead-centre like every card in between. */
+      padding: 6px calc((100% - var(--wx-tm-cw)) / 2) 10px;
+    }
+    .wx-tm-slides::-webkit-scrollbar { width: 0; height: 0; display: none; }
+    .wx-tm-slides.is-grabbing { cursor: grabbing; scroll-snap-type: none; }
+    .wx-tm-slides.is-grabbing .wx-tm-card { pointer-events: none; user-select: none; }
+    .wx-tm-slides .wx-tm-card {
+      width: var(--wx-tm-cw);
+      scroll-snap-align: center;
+    }
+    .wx-tm-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .wx-tm-dot {
+      width: 7px; height: 7px;
+      padding: 0; border: 0;
+      border-radius: 99px;
+      background: rgba(26,26,26,0.22);
+      cursor: pointer;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1), background-color 0.3s ease;
+    }
+    .wx-tm-dot.is-on { width: 22px; background: #6C2BD9; }
   </style>
 
   <div class="wx-tm-head">
@@ -2708,62 +2760,237 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 data-reveal>Success Stories</h2>
   </div>
 
-  <!-- Row A -->
-  <div class="wx-tm-row wx-tm-row--a">
-    <div class="wx-tm-track" data-tm-track>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>Web{X} Studio reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">MO</span><span><span class="wx-tm-name">Maya Okonkwo</span><br><span class="wx-tm-role">CEO, Nova Finance</span></span></figcaption>
-      </figure>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">SJ</span><span><span class="wx-tm-name">Sarah Jenkins</span><br><span class="wx-tm-role">Product Lead, Elevate</span></span></figcaption>
-      </figure>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>The most detail-obsessed team we've ever worked with. Every transition and micro-interaction feels considered. It's rare and it shows.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">DR</span><span><span class="wx-tm-name">Daniel Reyes</span><br><span class="wx-tm-role">Founder, Atlas Studio</span></span></figcaption>
-      </figure>
+  <div class="wx-tm-rows">
+    <!-- Row A -->
+    <div class="wx-tm-row wx-tm-row--a" data-tm-row data-tm-dir="1">
+      <div class="wx-tm-track" data-tm-track>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>Web{X} Studio reframed our entire product story in three weeks. The site they shipped did the selling for us — our demo requests tripled in less than a month.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">MO</span><span><span class="wx-tm-name">Maya Okonkwo</span><br><span class="wx-tm-role">CEO, Nova Finance</span></span></figcaption>
+        </figure>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>Exceptional craft and motion. Our conversion rate doubled right after launch. It really helped us stand out in a crowded market.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">SJ</span><span><span class="wx-tm-name">Sarah Jenkins</span><br><span class="wx-tm-role">Product Lead, Elevate</span></span></figcaption>
+        </figure>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>The most detail-obsessed team we've ever worked with. Every transition and micro-interaction feels considered. It's rare and it shows.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">DR</span><span><span class="wx-tm-name">Daniel Reyes</span><br><span class="wx-tm-role">Founder, Atlas Studio</span></span></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Row B -->
+    <div class="wx-tm-row wx-tm-row--b" data-tm-row data-tm-dir="-1">
+      <div class="wx-tm-track" data-tm-track>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with — they made the whole remote process effortless.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">LW</span><span><span class="wx-tm-name">Li Wei</span><br><span class="wx-tm-role">Founder, Nexus SaaS</span></span></figcaption>
+        </figure>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>They didn't just design a website, they gave our brand a pulse. Sales teams, board members, clients — everyone noticed the new look.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">PA</span><span><span class="wx-tm-name">Priya Anand</span><br><span class="wx-tm-role">CMO, Field Goods</span></span></figcaption>
+        </figure>
+        <figure class="wx-tm-card">
+          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <blockquote>Clean code, fast loading, and brilliant design sense. Our SEO went up instantly and page load times dropped to under 0.8 seconds.</blockquote>
+          <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">AR</span><span><span class="wx-tm-name">Alex Rivera</span><br><span class="wx-tm-role">Tech Lead, Quartz</span></span></figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 
-  <!-- Row B -->
-  <div class="wx-tm-row wx-tm-row--b">
-    <div class="wx-tm-track" data-tm-track>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>Async updates were clear, professional, and exactly on schedule. A pleasure to collaborate with — they made the whole remote process effortless.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">LW</span><span><span class="wx-tm-name">Li Wei</span><br><span class="wx-tm-role">Founder, Nexus SaaS</span></span></figcaption>
-      </figure>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>They didn't just design a website, they gave our brand a pulse. Sales teams, board members, clients — everyone noticed the new look.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">PA</span><span><span class="wx-tm-name">Priya Anand</span><br><span class="wx-tm-role">CMO, Field Goods</span></span></figcaption>
-      </figure>
-      <figure class="wx-tm-card">
-        <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
-        <blockquote>Clean code, fast loading, and brilliant design sense. Our SEO went up instantly and page load times dropped to under 0.8 seconds.</blockquote>
-        <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">AR</span><span><span class="wx-tm-name">Alex Rivera</span><br><span class="wx-tm-role">Tech Lead, Quartz</span></span></figcaption>
-      </figure>
-    </div>
+  <!-- Mobile slider — filled from the rows above so each quote lives in the
+       markup exactly once. -->
+  <div class="wx-tm-mobile" data-tm-mobile>
+    <div class="wx-tm-slides" data-tm-slides></div>
+    <div class="wx-tm-dots" data-tm-dots></div>
   </div>
 
   <script>
-    /* Duplicate each row's cards so the -50% keyframe lands the copy exactly
-       where the original started — a seamless loop. Done in JS rather than by
-       hand so the markup carries each quote only once. */
     (function () {
-      var tracks = document.querySelectorAll('[data-tm-track]');
-      Array.prototype.forEach.call(tracks, function (track) {
-        var originals = Array.prototype.slice.call(track.children);
-        originals.forEach(function (card) {
+      var section = document.querySelector('.wx-tm');
+      if (!section) return;
+
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var onScreen = true;
+
+      /* Shared helper: drag a scroller with the mouse. Touch is left alone —
+         native scrolling already has momentum we would only make worse. */
+      function makeDraggable(el, onMove, onEnd) {
+        var pid = null, startX = 0, startScroll = 0, moved = 0;
+
+        el.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'touch') return;
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          pid = e.pointerId;
+          startX = e.clientX;
+          startScroll = el.scrollLeft;
+          moved = 0;
+          try { el.setPointerCapture(pid); } catch (err) {}
+        });
+
+        el.addEventListener('pointermove', function (e) {
+          if (pid === null || e.pointerId !== pid) return;
+          var dx = e.clientX - startX;
+          if (!moved && Math.abs(dx) > 3) {
+            moved = 1;
+            el.classList.add('is-grabbing');
+          }
+          if (!moved) return;
+          e.preventDefault();
+          el.scrollLeft = startScroll - dx;
+          if (onMove) onMove();
+        });
+
+        function release(e) {
+          if (pid === null || (e && e.pointerId !== pid)) return;
+          try { el.releasePointerCapture(pid); } catch (err) {}
+          pid = null;
+          /* Drop the flag after the click event has been swallowed below. */
+          if (moved) setTimeout(function () { el.classList.remove('is-grabbing'); }, 0);
+          if (onEnd) onEnd();
+        }
+        el.addEventListener('pointerup', release);
+        el.addEventListener('pointercancel', release);
+        el.addEventListener('lostpointercapture', release);
+
+        /* A drag that ends over a card must not read as a click on it. */
+        el.addEventListener('click', function (e) {
+          if (el.classList.contains('is-grabbing')) { e.preventDefault(); e.stopPropagation(); }
+        }, true);
+
+        return { isDragging: function () { return pid !== null; } };
+      }
+
+      /* ---------------- Desktop: two drifting, draggable rows ---------------- */
+      function initRow(row) {
+        var track = row.querySelector('[data-tm-track]');
+        if (!track) return;
+
+        /* Clone the set once so the wrap point lands the copy exactly where the
+           original started — a seamless loop with each quote authored once. */
+        Array.prototype.slice.call(track.children).forEach(function (card) {
           var copy = card.cloneNode(true);
           copy.setAttribute('aria-hidden', 'true');
           track.appendChild(copy);
         });
-      });
+
+        var dir = parseFloat(row.getAttribute('data-tm-dir')) || 1;
+        var half = 0;
+        var hovering = false;
+        var last = 0;
+
+        function measure() {
+          half = track.scrollWidth / 2;
+          /* Row B runs right-to-left, so it starts a full set in. */
+          if (dir < 0 && row.scrollLeft === 0 && half > 0) row.scrollLeft = half;
+        }
+        measure();
+        window.addEventListener('resize', measure);
+        if (window.ResizeObserver) new ResizeObserver(measure).observe(track);
+
+        function wrap() {
+          if (half <= 0) return;
+          if (row.scrollLeft >= half) row.scrollLeft -= half;
+          else if (row.scrollLeft <= 0) row.scrollLeft += half;
+        }
+
+        var drag = makeDraggable(row, wrap);
+
+        row.addEventListener('mouseenter', function () { hovering = true; });
+        row.addEventListener('mouseleave', function () { hovering = false; });
+
+        function tick(now) {
+          requestAnimationFrame(tick);
+          var dt = last ? Math.min((now - last) / 16.67, 3) : 1;
+          last = now;
+          /* offsetParent goes null once the mobile breakpoint hides the rows. */
+          if (!onScreen || row.offsetParent === null || half <= 0) return;
+          if (!hovering && !drag.isDragging() && !reduce.matches) {
+            row.scrollLeft += dir * 0.35 * dt;
+          }
+          wrap();
+        }
+        requestAnimationFrame(tick);
+      }
+
+      Array.prototype.forEach.call(section.querySelectorAll('[data-tm-row]'), initRow);
+
+      /* ---------------- Mobile: one snapping slider with dots ---------------- */
+      var slides = section.querySelector('[data-tm-slides]');
+      var dotsWrap = section.querySelector('[data-tm-dots]');
+      var built = false;
+
+      function buildMobile() {
+        if (built || !slides || !dotsWrap) return;
+        built = true;
+
+        /* Originals only — initRow appended aria-hidden duplicates for the loop. */
+        Array.prototype.forEach.call(
+          section.querySelectorAll('.wx-tm-track > .wx-tm-card:not([aria-hidden])'),
+          function (card) { slides.appendChild(card.cloneNode(true)); }
+        );
+
+        var cards = slides.children;
+        for (var i = 0; i < cards.length; i++) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'wx-tm-dot' + (i === 0 ? ' is-on' : '');
+          dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+          dot.setAttribute('data-i', i);
+          dotsWrap.appendChild(dot);
+        }
+
+        function step() {
+          return cards.length > 1
+            ? cards[1].offsetLeft - cards[0].offsetLeft
+            : slides.clientWidth;
+        }
+
+        /* Cheap enough to run straight off the scroll event; the index guard
+           keeps it to one pass per card actually crossed. */
+        var lastActive = -1;
+        function syncDots() {
+          var s = step();
+          var active = s > 0 ? Math.round(slides.scrollLeft / s) : 0;
+          active = Math.max(0, Math.min(cards.length - 1, active));
+          if (active === lastActive) return;
+          lastActive = active;
+          for (var i = 0; i < dotsWrap.children.length; i++) {
+            dotsWrap.children[i].classList.toggle('is-on', i === active);
+          }
+        }
+
+        slides.addEventListener('scroll', syncDots, { passive: true });
+        makeDraggable(slides, syncDots, syncDots);
+
+        dotsWrap.addEventListener('click', function (e) {
+          var dot = e.target.closest('.wx-tm-dot');
+          if (!dot) return;
+          slides.scrollTo({
+            left: +dot.getAttribute('data-i') * step(),
+            behavior: reduce.matches ? 'auto' : 'smooth'
+          });
+        });
+      }
+
+      var mq = window.matchMedia('(max-width: 768px)');
+      function onBreakpoint() { if (mq.matches) buildMobile(); }
+      onBreakpoint();
+      if (mq.addEventListener) mq.addEventListener('change', onBreakpoint);
+      else if (mq.addListener) mq.addListener(onBreakpoint);
+
+      /* Don't burn frames while the section is parked off-screen. */
+      if (window.IntersectionObserver) {
+        new IntersectionObserver(function (entries) {
+          onScreen = entries[0].isIntersecting;
+        }, { rootMargin: '200px 0px' }).observe(section);
+      }
     })();
   </script>
 </section>
@@ -3430,7 +3657,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-faq2-inner {
       max-width: 1340px;
       margin: 0 auto;
-      padding: clamp(70px,11vh,140px) 20px clamp(70px,11vh,140px);
+      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
       display: grid;
       grid-template-columns: 1fr 1.15fr;
       gap: clamp(40px,6vw,96px);
@@ -3642,7 +3869,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============ CTA ============ -->
-<section style="background:#FFFFFF;padding:clamp(40px,7vh,90px) 20px;position:relative">
+<section style="background:#FFFFFF;padding:var(--wx-sec-y) 20px;position:relative">
   <style>
     /* ---------- Glowing Aurora Blobs for CTA ---------- */
     .wx-cta-glow-container {
