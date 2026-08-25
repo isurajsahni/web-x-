@@ -796,3 +796,13 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
     transform: translateX(-25%);
   }
 }
+
+/* ---------- Static crawler shell ----------
+   Every page ships a plain <header>/<footer> so crawlers that do not run JS
+   (GPTBot, ClaudeBot, CCBot, PerplexityBot) can see the site structure.
+   nav.js and footer.js replace them, but they are deferred, so the plain list
+   of links painted first and flashed on every load. The inline head script
+   sets html.js synchronously, before first paint, so for anyone running JS
+   these never render. Note the DEFAULT state is visible — the hiding is
+   opt-in via .js — so a crawler reading this stylesheet still sees them. */
+html.js [data-static-shell]{display:none}

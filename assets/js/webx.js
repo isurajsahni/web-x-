@@ -416,11 +416,11 @@
       // Hindi · French · Spanish · Italian · Japanese · Arabic · Punjabi (Ludhiana) · English.
       // Non-Latin scripts fall back to the system font - no extra web-font load.
       var greetings = ['नमस्ते', 'Bonjour', 'Hola', 'Ciao', 'こんにちは', 'مرحبا', 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'Hello'];
-      var gi = 0, step = lowPower ? 460 : 420;
-      var fade = 170;
+      var gi = 0, step = lowPower ? 320 : 290;
+      var fade = 120;
       /* Each word lifts and crossfades rather than snapping, so slowing the
          cadence reads as deliberate pacing instead of a stall. */
-      greet.style.transition = 'opacity .17s ease, transform .17s cubic-bezier(.16,1,.3,1)';
+      greet.style.transition = 'opacity .12s ease, transform .12s cubic-bezier(.16,1,.3,1)';
       function swapGreeting(word) {
         greet.style.opacity = '0';
         greet.style.transform = 'translateY(-10px)';
@@ -441,7 +441,7 @@
         if (gi >= greetings.length) {
           clearInterval(timer);
           // Hold the final "Hello" a beat longer before lifting the overlay.
-          setTimeout(function () { liftAway(0.85); }, step * 1.6);
+          setTimeout(function () { liftAway(0.7); }, step * 1.1);
           return;
         }
         swapGreeting(greetings[gi]);
