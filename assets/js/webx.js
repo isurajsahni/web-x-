@@ -382,14 +382,14 @@
     if (!isHome) { announceIntroDone(); return; }
 
     var overlay = document.createElement('div');
-    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#000000', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
+    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '100000', background: '#FFFFFF', transform: 'translateY(100%)', pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', willChange: 'transform' });
     var mark = document.createElement('div');
     mark.innerHTML = 'Web<span style="color:#9D5CFF">{X}</span>';
     /* Absolutely centered so the invisible brand mark never takes layout
        space next to the greeting word - that offset was pushing the greeting
        off-centre. With the mark out of flow, the overlay's flex centering
        lands the greeting word dead centre. */
-    Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Satoshi', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#fff', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
+    Object.assign(mark.style, { position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', fontFamily: "'Satoshi', sans-serif", fontWeight: '700', fontSize: 'clamp(40px,7vw,96px)', color: '#1A1A1A', opacity: '0', transition: 'opacity .35s ease', letterSpacing: '-.03em' });
     var greet = document.createElement('div');
     greet.className = 'wx-greet-word';
     greet.setAttribute('aria-hidden', 'true');
@@ -416,7 +416,23 @@
       // Hindi · French · Spanish · Italian · Japanese · Arabic · Punjabi (Ludhiana) · English.
       // Non-Latin scripts fall back to the system font - no extra web-font load.
       var greetings = ['नमस्ते', 'Bonjour', 'Hola', 'Ciao', 'こんにちは', 'مرحبا', 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'Hello'];
-      var gi = 0, step = lowPower ? 260 : 230;
+      var gi = 0, step = lowPower ? 460 : 420;
+      var fade = 170;
+      /* Each word lifts and crossfades rather than snapping, so slowing the
+         cadence reads as deliberate pacing instead of a stall. */
+      greet.style.transition = 'opacity .17s ease, transform .17s cubic-bezier(.16,1,.3,1)';
+      function swapGreeting(word) {
+        greet.style.opacity = '0';
+        greet.style.transform = 'translateY(-10px)';
+        setTimeout(function () {
+          greet.textContent = word;
+          greet.style.transform = 'translateY(10px)';
+          requestAnimationFrame(function () {
+            greet.style.opacity = '1';
+            greet.style.transform = 'translateY(0)';
+          });
+        }, fade);
+      }
       overlay.style.transform = 'translateY(0)';
       greet.style.display = 'flex';
       greet.textContent = greetings[0];
@@ -428,22 +444,10 @@
           setTimeout(function () { liftAway(0.85); }, step * 1.6);
           return;
         }
-        greet.textContent = greetings[gi];
+        swapGreeting(greetings[gi]);
       }, step);
     }
 
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('a[data-transition]');
-      if (!a) return;
-      var href = a.getAttribute('href');
-      if (!href || href.charAt(0) === '#' || a.target === '_blank' || /^(mailto:|tel:)/.test(href)) return;
-      e.preventDefault();
-      if (reduce) { window.location.href = href; return; }
-      greet.style.display = 'none';
-      overlay.style.transition = 'transform .7s cubic-bezier(.76,0,.24,1)';
-      overlay.style.transform = 'translateY(0)'; mark.style.opacity = '1';
-      setTimeout(function () { window.location.href = href; }, 720);
-    });
   }
 
   /* ---------- Grain overlay ---------- */
