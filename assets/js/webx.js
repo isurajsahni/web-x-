@@ -309,7 +309,7 @@
 
     var overlay = document.createElement('div');
     overlay.setAttribute('aria-hidden', 'true');
-    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '9100', background: 'rgba(9,9,11,.97)', backdropFilter: 'blur(22px)', webkitBackdropFilter: 'blur(22px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', padding: '0 clamp(24px,8vw,48px)', transform: 'translateY(-100%)', transition: 'transform .6s cubic-bezier(.76,0,.24,1)', pointerEvents: 'none' });
+    Object.assign(overlay.style, { position: 'fixed', inset: '0', zIndex: '9100', background: 'rgba(9,9,11,.97)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', padding: '0 clamp(24px,8vw,48px)', transform: 'translateY(-100%)', visibility: 'hidden', transition: 'transform .6s cubic-bezier(.76,0,.24,1)', pointerEvents: 'none' });
     var eyebrow = document.createElement('div');
     eyebrow.textContent = 'Menu';
     Object.assign(eyebrow.style, { fontFamily: "'Satoshi', sans-serif", fontSize: '12px', letterSpacing: '.16em', textTransform: 'uppercase', color: '#9D5CFF', marginBottom: '24px', opacity: '0', transform: 'translateY(20px)', transition: 'opacity .5s ease, transform .5s ease' });
@@ -334,6 +334,12 @@
     var open = false, animated = [eyebrow].concat(items, [foot]);
     function setOpen(v) {
       open = v; window.WebX._menuOpen = v;
+      /* The blur is attached only while the panel is open. Left on the
+         resting element it kept a live full-viewport backdrop snapshot and
+         cost a composite on every scroll frame, off-screen or not. */
+      overlay.style.backdropFilter = v ? 'blur(22px)' : 'none';
+      overlay.style.webkitBackdropFilter = v ? 'blur(22px)' : 'none';
+      overlay.style.visibility = v ? 'visible' : 'hidden';
       overlay.style.transform = v ? 'translateY(0)' : 'translateY(-100%)';
       overlay.style.pointerEvents = v ? 'auto' : 'none';
       overlay.setAttribute('aria-hidden', v ? 'false' : 'true');
@@ -458,7 +464,9 @@
     // entire viewport twice every 0.5s (constant full-screen invalidation,
     // very expensive especially with mix-blend-mode). We keep the look with
     // a still texture, which costs the GPU one composite.
-    Object.assign(g.style, { position: 'fixed', inset: '0', zIndex: '90000', pointerEvents: 'none', opacity: '.045', mixBlendMode: 'overlay', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" });
+    Object.assign(g.style, { position: 'fixed', inset: '0', zIndex: '90000', pointerEvents: 'none', opacity: '.04', backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" });
+    g.style.willChange = 'auto';
+    g.style.contain = 'strict';
     if (lowPower) g.style.display = 'none';   // skip entirely on weaker devices
     document.body.appendChild(g);
   }

@@ -374,11 +374,12 @@
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
     z-index: 9400;
   }
-  .wx-drawer-scrim.wx-open { opacity: 1; pointer-events: auto; }
+  .wx-drawer-scrim.wx-open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.4s ease, visibility 0s; }
 
   /* Right-side sliding drawer */
   .wx-drawer {
