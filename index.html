@@ -4014,10 +4014,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: clamp(28px,3.8vw,58px);
+      gap: 0;
       padding-top: clamp(40px,5vw,86px);
       margin-bottom: clamp(-20px, -5.4vw, -36px);
-      margin-right: clamp(-104px,-5.6vw,-34px);
+      margin-right: 46px;
     }
     /* Bloom so the stack sits on the purple rather than floating over it */
     .wx-cta4-deck::before {
@@ -4040,17 +4040,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     /* The centre card: upright, smaller, raised, and in front. */
     .wx-cta4-deck .fan-card--lead {
+      /* Required. Without it the card does not go static — it falls back to the
+         global .fan-card position:relative, which keeps it in flow and turns
+         left:50% into a 429px nudge instead of a placement. */
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: -60px;
       /* Centring uses translate so the rotate/raise keeps transform to itself. */
       translate: -50% 0;
-      width: clamp(142px,18.6vw,280px) !important;
+      width: 19.6vw !important;
       aspect-ratio: 3 / 3.75;
       /* Clears the taller outer cards and then some, so it breaks the skyline. */
-      --y: clamp(-150px,-9.2vw,-60px);
+      --y: -9.2vw;
       z-index: 3;
-      box-shadow: 0 40px 70px -24px rgba(24,4,60,0.7);
     }
 
     .wx-cta4-deck:not(.is-in) .fan-card {
@@ -4089,12 +4091,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .wx-cta4-copy p { margin-inline: auto; }
       .wx-cta4-copy .wx-btn-animated { margin: 0 auto; }
       .wx-cta4-deck {
-        padding: clamp(34px,9vw,58px) clamp(20px,5vw,40px) 0;
-        margin-bottom: clamp(-56px,-11vw,-28px);
+        padding: 92px 5vw 0;
+        margin-bottom: -26px;
       }
       .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); }
       .wx-cta4-deck .fan-card { width: clamp(104px,27vw,164px) !important; }
-      .wx-cta4-deck .fan-card--lead { width: clamp(88px,22vw,138px) !important; --y: clamp(-84px,-13vw,-36px); }
+      .wx-cta4-deck .fan-card--lead { width: clamp(88px,22vw,138px) !important; --y: clamp(-84px,-13vw,-36px); bottom: -10px; }
     }
   </style>
 
