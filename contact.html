@@ -182,20 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 16px;
   }
   
-  .contact-header .login-link {
-    font-size: 14px;
-    color: #43434D;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-    padding: 8px 16px;
-  }
-  
-  .contact-header .login-link:hover {
-    color: #1A1A1A;
-  }
-  
-  .contact-header .header-btn {
+    .contact-header .header-btn {
     font-size: 14px;
     color: #FFFFFF;
     background: #9D5CFF;
@@ -223,7 +210,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 2;
   }
   
-  /* Form components styling with glassmorphism to blend with background */
+  /* The form gets a surface of its own — on a white page an unframed form
+     reads as loose text fields floating next to the copy. */
+  /* Left column: the detail rows were four unstyled divs stacked with no
+     rhythm, so the column read as loose fragments beside a framed form. */
+  .contact-aside { display: flex; flex-direction: column; gap: clamp(22px, 3vh, 32px); }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: clamp(16px, 1.8vw, 22px);
+    background: #FFFFFF;
+    box-shadow: 0 18px 44px -32px rgba(40, 16, 90, 0.26);
+    overflow: hidden;
+  }
+  .contact-details > div { padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2vw, 26px); }
+  .contact-details > div + div { border-top: 1px solid rgba(0, 0, 0, 0.07); }
+
+  .contact-form-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: clamp(18px, 2vw, 26px);
+    padding: clamp(24px, 3vw, 40px);
+    box-shadow: 0 24px 60px -34px rgba(40, 16, 90, 0.30);
+  }
+
   .form-group-row {
     display: flex;
     gap: 20px;
@@ -248,53 +259,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .form-input {
     width: 100%;
     height: 52px;
-    background-color: rgba(0, 0, 0, 0.025) !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background-color: #F7F6FA !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
     border-radius: 12px;
     color: var(--contact-text) !important;
-    padding: 0 20px;
-    font-size: 14px;
+    padding: 0 18px;
+    font-size: 15px;
     font-family: inherit;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
   }
   
   .form-input::placeholder {
-    color: rgba(0, 0, 0, 0.30);
+    color: #9A97A6;
   }
   
   .form-input:focus {
     outline: none;
-    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-color: #FFFFFF !important;
     border-color: var(--brand-purple) !important;
-    box-shadow: 0 0 20px rgba(157, 92, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(157, 92, 255, 0.16);
   }
   
   .form-textarea {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.025) !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    background-color: #F7F6FA !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
     border-radius: 12px;
     color: var(--contact-text) !important;
-    padding: 16px 20px;
-    font-size: 14px;
+    padding: 16px 18px;
+    font-size: 15px;
     font-family: inherit;
     resize: vertical;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    min-height: 150px;
+    transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
   }
   
   .form-textarea::placeholder {
-    color: rgba(0, 0, 0, 0.30);
+    color: #9A97A6;
   }
   
   .form-textarea:focus {
     outline: none;
-    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-color: #FFFFFF !important;
     border-color: var(--brand-purple) !important;
-    box-shadow: 0 0 20px rgba(157, 92, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(157, 92, 255, 0.16);
   }
   
   /* Interactive Budget & Service Badges */
@@ -317,8 +325,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .pill-badge {
     padding: 10px 18px;
     border-radius: 100px;
-    background-color: rgba(0, 0, 0, 0.025);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: #F7F6FA;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     color: #43434D;
     font-size: 13px;
     font-family: 'Satoshi', sans-serif;
@@ -331,8 +339,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   
   .pill-badge:hover {
-    background-color: rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 0, 0, 0.14);
+    background-color: #EFEBFA;
+    border-color: rgba(157, 92, 255, 0.35);
+    color: #6C2BD9;
   }
   
   .pill-badge.active {
@@ -553,9 +562,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
       
+      <div class="contact-details">
       <div>
         <span style="font-family:'Satoshi',sans-serif; font-size:13px; color:var(--contact-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;">Email</span>
-        <a href="mailto:hello@thewebxstudio.com" style="font-size:18px; font-weight:600; color:#1A1A1A; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#9D5CFF'" onmouseout="this.style.color='#EDEDED'">hello@thewebxstudio.com</a>
+        <a href="mailto:hello@thewebxstudio.com" style="font-size:18px; font-weight:600; color:#1A1A1A; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#9D5CFF'" onmouseout="this.style.color='#1A1A1A'">hello@thewebxstudio.com</a>
       </div>
       
       <div>
@@ -584,6 +594,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </svg>
           </a>
         </div>
+      </div>
+
       </div>
 
       <!-- Trust Journey: What happens next? -->
@@ -618,7 +630,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Right column: Interactive onboarding form -->
     <div style="position:relative; z-index:2;">
       <!-- AJAX Success Screen -->
-      <div id="wx-contact-success" role="status" hidden style="border:1px solid rgba(157,92,255,.4); background:#FFFFFF; border-radius:20px; padding:clamp(32px, 4vw, 52px); text-align:center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+      <div class="contact-form-card">
+      <div id="wx-contact-success" role="status" hidden style="text-align:center; padding:clamp(12px, 2vw, 24px) 0;">
         <div aria-hidden="true" style="width:64px; height:64px; border-radius:50%; background:#9D5CFF; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 24px">✓</div>
         <h2 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#1A1A1A; margin-bottom:12px">Message sent.</h2>
         <p style="font-size:16px; line-height:1.6; color:var(--contact-muted); max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> - we read every message and reply within 24 hours.</p>
@@ -674,6 +687,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </span>
         </button>
       </form>
+      </div>
     </div>
     
   </section>
