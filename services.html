@@ -107,6 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
   /* Page ground. webx.css still paints <body> black for the site at large,
      so a light page has to claim it back until every page has moved over. */
+  :root{ --wx-sec-y: 120px; }
   body{background:#FFFFFF;color:#1A1A1A}
 
   /* ============================================================
@@ -115,7 +116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Ambient page glow (sits above black body bg, below content) ---- */
   .svcx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .svcx-bg span{position:absolute;border-radius:50%;filter:blur(130px);opacity:.42}
+  .svcx-bg span{position:absolute;border-radius:50%;filter:blur(130px);opacity:.3}
   .svcx-bg .g1{top:-14%;left:-8%;width:60vw;height:60vw;max-width:840px;max-height:840px;background:radial-gradient(circle,rgba(157,92,255,.20),transparent 68%)}
   .svcx-bg .g2{top:26%;right:-14%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(124,58,237,.14),transparent 70%);opacity:.4}
   .svcx-bg .g3{bottom:-18%;left:22%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(192,38,211,.10),transparent 72%);opacity:.35}
@@ -127,23 +128,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .svcx-eyebrow .svcx-eyebrow-txt{color:#43434D}
   .svcx-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 0 4px rgba(157,92,255,.16)}
 
-  .svcx-section{padding:clamp(20px,4vh,44px) 20px clamp(40px,7vh,80px);max-width:1340px;margin:0 auto;position:relative}
+  .svcx-section{padding:var(--wx-sec-y) 20px;max-width:1340px;margin:0 auto;position:relative}
 
   /* ---- Core services grid ---- */
   .svcx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(18px,1.6vw,24px);margin-top:clamp(32px,5vh,56px)}
   .svcx-card{position:relative;isolation:isolate;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(0,0,0,.08);border-radius:24px;background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.30);text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .4s ease}
-  .svcx-card:hover{transform:translateY(-8px);border-color:rgba(157,92,255,.35);box-shadow:0 30px 64px -30px rgba(157,92,255,.45),0 10px 30px -22px rgba(40,16,90,.28)}
+  .svcx-card:hover{transform:translateY(-6px);border-color:rgba(157,92,255,.32);box-shadow:0 26px 56px -28px rgba(40,16,90,.30)}
   /* animated gradient-border glow on hover */
-  .svcx-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(140deg,rgba(157,92,255,.9),rgba(192,38,211,.35) 45%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s ease;pointer-events:none;z-index:4}
-  .svcx-card:hover::after{opacity:1}
   .svcx-card-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:#F4F2F8}
   .svcx-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:saturate(1.02)}
   .svcx-card:hover .svcx-card-media img{transform:scale(1.07);filter:saturate(1.12)}
-  .svcx-card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,40,0) 58%,rgba(20,10,40,.08) 84%,rgba(20,10,40,.18) 100%)}
-  /* purple wash that blooms on hover */
-  .svcx-card-media::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 120%,rgba(157,92,255,.4),transparent 60%);opacity:0;transition:opacity .5s ease}
-  .svcx-card:hover .svcx-card-media::before{opacity:1}
-  .svcx-card-num{position:absolute;top:16px;left:16px;z-index:3;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.04em;color:#1A1A1A;background:rgba(255,255,255,.82);border:1px solid rgba(0,0,0,.10);padding:5px 11px;border-radius:100px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
   .svcx-card-body{display:flex;flex-direction:column;flex-grow:1;padding:26px 26px 28px}
   .svcx-card-kicker{font-family:'Satoshi',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7C3AED;margin:0 0 12px}
   .svcx-card-body h3{font-size:clamp(21px,1.8vw,26px);font-weight:600;letter-spacing:-.025em;margin:0 0 11px;color:#1A1A1A}
@@ -162,8 +156,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .svcx-conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:clamp(16px,1.4vw,22px);margin-top:clamp(32px,5vh,56px)}
   .svcx-conv{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:18px;padding:26px 24px 24px;border:1px solid rgba(0,0,0,.08);border-radius:22px;background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s ease,box-shadow .5s ease}
   .svcx-conv:hover{transform:translateY(-6px);border-color:rgba(157,92,255,.35);box-shadow:0 26px 56px -30px rgba(157,92,255,.42)}
-  .svcx-conv::before{content:"";position:absolute;top:-40%;right:-30%;width:70%;height:80%;border-radius:50%;background:radial-gradient(circle,rgba(157,92,255,.28),transparent 65%);filter:blur(30px);opacity:0;transition:opacity .5s ease;z-index:-1}
-  .svcx-conv:hover::before{opacity:1}
   .svcx-conv-head{display:flex;align-items:center;gap:14px}
   .svcx-conv-logo{width:48px;height:48px;border-radius:14px;flex-shrink:0;display:grid;place-items:center;background:#F5F4F9;border:1px solid rgba(0,0,0,.08);transition:border-color .4s,background .4s}
   .svcx-conv:hover .svcx-conv-logo{border-color:rgba(157,92,255,.35);background:rgba(157,92,255,.09)}
@@ -208,135 +200,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <article>
 
 <!-- ============ HERO (orbiting gallery — mirrors home page) ============ -->
-<section class="hero-orbit-section" data-hero-section style="color:#1A1A1A;">
-  <!-- Gradient transition vignette at the bottom of the section -->
-  <div class="hero-gradient-overlay" aria-hidden="true" style="position:absolute;bottom:0;left:0;right:0;height:180px;pointer-events:none;z-index:2;background:linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.55) 45%, rgba(255, 255, 255, 0.9) 78%, #FFFFFF 100%);"></div>
+<section class="svcx-hero" data-hero-section>
+  <style>
+    /* Quiet typographic hero. The orbiting gallery that used to sit here put 36
+       animated thumbnails behind the headline; the page is a menu of services,
+       so the words are the thing worth looking at. */
+    .svcx-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(150px,20vh,225px) 20px clamp(70px,10vh,110px);
+      text-align: center;
+    }
+    /* One soft bloom instead of three drifting blur layers */
+    .svcx-hero::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 34%;
+      width: min(1100px, 130vw);
+      aspect-ratio: 1.4;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(ellipse at center,
+                  rgba(157,92,255,0.16) 0%,
+                  rgba(157,92,255,0.06) 42%,
+                  rgba(157,92,255,0) 72%);
+      pointer-events: none;
+    }
+    .svcx-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(16px,2.4vh,24px);
+    }
+    .svcx-crumb {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #6B6B75;
+    }
+    .svcx-crumb a { color: #6B6B75; text-decoration: none; }
+    .svcx-crumb a:hover { color: #1A1A1A; }
+    .svcx-crumb span { color: #9D5CFF; }
 
-  <!-- The Orbiting Gallery -->
-  <div class="orbit-wrapper">
-    <div class="orbit-container" data-orbit-container>
-      <!-- concentric Track 4 -->
-      <div class="orbit-card orbit-track-4" style="--init-angle: 15deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 45deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 75deg; --tilt-angle: 15deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 105deg; --tilt-angle: -10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 135deg; --tilt-angle: 8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 165deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 195deg; --tilt-angle: 11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 225deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 255deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 285deg; --tilt-angle: -9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 315deg; --tilt-angle: 14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="Rightway App" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-4" style="--init-angle: 345deg; --tilt-angle: -12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" /></div></div></div>
-      <!-- concentric Track 3 -->
-      <div class="orbit-card orbit-track-3" style="--init-angle: 8deg; --tilt-angle: -10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 44deg; --tilt-angle: 14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="UX Project 1" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 80deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="UX Project 2" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 116deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="UX Project 3" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 152deg; --tilt-angle: -15deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-04.avif" alt="UX Project 4" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 188deg; --tilt-angle: 9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 224deg; --tilt-angle: -11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 260deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-3.jpg" alt="UX Sample 3" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 296deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-4.jpg" alt="UX Sample 4" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-3" style="--init-angle: 332deg; --tilt-angle: 10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/vibely.avif" alt="Vibely UX" loading="eager" /></div></div></div>
-      <!-- concentric Track 2 -->
-      <div class="orbit-card orbit-track-2" style="--init-angle: 22deg; --tilt-angle: 11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/fitness-tracker.avif" alt="Fitness tracker" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 67deg; --tilt-angle: -9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 112deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/automa.avif" alt="Automa Dashboard" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 157deg; --tilt-angle: -12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/gpsfdk.avif" alt="GPSFDK Platform" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 202deg; --tilt-angle: 8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/kavya-portfolio.avif" alt="UX Portfolio" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 247deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/rightway.avif" alt="Rightway App" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 292deg; --tilt-angle: 10deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/erp-gpsfdk.avif" alt="ERP Dashboard" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-2" style="--init-angle: 337deg; --tilt-angle: -7deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/tmc.avif" alt="TMC Platform" loading="eager" /></div></div></div>
-      <!-- concentric Track 1 -->
-      <div class="orbit-card orbit-track-1" style="--init-angle: 35deg; --tilt-angle: -8deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-01.avif" alt="UX Project 1" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 95deg; --tilt-angle: 12deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-02.avif" alt="UX Project 2" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 155deg; --tilt-angle: -14deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-03.avif" alt="UX Project 3" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 215deg; --tilt-angle: 9deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/cap-04.avif" alt="UX Project 4" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 275deg; --tilt-angle: -11deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-1.jpg" alt="UX Sample 1" loading="eager" /></div></div></div>
-      <div class="orbit-card orbit-track-1" style="--init-angle: 335deg; --tilt-angle: 13deg;"><div class="orbit-card-rotator"><div class="orbit-card-inner"><img src="images/work/ux-sample-2.jpg" alt="UX Sample 2" loading="eager" /></div></div></div>
-    </div>
-  </div>
+    .svcx-hero h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(38px,6.4vw,84px);
+      font-weight: 700;
+      letter-spacing: -.045em;
+      line-height: 1.02;
+      color: #1A1A1A;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .svcx-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(160deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, #b06bff 100%);
+      -webkit-background-clip: text;
+              background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .svcx-hero p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(15px,1.15vw,17px);
+      line-height: 1.65;
+      color: #555560;
+      max-width: 56ch;
+      margin: 0;
+    }
+    .svcx-hero-cta { margin-top: clamp(6px,1.4vh,14px); }
+  </style>
 
-  <!-- Center Content Backdrop Vignette Glow -->
-  <div style="position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.72) 25%, transparent 55%);z-index:9;pointer-events:none;"></div>
-
-  <!-- Center Content: Branding & Headline -->
-  <div class="hero-center-content" data-reveal style="max-width:760px;z-index:10;pointer-events:none;">
-    <nav aria-label="Breadcrumb" style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6B6B75;pointer-events:auto">
-      <a href="./" class="wx-uline" style="color:#6B6B75;text-decoration:none">Home</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Services</span>
+  <div class="svcx-hero-inner">
+    <nav class="svcx-crumb" aria-label="Breadcrumb" data-reveal>
+      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Services</span>
     </nav>
-    <div style="font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#6B6B75;display:flex;align-items:center;gap:4px;">
-      <span>Web<span style="color:#9D5CFF;">{X}</span></span>
-    </div>
-    <h1 style="font-size:clamp(36px, 5.2vw, 56px);font-weight:500;letter-spacing:-0.045em;color:#1A1A1A;line-height:1.05;text-align:center;margin:0;">
-      Everything we build,<br/>in one place
-    </h1>
-    <p style="font-size:clamp(14px, 1.1vw, 16px);font-weight:400;color:#6B6B75;margin:0 auto;max-width:560px;line-height:1.6;text-align:center;">
-      From a high-converting landing page to a custom ERP &mdash; plus the pixel-perfect Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you&rsquo;re after.
-    </p>
-    <div class="hero-center-buttons" style="margin-top:8px;pointer-events:auto;display:flex;align-items:center;justify-content:center;">
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
+
+    <span class="wx-pill" data-reveal data-reveal-delay="40">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      What we do
+    </span>
+
+    <h1 data-reveal data-reveal-delay="80">Everything we build, <em>in one place</em></h1>
+
+    <p data-reveal data-reveal-delay="140">From a high-converting landing page to a custom ERP &mdash; plus the pixel-perfect Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you&rsquo;re after.</p>
+
+    <div class="svcx-hero-cta" data-reveal data-reveal-delay="200">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
         <span class="wx-btn-label">Start a project</span>
         <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
           </svg>
         </span>
       </a>
     </div>
   </div>
-
-  <!-- Orbit rotation loop (mirrors home page hero) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const orbitContainer = document.querySelector('[data-orbit-container]');
-      const heroSection = document.querySelector('.hero-orbit-section');
-      if (!orbitContainer || !heroSection) return;
-
-      let currentAngle = 0;
-      const baseSpeed = 12.86; // 360deg / 28s
-      let speedMultiplier = 1;
-      let lastTime = performance.now();
-      let isHovered = false;
-
-      heroSection.addEventListener('mouseenter', () => { isHovered = true; });
-      heroSection.addEventListener('mouseleave', () => { isHovered = false; });
-
-      window.addEventListener('wheel', (e) => {
-        if (isHovered) {
-          const boost = Math.min(6.0, Math.abs(e.deltaY) * 0.018);
-          speedMultiplier += boost;
-          if (speedMultiplier > 9.0) speedMultiplier = 9.0;
-        }
-      }, { passive: true });
-
-      let lastTouchX = 0, lastTouchY = 0;
-      heroSection.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) { lastTouchX = e.touches[0].clientX; lastTouchY = e.touches[0].clientY; }
-      }, { passive: true });
-      heroSection.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-          const dx = e.touches[0].clientX - lastTouchX, dy = e.touches[0].clientY - lastTouchY;
-          lastTouchX = e.touches[0].clientX; lastTouchY = e.touches[0].clientY;
-          const boost = Math.min(5.0, Math.sqrt(dx*dx + dy*dy) * 0.08);
-          speedMultiplier += boost;
-          if (speedMultiplier > 9.0) speedMultiplier = 9.0;
-        }
-      }, { passive: true });
-
-      const animateOrbits = (timestamp) => {
-        let dt = (timestamp - lastTime) / 1000;
-        lastTime = timestamp;
-        if (dt > 0.1) dt = 0.1;
-        speedMultiplier += (1.0 - speedMultiplier) * 0.045;
-        currentAngle = (currentAngle + (baseSpeed * speedMultiplier) * dt) % 360;
-        orbitContainer.style.transform = `rotate(${currentAngle.toFixed(3)}deg)`;
-        requestAnimationFrame(animateOrbits);
-      };
-      requestAnimationFrame(animateOrbits);
-    });
-  </script>
 </section>
 
 <!-- ============ CORE SERVICES ============ -->
@@ -353,7 +316,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <a data-transition href="contact" class="svcx-card" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Website design service by Web{X} Studio">
       <div class="svcx-card-media">
-        <span class="svcx-card-num">01</span>
         <img src="images/cap-design.webp" alt="Website design service - bespoke UI/UX and interface design by Web{X} Studio" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
@@ -375,7 +337,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Web development service by Web{X} Studio">
       <div class="svcx-card-media">
-        <span class="svcx-card-num">02</span>
         <img src="images/cap-development.webp" alt="Web development service - fast, scalable builds on Webflow, WordPress, Shopify and custom code by Web{X} Studio" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
@@ -397,7 +358,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="SEO and performance optimisation service by Web{X} Studio">
       <div class="svcx-card-media">
-        <span class="svcx-card-num">03</span>
         <img src="images/cap-seo.webp" alt="SEO and performance service - Core Web Vitals, technical SEO and speed optimisation by Web{X} Studio" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
@@ -419,7 +379,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="ERP and web app development service by Web{X} Studio">
       <div class="svcx-card-media">
-        <span class="svcx-card-num">04</span>
         <img src="images/cap-erp.webp" alt="ERP and web app development service - custom dashboards and business software by Web{X} Studio" loading="lazy" decoding="async">
       </div>
       <div class="svcx-card-body">
@@ -443,7 +402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============ FIGMA TO PRODUCTION ============ -->
-<section class="svcx-section" aria-labelledby="svcx-conv-h" style="padding-top:clamp(40px,7vh,90px)">
+<section class="svcx-section" aria-labelledby="svcx-conv-h">
   <div style="max-width:760px">
     <div class="svcx-eyebrow" data-reveal style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
       <span class="svcx-eyebrow-num">(02)</span>
