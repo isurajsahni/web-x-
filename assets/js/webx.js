@@ -413,9 +413,9 @@
     } else {
       /* Every home-page load cycles the multilingual greeting, then wipes up.
          Each word holds long enough to read (the old ~115ms felt like a flicker). */
-      // Punjabi (Ludhiana) · Hindi (India) · Arabic (Gulf) · English (UK/US).
+      // Hindi (India) · Arabic (Gulf) · Spanish · French · English (UK/US).
       // Non-Latin scripts fall back to the system font - no extra web-font load.
-      var greetings = ['ਸਤ ਸ੍ਰੀ ਅਕਾਲ', 'नमस्ते', 'مرحبا', 'Hello'];
+      var greetings = ['नमस्ते', 'مرحبا', 'Hola', 'Bonjour', 'Hello'];
       var gi = 0, step = lowPower ? 320 : 290;
       var fade = 120;
       /* Each word lifts and crossfades rather than snapping, so slowing the
