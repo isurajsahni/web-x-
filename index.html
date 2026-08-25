@@ -756,52 +756,106 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       border-top-left-radius: 50% clamp(90px,12vw,210px);
       border-top-right-radius: 50% clamp(90px,12vw,210px);
     }
+    /* Split layout. The centred version ended on a 16:9 placeholder that never
+       got filled, so most of the panel was an empty grey box. The right column
+       now shows the three disciplines the headline actually claims. */
     .wx-about2-inner {
       position: relative;
       z-index: 1;
-      max-width: 900px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: var(--wx-sec-y) 20px var(--wx-sec-y);
-      text-align: center;
+      padding: var(--wx-sec-y) 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: clamp(36px,5vw,84px);
     }
-    /* Global .wx-pill, lifted onto the crest of the arch */
-    .wx-about2 .wx-pill {
-      position: relative;
-      margin-top: clamp(-52px,-6vh,-34px);
-      box-shadow: 0 8px 22px -12px rgba(26,20,48,0.35);
-    }
+    /* The pill used to be lifted onto the crest of the arch, which only read
+       when the content was centred under it. Left-aligned it just floats, so
+       it sits inline at the head of the copy column instead. */
+    .wx-about2 .wx-pill { position: relative; }
     .wx-about2 h2 {
       font-family: 'Manrope', sans-serif;
-      font-size: clamp(26px,3.4vw,42px);
+      font-size: clamp(28px,3.6vw,46px);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      color: #9D5CFF;
-      margin: 0 auto clamp(18px,2.6vh,26px);
-      max-width: 18ch;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: #1A1A1A;
+      margin: clamp(18px,2.6vh,26px) 0 clamp(16px,2.2vh,22px);
+      max-width: 16ch;
+    }
+    .wx-about2 h2 em {
+      font-style: normal;
+      background: linear-gradient(160deg, #9bb0ff 0%, #9D5CFF 42%, #c061ff 72%, #b06bff 100%);
+      -webkit-background-clip: text;
+              background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
     }
     .wx-about2 p {
       font-family: 'Satoshi', sans-serif;
-      font-size: clamp(14px,1.15vw,17px);
+      font-size: clamp(14px,1.1vw,16px);
       line-height: 1.7;
       color: #555560;
-      margin: 0 auto;
-      max-width: 62ch;
+      margin: 0 0 clamp(24px,3.4vh,34px);
+      max-width: 46ch;
     }
-    .wx-about2-media {
-      margin-top: clamp(34px,6vh,60px);
-      aspect-ratio: 16 / 9;
-      border-radius: clamp(14px,1.4vw,22px);
-      background: #E4E4E7;
-      border: 1px solid rgba(26,20,48,0.08);
+
+    /* ---- Right: one card per discipline ---- */
+    .wx-about2-cards { display: flex; flex-direction: column; gap: clamp(12px,1.4vw,18px); }
+    .wx-about2-card {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px,1.4vw,20px);
+      padding: clamp(12px,1.1vw,16px);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: clamp(14px,1.4vw,20px);
+      background: #FFFFFF;
+      box-shadow: 0 14px 34px -22px rgba(40,16,90,0.28);
+      text-decoration: none;
+      color: inherit;
+      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease, border-color .35s ease;
+    }
+    /* Alternating rather than cumulative — with five cards a running offset
+       would walk the last one off the column. */
+    .wx-about2-card:nth-child(even) { margin-left: clamp(14px,2.2vw,34px); }
+    .wx-about2-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(157,92,255,0.32);
+      box-shadow: 0 26px 52px -26px rgba(40,16,90,0.32);
+    }
+    .wx-about2-thumb {
+      flex: 0 0 auto;
+      width: clamp(64px,6.4vw,92px);
+      aspect-ratio: 1;
+      border-radius: clamp(10px,1vw,14px);
       overflow: hidden;
+      background: #F4F2F8;
     }
-    .wx-about2-media img,
-    .wx-about2-media video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .wx-about2-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wx-about2-card h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(16px,1.4vw,19px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 4px;
+      color: #1A1A1A;
+    }
+    .wx-about2-card p {
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(12.5px,1vw,13.5px);
+      line-height: 1.5;
+      color: #6B6B75;
+      margin: 0;
+      max-width: none;
+    }
+
+    @media (max-width: 900px) {
+      .wx-about2-inner { grid-template-columns: 1fr; text-align: center; }
+      .wx-about2 h2, .wx-about2 p { margin-inline: auto; }
+      .wx-about2-copy .wx-btn-animated { margin: 0 auto; }
+      .wx-about2-card { text-align: left; }
+      .wx-about2-card:nth-child(even) { margin-left: 0; }
     }
   </style>
 
@@ -809,16 +863,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wx-about2">
     <div class="wx-about2-rings" aria-hidden="true"></div>
     <div class="wx-about2-inner">
-    <span class="wx-pill">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
-      About us
-    </span>
+      <div class="wx-about2-copy">
+        <span class="wx-pill">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+          About us
+        </span>
 
-    <h2 data-reveal>Design, development &amp; SEO under one roof</h2>
-    <p data-reveal data-reveal-delay="80">Web{X} Studio is a results-driven web design, development, and SEO agency that combines creative design, development, and SEO to build websites that perform. We go beyond beautiful designs by creating digital experiences that help businesses improve visibility, increase conversions, and grow online.</p>
+        <h2 data-reveal>Design, development, marketing &amp; more <em>under one roof</em></h2>
+        <p data-reveal data-reveal-delay="80">Web{X} Studio is a results-driven web design, development, and SEO agency. We go beyond beautiful designs by building digital experiences that help businesses improve visibility, increase conversions, and grow online.</p>
 
-    <!-- Media placeholder — drop an <img> or <video> inside this box -->
-    <div class="wx-about2-media" data-reveal data-reveal-delay="140" role="img" aria-label="Web{X} Studio showcase"></div>
+        <a data-transition href="studio" data-magnetic class="wx-btn-animated" data-reveal data-reveal-delay="140">
+          <span class="wx-btn-label">More about the studio</span>
+          <span class="wx-btn-circle">
+            <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+    <div class="wx-about2-cards">
+      <a data-transition href="services" class="wx-about2-card" data-reveal data-reveal-delay="120">
+        <span class="wx-about2-thumb"><img src="images/cap-design.webp" alt="Design work by Web{X} Studio" loading="lazy" decoding="async"></span>
+        <span>
+          <h3>Design</h3>
+          <p>Interfaces built to convert, not just to look good.</p>
+        </span>
+      </a>
+      <a data-transition href="services" class="wx-about2-card" data-reveal data-reveal-delay="190">
+        <span class="wx-about2-thumb"><img src="images/cap-development.webp" alt="Development work by Web{X} Studio" loading="lazy" decoding="async"></span>
+        <span>
+          <h3>Development</h3>
+          <p>Fast, accessible builds on the platform that fits.</p>
+        </span>
+      </a>
+      <a data-transition href="services" class="wx-about2-card" data-reveal data-reveal-delay="260">
+        <span class="wx-about2-thumb"><img src="images/cap-seo.webp" alt="SEO work by Web{X} Studio" loading="lazy" decoding="async"></span>
+        <span>
+          <h3>SEO</h3>
+          <p>Technical foundations and content that earn ranking.</p>
+        </span>
+      </a>
+      <a data-transition href="services" class="wx-about2-card" data-reveal data-reveal-delay="330">
+        <span class="wx-about2-thumb"><img src="images/cap-03.avif" alt="Digital marketing work by Web{X} Studio" loading="lazy" decoding="async"></span>
+        <span>
+          <h3>Digital Marketing</h3>
+          <p>Campaigns, analytics and funnels that bring the right traffic.</p>
+        </span>
+      </a>
+
+      <a data-transition href="services" class="wx-about2-card" data-reveal data-reveal-delay="400">
+        <span class="wx-about2-thumb"><img src="images/cap-01.avif" alt="Graphic design work by Web{X} Studio" loading="lazy" decoding="async"></span>
+        <span>
+          <h3>Graphic Design</h3>
+          <p>Brand identity, social and print that stay on message.</p>
+        </span>
+      </a>
+    </div>
     </div>
     </div>
   </div>
