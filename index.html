@@ -4091,12 +4091,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .wx-cta4-copy p { margin-inline: auto; }
       .wx-cta4-copy .wx-btn-animated { margin: 0 auto; }
       .wx-cta4-deck {
-        padding: 92px 5vw 0;
+        padding: 120px 5vw 0;
         margin-bottom: -26px;
       }
-      .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); }
-      .wx-cta4-deck .fan-card { width: clamp(104px,27vw,164px) !important; }
-      .wx-cta4-deck .fan-card--lead { width: clamp(88px,22vw,138px) !important; --y: clamp(-84px,-13vw,-36px); bottom: -10px; }
+      /* Cards are now wider than the column. min-width:0 lets the grid item
+         shrink to the track so the overflow centres, instead of the deck
+         growing past the panel and bleeding to the right only. */
+      .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); min-width: 0; }
+      .wx-cta4-deck .fan-card { width: 174px !important; }
+      .wx-cta4-deck .fan-card--lead { width: 35vw !important; --y: -13vw; bottom: -10px; }
     }
   </style>
 
