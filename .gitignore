@@ -18,3 +18,6 @@ webx-runtime.js
 screens/
 uploads/
 .thumbnail
+
+# A full copy of the site was pasted in here; it must never deploy.
+images/work/Web{X}/

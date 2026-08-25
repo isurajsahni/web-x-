@@ -556,49 +556,49 @@
   var HTML = `
   <header class="wx-nav-container" data-header>
     <div class="wx-navbar" id="wx-navbar">
-      <a href="index.html" class="wx-nav-logo">
+      <a href="/" class="wx-nav-logo">
         <img src="logo-black.svg" alt="Web{X}" class="wx-nav-logo-svg" width="50" height="50" />
         <span class="wx-nav-logo-word">Web<span class="wx-logo-purple">{X}</span></span>
       </a>
 
       <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
-        <div class="wx-nav-item"><a href="index.html" class="wx-nav-link" data-nav="home">Home</a></div>
-        <div class="wx-nav-item"><a href="services.html" class="wx-nav-link" data-nav="services">Services</a></div>
-        <div class="wx-nav-item"><a href="work.html" class="wx-nav-link" data-nav="work">Work</a></div>
-        <div class="wx-nav-item"><a href="studio.html" class="wx-nav-link" data-nav="about">About</a></div>
+        <div class="wx-nav-item"><a href="/" class="wx-nav-link" data-nav="home">Home</a></div>
+        <div class="wx-nav-item"><a href="/services" class="wx-nav-link" data-nav="services">Services</a></div>
+        <div class="wx-nav-item"><a href="/work" class="wx-nav-link" data-nav="work">Work</a></div>
+        <div class="wx-nav-item"><a href="/studio" class="wx-nav-link" data-nav="about">About</a></div>
         <div class="wx-nav-item" id="wx-res-item">
-          <a href="blog.html" class="wx-nav-link" data-nav="resources">
+          <a href="/blog" class="wx-nav-link" data-nav="resources">
             Resources
             <svg class="wx-nav-caret" width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <div class="wx-mega" id="wx-mega">
-            <a class="wx-mega-card" href="blog-core-web-vitals.html">
+            <a class="wx-mega-card" href="/blog-core-web-vitals">
               <span class="wx-mega-cat">Site speed &amp; SEO</span>
               <span class="wx-mega-title">Core Web Vitals in 2026</span>
               <span class="wx-mega-desc">LCP, INP &amp; CLS in plain English — and the fixes that pass Google.</span>
             </a>
-            <a class="wx-mega-card" href="blog-website-cost.html">
+            <a class="wx-mega-card" href="/blog-website-cost">
               <span class="wx-mega-cat">Pricing</span>
               <span class="wx-mega-title">What a Website Costs in 2026</span>
               <span class="wx-mega-desc">Transparent pricing in INR &amp; USD, and what really drives it.</span>
             </a>
-            <a class="wx-mega-card" href="blog-landing-page-vs-website.html">
+            <a class="wx-mega-card" href="/blog-landing-page-vs-website">
               <span class="wx-mega-cat">Strategy</span>
               <span class="wx-mega-title">Landing Page vs Website</span>
               <span class="wx-mega-desc">Which does your business need — and how choosing wrong loses leads.</span>
             </a>
-            <a class="wx-mega-card" href="blog-choosing-web-design-agency.html">
+            <a class="wx-mega-card" href="/blog-choosing-web-design-agency">
               <span class="wx-mega-cat">Hiring</span>
               <span class="wx-mega-title">Choosing a Web Design Agency</span>
               <span class="wx-mega-desc">Questions to ask and red flags to avoid when hiring globally.</span>
             </a>
-            <a class="wx-mega-foot" href="blog.html">
+            <a class="wx-mega-foot" href="/blog">
               <span>Browse all resources</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
         </div>
-        <div class="wx-nav-item"><a href="contact.html" class="wx-nav-link" data-nav="contact">Contact us</a></div>
+        <div class="wx-nav-item"><a href="/contact" class="wx-nav-link" data-nav="contact">Contact us</a></div>
       </div>
 
       <div class="wx-nav-cta-wrap">
@@ -624,12 +624,12 @@
 
   <aside class="wx-drawer" id="wx-drawer" aria-hidden="true">
     <span class="wx-drawer-eyebrow">Menu</span>
-    <a href="index.html" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
-    <a href="services.html" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
-    <a href="work.html" class="wx-drawer-link" data-nav="work">Work <span class="wx-drawer-arrow">&#8599;</span></a>
-    <a href="studio.html" class="wx-drawer-link" data-nav="about">About <span class="wx-drawer-arrow">&#8599;</span></a>
-    <a href="blog.html" class="wx-drawer-link" data-nav="resources">Resources <span class="wx-drawer-arrow">&#8599;</span></a>
-    <a href="contact.html" class="wx-drawer-link" data-nav="contact">Contact us <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/services" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/work" class="wx-drawer-link" data-nav="work">Work <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/studio" class="wx-drawer-link" data-nav="about">About <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/blog" class="wx-drawer-link" data-nav="resources">Resources <span class="wx-drawer-arrow">&#8599;</span></a>
+    <a href="/contact" class="wx-drawer-link" data-nav="contact">Contact us <span class="wx-drawer-arrow">&#8599;</span></a>
     <div class="wx-drawer-socials">
       <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg></a>
       <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg></a>

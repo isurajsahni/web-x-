@@ -194,7 +194,7 @@
 
       <div class="wx-footer-main">
         <div class="wx-footer-left">
-          <a href="index.html" class="wx-footer-brand" aria-label="Web{X} Studio — home">
+          <a href="/" class="wx-footer-brand" aria-label="Web{X} Studio — home">
             <img src="logo-black.svg" alt="Web{X} Studio" width="40" height="40" />
           </a>
           <p class="wx-footer-desc">

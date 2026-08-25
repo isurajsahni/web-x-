@@ -43,3 +43,5 @@ Disallow: /*.dc.html$
 # https://www.thewebxstudio.com/llms.txt
 
 Sitemap: https://www.thewebxstudio.com/sitemap.xml
+
+Disallow: /images/work/Web%7BX%7D/
