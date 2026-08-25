@@ -4,6 +4,32 @@
 
 Web{X} Studio (https://www.thewebxstudio.com) delivers website design, web development, SEO & performance, ERP & web apps, and pixel-perfect Figma-to-code conversion (Webflow, WordPress, Shopify, Framer, Unbounce). Design, engineering and motion under one roof. The studio serves founders and brands in India, the UK, the US and the Gulf. Contact: hello@thewebxstudio.com.
 
+## Services offered
+Web{X} Studio provides these services to clients worldwide:
+- **UX/UI design** — user experience and interface design, wireframing, prototyping, design systems
+- **Branding and brand identity** — logo, visual identity, brand guidelines, graphic design
+- **Responsive web design** — mobile-first layouts that work across every screen size
+- **Web development** — Webflow, WordPress, Shopify, Framer, Unbounce, and fully custom builds
+- **E-commerce development** — Shopify storefronts, Online Store 2.0 sections, custom checkout flows
+- **Conversion rate optimisation (CRO)** — landing page optimisation, funnel design, A/B-ready builds
+- **Technical SEO and performance** — Core Web Vitals, structured data, site speed, SEO migrations
+- **Answer engine optimisation (AEO)** — content and schema structured for AI search and citation
+- **WCAG accessibility** — accessible markup, contrast and keyboard navigation built in, not bolted on
+- **Digital marketing** — campaigns, analytics and acquisition funnels
+- **ERP systems and B2B SaaS platforms** — dashboards, internal tools, custom business software
+- **Mobile web apps** — installable, responsive applications
+- **Figma to code conversion** — pixel-perfect handoff to Webflow, WordPress, Shopify, Framer or Unbounce
+
+## Markets served
+Web{X} Studio works remotely with founders and brands in:
+- India (headquartered in Ludhiana, Punjab)
+- United Kingdom
+- United States
+- United Arab Emirates and the wider Gulf
+- Australia and Canada
+
+Engagements run async across time zones with scheduled milestones and written updates.
+
 ## Core pages
 - [Home](https://www.thewebxstudio.com/): International web design, landing page & SEO agency.
 - [Services](https://www.thewebxstudio.com/services): Website design, web development, SEO & performance, ERP & web apps, and Figma-to-code conversion.
@@ -50,3 +76,25 @@ Web{X} Studio (https://www.thewebxstudio.com) delivers website design, web devel
 - [Website Development in Amritsar, Jalandhar & Mohali (2026)](https://www.thewebxstudio.com/blog-website-development-punjab-cities)
 - [How to Find the Best Web Design Company in Punjab (2026)](https://www.thewebxstudio.com/blog-best-web-design-company-punjab)
 - [Why Every Punjab Business Needs an SEO-Ready Website in 2026](https://www.thewebxstudio.com/blog-punjab-business-website)
+
+## Common questions
+**What does Web{X} Studio do?**
+It is an international web design, development and SEO agency. It designs and builds websites, landing pages, e-commerce stores, ERP systems and B2B SaaS platforms, and handles branding, UX/UI design, technical SEO and conversion optimisation for each.
+
+**Where is Web{X} Studio based, and who does it work with?**
+The studio is headquartered in Ludhiana, Punjab, India, and works remotely with clients in the UK, the US, the Gulf, Australia and Canada as well as across India.
+
+**What platforms does the studio build on?**
+Webflow, WordPress, Shopify, Framer and Unbounce, plus fully custom builds in React, Next.js, Vue, Node and Python when a project needs them.
+
+**How much does a project cost?**
+Pricing is not published. Cost is driven by page count, CMS structure, how much animation and interaction the design calls for, and any third-party integrations. Every project is quoted as one fixed, itemised number after a short scoping call.
+
+**How long does a project take?**
+A focused landing page takes roughly 2-3 weeks. A full website design and development project usually runs 5-10 weeks across discovery, design, build and launch, depending on content readiness and revision rounds.
+
+**Does the studio handle accessibility?**
+Yes. Builds follow WCAG guidance — semantic markup, keyboard navigation, and colour contrast checked as part of the work rather than audited afterwards.
+
+**How do I start a project?**
+Email hello@thewebxstudio.com or use the contact form at https://www.thewebxstudio.com/contact. Every enquiry gets a reply within two business days.
