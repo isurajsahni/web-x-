@@ -4015,7 +4015,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       justify-content: center;
       align-items: flex-end;
       padding-top: clamp(40px,5vw,86px);
-      margin-bottom: clamp(-88px,-5.4vw,-36px);
+      margin-bottom: clamp(-20px, -5.4vw, -36px);
     }
     /* Bloom so the stack sits on the purple rather than floating over it */
     .wx-cta4-deck::before {
@@ -4035,9 +4035,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     /* The centre card: upright, smaller, raised, and in front. */
     .wx-cta4-deck .fan-card--lead {
-      width: clamp(94px,12vw,176px) !important;
+      width: clamp(112px,14.2vw,208px) !important;
+      aspect-ratio: 3 / 3.75;
       /* Clears the taller outer cards and then some, so it breaks the skyline. */
-      --y: clamp(-138px,-8.4vw,-56px);
+      --y: clamp(-128px,-7.8vw,-52px);
       z-index: 3;
       box-shadow: 0 40px 70px -24px rgba(24,4,60,0.7);
     }
@@ -4082,7 +4083,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         margin-bottom: clamp(-56px,-11vw,-28px);
       }
       .wx-cta4-deck .fan-card { width: clamp(96px,25vw,150px) !important; margin-inline: -16px; }
-      .wx-cta4-deck .fan-card--lead { width: clamp(72px,18.5vw,112px) !important; --y: clamp(-86px,-13.5vw,-38px); }
+      .wx-cta4-deck .fan-card--lead { width: clamp(88px,22vw,138px) !important; --y: clamp(-84px,-13vw,-36px); }
     }
   </style>
 
