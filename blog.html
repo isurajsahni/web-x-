@@ -159,21 +159,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <main id="main">
-<!-- intro -->
-<section style="padding:clamp(140px,22vh,260px) 20px clamp(40px,7vh,80px);max-width:1340px;margin:0 auto">
-  <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:34px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 14px #9D5CFF"></span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75">The Journal - notes on web, design &amp; growth</span>
+<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
+<section class="wx-hero" data-hero-section>
+  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
+    <img src="images/work/gpsfdk.avif" alt="" loading="lazy" decoding="async" width="1600" height="1200">
   </div>
-  <h1 data-split data-split-auto style="font-size:clamp(48px,11vw,170px);font-weight:700;letter-spacing:-.05em;line-height:.9">
-    <span data-split-line style="display:block">Build better,</span>
-    <span data-split-line style="display:block;color:#9D5CFF">rank higher.</span>
-  </h1>
-  <p data-reveal data-reveal-delay="200" style="max-width:620px;margin-top:34px;font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#6B6B75;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Practical, no-fluff guides on web design, development, conversion and SEO - written by the team at Web{X} Studio, an international web design &amp; engineering studio. What we learn shipping work for founders across India and worldwide, shared openly.</p>
+  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
+    <img src="images/work/fitness-tracker.avif" alt="" loading="lazy" decoding="async" width="1600" height="1066">
+  </div>
+
+  <div class="wx-hero-inner">
+    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
+      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Journal</span>
+    </nav>
+
+    <span class="wx-pill" data-reveal data-reveal-delay="40">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      The Journal
+    </span>
+
+    <h1 data-reveal data-reveal-delay="80">Build better, <em>rank higher</em></h1>
+
+    <p data-reveal data-reveal-delay="140">Practical, no-fluff guides on web design, development, conversion and SEO &mdash; what we learn shipping work for founders across India and worldwide, shared openly.</p>
+
+    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
+      <a href="#articles" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
+        <span class="wx-btn-label">Read the latest</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- posts -->
-<section aria-label="Articles" style="max-width:1340px;margin:0 auto;padding:clamp(20px,4vh,50px) 20px clamp(80px,12vh,140px);border-top:1px solid rgba(0,0,0,.10)">
+<section id="articles" aria-label="Articles" style="max-width:1340px;margin:0 auto;padding:clamp(20px,4vh,50px) 20px clamp(80px,12vh,140px)">
   <div class="wx-blog-grid">
 
     <a data-transition href="blog-website-cost" class="wx-blog-card wx-blog-card-feat" data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease" aria-label="Read: How much does a website cost in 2026">

@@ -154,17 +154,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <main id="main">
-<!-- intro -->
-<section style="padding:clamp(140px,22vh,260px) 20px clamp(40px,7vh,80px);max-width:1340px;margin:0 auto">
-  <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:34px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 14px #9D5CFF"></span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75">Selected projects - 2021 / 2026</span>
+<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
+<section class="wx-hero" data-hero-section>
+  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
+    <img src="images/work/rightway.avif" alt="" loading="lazy" decoding="async" width="1600" height="1067">
   </div>
-  <h1 data-split data-split-auto style="font-size:clamp(48px,11vw,180px);font-weight:700;letter-spacing:-.05em;line-height:.9">
-    <span data-split-line style="display:block">Work that</span>
-    <span data-split-line style="display:block;color:#9D5CFF">earns its place.</span>
-  </h1>
-  <p data-reveal data-reveal-delay="200" style="max-width:560px;margin-top:34px;font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:#6B6B75;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">A selection of recent web design, development and SEO partnerships across brand, product and motion - for clients in India and worldwide. Hover a project to peek; click to dive in.</p>
+  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
+    <img src="images/work/nocturne-nft.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
+  </div>
+
+  <div class="wx-hero-inner">
+    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
+      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Work</span>
+    </nav>
+
+    <span class="wx-pill" data-reveal data-reveal-delay="40">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      Selected projects &mdash; 2021 / 2026
+    </span>
+
+    <h1 data-reveal data-reveal-delay="80">Work that <em>earns its place</em></h1>
+
+    <p data-reveal data-reveal-delay="140">A selection of recent web design, development and SEO partnerships across brand, product and motion &mdash; for clients in India and worldwide.</p>
+
+    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
+        <span class="wx-btn-label">Start a project</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="wx-hero-meta" data-reveal data-reveal-delay="260">
+      <div><b>11</b>selected projects</div>
+      <div><b>3</b>in-depth case studies</div>
+      <div><b>2021</b>shipping since</div>
+    </div>
+  </div>
 </section>
 
 <!-- project list -->
@@ -190,7 +219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .wx-project-list .wx-row>span:nth-child(4){display:none!important}
   }
 </style>
-<section class="wx-project-list" aria-label="Projects" style="max-width:1340px;margin:0 auto;padding:clamp(30px,5vh,60px) 20px clamp(80px,12vh,140px);border-top:1px solid rgba(0,0,0,.10)">
+<section class="wx-project-list" aria-label="Projects" style="max-width:1340px;margin:0 auto;padding:clamp(30px,5vh,60px) 20px clamp(80px,12vh,140px)">
   <a href="https://uttampublichighschool.vercel.app/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/Uttam%20Public%20High%20School.webp" aria-label="Uttam Public High School - school website design & development, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
     <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">01</span>
     <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Uttam Public School">Uttam Public School</span>

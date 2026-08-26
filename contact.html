@@ -198,8 +198,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   
   /* Split layout section */
+  /* Top padding used to clear the fixed nav on its own; the shared .wx-hero now
+     opens the page, so this drops to the normal section rhythm. */
   .contact-section {
-    padding: clamp(140px, 18vh, 210px) 20px clamp(80px, 12vh, 140px);
+    padding: clamp(60px, 10vh, 120px) 20px clamp(80px, 12vh, 140px);
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
@@ -227,7 +229,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .contact-details > div { padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2vw, 26px); }
   .contact-details > div + div { border-top: 1px solid rgba(0, 0, 0, 0.07); }
 
+  /* Hero CTA anchors here. The global section[id] scroll offset doesn't reach a
+     div, so the card carries its own or the fixed nav clips its top edge. */
   .contact-form-card {
+    scroll-margin-top: 110px;
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: clamp(18px, 2vw, 26px);
@@ -511,7 +516,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .contact-section {
       grid-template-columns: 1fr;
       gap: 60px;
-      padding-top: 120px;
+      padding-top: 60px;
     }
     .form-group-row {
       flex-direction: column;
@@ -561,15 +566,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <main id="main">
+
+  <!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
+  <section class="wx-hero" data-hero-section>
+    <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
+      <img src="images/work/erp-gpsfdk.avif" alt="" loading="lazy" decoding="async" width="1600" height="1200">
+    </div>
+    <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
+      <img src="images/work/automa.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
+    </div>
+
+    <div class="wx-hero-inner">
+      <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
+        <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Contact</span>
+      </nav>
+
+      <span class="wx-pill" data-reveal data-reveal-delay="40">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+        Let&rsquo;s talk
+      </span>
+
+      <h1 data-reveal data-reveal-delay="80">Tell us what you&rsquo;re <em>building</em></h1>
+
+      <p data-reveal data-reveal-delay="140">A landing page, a product app, a search strategy that has to earn its rankings &mdash; whatever the goal, give us the shape of it and we&rsquo;ll come back with a plan and a price.</p>
+
+      <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
+        <a href="#enquiry" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
+          <span class="wx-btn-label">Start the brief</span>
+          <span class="wx-btn-circle">
+            <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Split Contact Pane with deep black styling -->
   <section class="contact-section">
     
     <!-- Left column: Info coordinates & Trust Factors -->
     <div style="display:flex; flex-direction:column; gap:32px; position:relative; z-index:2;">
       <div>
-        <h1 style="font-family:'Satoshi',sans-serif; font-size:clamp(38px, 6vw, 60px); font-weight:700; letter-spacing:-0.04em; color:#1A1A1A; line-height:1.1; margin-bottom:12px;">Get in touch</h1>
+        <h2 style="font-family:'Satoshi',sans-serif; font-size:clamp(30px, 3.6vw, 44px); font-weight:700; letter-spacing:-0.04em; color:#1A1A1A; line-height:1.1; margin-bottom:12px;">Get in touch</h2>
         <p style="font-size:15px; color:var(--contact-muted); line-height:1.6; max-width:440px; margin-top:14px;">
-          Have a vision for your landing page, app, or ranking strategy? Let's turn it into a high-performance reality.
+          Reach us however suits you &mdash; email, phone, or the enquiry form. Every message lands with the founders, not a ticket queue.
         </p>
       </div>
       
@@ -604,7 +646,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Trust Journey: What happens next? -->
       <div style="margin-top: 20px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.08);">
-        <h2 style="font-family:'Satoshi',sans-serif; font-size:16px; font-weight:700; color:#1A1A1A; margin-bottom:20px; letter-spacing:-0.01em;">Our Project Journey</h2>
+        <h3 style="font-family:'Satoshi',sans-serif; font-size:16px; font-weight:700; color:#1A1A1A; margin-bottom:20px; letter-spacing:-0.01em;">Our Project Journey</h3>
         <div style="display:flex; flex-direction:column; gap:20px;">
           <div style="display:flex; gap:16px;">
             <div style="width:24px; height:24px; border-radius:50%; background:rgba(157, 92, 255, 0.15); color:var(--brand-purple); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; font-family:'Satoshi',sans-serif; flex-shrink:0;">1</div>
@@ -634,10 +676,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Right column: Interactive onboarding form -->
     <div style="position:relative; z-index:2;">
       <!-- AJAX Success Screen -->
-      <div class="contact-form-card">
+      <div class="contact-form-card" id="enquiry">
       <div id="wx-contact-success" role="status" hidden style="text-align:center; padding:clamp(12px, 2vw, 24px) 0;">
         <div aria-hidden="true" style="width:64px; height:64px; border-radius:50%; background:#9D5CFF; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 24px">✓</div>
-        <h2 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#1A1A1A; margin-bottom:12px">Message sent.</h2>
+        <h3 style="font-size:clamp(24px,2.6vw,34px); font-weight:600; letter-spacing:-.02em; color:#1A1A1A; margin-bottom:12px">Message sent.</h3>
         <p style="font-size:16px; line-height:1.6; color:var(--contact-muted); max-width:340px; margin:0 auto">Thanks<span data-name-slot></span> - we read every message and reply within 24 hours.</p>
       </div>
       

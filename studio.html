@@ -97,7 +97,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thewebxstudio.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Studio", "item": "https://www.thewebxstudio.com/studio" }
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.thewebxstudio.com/studio" }
       ]
     }
   ]
@@ -138,22 +138,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <main id="main">
-<!-- hero -->
-<section style="position:relative;padding:clamp(140px,24vh,300px) 20px clamp(50px,8vh,100px);max-width:1340px;margin:0 auto;overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;top:-10%;right:-5%;width:50vw;height:50vw;max-width:680px;max-height:680px;border-radius:50%;filter:blur(60px);opacity:.32;background:radial-gradient(circle,rgba(157,92,255,.32),transparent 65%);animation:wx-mesh 18s ease-in-out infinite;pointer-events:none"></div>
-  <div data-reveal style="display:flex;align-items:center;gap:14px;margin-bottom:34px;position:relative;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-    <span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 14px #9D5CFF"></span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75">The studio - 14 humans, 1 obsession</span>
+<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
+<section class="wx-hero" data-hero-section>
+  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
+    <img src="images/work/tmc.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
   </div>
-  <h1 data-split data-split-auto style="font-size:clamp(40px,8vw,140px);font-weight:700;letter-spacing:-.04em;line-height:.92;position:relative;max-width:14ch">
-    <span data-split-line style="display:block">We're a small</span>
-    <span data-split-line style="display:block">studio with <span style="color:#9D5CFF">loud</span></span>
-    <span data-split-line style="display:block">ambitions.</span>
-  </h1>
+  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
+    <img src="images/work/nocturne-nft.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
+  </div>
+
+  <div class="wx-hero-inner">
+    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
+      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>About</span>
+    </nav>
+
+    <span class="wx-pill" data-reveal data-reveal-delay="40">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      The studio
+    </span>
+
+    <h1 data-reveal data-reveal-delay="80">We&rsquo;re a small studio with <em>loud ambitions</em></h1>
+
+    <p data-reveal data-reveal-delay="140">A small, senior studio in Ludhiana, working with founders across India, the UK, the US and the Gulf. One team on every project &mdash; design and engineering, side by side, start to finish.</p>
+
+    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
+        <span class="wx-btn-label">Work with us</span>
+        <span class="wx-btn-circle">
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- intro statement -->
-<section style="padding:clamp(40px,8vh,100px) 20px;max-width:1300px;margin:0 auto">
+<!-- Top padding is the normal section rhythm now that the .wx-hero sits above
+     this and already carries its own bottom padding + white fade-out. -->
+<section style="padding:clamp(60px,10vh,120px) 20px;max-width:1300px;margin:0 auto">
   <p style="font-size:clamp(24px,3.4vw,52px);line-height:1.25;font-weight:500;letter-spacing:-.02em">
     <span data-reveal style="display:inline;opacity:0;transition:opacity .7s ease">We're designers and engineers who believe the web should feel like something. </span>
     <span data-reveal data-reveal-delay="120" style="display:inline;color:#6B6B75;opacity:0;transition:opacity .7s ease">For us craft isn't a finishing step - it's the whole point. We sweat the easing curves, the empty states and the line breaks so your audience feels the difference even if they can't name it.</span>
