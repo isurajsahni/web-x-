@@ -143,116 +143,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Page ground. webx.css still paints <body> black site-wide. */
   body{background:#FFFFFF;color:#1A1A1A}
   h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
-
-  /* ---------------------------------------------------------------
-     Light-theme overrides for assets/css/service.css and the shared
-     .wx-faq block in webx.css. Both are still authored for the black
-     ground the figma-to-* pages use, so this page restates only the
-     colour-bearing declarations. Same selectors, later in the cascade.
-     --------------------------------------------------------------- */
-
-  /* ambient wash - the glows were tuned for black, so drop the alpha */
-  .svcp-bg .b1{opacity:.5}
-  .svcp-bg .b2{opacity:.3}
-
-  /* section shell */
-  .svcp-eyebrow{color:#43434D}
-  .svcp-h2{color:#1A1A1A}
-  .svcp-lead{color:#43434D}
-
-  /* hero */
-  .svcp-hero-crumb{color:#6B6B75}
-  .svcp-hero-crumb a{color:#6B6B75}
-  .svcp-hero h1{color:#1A1A1A}
-  .svcp-hero-lead{color:#43434D}
-  .svcp-flow{border-color:rgba(0,0,0,.10);background:#F5F4F9}
-  .svcp-flow-node{color:#43434D}
-  .svcp-btn-ghost{border-color:rgba(0,0,0,.14);color:#1A1A1A}
-
-  .svcp-badge{color:#43434D;border-color:rgba(0,0,0,.10);background:#F5F4F9}
-
-  /* hero visual */
-  .svcp-frame{box-shadow:0 30px 70px -34px rgba(40,16,90,.38),0 0 0 1px rgba(0,0,0,.08)}
-  .svcp-frame--fig{border-color:rgba(0,0,0,.10)}
-  .svcp-frame--out{background:#FFFFFF;border-color:rgba(0,0,0,.10)}
-  .svcp-win-bar{background:#F5F4F9;border-bottom-color:rgba(0,0,0,.08)}
-  .svcp-win-bar i{background:#C9C6D4}
-  .svcp-win-url{color:#6B6B75}
-  .svcp-tag-fig{color:#1A1A1A;background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.12)}
-
-  /* stats strip */
-  .svcp-stats-inner{border-color:rgba(0,0,0,.10);background:rgba(0,0,0,.10);
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .svcp-stat{background:#FFFFFF}
-  .svcp-stat b{color:#1A1A1A}
-  .svcp-stat p{color:#6B6B75}
-
-  /* feature bento */
-  .svcp-feature{border-color:rgba(0,0,0,.10);background:#FFFFFF;
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .svcp-feature h3{color:#1A1A1A}
-  .svcp-feature p{color:#43434D}
-  .svcp-fnum{color:#6B6B75}
-
-  /* process timeline */
-  .svcp-step::before{background:rgba(0,0,0,.12)}
-  .svcp-step h3{color:#1A1A1A}
-  .svcp-step p{color:#6B6B75}
-
-  /* split / why */
-  .svcp-quote{color:#1A1A1A}
-  .svcp-vs{border-color:rgba(0,0,0,.10);background:#FFFFFF;
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .svcp-vs-col+.svcp-vs-col{border-left-color:rgba(0,0,0,.08)}
-  .svcp-vs-bad .svcp-vs-h{color:#6B6B75}
-  .svcp-vs li{color:#555560}
-  .svcp-vs-bad li::before{color:#6B6B75}
-
-  /* included checklist */
-  .svcp-incl{border-color:rgba(0,0,0,.10);background:#F6F2FF}
-  .svcp-incl li{color:#43434D}
-
-  /* pricing */
-  .svcp-price-card{border-color:rgba(0,0,0,.10);background:#FFFFFF;
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .svcp-price-card--feat{background:linear-gradient(160deg,#F6F2FF,#FFFFFF 60%)}
-  .svcp-price-card h3{color:#1A1A1A}
-  .svcp-price-sub{color:#6B6B75}
-  .svcp-price-amt{color:#1A1A1A}
-  .svcp-price-amt span{color:#6B6B75}
-  .svcp-price-card ul{border-top-color:rgba(0,0,0,.08)}
-  .svcp-price-card li{color:#555560}
-  .svcp-price-note{color:#6B6B75}
-
-  /* related platforms */
-  .svcp-rel a{border-color:rgba(0,0,0,.10);background:#FFFFFF;
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .svcp-rel a:hover{background:#F6F2FF}
-  .svcp-rel-logo{border-color:rgba(0,0,0,.10);background:#F5F4F9}
-  .svcp-rel span{color:#1A1A1A}
-  .svcp-rel small{color:#6B6B75}
-
-  /* final CTA */
-  .svcp-final{border-top-color:rgba(0,0,0,.10)}
-  .svcp-final-k{color:#6B6B75}
-  .svcp-final h2{color:#1A1A1A}
-
-  @media (max-width:720px){
-    .svcp-vs-col+.svcp-vs-col{border-left:0;border-top:1px solid rgba(0,0,0,.08)}
-  }
-
-  /* shared FAQ accordion (webx.css) */
-  .wx-faq{border-color:rgba(0,0,0,.10);background:#FFFFFF;
-    box-shadow:0 14px 34px -22px rgba(40,16,90,.28)}
-  .wx-faq:hover{border-color:rgba(0,0,0,.18)}
-  .wx-faq[open]{border-color:rgba(157,92,255,.45);background:#F6F2FF;
-    box-shadow:0 20px 50px -30px rgba(157,92,255,.45)}
-  .wx-faq summary{color:#1A1A1A}
-  .wx-faq summary:hover{color:#6C2BD9}
-  .wx-faq[open] summary{color:#6C2BD9}
-  .wx-faq-ico{border-color:rgba(0,0,0,.16)}
-  .wx-faq[open] .wx-faq-ico::before,.wx-faq[open] .wx-faq-ico::after{background:#FFFFFF}
-  .wx-faq-body{color:#43434D}
 </style>
 </head>
 <body>
@@ -282,24 +172,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ HERO ============ -->
 <section class="svcp-hero">
+  <div class="svcp-hero-inner">
   <div>
-    <nav class="svcp-hero-crumb" aria-label="Breadcrumb" data-reveal style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
-      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span style="color:var(--svc)">Web Development Agency in Ludhiana</span>
+    <nav class="svcp-hero-crumb" aria-label="Breadcrumb" data-reveal>
+      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Web Development Agency in Ludhiana</span>
     </nav>
-    <div class="svcp-flow" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease" aria-label="Based in Ludhiana, Punjab">
+    <div class="svcp-flow" data-reveal data-reveal-delay="40" aria-label="Based in Ludhiana, Punjab">
       <span class="svcp-flow-node">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--svc)" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         Ludhiana, Punjab
       </span>
     </div>
-    <h1 data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">Web development agency in <span class="svcp-hl">Ludhiana</span>.</h1>
-    <p class="svcp-hero-lead" data-reveal data-reveal-delay="140" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">We build fast, high-converting websites, ecommerce stores and web apps for Ludhiana and Punjab businesses &mdash; with the design polish and SEO we ship for clients in the UK, US and the Gulf. Local studio, international standard.</p>
-    <div class="svcp-cta-row" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
+    <h1 data-reveal data-reveal-delay="80">Web development agency in <span class="svcp-hl">Ludhiana</span>.</h1>
+    <p class="svcp-hero-lead" data-reveal data-reveal-delay="140">We build fast, high-converting websites, ecommerce stores and web apps for Ludhiana and Punjab businesses &mdash; with the design polish and SEO we ship for clients in the UK, US and the Gulf. Local studio, international standard.</p>
+    <div class="svcp-cta-row" data-reveal data-reveal-delay="200">
+      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
         <span class="wx-btn-label">Get a free quote</span>
         <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
+          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
           </svg>
         </span>
       </a>
@@ -308,14 +199,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Call +91 97806 51142
       </a>
     </div>
-    <div class="svcp-badges" data-reveal data-reveal-delay="260" style="opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease">
+    <div class="svcp-badges" data-reveal data-reveal-delay="260">
       <span class="svcp-badge">Ludhiana-based studio</span>
       <span class="svcp-badge">Fixed quote in 48h</span>
       <span class="svcp-badge">SEO &amp; speed built in</span>
     </div>
   </div>
 
-  <div class="svcp-visual" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)" aria-hidden="true">
+  <div class="svcp-visual" data-reveal data-reveal-delay="160" aria-hidden="true">
     <figure class="svcp-frame svcp-frame--fig">
       <span class="svcp-tag-fig">design</span>
       <img src="images/work/kavya-portfolio.avif" alt="Custom portfolio website designed by Web{X} Studio, a web development agency in Ludhiana" loading="eager" decoding="async" width="2400" height="1600">
@@ -326,10 +217,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="svcp-tag-out">Live &amp; ranking</span>
     </figure>
   </div>
+  </div>
 </section>
 
 <!-- ============ STATS STRIP ============ -->
-<div class="svcp-stats" data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+<div class="svcp-stats" data-reveal>
   <div class="svcp-stats-inner">
     <div class="svcp-stat"><b>Ludhiana</b><p>Local studio, in-person meetings</p></div>
     <div class="svcp-stat"><b>100<span>/100</span></b><p>Lighthouse-ready builds</p></div>
@@ -340,7 +232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ INTRO / OVERVIEW ============ -->
 <section class="svcp-section" aria-labelledby="svcp-intro-h" style="padding-bottom:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(01)</b> Overview</span>
     <h2 class="svcp-h2" id="svcp-intro-h">A web development company in <span class="svcp-hl">Ludhiana</span> that builds to rank &amp; sell.</h2>
     <div style="max-width:820px;margin-top:clamp(24px,3.5vh,36px);display:flex;flex-direction:column;gap:18px">
@@ -353,44 +245,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ SERVICES ============ -->
 <section class="svcp-section" aria-labelledby="svcp-svc-h">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(02)</b> What we build</span>
     <h2 class="svcp-h2" id="svcp-svc-h">Everything your business needs <span class="svcp-hl">online</span>.</h2>
     <p class="svcp-lead">One Ludhiana studio for the whole stack &mdash; design, development, ecommerce, SEO and custom software. No juggling freelancers.</p>
   </div>
 
   <div class="svcp-bento">
-    <div class="svcp-feature" data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal>
       <span class="svcp-fnum">01</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M7 20h10"/></svg></span>
       <h3>Business websites</h3>
       <p>Fast, mobile-first sites that make your Ludhiana business look world-class and turn visitors into enquiries.</p>
     </div>
-    <div class="svcp-feature" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal data-reveal-delay="60">
       <span class="svcp-fnum">02</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.2L22 7H6"/></svg></span>
       <h3>Ecommerce stores</h3>
       <p>Shopify and custom stores built to sell &mdash; clean product pages, fast checkout and easy day-to-day management.</p>
     </div>
-    <div class="svcp-feature" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal data-reveal-delay="120">
       <span class="svcp-fnum">03</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 12l5-5"/><path d="M21 3v5h-5"/></svg></span>
       <h3>SEO &amp; local SEO</h3>
       <p>Technical SEO, Core Web Vitals and Google Business Profile setup so you rank for &ldquo;near me&rdquo; and Ludhiana searches.</p>
     </div>
-    <div class="svcp-feature" data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal>
       <span class="svcp-fnum">04</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
       <h3>Web apps &amp; ERP</h3>
       <p>Dashboards, booking systems and custom ERP tools that run your operations, built to scale with the business.</p>
     </div>
-    <div class="svcp-feature" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal data-reveal-delay="60">
       <span class="svcp-fnum">05</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M4 4l7 16 2.5-6.5L20 11z"/></svg></span>
       <h3>Landing pages</h3>
       <p>High-converting pages for your ads and campaigns &mdash; built to turn paid clicks into real leads, not bounces.</p>
     </div>
-    <div class="svcp-feature" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-feature" data-reveal data-reveal-delay="120">
       <span class="svcp-fnum">06</span>
       <span class="svcp-fic"><svg viewBox="0 0 24 24"><path d="M12 20a8 8 0 1 0-8-8"/><path d="M4 12l3 3 3-4"/><path d="M14 4l2 2 4-4"/></svg></span>
       <h3>Redesign &amp; migration</h3>
@@ -402,13 +294,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ WHY US ============ -->
 <section class="svcp-section" aria-labelledby="svcp-why-h" style="padding-top:0">
   <div class="svcp-split">
-    <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <div data-reveal>
       <span class="svcp-eyebrow"><b>(03)</b> Why Web{X} Studio</span>
       <h2 class="svcp-h2" id="svcp-why-h">Local availability, <span class="svcp-hl">international</span> quality.</h2>
       <p class="svcp-lead">Most Ludhiana businesses choose between a cheap template shop and an expensive out-of-city agency. We&rsquo;re the third option: a local studio you can actually meet, building to the standard we ship for overseas clients &mdash; fast, bespoke and built to rank.</p>
       <blockquote class="svcp-quote">A website isn&rsquo;t a business card. It&rsquo;s your best salesperson &mdash; so we build it to sell, not just to sit there.</blockquote>
     </div>
-    <div class="svcp-vs" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-vs" data-reveal data-reveal-delay="80">
       <div class="svcp-vs-row">
         <div class="svcp-vs-col svcp-vs-bad">
           <p class="svcp-vs-h">Typical template shop</p>
@@ -437,34 +329,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ PROCESS ============ -->
 <section class="svcp-section" aria-labelledby="svcp-proc-h" style="padding-top:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(04)</b> How we work</span>
     <h2 class="svcp-h2" id="svcp-proc-h">From first call to <span class="svcp-hl">launch</span>.</h2>
     <p class="svcp-lead">A clear process, a fixed timeline, and one point of contact the whole way through.</p>
   </div>
 
   <div class="svcp-steps">
-    <div class="svcp-step" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-step" data-reveal>
       <span class="svcp-step-n">Step 01</span>
       <h3>Free consultation</h3>
       <p>Call or meet us in Ludhiana. We learn your goals, customers and budget, then map out what your site needs.</p>
     </div>
-    <div class="svcp-step" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-step" data-reveal data-reveal-delay="60">
       <span class="svcp-step-n">Step 02</span>
       <h3>Fixed quote &amp; plan</h3>
       <p>You get a clear, itemised quote and timeline within two business days &mdash; no hourly mystery meter.</p>
     </div>
-    <div class="svcp-step" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-step" data-reveal data-reveal-delay="120">
       <span class="svcp-step-n">Step 03</span>
       <h3>Design &amp; build</h3>
       <p>We design and develop your site with a live preview link, so you see it come together and give feedback early.</p>
     </div>
-    <div class="svcp-step" data-reveal data-reveal-delay="180" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-step" data-reveal data-reveal-delay="180">
       <span class="svcp-step-n">Step 04</span>
       <h3>SEO &amp; testing</h3>
       <p>On-page SEO, speed optimisation and testing across every device &mdash; ready to rank and convert from day one.</p>
     </div>
-    <div class="svcp-step" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+    <div class="svcp-step" data-reveal data-reveal-delay="240">
       <span class="svcp-step-n">Step 05</span>
       <h3>Launch &amp; support</h3>
       <p>We go live, connect your domain and analytics, and stay on to support, edit and grow the site with you.</p>
@@ -474,14 +366,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ PRICING ============ -->
 <section class="svcp-section" aria-labelledby="svcp-price-h" style="padding-top:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(05)</b> Pricing</span>
     <h2 class="svcp-h2" id="svcp-price-h">Honest pricing for <span class="svcp-hl">Ludhiana</span> businesses.</h2>
     <p class="svcp-lead">Every project is scoped and quoted on its own. You approve a fixed, itemised quote before any work begins &mdash; no hourly meter, no surprises.</p>
   </div>
 
   <div class="svcp-price">
-    <div class="svcp-price-card" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-price-card" data-reveal>
       <h3>Business website</h3>
       <p class="svcp-price-sub">A polished 5&ndash;10 page site that wins trust and enquiries.</p>
       <div class="svcp-price-amt">Fixed quote<span> in 48h</span></div>
@@ -493,7 +385,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li>Typically 1&ndash;3 weeks</li>
       </ul>
     </div>
-    <div class="svcp-price-card svcp-price-card--feat" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)">
+    <div class="svcp-price-card svcp-price-card--feat" data-reveal data-reveal-delay="80">
       <span class="svcp-price-tag">Most popular</span>
       <h3>Ecommerce &amp; custom</h3>
       <p class="svcp-price-sub">Online stores, web apps and ERP built to scale.</p>
@@ -507,17 +399,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
   </div>
-  <p class="svcp-price-note">Final price depends on pages, features and integrations &mdash; see our full <a href="services" style="color:var(--svc);text-decoration:none">services</a> or read a detailed <a href="blog-website-cost-punjab" style="color:var(--svc);text-decoration:none">website cost breakdown for Punjab</a>.</p>
+  <p class="svcp-price-note">Final price depends on pages, features and integrations &mdash; see our full <a href="services">services</a> or read a detailed <a href="blog-website-cost-punjab">website cost breakdown for Punjab</a>.</p>
 </section>
 
 <!-- ============ AREAS SERVED ============ -->
 <section class="svcp-section" aria-labelledby="svcp-area-h" style="padding-top:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(06)</b> Areas we serve</span>
     <h2 class="svcp-h2" id="svcp-area-h">Web development across <span class="svcp-hl">Ludhiana</span> &amp; Punjab.</h2>
     <p class="svcp-lead">Based in Ludhiana and meeting local businesses in person &mdash; from Model Town and Sarabha Nagar to the Focal Point and Gill Road industrial belt &mdash; and working remotely with clients in every major Punjab city.</p>
   </div>
-  <div class="svcp-incl" data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div class="svcp-incl" data-reveal>
     <ul>
       <li>Model Town &amp; Sarabha Nagar</li>
       <li>BRS Nagar &amp; Dugri</li>
@@ -530,11 +422,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
   </div>
 
-  <div data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;margin-top:clamp(40px,6vh,64px)">
+  <div data-reveal data-reveal-delay="80" style="margin-top:clamp(40px,6vh,64px)">
     <h3 class="svcp-h2" style="font-size:clamp(24px,3vw,34px)">Industries we build for in Ludhiana.</h3>
     <p class="svcp-lead">Ludhiana runs on manufacturing, exports and family businesses &mdash; we build websites and stores that fit how each of them actually sells.</p>
   </div>
-  <div class="svcp-incl" data-reveal data-reveal-delay="120" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div class="svcp-incl" data-reveal data-reveal-delay="120">
     <ul>
       <li>Hosiery, textiles &amp; garments</li>
       <li>Cycle &amp; auto parts manufacturers</li>
@@ -550,11 +442,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ FAQ ============ -->
 <section class="svcp-section" aria-labelledby="svcp-faq-h" style="padding-top:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(07)</b> FAQs</span>
     <h2 class="svcp-h2" id="svcp-faq-h" style="margin-bottom:clamp(28px,4vh,44px)">Web development in Ludhiana, answered.</h2>
   </div>
-  <div data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal data-reveal-delay="60">
     <details class="wx-faq">
       <summary>How much does a website cost in Ludhiana?<span class="wx-faq-ico" aria-hidden="true"></span></summary>
       <div class="wx-faq-body">It depends on how many pages you need, how custom the design is, and whether you need ecommerce or a web app on top. After a short scoping call we send a fixed, itemised quote covering the whole build &mdash; so you know the number before any work begins.</div>
@@ -592,11 +484,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ RELATED ============ -->
 <section class="svcp-section" aria-labelledby="svcp-rel-h" style="padding-top:0">
-  <div data-reveal style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div data-reveal>
     <span class="svcp-eyebrow"><b>(08)</b> Explore more</span>
     <h2 class="svcp-h2" id="svcp-rel-h">Read up before you brief us.</h2>
   </div>
-  <div class="svcp-rel" data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease">
+  <div class="svcp-rel" data-reveal data-reveal-delay="60">
     <a data-transition href="services">
       <span class="svcp-rel-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9D5CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
       <span>All services</span>
@@ -623,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ FINAL CTA ============ -->
 <a data-transition href="contact" class="svcp-final">
   <div class="svcp-final-k">Ready when you are</div>
-  <h2 data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Let's talk <span>&rarr;</span></h2>
+  <h2 data-reveal>Let's talk <span>&rarr;</span></h2>
 </a>
 </article>
 </main>

@@ -1,15 +1,37 @@
 /* ============================================================
-   Web{X} — Figma-to-X service page design system
-   Shared by figma-to-webflow / wordpress / shopify / framer / unbounce.
+   Web{X} — SEO / service landing page design system
+   Shared by figma-to-webflow / wordpress / shopify / framer /
+   unbounce, landing-page-design and web-development-agency-ludhiana.
+
    Per-page accent is driven by --svc / --svc-soft / --svc-ghost set
    inline on <body> (falls back to the studio purple).
+
+   LIGHT-NATIVE. This file used to be a dark design system, and every
+   page that used it carried an identical 94-line <style> block re-toning
+   all forty-odd .svcp-* tokens back to a white ground — five verbatim
+   copies plus two near-copies. Any token a page forgot rendered as
+   near-white text on white. The tokens now start where the site
+   actually is, and those per-page blocks are gone.
    ============================================================ */
 
 :root{
-  --svc:#9D5CFF;                 /* platform accent            */
-  --svc-soft:rgba(157,92,255,.16);
-  --svc-ghost:rgba(157,92,255,.06);
-  --svc-line:rgba(157,92,255,.28);
+  --svc:#9D5CFF;                      /* platform accent               */
+  --svc-soft:rgba(157,92,255,.14);
+  --svc-ghost:rgba(157,92,255,.07);
+  --svc-line:rgba(124,58,237,.30);
+  --svc-deep:#7C3AED;                 /* accent that holds on white    */
+
+  /* Light-ground surface tokens. One place to retune the whole system. */
+  --svc-ink:#1A1A1A;                  /* headings                      */
+  --svc-body:#43434D;                 /* body copy                     */
+  --svc-mute:#6B6B75;                 /* meta, captions                */
+  --svc-soft-ink:#555560;             /* card copy                     */
+  --svc-hair:rgba(0,0,0,.09);         /* card + section borders        */
+  --svc-hair-strong:rgba(0,0,0,.12);
+  --svc-card:#FFFFFF;
+  --svc-well:#F5F4F9;                 /* inset chrome (window bars)    */
+  --svc-shadow:0 14px 34px -22px rgba(40,16,90,.28);
+  --svc-shadow-lift:0 26px 56px -32px rgba(124,58,237,.38);
 }
 
 .svcp{position:relative;z-index:1}
@@ -22,148 +44,198 @@
 .svcp-bg .b2{top:34%;right:-16%;width:52vw;height:52vw;max-width:720px;max-height:720px;
   background:radial-gradient(circle,var(--svc-soft),transparent 70%);opacity:.5}
 
-/* ---- shared section shell ---- */
-.svcp-section{max-width:1340px;margin:0 auto;padding:clamp(56px,9vh,120px) 20px}
+/* ---- shared section shell ----
+   Matches the .svcx-section rhythm on services.html so an SEO page and the
+   services hub scroll at the same cadence. */
+.svcp-section{max-width:1340px;margin:0 auto;padding:clamp(72px,11vh,120px) 20px}
 .svcp-eyebrow{display:inline-flex;align-items:center;gap:11px;padding:7px 15px 7px 13px;
   border:1px solid var(--svc-line);border-radius:100px;background:var(--svc-ghost);
-  font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#C9C9D2}
+  font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--svc-body)}
 .svcp-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--svc);
   box-shadow:0 0 0 4px var(--svc-soft)}
-.svcp-eyebrow b{color:var(--svc);font-family:'JetBrains Mono',monospace;font-weight:500}
-.svcp-h2{font-size:clamp(30px,4.4vw,54px);font-weight:600;letter-spacing:-.04em;line-height:1.06;
-  color:#F4F2FA;margin:22px 0 0}
-.svcp-h2 .svcp-hl{color:var(--svc)}
+.svcp-eyebrow b{color:var(--svc-deep);font-family:'JetBrains Mono',monospace;font-weight:500}
+.svcp-h2{font-family:'Manrope',sans-serif;font-size:clamp(30px,4.4vw,54px);font-weight:700;
+  letter-spacing:-.04em;line-height:1.06;color:var(--svc-ink);margin:22px 0 0;text-wrap:balance}
+/* .svcp-hl is the accent word. On white a flat purple goes muddy at display
+   sizes, so it takes the same gradient the hero headline and CTA use. */
+.svcp-h2 .svcp-hl{
+  background:linear-gradient(160deg,#9bb0ff 0%,#9D5CFF 42%,#c061ff 72%,#b06bff 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
 .svcp-lead{font-family:'Satoshi',sans-serif;font-size:clamp(16px,1.25vw,19px);line-height:1.65;
-  color:#9A9AA2;max-width:640px;margin:20px 0 0}
+  color:var(--svc-body);max-width:640px;margin:20px 0 0}
 
-/* ============ HERO ============ */
-.svcp-hero{position:relative;max-width:1320px;margin:0 auto;
-  padding:clamp(128px,19vh,210px) 20px clamp(40px,6vh,72px);
+/* ============ HERO ============
+   Two-up: copy left, the Figma-to-platform conversion visual right. The
+   visual is the page's strongest selling asset, so it stays — but the shell
+   now speaks the same language as .wx-hero: paper ground, one purple bloom,
+   a fade into the section below, and the shared Manrope display scale. */
+.svcp-hero{position:relative;overflow:hidden;
+  background:#FFFFFF url('../../images/hero-bg.png') center top / cover no-repeat;
+  padding:clamp(128px,19vh,210px) 20px clamp(72px,11vh,120px)}
+.svcp-hero::before{content:"";position:absolute;left:50%;top:34%;width:min(1100px,130vw);
+  aspect-ratio:1.4;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(157,92,255,.16) 0%,
+             rgba(157,92,255,.06) 42%,rgba(157,92,255,0) 72%)}
+/* overflow:hidden cuts the texture dead at the bottom edge; fade it out. */
+.svcp-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:clamp(90px,13vh,170px);pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#FFFFFF 100%)}
+.svcp-hero-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;
   display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,72px);align-items:center}
+
 .svcp-hero-crumb{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.08em;
-  text-transform:uppercase;color:#7A7A82;margin-bottom:26px}
-.svcp-hero-crumb a{color:#9A9AA2;text-decoration:none}
-.svcp-hero h1{font-size:clamp(38px,5.4vw,74px);font-weight:700;letter-spacing:-.045em;line-height:1.0;
-  margin:0;color:#F6F5FB}
-.svcp-hero h1 .svcp-hl{color:var(--svc)}
+  text-transform:uppercase;color:var(--svc-mute);margin-bottom:26px}
+.svcp-hero-crumb a{color:var(--svc-mute);text-decoration:none}
+.svcp-hero-crumb a:hover{color:var(--svc-ink)}
+/* --svc-deep, not --svc. This span is the current-page label and is the one
+   place in the system where the accent has to carry real 12px text: #9D5CFF on
+   white is 3.9:1 and fails AA, while #7C3AED clears it at 5.7:1. Every other
+   --svc use is decorative (eyebrow dot, flow arrow, badge bullet) or sits
+   inside the aria-hidden hero visual. */
+.svcp-hero-crumb span{color:var(--svc-deep)}
+
+.svcp-hero h1,.svcp-h1{font-family:'Manrope',sans-serif;font-size:clamp(38px,5.4vw,74px);
+  font-weight:700;letter-spacing:-.045em;line-height:1.0;margin:0;color:var(--svc-ink);
+  text-wrap:balance}
+/* Both spellings appear across the pages — .svcp-hl on a <span>, <em> on the
+   landing page. Paint them identically. */
+.svcp-hero h1 .svcp-hl,.svcp-hero h1 em,.svcp-h1 .svcp-hl,.svcp-h1 em{
+  font-style:normal;
+  background:linear-gradient(160deg,#9bb0ff 0%,#9D5CFF 42%,#c061ff 72%,#b06bff 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
 .svcp-hero-lead{font-family:'Satoshi',sans-serif;font-size:clamp(16px,1.35vw,20px);line-height:1.6;
-  color:#A6A6AE;max-width:560px;margin:26px 0 0}
+  color:var(--svc-body);max-width:560px;margin:26px 0 0}
 
 /* logo flow pill (Figma -> Platform) */
 .svcp-flow{display:inline-flex;align-items:center;gap:12px;padding:9px 16px;border-radius:100px;
-  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);margin-bottom:28px;
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  border:1px solid var(--svc-hair-strong);background:var(--svc-card);margin-bottom:28px;
+  box-shadow:var(--svc-shadow)}
 .svcp-flow img{width:24px;height:24px;object-fit:contain;display:block}
 .svcp-flow-node{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
-  font-size:13px;color:#C9C9D2}
+  font-size:13px;color:var(--svc-body)}
 .svcp-flow-arrow{width:16px;height:16px;color:var(--svc);flex:0 0 auto}
 
 .svcp-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:38px}
 .svcp-btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:100px;
-  border:1px solid rgba(255,255,255,.16);color:#EDEDED;text-decoration:none;font-weight:600;font-size:15px;
+  border:1px solid rgba(0,0,0,.14);background:var(--svc-card);color:var(--svc-ink);text-decoration:none;
+  font-family:'Satoshi',sans-serif;font-weight:600;font-size:15px;
   transition:border-color .35s,background .35s,transform .35s}
 .svcp-btn-ghost:hover{border-color:var(--svc-line);background:var(--svc-ghost);transform:translateY(-2px)}
 
 .svcp-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
-.svcp-badge{font-family:'Satoshi',sans-serif;font-size:12.5px;color:#C9C9D2;
-  border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:8px 15px;background:rgba(255,255,255,.02)}
+.svcp-badge{font-family:'Satoshi',sans-serif;font-size:12.5px;color:var(--svc-body);
+  border:1px solid var(--svc-hair);border-radius:100px;padding:8px 15px;background:var(--svc-card)}
 .svcp-badge::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
   background:var(--svc);margin-right:9px;vertical-align:middle}
 
-/* hero conversion visual: Figma frame morphs into a platform browser window */
+/* hero conversion visual: a Figma frame morphs into a platform browser window */
 .svcp-visual{position:relative;aspect-ratio:5/4.4;perspective:1400px}
-.svcp-visual::before{content:"";position:absolute;inset:-8% -6%;
-  background:radial-gradient(60% 55% at 62% 42%,var(--svc-soft),transparent 70%);filter:blur(20px);z-index:-1}
+.svcp-visual::before{content:"";position:absolute;inset:-8% -6%;z-index:-1;
+  background:radial-gradient(60% 55% at 62% 42%,var(--svc-soft),transparent 70%);filter:blur(20px)}
 .svcp-frame{position:absolute;border-radius:16px;overflow:hidden;
-  box-shadow:0 40px 90px -40px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.07)}
+  box-shadow:0 30px 70px -34px rgba(40,16,90,.35),0 0 0 1px rgba(0,0,0,.08)}
 .svcp-frame img{width:100%;height:100%;object-fit:cover;display:block}
 .svcp-frame--fig{top:2%;left:0;width:56%;aspect-ratio:4/5;transform:rotate(-5deg);z-index:1;
-  border:1px solid rgba(255,255,255,.1)}
-.svcp-frame--out{bottom:0;right:0;width:74%;z-index:2;background:#0E0E12;transform:rotate(1.5deg);
-  border:1px solid rgba(255,255,255,.1)}
-.svcp-win-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#141419;
-  border-bottom:1px solid rgba(255,255,255,.07)}
-.svcp-win-bar i{width:10px;height:10px;border-radius:50%;background:#33333c;display:block}
-.svcp-win-url{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6f6f78;
+  border:1px solid var(--svc-hair)}
+.svcp-frame--out{bottom:0;right:0;width:74%;z-index:2;background:var(--svc-card);transform:rotate(1.5deg);
+  border:1px solid var(--svc-hair)}
+.svcp-win-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:var(--svc-well);
+  border-bottom:1px solid var(--svc-hair)}
+.svcp-win-bar i{width:10px;height:10px;border-radius:50%;background:#D6D3DE;display:block}
+.svcp-win-url{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--svc-mute);
   overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .svcp-frame--out .svcp-win-shot{aspect-ratio:16/10;overflow:hidden}
 .svcp-frame--out .svcp-win-shot img{width:100%;height:100%;object-fit:cover}
 .svcp-tag-fig,.svcp-tag-out{position:absolute;z-index:3;font-family:'JetBrains Mono',monospace;font-size:11px;
   padding:5px 11px;border-radius:100px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.svcp-tag-fig{top:6%;left:2%;color:#EDEDED;background:rgba(10,8,16,.55);border:1px solid rgba(255,255,255,.16)}
+.svcp-tag-fig{top:6%;left:2%;color:var(--svc-ink);background:rgba(255,255,255,.86);
+  border:1px solid var(--svc-hair-strong)}
 .svcp-tag-out{bottom:4%;right:4%;color:#fff;background:var(--svc);box-shadow:0 10px 24px -10px var(--svc)}
 
-/* ============ STATS STRIP ============ */
+/* ============ STATS STRIP ============
+   The 1px cell gaps are painted by the wrapper's background showing through. */
 .svcp-stats{max-width:1340px;margin:0 auto;padding:0 20px}
 .svcp-stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  border:1px solid rgba(255,255,255,.09);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.06)}
-.svcp-stat{background:#0B0B0F;padding:clamp(22px,3vw,32px) clamp(18px,2.4vw,28px)}
-.svcp-stat b{display:block;font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.03em;color:#F4F2FA}
-.svcp-stat b span{color:var(--svc)}
-.svcp-stat p{font-family:'Satoshi',sans-serif;font-size:13px;color:#8A8A92;margin:8px 0 0;line-height:1.45}
+  border:1px solid var(--svc-hair-strong);border-radius:20px;overflow:hidden;
+  background:var(--svc-hair-strong);box-shadow:var(--svc-shadow)}
+.svcp-stat{background:var(--svc-card);padding:clamp(22px,3vw,32px) clamp(18px,2.4vw,28px)}
+.svcp-stat b{display:block;font-family:'Manrope',sans-serif;font-size:clamp(26px,3vw,38px);
+  font-weight:700;letter-spacing:-.03em;color:var(--svc-ink)}
+.svcp-stat b span{color:var(--svc-deep)}
+.svcp-stat p{font-family:'Satoshi',sans-serif;font-size:13px;color:var(--svc-mute);margin:8px 0 0;
+  line-height:1.45}
 
 /* ============ FEATURE BENTO ============ */
 .svcp-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.4vw,20px);
   margin-top:clamp(36px,5vh,56px)}
-.svcp-feature{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.09);border-radius:20px;
-  padding:clamp(24px,2.4vw,32px);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.008));
+.svcp-feature{position:relative;overflow:hidden;border:1px solid var(--svc-hair);border-radius:20px;
+  padding:clamp(24px,2.4vw,32px);background:var(--svc-card);box-shadow:var(--svc-shadow);
   transition:border-color .4s ease,transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease}
 .svcp-feature:hover{transform:translateY(-6px);border-color:var(--svc-line);
-  box-shadow:0 30px 70px -40px var(--svc)}
+  box-shadow:var(--svc-shadow-lift)}
 .svcp-feature::before{content:"";position:absolute;top:-40%;right:-30%;width:60%;height:80%;border-radius:50%;
   background:radial-gradient(circle,var(--svc-soft),transparent 65%);opacity:0;transition:opacity .5s ease}
 .svcp-feature:hover::before{opacity:1}
 .svcp-fic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;margin-bottom:20px;
-  border:1px solid var(--svc-line);background:var(--svc-ghost);color:var(--svc)}
+  border:1px solid var(--svc-line);background:var(--svc-ghost);color:var(--svc-deep)}
 .svcp-fic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
-.svcp-feature h3{font-size:clamp(18px,1.5vw,21px);font-weight:600;letter-spacing:-.02em;color:#F4F2FA;margin:0 0 10px}
-.svcp-feature p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;color:#9A9AA2;margin:0}
+.svcp-feature h3{font-family:'Manrope',sans-serif;font-size:clamp(18px,1.5vw,21px);font-weight:700;
+  letter-spacing:-.02em;color:var(--svc-ink);margin:0 0 10px}
+.svcp-feature p{font-family:'Satoshi',sans-serif;font-size:14.5px;line-height:1.6;
+  color:var(--svc-soft-ink);margin:0}
 .svcp-fnum{position:absolute;top:24px;right:26px;font-family:'JetBrains Mono',monospace;font-size:12px;
-  color:#4a4a52}
+  color:var(--svc-mute)}
 
 /* ============ PROCESS TIMELINE ============ */
 .svcp-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,1.4vw,22px);
   margin-top:clamp(40px,6vh,64px);counter-reset:step}
 .svcp-step{position:relative;padding-top:34px;counter-increment:step}
 .svcp-step::before{content:"";position:absolute;top:15px;left:0;right:-11px;height:1px;
-  background:rgba(255,255,255,.12)}
+  background:var(--svc-hair-strong)}
 .svcp-step:last-child::before{right:0}
 .svcp-step::after{content:"";position:absolute;top:10px;left:0;width:11px;height:11px;border-radius:50%;
   background:var(--svc);box-shadow:0 0 0 5px var(--svc-soft)}
-.svcp-step-n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--svc);letter-spacing:.05em}
-.svcp-step h3{font-size:17px;font-weight:600;letter-spacing:-.02em;color:#F4F2FA;margin:12px 0 8px}
-.svcp-step p{font-family:'Satoshi',sans-serif;font-size:13.5px;line-height:1.55;color:#8f8f98;margin:0}
+.svcp-step-n{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--svc-deep);letter-spacing:.05em}
+.svcp-step h3{font-family:'Manrope',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.02em;
+  color:var(--svc-ink);margin:12px 0 8px}
+.svcp-step p{font-family:'Satoshi',sans-serif;font-size:13.5px;line-height:1.55;
+  color:var(--svc-soft-ink);margin:0}
 
 /* ============ SPLIT / WHY ============ */
 .svcp-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
 .svcp-quote{border-left:2px solid var(--svc);padding-left:clamp(20px,2.4vw,30px);
-  font-size:clamp(20px,2.3vw,28px);line-height:1.4;font-weight:500;color:#EDEDED;letter-spacing:-.02em;
-  margin:26px 0 0}
-.svcp-vs{border:1px solid rgba(255,255,255,.09);border-radius:22px;overflow:hidden;
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))}
+  font-family:'Manrope',sans-serif;font-size:clamp(20px,2.3vw,28px);line-height:1.4;font-weight:600;
+  color:var(--svc-ink);letter-spacing:-.02em;margin:26px 0 0}
+.svcp-vs{border:1px solid var(--svc-hair);border-radius:22px;overflow:hidden;
+  background:var(--svc-card);box-shadow:var(--svc-shadow)}
 .svcp-vs-row{display:grid;grid-template-columns:1fr 1fr}
 .svcp-vs-col{padding:clamp(22px,2.6vw,30px)}
-.svcp-vs-col+.svcp-vs-col{border-left:1px solid rgba(255,255,255,.08)}
+.svcp-vs-col+.svcp-vs-col{border-left:1px solid var(--svc-hair)}
 .svcp-vs-h{font-family:'Satoshi',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   margin:0 0 16px;display:flex;align-items:center;gap:8px}
-.svcp-vs-bad .svcp-vs-h{color:#6f6f78}
-.svcp-vs-good .svcp-vs-h{color:var(--svc)}
+.svcp-vs-bad .svcp-vs-h{color:var(--svc-mute)}
+.svcp-vs-good .svcp-vs-h{color:var(--svc-deep)}
 .svcp-vs ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.svcp-vs li{font-family:'Satoshi',sans-serif;font-size:14px;line-height:1.5;color:#B5B5C0;
+.svcp-vs li{font-family:'Satoshi',sans-serif;font-size:14px;line-height:1.5;color:var(--svc-soft-ink);
   padding-left:26px;position:relative}
-.svcp-vs-bad li::before{content:"✕";position:absolute;left:0;top:0;color:#5c5c64;font-size:13px}
+.svcp-vs-bad li::before{content:"✕";position:absolute;left:0;top:0;color:var(--svc-mute);font-size:13px}
 .svcp-vs-good li::before{content:"";position:absolute;left:2px;top:5px;width:13px;height:8px;
   border-left:2px solid var(--svc);border-bottom:2px solid var(--svc);transform:rotate(-45deg)}
 
 /* ============ INCLUDED CHECKLIST ============ */
-.svcp-incl{border:1px solid rgba(255,255,255,.09);border-radius:24px;
-  padding:clamp(30px,4vw,52px);background:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,0));
+.svcp-incl{border:1px solid var(--svc-hair);border-radius:24px;
+  padding:clamp(30px,4vw,52px);background:var(--svc-card);box-shadow:var(--svc-shadow);
   margin-top:clamp(32px,5vh,48px)}
 .svcp-incl ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);
   gap:16px 40px}
 .svcp-incl li{position:relative;padding-left:34px;font-family:'Satoshi',sans-serif;font-size:15.5px;
-  line-height:1.5;color:#D2D2DA}
+  line-height:1.5;color:var(--svc-body)}
 .svcp-incl li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;
   background:var(--svc-ghost);border:1px solid var(--svc-line)}
 .svcp-incl li::after{content:"";position:absolute;left:6px;top:6px;width:8px;height:5px;
@@ -172,61 +244,74 @@
 /* ============ PRICING ============ */
 .svcp-price{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,1.6vw,22px);
   margin-top:clamp(36px,5vh,56px)}
-.svcp-price-card{position:relative;border:1px solid rgba(255,255,255,.1);border-radius:24px;
-  padding:clamp(28px,3vw,40px);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0));
-  transition:border-color .4s,transform .5s cubic-bezier(.16,1,.3,1)}
-.svcp-price-card:hover{transform:translateY(-5px);border-color:var(--svc-line)}
+.svcp-price-card{position:relative;border:1px solid var(--svc-hair-strong);border-radius:24px;
+  padding:clamp(28px,3vw,40px);background:var(--svc-card);box-shadow:var(--svc-shadow);
+  transition:border-color .4s,transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease}
+.svcp-price-card:hover{transform:translateY(-5px);border-color:var(--svc-line);
+  box-shadow:var(--svc-shadow-lift)}
 .svcp-price-card--feat{border-color:var(--svc-line);
-  background:linear-gradient(160deg,var(--svc-ghost),rgba(255,255,255,0) 60%)}
+  background:linear-gradient(160deg,#F6F2FF,#FFFFFF 62%)}
 .svcp-price-tag{position:absolute;top:22px;right:24px;font-family:'Satoshi',sans-serif;font-size:11px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--svc);border:1px solid var(--svc-line);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--svc-deep);border:1px solid var(--svc-line);
   border-radius:100px;padding:5px 12px}
-.svcp-price-card h3{font-size:19px;font-weight:600;letter-spacing:-.02em;color:#F4F2FA;margin:0 0 6px}
-.svcp-price-sub{font-family:'Satoshi',sans-serif;font-size:13.5px;color:#8A8A92;margin:0 0 22px}
-.svcp-price-amt{font-size:clamp(30px,3.4vw,42px);font-weight:700;letter-spacing:-.03em;color:#F4F2FA;line-height:1}
-.svcp-price-amt span{font-size:15px;font-weight:500;color:#8A8A92;letter-spacing:0}
-.svcp-price-inr{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--svc);margin:10px 0 0}
+.svcp-price-card h3{font-family:'Manrope',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;
+  color:var(--svc-ink);margin:0 0 6px}
+.svcp-price-sub{font-family:'Satoshi',sans-serif;font-size:13.5px;color:var(--svc-mute);margin:0 0 22px}
+.svcp-price-amt{font-family:'Manrope',sans-serif;font-size:clamp(30px,3.4vw,42px);font-weight:700;
+  letter-spacing:-.03em;color:var(--svc-ink);line-height:1}
+.svcp-price-amt span{font-size:15px;font-weight:500;color:var(--svc-mute);letter-spacing:0}
+.svcp-price-inr{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--svc-deep);margin:10px 0 0}
 .svcp-price-card ul{list-style:none;margin:24px 0 0;padding:24px 0 0;
-  border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:12px}
+  border-top:1px solid var(--svc-hair);display:flex;flex-direction:column;gap:12px}
 .svcp-price-card li{position:relative;padding-left:26px;font-family:'Satoshi',sans-serif;font-size:14px;
-  line-height:1.5;color:#B5B5C0}
+  line-height:1.5;color:var(--svc-soft-ink)}
 .svcp-price-card li::before{content:"";position:absolute;left:2px;top:5px;width:12px;height:7px;
   border-left:2px solid var(--svc);border-bottom:2px solid var(--svc);transform:rotate(-45deg)}
 .svcp-price-note{max-width:1340px;margin:22px auto 0;padding:0 20px;
-  font-family:'Satoshi',sans-serif;font-size:14px;color:#7A7A82;line-height:1.6}
+  font-family:'Satoshi',sans-serif;font-size:14px;color:var(--svc-mute);line-height:1.6}
+/* Prose links in the price note. These used to carry an inline
+   color:var(--svc), which is #9D5CFF — 3.9:1 on white, failing AA for body
+   text, and doubly bad because text-decoration:none left colour as the only
+   thing marking them as links. --svc-deep clears it at 5.7:1. Underlined on
+   hover/focus so the affordance is not colour alone. */
+.svcp-price-note a{color:var(--svc-deep);text-decoration:none}
+.svcp-price-note a:hover,.svcp-price-note a:focus-visible{text-decoration:underline}
 
 /* ============ RELATED PLATFORMS ============ */
 .svcp-rel{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.2vw,18px);
   margin-top:clamp(32px,5vh,48px)}
 .svcp-rel a{display:flex;flex-direction:column;gap:14px;padding:22px 22px 20px;text-decoration:none;
-  border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.02);
-  transition:border-color .35s,transform .4s cubic-bezier(.16,1,.3,1),background .35s}
-.svcp-rel a:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.35);background:rgba(255,255,255,.035)}
+  border:1px solid var(--svc-hair);border-radius:18px;background:var(--svc-card);
+  box-shadow:var(--svc-shadow);
+  transition:border-color .35s,transform .4s cubic-bezier(.16,1,.3,1),background .35s,box-shadow .5s ease}
+.svcp-rel a:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.35);background:#FAF8FF;
+  box-shadow:var(--svc-shadow-lift)}
 .svcp-rel-logo{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04)}
+  border:1px solid var(--svc-hair);background:var(--svc-well)}
 .svcp-rel-logo img{width:56%;height:56%;object-fit:contain}
-.svcp-rel span{font-size:15px;font-weight:600;letter-spacing:-.01em;color:#EDEDED}
-.svcp-rel small{font-family:'Satoshi',sans-serif;font-size:12.5px;color:#8A8A92;display:flex;
+.svcp-rel span{font-family:'Manrope',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.01em;
+  color:var(--svc-ink)}
+.svcp-rel small{font-family:'Satoshi',sans-serif;font-size:12.5px;color:var(--svc-mute);display:flex;
   align-items:center;justify-content:space-between}
-.svcp-rel small b{color:#9D5CFF;font-weight:500;transition:transform .35s}
+.svcp-rel small b{color:var(--svc-deep);font-weight:500;transition:transform .35s}
 .svcp-rel a:hover small b{transform:translateX(4px)}
 
 /* ============ FINAL CTA ============ */
 .svcp-final{position:relative;overflow:hidden;display:block;text-decoration:none;color:inherit;
-  border-top:1px solid rgba(255,255,255,.1);text-align:center;
+  border-top:1px solid var(--svc-hair-strong);text-align:center;
   padding:clamp(70px,12vh,150px) 20px}
 .svcp-final::before{content:"";position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);
   width:min(90vw,900px);height:60%;background:radial-gradient(ellipse at center,var(--svc-soft),transparent 70%);
   filter:blur(50px);pointer-events:none}
 .svcp-final-k{position:relative;font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.14em;
-  text-transform:uppercase;color:#9A9AA2;margin-bottom:24px}
-.svcp-final h2{position:relative;font-size:clamp(40px,9vw,140px);font-weight:700;letter-spacing:-.04em;
-  line-height:.9;color:#F6F5FB}
+  text-transform:uppercase;color:var(--svc-mute);margin-bottom:24px}
+.svcp-final h2{position:relative;font-family:'Manrope',sans-serif;font-size:clamp(40px,9vw,140px);
+  font-weight:700;letter-spacing:-.04em;line-height:.9;color:var(--svc-ink)}
 .svcp-final h2 span{color:var(--svc)}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1000px){
-  .svcp-hero{grid-template-columns:1fr;gap:clamp(40px,7vw,64px)}
+  .svcp-hero-inner{grid-template-columns:1fr;gap:clamp(40px,7vw,64px)}
   .svcp-visual{max-width:520px;margin:0 auto;width:100%}
   .svcp-split{grid-template-columns:1fr;gap:36px}
   .svcp-bento{grid-template-columns:repeat(2,1fr)}
@@ -239,7 +324,7 @@
   .svcp-price{grid-template-columns:1fr}
   .svcp-incl ul{grid-template-columns:1fr}
   .svcp-vs-row{grid-template-columns:1fr}
-  .svcp-vs-col+.svcp-vs-col{border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .svcp-vs-col+.svcp-vs-col{border-left:0;border-top:1px solid var(--svc-hair)}
 }
 @media (max-width:520px){
   .svcp-bento{grid-template-columns:1fr}
@@ -252,3 +337,35 @@
   .svcp-feature,.svcp-price-card,.svcp-rel a,.svcp-btn-ghost{transition:none}
   .svcp-feature:hover,.svcp-price-card:hover,.svcp-rel a:hover{transform:none}
 }
+
+/* ============ REVEAL START STATE ============
+   webx.css has no base [data-reveal]{opacity:0} rule, so these pages used to
+   repeat `style="opacity:0;transform:translateY(18px);transition:..."` on every
+   single revealed element — a few hundred inline declarations per page saying
+   the same thing. Scoping the start state to the .svcp subtree does it once.
+
+   Gated on html.js (set synchronously in <head> before first paint) so with JS
+   off the content is visible rather than stuck at opacity 0. The reduced-motion
+   override in webx.css uses !important and still wins. */
+html.js .svcp [data-reveal]{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1);
+}
+
+/* ...except the hero, which is above the fold on load.
+   There is no scroll event to wait for up there, and tying the page's headline
+   to the observer means a JS error anywhere earlier in boot leaves the hero
+   blank. A CSS load animation runs on its own and cannot get stuck. It reuses
+   the wx-hero-in keyframes defined in webx.css, which every page also loads.
+   The observer setting opacity:1 on these later is a harmless no-op. */
+html.js .svcp-hero [data-reveal]{
+  transition:none;
+  animation:wx-hero-in .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+html.js .svcp-hero [data-reveal-delay="40"] {animation-delay:.04s}
+html.js .svcp-hero [data-reveal-delay="80"] {animation-delay:.08s}
+html.js .svcp-hero [data-reveal-delay="140"]{animation-delay:.14s}
+html.js .svcp-hero [data-reveal-delay="160"]{animation-delay:.16s}
+html.js .svcp-hero [data-reveal-delay="200"]{animation-delay:.20s}
+html.js .svcp-hero [data-reveal-delay="260"]{animation-delay:.26s}
