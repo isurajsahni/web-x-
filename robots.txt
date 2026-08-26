@@ -9,6 +9,10 @@ Allow: /
 Disallow: /uploads/
 Disallow: /screens/
 Disallow: /*.dc.html$
+# A stale duplicate of the entire site sits under this folder. Listed in both
+# spellings because the braces may reach a crawler raw or percent-encoded.
+Disallow: /images/work/Web%7BX%7D/
+Disallow: /images/work/Web{X}/
 
 # ----- AI / LLM / answer-engine crawlers — explicitly welcomed -----
 # Grouped so every one of them gets the same access as the default rules.
@@ -38,10 +42,12 @@ Allow: /
 Disallow: /uploads/
 Disallow: /screens/
 Disallow: /*.dc.html$
+# A stale duplicate of the entire site sits under this folder. Listed in both
+# spellings because the braces may reach a crawler raw or percent-encoded.
+Disallow: /images/work/Web%7BX%7D/
+Disallow: /images/work/Web{X}/
 
 # Structured map for AI models (see the llms.txt convention)
 # https://www.thewebxstudio.com/llms.txt
 
 Sitemap: https://www.thewebxstudio.com/sitemap.xml
-
-Disallow: /images/work/Web%7BX%7D/
