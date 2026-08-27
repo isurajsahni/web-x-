@@ -70,7 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/webx.css?v=2.3">
+<link rel="stylesheet" href="assets/css/webx.css?v=2.4">
 <script src="assets/js/webx.js" defer></script>
 
 <script type="application/ld+json">
@@ -186,7 +186,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- ============ SECTION RHYTHM — one knob for every band ============ -->
-<style>:root { --wx-sec-y: 120px; }</style>
+<style>
+  :root { --wx-sec-y: 120px; }
+  /* Same knob, turned down on phones: see the mobile section rhythm
+     block at the end of webx.css. */
+  @media (max-width: 820px) { :root { --wx-sec-y: 60px; } }
+</style>
 
 <main id="main">
 <!-- ============ HERO ============ -->

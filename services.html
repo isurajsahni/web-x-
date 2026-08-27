@@ -115,6 +115,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Page ground. webx.css still paints <body> black for the site at large,
      so a light page has to claim it back until every page has moved over. */
   :root{ --wx-sec-y: 120px; }
+  /* Turned down on phones: see the mobile section rhythm block at the
+     end of webx.css. */
+  @media (max-width: 820px){ :root{ --wx-sec-y: 60px; } }
   body{background:#FFFFFF;color:#1A1A1A}
 
   /* ============================================================

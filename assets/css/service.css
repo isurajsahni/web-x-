@@ -369,3 +369,16 @@ html.js .svcp-hero [data-reveal-delay="140"]{animation-delay:.14s}
 html.js .svcp-hero [data-reveal-delay="160"]{animation-delay:.16s}
 html.js .svcp-hero [data-reveal-delay="200"]{animation-delay:.20s}
 html.js .svcp-hero [data-reveal-delay="260"]{animation-delay:.26s}
+
+/* ============================================================
+   Mobile section rhythm
+   ------------------------------------------------------------
+   The same 60px flattening as the block at the end of webx.css,
+   for the two components that carry vertical padding here. Same
+   breakpoint, and --wx-nav-h is declared there — the fallback
+   keeps this honest if these pages ever ship without webx.css.
+   ============================================================ */
+@media (max-width:820px){
+  .svcp-section{padding-top:60px;padding-bottom:60px}
+  .svcp-hero{padding-top:calc(var(--wx-nav-h, 63px) + 60px);padding-bottom:60px}
+}

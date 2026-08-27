@@ -993,3 +993,72 @@ html.js .wx-hero [data-reveal-delay="80"] {animation-delay:.08s}
 html.js .wx-hero [data-reveal-delay="140"]{animation-delay:.14s}
 html.js .wx-hero [data-reveal-delay="200"]{animation-delay:.20s}
 html.js .wx-hero [data-reveal-delay="260"]{animation-delay:.26s}
+
+/* ============================================================
+   Mobile section rhythm — a flat 60px above and below
+   ------------------------------------------------------------
+   Section padding across the site is written as
+   clamp(min, Xvh, max). The middle term is viewport *height*, so
+   a phone lands on very nearly the same number as a laptop — 12vh
+   of an 812px screen is 97px — while having a third of the width
+   to fill. Stacked down the page, that reads as a narrow column
+   of content adrift in white space.
+
+   At and below the width where the header stops floating and
+   becomes an edge-to-edge bar (820px, set in nav.js), every
+   section's vertical padding collapses to a flat 60px.
+
+   Four systems own that padding and each needs its own hook:
+     --wx-sec-y ....... home and services, declared per page
+     .wx-hero ......... the shared sub-page opening, below
+     .svcp-* .......... the service pages, in service.css
+     inline style="" .. blog articles and case studies
+
+   The inline ones can only be reached with !important, and only
+   by matching the exact clamp they were written with — change one
+   of those strings in the markup and its rule here stops biting.
+   They are listed one by one rather than matched loosely on
+   purpose: sections that open flush (padding:0 …) or already sit
+   under 60px are left exactly as they are, so nothing *gains*
+   space from a fix meant to take it away.
+   ============================================================ */
+@media (max-width: 820px){
+  /* The bar is 63px tall in that mode. A page-opening section
+     clears it and then adds the same 60px, so the space you see
+     under the header matches the space between every section. */
+  :root{ --wx-nav-h: 63px; }
+
+  /* Shared sub-page opening: work, studio, blog, careers. */
+  .wx-hero{
+    padding-top: calc(var(--wx-nav-h) + 60px);
+    padding-bottom: 60px;
+  }
+
+  /* Content sections on blog articles and case studies. */
+  main section[style*="padding:clamp(70px,12vh,150px)"],
+  main section[style*="padding:clamp(70px,12vh,140px)"],
+  main section[style*="padding:clamp(80px,14vh,160px)"],
+  main section[style*="padding:clamp(80px,14vh,180px)"],
+  main section[style*="padding:clamp(60px,10vh,120px)"],
+  main section[style*="padding:clamp(70px,11vh,130px)"],
+  main section[style*="padding:clamp(50px,8vh,100px)"]{
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* These open tight against the block above them and only pad
+     below. Every one of their tops already computes under 60px, so
+     only the bottom comes in. */
+  main section[style*="padding:clamp(20px,4vh,40px)"],
+  main section[style*="padding:clamp(20px,4vh,50px)"],
+  main section[style*="padding:clamp(30px,5vh,60px)"]{
+    padding-bottom: 60px !important;
+  }
+
+  /* The article / case-study opening, sitting under the header.
+     Its bottom stays as written — the lead paragraph is meant to
+     sit close to the headline above it. */
+  main section[style*="padding:clamp(130px,20vh,220px)"]{
+    padding-top: calc(var(--wx-nav-h) + 60px) !important;
+  }
+}
