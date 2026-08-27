@@ -42,8 +42,8 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Landing Page Design & CRO](https://www.thewebxstudio.com/landing-page-design): High-converting landing page design, build and conversion rate optimisation.
 
 ## Case studies
-- [GPSFDK — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
-- [GPSFDK ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
+- [Canvas — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
+- [Canvas ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
 - [Rightway Water Purifier — Brand & Website](https://www.thewebxstudio.com/case-study-rightway)
 - [Nova Finance — Fintech Web Design & Development](https://www.thewebxstudio.com/case-study-nova-finance)
 
