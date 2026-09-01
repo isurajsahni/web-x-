@@ -27,7 +27,7 @@
     --brand-lo: #9BB0FF;
     --brand-hi: #C061FF;
     position: relative;
-    background: var(--ink) url('images/hero-bg.png') center bottom / cover no-repeat;
+    background: var(--ink) url('images/hero-bg.webp') center bottom / cover no-repeat;
     color: var(--text);
     border-top: 1px solid var(--line);
     padding: clamp(56px,8vh,96px) 20px 34px;
@@ -236,6 +236,8 @@
             <a data-transition href="work" class="wx-footer-link">Case studies</a>
             <a data-transition href="blog-website-cost" class="wx-footer-link">What a website costs</a>
             <a data-transition href="blog-core-web-vitals" class="wx-footer-link">Core Web Vitals</a>
+            <a data-transition href="landing-page-design" class="wx-footer-link">Landing page design</a>
+            <a data-transition href="web-development-agency-ludhiana" class="wx-footer-link">Web development in Ludhiana</a>
           </div>
 
           <div class="wx-footer-col">

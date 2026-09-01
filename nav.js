@@ -623,7 +623,7 @@
 
   <div class="wx-drawer-scrim" id="wx-drawer-scrim"></div>
 
-  <aside class="wx-drawer" id="wx-drawer" aria-hidden="true">
+  <aside class="wx-drawer" id="wx-drawer" aria-hidden="true" inert>
     <span class="wx-drawer-eyebrow">Menu</span>
     <a href="/" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="/services" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
@@ -729,6 +729,7 @@
       hamburger.classList.add('wx-open');
       hamburger.setAttribute('aria-expanded', 'true');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.removeAttribute('inert');
       document.body.style.overflow = 'hidden';
       if (navbar && navbar.wxSyncCondense) navbar.wxSyncCondense();
     }
@@ -740,6 +741,7 @@
       hamburger.classList.remove('wx-open');
       hamburger.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.setAttribute('inert', '');
       document.body.style.overflow = '';
       if (navbar && navbar.wxSyncCondense) navbar.wxSyncCondense();
     }

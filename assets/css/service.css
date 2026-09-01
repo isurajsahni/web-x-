@@ -73,7 +73,7 @@
    now speaks the same language as .wx-hero: paper ground, one purple bloom,
    a fade into the section below, and the shared Manrope display scale. */
 .svcp-hero{position:relative;overflow:hidden;
-  background:#FFFFFF url('../../images/hero-bg.png') center top / cover no-repeat;
+  background:#FFFFFF url('../../images/hero-bg.webp') center top / cover no-repeat;
   padding:clamp(128px,19vh,210px) 20px clamp(72px,11vh,120px)}
 .svcp-hero::before{content:"";position:absolute;left:50%;top:34%;width:min(1100px,130vw);
   aspect-ratio:1.4;transform:translate(-50%,-50%);pointer-events:none;

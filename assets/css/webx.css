@@ -830,7 +830,7 @@ html.js [data-static-shell]{display:none}
   position:relative;
   overflow:hidden;
   /* Same paper ground as the home hero, so every opening matches. */
-  background:#FFFFFF url('../../images/hero-bg.png') center top / cover no-repeat;
+  background:#FFFFFF url('../../images/hero-bg.webp') center top / cover no-repeat;
   /* svh, not vh: mobile browser chrome must not cause a jump on scroll. */
   min-height:100svh;
   display:flex;

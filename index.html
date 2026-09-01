@@ -68,7 +68,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 
 <link rel="stylesheet" href="assets/css/webx.css?v=2.4">
 <script src="assets/js/webx.js" defer></script>
@@ -105,11 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO & Performance Optimization", "description": "Technical SEO, on-page optimization, Core Web Vitals and speed optimization to improve Google ranking." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ERP Software Development", "description": "Dashboards, automation and custom business software that scales." } }
         ]
-      },
-      "review": [
-        { "@type": "Review", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "author": { "@type": "Person", "name": "Bhavna Goyal" }, "reviewBody": "The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes." },
-        { "@type": "Review", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "author": { "@type": "Person", "name": "Ram Asre" }, "reviewBody": "Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online." }
-      ]
+      }
     },
     {
       "@type": "WebSite",
@@ -199,7 +195,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <style>
     .hero-fan {
       position: relative;
-      background: #FFFFFF url('images/hero-bg.png') center top / cover no-repeat;
+      background: #FFFFFF url('images/hero-bg.webp') center top / cover no-repeat;
       overflow: hidden;
     }
     .hero-fan-inner {
@@ -514,7 +510,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #9A9AA2;
+      color: #6E6E78;
       margin: 0 0 clamp(26px, 4vh, 40px);
     }
     /* Viewport: fades the logos into the page edges so the loop has no seam. */
@@ -1095,7 +1091,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Center logo -->
       <div class="wx-why-center" data-reveal data-reveal-delay="120">
         <div class="wx-why-logo">
-          <img src="logo-white.svg" alt="Web{X} Studio" loading="lazy">
+          <img src="logo-white.svg" alt="Web{X} Studio" width="167" height="167" loading="lazy">
         </div>
       </div>
 
@@ -1232,7 +1228,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="process" class="wx-proc" aria-label="Our process">
   <style>
     .wx-proc {
-      background: #F6F4FC url('images/hero-bg.png') center top / cover no-repeat;
+      background: #F6F4FC url('images/hero-bg.webp') center top / cover no-repeat;
       color: #1A1A1A;
     }
     .wx-proc-inner {
@@ -1649,7 +1645,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 17px;
       margin-top: 20px;
     }
     .wx-tm-dot {
@@ -1658,9 +1654,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       border-radius: 99px;
       background: rgba(26,26,26,0.22);
       cursor: pointer;
+      position: relative;
       transition: width 0.3s cubic-bezier(0.16,1,0.3,1), background-color 0.3s ease;
     }
     .wx-tm-dot.is-on { width: 22px; background: #6C2BD9; }
+    /* 7px dots are far below the 24px minimum tap target — grow the hit
+       area without changing how the dot looks. */
+    .wx-tm-dot::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px; height: 24px;
+    }
   </style>
 
   <div class="wx-tm-head">
@@ -1677,12 +1683,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wx-tm-row wx-tm-row--a" data-tm-row data-tm-dir="1">
       <div class="wx-tm-track" data-tm-track>
         <figure class="wx-tm-card">
-          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <span class="wx-tm-stars" role="img" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
           <blockquote>The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes — without us having to explain it over the phone.</blockquote>
           <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">BG</span><span><span class="wx-tm-name">Bhavna Goyal</span><br><span class="wx-tm-role">Nar Seva Foundation</span></span></figcaption>
         </figure>
         <figure class="wx-tm-card">
-          <span class="wx-tm-stars" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
+          <span class="wx-tm-stars" role="img" aria-label="5 out of 5"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></span>
           <blockquote>Admissions enquiries used to come by phone only. Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online.</blockquote>
           <figcaption class="wx-tm-by"><span class="wx-tm-avatar" aria-hidden="true">RA</span><span><span class="wx-tm-name">Ram Asre</span><br><span class="wx-tm-role">Uttam Public High School</span></span></figcaption>
         </figure>
@@ -2192,6 +2198,176 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     })();
   </script>
+</section>
+
+<!-- ============ WHERE WE WORK (local) ============ -->
+<section class="wx-local" aria-label="Where we work">
+  <style>
+    .wx-local {
+      background: #F5F4F9;
+      color: #1A1A1A;
+      padding: var(--wx-sec-y) 20px;
+    }
+    .wx-local-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(28px,4vw,72px);
+      align-items: start;
+    }
+    .wx-local-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #9D5CFF;
+      margin: 0 0 14px;
+    }
+    .wx-local h2 {
+      font-size: clamp(30px,4vw,56px);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.06;
+      margin: 0 0 22px;
+    }
+    .wx-local h2 em { font-style: normal; color: #9D5CFF; }
+    .wx-local p {
+      font-size: clamp(15px,1.15vw,17.5px);
+      line-height: 1.62;
+      color: #4A4A55;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+    .wx-local-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1A1A1A;
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(157,92,255,.45);
+      padding-bottom: 3px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .wx-local-link:hover { color: #9D5CFF; border-color: #9D5CFF; }
+
+    /* ---- Studio card: the visible NAP. Must stay byte-identical to the
+       address in the Organization JSON-LD and the Google Business Profile. ---- */
+    .wx-local-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(26,26,26,.08);
+      border-radius: clamp(18px,2vw,26px);
+      padding: clamp(24px,2.6vw,34px);
+    }
+    .wx-local-card h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #8A8A96;
+      margin: 0 0 18px;
+    }
+    .wx-local-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-top: 1px solid rgba(26,26,26,.07);
+    }
+    .wx-local-row:first-of-type { border-top: 0; padding-top: 0; }
+    .wx-local-row dt {
+      flex: 0 0 82px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #8A8A96;
+    }
+    .wx-local-row dd {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #1A1A1A;
+    }
+    .wx-local-row dd a { color: inherit; text-decoration: none; }
+    .wx-local-row dd a:hover { color: #9D5CFF; }
+    .wx-local-areas {
+      margin: 22px 0 0;
+      padding: 18px 0 0;
+      border-top: 1px solid rgba(26,26,26,.07);
+    }
+    .wx-local-areas span {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #8A8A96;
+      margin-bottom: 10px;
+    }
+    .wx-local-areas ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .wx-local-areas li {
+      font-size: 13px;
+      color: #4A4A55;
+      background: #F5F4F9;
+      border-radius: 999px;
+      padding: 5px 12px;
+    }
+    @media (max-width: 900px) {
+      .wx-local-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="wx-local-inner">
+    <div class="wx-local-copy">
+      <p class="wx-local-kicker">Where we work</p>
+      <h2 data-reveal>Based in Ludhiana.<br>Building for clients <em>worldwide</em>.</h2>
+      <p>Web{X} Studio works out of Model Town, Ludhiana. For businesses across Punjab that means you can sit across a table from the people actually designing and building your site &mdash; we work with manufacturers, exporters, retailers, clinics and schools in Ludhiana and the cities around it, and we'll come to you for the kick-off.</p>
+      <p>For founders in the UK, the US, the UAE and Australia, it means senior design and development at Indian studio rates, with working hours that overlap a London morning and a Dubai afternoon. Same team, same standard, whichever side of the map you're on.</p>
+      <a data-transition href="/web-development-agency-ludhiana" class="wx-local-link">
+        Web development agency in Ludhiana
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+    <div class="wx-local-card">
+      <h3>The studio</h3>
+      <dl>
+        <div class="wx-local-row">
+          <dt>Address</dt>
+          <dd>Model Town, Ludhiana,<br>Punjab 141002, India</dd>
+        </div>
+        <div class="wx-local-row">
+          <dt>Phone</dt>
+          <dd><a href="tel:+919780651142">+91 97806 51142</a></dd>
+        </div>
+        <div class="wx-local-row">
+          <dt>Email</dt>
+          <dd><a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a></dd>
+        </div>
+        <div class="wx-local-row">
+          <dt>Hours</dt>
+          <dd>Monday&ndash;Friday, 9:30am&ndash;6:30pm IST</dd>
+        </div>
+      </dl>
+      <div class="wx-local-areas">
+        <span>Punjab &amp; nearby</span>
+        <ul>
+          <li>Ludhiana</li>
+          <li>Jalandhar</li>
+          <li>Amritsar</li>
+          <li>Patiala</li>
+          <li>Mohali</li>
+          <li>Chandigarh</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ CTA ============ -->
