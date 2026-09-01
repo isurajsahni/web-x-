@@ -573,20 +573,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="services" class="wx-svc2" aria-label="Our services">
   <style>
     .wx-svc2 {
-      padding-top: var(--wx-sec-y);
       position: relative;
       overflow: hidden;
-      background: #EAE3FB;
+      background: #FFFFFF;
       color: #1A1A1A;
     }
   </style>
 
 
-  <!-- Services — white panel with an arched top rising into the lavender,
-       framed by faint concentric rings behind the pill.
+  <!-- Services — white panel framed by faint concentric rings behind the pill.
        Class names are still wx-about2-*: this panel began life as the About-us
        block, and the homepage now uses its design for Services instead. The
-       plain wx-svc2 list that used to sit above it is gone. -->
+       plain wx-svc2 list that used to sit above it is gone, along with the
+       arched top and the lavender band it rose into. -->
   <style>
     .wx-about2-stage {
       position: relative;
@@ -613,8 +612,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       overflow: hidden;
       background: #FFFFFF;
       color: #1A1A1A;
-      border-top-left-radius: 50% clamp(90px,12vw,210px);
-      border-top-right-radius: 50% clamp(90px,12vw,210px);
     }
     /* Split layout. The centred version ended on a 16:9 placeholder that never
        got filled, so most of the panel was an empty grey box. The right column
@@ -624,7 +621,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       z-index: 1;
       max-width: 1180px;
       margin: 0 auto;
-      padding: var(--wx-sec-y) 20px;
+      padding: calc(var(--wx-sec-y) / 2) 20px var(--wx-sec-y);
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
