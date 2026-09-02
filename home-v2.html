@@ -105,17 +105,21 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform .3s cubic-bezier(.16,1,.3,1);
   }
-  .v2-btn:hover .v2-btn-ico { transform: translate(2px,-2px); }
+  /* The glyph is drawn pointing up-right; 45deg clockwise swings it to
+     horizontal, so hovering rotates the arrow into a straight right-pointer. */
+  .v2-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
+  .v2-btn:hover .v2-btn-ico svg,
+  .v2-btn:focus-visible .v2-btn-ico svg { transform: rotate(45deg); }
   .v2-btn--light { background: #FFFFFF; color: #0A0A0A; box-shadow: 0 14px 30px rgba(0,0,0,.34); }
   .v2-btn--light:hover { box-shadow: 0 20px 40px rgba(0,0,0,.42); }
   .v2-btn--light .v2-btn-ico { background: #0A0A0A; color: #FFFFFF; }
   .v2-btn:focus-visible { outline: 2px solid var(--v2-purple); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
-    .v2-btn, .v2-btn-ico { transition: none; }
+    .v2-btn, .v2-btn-ico svg { transition: none; }
     .v2-btn:hover { transform: none; }
-    .v2-btn:hover .v2-btn-ico { transform: none; }
+    .v2-btn:hover .v2-btn-ico svg,
+    .v2-btn:focus-visible .v2-btn-ico svg { transform: none; }
   }
 
   /* ============ TRUST ============ */
