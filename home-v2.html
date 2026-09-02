@@ -75,6 +75,49 @@
     justify-self: end;
   }
 
+  /* ---- Primary CTA: black pill, white arrow badge, soft cast shadow.
+         --light inverts it for the dark sections. ---- */
+  .v2-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(12px,1.4vw,18px);
+    background: #0A0A0A;
+    color: #FFFFFF;
+    border-radius: 100px;
+    padding: 7px 7px 7px clamp(20px,2vw,28px);
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(14px,1.05vw,15.5px);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 14px 30px rgba(10,10,10,.26);
+    transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease, background-color .25s ease;
+  }
+  .v2-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(10,10,10,.32); }
+  .v2-btn:active { transform: translateY(0); }
+  .v2-btn-ico {
+    width: clamp(34px,3vw,42px);
+    height: clamp(34px,3vw,42px);
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #0A0A0A;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .v2-btn:hover .v2-btn-ico { transform: translate(2px,-2px); }
+  .v2-btn--light { background: #FFFFFF; color: #0A0A0A; box-shadow: 0 14px 30px rgba(0,0,0,.34); }
+  .v2-btn--light:hover { box-shadow: 0 20px 40px rgba(0,0,0,.42); }
+  .v2-btn--light .v2-btn-ico { background: #0A0A0A; color: #FFFFFF; }
+  .v2-btn:focus-visible { outline: 2px solid var(--v2-purple); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-btn, .v2-btn-ico { transition: none; }
+    .v2-btn:hover { transform: none; }
+    .v2-btn:hover .v2-btn-ico { transform: none; }
+  }
+
   /* ============ TRUST ============ */
   .v2-trust { padding: clamp(30px,4vw,54px) 0 var(--wx-sec-y); }
   .v2-trust-label {
@@ -147,12 +190,6 @@
   .v2-cta-card { background: #202024; border-radius: 16px; padding: clamp(22px,2.6vw,32px); display: flex; flex-direction: column; gap: 18px; }
   .v2-cta-card h3 { font-family: 'Manrope', sans-serif; font-size: clamp(19px,1.9vw,25px); font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin: 0; }
   .v2-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; }
-  .v2-hire {
-    display: inline-flex; align-items: center; gap: 9px; background: #FFFFFF; color: #0A0A0A;
-    border-radius: 100px; padding: 10px 18px; font-family: 'Satoshi', sans-serif;
-    font-size: 13.5px; font-weight: 600; text-decoration: none; transition: gap .2s ease;
-  }
-  .v2-hire:hover { gap: 14px; }
   .v2-cta-mark { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; color: #C9A6FF; }
   .v2-dark-visual { border-radius: 16px; overflow: hidden; min-height: clamp(240px,30vw,400px); background: linear-gradient(140deg,#8FE3FF 0%,#C9A6FF 40%,#FF9ED8 72%,#FFD79A 100%); }
 
@@ -223,7 +260,13 @@
         <span class="v2-line">&amp; Development</span>
       </h1>
       <div class="v2-hero-foot">
-        <div></div>
+        <div>
+          <a class="v2-btn" href="blog-website-cost">See pricing
+            <span class="v2-btn-ico">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
         <p>We design and build modern, high-performing websites that help businesses look professional, connect with their audience, and turn visitors into customers.</p>
       </div>
     </div>
@@ -339,8 +382,10 @@
           <div class="v2-cta-card">
             <h3>Have a project<br>in mind?</h3>
             <div class="v2-cta-row">
-              <a class="v2-hire" href="contact">Hire us
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a class="v2-btn v2-btn--light" href="contact">Hire us
+                <span class="v2-btn-ico">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
               </a>
               <span class="v2-cta-mark" aria-hidden="true">{X}</span>
             </div>
