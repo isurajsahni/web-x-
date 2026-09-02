@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+
+<!-- PREVIEW ONLY. Kept out of the index and out of analytics on purpose:
+     this page exists so the new design can be reviewed next to the live
+     homepage. No GTM, no Clarity, no canonical, not in sitemap.xml. -->
+<title>Home v2 (preview) | Web{X} Studio</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="assets/css/webx.css">
+
+<style>
+  :root { --wx-sec-y: 120px; --v2-ink: #0A0A0A; --v2-purple: #9D5CFF; --v2-line: rgba(10,10,10,.12); }
+  @media (max-width: 820px) { :root { --wx-sec-y: 60px; } }
+  body { background: #FFFFFF; color: var(--v2-ink); }
+  .v2-wrap { max-width: 1340px; margin: 0 auto; padding: 0 20px; }
+
+  /* Shared display type — the oversized uppercase headline the design leans on. */
+  .v2-display {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -.045em;
+    line-height: .92;
+    margin: 0;
+  }
+
+  /* ============ HERO ============ */
+  .v2-hero { position: relative; overflow: hidden; padding: clamp(90px,11vw,150px) 0 clamp(50px,7vw,90px); }
+  /* Mesh gradient. Four blurred colour fields rather than an image, so it
+     costs nothing to download and scales to any viewport. */
+  /* Masked at the foot so the colour dissolves into the white instead of
+     meeting the hero's overflow clip as a hard horizontal edge. */
+  .v2-mesh {
+    position: absolute; inset: -10% -5% auto; height: 130%;
+    pointer-events: none; z-index: 0; filter: blur(70px); opacity: .85;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 92%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 92%);
+  }
+  .v2-mesh span { position: absolute; border-radius: 50%; display: block; }
+  .v2-mesh span:nth-child(1) { width: 46vw; height: 46vw; right: -4vw;  top: -6vw;  background: #C9A6FF; }
+  .v2-mesh span:nth-child(2) { width: 40vw; height: 40vw; right: 14vw;  top: 6vw;   background: #FF9ED8; }
+  .v2-mesh span:nth-child(3) { width: 34vw; height: 34vw; right: 2vw;   top: 22vw;  background: #8FE3FF; }
+  .v2-mesh span:nth-child(4) { width: 30vw; height: 30vw; right: 26vw;  top: 26vw;  background: #FFD79A; }
+  .v2-hero-inner { position: relative; z-index: 1; }
+  .v2-hero h1 { font-size: clamp(44px,10.5vw,150px); }
+  .v2-hero h1 .v2-line { display: block; }
+  .v2-hero h1 .v2-line--mid { display: flex; align-items: center; gap: clamp(12px,2vw,30px); flex-wrap: wrap; }
+  .v2-hero-chip {
+    display: inline-block;
+    width: clamp(120px,17vw,250px);
+    aspect-ratio: 16 / 7;
+    border-radius: clamp(8px,1vw,14px);
+    overflow: hidden;
+    flex: 0 0 auto;
+    box-shadow: 0 10px 30px rgba(10,10,10,.14);
+  }
+  .v2-hero-chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .v2-hero-foot { display: grid; grid-template-columns: 1fr auto; gap: clamp(24px,4vw,60px); align-items: end; margin-top: clamp(26px,4vw,44px); }
+  .v2-hero-foot p {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(14px,1.05vw,16px);
+    line-height: 1.6;
+    color: #2C2C33;
+    max-width: 34ch;
+    margin: 0;
+    justify-self: end;
+  }
+
+  /* ============ TRUST ============ */
+  .v2-trust { padding: clamp(30px,4vw,54px) 0 var(--wx-sec-y); }
+  .v2-trust-label {
+    display: flex; align-items: center; gap: 16px;
+    font-family: 'Satoshi', sans-serif; font-size: 12.5px; font-weight: 600;
+    letter-spacing: .04em; color: #55555F; margin: 0 0 clamp(18px,2.4vw,28px);
+  }
+  .v2-trust-label::after { content: ""; flex: 1; height: 1px; background: var(--v2-line); max-width: 190px; }
+  .v2-trust-row { display: grid; grid-template-columns: repeat(6,1fr); gap: clamp(10px,1.2vw,16px); }
+  .v2-trust-cell {
+    border: 1px solid var(--v2-line); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(14px,1.6vw,20px); min-height: 74px; background: #FFFFFF;
+  }
+  .v2-trust-cell img { max-width: 100%; max-height: 40px; width: auto; height: auto; object-fit: contain; }
+
+  /* ============ INTRO ============ */
+  .v2-intro { padding: 0 0 var(--wx-sec-y); }
+  .v2-intro-top { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px,5vw,80px); align-items: start; margin-bottom: clamp(34px,4.5vw,60px); }
+  .v2-intro-top h2 { font-family: 'Manrope', sans-serif; font-size: clamp(26px,3.4vw,42px); font-weight: 700; letter-spacing: -.03em; line-height: 1.14; margin: 0; }
+  .v2-intro-top div { font-family: 'Satoshi', sans-serif; font-size: clamp(14px,1.05vw,16px); line-height: 1.65; color: #45454F; }
+  .v2-intro-top div p { margin: 0 0 14px; }
+  .v2-intro-top div p:last-child { margin: 0; }
+  .v2-cards3 { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(14px,1.6vw,22px); }
+  .v2-card3 { border: 1px solid var(--v2-line); border-radius: 16px; padding: clamp(20px,2.4vw,30px); background: #FFFFFF; }
+  .v2-card3-num { font-family: 'Space Grotesk', monospace; font-size: 12.5px; font-weight: 600; color: #8A8A96; display: block; margin-bottom: clamp(28px,4vw,52px); }
+  .v2-card3 h3 { font-family: 'Manrope', sans-serif; font-size: clamp(19px,1.7vw,23px); font-weight: 700; letter-spacing: -.02em; margin: 0 0 10px; }
+  .v2-card3 > p { font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.5; margin: 0 0 10px; }
+  .v2-card3 > p + p { font-weight: 400; color: #55555F; font-size: 13.5px; margin: 0; }
+
+  /* ============ SERVICES ============ */
+  .v2-svc { padding: 0 0 var(--wx-sec-y); }
+  .v2-head { position: relative; margin-bottom: clamp(26px,3.4vw,44px); }
+  .v2-head h2 { font-size: clamp(40px,8vw,118px); }
+  .v2-head h2 .v2-indent { display: block; padding-left: clamp(20px,7vw,110px); }
+  .v2-head-arrow { position: absolute; right: clamp(10px,8vw,140px); bottom: clamp(14px,2vw,34px); color: var(--v2-purple); }
+  .v2-svc-list { display: flex; flex-direction: column; gap: clamp(14px,1.6vw,22px); }
+  .v2-svc-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px,2.4vw,34px);
+    align-items: center; background: #FFFFFF; border: 1px solid var(--v2-line);
+    border-radius: 20px; padding: clamp(20px,2.4vw,32px);
+  }
+  .v2-svc-card h3 { font-family: 'Manrope', sans-serif; font-size: clamp(23px,2.6vw,34px); font-weight: 700; letter-spacing: -.03em; line-height: 1.1; color: var(--v2-purple); margin: 0 0 14px; }
+  .v2-svc-card p { font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.6; color: #45454F; margin: 0 0 clamp(16px,2vw,22px); max-width: 46ch; }
+  .v2-svc-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid var(--v2-line); border-radius: 100px; padding: 9px 17px;
+    font-family: 'Satoshi', sans-serif; font-size: 13.5px; font-weight: 600;
+    color: var(--v2-ink); text-decoration: none; transition: border-color .2s ease, color .2s ease, gap .2s ease;
+  }
+  .v2-svc-btn:hover { border-color: var(--v2-purple); color: var(--v2-purple); gap: 14px; }
+  .v2-svc-media { border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 10; background: #EFEFF3; }
+  .v2-svc-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ============ DARK STORY ============ */
+  .v2-dark { background: #131316; color: #FFFFFF; padding: var(--wx-sec-y) 0; }
+  .v2-dark-pill {
+    display: inline-block; border: 1px solid rgba(255,255,255,.22); border-radius: 100px;
+    padding: 6px 15px; font-family: 'Satoshi', sans-serif; font-size: 11.5px; font-weight: 600;
+    color: #C9A6FF; margin: 0 0 clamp(16px,2vw,22px);
+  }
+  .v2-dark-top { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(26px,5vw,80px); align-items: end; margin-bottom: clamp(26px,3.4vw,44px); }
+  .v2-dark-top h2 { font-family: 'Manrope', sans-serif; font-size: clamp(26px,3.4vw,42px); font-weight: 700; letter-spacing: -.03em; line-height: 1.16; margin: 0; }
+  .v2-dark-top p { font-family: 'Satoshi', sans-serif; font-size: clamp(14px,1.05vw,16px); line-height: 1.65; color: rgba(255,255,255,.68); margin: 0; }
+  .v2-dark-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(14px,1.6vw,22px); align-items: stretch; }
+  .v2-dark-col { display: flex; flex-direction: column; gap: clamp(14px,1.6vw,22px); }
+  .v2-stat { background: #202024; border-radius: 16px; padding: clamp(22px,2.6vw,32px); flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .v2-stat b { font-family: 'Manrope', sans-serif; font-size: clamp(38px,5vw,64px); font-weight: 800; letter-spacing: -.04em; line-height: 1; display: block; }
+  .v2-stat span { font-family: 'Satoshi', sans-serif; font-size: 13.5px; color: rgba(255,255,255,.62); margin-top: 10px; }
+  .v2-cta-card { background: #202024; border-radius: 16px; padding: clamp(22px,2.6vw,32px); display: flex; flex-direction: column; gap: 18px; }
+  .v2-cta-card h3 { font-family: 'Manrope', sans-serif; font-size: clamp(19px,1.9vw,25px); font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin: 0; }
+  .v2-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; }
+  .v2-hire {
+    display: inline-flex; align-items: center; gap: 9px; background: #FFFFFF; color: #0A0A0A;
+    border-radius: 100px; padding: 10px 18px; font-family: 'Satoshi', sans-serif;
+    font-size: 13.5px; font-weight: 600; text-decoration: none; transition: gap .2s ease;
+  }
+  .v2-hire:hover { gap: 14px; }
+  .v2-cta-mark { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; color: #C9A6FF; }
+  .v2-dark-visual { border-radius: 16px; overflow: hidden; min-height: clamp(240px,30vw,400px); background: linear-gradient(140deg,#8FE3FF 0%,#C9A6FF 40%,#FF9ED8 72%,#FFD79A 100%); }
+
+  /* ============ PROJECTS ============ */
+  .v2-proj { background: #131316; color: #FFFFFF; padding: 0 0 var(--wx-sec-y); }
+  .v2-proj .v2-head h2 { color: #FFFFFF; }
+  .v2-proj-grid { display: grid; gap: clamp(14px,1.6vw,22px); }
+  .v2-proj-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px,1.6vw,22px); }
+  .v2-proj-card { position: relative; display: block; border-radius: 16px; overflow: hidden; text-decoration: none; }
+  .v2-proj-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+  .v2-proj-card--wide { aspect-ratio: 21 / 8; }
+  .v2-proj-card--half { aspect-ratio: 16 / 10; }
+  .v2-proj-card:hover img { transform: scale(1.03); }
+  .v2-proj-name {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, rgba(19,19,22,0) 0%, rgba(19,19,22,.86) 100%);
+    color: #FFFFFF; font-family: 'Satoshi', sans-serif; font-size: 13.5px; font-weight: 600;
+    padding: 34px 18px 14px;
+  }
+  .v2-proj-more { display: flex; justify-content: center; margin-top: clamp(24px,3vw,40px); }
+  .v2-proj-more a {
+    display: inline-flex; align-items: center; gap: 9px;
+    border: 1px solid rgba(255,255,255,.26); border-radius: 100px; padding: 11px 20px;
+    font-family: 'Satoshi', sans-serif; font-size: 13.5px; font-weight: 600;
+    color: #FFFFFF; text-decoration: none; transition: gap .2s ease, background-color .2s ease, color .2s ease;
+  }
+  .v2-proj-more a:hover { gap: 14px; background: #FFFFFF; color: #0A0A0A; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .v2-trust-row { grid-template-columns: repeat(3,1fr); }
+    .v2-cards3 { grid-template-columns: 1fr; }
+    .v2-intro-top, .v2-dark-top { grid-template-columns: 1fr; }
+    .v2-dark-top { align-items: start; }
+  }
+  @media (max-width: 760px) {
+    .v2-hero-foot { grid-template-columns: 1fr; }
+    .v2-hero-foot p { justify-self: start; }
+    .v2-svc-card { grid-template-columns: 1fr; }
+    .v2-svc-media { order: -1; }
+    .v2-dark-grid { grid-template-columns: 1fr; }
+    .v2-proj-row2 { grid-template-columns: 1fr; }
+    .v2-proj-card--wide { aspect-ratio: 16 / 10; }
+    .v2-mesh { filter: blur(50px); }
+  }
+  @media (max-width: 520px) {
+    .v2-trust-row { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v2-proj-card img { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="v2-hero" aria-label="Web{X} Studio">
+    <div class="v2-mesh" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="v2-wrap v2-hero-inner">
+      <h1 class="v2-display">
+        <span class="v2-line">Creative</span>
+        <span class="v2-line v2-line--mid">
+          <span class="v2-hero-chip"><img src="images/work/tmc.avif" alt="TMC Consulting website by Web{X} Studio" width="1600" height="1067" fetchpriority="high" decoding="async"></span>
+          Web Design
+        </span>
+        <span class="v2-line">&amp; Development</span>
+      </h1>
+      <div class="v2-hero-foot">
+        <div></div>
+        <p>We design and build modern, high-performing websites that help businesses look professional, connect with their audience, and turn visitors into customers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST ============ -->
+  <section class="v2-trust" aria-label="Brands we have worked with">
+    <div class="v2-wrap">
+      <p class="v2-trust-label">Trusted by teams we&rsquo;ve built for</p>
+      <div class="v2-trust-row">
+        <div class="v2-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal" loading="lazy" decoding="async" width="454" height="156"></div>
+        <div class="v2-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></div>
+        <div class="v2-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></div>
+        <div class="v2-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></div>
+        <div class="v2-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></div>
+        <div class="v2-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway" loading="lazy" decoding="async" width="240" height="193"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="v2-intro" aria-label="How we work">
+    <div class="v2-wrap">
+      <div class="v2-intro-top">
+        <h2>We build digital experiences for brands ready to move forward.</h2>
+        <div>
+          <p>Every ambitious brand reaches a point where its digital presence needs to evolve.</p>
+          <p>That&rsquo;s where Web{X} comes in &mdash; combining strategy, design, development and performance to create digital experiences built for what&rsquo;s next.</p>
+        </div>
+      </div>
+      <div class="v2-cards3">
+        <article class="v2-card3">
+          <span class="v2-card3-num">01</span>
+          <h3>Brand Strategy</h3>
+          <p>Make your brand impossible to ignore.</p>
+          <p>Clear positioning, strong visual direction and digital experiences designed around your audience and business goals.</p>
+        </article>
+        <article class="v2-card3">
+          <span class="v2-card3-num">02</span>
+          <h3>Digital Craft</h3>
+          <p>Design that looks sharp. Works smarter.</p>
+          <p>From UI/UX and landing pages to complete websites, we create premium experiences that are responsive, intuitive and conversion-focused.</p>
+        </article>
+        <article class="v2-card3">
+          <span class="v2-card3-num">03</span>
+          <h3>Growth Systems</h3>
+          <p>Built to perform. Ready to scale.</p>
+          <p>Fast websites, SEO, performance optimisation, web apps and custom digital systems that turn your online presence into a growth engine.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="v2-svc" aria-label="Our services">
+    <div class="v2-wrap">
+      <div class="v2-head">
+        <h2 class="v2-display">Our<span class="v2-indent">Services</span></h2>
+        <svg class="v2-head-arrow" width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 17 7 7M7 7h8M7 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="v2-svc-list">
+        <article class="v2-svc-card">
+          <div>
+            <h3>Web design &amp;<br>development</h3>
+            <p>Modern, responsive websites designed to build trust and turn visitors into customers &mdash; hand-built for speed, accessibility and search.</p>
+            <a class="v2-svc-btn" href="services">Find out more
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="v2-svc-media"><img src="images/cap-design.webp" alt="Web design and development work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
+        </article>
+
+        <article class="v2-svc-card">
+          <div>
+            <h3>Landing pages<br>&amp; CRO</h3>
+            <p>Conversion-focused landing pages for campaigns, launches and lead generation &mdash; measured and improved after launch, not guessed at before it.</p>
+            <a class="v2-svc-btn" href="landing-page-design">Find out more
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="v2-svc-media"><img src="images/cap-development.webp" alt="Landing page work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
+        </article>
+
+        <article class="v2-svc-card">
+          <div>
+            <h3>SEO &amp;<br>performance</h3>
+            <p>Technical SEO, Core Web Vitals and speed work that gets your pages found &mdash; and keeps them fast once they are.</p>
+            <a class="v2-svc-btn" href="services">Find out more
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="v2-svc-media"><img src="images/cap-seo.webp" alt="SEO and performance work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DARK STORY ============ -->
+  <section class="v2-dark" aria-label="About Web{X} Studio">
+    <div class="v2-wrap">
+      <span class="v2-dark-pill">Web{X} Studio</span>
+      <div class="v2-dark-top">
+        <h2>Every brand tells a story. We make yours worth remembering.</h2>
+        <p>We work as one team inside your project &mdash; strategy, design, build and SEO in the same room &mdash; so the site ships without you managing the middle. Based in Ludhiana, working with founders across India, the UK, the US and the Gulf.</p>
+      </div>
+      <div class="v2-dark-grid">
+        <div class="v2-dark-col">
+          <div class="v2-stat">
+            <b>2019</b>
+            <span>Designing and building for brands since</span>
+          </div>
+          <div class="v2-cta-card">
+            <h3>Have a project<br>in mind?</h3>
+            <div class="v2-cta-row">
+              <a class="v2-hire" href="contact">Hire us
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <span class="v2-cta-mark" aria-hidden="true">{X}</span>
+            </div>
+          </div>
+        </div>
+        <div class="v2-dark-visual" role="img" aria-label="Web{X} Studio brand gradient"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="v2-proj" aria-label="Our projects">
+    <div class="v2-wrap">
+      <div class="v2-head">
+        <h2 class="v2-display">Our<span class="v2-indent">Projects</span></h2>
+        <svg class="v2-head-arrow" width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17 17 7 7M7 7h8M7 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="v2-proj-grid">
+        <a class="v2-proj-card v2-proj-card--wide" href="case-study-gpsfdk">
+          <img src="images/work/gpsfdk.avif" alt="Canvas luxury ecommerce brand and website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200">
+          <span class="v2-proj-name">Canvas &mdash; luxury ecommerce</span>
+        </a>
+        <div class="v2-proj-row2">
+          <a class="v2-proj-card v2-proj-card--half" href="case-study-rightway">
+            <img src="images/work/rightway.avif" alt="Rightway Purifier website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1067">
+            <span class="v2-proj-name">Rightway Purifier</span>
+          </a>
+          <a class="v2-proj-card v2-proj-card--half" href="case-study-erp">
+            <img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One custom software by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200">
+            <span class="v2-proj-name">Canvas ERP One</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="v2-proj-more">
+        <a href="work">View all projects
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="nav.js" defer></script>
+<script src="footer.js" defer></script>
+</body>
+</html>
