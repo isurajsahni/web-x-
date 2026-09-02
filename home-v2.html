@@ -20,8 +20,41 @@
 <style>
   :root { --wx-sec-y: 120px; --v2-ink: #0A0A0A; --v2-purple: #9D5CFF; --v2-line: rgba(10,10,10,.12); }
   @media (max-width: 820px) { :root { --wx-sec-y: 60px; } }
-  body { background: #FFFFFF; color: var(--v2-ink); }
+  body { background: #FFFFFF; color: var(--v2-ink); position: relative; }
   .v2-wrap { max-width: 1340px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---- Page-wide gradient wash. A soft colour ribbon running down the right
+     edge for the full document height, behind everything. Painted with radial
+     gradients rather than blurred elements: no filter cost, no repaint on
+     scroll, and it stretches to whatever the page height turns out to be.
+     The light sections are transparent so it shows through them; the dark
+     sections are opaque, so they cover it — which is the intent. ---- */
+  .v2-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(58% 14% at 104%  2%, rgba(157, 92,255,.34), transparent 66%),
+      radial-gradient(46% 10% at  98%  9%, rgba(255,110,199,.26), transparent 66%),
+      radial-gradient(40% 11% at 108% 17%, rgba(120,205,255,.24), transparent 66%),
+      radial-gradient(52% 12% at 100% 26%, rgba(255,140,210,.26), transparent 66%),
+      radial-gradient(42% 10% at 110% 35%, rgba(176,130,255,.26), transparent 66%),
+      radial-gradient(48% 11% at  99% 44%, rgba(255,150,215,.24), transparent 66%),
+      radial-gradient(40% 10% at 108% 53%, rgba(130,210,255,.22), transparent 66%),
+      radial-gradient(50% 12% at 101% 62%, rgba(196,150,255,.24), transparent 66%),
+      radial-gradient(44% 10% at 107% 72%, rgba(255,150,215,.22), transparent 66%),
+      radial-gradient(46% 11% at 100% 82%, rgba(150,200,255,.20), transparent 66%),
+      radial-gradient(42% 10% at 106% 92%, rgba(190,150,255,.20), transparent 66%);
+    background-repeat: no-repeat;
+  }
+  /* Content rides above the wash. */
+  main { position: relative; z-index: 1; }
+  @media (max-width: 760px) {
+    /* Narrower viewport, so pull the ribbon further off-canvas or it washes
+       across the copy instead of hugging the edge. */
+    .v2-bg { background-size: 150% 100%; background-position: right top; }
+  }
 
   /* Shared display type — the oversized uppercase headline the design leans on. */
   .v2-display {
@@ -248,6 +281,8 @@
 </style>
 </head>
 <body>
+
+<div class="v2-bg" aria-hidden="true"></div>
 
 <main id="main">
 
