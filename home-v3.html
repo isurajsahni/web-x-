@@ -4,11 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<title>Web Design &amp; Development Agency | Web{X} Studio</title>
+<meta name="description" content="Web design and development agency building fast, search-ready websites, ecommerce stores and web apps. Design, build and SEO from one team.">
 
-<!-- PREVIEW ONLY — same isolation as home-v2: noindex, no canonical, not in
-     sitemap.xml, no GTM or Clarity so preview traffic stays out of GA4. -->
-<title>Home v3 (preview) | Web{X} Studio</title>
+<!-- LAUNCH CHECKLIST — this page is still a preview. Before it goes live:
+     1. delete the noindex robots tag below
+     2. uncomment the canonical and og:url (already set to the www host — the
+        apex 301s, so a canonical pointing there would target a redirect)
+     3. copy this file over index.html — the sitemap's existing / entry then
+        covers it. Do NOT add /home-v3 as a second URL: two near-identical
+        homepages competing for the same terms is the duplicate-content
+        problem this noindex exists to prevent.
+     4. restore the GTM (GTM-M6TBLLFK) and Clarity (xzhktb4dc0) head snippets
+        plus the GTM noscript iframe, copied from index.html
+     5. decide on footer.js: this page carries its own footer, so as the
+        homepage it would fork off the shared one permanently.
+     Until then it stays out of the index so it cannot compete with index.html
+     for the same terms — two near-identical homepages is a duplicate-content
+     problem, not a ranking one. -->
 <meta name="robots" content="noindex, nofollow">
+<!-- <link rel="canonical" href="https://www.thewebxstudio.com/"> -->
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Web{X} Studio">
+<meta property="og:title" content="Web design &amp; development agency that grows your business | Web{X} Studio">
+<meta property="og:description" content="Fast, search-ready websites, ecommerce stores and web apps. Design, development and SEO from one team, at a fixed price agreed before we start.">
+<meta property="og:image" content="https://www.thewebxstudio.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Web{X} Studio — web design, development and SEO agency">
+<!-- <meta property="og:url" content="https://www.thewebxstudio.com/"> -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Web design &amp; development agency that grows your business | Web{X} Studio">
+<meta name="twitter:description" content="Fast, search-ready websites, ecommerce stores and web apps. Design, development and SEO from one team, at a fixed price agreed before we start.">
+<meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +45,7 @@
 <!-- Instrument Serif stands in for Ivyora Display (the reference's italic
      accent face, which is commercially licensed). Manrope stands in for
      Neue Montreal. Swap both if the real licences get bought. -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="assets/css/webx.css">
 
 <style>
@@ -49,6 +78,10 @@
     --v3-dark:   #010101;
     --v3-tagbg:  #E8E8E8;
     --v3-accent: #9D5CFF;   /* the mark's purple — the page's one accent */
+    /* The accent is tuned for type and gradients; white on it is only 3.88:1,
+       which fails AA for the 16px/400 button labels. Buttons use a darkened
+       twin (5.5:1) so the brand purple stays put everywhere else. */
+    --v3-cta:    #8438EE;
     --v3-accent-w: rgba(157,92,255,.18);
 
     --v3-sec:  clamp(72px,12.5vw,180px);
@@ -112,7 +145,7 @@
   .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
 
   /* ---- Primary button: black pill, label, white circular arrow ---- */
-  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-accent); color: #FFFFFF;
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta); color: #FFFFFF;
             border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
             font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
             box-shadow: var(--v3-cta-shadow);
@@ -460,7 +493,10 @@
   .v3-faq-item::details-content { block-size: 0; overflow: hidden;
                                   transition: block-size .38s cubic-bezier(.16,1,.3,1), content-visibility .38s allow-discrete; }
   .v3-faq-item[open]::details-content { block-size: auto; }
-  .v3-faq-a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6; color: var(--v3-dim); padding: 0 40px 24px 0; margin: 0; }
+  /* Answers now run to two or three paragraphs, so the closing gap moves off
+     every <p> and onto the last one, and the others carry their own leading. */
+  .v3-faq-a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6; color: var(--v3-dim); padding: 0 40px 0 0; margin: 0 0 14px; }
+  .v3-faq-a:last-child { margin-bottom: 24px; }
 
   /* ============ 10. PLATFORMS  (ref .why-orbix) ============ */
   .v3-plat .v3-wrap { max-width: 1440px; padding: 0 20px; }
@@ -625,8 +661,131 @@
     .v3-btn:hover { transform: none; }
   }
 </style>
+
+<!-- Organization + WebSite. Kept separate from the FAQPage block so the FAQ
+     schema can be regenerated from the answers without touching this. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.thewebxstudio.com/#organization",
+  "name": "Web{X} Studio",
+  "description": "Web design and development agency building fast, search-ready websites, ecommerce stores and web applications, with the SEO that keeps them found.",
+  "url": "https://www.thewebxstudio.com/",
+  "email": "hello@thewebxstudio.com",
+  "telephone": "+91-97806-51142",
+  "priceRange": "₹₹",
+  "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+  "areaServed": ["IN", "GB", "US", "CA", "AU", "AE", "SG"],
+  "sameAs": [
+    "https://www.instagram.com/thewebx.studio",
+    "https://x.com/Thewebxstudio",
+    "https://dribbble.com/hello-webx"
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ecommerce website development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web application development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing page design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO and performance" } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.thewebxstudio.com/#website",
+  "url": "https://www.thewebxstudio.com/",
+  "name": "Web{X} Studio",
+  "publisher": { "@id": "https://www.thewebxstudio.com/#organization" }
+}
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does a website project take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A landing page is usually 3–5 business days from kickoff to launch. A standard business website — five to twelve pages with custom design, responsive layouts and on-page SEO — takes 1–3 weeks. An ecommerce website build on Shopify or WooCommerce runs 3–6 weeks once product data, payment gateways and shipping rules are in scope, and a custom web application or ERP dashboard 6–12 weeks depending on how many user roles and third-party integrations it has to carry. Those timelines assume content and brand assets arrive on schedule. The most common delay on any web development project is not design or code — it is waiting on copy and product photography, so we start those conversations in week one. You get a written milestone plan before we begin, with design review, build, QA and launch dates fixed, plus a shared board so you can see what stage every page is at without chasing an update."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a website cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A single landing page starts around ₹40,000. A business website typically runs ₹40,000–₹2,00,000 depending on page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce website development starts higher — around ₹1,50,000 — because catalogue structure, payment and shipping integrations and checkout testing all add real scope. Custom web applications and ERP builds are quoted per project after a discovery call. Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do you need from us to get started?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A conversation first: what the business does, who the website is for, what a good enquiry actually looks like, and which pages have to earn their place. From there we need three things — your brand assets (logo files, fonts, colour palette if they exist), any existing copy or product data, and access to your domain and hosting. Nothing on that list is a blocker. If you have no brand guidelines we work from what your current site and marketing already use. If the copy does not exist we write it, structured around the keywords your customers actually search for. If product photography is thin we will tell you exactly what to shoot. The single fastest thing you can do is nominate one decision-maker for approvals — web design projects that stall almost always stall in feedback rounds, not in design or development."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you handle both web design and development?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. UI/UX design, front-end and back-end development, and the SEO that keeps the site found all happen inside the same team. That matters more than it sounds. When a design agency hands static mockups to a separate development shop, the things lost in the gap are exactly the things that decide whether a site performs: responsive behaviour at awkward breakpoints, real content lengths versus placeholder text, image weight, accessible focus states, and how the CMS actually gets edited day to day. Designing and building in one place means those are resolved as decisions rather than discovered as bugs. You get one point of contact, one timeline and one invoice — and nobody in the middle explaining that the other party caused the delay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which platforms do you build websites on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Webflow, WordPress, Shopify, Framer, or a fully custom stack — chosen for how your team needs to run the site, not for our convenience. Webflow suits marketing sites where you want visual editing and clean hosting without plugin maintenance. WordPress makes sense for a large content library, multilingual requirements, or a plugin ecosystem you already depend on. Shopify is the default for ecommerce unless your catalogue or checkout is genuinely unusual. Framer is fast for launch pages and product sites that lean on motion. Custom React or Next.js builds are for web applications and dashboards where a CMS would only get in the way. We will tell you honestly when a cheaper platform does the job. At launch you get full admin access, the source files, and a short training session — the website belongs to you, not to us, and moving it elsewhere later stays entirely your decision."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will the website be fast and search-engine ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Speed and SEO are part of the build, not something bolted on afterwards. Every page ships with semantic HTML, a correct heading hierarchy, descriptive image alt text, structured data where it applies, clean internal linking, and meta titles and descriptions written per page rather than generated from a template. On performance we budget for Core Web Vitals from the first design decision: images served in modern formats at the sizes actually used, fonts preloaded with a sensible fallback, no render-blocking scripts, and layout stability protected by explicit image dimensions. We test on real mobile hardware and throttled connections, not just a desktop Lighthouse score. After launch we submit the XML sitemap, connect Google Search Console and Analytics, and send you a baseline report — then measure again at 30 days rather than assuming it worked."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with clients outside India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A large share of our work is for founders and marketing teams outside India — across the UK, the US, Canada, Australia, the UAE and the wider Gulf, and Singapore. We keep working hours that overlap your morning, run projects asynchronously on a shared board so progress stays visible without a standing call, and schedule reviews at times that are not midnight for you. Invoicing is available in INR, USD, GBP, EUR or AED, and contracts, scope documents and handover documentation are all in English. Time zones have never been the hard part of remote work — unclear scope is, which is why every project starts with a written brief both sides sign off before design begins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you work with our existing in-house team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Often that is exactly the arrangement. We slot in alongside an in-house marketer, founder or developer and take the design and build load, which is usually faster and cheaper than hiring a designer and a developer outright. In practice that looks like one of a few things: we design and your developer implements; we build on top of a design system your team already owns; we absorb overflow when your internal roadmap is full; or we act as the entire web function while you focus on the product. We work inside your tools — Figma, Slack, Notion, Jira, GitHub — rather than asking you to adopt ours, and we document what we build so your team is never dependent on us to make a change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer website support and maintenance after launch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Monthly website support covers content and design changes, new landing pages, plugin and platform updates, security patching, uptime monitoring, performance tuning and ongoing SEO work. It runs as a fixed monthly rate with a defined turnaround rather than an hourly retainer you have to police. Most clients use it for the steady drip a live website needs — a new case study, a seasonal campaign page, a pricing change, a Core Web Vitals regression after a platform update. You can scale up during a campaign and back down afterwards, and you can stop any month: there is no lock-in and no exit fee. If you would rather run the site yourself that is fine too — full access and documentation are handed over at launch either way."
+        }
+      }
+    ]
+  }
+</script>
 </head>
 <body>
+<a class="wx-skip" href="#main">Skip to content</a>
 
 <main id="main">
 
@@ -699,13 +858,16 @@
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent; color: transparent;
       }
-      /* The accent phrase drops into the serif italic the rest of the page uses
-         for its highlights. Instrument Serif only ships a 400, and it sets a
-         touch smaller than Manrope bold, so the weight and tracking reset and
-         the size lifts slightly to keep the line optically even. */
+      /* The accent phrase is a bold serif italic. Instrument Serif — used for
+         the page's other highlights — ships a 400 only, and Chrome does not
+         synthesise a bold for it: 400 and 700 measured identically at 512.2px,
+         so font-weight had no visible effect at all. Playfair Display is the
+         nearest display serif with a real bold italic cut, loaded at 1,700 for
+         this one phrase. Tracking resets off the h1's -.045em, and the size
+         lifts slightly because the serif sets optically smaller than Manrope. */
       .hero-fan h1 .wx-grad-text {
-        font-family: 'Instrument Serif', Georgia, serif;
-        font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.06em;
+        font-family: 'Playfair Display', 'Instrument Serif', Georgia, serif;
+        font-style: italic; font-weight: 700; letter-spacing: -.005em; font-size: 1.02em;
       }
 
       /* ---------- Fanned card deck ---------- */
@@ -1361,7 +1523,7 @@
       </div>
       <div class="v3-blog-grid">
         <a class="v3-post" href="blog-website-cost" data-reveal>
-          <span class="v3-post-media"><img src="images/cap-development.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></span>
+          <span class="v3-post-media"><img src="images/cap-development.webp" alt="Guide to what a website costs in 2026" loading="lazy" decoding="async" width="1536" height="1024"></span>
           <span class="v3-post-meta">Pricing <em>10 min</em></span>
           <span class="v3-post-body">
             <h3>What a Website Costs in 2026</h3>
@@ -1369,7 +1531,7 @@
           </span>
         </a>
         <a class="v3-post" href="blog-core-web-vitals" data-reveal data-reveal-delay="80">
-          <span class="v3-post-media"><img src="images/cap-seo.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></span>
+          <span class="v3-post-media"><img src="images/cap-seo.webp" alt="Guide to Core Web Vitals in 2026" loading="lazy" decoding="async" width="1536" height="1024"></span>
           <span class="v3-post-meta">Site speed &amp; SEO <em>8 min</em></span>
           <span class="v3-post-body">
             <h3>Core Web Vitals in 2026</h3>
@@ -1377,7 +1539,7 @@
           </span>
         </a>
         <a class="v3-post" href="blog-choosing-web-design-agency" data-reveal data-reveal-delay="160">
-          <span class="v3-post-media"><img src="images/cap-01.avif" alt="" loading="lazy" decoding="async" width="1200" height="900"></span>
+          <span class="v3-post-media"><img src="images/cap-01.avif" alt="Guide to choosing a web design agency" loading="lazy" decoding="async" width="1200" height="900"></span>
           <span class="v3-post-meta">Hiring <em>9 min</em></span>
           <span class="v3-post-body">
             <h3>Choosing a Web Design Agency</h3>
@@ -1457,16 +1619,15 @@
       </div>
 
       <div class="v3-faq-list">
-        <details class="v3-faq-item"><summary>How long does a project take?</summary><p class="v3-faq-a">A landing page is usually 3&ndash;5 business days. A standard business website takes 1&ndash;3 weeks, and an ecommerce store or web app 3&ndash;8 weeks, depending on scope.</p></details>
-        <details class="v3-faq-item"><summary>How much does a website cost?</summary><p class="v3-faq-a">A landing page starts around &#8377;40,000. A business website typically runs &#8377;40,000&ndash;&#8377;2,00,000, with ecommerce and custom builds higher. Every project is quoted as a fixed price before we start.</p></details>
-        <details class="v3-faq-item"><summary>What do you need from us to get started?</summary><p class="v3-faq-a">A conversation first: what the business does, who the site is for, and which pages actually have to earn their place. Anything you already have &mdash; brand assets, copy, product data &mdash; speeds things up, and we can help build whatever is missing.</p></details>
-        <details class="v3-faq-item"><summary>Do you handle both design and development?</summary><p class="v3-faq-a">Yes. Design, build, and the SEO that keeps it found all happen in the same team, so nothing gets lost in a handover.</p></details>
-        <details class="v3-faq-item"><summary>Which platforms do you build on?</summary><p class="v3-faq-a">Webflow, WordPress, Shopify, Framer, or fully custom &mdash; chosen for how your team needs to edit the site, not for our convenience.</p></details>
-        <details class="v3-faq-item"><summary>Will the site be fast and search-ready?</summary><p class="v3-faq-a">Speed and SEO are part of the build, not something bolted on afterwards. Sites go out fast, accessible and structured for search &mdash; and we measure them once they are live rather than assuming.</p></details>
-        <details class="v3-faq-item"><summary>Do you work with clients outside India?</summary><p class="v3-faq-a">Yes. We work with founders and marketing teams across the UK, the US, the Gulf, Australia and Canada as well as India, with hours that overlap your morning.</p></details>
-        <details class="v3-faq-item"><summary>Can you work with our existing team?</summary><p class="v3-faq-a">Often that is the arrangement &mdash; we slot in alongside an in-house marketer or developer and take the design and build load.</p></details>
-        <details class="v3-faq-item"><summary>Can you support us after launch?</summary><p class="v3-faq-a">Yes. Monthly support covers changes, new pages, performance and SEO once the site is live.</p></details>
-      </div>
+        <details class="v3-faq-item"><summary>How long does a website project take?</summary><p class="v3-faq-a">A landing page is usually 3&ndash;5 business days from kickoff to launch. A standard business website &mdash; five to twelve pages with custom design, responsive layouts and on-page SEO &mdash; takes 1&ndash;3 weeks. An ecommerce website build on Shopify or WooCommerce runs 3&ndash;6 weeks once product data, payment gateways and shipping rules are in scope, and a custom web application or ERP dashboard 6&ndash;12 weeks depending on how many user roles and third-party integrations it has to carry.</p><p class="v3-faq-a">Those timelines assume content and brand assets arrive on schedule. The most common delay on any web development project is not design or code &mdash; it is waiting on copy and product photography, so we start those conversations in week one. You get a written milestone plan before we begin, with design review, build, QA and launch dates fixed, plus a shared board so you can see what stage every page is at without chasing an update.</p></details>
+        <details class="v3-faq-item"><summary>How much does a website cost?</summary><p class="v3-faq-a">A single landing page starts around &#8377;40,000. A business website typically runs &#8377;40,000&ndash;&#8377;2,00,000 depending on page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce website development starts higher &mdash; around &#8377;1,50,000 &mdash; because catalogue structure, payment and shipping integrations and checkout testing all add real scope. Custom web applications and ERP builds are quoted per project after a discovery call.</p><p class="v3-faq-a">Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it.</p></details>
+        <details class="v3-faq-item"><summary>What do you need from us to get started?</summary><p class="v3-faq-a">A conversation first: what the business does, who the website is for, what a good enquiry actually looks like, and which pages have to earn their place. From there we need three things &mdash; your brand assets (logo files, fonts, colour palette if they exist), any existing copy or product data, and access to your domain and hosting.</p><p class="v3-faq-a">Nothing on that list is a blocker. If you have no brand guidelines we work from what your current site and marketing already use. If the copy does not exist we write it, structured around the keywords your customers actually search for. If product photography is thin we will tell you exactly what to shoot. The single fastest thing you can do is nominate one decision-maker for approvals &mdash; web design projects that stall almost always stall in feedback rounds, not in design or development.</p></details>
+        <details class="v3-faq-item"><summary>Do you handle both web design and development?</summary><p class="v3-faq-a">Yes. UI/UX design, front-end and back-end development, and the SEO that keeps the site found all happen inside the same team.</p><p class="v3-faq-a">That matters more than it sounds. When a design agency hands static mockups to a separate development shop, the things lost in the gap are exactly the things that decide whether a site performs: responsive behaviour at awkward breakpoints, real content lengths versus placeholder text, image weight, accessible focus states, and how the CMS actually gets edited day to day. Designing and building in one place means those are resolved as decisions rather than discovered as bugs. You get one point of contact, one timeline and one invoice &mdash; and nobody in the middle explaining that the other party caused the delay.</p></details>
+        <details class="v3-faq-item"><summary>Which platforms do you build websites on?</summary><p class="v3-faq-a">Webflow, WordPress, Shopify, Framer, or a fully custom stack &mdash; chosen for how your team needs to run the site, not for our convenience. Webflow suits marketing sites where you want visual editing and clean hosting without plugin maintenance. WordPress makes sense for a large content library, multilingual requirements, or a plugin ecosystem you already depend on. Shopify is the default for ecommerce unless your catalogue or checkout is genuinely unusual. Framer is fast for launch pages and product sites that lean on motion. Custom React or Next.js builds are for web applications and dashboards where a CMS would only get in the way.</p><p class="v3-faq-a">We will tell you honestly when a cheaper platform does the job. At launch you get full admin access, the source files, and a short training session &mdash; the website belongs to you, not to us, and moving it elsewhere later stays entirely your decision.</p></details>
+        <details class="v3-faq-item"><summary>Will the website be fast and search-engine ready?</summary><p class="v3-faq-a">Speed and SEO are part of the build, not something bolted on afterwards. Every page ships with semantic HTML, a correct heading hierarchy, descriptive image alt text, structured data where it applies, clean internal linking, and meta titles and descriptions written per page rather than generated from a template.</p><p class="v3-faq-a">On performance we budget for Core Web Vitals from the first design decision: images served in modern formats at the sizes actually used, fonts preloaded with a sensible fallback, no render-blocking scripts, and layout stability protected by explicit image dimensions. We test on real mobile hardware and throttled connections, not just a desktop Lighthouse score.</p><p class="v3-faq-a">After launch we submit the XML sitemap, connect Google Search Console and Analytics, and send you a baseline report &mdash; then measure again at 30 days rather than assuming it worked.</p></details>
+        <details class="v3-faq-item"><summary>Do you work with clients outside India?</summary><p class="v3-faq-a">Yes. A large share of our work is for founders and marketing teams outside India &mdash; across the UK, the US, Canada, Australia, the UAE and the wider Gulf, and Singapore.</p><p class="v3-faq-a">We keep working hours that overlap your morning, run projects asynchronously on a shared board so progress stays visible without a standing call, and schedule reviews at times that are not midnight for you. Invoicing is available in INR, USD, GBP, EUR or AED, and contracts, scope documents and handover documentation are all in English. Time zones have never been the hard part of remote work &mdash; unclear scope is, which is why every project starts with a written brief both sides sign off before design begins.</p></details>
+        <details class="v3-faq-item"><summary>Can you work with our existing in-house team?</summary><p class="v3-faq-a">Often that is exactly the arrangement. We slot in alongside an in-house marketer, founder or developer and take the design and build load, which is usually faster and cheaper than hiring a designer and a developer outright.</p><p class="v3-faq-a">In practice that looks like one of a few things: we design and your developer implements; we build on top of a design system your team already owns; we absorb overflow when your internal roadmap is full; or we act as the entire web function while you focus on the product. We work inside your tools &mdash; Figma, Slack, Notion, Jira, GitHub &mdash; rather than asking you to adopt ours, and we document what we build so your team is never dependent on us to make a change.</p></details>
+        <details class="v3-faq-item"><summary>Do you offer website support and maintenance after launch?</summary><p class="v3-faq-a">Yes. Monthly website support covers content and design changes, new landing pages, plugin and platform updates, security patching, uptime monitoring, performance tuning and ongoing SEO work.</p><p class="v3-faq-a">It runs as a fixed monthly rate with a defined turnaround rather than an hourly retainer you have to police. Most clients use it for the steady drip a live website needs &mdash; a new case study, a seasonal campaign page, a pricing change, a Core Web Vitals regression after a platform update. You can scale up during a campaign and back down afterwards, and you can stop any month: there is no lock-in and no exit fee.</p><p class="v3-faq-a">If you would rather run the site yourself that is fine too &mdash; full access and documentation are handed over at launch either way.</p></details>      </div>
     </div>
   </section>
 
@@ -1494,6 +1655,8 @@
       </div>
     </div>
   </section>
+
+</main>
 
   <!-- ============ 11. FOOTER ============ -->
   <footer class="v3-foot" aria-label="Site footer">
@@ -1574,7 +1737,6 @@
     <div class="v3-foot-mega" aria-hidden="true">Web{X}</div>
   </footer>
 
-</main>
 
 <script>
 /* home-v3 only: the process timeline, the featured-work slider and the
@@ -1668,9 +1830,9 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', function () { measure(); paint(); });
       window.addEventListener('load', function () { measure(); paint(); });
-      // Lenis drives scrolling on this page and does not always emit a native
-      // scroll event, so drive the paint off its own tick when it is present.
-      if (window.lenis && typeof window.lenis.on === 'function') window.lenis.on('scroll', onScroll);
+      // Lenis (assets/js/webx.js) scrolls the window itself, so the native
+      // scroll listener above already covers it — it keeps lenis module-local
+      // and never exposes window.lenis, so there is nothing else to hook.
       // Each cover changes its row's height as it lands — repaint on every one.
       [].slice.call(track.querySelectorAll('img')).forEach(function (im) {
         if (!im.complete) im.addEventListener('load', function () { measure(); paint(); }, { once: true });
