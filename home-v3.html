@@ -20,246 +20,391 @@
 <link rel="stylesheet" href="assets/css/webx.css">
 
 <style>
+  /* ============================================================
+     Type scale, rhythm and components measured off the reference
+     at a 1440px viewport, then written as clamps that land on the
+     exact reference value at 1440 and scale down from there.
+       h2      72px / 82.08px / w500 / -0.92px
+       h3      52px / 57.2px  / w500 / -0.32px
+       h5      30px / 37.2px  / w500 / -0.52px
+       lead    24px / 31.2px  / w400 / -0.32px
+       body    18px / 26.1px  / w400 / -0.18px at 80% black
+       section rhythm 180px, container 1460px with 30px gutters
+     ============================================================ */
   :root {
-    --wx-sec-y: 120px;
-    --v3-ink: #0A0A0A;
-    --v3-dim: #56565F;
-    --v3-line: rgba(10,10,10,.11);
-    --v3-grey: #F4F4F6;
-    --v3-dark: #000000;
-    --v3-purple: #9D5CFF;
+    --v3-ink:    #000000;
+    --v3-body:   rgba(0,0,0,.8);
+    --v3-dim:    rgba(0,0,0,.7);
+    --v3-line:   #E6E6E6;
+    --v3-grey:   #F3F4F6;
+    --v3-dark:   #010101;
+    --v3-tagbg:  #E8E8E8;
+    --v3-accent: #DA190C;
+
+    --v3-sec:  clamp(72px,12.5vw,180px);
+    --v3-g104: clamp(48px,7.22vw,104px);
+    --v3-g92:  clamp(44px,6.39vw,92px);
+    --v3-g80:  clamp(40px,5.56vw,80px);
+    --v3-g60:  clamp(32px,4.17vw,60px);
+    --v3-g44:  clamp(22px,3.06vw,44px);
+    --v3-g32:  clamp(20px,2.22vw,32px);
+    --v3-g24:  clamp(16px,1.67vw,24px);
+
+    --v3-h2:   clamp(32px,5vw,72px);
+    --v3-h3:   clamp(27px,3.61vw,52px);
+    --v3-h5:   clamp(20px,2.08vw,30px);
+    --v3-lead: clamp(18px,1.67vw,24px);
+    --v3-txt:  clamp(15px,1.25vw,18px);
+    --v3-lg:   clamp(16px,1.39vw,20px);
+    --v3-sm:   clamp(14px,1.11vw,16px);
   }
-  @media (max-width: 820px) { :root { --wx-sec-y: 64px; } }
   body { background: #FFFFFF; color: var(--v3-ink); }
-  .v3-wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
 
-  /* ---- The reference's signature: a tight sans headline whose second line
-     drops into a high-contrast serif italic. ---- */
-  .v3-h {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 600;
-    letter-spacing: -.03em;
-    line-height: 1.12;
-    margin: 0;
-    font-size: clamp(28px,3.9vw,46px);
-  }
-  .v3-h em {
+  /* Reference container: 1460px cap, 30px gutters -> 1365px of content. */
+  .v3-wrap { max-width: 1460px; margin: 0 auto; padding: 0 30px; }
+  .v3-sec  { padding: var(--v3-sec) 0; }
+  .v3-sec--grey { background: var(--v3-grey); }
+  .v3-sec--dark { background: var(--v3-dark); color: #FFFFFF; }
+
+  /* ---- Headings: a tight sans whose accent phrase drops into serif italic. ---- */
+  .v3-h2, .v3-h3, .v3-h5 { font-family: 'Manrope', sans-serif; font-weight: 500; margin: 0; }
+  .v3-h2 { font-size: var(--v3-h2); line-height: 1.14; letter-spacing: -.0128em; }
+  .v3-h3 { font-size: var(--v3-h3); line-height: 1.1;  letter-spacing: -.0062em; }
+  .v3-h5 { font-size: var(--v3-h5); line-height: 1.24; letter-spacing: -.0173em; }
+  .v3-h2 em, .v3-h3 em, .v3-h5 em {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -.01em;
+    font-style: italic; font-weight: 400; letter-spacing: 0;
   }
-  .v3-h--xl { font-size: clamp(32px,5vw,58px); }
-  .v3-lead { font-family: 'Satoshi', sans-serif; font-size: clamp(14px,1.05vw,16px); line-height: 1.65; color: var(--v3-dim); margin: 14px 0 0; }
-  .v3-center { text-align: center; }
-  .v3-center .v3-lead { margin-inline: auto; max-width: 62ch; }
+  .v3-lead { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3;  letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
+  .v3-txt  { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt);  font-weight: 400; line-height: 1.45; letter-spacing: -.01em;   color: var(--v3-body); margin: 0; }
+  .v3-lg   { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg);   font-weight: 400; line-height: 1.45; color: var(--v3-body); margin: 0; }
+  .v3-sec--dark .v3-txt  { color: rgba(255,255,255,.7); }
+  .v3-sec--dark .v3-lead { color: rgba(255,255,255,.9); }
+  .v3-sec--dark .v3-h2, .v3-sec--dark .v3-h3, .v3-sec--dark .v3-h5 { color: #FFFFFF; }
 
-  .v3-tag {
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 1px solid var(--v3-line); border-radius: 100px; padding: 6px 14px;
-    font-family: 'Satoshi', sans-serif; font-size: 11.5px; font-weight: 600;
-    color: var(--v3-dim); margin: 0 0 18px; background: #FFFFFF;
-  }
-  .v3-tag svg { color: var(--v3-purple); }
-  .v3-tag--dark { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.8); }
+  /* Centred head block: pill, heading, then a narrower lead beneath. */
+  .v3-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); margin-inline: auto; }
+  .v3-head--780 { max-width: 780px; }
+  .v3-head--980 { max-width: 980px; }
+  .v3-head--680 { max-width: 680px; gap: var(--v3-g24); }
+  .v3-head p { max-width: 680px; }
 
-  /* ---- Pill CTA with the rotating arrow badge (same component as v2) ---- */
-  .v3-btn {
-    display: inline-flex; align-items: center; gap: clamp(12px,1.4vw,18px);
-    background: var(--v3-ink); color: #FFFFFF; border-radius: 100px;
-    padding: 7px 7px 7px clamp(20px,2vw,26px);
-    font-family: 'Satoshi', sans-serif; font-size: clamp(13.5px,1vw,15px); font-weight: 600;
-    line-height: 1; text-decoration: none; box-shadow: 0 14px 30px rgba(10,10,10,.24);
-    transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
-  }
-  .v3-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(10,10,10,.3); }
-  .v3-btn-ico {
-    width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%;
-    background: #FFFFFF; color: var(--v3-ink);
-    display: inline-flex; align-items: center; justify-content: center;
-  }
+  /* ---- Pills ---- */
+  .v3-tag { display: inline-flex; align-items: center; background: var(--v3-tagbg); border-radius: 50px; padding: 6px 16px;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; line-height: 1.45; color: var(--v3-ink); text-transform: capitalize; }
+  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 99px; padding: 4px 14px 4px 4px;
+             font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; color: var(--v3-dim); }
+  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: #EFEFEF; display: grid; place-items: center; color: var(--v3-ink); }
+  .v3-pill--dark { background: rgba(255,255,255,.2); color: rgba(255,255,255,.9); gap: 10px; }
+  .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
+
+  /* ---- Primary button: black pill, label, white circular arrow ---- */
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-dark); color: #FFFFFF;
+            border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
+            transition: transform .25s cubic-bezier(.16,1,.3,1); }
+  .v3-btn:hover { transform: translateY(-2px); }
+  .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF; color: var(--v3-ink); display: grid; place-items: center; }
   .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
   .v3-btn:hover .v3-btn-ico svg, .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }
-  .v3-btn--light { background: #FFFFFF; color: var(--v3-ink); box-shadow: 0 14px 30px rgba(0,0,0,.3); }
-  .v3-btn--light .v3-btn-ico { background: var(--v3-ink); color: #FFFFFF; }
+  .v3-btn--light { background: #FFFFFF; color: var(--v3-ink); }
+  .v3-btn--light .v3-btn-ico { background: var(--v3-dark); color: #FFFFFF; }
 
-  /* ============ 1. VALUE GRID ============ */
-  .v3-value { padding: var(--wx-sec-y) 20px; }
-  .v3-value-inner { max-width: 1240px; margin: 0 auto; }
-  .v3-value-top { display: grid; grid-template-columns: 1.3fr .9fr; gap: clamp(30px,5vw,80px); padding-bottom: clamp(38px,5vw,66px); }
-  .v3-links { list-style: none; margin: 0; padding: 0; }
-  .v3-links li { border-bottom: 1px solid var(--v3-line); }
-  .v3-links li:first-child { border-top: 1px solid var(--v3-line); }
-  .v3-links a {
-    display: flex; align-items: center; gap: 12px; padding: 14px 4px;
-    font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 500;
-    color: var(--v3-ink); text-decoration: none; transition: color .2s ease, gap .2s ease;
-  }
-  .v3-links a svg { flex: 0 0 auto; color: var(--v3-dim); }
-  .v3-links a:hover { color: var(--v3-purple); gap: 17px; }
-  .v3-cards4 { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--v3-line); }
-  .v3-cell { text-align: center; padding: clamp(28px,4vw,50px) clamp(18px,3vw,42px); border-bottom: 1px solid var(--v3-line); }
-  .v3-cell:nth-child(odd) { border-right: 1px solid var(--v3-line); }
-  .v3-cell:nth-last-child(-n+2) { border-bottom: 0; }
-  .v3-badge { display: inline-block; padding: 5px 13px; border-radius: 100px; font-family: 'Satoshi', sans-serif; font-size: 11.5px; font-weight: 600; margin-bottom: clamp(14px,2vw,20px); }
-  .v3-badge--a { background: #E7F6EC; color: #1B7F45; }
-  .v3-badge--b { background: #FDF0E3; color: #8A5012; }
-  .v3-badge--c { background: #F1E9FE; color: #6C2BD9; }
-  .v3-badge--d { background: #E8EDFD; color: #2B4ACB; }
-  .v3-cell svg.v3-ico { display: block; margin: 0 auto clamp(12px,1.8vw,18px); }
-  .v3-cell h3 { font-family: 'Manrope', sans-serif; font-size: clamp(18px,1.8vw,23px); font-weight: 600; letter-spacing: -.02em; margin: 0 0 9px; }
-  .v3-cell p { font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.6; color: var(--v3-dim); margin: 0 auto; max-width: 36ch; }
+  /* ============ 1. VALUE GRID  (ref .trusted-section) ============ */
+  .v3-value-inner { display: flex; flex-direction: column; gap: var(--v3-g80); }
+  .v3-value-top { display: flex; justify-content: space-between; gap: var(--v3-g60); }
+  .v3-value-left { max-width: 680px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--v3-g44); }
+  .v3-value-copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+  .v3-links { list-style: none; margin: 0; padding: 0; max-width: 327px; display: flex; flex-direction: column; gap: 16px; }
+  .v3-links a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--v3-body);
+                font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.45; transition: color .2s ease, gap .2s ease; }
+  .v3-links svg { flex: 0 0 auto; color: var(--v3-accent); }
+  .v3-links a:hover { color: var(--v3-ink); gap: 13px; }
 
-  /* ============ 2. FEATURED WORK (dark) ============ */
-  .v3-feat { background: var(--v3-dark); color: #FFFFFF; padding: var(--wx-sec-y) 20px; }
-  .v3-feat .v3-h { color: #FFFFFF; }
-  .v3-feat .v3-lead { color: rgba(255,255,255,.62); }
-  .v3-stage { position: relative; margin-top: clamp(30px,4vw,52px); border-radius: 18px; overflow: hidden; background: #111; }
-  .v3-stage img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
-  .v3-feat-meta { background: #0D0D0D; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; margin-top: clamp(14px,1.6vw,20px); padding: clamp(20px,2.6vw,32px); display: grid; grid-template-columns: 1.5fr .8fr; gap: clamp(20px,3vw,44px); align-items: start; }
-  .v3-feat-live { font-family: 'Satoshi', sans-serif; font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,.66); border-left: 2px solid #E0523B; padding-left: 8px; }
-  .v3-feat-meta h3 { font-family: 'Manrope', sans-serif; font-size: clamp(21px,2.2vw,28px); font-weight: 600; letter-spacing: -.02em; margin: 12px 0 12px; }
-  .v3-feat-meta p { font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.62); margin: 0; max-width: 52ch; }
-  .v3-feat-right { text-align: right; }
-  .v3-feat-right b { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(30px,3.4vw,42px); font-weight: 400; display: block; line-height: 1; }
-  .v3-feat-right span { font-family: 'Satoshi', sans-serif; font-size: 12.5px; color: rgba(255,255,255,.6); display: block; margin-top: 8px; }
-  .v3-feat-right .v3-btn { margin-top: 18px; }
+  /* 2x2 with hairlines between the cells only — the outer edges stay open. */
+  .v3-cards4 { display: grid; grid-template-columns: 1fr 1fr; }
+  .v3-cell { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g24); padding: clamp(24px,2.78vw,40px); }
+  .v3-cell:nth-child(-n+2) { border-bottom: .8px solid var(--v3-line); }
+  .v3-cell:nth-child(odd)  { border-right: .8px solid var(--v3-line); }
+  .v3-badge { display: inline-flex; align-items: center; justify-content: center; border-radius: 50px; padding: 6px 16px;
+              font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.45; }
+  .v3-badge--a { background: #F0FFEF; color: #22541F; }
+  .v3-badge--b { background: #FDF9F3; color: #A8610F; }
+  .v3-badge--c { background: #FBECFF; color: #851DA1; }
+  .v3-badge--d { background: #ECEFFF; color: #3F51A8; }
+  .v3-cell-copy { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .v3-cell-copy p { max-width: 420px; }
 
-  /* ============ 3. CASE STUDIES ============ */
-  .v3-cases { background: var(--v3-grey); padding: var(--wx-sec-y) 20px; }
-  .v3-cases-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: clamp(22px,3vw,36px); }
-  .v3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,1.4vw,18px); }
-  .v3-case { text-decoration: none; color: inherit; display: block; }
-  .v3-case-media { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; background: #E4E4E9; }
+  /* ============ 2. FEATURED WORK  (ref .service-case-section) ============ */
+  .v3-feat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  .v3-case-slider { position: relative; width: 100%; }
+  .v3-case-view { display: grid; }
+  .v3-case-slide { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 12px; opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+  .v3-case-slide.is-on { opacity: 1; pointer-events: auto; }
+  .v3-case-shot { border-radius: 32px; overflow: hidden; aspect-ratio: 1365/785; background: #111; }
+  .v3-case-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .v3-case-info { background: rgba(255,255,255,.1); border-radius: 28px; padding: clamp(24px,3.06vw,44px);
+                  display: flex; justify-content: space-between; align-items: flex-start; gap: var(--v3-g32); flex-wrap: wrap; }
+  .v3-case-live { font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .04em;
+                  color: rgba(255,255,255,.7); border-left: 2px solid var(--v3-accent); padding-left: 8px; text-transform: uppercase; }
+  .v3-case-info h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; margin: 14px 0 12px; }
+  .v3-case-info p { max-width: 62ch; }
+  .v3-case-metric { text-align: right; }
+  .v3-case-metric b { display: block; font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400;
+                      font-size: clamp(30px,3.06vw,44px); line-height: 1.14; }
+  .v3-case-arrow { position: absolute; top: 32%; width: 70px; height: 70px; border: 0; border-radius: 99px;
+                   background: rgba(255,255,255,.5); color: var(--v3-ink); display: grid; place-items: center; cursor: pointer;
+                   transition: background-color .25s ease; }
+  .v3-case-arrow:hover { background: #FFFFFF; }
+  .v3-case-arrow--prev { left: clamp(8px,1.4vw,20px); }
+  .v3-case-arrow--next { right: clamp(8px,1.4vw,20px); }
+
+  .v3-award { display: flex; flex-direction: column; gap: clamp(56px,9.72vw,140px); width: 100%; }
+  .v3-award-top { display: flex; justify-content: space-between; align-items: center; gap: var(--v3-g44); flex-wrap: wrap; }
+  .v3-who { display: flex; align-items: center; gap: 16px; }
+  .v3-who-av { width: 52px; height: 52px; flex: 0 0 auto; border-radius: 99px; background: var(--v3-accent); color: #FFFFFF;
+               display: grid; place-items: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 18px; }
+  .v3-who b { display: block; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.2; }
+  .v3-who span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
+  .v3-award-top p { max-width: 900px; }
+  .v3-award-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .v3-award-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); }
+  .v3-award-card b { display: block; font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.06vw,44px); font-weight: 500;
+                     letter-spacing: -.01em; line-height: 1.14; margin-bottom: 8px; }
+  .v3-award-card span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
+
+  .v3-review { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g104); width: 100%; }
+  .v3-star { color: #F28911; }
+  .v3-review-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; width: 100%; }
+  .v3-review-card { background: rgba(255,255,255,.1); border-radius: 28px; padding: 28px 32px;
+                    display: flex; flex-direction: column; justify-content: space-between; gap: var(--v3-g80); }
+  .v3-review-card blockquote { margin: 0 0 32px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg); line-height: 1.45; color: #FFFFFF; }
+  .v3-review-auth { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+
+  /* ============ 3. CASE STUDIES  (ref .our-projects-section) ============ */
+  .v3-cases-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
+  .v3-cases-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  /* The reference pins ONE media height across the whole grid (440px at a 1365
+     container) rather than an aspect ratio per card — that is what keeps the
+     wide card level with the card beside it instead of leaving a step. */
+  .v3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px 20px; --v3-shot: clamp(200px,30.56vw,440px); }
+  .v3-case { text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+  .v3-case-media { position: relative; border-radius: 16px; overflow: hidden; background: #E4E4E9; height: var(--v3-shot); flex: 0 0 auto; }
   .v3-case-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1); }
   .v3-case:hover .v3-case-media img { transform: scale(1.04); }
-  .v3-case b { display: block; font-family: 'Manrope', sans-serif; font-size: 14.5px; font-weight: 600; margin: 12px 0 3px; }
-  .v3-case span { font-family: 'Satoshi', sans-serif; font-size: 12.5px; color: var(--v3-dim); }
+  .v3-case-over { position: absolute; inset: 0; border-radius: 16px; background: rgba(0,0,0,.2); padding: 24px;
+                  display: flex; align-items: flex-end; opacity: 0; transition: opacity .35s ease; }
+  .v3-case:hover .v3-case-over, .v3-case:focus-visible .v3-case-over { opacity: 1; }
+  .v3-case-over span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 500; line-height: 1.3;
+                       letter-spacing: -.0133em; color: var(--v3-over,#FFFFFF); }
+  .v3-case-name { display: flex; flex-direction: column; justify-content: space-between; padding-right: 20px; }
+  .v3-case-name b { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.3; }
+  .v3-case-name span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-body); line-height: 1.45; }
   .v3-case--wide { grid-column: span 2; }
-  .v3-case--wide .v3-case-media { aspect-ratio: 16/9; }
 
-  /* ============ 4. STORY (dark) ============ */
-  .v3-story { background: var(--v3-dark); color: #FFFFFF; padding: var(--wx-sec-y) 20px; }
-  .v3-story .v3-h { color: #FFFFFF; }
-  .v3-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px,1.6vw,20px); margin-top: clamp(28px,4vw,48px); }
-  .v3-story-col { display: flex; flex-direction: column; gap: clamp(14px,1.6vw,20px); }
-  .v3-panel { background: #141416; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: clamp(20px,2.6vw,30px); }
-  .v3-panel--light { background: #FFFFFF; color: var(--v3-ink); border-color: transparent; }
-  .v3-panel b.v3-num { font-family: 'Manrope', sans-serif; font-size: clamp(32px,4vw,50px); font-weight: 700; letter-spacing: -.03em; display: block; line-height: 1; }
-  .v3-panel .v3-num-label { font-family: 'Satoshi', sans-serif; font-size: 13px; color: rgba(255,255,255,.6); margin-top: 8px; display: block; }
-  .v3-panel h3 { font-family: 'Manrope', sans-serif; font-size: clamp(18px,1.9vw,24px); font-weight: 600; letter-spacing: -.02em; margin: 0 0 6px; }
-  .v3-panel p { font-family: 'Satoshi', sans-serif; font-size: 13.5px; color: var(--v3-dim); margin: 0 0 18px; }
-  .v3-panel-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-  .v3-mark { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; color: var(--v3-purple); }
-  .v3-story-visual { border-radius: 16px; min-height: clamp(230px,28vw,360px); background: linear-gradient(150deg,#5B2BC9 0%,#9D5CFF 42%,#FF7EC8 78%,#FFC98F 100%); }
+  /* ============ 4. STORY  (ref .who-we-are) ============ */
+  .v3-story-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
+  .v3-story-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g24); }
+  .v3-wdo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .v3-wdo-col { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+  .v3-panel { background: #000000; border: .8px solid rgba(255,255,255,.08); border-radius: 10px; padding: 25px;
+              display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; }
+  .v3-panel .v3-num { font-family: 'Manrope', sans-serif; font-size: clamp(38px,5vw,72px); font-weight: 500; line-height: 1.2; margin: 0; }
+  .v3-panel .v3-num-label { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.24; color: #FFFFFF; }
+  .v3-panel--split { justify-content: space-between; gap: 24px; padding: 32px 25px 25px; }
+  .v3-panel--split h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.24; margin: 0; }
+  .v3-panel-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .v3-panel-foot span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
+  /* Glass panel floating on the brand gradient, as in the reference. */
+  .v3-glass-card { border-radius: 10px; padding: clamp(24px,4.5vw,65px); display: grid; place-items: center;
+                   background: linear-gradient(150deg,#5B2BC9 0%,#9D5CFF 42%,#FF7EC8 78%,#FFC98F 100%); }
+  .v3-glass { width: 100%; max-width: 430px; background: rgba(255,255,255,.14); border: .8px solid rgba(255,255,255,.22);
+              border-radius: 10px; padding: 25px 25px 35px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+              display: flex; flex-direction: column; gap: 10px; }
+  .v3-chat-time { font-family: 'Satoshi', sans-serif; font-size: 12px; color: rgba(255,255,255,.75); text-align: center; margin: 6px 0; }
+  .v3-chat { display: flex; }
+  .v3-chat span { background: rgba(255,255,255,.22); color: #FFFFFF; border-radius: 14px; padding: 9px 15px;
+                  font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.35; max-width: 78%; }
+  .v3-chat--me { justify-content: flex-end; }
+  .v3-chat--me span { background: rgba(255,255,255,.9); color: var(--v3-ink); }
 
-  /* ============ 5. PROCESS ============ */
-  .v3-proc { padding: var(--wx-sec-y) 20px; }
-  .v3-steps { margin-top: clamp(32px,4.5vw,56px); border-left: 1px solid var(--v3-line); }
-  .v3-step { display: grid; grid-template-columns: 130px 1fr 300px; gap: clamp(18px,3vw,44px); align-items: start; padding: 0 0 clamp(30px,4vw,52px) clamp(20px,3vw,40px); position: relative; }
-  .v3-step::before { content: ""; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--v3-purple); }
-  .v3-step-n span { display: inline-block; font-family: 'Satoshi', sans-serif; font-size: 11.5px; font-weight: 600; color: var(--v3-dim); background: var(--v3-grey); border-radius: 100px; padding: 4px 11px; }
-  .v3-step-n b { display: block; font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(20px,2.2vw,28px); margin-top: 10px; }
-  .v3-step-copy h3 { font-family: 'Manrope', sans-serif; font-size: clamp(17px,1.7vw,21px); font-weight: 600; letter-spacing: -.02em; margin: 0 0 8px; }
-  .v3-step-copy p { font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.6; color: var(--v3-dim); margin: 0; max-width: 46ch; }
-  .v3-step-media { border-radius: 12px; overflow: hidden; aspect-ratio: 16/10; background: var(--v3-grey); }
-  .v3-step-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* ============ 5. PROCESS  (ref .workflow-section) ============ */
+  .v3-proc-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  /* Rail and rows share one grid cell so the line runs behind the markers. */
+  /* The reference insets the timeline to 1219px inside the 1365 container. */
+  .v3-timeline { position: relative; width: 100%; max-width: 1219px; margin-inline: auto; padding-left: 20px; }
+  .v3-rail { position: absolute; top: 9px; bottom: 0; left: calc(var(--v3-col1) + var(--v3-gap) + 16px); width: 6px; margin-left: -3px; }
+  .v3-rail-line { position: absolute; inset: 0; background: var(--v3-line); border-radius: 6px; }
+  .v3-rail-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0; background: var(--v3-ink); border-radius: 6px;
+                  transition: height .12s linear; }
+  .v3-steps { --v3-col1: clamp(90px,14.65vw,211px); --v3-gap: clamp(16px,3.89vw,56px);
+              display: flex; flex-direction: column; gap: var(--v3-g80); position: relative; }
+  .v3-step { display: grid; grid-template-columns: var(--v3-col1) 32px minmax(0,1fr); gap: var(--v3-gap); align-items: start; }
+  .v3-step-n { display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 16px; }
+  .v3-step-n b { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 700;
+                 font-size: clamp(24px,2.5vw,36px); line-height: 1.1; color: rgba(0,0,0,.45); transition: color .5s ease; }
+  /* Marker: a grey dot that opens into a haloed accent circle when the step lands. */
+  .v3-step-dot { position: relative; width: 32px; height: 48px; display: grid; place-items: center; justify-self: center; }
+  .v3-step-dot i { width: 22px; height: 22px; border-radius: 50%; background: #DADADA; display: grid; place-items: center;
+                   transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1),
+                               background-color .4s ease, box-shadow .5s ease; }
+  .v3-step-dot i b { width: 22px; height: 22px; border-radius: 50%; background: transparent; display: grid; place-items: center;
+                     color: #FFFFFF; transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1), background-color .4s ease; }
+  .v3-step-dot svg { opacity: 0; transform: scale(.4); transition: opacity .3s ease .12s, transform .4s cubic-bezier(.22,1,.36,1) .12s; }
+  .v3-step.is-on .v3-step-dot i,      .no-js .v3-step .v3-step-dot i      { width: 48px; height: 48px; background: rgba(218,25,12,.16); }
+  .v3-step.is-on .v3-step-dot i b,    .no-js .v3-step .v3-step-dot i b    { width: 32px; height: 32px; background: var(--v3-accent); }
+  .v3-step.is-on .v3-step-dot svg,    .no-js .v3-step .v3-step-dot svg    { opacity: 1; transform: none; }
+  .v3-step.is-on .v3-step-n b,        .no-js .v3-step .v3-step-n b        { color: var(--v3-ink); }
+  .v3-step-item { display: flex; justify-content: space-between; gap: clamp(24px,6.1vw,88px); }
+  .v3-step-copy { max-width: 388px; display: flex; flex-direction: column; gap: 12px; }
+  .v3-step-copy h3 { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3;
+                     letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
+  .v3-step-media { flex: 0 0 auto; width: clamp(180px,26.25vw,378px); border-radius: 16px; overflow: hidden; background: var(--v3-grey); }
+  .v3-step-media img { width: 100%; height: 100%; display: block; aspect-ratio: 378/280; object-fit: cover; }
 
-  /* ============ 6. TESTIMONIALS ============ */
-  .v3-tm { background: var(--v3-grey); padding: var(--wx-sec-y) 20px; }
-  .v3-tm-card { background: #FFFFFF; border-radius: 16px; padding: clamp(24px,3vw,42px); max-width: 900px; margin: clamp(28px,4vw,46px) auto 0; }
-  .v3-tm-top { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-  .v3-tm-who { display: flex; align-items: center; gap: 12px; }
-  .v3-tm-av { width: 42px; height: 42px; border-radius: 50%; background: var(--v3-purple); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; }
-  .v3-tm-who b { display: block; font-family: 'Manrope', sans-serif; font-size: 14.5px; font-weight: 600; }
-  .v3-tm-who span { font-family: 'Satoshi', sans-serif; font-size: 12.5px; color: var(--v3-dim); }
-  .v3-tm-stars { font-family: 'Satoshi', sans-serif; font-size: 13px; color: var(--v3-dim); }
-  .v3-tm-quote { font-family: 'Satoshi', sans-serif; font-size: clamp(15px,1.35vw,19px); line-height: 1.6; margin: clamp(18px,2.4vw,28px) 0; }
+  /* ============ 6. TESTIMONIALS  (ref .testimoanials-section) ============ */
+  .v3-tm-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g92); }
+  /* Arrows live in the slider's own 90px gutters, so the card stays centred. */
+  .v3-tm-stage { position: relative; width: 100%; padding: 0 clamp(0px,6.25vw,90px); }
+  .v3-tm-cards { display: grid; background: #FFFFFF; border-radius: 32px; padding: clamp(26px,4.44vw,64px) clamp(24px,5.14vw,74px); }
+  .v3-tm-slide { grid-area: 1 / 1; margin: 0; display: flex; flex-direction: column; gap: clamp(34px,4.86vw,70px);
+                 opacity: 0; transform: translateY(16px); pointer-events: none;
+                 transition: opacity .45s ease, transform .55s cubic-bezier(.16,1,.3,1); }
+  .v3-tm-slide.is-on { opacity: 1; transform: none; pointer-events: auto; }
+  .v3-tm-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .v3-tm-who { display: flex; align-items: center; gap: 16px; }
+  .v3-tm-av { width: 64px; height: 64px; flex: 0 0 auto; border-radius: 99px; background: var(--v3-accent); color: #FFFFFF;
+              display: grid; place-items: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 24px; }
+  .v3-tm-who b { display: block; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.2; letter-spacing: -.01em; }
+  .v3-tm-who span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.45; color: var(--v3-dim); }
+  .v3-tm-stars { display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+                 font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-ink); }
+  .v3-tm-stars i { display: flex; gap: 3px; }
+  .v3-tm-body { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(28px,4.51vw,65px); }
+  .v3-tm-quote { margin: 0; font-family: 'Satoshi', sans-serif; font-size: clamp(18px,2.22vw,32px); font-weight: 400; line-height: 1.6; color: var(--v3-ink); }
+  .v3-tm-stats { display: flex; gap: clamp(22px,2.92vw,42px); }
+  .v3-tm-stat { max-width: 320px; display: flex; flex-direction: column; gap: 10px; }
+  .v3-tm-stat b { font-family: 'Manrope', sans-serif; font-size: var(--v3-h3); font-weight: 400; letter-spacing: -.0062em; line-height: 1.1; }
+  .v3-tm-div { width: 1px; align-self: stretch; background: var(--v3-line); flex: 0 0 1px; }
+  /* Prev / next are full-height rails, label rotated to read bottom-to-top. */
+  .v3-tm-nav { position: absolute; top: 0; height: 100%; width: 75px; border: 0; border-radius: 99px; background: #FFFFFF;
+               color: var(--v3-ink); cursor: pointer; display: grid; place-items: center; transition: background-color .25s ease, color .25s ease; }
+  .v3-tm-nav:hover { background: var(--v3-ink); color: #FFFFFF; }
+  .v3-tm-nav span { display: flex; align-items: center; gap: 4px; transform: rotate(-90deg);
+                    font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; text-transform: uppercase; white-space: nowrap; }
+  .v3-tm-nav--prev { left: 0; }
+  .v3-tm-nav--next { right: 0; }
 
-  /* ============ 7. BLOG ============ */
-  .v3-blog { padding: var(--wx-sec-y) 20px; }
-  .v3-blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(14px,1.6vw,22px); margin-top: clamp(28px,4vw,48px); }
-  .v3-post { text-decoration: none; color: inherit; display: block; }
-  .v3-post-media { border-radius: 12px; overflow: hidden; aspect-ratio: 16/10; background: var(--v3-grey); }
-  .v3-post-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1); }
-  .v3-post:hover .v3-post-media img { transform: scale(1.04); }
-  .v3-post-kicker { font-family: 'Satoshi', sans-serif; font-size: 11.5px; color: var(--v3-dim); margin: 12px 0 5px; display: block; }
-  .v3-post b { font-family: 'Manrope', sans-serif; font-size: 15.5px; font-weight: 600; letter-spacing: -.01em; display: block; margin-bottom: 6px; }
-  .v3-post p { font-family: 'Satoshi', sans-serif; font-size: 13.5px; line-height: 1.55; color: var(--v3-dim); margin: 0; }
-  .v3-blog-more { display: flex; justify-content: center; margin-top: clamp(26px,3.4vw,42px); }
+  /* ============ 7. BLOG  (ref .resources-section) ============ */
+  .v3-blog-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  .v3-blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; width: 100%; }
+  .v3-post { display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: inherit; }
+  .v3-post-meta { display: flex; align-items: center; gap: 8px; font-family: 'Satoshi', sans-serif; font-size: 12px; line-height: 1; color: var(--v3-body); }
+  .v3-post-meta em { font-style: normal; opacity: .45; }
+  .v3-post-body { display: flex; flex-direction: column; gap: 10px; }
+  .v3-post-body h3 { font-family: 'Manrope', sans-serif; font-size: clamp(18px,1.53vw,22px); font-weight: 500;
+                     letter-spacing: .033em; line-height: 1.2; margin: 0; transition: color .2s ease; }
+  .v3-post:hover h3 { color: var(--v3-accent); }
+  .v3-post-body p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); line-height: 1.4; letter-spacing: -.01em; color: var(--v3-dim); margin: 0; }
 
-  /* ============ 8. SUPPORT GRID ============ */
-  .v3-sup { padding: 0 20px var(--wx-sec-y); }
-  .v3-sup-grid { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--v3-line); margin-top: clamp(28px,4vw,48px); }
-  .v3-sup-cell { padding: clamp(24px,3vw,40px) clamp(18px,2.4vw,32px); border-bottom: 1px solid var(--v3-line); }
-  .v3-sup-cell:not(:nth-child(3n)) { border-right: 1px solid var(--v3-line); }
-  .v3-sup-cell:nth-last-child(-n+3) { border-bottom: 0; }
-  .v3-sup-cell svg { display: block; margin-bottom: clamp(14px,1.8vw,20px); }
-  .v3-sup-cell h3 { font-family: 'Manrope', sans-serif; font-size: clamp(16px,1.5vw,19px); font-weight: 600; letter-spacing: -.02em; margin: 0 0 7px; }
-  .v3-sup-cell p { font-family: 'Satoshi', sans-serif; font-size: 13.5px; line-height: 1.55; color: var(--v3-dim); margin: 0; max-width: 30ch; }
+  /* ============ 8. SUPPORT  (ref .membership-section) ============ */
+  .v3-sup-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g60); }
+  .v3-sup-grid { display: grid; grid-template-columns: repeat(3,1fr); width: 100%; }
+  .v3-sup-cell { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(24px,3.33vw,48px); padding: clamp(22px,2.22vw,32px); }
+  .v3-sup-cell:nth-child(-n+3) { border-bottom: .8px solid var(--v3-line); }
+  .v3-sup-cell:not(:nth-child(3n)) { border-right: .8px solid var(--v3-line); }
+  .v3-sup-copy { display: flex; flex-direction: column; align-items: center; gap: 14px; }
 
-  /* ============ 9. FAQ ============ */
-  .v3-faq { background: var(--v3-grey); padding: var(--wx-sec-y) 20px; }
-  .v3-faq-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(28px,5vw,80px); align-items: start; }
-  .v3-call { background: #FFFFFF; border-radius: 18px; padding: clamp(22px,2.8vw,32px); margin-top: clamp(24px,3vw,38px); }
-  .v3-call-av { width: 52px; height: 52px; border-radius: 50%; background: var(--v3-purple); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 16px; }
-  .v3-call h3 { font-family: 'Manrope', sans-serif; font-size: clamp(19px,2vw,25px); font-weight: 600; letter-spacing: -.02em; margin: 0 0 8px; }
-  .v3-call p { font-family: 'Satoshi', sans-serif; font-size: 13.5px; line-height: 1.6; color: var(--v3-dim); margin: 0 0 20px; }
-  .v3-call-mail { display: flex; align-items: center; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--v3-line); font-family: 'Satoshi', sans-serif; font-size: 13.5px; }
-  .v3-call-mail span { display: block; font-size: 11.5px; color: var(--v3-dim); }
-  .v3-call-mail a { color: var(--v3-ink); text-decoration: none; font-weight: 600; }
-  .v3-faq-list { border-top: 1px solid var(--v3-line); }
-  .v3-faq-item { border-bottom: 1px solid var(--v3-line); }
-  .v3-faq-item summary {
-    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px;
-    padding: clamp(16px,2vw,22px) 2px; font-family: 'Manrope', sans-serif;
-    font-size: clamp(15px,1.4vw,18px); font-weight: 500; letter-spacing: -.01em;
-  }
+  /* ============ 9. FAQ  (ref .faq-area) ============ */
+  .v3-faq-inner { display: grid; grid-template-columns: 550px minmax(0,1fr); gap: clamp(36px,6.94vw,100px); align-items: start; }
+  .v3-faq-left { display: flex; flex-direction: column; gap: var(--v3-g60); }
+  .v3-faq-heading { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+  .v3-call { max-width: 436px; border-radius: 32px; padding: 32px 60px 32px 32px; display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px);
+             background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFF0E6 100%); }
+  .v3-call-top { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+  .v3-call-av { width: 56px; height: 56px; border-radius: 999px; background: var(--v3-accent); color: #FFFFFF;
+                display: grid; place-items: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 20px; }
+  .v3-call-copy { display: flex; flex-direction: column; gap: 8px; }
+  .v3-call-copy h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.24; margin: 0; }
+  .v3-call-mail { display: flex; align-items: center; gap: 12px; }
+  .v3-call-mail i { width: 50px; height: 50px; flex: 0 0 auto; border-radius: 99px; background: #FFFFFF; display: grid; place-items: center; }
+  .v3-call-mail div { display: flex; flex-direction: column; gap: 6px; }
+  .v3-call-mail span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); line-height: 1; }
+  .v3-call-mail a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-ink); text-decoration: none; font-weight: 500; line-height: 1; }
+  .v3-faq-list { display: flex; flex-direction: column; }
+  .v3-faq-item { border-bottom: .8px solid rgba(0,0,0,.12); }
+  .v3-faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 40px;
+                         padding: 20px 0; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; letter-spacing: -.01em; line-height: 1.4; }
+  .v3-faq-item:first-child summary { padding: 10px 0 20px; }
   .v3-faq-item summary::-webkit-details-marker { display: none; }
-  .v3-faq-item summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--v3-dim); flex: 0 0 auto; transition: transform .3s ease; }
-  .v3-faq-item[open] summary::after { transform: rotate(45deg); }
-  .v3-faq-a { font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.65; color: var(--v3-dim); padding: 0 40px clamp(18px,2.2vw,24px) 2px; margin: 0; }
+  .v3-faq-item summary::after { content: ""; flex: 0 0 auto; width: 14px; height: 14px; border-right: 1.8px solid var(--v3-ink);
+                                border-bottom: 1.8px solid var(--v3-ink); transform: rotate(45deg) translate(-3px,-3px); transition: transform .3s ease; }
+  .v3-faq-item[open] summary::after { transform: rotate(225deg) translate(-4px,-4px); }
+  .v3-faq-a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6; color: var(--v3-dim); padding: 0 40px 24px 0; margin: 0; }
 
-  /* ============ 10. PLATFORMS (dark) ============ */
-  .v3-plat { background: var(--v3-dark); color: #FFFFFF; padding: var(--wx-sec-y) 20px; text-align: center; }
-  .v3-plat .v3-h { color: #FFFFFF; }
-  .v3-plat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,1.4vw,18px); margin-top: clamp(28px,4vw,46px); }
-  .v3-plat-cell {
-    border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: clamp(18px,2.2vw,26px);
-    display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 84px;
-    font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600; color: #FFFFFF;
-    text-decoration: none; transition: background-color .25s ease, border-color .25s ease;
-  }
-  .v3-plat-cell:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.3); }
+  /* ============ 10. PLATFORMS  (ref .why-orbix) ============ */
+  .v3-plat .v3-wrap { max-width: 1440px; padding: 0 20px; }
+  .v3-plat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g60); }
+  .v3-plat-title { font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.89vw,56px); font-weight: 500; line-height: 1.1; text-align: center; margin: 0; }
+  .v3-plat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; width: 100%; }
+  .v3-plat-cell { position: relative; min-height: 84px; background: rgba(9,9,9,.2); border: .8px solid #202020;
+                  display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: #FFFFFF;
+                  font-family: 'Manrope', sans-serif; font-size: var(--v3-txt); font-weight: 500;
+                  transition: background-color .25s ease, border-color .25s ease; }
+  .v3-plat-cell:hover { background: rgba(255,255,255,.06); border-color: #3A3A3A; }
+  .v3-plat-cell::after { content: ""; position: absolute; right: 0; top: 50%; margin-top: -9px; width: 2px; height: 18px; background: #ECFBA9; }
 
   /* ============ RESPONSIVE ============ */
+  @media (max-width: 1180px) {
+    .v3-faq-inner { grid-template-columns: 1fr; }
+    .v3-call { max-width: none; padding: 32px; }
+  }
   @media (max-width: 1000px) {
-    .v3-value-top, .v3-faq-inner, .v3-feat-meta, .v3-story-grid { grid-template-columns: 1fr; }
-    .v3-grid, .v3-blog-grid { grid-template-columns: 1fr 1fr; }
-    .v3-case--wide { grid-column: span 2; }
+    .v3-value-top { flex-direction: column; }
+    .v3-value-left, .v3-links { max-width: none; }
+    .v3-links { flex-direction: row; flex-wrap: wrap; gap: 12px 28px; }
+    .v3-wdo { grid-template-columns: 1fr; }
+    .v3-award-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+    .v3-review-grid, .v3-blog-grid { grid-template-columns: 1fr 1fr; }
+    .v3-grid { grid-template-columns: 1fr 1fr; }
+    /* Two columns fit the four single cards plus the wide one exactly — but
+       only if the wide card drops to the end, else it orphans two half rows. */
+    .v3-case--wide { grid-column: span 2; order: 1; }
+    .v3-grid { --v3-shot: clamp(220px,42vw,420px); }
     .v3-sup-grid { grid-template-columns: 1fr 1fr; }
     .v3-sup-cell:not(:nth-child(3n)) { border-right: 0; }
-    .v3-sup-cell:nth-child(odd) { border-right: 1px solid var(--v3-line); }
-    .v3-sup-cell:nth-last-child(-n+3) { border-bottom: 1px solid var(--v3-line); }
-    .v3-sup-cell:nth-last-child(-n+2) { border-bottom: 0; }
-    .v3-step { grid-template-columns: 110px 1fr; }
-    .v3-step-media { grid-column: 1 / -1; max-width: 420px; }
-    .v3-feat-right { text-align: left; }
+    .v3-sup-cell:nth-child(odd) { border-right: .8px solid var(--v3-line); }
+    .v3-sup-cell:nth-child(-n+4) { border-bottom: .8px solid var(--v3-line); }
+    .v3-step-item { flex-direction: column; }
+    .v3-step-media { width: 100%; max-width: 460px; }
+    .v3-plat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 820px) {
+    .v3-tm-stage { padding: 0; }
+    .v3-tm-nav { position: static; width: auto; height: auto; padding: 14px 20px; border-radius: 99px; }
+    .v3-tm-nav span { transform: none; }
+    .v3-tm-navs { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
   }
   @media (max-width: 700px) {
-    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-plat-grid { grid-template-columns: 1fr; }
-    .v3-case--wide { grid-column: span 1; }
+    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-review-grid, .v3-plat-grid, .v3-sup-grid, .v3-award-grid { grid-template-columns: 1fr; }
     .v3-cell:nth-child(odd) { border-right: 0; }
-    .v3-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--v3-line); }
-    .v3-cell:last-child { border-bottom: 0; }
-    .v3-sup-grid { grid-template-columns: 1fr; }
+    .v3-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
     .v3-sup-cell, .v3-sup-cell:nth-child(odd) { border-right: 0; }
-    .v3-sup-cell { border-bottom: 1px solid var(--v3-line); }
-    .v3-sup-cell:last-child { border-bottom: 0; }
-    .v3-step { grid-template-columns: 1fr; }
+    .v3-sup-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
+    .v3-case--wide { grid-column: span 1; order: 0; }
+    .v3-grid { --v3-shot: clamp(230px,62vw,360px); }
+    .v3-rail { left: 16px; }
+    .v3-step { grid-template-columns: 32px minmax(0,1fr); gap: 14px; }
+    .v3-step-n { grid-column: 2; grid-row: 1; align-items: flex-start; text-align: left; gap: 8px; }
+    .v3-step-dot { grid-column: 1; grid-row: 1 / span 2; }
+    .v3-step-item { grid-column: 2; grid-row: 2; }
+    .v3-tm-stats { flex-direction: column; gap: 22px; }
+    .v3-tm-div { width: auto; height: 1px; flex: 0 0 1px; align-self: auto; }
+    .v3-call { padding: 26px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .v3-btn, .v3-btn-ico svg, .v3-case-media img, .v3-post-media img { transition: none; }
+    .v3-btn, .v3-btn-ico svg, .v3-case-media img, .v3-rail-fill,
+    .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide { transition: none; }
     .v3-btn:hover { transform: none; }
   }
 </style>
@@ -269,286 +414,484 @@
 <main id="main">
 
   <!-- ============ 1. VALUE GRID ============ -->
-  <section class="v3-value" aria-label="Why work with Web{X} Studio">
-    <div class="v3-value-inner">
+  <section class="v3-sec v3-value" aria-label="Why work with Web{X} Studio">
+    <div class="v3-wrap v3-value-inner">
       <div class="v3-value-top">
-        <div>
-          <h2 class="v3-h v3-h--xl" data-reveal>Get A Full Design &amp; Dev Team<br><em>For Less Than Hiring In-House</em></h2>
-          <p class="v3-lead" data-reveal data-reveal-delay="80">Most founders lose weeks coordinating a designer, a developer and whoever is left answering emails. We work as one team inside your project &mdash; so the site gets designed, built and launched without you managing the middle.</p>
-          <p style="margin-top:26px"><a class="v3-btn" href="contact" data-reveal data-reveal-delay="140">Start a project
-            <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a></p>
+        <div class="v3-value-left">
+          <h2 class="v3-h3" data-reveal>Get A Full Design &amp; Dev Team For <em>Less Than Hiring In-House</em></h2>
+          <div class="v3-value-copy">
+            <p class="v3-txt" data-reveal data-reveal-delay="80">Most founders lose weeks coordinating a designer, a developer and whoever is left answering emails. We work as one team inside your project &mdash; so the site gets designed, built and launched without you managing the middle.</p>
+            <a class="v3-btn" href="contact" data-reveal data-reveal-delay="140">Start a project
+              <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+          </div>
         </div>
         <ul class="v3-links" data-reveal data-reveal-delay="120">
-          <li><a href="services"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast, custom website builds</a></li>
-          <li><a href="services"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>A dedicated design &amp; dev team</a></li>
-          <li><a href="landing-page-design"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>High-converting landing pages</a></li>
-          <li><a href="services"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Clean, scalable UI design</a></li>
-          <li><a href="services"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly SEO &amp; support</a></li>
+          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast, custom website builds</a></li>
+          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>A dedicated design &amp; dev team</a></li>
+          <li><a href="landing-page-design"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>High-converting landing pages</a></li>
+          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Clean, scalable UI design</a></li>
+          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly SEO &amp; support</a></li>
         </ul>
       </div>
 
       <div class="v3-cards4">
         <article class="v3-cell" data-reveal>
           <span class="v3-badge v3-badge--a">Fast support</span>
-          <svg class="v3-ico" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-          <h3>Work with a dedicated team</h3>
-          <p>Ongoing design and development support, without hiring and managing a full in-house team.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <div class="v3-cell-copy">
+            <h3 class="v3-h5">Work with a dedicated team</h3>
+            <p class="v3-txt">Ongoing design and development support, without hiring and managing a full in-house team.</p>
+          </div>
         </article>
         <article class="v3-cell" data-reveal data-reveal-delay="80">
           <span class="v3-badge v3-badge--b">Built to move</span>
-          <svg class="v3-ico" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17 9.5 10.5l4 4L21 7M21 7h-5.5M21 7v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Launch in weeks, not months</h3>
-          <p>We design and build in tight, reviewable stages so your site ships while it still matters.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17 9.5 10.5l4 4L21 7M21 7h-5.5M21 7v5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="v3-cell-copy">
+            <h3 class="v3-h5">Launch in weeks, not months</h3>
+            <p class="v3-txt">We design and build in tight, reviewable stages so your site ships while it still matters.</p>
+          </div>
         </article>
         <article class="v3-cell" data-reveal data-reveal-delay="160">
           <span class="v3-badge v3-badge--c">Flexible scaling</span>
-          <svg class="v3-ico" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16.5 6.2a3 3 0 0 1 0 5.6M18.5 19.4c0-2.6-1-4.4-2.6-5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <h3>Scale the team up or down</h3>
-          <p>Add or reduce support around launches, campaigns and roadmap changes &mdash; no long lock-ins.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.4"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M16.5 6.2a3 3 0 0 1 0 5.6M18.5 19.4c0-2.6-1-4.4-2.6-5.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="v3-cell-copy">
+            <h3 class="v3-h5">Scale the team up or down</h3>
+            <p class="v3-txt">Add or reduce support around launches, campaigns and roadmap changes &mdash; no long lock-ins.</p>
+          </div>
         </article>
         <article class="v3-cell" data-reveal data-reveal-delay="240">
           <span class="v3-badge v3-badge--d">Focused execution</span>
-          <svg class="v3-ico" width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2.5c2.6 2.3 4.1 5.6 4.1 9.1v3.2H7.9v-3.2c0-3.5 1.5-6.8 4.1-9.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.3" r="1.7" stroke="currentColor" stroke-width="1.7"/><path d="M7.9 12.6 5.3 15.2v3.1l2.6-1.6M16.1 12.6l2.6 2.6v3.1l-2.6-1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Focus on growing the business</h3>
-          <p>We handle design, build and SEO so your team can stay on customers, sales and product.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2.5c2.6 2.3 4.1 5.6 4.1 9.1v3.2H7.9v-3.2c0-3.5 1.5-6.8 4.1-9.1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="12" cy="9.3" r="1.7" stroke="currentColor" stroke-width="1.4"/><path d="M7.9 12.6 5.3 15.2v3.1l2.6-1.6M16.1 12.6l2.6 2.6v3.1l-2.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="v3-cell-copy">
+            <h3 class="v3-h5">Focus on growing the business</h3>
+            <p class="v3-txt">We handle design, build and SEO so your team can stay on customers, sales and product.</p>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
   <!-- ============ 2. FEATURED WORK ============ -->
-  <section class="v3-feat" aria-label="Featured work">
-    <div class="v3-wrap v3-center">
-      <span class="v3-tag v3-tag--dark">Featured work</span>
-      <h2 class="v3-h v3-h--xl" data-reveal>Explore Our Latest<br><em>Work Across Industries</em></h2>
-    </div>
-    <div class="v3-wrap">
-      <div class="v3-stage" data-reveal>
-        <img src="images/work/gpsfdk.avif" alt="Canvas luxury ecommerce website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200">
+  <section class="v3-sec v3-sec--dark v3-feat" aria-label="Featured work">
+    <div class="v3-wrap v3-feat-inner">
+      <div class="v3-head v3-head--680">
+        <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>Featured work</span>
+        <h2 class="v3-h2" data-reveal>Explore our latest<br><em>work across industries</em></h2>
       </div>
-      <div class="v3-feat-meta">
-        <div>
-          <span class="v3-feat-live">Website &middot; Live</span>
-          <h3>Canvas</h3>
-          <p>A luxury canvas and nameplate brand taken from identity through to a fast, SEO-ready storefront &mdash; plus a custom ERP that runs the business behind it.</p>
+
+      <div class="v3-case-slider" data-v3-feat>
+        <div class="v3-case-view">
+          <article class="v3-case-slide is-on" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/gpsfdk.avif" alt="Canvas luxury ecommerce website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>Canvas</h3>
+                <p class="v3-txt">A luxury canvas and nameplate brand taken from identity through to a fast, SEO-ready storefront &mdash; plus a custom ERP that runs the business behind it.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>ERP</b>
+                <span class="v3-txt">Storefront and operations, one build</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-gpsfdk">View case study
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/rightway.avif" alt="Rightway Purifier website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1067"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>Rightway Purifier</h3>
+                <p class="v3-txt">A commercial site for a water purifier brand, built to turn product interest into enquiries rather than just look the part.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>Leads</b>
+                <span class="v3-txt">Product pages built to convert</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-rightway">View case study
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Custom software &middot; Live</span>
+                <h3>Canvas ERP One</h3>
+                <p class="v3-txt">A custom ERP bringing HR, projects and finance into one place, replacing the spreadsheets that were holding the operation together.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>3-in-1</b>
+                <span class="v3-txt">HR, projects and finance</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-erp">View case study
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="v3-feat-right">
-          <b>ERP</b>
-          <span>Storefront and operations, one build</span>
-          <a class="v3-btn v3-btn--light" href="case-study-gpsfdk">View case study
-            <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
+        <button class="v3-case-arrow v3-case-arrow--prev" type="button" data-v3-fprev aria-label="Previous project">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="v3-case-arrow v3-case-arrow--next" type="button" data-v3-fnext aria-label="Next project">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="v3-award">
+        <div class="v3-award-top">
+          <div class="v3-who">
+            <span class="v3-who-av" aria-hidden="true">S</span>
+            <span><b>Suraj Sahni</b><span>Founder, Web{X} Studio</span></span>
+          </div>
+          <p class="v3-lead">We go beyond making a site look good. We design and build sites that solve a real business problem &mdash; get found, explain the offer, and turn a visitor into an enquiry.</p>
+        </div>
+        <!-- The four platform counters are PLACEHOLDERS (em dash). Fill them from
+             the real Dribbble / Behance / Instagram / review numbers before this
+             design is promoted off the preview page. -->
+        <div class="v3-award-grid">
+          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg><div><b>&mdash;</b><span>Shots published on Dribbble</span></div></div>
+          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg><div><b>&mdash;</b><span>Followers on Instagram</span></div></div>
+          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.8L12 3Z" stroke-linejoin="round"/></svg><div><b>&mdash;</b><span>Client reviews collected</span></div></div>
+          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 9h19M7 14h6" stroke-linecap="round"/></svg><div><b>&mdash;</b><span>Projects delivered since 2019</span></div></div>
+        </div>
+      </div>
+
+      <div class="v3-review">
+        <div class="v3-head v3-head--680">
+          <h3 class="v3-h3"><span class="v3-star" aria-hidden="true">&#9733;</span> Rated 5/5 by the teams <em>we have built for</em></h3>
+        </div>
+        <div class="v3-review-grid">
+          <figure class="v3-review-card">
+            <blockquote>The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes &mdash; without us having to explain it over the phone.</blockquote>
+            <figcaption class="v3-review-auth">
+              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">B</span><span><b>Bhavna Goyal</b><span>Nar Seva Foundation</span></span></div>
+            </figcaption>
+          </figure>
+          <figure class="v3-review-card">
+            <blockquote>Admissions enquiries used to come by phone only. Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online.</blockquote>
+            <figcaption class="v3-review-auth">
+              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">R</span><span><b>Ram Asre</b><span>Uttam Public High School</span></span></div>
+            </figcaption>
+          </figure>
+          <figure class="v3-review-card">
+            <blockquote>Design, build and SEO handled by one team, quoted as a fixed price before we started &mdash; and the people who built it are still the people we talk to.</blockquote>
+            <figcaption class="v3-review-auth">
+              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">W</span><span><b>How we work</b><span>Every Web{X} project</span></span></div>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 3. CASE STUDIES ============ -->
-  <section class="v3-cases" aria-label="Featured case studies">
-    <div class="v3-wrap">
+  <section class="v3-sec v3-sec--grey v3-cases" aria-label="Featured case studies">
+    <div class="v3-wrap v3-cases-inner">
       <div class="v3-cases-head">
-        <h2 class="v3-h" data-reveal>Featured <em>Case Studies</em></h2>
+        <h2 class="v3-h2" data-reveal>Featured <em>Case Studies</em></h2>
         <a class="v3-btn" href="work">See all work
           <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
       </div>
       <div class="v3-grid">
-        <a class="v3-case" href="case-study-rightway" data-reveal>
-          <div class="v3-case-media"><img src="images/work/rightway.avif" alt="Rightway Purifier website" loading="lazy" decoding="async" width="1600" height="1067"></div>
-          <b>Rightway Purifier</b><span>Web design</span>
+        <a class="v3-case" href="case-study-rightway" data-reveal style="--v3-over:#DDE6FF">
+          <div class="v3-case-media">
+            <img src="images/work/rightway.avif" alt="Rightway Purifier website" loading="lazy" decoding="async" width="1600" height="1067">
+            <span class="v3-case-over"><span>A commercial site for a water purifier brand, built to turn product interest into enquiries.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Rightway Purifier</b><span>Web design</span></div>
         </a>
-        <a class="v3-case" href="case-study-erp" data-reveal data-reveal-delay="80">
-          <div class="v3-case-media"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard" loading="lazy" decoding="async" width="1600" height="1200"></div>
-          <b>Canvas ERP One</b><span>Custom software</span>
+        <a class="v3-case" href="case-study-erp" data-reveal data-reveal-delay="80" style="--v3-over:#D9F7E4">
+          <div class="v3-case-media">
+            <img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard" loading="lazy" decoding="async" width="1600" height="1200">
+            <span class="v3-case-over"><span>HR, projects and finance in one custom ERP, replacing the spreadsheets behind the business.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Canvas ERP One</b><span>Custom software</span></div>
         </a>
-        <a class="v3-case" href="work" data-reveal data-reveal-delay="160">
-          <div class="v3-case-media"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School website" loading="lazy" decoding="async" width="1280" height="853"></div>
-          <b>Uttam Public High School</b><span>Web design</span>
+        <a class="v3-case" href="work" data-reveal data-reveal-delay="160" style="--v3-over:#FFE3E8">
+          <div class="v3-case-media">
+            <img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School website" loading="lazy" decoding="async" width="1280" height="853">
+            <span class="v3-case-over"><span>A school site that answers parents before they call &mdash; curriculum, facilities and admissions.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Uttam Public High School</b><span>Web design</span></div>
         </a>
-        <a class="v3-case v3-case--wide" href="work" data-reveal>
-          <div class="v3-case-media"><img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation website" loading="lazy" decoding="async" width="1280" height="853"></div>
-          <b>Nar Seva Foundation</b><span>Web design</span>
+        <a class="v3-case v3-case--wide" href="work" data-reveal style="--v3-over:#E8E1D2">
+          <div class="v3-case-media">
+            <img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation website" loading="lazy" decoding="async" width="1280" height="853">
+            <span class="v3-case-over"><span>An NGO site that shows the work on the ground: programmes, people, and where donations actually go.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Nar Seva Foundation</b><span>Web design</span></div>
         </a>
-        <a class="v3-case" href="work" data-reveal data-reveal-delay="80">
-          <div class="v3-case-media"><img src="images/work/vibely.avif" alt="Vibely SaaS landing page" loading="lazy" decoding="async" width="2400" height="1600"></div>
-          <b>Vibely</b><span>Landing page</span>
+        <a class="v3-case" href="work" data-reveal data-reveal-delay="80" style="--v3-over:#F5D8FF">
+          <div class="v3-case-media">
+            <img src="images/work/vibely.avif" alt="Vibely SaaS landing page" loading="lazy" decoding="async" width="2400" height="1600">
+            <span class="v3-case-over"><span>A SaaS landing page built around one decision: understand the product, then start the trial.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Vibely</b><span>Landing page</span></div>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ============ 4. STORY ============ -->
-  <section class="v3-story" aria-label="About Web{X} Studio">
-    <div class="v3-wrap v3-center">
-      <span class="v3-tag v3-tag--dark">What we do</span>
-      <h2 class="v3-h v3-h--xl" data-reveal>Every Brand Tells A Story.<br><em>We Make Yours Worth Remembering</em></h2>
-    </div>
-    <div class="v3-wrap">
-      <div class="v3-story-grid">
-        <div class="v3-story-col">
+  <section class="v3-sec v3-sec--dark v3-story" aria-label="About Web{X} Studio">
+    <div class="v3-wrap v3-story-inner">
+      <div class="v3-story-head">
+        <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>What we do</span>
+        <h2 class="v3-h2" data-reveal>Every brand tells a story.<br><em>We make yours worth remembering.</em></h2>
+      </div>
+      <div class="v3-wdo">
+        <div class="v3-wdo-col">
           <div class="v3-panel">
-            <b class="v3-num">2019</b>
-            <span class="v3-num-label">Designing and building for brands since</span>
+            <p class="v3-num">2019</p>
+            <span class="v3-num-label">Designing and building</span>
+            <span class="v3-num-label">for brands since</span>
           </div>
-          <div class="v3-panel v3-panel--light">
+          <div class="v3-panel v3-panel--split">
             <h3>Simple pricing.<br>No surprises.</h3>
-            <p>Every project quoted as a fixed price before we start &mdash; no hourly billing.</p>
             <div class="v3-panel-foot">
-              <a class="v3-btn" href="blog-website-cost">See pricing
+              <a class="v3-btn v3-btn--light" href="blog-website-cost">See pricing
                 <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               </a>
-              <span class="v3-mark" aria-hidden="true">Web{X}</span>
+              <span>Every project quoted as a fixed price before we start.</span>
             </div>
           </div>
         </div>
-        <div class="v3-story-visual" role="img" aria-label="Web{X} Studio brand gradient"></div>
+        <div class="v3-glass-card">
+          <div class="v3-glass" role="img" aria-label="An example of a client conversation with Web{X} Studio">
+            <p class="v3-chat-time">Today 17:01</p>
+            <div class="v3-chat"><span>Hey hey!</span></div>
+            <div class="v3-chat"><span>Love the design</span></div>
+            <div class="v3-chat"><span>Can we tweak the hero?</span></div>
+            <p class="v3-chat-time">Today 17:02</p>
+            <div class="v3-chat v3-chat--me"><span>Sure</span></div>
+            <div class="v3-chat v3-chat--me"><span>We will update it shortly</span></div>
+            <div class="v3-chat"><span>Perfect! Thank you.</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 5. PROCESS ============ -->
-  <section class="v3-proc" aria-label="Our process">
-    <div class="v3-wrap v3-center">
-      <span class="v3-tag">Our process</span>
-      <h2 class="v3-h v3-h--xl" data-reveal>A Faster Way To Design<br><em>And Build Your Website</em></h2>
-      <p class="v3-lead" data-reveal data-reveal-delay="80">We combine strategy, design and development into one workflow, so the work moves in reviewable stages instead of disappearing for a month.</p>
-    </div>
-    <div class="v3-wrap">
-      <div class="v3-steps">
-        <div class="v3-step" data-reveal>
-          <div class="v3-step-n"><span>Step 1</span><b>Plan</b></div>
-          <div class="v3-step-copy">
-            <h3>Define the goal</h3>
-            <p>We start by understanding the business, who the site is for, and which pages actually have to earn their place.</p>
+  <section class="v3-sec v3-proc" aria-label="Our process">
+    <div class="v3-wrap v3-proc-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-tag">Our process</span>
+        <h2 class="v3-h2" data-reveal>A Faster Way To Design<br><em>And Build Your Website</em></h2>
+        <p class="v3-txt" data-reveal data-reveal-delay="80">We combine strategy, design and development into one workflow, so the work moves in reviewable stages instead of disappearing for a month.</p>
+      </div>
+
+      <!-- Timeline: one rail behind the rows, filling as each step lands. With
+           no JS every step renders in its finished state. -->
+      <div class="v3-timeline">
+        <div class="v3-steps" data-v3-timeline>
+          <span class="v3-rail" aria-hidden="true"><span class="v3-rail-line"></span><span class="v3-rail-fill" data-v3-fill></span></span>
+          <div class="v3-step" data-v3-step data-reveal>
+            <div class="v3-step-n"><span class="v3-tag">Step 1</span><b>Plan</b></div>
+            <span class="v3-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="v3-step-item">
+              <div class="v3-step-copy">
+                <h3>Define the goal</h3>
+                <p class="v3-txt">We start by understanding the business, who the site is for, and which pages actually have to earn their place.</p>
+              </div>
+              <div class="v3-step-media"><img src="images/cap-design.webp" alt="Planning work at Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
           </div>
-          <div class="v3-step-media"><img src="images/cap-design.webp" alt="Planning work at Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
-        </div>
-        <div class="v3-step" data-reveal data-reveal-delay="80">
-          <div class="v3-step-n"><span>Step 2</span><b>Structure</b></div>
-          <div class="v3-step-copy">
-            <h3>Design the experience</h3>
-            <p>Screens, flows and content structure get agreed before a line of production code is written.</p>
+          <div class="v3-step" data-v3-step data-reveal>
+            <div class="v3-step-n"><span class="v3-tag">Step 2</span><b>Structure</b></div>
+            <span class="v3-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="v3-step-item">
+              <div class="v3-step-copy">
+                <h3>Design the experience</h3>
+                <p class="v3-txt">Screens, flows and content structure get agreed before a line of production code is written.</p>
+              </div>
+              <div class="v3-step-media"><img src="images/cap-development.webp" alt="Design and structure work" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
           </div>
-          <div class="v3-step-media"><img src="images/cap-development.webp" alt="Design and structure work" loading="lazy" decoding="async" width="1536" height="1024"></div>
-        </div>
-        <div class="v3-step" data-reveal data-reveal-delay="160">
-          <div class="v3-step-n"><span>Step 3</span><b>Build</b></div>
-          <div class="v3-step-copy">
-            <h3>Build, test and launch</h3>
-            <p>Designers and developers work together to turn it into a fast, accessible, search-ready site &mdash; then we measure it.</p>
+          <div class="v3-step" data-v3-step data-reveal>
+            <div class="v3-step-n"><span class="v3-tag">Step 3</span><b>Build</b></div>
+            <span class="v3-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="v3-step-item">
+              <div class="v3-step-copy">
+                <h3>Build, test and launch</h3>
+                <p class="v3-txt">Designers and developers work together to turn it into a fast, accessible, search-ready site &mdash; then we measure it.</p>
+              </div>
+              <div class="v3-step-media"><img src="images/cap-seo.webp" alt="Build and SEO work" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
           </div>
-          <div class="v3-step-media"><img src="images/cap-seo.webp" alt="Build and SEO work" loading="lazy" decoding="async" width="1536" height="1024"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 6. TESTIMONIALS ============ -->
-  <section class="v3-tm" aria-label="What clients say">
-    <div class="v3-wrap v3-center">
-      <h2 class="v3-h v3-h--xl" data-reveal>What Clients Say About<br><em>Working with Web{X} Studio</em></h2>
-    </div>
-    <div class="v3-tm-card" data-reveal>
-      <div class="v3-tm-top">
-        <div class="v3-tm-who">
-          <span class="v3-tm-av" aria-hidden="true">B</span>
-          <span><b>Bhavna Goyal</b><span>Nar Seva Foundation</span></span>
-        </div>
-        <span class="v3-tm-stars">5/5 &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  <section class="v3-sec v3-sec--grey v3-tm" aria-label="What clients say">
+    <div class="v3-wrap v3-tm-inner">
+      <div class="v3-head v3-head--980">
+        <h2 class="v3-h2" data-reveal>What Clients Say About<br><em>Working with Web{X} Studio</em></h2>
       </div>
-      <p class="v3-tm-quote">&ldquo;The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes &mdash; without us having to explain it over the phone.&rdquo;</p>
+
+      <!-- Two real, attributed quotes. The stat pair under each is a PLACEHOLDER
+           (em dash) until real figures come from the client's analytics — do not
+           ship invented percentages. -->
+      <div class="v3-tm-stage" data-v3-tm data-reveal>
+        <button class="v3-tm-nav v3-tm-nav--prev" type="button" data-v3-prev aria-label="Previous testimonial" aria-controls="v3-tm-cards">
+          <span>Previous <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+
+        <div class="v3-tm-cards" id="v3-tm-cards" aria-live="polite">
+          <figure class="v3-tm-slide is-on" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">B</span>
+                <span><b>Bhavna Goyal</b><span>Nar Seva Foundation</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes &mdash; without us having to explain it over the phone.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Increase in donation enquiries</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Growth in organic search traffic</span></div>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="v3-tm-slide" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">R</span>
+                <span><b>Ram Asre</b><span>Uttam Public High School</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;Admissions enquiries used to come by phone only. Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Increase in admission enquiries</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Growth in organic search traffic</span></div>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <button class="v3-tm-nav v3-tm-nav--next" type="button" data-v3-next aria-label="Next testimonial" aria-controls="v3-tm-cards">
+          <span>Next <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
     </div>
   </section>
 
   <!-- ============ 7. BLOG ============ -->
-  <section class="v3-blog" aria-label="From the journal">
-    <div class="v3-wrap v3-center">
-      <span class="v3-tag">Resources</span>
-      <h2 class="v3-h v3-h--xl" data-reveal>Get deeper insights, tips,<br><em>and real talk</em> from the journal.</h2>
-    </div>
-    <div class="v3-wrap">
+  <section class="v3-sec v3-sec--grey v3-blog" aria-label="From the journal">
+    <div class="v3-wrap v3-blog-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h9l4 4v14H6z" stroke-linejoin="round"/><path d="M9 9h6M9 13h6M9 17h4" stroke-linecap="round"/></svg></i>Resources</span>
+        <h2 class="v3-h2" data-reveal>Get deeper insights, tips,<br><em>and real talk</em> from the journal.</h2>
+      </div>
       <div class="v3-blog-grid">
         <a class="v3-post" href="blog-website-cost" data-reveal>
-          <div class="v3-post-media"><img src="images/cap-design.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></div>
-          <span class="v3-post-kicker">Pricing &middot; 10 min</span>
-          <b>What a Website Costs in 2026</b>
-          <p>Transparent pricing in INR and USD, and what really drives the number up or down.</p>
+          <span class="v3-post-meta">Pricing <em>&middot;</em> 10 min</span>
+          <span class="v3-post-body">
+            <h3>What a Website Costs in 2026</h3>
+            <p>Transparent pricing in INR and USD, what really drives the number up or down, and how to budget for a build that will not need replacing in a year.</p>
+          </span>
         </a>
         <a class="v3-post" href="blog-core-web-vitals" data-reveal data-reveal-delay="80">
-          <div class="v3-post-media"><img src="images/cap-seo.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></div>
-          <span class="v3-post-kicker">Site speed &amp; SEO &middot; 8 min</span>
-          <b>Core Web Vitals in 2026</b>
-          <p>LCP, INP and CLS in plain English &mdash; and the fixes that actually pass Google.</p>
+          <span class="v3-post-meta">Site speed &amp; SEO <em>&middot;</em> 8 min</span>
+          <span class="v3-post-body">
+            <h3>Core Web Vitals in 2026</h3>
+            <p>LCP, INP and CLS in plain English &mdash; what Google actually measures, and the fixes that move a failing page into the green.</p>
+          </span>
         </a>
         <a class="v3-post" href="blog-choosing-web-design-agency" data-reveal data-reveal-delay="160">
-          <div class="v3-post-media"><img src="images/cap-development.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></div>
-          <span class="v3-post-kicker">Hiring &middot; 9 min</span>
-          <b>Choosing a Web Design Agency</b>
-          <p>Questions to ask and red flags to avoid when hiring, in India or anywhere else.</p>
+          <span class="v3-post-meta">Hiring <em>&middot;</em> 9 min</span>
+          <span class="v3-post-body">
+            <h3>Choosing a Web Design Agency</h3>
+            <p>The questions to ask and the red flags to avoid when hiring, whether you are briefing a studio in India or anywhere else.</p>
+          </span>
         </a>
       </div>
-      <div class="v3-blog-more">
-        <a class="v3-btn" href="blog">View all posts
-          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-      </div>
+      <a class="v3-btn" href="blog">View all posts
+        <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
     </div>
   </section>
 
-  <!-- ============ 8. SUPPORT GRID ============ -->
-  <section class="v3-sup" aria-label="Ongoing support">
-    <div class="v3-wrap v3-center">
-      <span class="v3-tag">Ongoing support</span>
-      <h2 class="v3-h v3-h--xl" data-reveal>Monthly Website<br>Support <em>as You Grow</em></h2>
-      <p class="v3-lead" data-reveal data-reveal-delay="80">We stay on after launch &mdash; handling changes, new pages and performance as the business moves.</p>
-    </div>
-    <div class="v3-wrap">
+  <!-- ============ 8. SUPPORT ============ -->
+  <section class="v3-sec v3-sup" aria-label="Ongoing support">
+    <div class="v3-wrap v3-sup-inner">
+      <div class="v3-head v3-head--680">
+        <span class="v3-tag">Ongoing support</span>
+        <h2 class="v3-h2" data-reveal>Monthly Website<br>Support <em>as You Grow</em></h2>
+        <p class="v3-txt" data-reveal data-reveal-delay="80">We stay on after launch &mdash; handling changes, new pages and performance as the business moves.</p>
+      </div>
       <div class="v3-sup-grid">
         <div class="v3-sup-cell" data-reveal>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 9.5h19" stroke="currentColor" stroke-width="1.7"/></svg>
-          <h3>Fixed monthly rate</h3><p>One predictable fee, agreed up front.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M2.5 9.5h19" stroke="currentColor" stroke-width="1.4"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">Fixed monthly rate</h3><p class="v3-txt">One predictable fee, agreed up front.</p></div>
         </div>
         <div class="v3-sup-cell" data-reveal data-reveal-delay="60">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 9v4l2.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <h3>Fast turnaround</h3><p>Small changes handled in days, not sprints.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M12 9v4l2.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">Fast turnaround</h3><p class="v3-txt">Small changes handled in days, not sprints.</p></div>
         </div>
         <div class="v3-sup-cell" data-reveal data-reveal-delay="120">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.8L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-          <h3>Senior-level output</h3><p>The people who built it are the people who maintain it.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.8L12 3Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">Senior-level output</h3><p class="v3-txt">The people who built it are the people who maintain it.</p></div>
         </div>
         <div class="v3-sup-cell" data-reveal data-reveal-delay="180">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17 9.5 10.5l4 4L21 7M21 7h-5.5M21 7v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Scalable &amp; flexible</h3><p>Dial capacity up around launches, down when it is quiet.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 17 9.5 10.5l4 4L21 7M21 7h-5.5M21 7v5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">Scalable &amp; flexible</h3><p class="v3-txt">Dial capacity up around launches, down when it is quiet.</p></div>
         </div>
         <div class="v3-sup-cell" data-reveal data-reveal-delay="240">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3c2.5 3 4 5.6 4 8a4 4 0 0 1-8 0c0-2.4 1.5-5 4-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 15.5c0 3.6 2.7 5.5 6 5.5s6-1.9 6-5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-          <h3>Custom, not templated</h3><p>Every page built for your business, not adapted from a theme.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3c2.5 3 4 5.6 4 8a4 4 0 0 1-8 0c0-2.4 1.5-5 4-8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6 15.5c0 3.6 2.7 5.5 6 5.5s6-1.9 6-5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">Custom, not templated</h3><p class="v3-txt">Every page built for your business, not adapted from a theme.</p></div>
         </div>
         <div class="v3-sup-cell" data-reveal data-reveal-delay="300">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.7"/></svg>
-          <h3>One place to ask</h3><p>A single thread for requests, not five inboxes.</p>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.4"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.4"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.6" stroke="currentColor" stroke-width="1.4"/></svg>
+          <div class="v3-sup-copy"><h3 class="v3-h5">One place to ask</h3><p class="v3-txt">A single thread for requests, not five inboxes.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 9. FAQ ============ -->
-  <section class="v3-faq" aria-label="Frequently asked questions">
+  <section class="v3-sec v3-sec--grey v3-faq" aria-label="Frequently asked questions">
     <div class="v3-wrap v3-faq-inner">
-      <div>
-        <h2 class="v3-h v3-h--xl" data-reveal>Got Questions?<br><em>We&rsquo;ve Got Answers</em></h2>
-        <p class="v3-lead">If you are unsure where to start, or want to see how we can help, reach out and we will walk you through it.</p>
+      <div class="v3-faq-left">
+        <div class="v3-faq-heading">
+          <h2 class="v3-h2" data-reveal>Got Questions?<br><em>We&rsquo;ve Got Answers</em></h2>
+          <p class="v3-lg">If you are unsure where to start, or want to see how we can help, reach out and we will walk you through it.</p>
+        </div>
         <div class="v3-call">
-          <span class="v3-call-av" aria-hidden="true">S</span>
-          <h3>Book an intro call</h3>
-          <p>Let&rsquo;s talk through your goals, your timeline, and how Web{X} Studio can help.</p>
-          <a class="v3-btn" href="contact">Book a free call
-            <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
+          <div class="v3-call-top">
+            <span class="v3-call-av" aria-hidden="true">S</span>
+            <div class="v3-call-copy">
+              <h3>Book an intro call</h3>
+              <p class="v3-txt">Let&rsquo;s talk through your goals, your timeline, and how Web{X} Studio can help.</p>
+            </div>
+            <a class="v3-btn" href="contact">Book a free call
+              <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+          </div>
           <div class="v3-call-mail">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.7"/></svg>
-            <span>Prefer email instead?<a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a></span>
+            <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"/></svg></i>
+            <div>
+              <span>Prefer email instead?</span>
+              <a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a>
+            </div>
           </div>
         </div>
       </div>
@@ -566,27 +909,103 @@
   </section>
 
   <!-- ============ 10. PLATFORMS ============ -->
-  <section class="v3-plat" aria-label="Where to find us">
-    <div class="v3-wrap">
-      <h2 class="v3-h v3-h--xl" data-reveal>Find Us On <em>Creative Platforms</em></h2>
+  <section class="v3-sec v3-sec--dark v3-plat" aria-label="Where to find us">
+    <div class="v3-wrap v3-plat-inner">
+      <h2 class="v3-plat-title" data-reveal>Present on top creative platforms</h2>
       <div class="v3-plat-grid">
         <a class="v3-plat-cell" href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg>
           Dribbble
         </a>
         <a class="v3-plat-cell" href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
           Instagram
         </a>
         <a class="v3-plat-cell" href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg>
           X (Twitter)
+        </a>
+        <a class="v3-plat-cell" href="work">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          See the full portfolio
         </a>
       </div>
     </div>
   </section>
 
 </main>
+
+<script>
+/* home-v3 only: the process timeline, the featured-work slider and the
+   testimonial pager. Kept local to this preview page rather than added to
+   assets/js/webx.js. */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Pager shared by the two carousels ---- */
+  function pager(stage, slideSel, prevSel, nextSel) {
+    if (!stage) return;
+    var slides = [].slice.call(stage.querySelectorAll(slideSel));
+    var prev = stage.querySelector(prevSel), next = stage.querySelector(nextSel);
+    if (slides.length < 2 || !prev || !next) return;
+    var i = 0;
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (el, k) {
+        var on = k === i;
+        el.classList.toggle('is-on', on);
+        el.setAttribute('aria-hidden', on ? 'false' : 'true');
+      });
+    }
+    prev.addEventListener('click', function () { show(i - 1); });
+    next.addEventListener('click', function () { show(i + 1); });
+    stage.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { show(i - 1); }
+      else if (e.key === 'ArrowRight') { show(i + 1); }
+    });
+    show(0);
+  }
+
+  /* ---- Process: the rail fills with the scroll, and each marker opens as the
+     fill reaches it. Driven by scroll rather than IntersectionObserver so the
+     line tracks continuously, the way the reference's does. ---- */
+  var track = document.querySelector('[data-v3-timeline]');
+  if (track) {
+    var steps = [].slice.call(track.querySelectorAll('[data-v3-step]'));
+    var fill = track.querySelector('[data-v3-fill]');
+    var dots = steps.map(function (s) { return s.querySelector('.v3-step-dot'); });
+
+    function paint() {
+      var box = track.getBoundingClientRect();
+      // The fill follows a line 55% down the viewport.
+      var reached = Math.max(0, Math.min(box.height, (window.innerHeight * 0.55) - box.top));
+      fill.style.height = reached + 'px';
+      steps.forEach(function (s, k) {
+        var d = dots[k].getBoundingClientRect();
+        s.classList.toggle('is-on', (d.top - box.top) + (d.height / 2) <= reached);
+      });
+    }
+
+    if (reduce) {
+      steps.forEach(function (s) { s.classList.add('is-on'); });
+      fill.style.height = '100%';
+    } else {
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () { paint(); ticking = false; });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      paint();
+    }
+  }
+
+  pager(document.querySelector('[data-v3-feat]'), '[data-v3-fslide]', '[data-v3-fprev]', '[data-v3-fnext]');
+  pager(document.querySelector('[data-v3-tm]'),   '[data-v3-slide]',  '[data-v3-prev]',  '[data-v3-next]');
+})();
+</script>
 
 <script src="assets/js/webx.js" defer></script>
 <script src="nav.js" defer></script>
