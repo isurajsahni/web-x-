@@ -32,6 +32,15 @@
        section rhythm 180px, container 1460px with 30px gutters
      ============================================================ */
   :root {
+    interpolate-size: allow-keywords;   /* lets the FAQ panels animate to auto */
+
+    /* Layered soft shadow shared by every CTA on the page. */
+    --v3-cta-shadow: 0 0 #0000, -1.1px 1.2px .1px #00000003, -2.2px 2.4px .3px #00000005,
+                        -3.3px 3.7px .5px #00000005, -4.6px 5.1px .7px #00000008, -6px 6.6px .9px #00000008,
+                        -7.6px 8.4px 1.3px #00000008, -9.5px 10.5px 1.8px #00000008, -11.8px 13px 2.4px #00000008,
+                        -14.7px 16.2px 3.2px #00000008, -18.3px 20.2px 4.4px #0000000a, -23px 25.4px 6px #0000000a,
+                        -29.3px 32.3px 8.2px #0000000a, -37.8px 41.8px 11.3px #0000000a, -49.9px 55.1px 15.9px #0000000a;
+
     --v3-ink:    #000000;
     --v3-body:   rgba(0,0,0,.8);
     --v3-dim:    rgba(0,0,0,.7);
@@ -39,7 +48,8 @@
     --v3-grey:   #F3F4F6;
     --v3-dark:   #010101;
     --v3-tagbg:  #E8E8E8;
-    --v3-accent: #DA190C;
+    --v3-accent: #9D5CFF;   /* the mark's purple — the page's one accent */
+    --v3-accent-w: rgba(157,92,255,.18);
 
     --v3-sec:  clamp(72px,12.5vw,180px);
     --v3-g104: clamp(48px,7.22vw,104px);
@@ -67,13 +77,13 @@
   .v3-sec--dark { background: var(--v3-dark); color: #FFFFFF; }
 
   /* ---- Headings: a tight sans whose accent phrase drops into serif italic. ---- */
-  .v3-h2, .v3-h3, .v3-h5 { font-family: 'Manrope', sans-serif; font-weight: 500; margin: 0; }
+  .v3-h2, .v3-h3, .v3-h5 { font-family: 'Manrope', sans-serif; font-weight: 500; margin: 0; text-wrap: balance; }
   .v3-h2 { font-size: var(--v3-h2); line-height: 1.14; letter-spacing: -.0128em; }
   .v3-h3 { font-size: var(--v3-h3); line-height: 1.1;  letter-spacing: -.0062em; }
   .v3-h5 { font-size: var(--v3-h5); line-height: 1.24; letter-spacing: -.0173em; }
   .v3-h2 em, .v3-h3 em, .v3-h5 em {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic; font-weight: 400; letter-spacing: 0;
+    font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--v3-accent);
   }
   .v3-lead { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3;  letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
   .v3-txt  { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt);  font-weight: 400; line-height: 1.45; letter-spacing: -.01em;   color: var(--v3-body); margin: 0; }
@@ -81,6 +91,9 @@
   .v3-sec--dark .v3-txt  { color: rgba(255,255,255,.7); }
   .v3-sec--dark .v3-lead { color: rgba(255,255,255,.9); }
   .v3-sec--dark .v3-h2, .v3-sec--dark .v3-h3, .v3-sec--dark .v3-h5 { color: #FFFFFF; }
+  /* The accent is tuned for white ground; on the near-black sections it sits too
+     close to the paper, so the highlight lifts to a light lavender instead. */
+  .v3-sec--dark .v3-h2 em, .v3-sec--dark .v3-h3 em, .v3-sec--dark .v3-h5 em { color: #C9A6FF; }
 
   /* Centred head block: pill, heading, then a narrower lead beneath. */
   .v3-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); margin-inline: auto; }
@@ -99,27 +112,43 @@
   .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
 
   /* ---- Primary button: black pill, label, white circular arrow ---- */
-  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-dark); color: #FFFFFF;
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-accent); color: #FFFFFF;
             border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
             font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
+            box-shadow: var(--v3-cta-shadow);
             transition: transform .25s cubic-bezier(.16,1,.3,1); }
   .v3-btn:hover { transform: translateY(-2px); }
   .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF; color: var(--v3-ink); display: grid; place-items: center; }
   .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
   .v3-btn:hover .v3-btn-ico svg, .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }
   .v3-btn--light { background: #FFFFFF; color: var(--v3-ink); }
-  .v3-btn--light .v3-btn-ico { background: var(--v3-dark); color: #FFFFFF; }
+  .v3-btn--light .v3-btn-ico { background: var(--v3-accent); color: #FFFFFF; }
+  /* Ghost twin for light grounds — same geometry, hairline instead of fill. */
+  .v3-btn--ghost { background: #FFFFFF; color: var(--v3-ink); border: 1px solid rgba(0,0,0,.14); box-shadow: var(--v3-cta-shadow); }
+  .v3-btn--ghost .v3-btn-ico { background: var(--v3-accent); color: #FFFFFF; }
+  .v3-btn--ghost:hover { background: rgba(157,92,255,.05); border-color: rgba(157,92,255,.45); }
+  /* The WhatsApp glyph is the mark itself, so it must not spin like the arrow. */
+  .v3-btn--ghost:hover .v3-btn-ico svg { transform: none; }
 
   /* ============ 1. VALUE GRID  (ref .trusted-section) ============ */
   .v3-value-inner { display: flex; flex-direction: column; gap: var(--v3-g80); }
-  .v3-value-top { display: flex; justify-content: space-between; gap: var(--v3-g60); }
-  .v3-value-left { max-width: 680px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--v3-g44); }
+  /* A grid, not space-between: the checklist used to sit hard against the far
+     right edge with a ~400px hole beside the copy. */
+  .v3-value-top { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: clamp(40px,5vw,96px); align-items: start; }
+  .v3-value-left { max-width: 760px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--v3-g44); }
   .v3-value-copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
-  .v3-links { list-style: none; margin: 0; padding: 0; max-width: 327px; display: flex; flex-direction: column; gap: 16px; }
-  .v3-links a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--v3-body);
-                font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.45; transition: color .2s ease, gap .2s ease; }
-  .v3-links svg { flex: 0 0 auto; color: var(--v3-accent); }
-  .v3-links a:hover { color: var(--v3-ink); gap: 13px; }
+  /* Rule-separated rows: a hairline above each, one closing the last. */
+  .v3-links { list-style: none; margin: 0; padding: 0; width: 420px; max-width: 100%;
+              border-bottom: .8px solid var(--v3-line); }
+  .v3-links li { border-top: .8px solid var(--v3-line); }
+  .v3-links a { display: flex; align-items: flex-start; gap: 28px; padding: 19px 2px;
+                text-decoration: none; color: var(--v3-ink); font-family: 'Satoshi', sans-serif;
+                font-size: var(--v3-txt); font-weight: 500; line-height: 1.4; letter-spacing: -.01em;
+                transition: color .2s ease; }
+  /* Pinned to the first line so a point that wraps still reads off one edge. */
+  .v3-links svg { flex: 0 0 auto; color: var(--v3-accent); margin-top: .2em; transition: transform .2s ease; }
+  .v3-links a:hover { color: var(--v3-accent); }
+  .v3-links a:hover svg { transform: translateX(4px); }
 
   /* 2x2 with hairlines between the cells only — the outer edges stay open. */
   .v3-cards4 { display: grid; grid-template-columns: 1fr 1fr; }
@@ -129,11 +158,44 @@
   .v3-badge { display: inline-flex; align-items: center; justify-content: center; border-radius: 50px; padding: 6px 16px;
               font-family: 'Satoshi', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.45; }
   .v3-badge--a { background: #F0FFEF; color: #22541F; }
-  .v3-badge--b { background: #FDF9F3; color: #A8610F; }
+  .v3-badge--b { background: #F3ECFF; color: #6B2BD9; }
   .v3-badge--c { background: #FBECFF; color: #851DA1; }
   .v3-badge--d { background: #ECEFFF; color: #3F51A8; }
   .v3-cell-copy { display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .v3-cell-copy p { max-width: 420px; }
+
+  /* ============ 1b. SERVICES  (sticky stack, ref Orbix services) ============
+     Each panel is sticky at the top of the viewport, so the next one scrolls up
+     and covers the one before it. Nothing in the ancestor chain may clip
+     overflow or the stickiness dies silently. */
+  .v3-svc-stack { position: relative; }
+  .v3-svc { position: sticky; top: 0; min-height: 100svh; display: flex;
+            background: var(--v3-svc-bg,#101014); color: #FFFFFF; }
+  .v3-svc-inner { position: relative; width: 100%; max-width: 1460px; margin: 0 auto;
+                  padding: clamp(28px,5vh,64px) 30px clamp(24px,4vh,48px);
+                  display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  /* Faint crosshair behind the type — the reference's layout grid, showing. */
+  .v3-svc-grid { position: absolute; inset: 0; pointer-events: none; }
+  .v3-svc-grid::before { content: ""; position: absolute; left: 24%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.16); }
+  .v3-svc-grid::after  { content: ""; position: absolute; left: 0; right: 0; top: 62%; height: 1px; background: rgba(255,255,255,.16); }
+  .v3-svc-dot { position: absolute; left: 24%; top: 62%; width: 12px; height: 12px; margin: -6px 0 0 -6px;
+                border-radius: 50%; background: rgba(255,255,255,.9); }
+  .v3-svc-top { position: relative; z-index: 1; width: 100%; display: flex; align-items: flex-start;
+                justify-content: space-between; gap: 20px; }
+  .v3-svc-no { font-family: 'Manrope', sans-serif; font-size: clamp(15px,1.4vw,20px); font-weight: 500; color: rgba(255,255,255,.75); }
+  .v3-svc-link { font-family: 'Manrope', sans-serif; font-size: clamp(16px,2.08vw,30px); font-weight: 500; letter-spacing: -.02em;
+                 color: #FFFFFF; text-decoration: none; text-align: right;
+                 border-bottom: 1px solid transparent; transition: border-color .25s ease; }
+  .v3-svc-link:hover, .v3-svc-link:focus-visible { border-bottom-color: rgba(255,255,255,.7); }
+  .v3-svc-title { position: relative; z-index: 1; font-family: 'Manrope', sans-serif;
+                  font-size: clamp(40px,8.4vw,124px); font-weight: 600; line-height: 1; letter-spacing: -.04em;
+                  text-align: center; text-wrap: balance; margin: clamp(14px,3.5vh,44px) 0 0; }
+  .v3-svc-title em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+  /* Pulled up under the headline's descenders. */
+  .v3-svc-shot { position: relative; z-index: 2; width: min(100%,760px); margin-top: -17px;
+                 border-radius: 16px; overflow: hidden; background: rgba(255,255,255,.12);
+                 box-shadow: 0 40px 90px -34px rgba(0,0,0,.55); }
+  .v3-svc-shot img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 16/10; }
 
   /* ============ 2. FEATURED WORK  (ref .service-case-section) ============ */
   .v3-feat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
@@ -167,19 +229,6 @@
   .v3-who b { display: block; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.2; }
   .v3-who span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
   .v3-award-top p { max-width: 900px; }
-  .v3-award-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-  .v3-award-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); }
-  .v3-award-card b { display: block; font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.06vw,44px); font-weight: 500;
-                     letter-spacing: -.01em; line-height: 1.14; margin-bottom: 8px; }
-  .v3-award-card span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
-
-  .v3-review { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g104); width: 100%; }
-  .v3-star { color: #F28911; }
-  .v3-review-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; width: 100%; }
-  .v3-review-card { background: rgba(255,255,255,.1); border-radius: 28px; padding: 28px 32px;
-                    display: flex; flex-direction: column; justify-content: space-between; gap: var(--v3-g80); }
-  .v3-review-card blockquote { margin: 0 0 32px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg); line-height: 1.45; color: #FFFFFF; }
-  .v3-review-auth { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
 
   /* ============ 3. CASE STUDIES  (ref .our-projects-section) ============ */
   .v3-cases-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
@@ -190,8 +239,7 @@
   .v3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px 20px; --v3-shot: clamp(200px,30.56vw,440px); }
   .v3-case { text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
   .v3-case-media { position: relative; border-radius: 16px; overflow: hidden; background: #E4E4E9; height: var(--v3-shot); flex: 0 0 auto; }
-  .v3-case-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1); }
-  .v3-case:hover .v3-case-media img { transform: scale(1.04); }
+  .v3-case-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .v3-case-over { position: absolute; inset: 0; border-radius: 16px; background: rgba(0,0,0,.2); padding: 24px;
                   display: flex; align-items: flex-end; opacity: 0; transition: opacity .35s ease; }
   .v3-case:hover .v3-case-over, .v3-case:focus-visible .v3-case-over { opacity: 1; }
@@ -207,60 +255,117 @@
   .v3-story-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g24); }
   .v3-wdo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .v3-wdo-col { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
-  .v3-panel { background: #000000; border: .8px solid rgba(255,255,255,.08); border-radius: 10px; padding: 25px;
-              display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; }
+  .v3-panel { position: relative; overflow: hidden; background: #000000; border: .8px solid rgba(255,255,255,.08);
+              border-radius: 10px; padding: 25px; display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; }
+  .v3-panel > * { position: relative; z-index: 1; }
+  /* The reference fills the stat card with a receding dot field. Drawn from a
+     gradient rather than an image, so it costs nothing and stays crisp. */
+  .v3-panel--art::before { content: ""; position: absolute; left: 14%; right: -18%; bottom: -28%; height: 126%; z-index: 0;
+                           background-image: radial-gradient(circle at center, rgba(255,255,255,.30) 1.7px, transparent 1.8px);
+                           background-size: 17px 17px;
+                           transform: perspective(700px) rotateX(56deg); transform-origin: 50% 100%;
+                           -webkit-mask-image: radial-gradient(ellipse 60% 68% at 46% 60%, #000 0%, rgba(0,0,0,.5) 46%, transparent 78%);
+                           mask-image: radial-gradient(ellipse 60% 68% at 46% 60%, #000 0%, rgba(0,0,0,.5) 46%, transparent 78%);
+                           pointer-events: none; }
+  .v3-panel-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
   .v3-panel .v3-num { font-family: 'Manrope', sans-serif; font-size: clamp(38px,5vw,72px); font-weight: 500; line-height: 1.2; margin: 0; }
   .v3-panel .v3-num-label { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.24; color: #FFFFFF; }
-  .v3-panel--split { justify-content: space-between; gap: 24px; padding: 32px 25px 25px; }
+  /* Overlapping initial discs, the counter last so it stacks on top. The team
+     shots are wide desk scenes rather than headshots, so they read as noise at
+     46px; these match the avatars used elsewhere on the page. */
+  .v3-faces { display: flex; align-items: center; flex: 0 0 auto; }
+  .v3-faces b { width: 46px; height: 46px; flex: 0 0 auto; border-radius: 99px; border: 2px solid #000000;
+                background: var(--v3-f,#262626); color: #FFFFFF; display: grid; place-items: center;
+                font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: -.01em; }
+  .v3-faces > * + * { margin-left: -14px; }
+  .v3-faces .v3-faces-more { background: #262626; color: rgba(255,255,255,.85); font-size: 14px; }
+
+  /* The pricing card is the section's one light surface, as in the reference:
+     white washing down to grey, dark type, black CTA, studio mark opposite. */
+  .v3-panel--split { background: linear-gradient(180deg,#FFFFFF 0%,#FDFDFD 48%,#E8E8E8 100%);
+                     border-color: rgba(0,0,0,.06); color: var(--v3-ink);
+                     justify-content: space-between; gap: 24px; padding: 32px 25px 25px; }
+  .v3-panel-copy { display: flex; flex-direction: column; gap: 18px; }
   .v3-panel--split h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.24; margin: 0; }
-  .v3-panel-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .v3-panel-foot span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
+  .v3-panel--split strong { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 700; line-height: 1.45; color: var(--v3-ink); }
+  .v3-panel-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px 24px; flex-wrap: wrap; }
+  .v3-panel-mark { display: inline-flex; align-items: center; gap: 10px; font-family: 'Manrope', sans-serif;
+                   font-size: var(--v3-lg); font-weight: 500; letter-spacing: -.01em; color: var(--v3-ink); }
+  .v3-panel-mark img { width: 30px; height: 30px; border-radius: 7px; display: block; }
+  .v3-panel-mark em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.08em; }
+
   /* Glass panel floating on the brand gradient, as in the reference. */
   .v3-glass-card { border-radius: 10px; padding: clamp(24px,4.5vw,65px); display: grid; place-items: center;
-                   background: linear-gradient(150deg,#5B2BC9 0%,#9D5CFF 42%,#FF7EC8 78%,#FFC98F 100%); }
-  .v3-glass { width: 100%; max-width: 430px; background: rgba(255,255,255,.14); border: .8px solid rgba(255,255,255,.22);
-              border-radius: 10px; padding: 25px 25px 35px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+                   background:
+                     radial-gradient(58% 46% at 16% 20%, rgba(126,58,242,.85) 0%, rgba(126,58,242,0) 68%),
+                     radial-gradient(52% 40% at 80% 12%, rgba(70,42,196,.78) 0%, rgba(70,42,196,0) 70%),
+                     radial-gradient(66% 54% at 86% 76%, rgba(226,68,214,.72) 0%, rgba(226,68,214,0) 70%),
+                     radial-gradient(60% 46% at 24% 90%, rgba(157,92,255,.62) 0%, rgba(157,92,255,0) 72%),
+                     radial-gradient(42% 36% at 52% 50%, rgba(255,124,222,.34) 0%, rgba(255,124,222,0) 74%),
+                     #12031F; }
+  .v3-glass { width: 100%; max-width: 430px; background: rgba(255,255,255,.11); border: .8px solid rgba(255,255,255,.26);
+              border-radius: 16px; padding: 25px 25px 35px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+              box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 30px 60px rgba(0,0,0,.3);
               display: flex; flex-direction: column; gap: 10px; }
   .v3-chat-time { font-family: 'Satoshi', sans-serif; font-size: 12px; color: rgba(255,255,255,.75); text-align: center; margin: 6px 0; }
-  .v3-chat { display: flex; }
-  .v3-chat span { background: rgba(255,255,255,.22); color: #FFFFFF; border-radius: 14px; padding: 9px 15px;
-                  font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.35; max-width: 78%; }
-  .v3-chat--me { justify-content: flex-end; }
-  .v3-chat--me span { background: rgba(255,255,255,.9); color: var(--v3-ink); }
+  /* One avatar per run of messages; the rest indent into the same gutter. */
+  .v3-chat { position: relative; display: flex; padding-left: 44px; }
+  .v3-chat span { background: rgba(255,255,255,.93); color: #16111F; border-radius: 99px; padding: 9px 16px;
+                  font-family: 'Satoshi', sans-serif; font-size: 14px; line-height: 1.35; max-width: 100%; }
+  .v3-chat i { position: absolute; left: 0; bottom: 0; width: 34px; height: 34px; border-radius: 99px; overflow: hidden;
+               background: rgba(255,255,255,.92); color: #4A3A6B; display: grid; place-items: center; }
+  .v3-chat i img, .v3-chat i svg { display: block; }
+  .v3-chat i img { width: 100%; height: 100%; object-fit: cover; }
+  .v3-chat--me { justify-content: flex-end; padding-left: 0; padding-right: 44px; }
+  .v3-chat--me span { background: #0B0B10; color: #FFFFFF; }
+  .v3-chat--me i { left: auto; right: 0; background: #0B0B10; }
 
   /* ============ 5. PROCESS  (ref .workflow-section) ============ */
   .v3-proc-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
   /* Rail and rows share one grid cell so the line runs behind the markers. */
   /* The reference insets the timeline to 1219px inside the 1365 container. */
   .v3-timeline { position: relative; width: 100%; max-width: 1219px; margin-inline: auto; padding-left: 20px; }
-  .v3-rail { position: absolute; top: 9px; bottom: 0; left: calc(var(--v3-col1) + var(--v3-gap) + 16px); width: 6px; margin-left: -3px; }
+  /* Top and height are re-measured in JS so the rail spans marker to marker;
+     these values only have to hold for the first paint and for no-JS. */
+  .v3-rail { position: absolute; top: 24px; bottom: 24px; left: calc(var(--v3-col1) + var(--v3-gap) + 16px); width: 6px; margin-left: -3px; }
   .v3-rail-line { position: absolute; inset: 0; background: var(--v3-line); border-radius: 6px; }
-  .v3-rail-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0; background: var(--v3-ink); border-radius: 6px;
+  /* Deepens as it descends, so the leading edge stays the bright accent. */
+  .v3-rail-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0; border-radius: 6px;
+                  background: linear-gradient(180deg, #C9A6FF 0%, var(--v3-accent) 42%, #5B21B6 100%);
                   transition: height .12s linear; }
+  .no-js .v3-rail-fill { height: 100%; }
   .v3-steps { --v3-col1: clamp(90px,14.65vw,211px); --v3-gap: clamp(16px,3.89vw,56px);
-              display: flex; flex-direction: column; gap: var(--v3-g80); position: relative; }
-  .v3-step { display: grid; grid-template-columns: var(--v3-col1) 32px minmax(0,1fr); gap: var(--v3-gap); align-items: start; }
+              display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px); position: relative; }
+  /* Every cell in a row centres on the shot, so the marker, the step label and
+     the copy stay level and short copy no longer leaves a hole under itself. */
+  .v3-step { display: grid; grid-template-columns: var(--v3-col1) 32px minmax(0,1fr); gap: var(--v3-gap); align-items: center; }
   .v3-step-n { display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 16px; }
   .v3-step-n b { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 700;
                  font-size: clamp(24px,2.5vw,36px); line-height: 1.1; color: rgba(0,0,0,.45); transition: color .5s ease; }
   /* Marker: a grey dot that opens into a haloed accent circle when the step lands. */
   .v3-step-dot { position: relative; width: 32px; height: 48px; display: grid; place-items: center; justify-self: center; }
-  .v3-step-dot i { width: 22px; height: 22px; border-radius: 50%; background: #DADADA; display: grid; place-items: center;
+  /* The halo grows past this 32px cell, and an over-sized grid item is pinned to
+     the cell's start edge — which pushed it 8px right of the rail. Centred off
+     the box instead, so any size keeps its middle on the line. */
+  .v3-step-dot i { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+                   width: 22px; height: 22px; border-radius: 50%; background: #DADADA; display: grid; place-items: center;
                    transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1),
                                background-color .4s ease, box-shadow .5s ease; }
   .v3-step-dot i b { width: 22px; height: 22px; border-radius: 50%; background: transparent; display: grid; place-items: center;
                      color: #FFFFFF; transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1), background-color .4s ease; }
   .v3-step-dot svg { opacity: 0; transform: scale(.4); transition: opacity .3s ease .12s, transform .4s cubic-bezier(.22,1,.36,1) .12s; }
-  .v3-step.is-on .v3-step-dot i,      .no-js .v3-step .v3-step-dot i      { width: 48px; height: 48px; background: rgba(218,25,12,.16); }
+  .v3-step.is-on .v3-step-dot i,      .no-js .v3-step .v3-step-dot i      { width: 48px; height: 48px; background: var(--v3-accent-w); }
   .v3-step.is-on .v3-step-dot i b,    .no-js .v3-step .v3-step-dot i b    { width: 32px; height: 32px; background: var(--v3-accent); }
   .v3-step.is-on .v3-step-dot svg,    .no-js .v3-step .v3-step-dot svg    { opacity: 1; transform: none; }
   .v3-step.is-on .v3-step-n b,        .no-js .v3-step .v3-step-n b        { color: var(--v3-ink); }
-  .v3-step-item { display: flex; justify-content: space-between; gap: clamp(24px,6.1vw,88px); }
-  .v3-step-copy { max-width: 388px; display: flex; flex-direction: column; gap: 12px; }
+  .v3-step-item { display: flex; align-items: center; justify-content: space-between; gap: clamp(24px,6.1vw,88px); }
+  .v3-step-copy { max-width: 420px; display: flex; flex-direction: column; gap: 12px; }
   .v3-step-copy h3 { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3;
                      letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
-  .v3-step-media { flex: 0 0 auto; width: clamp(180px,26.25vw,378px); border-radius: 16px; overflow: hidden; background: var(--v3-grey); }
-  .v3-step-media img { width: 100%; height: 100%; display: block; aspect-ratio: 378/280; object-fit: cover; }
+  /* The shot sits inside a padded frame instead of bleeding to its own edge. */
+  .v3-step-media { flex: 0 0 auto; width: clamp(200px,24vw,344px); border-radius: 18px; padding: 10px;
+                   background: var(--v3-grey); border: .8px solid var(--v3-line); }
+  .v3-step-media img { width: 100%; height: auto; display: block; aspect-ratio: 378/280; object-fit: cover; border-radius: 12px; }
 
   /* ============ 6. TESTIMONIALS  (ref .testimoanials-section) ============ */
   .v3-tm-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g92); }
@@ -288,9 +393,12 @@
   .v3-tm-div { width: 1px; align-self: stretch; background: var(--v3-line); flex: 0 0 1px; }
   /* Prev / next are full-height rails, label rotated to read bottom-to-top. */
   .v3-tm-nav { position: absolute; top: 0; height: 100%; width: 75px; border: 0; border-radius: 99px; background: #FFFFFF;
-               color: var(--v3-ink); cursor: pointer; display: grid; place-items: center; transition: background-color .25s ease, color .25s ease; }
-  .v3-tm-nav:hover { background: var(--v3-ink); color: #FFFFFF; }
-  .v3-tm-nav span { display: flex; align-items: center; gap: 4px; transform: rotate(-90deg);
+               color: var(--v3-ink); cursor: pointer; transition: background-color .25s ease, color .25s ease; }
+  .v3-tm-nav:hover { background: var(--v3-accent); color: #FFFFFF; }
+  /* The label is wider than the 75px rail, so centring it as a grid item landed
+     it 19px right of centre. Place it, then rotate about its own middle. */
+  .v3-tm-nav span { position: absolute; left: 50%; top: 50%; display: flex; align-items: center; gap: 6px;
+                    transform: translate(-50%,-50%) rotate(-90deg);
                     font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; text-transform: uppercase; white-space: nowrap; }
   .v3-tm-nav--prev { left: 0; }
   .v3-tm-nav--next { right: 0; }
@@ -299,11 +407,18 @@
   .v3-blog-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
   .v3-blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; width: 100%; }
   .v3-post { display: flex; flex-direction: column; gap: 16px; text-decoration: none; color: inherit; }
-  .v3-post-meta { display: flex; align-items: center; gap: 8px; font-family: 'Satoshi', sans-serif; font-size: 12px; line-height: 1; color: var(--v3-body); }
-  .v3-post-meta em { font-style: normal; opacity: .45; }
+  /* The reference leads each post with a 4:3 cover and drops the meta line
+     beneath it, so the images carry the row and the type stays quiet. */
+  .v3-post-media { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #E4E4E9; }
+  .v3-post-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .v3-post-meta { display: flex; align-items: center; gap: 12px; font-family: 'Satoshi', sans-serif; font-size: 13px; line-height: 1; color: var(--v3-ink); }
+  .v3-post-meta em { font-style: normal; color: var(--v3-dim); }
   .v3-post-body { display: flex; flex-direction: column; gap: 10px; }
   .v3-post-body h3 { font-family: 'Manrope', sans-serif; font-size: clamp(18px,1.53vw,22px); font-weight: 500;
                      letter-spacing: .033em; line-height: 1.2; margin: 0; transition: color .2s ease; }
+  .v3-post-body h3, .v3-post-body p { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .v3-post-body h3 { -webkit-line-clamp: 2; }
+  .v3-post-body p { -webkit-line-clamp: 3; }
   .v3-post:hover h3 { color: var(--v3-accent); }
   .v3-post-body p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); line-height: 1.4; letter-spacing: -.01em; color: var(--v3-dim); margin: 0; }
 
@@ -320,10 +435,8 @@
   .v3-faq-left { display: flex; flex-direction: column; gap: var(--v3-g60); }
   .v3-faq-heading { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
   .v3-call { max-width: 436px; border-radius: 32px; padding: 32px 60px 32px 32px; display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px);
-             background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFF0E6 100%); }
+             background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
   .v3-call-top { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
-  .v3-call-av { width: 56px; height: 56px; border-radius: 999px; background: var(--v3-accent); color: #FFFFFF;
-                display: grid; place-items: center; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 20px; }
   .v3-call-copy { display: flex; flex-direction: column; gap: 8px; }
   .v3-call-copy h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.24; margin: 0; }
   .v3-call-mail { display: flex; align-items: center; gap: 12px; }
@@ -340,6 +453,13 @@
   .v3-faq-item summary::after { content: ""; flex: 0 0 auto; width: 14px; height: 14px; border-right: 1.8px solid var(--v3-ink);
                                 border-bottom: 1.8px solid var(--v3-ink); transform: rotate(45deg) translate(-3px,-3px); transition: transform .3s ease; }
   .v3-faq-item[open] summary::after { transform: rotate(225deg) translate(-4px,-4px); }
+  /* <details> would snap open. Animating its own content box keeps the native
+     keyboard and screen-reader behaviour and cannot get stuck half-open the way
+     a scripted height can; browsers without ::details-content just snap, which
+     is what they did before. */
+  .v3-faq-item::details-content { block-size: 0; overflow: hidden;
+                                  transition: block-size .38s cubic-bezier(.16,1,.3,1), content-visibility .38s allow-discrete; }
+  .v3-faq-item[open]::details-content { block-size: auto; }
   .v3-faq-a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6; color: var(--v3-dim); padding: 0 40px 24px 0; margin: 0; }
 
   /* ============ 10. PLATFORMS  (ref .why-orbix) ============ */
@@ -354,18 +474,79 @@
   .v3-plat-cell:hover { background: rgba(255,255,255,.06); border-color: #3A3A3A; }
   .v3-plat-cell::after { content: ""; position: absolute; right: 0; top: 50%; margin-top: -9px; width: 2px; height: 18px; background: #ECFBA9; }
 
+
+  /* ============ 11. FOOTER  (ref Orbix footer) ============ */
+  /* home-v3 carries its own footer while it is a preview, so footer.js is not
+     loaded on this page — the other 75 pages keep the shared one untouched. */
+  .v3-foot { background: #FFFFFF; padding: clamp(64px,9vw,120px) 0 0; }
+  .v3-foot-inner { display: grid; grid-template-columns: 1.35fr 1.75fr .85fr .8fr;
+                   gap: clamp(32px,4.4vw,64px); align-items: start; }
+
+  /* ---- Brand block ---- */
+  .v3-foot-brand { display: flex; flex-direction: column; align-items: flex-start; }
+  .v3-foot-mark { display: inline-flex; text-decoration: none; }
+  .v3-foot-mark img { display: block; width: 46px; height: auto; }
+  .v3-foot-name { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500;
+                  line-height: 1.2; letter-spacing: -.01em; color: var(--v3-ink); margin: 26px 0 0; }
+  .v3-foot-desc { max-width: 310px; margin: 14px 0 30px; }
+
+  /* ---- Link columns ---- */
+  /* Services runs two sub-columns; the other groups are single files. */
+  .v3-foot-col { display: flex; flex-direction: column; }
+  .v3-foot-h { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400;
+               font-size: clamp(20px,1.6vw,23px); line-height: 1.1; color: var(--v3-ink); margin: 0 0 clamp(30px,3vw,44px); }
+  .v3-foot-list { display: grid; grid-template-columns: 1fr; gap: 22px 30px; }
+  .v3-foot-list--2 { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(6,auto); }
+  .v3-foot-list a { text-decoration: none; color: var(--v3-body); font-family: 'Satoshi', sans-serif;
+                    font-size: var(--v3-txt); line-height: 1.3; letter-spacing: -.01em; width: fit-content;
+                    transition: color .2s ease; }
+  .v3-foot-list a:hover { color: var(--v3-accent); }
+
+  /* ---- Contact row: badge, tiny key, bold value — spread across the width ---- */
+  .v3-foot-contact { margin-top: clamp(48px,6vw,86px); border-top: .8px solid var(--v3-line);
+                     border-bottom: .8px solid var(--v3-line); padding: clamp(24px,3vw,34px) 0;
+                     display: flex; align-items: center; justify-content: space-between;
+                     gap: 20px clamp(18px,4vw,64px); flex-wrap: wrap; }
+  .v3-foot-c { display: flex; align-items: flex-start; gap: 13px; text-decoration: none; }
+  .v3-foot-c i { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 10px; display: grid; place-items: center;
+                 background: var(--v3-accent-w); color: var(--v3-accent); }
+  .v3-foot-c b { display: block; font-family: 'Satoshi', sans-serif; font-size: 10.5px; font-weight: 700;
+                 letter-spacing: .15em; text-transform: uppercase; color: var(--v3-dim); margin-bottom: 4px; }
+  .v3-foot-c span span { display: block; font-family: 'Satoshi', sans-serif; font-size: 14.5px; font-weight: 600;
+                         color: var(--v3-ink); font-variant-numeric: tabular-nums; transition: color .2s ease; }
+  .v3-foot-c:hover span span { color: var(--v3-accent); }
+
+  .v3-foot-copy { text-align: center; padding: 26px 0 0; margin: 0;
+                  font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); }
+
+  /* ---- Closing wordmark: gradient clipped to the type, fading out at the foot ---- */
+  .v3-foot-mega { opacity: .2; margin-top: clamp(22px,4vw,46px); font-family: 'Manrope', sans-serif; font-weight: 700;
+                  font-size: clamp(72px,23vw,340px); line-height: .82; letter-spacing: -.055em;
+                  text-align: center; white-space: nowrap; user-select: none; overflow: hidden;
+                  background: linear-gradient(180deg, #9BB0FF 0%, var(--v3-accent) 42%, #C061FF 72%, rgba(157,92,255,.05) 100%);
+                  -webkit-background-clip: text; background-clip: text; color: transparent; }
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1180px) {
     .v3-faq-inner { grid-template-columns: 1fr; }
     .v3-call { max-width: none; padding: 32px; }
   }
   @media (max-width: 1000px) {
-    .v3-value-top { flex-direction: column; }
-    .v3-value-left, .v3-links { max-width: none; }
-    .v3-links { flex-direction: row; flex-wrap: wrap; gap: 12px 28px; }
+    /* Brand keeps the top row to itself; the three link groups share the next. */
+    .v3-foot-inner { grid-template-columns: repeat(3,1fr); }
+    .v3-foot-brand { grid-column: 1 / -1; margin-bottom: clamp(20px,3vw,36px); }
+    /* .v3-value-top is a grid, so flex-direction did nothing to it: the auto
+       column kept its full width and the copy column collapsed to 0. */
+    .v3-value-top { grid-template-columns: minmax(0,1fr); }
+    .v3-value-left { max-width: none; }
+    /* Stacked, the rows would run the full container — keep them near their design width. */
+    /* width:420px still applies, so the cap must not lose the 100% shrink bound. */
+    .v3-links { width: 100%; max-width: 640px; }
     .v3-wdo { grid-template-columns: 1fr; }
-    .v3-award-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
-    .v3-review-grid, .v3-blog-grid { grid-template-columns: 1fr 1fr; }
+    /* Stacked, the column is content-height — and .v3-panel's overflow:hidden
+       zeroes a flex item's automatic minimum size, so flex:1 1 0 collapsed both
+       panels to their own padding. They size to content once they stand alone. */
+    .v3-panel { flex: 0 0 auto; }
+    .v3-blog-grid { grid-template-columns: 1fr 1fr; }
     .v3-grid { grid-template-columns: 1fr 1fr; }
     /* Two columns fit the four single cards plus the wide one exactly — but
        only if the wide card drops to the end, else it orphans two half rows. */
@@ -380,19 +561,51 @@
     .v3-plat-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 820px) {
-    .v3-tm-stage { padding: 0; }
-    .v3-tm-nav { position: static; width: auto; height: auto; padding: 14px 20px; border-radius: 99px; }
-    .v3-tm-nav span { transform: none; }
-    .v3-tm-navs { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
+    /* The two rails become a centred pair of pills under the card. Nothing
+       wraps them in the markup, so the stage itself wraps them onto a second
+       row — grid would have stretched each to half the card's width. */
+    .v3-tm-stage { padding: 0; display: flex; flex-wrap: wrap;
+                   justify-content: center; gap: 12px; }
+    .v3-tm-cards { flex: 0 0 100%; order: 0; margin-bottom: 8px; }
+    .v3-tm-nav { position: static; order: 1; width: auto; height: auto;
+                 padding: 14px 20px; border-radius: 99px; }
+    .v3-tm-nav span { position: static; transform: none; }
+    /* The mobile header is a flush bar rather than a floating pill, and every
+       service panel sticks to y=0 underneath it. */
+    .v3-svc-inner { padding-block: clamp(84px,13vh,104px) clamp(28px,5vh,44px); }
   }
   @media (max-width: 700px) {
-    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-review-grid, .v3-plat-grid, .v3-sup-grid, .v3-award-grid { grid-template-columns: 1fr; }
+    /* 20px link rows are well under the 44px touch minimum. Pad them out and
+       take the space back off the gap so the columns keep their rhythm. */
+    .v3-foot-list { gap: 2px 30px; }
+    .v3-foot-list a { padding: 12px 0; }
+    .v3-svc-link { padding-block: 10px; }
+    .v3-foot-inner { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+    .v3-foot-list--2 { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+    /* Three contact items would each get a sliver on a phone — stack them. */
+    .v3-foot-contact { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .v3-foot-c { padding-block: 3px; }
+    .v3-svc-inner { padding-inline: 20px; }
+    .v3-svc-grid { display: none; }
+    .v3-svc-shot { margin-top: 18px; width: 100%; }
+    /* 8.4vw pins the title to its 40px floor with half the panel left empty. */
+    .v3-svc-title { font-size: clamp(38px,12.5vw,64px); }
+    .v3-svc-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .v3-svc-link { text-align: left; }
+    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
+    .v3-panel-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .v3-faces b { width: 40px; height: 40px; }
     .v3-cell:nth-child(odd) { border-right: 0; }
     .v3-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
     .v3-sup-cell, .v3-sup-cell:nth-child(odd) { border-right: 0; }
     .v3-sup-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
     .v3-case--wide { grid-column: span 1; order: 0; }
     .v3-grid { --v3-shot: clamp(230px,62vw,360px); }
+    /* 70px discs cover most of a phone-width shot. */
+    .v3-case-arrow { width: 46px; height: 46px; top: 24%; }
+    .v3-case-arrow svg { width: 22px; height: 22px; }
+    /* Stacked under the copy, the metric reads off the same edge as the rest. */
+    .v3-case-metric { text-align: left; }
     .v3-rail { left: 16px; }
     .v3-step { grid-template-columns: 32px minmax(0,1fr); gap: 14px; }
     .v3-step-n { grid-column: 2; grid-row: 1; align-items: flex-start; text-align: left; gap: 8px; }
@@ -401,9 +614,13 @@
     .v3-tm-stats { flex-direction: column; gap: 22px; }
     .v3-tm-div { width: auto; height: 1px; flex: 0 0 1px; align-self: auto; }
     .v3-call { padding: 26px; }
+    /* Desktop gutters, on a phone column, steal a third of the answer's measure. */
+    .v3-faq-item summary { gap: 18px; }
+    .v3-faq-a { padding-right: 8px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .v3-btn, .v3-btn-ico svg, .v3-case-media img, .v3-rail-fill,
+    .v3-faq-item::details-content,
+    .v3-btn, .v3-btn-ico svg, .v3-rail-fill,
     .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide { transition: none; }
     .v3-btn:hover { transform: none; }
   }
@@ -413,7 +630,345 @@
 
 <main id="main">
 
-  <!-- ============ 1. VALUE GRID ============ -->
+  <!-- ============ 1. HERO  (ported from index.html, minus the background art) ============ -->
+  <section class="hero-fan" data-hero-section>
+    <style>
+      /* Self-contained, as on v1 — the only changes are the dropped background
+         image and v3's own ink/gutter values. */
+      /* nav.js puts the floating header at 24px for the whole site; this page
+         wants it tighter. Scoped above 820px so the mobile bar stays flush. */
+      @media (min-width: 821px) { html .wx-nav-container { top: 10px; } }
+
+      /* ---- Mobile bar restyled to the reference: one inset rounded panel
+         holding the mark and the burger, instead of nav.js's edge-to-edge
+         translucent strip. Scoped here so the other 75 pages keep their bar.
+         nav.js appends its <style> after this one, so its !important rules win
+         on equal specificity — the `html` prefix is what puts these ahead. ---- */
+      @media (max-width: 820px) {
+        html .wx-nav-container {
+          top: 12px;
+          width: min(100% - 24px, 1340px);
+          border-radius: 22px !important;
+        }
+        html .wx-navbar {
+          padding: 9px 9px 9px 12px;
+          border-radius: 22px !important;
+          background: #F4F5FD !important;
+          border: 1px solid rgba(0,0,0,.05) !important;
+          box-shadow: 0 10px 30px -12px rgba(23,18,54,.30) !important;
+          /* The panel is opaque now, so the blur behind it costs a paint for
+             nothing — and on iOS it tints the solid fill slightly grey. */
+          -webkit-backdrop-filter: none; backdrop-filter: none;
+        }
+        html .wx-navbar.wx-scrolled {
+          background: #F4F5FD !important;
+          box-shadow: 0 14px 34px -12px rgba(23,18,54,.36) !important;
+        }
+        html .wx-nav-logo-svg { width: 46px; height: 46px; }
+        /* Rounded square rather than a circle, echoing the mark's own tile. */
+        html .wx-nav-hamburger {
+          width: 46px; height: 46px; border-radius: 14px;
+          box-shadow: 0 8px 20px -8px rgba(157,92,255,.85), inset 0 1px 0 rgba(255,255,255,.25);
+        }
+      }
+
+      .hero-fan { position: relative; background: #FFFFFF; overflow: hidden; }
+      .hero-fan-inner {
+        position: relative; z-index: 1; max-width: 1460px; margin: 0 auto;
+        padding: calc(clamp(60px,8vw,120px) - 20px) 30px clamp(60px,8vw,120px);
+        min-height: 100svh; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; text-align: center;
+      }
+      .hero-fan h1 {
+        font-family: 'Manrope', sans-serif; font-size: clamp(34px,5.4vw,68px); font-weight: 700;
+        letter-spacing: -.045em; line-height: 1.04; color: var(--v3-ink); margin: 0; max-width: 34ch;
+        text-wrap: balance;
+      }
+      /* Eyebrow above the heading — sparkle · label · sparkle */
+      .hero-fan-eyebrow {
+        display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(18px,2.4vh,26px);
+        font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.05vw,16px); font-weight: 600;
+        letter-spacing: .01em; color: var(--v3-ink);
+      }
+      .hero-fan-eyebrow svg { flex: 0 0 auto; color: var(--v3-accent); }
+      /* Brand gradient clipped to the glyphs. Angled off pure vertical so the
+         near-transparent tail stop clears the baseline instead of washing out
+         the bottom of the letters. */
+      .wx-grad-text {
+        background: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 42%,#C061FF 72%,rgba(157,92,255,.06) 100%);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent;
+      }
+      /* The accent phrase drops into the serif italic the rest of the page uses
+         for its highlights. Instrument Serif only ships a 400, and it sets a
+         touch smaller than Manrope bold, so the weight and tracking reset and
+         the size lifts slightly to keep the line optically even. */
+      .hero-fan h1 .wx-grad-text {
+        font-family: 'Instrument Serif', Georgia, serif;
+        font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.06em;
+      }
+
+      /* ---------- Fanned card deck ---------- */
+      .hero-fan-deck {
+        position: relative; display: flex; justify-content: center; align-items: flex-start;
+        margin: calc(clamp(38px,6vh,64px) - 35px) 0 0;
+        padding: 34px 0 60px;          /* room for the outer cards' rotation + drop */
+      }
+      .fan-card {
+        position: relative; width: clamp(124px,20vw,262px) !important; aspect-ratio: 2.8 / 3;
+        flex: 0 0 auto; margin-inline: clamp(-34px,-2.6vw,-18px); border-radius: clamp(12px,1.1vw,18px);
+        overflow: hidden; background: #F4F2F8; border: 3px solid #FFFFFF;
+        box-shadow: 0 18px 38px -16px rgba(26,20,48,.34);
+        /* --r and --y are set per card so the deck reads as a smooth arc */
+        transform: rotate(var(--r)) translateY(var(--y)); transform-origin: 50% 100%;
+        transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+      }
+      .fan-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
+      /* ---------- Entrance: cards fly in from off-screen and stack ----------
+         Parked state uses --fx/--fy/--fr (a distinct origin per card). The deck
+         gets .is-in once the intro overlay clears, and each card transitions to
+         its resting --r/--y. Guarded by :not(.is-in) so the resting transform
+         above stays the single source of truth for the final position. */
+      .hero-fan-deck:not(.is-in) .fan-card {
+        opacity: 0; transform: translate3d(var(--fx),var(--fy),0) rotate(var(--fr)) scale(.88);
+      }
+      .hero-fan-deck.is-in .fan-card {
+        opacity: 1; transform: rotate(var(--r)) translateY(var(--y));
+        transition: transform 1s cubic-bezier(.18,.82,.28,1), opacity .55s ease;
+        transition-delay: var(--d,0s);
+      }
+      /* Hover must out-rank .is-in (same specificity would let source order win)
+         and must not inherit the entrance stagger delay. */
+      .hero-fan-deck.is-in .fan-card:hover {
+        transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
+        transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+        transition-delay: 0s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        /* No flight — cards are simply present, wherever the deck state is. */
+        .hero-fan-deck .fan-card,
+        .hero-fan-deck:not(.is-in) .fan-card {
+          opacity: 1; transform: rotate(var(--r)) translateY(var(--y)); transition: none;
+        }
+      }
+      /* Lift only — no scale, matching the rest of the hero */
+      .fan-card:hover {
+        transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
+        box-shadow: 0 26px 52px -18px rgba(157,92,255,.5); z-index: 20;
+      }
+
+      /* With the deck's bottom margin gone the cards run under this row, and a
+         hovered card lifts to z-index 20 — so keep the buttons above it. */
+      /* The buttons themselves are the page's own .v3-btn, so the hero opens on
+         the same CTA the rest of the page uses. */
+      .hero-fan-cta {
+        position: relative; z-index: 30;
+        display: flex; align-items: center; justify-content: center; gap: 14px;
+        flex-wrap: wrap; margin: 0;
+      }
+
+      @media (max-width: 860px) {
+        /* All 5 cards fit at mobile width, so the deck stays whole — it just
+           scales down and overlaps a little tighter. !important is required to
+           beat the base rule's own !important width. */
+        .fan-card { width: clamp(84px,23vw,130px) !important; margin-inline: -12px; }
+      }
+      @media (max-width: 620px) {
+        /* The forced break is tuned for desktop measure; on a phone it strands
+           "agency that" on its own line, so let the copy wrap naturally. */
+        .hero-fan h1 br { display: none; }
+        .hero-fan h1 { max-width: 18ch; }
+        /* The accent phrase wraps to two lines here, so the gradient spans both
+           and its near-transparent tail lands on the whole second line. Drop the
+           tail stop — the fade only ever worked on a single line. */
+        .hero-fan .wx-grad-text {
+          background-image: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 45%,#C061FF 100%);
+        }
+        /* The fanned deck is dropped on phones — at this width the cards are
+           too small to read as work samples. Left in the DOM for wider screens. */
+        .hero-fan-deck { display: none; }
+        /* Full height, with the block centred and the spacing opened up so it
+           does not read as three things clustered in the middle. */
+        .hero-fan-inner { justify-content: center; text-align: center;
+                          padding: 40px 20px 56px; min-height: 100svh; }
+        .hero-fan-eyebrow { margin-bottom: clamp(22px,3.4vh,32px); }
+        /* The deck used to be the gap between the headline and the buttons; with
+           it hidden the CTA sat flush against the last line of the h1. */
+        .hero-fan-cta { width: 100%; flex-direction: column; align-items: center;
+                        gap: 16px; margin-top: clamp(34px,6.2vh,52px); }
+        /* Each button sizes to its own label rather than filling the column. */
+        .hero-fan-cta > a { width: fit-content; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fan-card { transition: none; }
+      }
+    </style>
+
+    <div class="hero-fan-inner">
+      <p class="hero-fan-eyebrow" data-reveal>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+        Digital experiences built for growth
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
+      </p>
+      <h1 data-reveal>Web design &amp; development <br>agency that <span class="wx-grad-text">grows your business</span></h1>
+
+      <div class="hero-fan-deck">
+        <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager" width="1600" height="1067"></div>
+        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/gpsfdk.avif" alt="Canvas project preview" loading="eager" width="1600" height="1200"></div>
+        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="eager" fetchpriority="high" width="1280" height="853"></div>
+        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation project preview" loading="eager" width="1280" height="853"></div>
+        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project preview" loading="eager" width="1600" height="1200"></div>
+      </div>
+
+      <div class="hero-fan-cta">
+        <a class="v3-btn" href="contact">Book a free call
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="v3-btn v3-btn--ghost" href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Chat on WhatsApp
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      /* Deal the deck once the intro overlay clears. webx.js fires wx:intro-done
+         and sets __wxIntroDone, so this works whether the script runs before or
+         after that moment. The timeout is a safety net: if the intro never fires
+         (script error, blocked asset) the cards must still appear — a hero that
+         stays invisible is far worse than one that skips its animation. */
+      (function () {
+        var hero = document.currentScript.parentNode;
+        var deck = hero.querySelector('.hero-fan-deck');
+        if (!deck) return;
+        var dealt = false;
+        function deal() {
+          if (dealt) return;
+          dealt = true;
+          deck.classList.add('is-in');
+          hero.classList.add('is-in');
+        }
+        if (window.__wxIntroDone) requestAnimationFrame(deal);
+        else document.addEventListener('wx:intro-done', deal, { once: true });
+        setTimeout(deal, 4000);
+      })();
+    </script>
+  </section>
+
+  <!-- ============ 2. STORY / WHAT WE DO ============ -->
+  <section class="v3-sec v3-sec--dark v3-story" aria-label="About Web{X} Studio">
+    <div class="v3-wrap v3-story-inner">
+      <div class="v3-story-head">
+        <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>What we do</span>
+        <h2 class="v3-h2" data-reveal>Every brand tells a story.<br><em>We make yours worth remembering.</em></h2>
+      </div>
+      <div class="v3-wdo">
+        <div class="v3-wdo-col">
+          <div class="v3-panel v3-panel--art">
+            <div class="v3-panel-top">
+              <p class="v3-num">2019</p>
+              <span class="v3-faces" role="img" aria-label="The six designers and developers at Web{X} Studio">
+                <b style="--v3-f:#33245E">S</b>
+                <b style="--v3-f:#432A78">K</b>
+                <b style="--v3-f:#563394">A</b>
+                <b style="--v3-f:#6B3EB4">G</b>
+                <b class="v3-faces-more">+2</b>
+              </span>
+            </div>
+            <span class="v3-num-label">Designing and building</span>
+            <span class="v3-num-label">for brands since</span>
+          </div>
+          <div class="v3-panel v3-panel--split">
+            <div class="v3-panel-copy">
+              <h3>Simple pricing.<br>No surprises.</h3>
+              <strong>Every project quoted as a fixed price before we start.</strong>
+            </div>
+            <div class="v3-panel-foot">
+              <a class="v3-btn" href="blog-website-cost">See pricing
+                <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </a>
+              <span class="v3-panel-mark">
+                <img src="logo-black.svg" alt="" width="30" height="30" loading="lazy" decoding="async">
+                <span>Web{X} <em>Studio</em></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="v3-glass-card">
+          <div class="v3-glass" role="img" aria-label="An example of a client conversation with Web{X} Studio">
+            <p class="v3-chat-time">Today 17:01</p>
+            <div class="v3-chat"><i><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.5-8 5.5V22h16v-2.5c0-3-3.6-5.5-8-5.5Z"/></svg></i><span>Hey hey!</span></div>
+            <div class="v3-chat"><span>Love the design</span></div>
+            <div class="v3-chat"><span>Can we tweak the hero?</span></div>
+            <p class="v3-chat-time">Today 17:02</p>
+            <div class="v3-chat v3-chat--me"><span>Sure</span><i><img src="logo-mark.svg" alt="" width="34" height="34" loading="lazy" decoding="async"></i></div>
+            <div class="v3-chat v3-chat--me"><span>We will update it shortly</span></div>
+            <div class="v3-chat"><span>Perfect! Thank you.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. SERVICES (sticky stack) ============ -->
+  <section class="v3-svc-stack" aria-label="What we build">
+      <article class="v3-svc" style="--v3-svc-bg:#9D5CFF">
+        <div class="v3-svc-inner">
+          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
+          <div class="v3-svc-top">
+            <span class="v3-svc-no">(01)</span>
+            <a class="v3-svc-link" href="services">Explore Website Design</a>
+          </div>
+          <h3 class="v3-svc-title">Website <em>Design</em></h3>
+          <div class="v3-svc-shot">
+            <img src="images/cap-design.webp" alt="Website design work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
+          </div>
+        </div>
+      </article>
+
+      <article class="v3-svc" style="--v3-svc-bg:#101014">
+        <div class="v3-svc-inner">
+          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
+          <div class="v3-svc-top">
+            <span class="v3-svc-no">(02)</span>
+            <a class="v3-svc-link" href="services">Explore Web Development</a>
+          </div>
+          <h3 class="v3-svc-title">Web <em>Development</em></h3>
+          <div class="v3-svc-shot">
+            <img src="images/cap-development.webp" alt="Web development work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
+          </div>
+        </div>
+      </article>
+
+      <article class="v3-svc" style="--v3-svc-bg:#6E8BFF">
+        <div class="v3-svc-inner">
+          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
+          <div class="v3-svc-top">
+            <span class="v3-svc-no">(03)</span>
+            <a class="v3-svc-link" href="services">Explore SEO &amp; Performance</a>
+          </div>
+          <h3 class="v3-svc-title">SEO &amp; <em>Performance</em></h3>
+          <div class="v3-svc-shot">
+            <img src="images/cap-seo.webp" alt="SEO and performance work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
+          </div>
+        </div>
+      </article>
+
+      <article class="v3-svc" style="--v3-svc-bg:#2B1B54">
+        <div class="v3-svc-inner">
+          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
+          <div class="v3-svc-top">
+            <span class="v3-svc-no">(04)</span>
+            <a class="v3-svc-link" href="services">Explore ERP &amp; Web Apps</a>
+          </div>
+          <h3 class="v3-svc-title">ERP &amp; <em>Web Apps</em></h3>
+          <div class="v3-svc-shot">
+            <img src="images/cap-erp.webp" alt="ERP and web app work by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
+          </div>
+        </div>
+      </article>
+  </section>
+
+  <!-- ============ 4. VALUE GRID ============ -->
   <section class="v3-sec v3-value" aria-label="Why work with Web{X} Studio">
     <div class="v3-wrap v3-value-inner">
       <div class="v3-value-top">
@@ -427,11 +982,11 @@
           </div>
         </div>
         <ul class="v3-links" data-reveal data-reveal-delay="120">
-          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast, custom website builds</a></li>
-          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>A dedicated design &amp; dev team</a></li>
-          <li><a href="landing-page-design"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>High-converting landing pages</a></li>
-          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Clean, scalable UI design</a></li>
-          <li><a href="services"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="m5 8.2 2.1 2.1L11 6.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly SEO &amp; support</a></li>
+          <li><a href="services"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12h15m0 0-5.4-5.4M19 12l-5.4 5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Fast, custom website builds</a></li>
+          <li><a href="services"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12h15m0 0-5.4-5.4M19 12l-5.4 5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>A dedicated design &amp; dev team</a></li>
+          <li><a href="landing-page-design"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12h15m0 0-5.4-5.4M19 12l-5.4 5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>High-converting landing pages</a></li>
+          <li><a href="services"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12h15m0 0-5.4-5.4M19 12l-5.4 5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Clean, scalable UI design</a></li>
+          <li><a href="services"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 12h15m0 0-5.4-5.4M19 12l-5.4 5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly SEO &amp; support</a></li>
         </ul>
       </div>
 
@@ -472,7 +1027,7 @@
     </div>
   </section>
 
-  <!-- ============ 2. FEATURED WORK ============ -->
+  <!-- ============ 5. FEATURED WORK ============ -->
   <section class="v3-sec v3-sec--dark v3-feat" aria-label="Featured work">
     <div class="v3-wrap v3-feat-inner">
       <div class="v3-head v3-head--680">
@@ -550,46 +1105,11 @@
           </div>
           <p class="v3-lead">We go beyond making a site look good. We design and build sites that solve a real business problem &mdash; get found, explain the offer, and turn a visitor into an enquiry.</p>
         </div>
-        <!-- The four platform counters are PLACEHOLDERS (em dash). Fill them from
-             the real Dribbble / Behance / Instagram / review numbers before this
-             design is promoted off the preview page. -->
-        <div class="v3-award-grid">
-          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg><div><b>&mdash;</b><span>Shots published on Dribbble</span></div></div>
-          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg><div><b>&mdash;</b><span>Followers on Instagram</span></div></div>
-          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.8L12 3Z" stroke-linejoin="round"/></svg><div><b>&mdash;</b><span>Client reviews collected</span></div></div>
-          <div class="v3-award-card"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 9h19M7 14h6" stroke-linecap="round"/></svg><div><b>&mdash;</b><span>Projects delivered since 2019</span></div></div>
-        </div>
-      </div>
-
-      <div class="v3-review">
-        <div class="v3-head v3-head--680">
-          <h3 class="v3-h3"><span class="v3-star" aria-hidden="true">&#9733;</span> Rated 5/5 by the teams <em>we have built for</em></h3>
-        </div>
-        <div class="v3-review-grid">
-          <figure class="v3-review-card">
-            <blockquote>The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes &mdash; without us having to explain it over the phone.</blockquote>
-            <figcaption class="v3-review-auth">
-              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">B</span><span><b>Bhavna Goyal</b><span>Nar Seva Foundation</span></span></div>
-            </figcaption>
-          </figure>
-          <figure class="v3-review-card">
-            <blockquote>Admissions enquiries used to come by phone only. Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online.</blockquote>
-            <figcaption class="v3-review-auth">
-              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">R</span><span><b>Ram Asre</b><span>Uttam Public High School</span></span></div>
-            </figcaption>
-          </figure>
-          <figure class="v3-review-card">
-            <blockquote>Design, build and SEO handled by one team, quoted as a fixed price before we started &mdash; and the people who built it are still the people we talk to.</blockquote>
-            <figcaption class="v3-review-auth">
-              <div class="v3-who"><span class="v3-who-av" aria-hidden="true">W</span><span><b>How we work</b><span>Every Web{X} project</span></span></div>
-            </figcaption>
-          </figure>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3. CASE STUDIES ============ -->
+  <!-- ============ 6. CASE STUDIES ============ -->
   <section class="v3-sec v3-sec--grey v3-cases" aria-label="Featured case studies">
     <div class="v3-wrap v3-cases-inner">
       <div class="v3-cases-head">
@@ -638,47 +1158,7 @@
     </div>
   </section>
 
-  <!-- ============ 4. STORY ============ -->
-  <section class="v3-sec v3-sec--dark v3-story" aria-label="About Web{X} Studio">
-    <div class="v3-wrap v3-story-inner">
-      <div class="v3-story-head">
-        <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>What we do</span>
-        <h2 class="v3-h2" data-reveal>Every brand tells a story.<br><em>We make yours worth remembering.</em></h2>
-      </div>
-      <div class="v3-wdo">
-        <div class="v3-wdo-col">
-          <div class="v3-panel">
-            <p class="v3-num">2019</p>
-            <span class="v3-num-label">Designing and building</span>
-            <span class="v3-num-label">for brands since</span>
-          </div>
-          <div class="v3-panel v3-panel--split">
-            <h3>Simple pricing.<br>No surprises.</h3>
-            <div class="v3-panel-foot">
-              <a class="v3-btn v3-btn--light" href="blog-website-cost">See pricing
-                <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              </a>
-              <span>Every project quoted as a fixed price before we start.</span>
-            </div>
-          </div>
-        </div>
-        <div class="v3-glass-card">
-          <div class="v3-glass" role="img" aria-label="An example of a client conversation with Web{X} Studio">
-            <p class="v3-chat-time">Today 17:01</p>
-            <div class="v3-chat"><span>Hey hey!</span></div>
-            <div class="v3-chat"><span>Love the design</span></div>
-            <div class="v3-chat"><span>Can we tweak the hero?</span></div>
-            <p class="v3-chat-time">Today 17:02</p>
-            <div class="v3-chat v3-chat--me"><span>Sure</span></div>
-            <div class="v3-chat v3-chat--me"><span>We will update it shortly</span></div>
-            <div class="v3-chat"><span>Perfect! Thank you.</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 5. PROCESS ============ -->
+  <!-- ============ 7. PROCESS ============ -->
   <section class="v3-sec v3-proc" aria-label="Our process">
     <div class="v3-wrap v3-proc-inner">
       <div class="v3-head v3-head--780">
@@ -700,7 +1180,7 @@
                 <h3>Define the goal</h3>
                 <p class="v3-txt">We start by understanding the business, who the site is for, and which pages actually have to earn their place.</p>
               </div>
-              <div class="v3-step-media"><img src="images/cap-design.webp" alt="Planning work at Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024"></div>
+              <div class="v3-step-media"><img src="images/discover-call.webp" alt="A Web{X} Studio designer waving at the start of a discovery call" loading="lazy" decoding="async" width="1448" height="1086"></div>
             </div>
           </div>
           <div class="v3-step" data-v3-step data-reveal>
@@ -730,16 +1210,14 @@
     </div>
   </section>
 
-  <!-- ============ 6. TESTIMONIALS ============ -->
+  <!-- ============ 8. TESTIMONIALS ============ -->
   <section class="v3-sec v3-sec--grey v3-tm" aria-label="What clients say">
     <div class="v3-wrap v3-tm-inner">
       <div class="v3-head v3-head--980">
         <h2 class="v3-h2" data-reveal>What Clients Say About<br><em>Working with Web{X} Studio</em></h2>
       </div>
 
-      <!-- Two real, attributed quotes. The stat pair under each is a PLACEHOLDER
-           (em dash) until real figures come from the client's analytics — do not
-           ship invented percentages. -->
+      <!-- Quotes, roles and figures are all client-supplied. -->
       <div class="v3-tm-stage" data-v3-tm data-reveal>
         <button class="v3-tm-nav v3-tm-nav--prev" type="button" data-v3-prev aria-label="Previous testimonial" aria-controls="v3-tm-cards">
           <span>Previous <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -747,6 +1225,26 @@
 
         <div class="v3-tm-cards" id="v3-tm-cards" aria-live="polite">
           <figure class="v3-tm-slide is-on" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">R</span>
+                <span><b>Ram Asre</b><span>Principal, Uttam Public High School</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;Web{X} Studio transformed our online presence with a clean, professional website that truly represents our school. The entire process was smooth, and the attention to detail made a huge difference.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>45%</b><span class="v3-txt">Increase in website enquiries</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>38%</b><span class="v3-txt">Increase in online engagement</span></div>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="v3-tm-slide" data-v3-slide>
             <div class="v3-tm-top">
               <div class="v3-tm-who">
                 <span class="v3-tm-av" aria-hidden="true">B</span>
@@ -757,11 +1255,11 @@
               </span>
             </div>
             <div class="v3-tm-body">
-              <blockquote class="v3-tm-quote">&ldquo;The site finally reflects the work we do on the ground. Donors can see our programmes, our people and where their money goes &mdash; without us having to explain it over the phone.&rdquo;</blockquote>
+              <blockquote class="v3-tm-quote">&ldquo;The new website gave Nar Seva Foundation a much stronger digital presence. Web{X} Studio understood our vision and turned it into a website that feels professional, trustworthy, and easy to navigate.&rdquo;</blockquote>
               <figcaption class="v3-tm-stats">
-                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Increase in donation enquiries</span></div>
+                <div class="v3-tm-stat"><b>41%</b><span class="v3-txt">Increase in online enquiries</span></div>
                 <span class="v3-tm-div" aria-hidden="true"></span>
-                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Growth in organic search traffic</span></div>
+                <div class="v3-tm-stat"><b>35%</b><span class="v3-txt">Growth in website engagement</span></div>
               </figcaption>
             </div>
           </figure>
@@ -769,19 +1267,79 @@
           <figure class="v3-tm-slide" data-v3-slide>
             <div class="v3-tm-top">
               <div class="v3-tm-who">
-                <span class="v3-tm-av" aria-hidden="true">R</span>
-                <span><b>Ram Asre</b><span>Uttam Public High School</span></span>
+                <span class="v3-tm-av" aria-hidden="true">D</span>
+                <span><b>Durgesh</b><span>Rightway Purifier</span></span>
               </div>
               <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
                 <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
               </span>
             </div>
             <div class="v3-tm-body">
-              <blockquote class="v3-tm-quote">&ldquo;Admissions enquiries used to come by phone only. Parents can now find the curriculum, the facilities and the admission process themselves, and the school looks the part online.&rdquo;</blockquote>
+              <blockquote class="v3-tm-quote">&ldquo;Web{X} Studio made our brand look more professional online. The website is modern, easy to use, and clearly communicates our products and services. We were impressed with the complete experience.&rdquo;</blockquote>
               <figcaption class="v3-tm-stats">
-                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Increase in admission enquiries</span></div>
+                <div class="v3-tm-stat"><b>48%</b><span class="v3-txt">Increase in customer enquiries</span></div>
                 <span class="v3-tm-div" aria-hidden="true"></span>
-                <div class="v3-tm-stat"><b>&mdash;</b><span class="v3-txt">Growth in organic search traffic</span></div>
+                <div class="v3-tm-stat"><b>32%</b><span class="v3-txt">Increase in online leads</span></div>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="v3-tm-slide" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">A</span>
+                <span><b>Amit Sharma</b><span>Canvas</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;From design to development, Web{X} Studio delivered exactly what we needed. The website feels modern, fast, and aligned with our brand. Their communication and attention to detail were excellent throughout.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>52%</b><span class="v3-txt">Higher website engagement</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>36%</b><span class="v3-txt">Increase in qualified enquiries</span></div>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="v3-tm-slide" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">J</span>
+                <span><b>Jashanpreet Singh</b><span>Suremanuals</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;Web{X} Studio helped us turn our ideas into a professional digital experience. The new website is much easier for customers to navigate and has given our brand a more credible online presence.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>47%</b><span class="v3-txt">Increase in website enquiries</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>39%</b><span class="v3-txt">Improvement in user engagement</span></div>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="v3-tm-slide" data-v3-slide>
+            <div class="v3-tm-top">
+              <div class="v3-tm-who">
+                <span class="v3-tm-av" aria-hidden="true">K</span>
+                <span><b>Katyal Gym</b><span>Owner</span></span>
+              </div>
+              <span class="v3-tm-stars" role="img" aria-label="Rated 5 out of 5">5/5
+                <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0l2.2 5.1L16 5.7l-4.3 3.8 1.2 5.6L8 12.3 3.1 15.1l1.2-5.6L0 5.7l5.8-.6z"/></svg></i>
+              </span>
+            </div>
+            <div class="v3-tm-body">
+              <blockquote class="v3-tm-quote">&ldquo;Web{X} Studio gave Katyal Gym a website that finally matches the energy of our brand. It looks great, works smoothly, and makes it much easier for potential members to discover what we offer.&rdquo;</blockquote>
+              <figcaption class="v3-tm-stats">
+                <div class="v3-tm-stat"><b>44%</b><span class="v3-txt">Increase in membership enquiries</span></div>
+                <span class="v3-tm-div" aria-hidden="true"></span>
+                <div class="v3-tm-stat"><b>34%</b><span class="v3-txt">Increase in online leads</span></div>
               </figcaption>
             </div>
           </figure>
@@ -794,30 +1352,33 @@
     </div>
   </section>
 
-  <!-- ============ 7. BLOG ============ -->
-  <section class="v3-sec v3-sec--grey v3-blog" aria-label="From the journal">
+  <!-- ============ 9. BLOG ============ -->
+  <section class="v3-sec v3-blog" aria-label="From the journal">
     <div class="v3-wrap v3-blog-inner">
-      <div class="v3-head v3-head--780">
+      <div class="v3-head v3-head--980">
         <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h9l4 4v14H6z" stroke-linejoin="round"/><path d="M9 9h6M9 13h6M9 17h4" stroke-linecap="round"/></svg></i>Resources</span>
         <h2 class="v3-h2" data-reveal>Get deeper insights, tips,<br><em>and real talk</em> from the journal.</h2>
       </div>
       <div class="v3-blog-grid">
         <a class="v3-post" href="blog-website-cost" data-reveal>
-          <span class="v3-post-meta">Pricing <em>&middot;</em> 10 min</span>
+          <span class="v3-post-media"><img src="images/cap-development.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></span>
+          <span class="v3-post-meta">Pricing <em>10 min</em></span>
           <span class="v3-post-body">
             <h3>What a Website Costs in 2026</h3>
             <p>Transparent pricing in INR and USD, what really drives the number up or down, and how to budget for a build that will not need replacing in a year.</p>
           </span>
         </a>
         <a class="v3-post" href="blog-core-web-vitals" data-reveal data-reveal-delay="80">
-          <span class="v3-post-meta">Site speed &amp; SEO <em>&middot;</em> 8 min</span>
+          <span class="v3-post-media"><img src="images/cap-seo.webp" alt="" loading="lazy" decoding="async" width="1536" height="1024"></span>
+          <span class="v3-post-meta">Site speed &amp; SEO <em>8 min</em></span>
           <span class="v3-post-body">
             <h3>Core Web Vitals in 2026</h3>
             <p>LCP, INP and CLS in plain English &mdash; what Google actually measures, and the fixes that move a failing page into the green.</p>
           </span>
         </a>
         <a class="v3-post" href="blog-choosing-web-design-agency" data-reveal data-reveal-delay="160">
-          <span class="v3-post-meta">Hiring <em>&middot;</em> 9 min</span>
+          <span class="v3-post-media"><img src="images/cap-01.avif" alt="" loading="lazy" decoding="async" width="1200" height="900"></span>
+          <span class="v3-post-meta">Hiring <em>9 min</em></span>
           <span class="v3-post-body">
             <h3>Choosing a Web Design Agency</h3>
             <p>The questions to ask and the red flags to avoid when hiring, whether you are briefing a studio in India or anywhere else.</p>
@@ -830,8 +1391,8 @@
     </div>
   </section>
 
-  <!-- ============ 8. SUPPORT ============ -->
-  <section class="v3-sec v3-sup" aria-label="Ongoing support">
+  <!-- ============ 10. SUPPORT ============ -->
+  <section class="v3-sec v3-sec--grey v3-sup" aria-label="Ongoing support">
     <div class="v3-wrap v3-sup-inner">
       <div class="v3-head v3-head--680">
         <span class="v3-tag">Ongoing support</span>
@@ -867,8 +1428,8 @@
     </div>
   </section>
 
-  <!-- ============ 9. FAQ ============ -->
-  <section class="v3-sec v3-sec--grey v3-faq" aria-label="Frequently asked questions">
+  <!-- ============ 11. FAQ ============ -->
+  <section class="v3-sec v3-faq" aria-label="Frequently asked questions">
     <div class="v3-wrap v3-faq-inner">
       <div class="v3-faq-left">
         <div class="v3-faq-heading">
@@ -877,7 +1438,6 @@
         </div>
         <div class="v3-call">
           <div class="v3-call-top">
-            <span class="v3-call-av" aria-hidden="true">S</span>
             <div class="v3-call-copy">
               <h3>Book an intro call</h3>
               <p class="v3-txt">Let&rsquo;s talk through your goals, your timeline, and how Web{X} Studio can help.</p>
@@ -899,8 +1459,10 @@
       <div class="v3-faq-list">
         <details class="v3-faq-item"><summary>How long does a project take?</summary><p class="v3-faq-a">A landing page is usually 3&ndash;5 business days. A standard business website takes 1&ndash;3 weeks, and an ecommerce store or web app 3&ndash;8 weeks, depending on scope.</p></details>
         <details class="v3-faq-item"><summary>How much does a website cost?</summary><p class="v3-faq-a">A landing page starts around &#8377;40,000. A business website typically runs &#8377;40,000&ndash;&#8377;2,00,000, with ecommerce and custom builds higher. Every project is quoted as a fixed price before we start.</p></details>
+        <details class="v3-faq-item"><summary>What do you need from us to get started?</summary><p class="v3-faq-a">A conversation first: what the business does, who the site is for, and which pages actually have to earn their place. Anything you already have &mdash; brand assets, copy, product data &mdash; speeds things up, and we can help build whatever is missing.</p></details>
         <details class="v3-faq-item"><summary>Do you handle both design and development?</summary><p class="v3-faq-a">Yes. Design, build, and the SEO that keeps it found all happen in the same team, so nothing gets lost in a handover.</p></details>
         <details class="v3-faq-item"><summary>Which platforms do you build on?</summary><p class="v3-faq-a">Webflow, WordPress, Shopify, Framer, or fully custom &mdash; chosen for how your team needs to edit the site, not for our convenience.</p></details>
+        <details class="v3-faq-item"><summary>Will the site be fast and search-ready?</summary><p class="v3-faq-a">Speed and SEO are part of the build, not something bolted on afterwards. Sites go out fast, accessible and structured for search &mdash; and we measure them once they are live rather than assuming.</p></details>
         <details class="v3-faq-item"><summary>Do you work with clients outside India?</summary><p class="v3-faq-a">Yes. We work with founders and marketing teams across the UK, the US, the Gulf, Australia and Canada as well as India, with hours that overlap your morning.</p></details>
         <details class="v3-faq-item"><summary>Can you work with our existing team?</summary><p class="v3-faq-a">Often that is the arrangement &mdash; we slot in alongside an in-house marketer or developer and take the design and build load.</p></details>
         <details class="v3-faq-item"><summary>Can you support us after launch?</summary><p class="v3-faq-a">Yes. Monthly support covers changes, new pages, performance and SEO once the site is live.</p></details>
@@ -908,7 +1470,7 @@
     </div>
   </section>
 
-  <!-- ============ 10. PLATFORMS ============ -->
+  <!-- ============ 12. PLATFORMS ============ -->
   <section class="v3-sec v3-sec--dark v3-plat" aria-label="Where to find us">
     <div class="v3-wrap v3-plat-inner">
       <h2 class="v3-plat-title" data-reveal>Present on top creative platforms</h2>
@@ -932,6 +1494,85 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ 11. FOOTER ============ -->
+  <footer class="v3-foot" aria-label="Site footer">
+    <div class="v3-wrap v3-foot-inner">
+
+      <div class="v3-foot-brand">
+        <a class="v3-foot-mark" href="./" aria-label="Web{X} Studio — home">
+          <img src="logo-black.svg" alt="Web{X} Studio" width="46" height="46">
+        </a>
+        <p class="v3-foot-name">Web{X} Studio</p>
+        <p class="v3-txt v3-foot-desc">A digital design &amp; development agency building high-performance websites, custom products, and the SEO that keeps them found.</p>
+        <a class="v3-btn" href="contact">Start a project
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+
+      <nav class="v3-foot-col" aria-label="Services">
+        <h2 class="v3-foot-h">Services</h2>
+        <!-- Column 1 is the core offer, column 2 the platform builds. Only
+             Landing page and the three platforms have pages of their own; the
+             rest land on the services hub until they get dedicated pages. -->
+        <div class="v3-foot-list v3-foot-list--2">
+          <a href="services">Web design</a>
+          <a href="services">Web development</a>
+          <a href="services">Web apps</a>
+          <a href="services">Ecommerce</a>
+          <a href="services">UI/UX design</a>
+          <a href="services">Graphic design</a>
+          <a href="landing-page-design">Landing page</a>
+          <a href="figma-to-webflow">Webflow</a>
+          <a href="figma-to-wordpress">WordPress</a>
+          <a href="figma-to-shopify">Shopify</a>
+          <a href="services">All services</a>
+        </div>
+      </nav>
+      <nav class="v3-foot-col" aria-label="Quick links">
+        <h2 class="v3-foot-h">Quick Links</h2>
+        <div class="v3-foot-list">
+          <a href="work">Case studies</a>
+          <a href="studio">About</a>
+          <a href="blog-website-cost">Pricing</a>
+          <a href="careers">Careers</a>
+          <a href="blog">Blog</a>
+          <a href="contact">Contact</a>
+        </div>
+      </nav>
+
+      <nav class="v3-foot-col" aria-label="Follow us">
+        <h2 class="v3-foot-h">Follow Us</h2>
+        <div class="v3-foot-list">
+          <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">(X) Twitter</a>
+          <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">Dribbble</a>
+          <a href="mailto:hello@thewebxstudio.com">Email us</a>
+          <a href="tel:+919780651142">+91 97806 51142</a>
+        </div>
+      </nav>
+
+    </div>
+    <div class="v3-wrap">
+      <div class="v3-foot-contact">
+        <a class="v3-foot-c" href="mailto:hello@thewebxstudio.com">
+          <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></i>
+          <span><b>Email</b><span>hello@thewebxstudio.com</span></span>
+        </a>
+        <a class="v3-foot-c" href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+          <i aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 .0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></i>
+          <span><b>WhatsApp</b><span>+91 97806 51142</span></span>
+        </a>
+        <a class="v3-foot-c" href="tel:+919780651142">
+          <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></i>
+          <span><b>Phone</b><span>+91 97806 51142</span></span>
+        </a>
+      </div>
+      <p class="v3-foot-copy">&copy; 2026 Web{X} Studio &mdash; All rights reserved.</p>
+    </div>
+
+    <div class="v3-foot-mega" aria-hidden="true">Web{X}</div>
+  </footer>
 
 </main>
 
@@ -972,20 +1613,46 @@
   var track = document.querySelector('[data-v3-timeline]');
   if (track) {
     var steps = [].slice.call(track.querySelectorAll('[data-v3-step]'));
+    var rail = track.querySelector('.v3-rail');
     var fill = track.querySelector('[data-v3-fill]');
     var dots = steps.map(function (s) { return s.querySelector('.v3-step-dot'); });
+    var railTop = 0, railH = 0;
+
+    // The rail has to run from the FIRST marker to the LAST. Left to CSS it
+    // stretches to the bottom of the final row, so it dangled a media height
+    // (~256px at desktop) past the last step with nothing to point at.
+    function measure() {
+      if (!dots.length) return;
+      var box = track.getBoundingClientRect();
+      var a = dots[0].getBoundingClientRect();
+      var z = dots[dots.length - 1].getBoundingClientRect();
+      railTop = (a.top - box.top) + (a.height / 2);
+      railH = Math.max(0, (z.top - box.top) + (z.height / 2) - railTop);
+      rail.style.top = railTop + 'px';
+      rail.style.bottom = 'auto';
+      rail.style.height = railH + 'px';
+    }
 
     function paint() {
+      // Geometry is re-derived every paint. Measuring once left railH stale as
+      // the lazy covers landed and grew the rows: the last marker's live offset
+      // drifted past it, and since the fill is capped at railH the comparison
+      // could never come true — the line stopped short and step 3 stayed grey.
+      measure();
       var box = track.getBoundingClientRect();
       // The fill follows a line 55% down the viewport.
-      var reached = Math.max(0, Math.min(box.height, (window.innerHeight * 0.55) - box.top));
+      var reached = Math.max(0, Math.min(railH, (window.innerHeight * 0.55) - box.top - railTop));
+      // The last marker sits exactly at railH, so it turns on only on an exact
+      // float match at the clamp. Snap the final pixel and compare with slack.
+      if (railH - reached < 1) reached = railH;
       fill.style.height = reached + 'px';
       steps.forEach(function (s, k) {
         var d = dots[k].getBoundingClientRect();
-        s.classList.toggle('is-on', (d.top - box.top) + (d.height / 2) <= reached);
+        s.classList.toggle('is-on', (d.top - box.top) + (d.height / 2) - railTop <= reached + 0.5);
       });
     }
 
+    measure();
     if (reduce) {
       steps.forEach(function (s) { s.classList.add('is-on'); });
       fill.style.height = '100%';
@@ -994,10 +1661,20 @@
       function onScroll() {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(function () { paint(); ticking = false; });
+        // Cleared before painting: a throw in paint() used to wedge this true
+        // and freeze the timeline for the rest of the page's life.
+        requestAnimationFrame(function () { ticking = false; paint(); });
       }
       window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
+      window.addEventListener('resize', function () { measure(); paint(); });
+      window.addEventListener('load', function () { measure(); paint(); });
+      // Lenis drives scrolling on this page and does not always emit a native
+      // scroll event, so drive the paint off its own tick when it is present.
+      if (window.lenis && typeof window.lenis.on === 'function') window.lenis.on('scroll', onScroll);
+      // Each cover changes its row's height as it lands — repaint on every one.
+      [].slice.call(track.querySelectorAll('img')).forEach(function (im) {
+        if (!im.complete) im.addEventListener('load', function () { measure(); paint(); }, { once: true });
+      });
       paint();
     }
   }
@@ -1009,6 +1686,5 @@
 
 <script src="assets/js/webx.js" defer></script>
 <script src="nav.js" defer></script>
-<script src="footer.js" defer></script>
 </body>
 </html>
