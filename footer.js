@@ -146,10 +146,24 @@
   /* ---- Legal bar ---- */
   .wx-footer-bottom {
     padding-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 18px;
     text-align: center;
     font-size: 12.5px;
     color: var(--dim);
   }
+  .wx-footer-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
+  .wx-footer-legal a,
+  .wx-footer-legal button {
+    padding: 0; border: 0; background: none; cursor: pointer;
+    font-family: inherit; font-size: 12.5px; color: var(--dim);
+    text-decoration: none; transition: color .2s ease;
+  }
+  .wx-footer-legal a:hover,
+  .wx-footer-legal button:hover { color: var(--brand); }
 
   /* ---- Closing wordmark ---- */
   .wx-footer-mega {
@@ -272,6 +286,11 @@
 
       <div class="wx-footer-bottom">
         <span>&copy; 2026 Web{X} Studio &mdash; All rights reserved.</span>
+        <span class="wx-footer-legal">
+          <a data-transition href="privacy-policy">Privacy Policy</a>
+          <a data-transition href="terms-and-conditions">Terms &amp; Conditions</a>
+          <button type="button" data-wx-open-prefs>Cookie preferences</button>
+        </span>
       </div>
 
     </div>

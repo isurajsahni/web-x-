@@ -2,22 +2,11 @@
 <html lang="en-IN" class="no-js">
 <head>
 <meta charset="utf-8">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M6TBLLFK');</script>
-<!-- End Google Tag Manager -->
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xzhktb4dc0");
-</script>
-<!-- End Microsoft Clarity -->
+<!-- Consent gate. Loads Google Tag Manager and Microsoft Clarity only
+     once the visitor has allowed the matching category, and sets Google
+     Consent Mode defaults to denied before any tag can run. Must stay
+     first and must NOT be deferred. -->
+<script src="consent.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
@@ -276,6 +265,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: 0 0 0 3px rgba(157, 92, 255, 0.16);
   }
   
+  /* ---- Consent checkbox ----------------------------------------
+     A real <input type="checkbox"> stays in the markup, visually hidden
+     but focusable, so the browser handles keyboard, screen readers and
+     the form payload; .wx-consent-tick is only the paint. */
+  .wx-consent-field { margin-bottom: 20px; }
+  .wx-consent {
+    display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+    padding: 14px 16px; border-radius: 12px;
+    background-color: #F7F6FA; border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: border-color .25s ease, background-color .25s ease;
+  }
+  .wx-consent:hover { border-color: rgba(157, 92, 255, .45); }
+  .wx-consent-input {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .wx-consent-tick {
+    flex: 0 0 auto; display: grid; place-items: center; width: 20px; height: 20px;
+    margin-top: 1px; border-radius: 6px; background: #FFFFFF;
+    border: 1.5px solid rgba(0, 0, 0, 0.22); color: #FFFFFF;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .wx-consent-tick svg { opacity: 0; transition: opacity .18s ease; }
+  .wx-consent-input:checked + .wx-consent-tick {
+    background: var(--brand-purple); border-color: var(--brand-purple);
+  }
+  .wx-consent-input:checked + .wx-consent-tick svg { opacity: 1; }
+  /* Focus ring lands on the painted box, since the input itself is 1px. */
+  .wx-consent-input:focus-visible + .wx-consent-tick {
+    outline: 2px solid var(--brand-purple); outline-offset: 2px;
+  }
+  .wx-consent-copy {
+    font-family: 'Satoshi', sans-serif; font-size: 13.5px; line-height: 1.5; color: #55555F;
+  }
+  .wx-consent-copy a { color: var(--brand-purple); text-decoration: underline; text-underline-offset: 2px; }
+  /* Set by the validator when the box is required but unticked. */
+  .wx-consent-input[aria-invalid="true"] + .wx-consent-tick { border-color: #D92D20; }
+
   .form-textarea {
     width: 100%;
     background-color: #F7F6FA !important;
@@ -534,10 +561,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="/contact">Contact</a>
   </nav>
 </header>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M6TBLLFK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <a class="wx-skip" href="#main">Skip to content</a>
 
 <!-- Full-bleed morphing mesh background -->
@@ -716,6 +739,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span id="wx-message-err" data-err="message" role="alert" hidden style="font-size:12px; color:#D92D20; font-family:'Satoshi', sans-serif; margin-top:2px;">Tell us a little more (10+ characters)</span>
         </div>
         
+        <div class="form-group full wx-consent-field">
+          <label class="wx-consent" for="wx-consent-box">
+            <input class="wx-consent-input" id="wx-consent-box" name="consent" type="checkbox"
+                   value="Yes - permission given to store details and reply"
+                   aria-describedby="wx-consent-err" />
+            <span class="wx-consent-tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="wx-consent-copy">I agree that Web{X} Studio may store the details I have entered and
+              contact me about this enquiry. See the <a href="privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+          </label>
+          <span id="wx-consent-err" data-err="consent" role="alert" hidden style="font-size:12px; color:#D92D20; font-family:'Satoshi', sans-serif; margin-top:2px;">Please tick the box so we are allowed to reply</span>
+        </div>
+
         <button type="submit" class="wx-btn-animated" style="margin-top: 10px;">
           <span class="wx-btn-label">Send Message</span>
           <span class="wx-btn-circle">

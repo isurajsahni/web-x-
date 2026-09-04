@@ -786,10 +786,10 @@
     var form = document.getElementById('wx-contact-form');
     if (!form) return;
     var success = document.getElementById('wx-contact-success');
-    var f = { name: form.querySelector('[name="name"]'), email: form.querySelector('[name="email"]'), message: form.querySelector('[name="message"]') };
-    var errs = { name: form.querySelector('[data-err="name"]'), email: form.querySelector('[data-err="email"]'), message: form.querySelector('[data-err="message"]') };
+    var f = { name: form.querySelector('[name="name"]'), email: form.querySelector('[name="email"]'), message: form.querySelector('[name="message"]'), consent: form.querySelector('[name="consent"]') };
+    var errs = { name: form.querySelector('[data-err="name"]'), email: form.querySelector('[data-err="email"]'), message: form.querySelector('[data-err="message"]'), consent: form.querySelector('[data-err="consent"]') };
     function setErr(k, on) { if (errs[k]) errs[k].hidden = !on; if (f[k]) f[k].setAttribute('aria-invalid', on ? 'true' : 'false'); }
-    Object.keys(f).forEach(function (k) { if (f[k]) f[k].addEventListener('input', function () { setErr(k, false); }); });
+    Object.keys(f).forEach(function (k) { if (!f[k]) return; f[k].addEventListener('input', function () { setErr(k, false); }); f[k].addEventListener('change', function () { setErr(k, false); }); });
     var endpoint = form.getAttribute('data-endpoint') || '';
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -798,8 +798,9 @@
       var message = (f.message && f.message.value || '').trim();
       var validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       var eName = name.length < 1, eEmail = !validEmail, eMsg = message.length < 10;
-      setErr('name', eName); setErr('email', eEmail); setErr('message', eMsg);
-      if (eName || eEmail || eMsg) { var first = form.querySelector('[aria-invalid="true"]'); if (first) first.focus(); return; }
+      var eConsent = !!f.consent && !f.consent.checked;
+      setErr('name', eName); setErr('email', eEmail); setErr('message', eMsg); setErr('consent', eConsent);
+      if (eName || eEmail || eMsg || eConsent) { var first = form.querySelector('[aria-invalid="true"]'); if (first) first.focus(); return; }
       function done() {
         if (success) {
           form.hidden = true; success.hidden = false;
@@ -843,11 +844,31 @@
         anim.oncancel = function () { closing = expanding = false; };
       }
       function shrink() { closing = true; run(el.offsetHeight, summary.offsetHeight, false); }
+      /* Published so a sibling opening can close this one the animated way.
+         Deliberately does NOT consult `closing`/`expanding`: those flags are
+         reset by the animation's own finish/cancel handlers, so an animation
+         that gets interrupted mid-flight leaves `closing` stuck true and the
+         panel could then never be closed again. Stale handlers are detached
+         before the cancel for the same reason — otherwise the outgoing
+         animation's oncancel fires a beat later and clears the flags this
+         call just set. */
+      el.__wxFaqClose = function () {
+        if (!el.open) return;
+        if (anim) { anim.onfinish = null; anim.oncancel = null; anim.cancel(); anim = null; }
+        closing = true; expanding = false;
+        run(el.offsetHeight, summary.offsetHeight, false);
+      };
       function expand() { expanding = true; run(el.offsetHeight, summary.offsetHeight + body.offsetHeight, true); }
       function openIt() { el.style.overflow = 'hidden'; el.style.height = el.offsetHeight + 'px'; el.open = true; requestAnimationFrame(expand); }
       summary.addEventListener('click', function (e) {
         e.preventDefault();
-        if (closing || !el.open) openIt();
+        if (closing || !el.open) {
+          var group = el.parentElement ? el.parentElement.querySelectorAll('details.wx-faq') : [];
+          [].forEach.call(group, function (other) {
+            if (other !== el && other.__wxFaqClose) other.__wxFaqClose();
+          });
+          openIt();
+        }
         else if (expanding || el.open) shrink();
       });
     });
