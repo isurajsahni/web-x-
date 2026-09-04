@@ -709,7 +709,12 @@
     /* Three contact items would each get a sliver on a phone — stack them. */
     .v3-foot-contact { flex-direction: column; align-items: flex-start; gap: 18px; }
     .v3-foot-c { padding-block: 3px; }
-    .v3-svc-inner { padding-inline: 20px; }
+    /* Phone gutters: one 15px edge shared by every section container, so the
+       hero, the sticky services panel and every .v3-wrap section line up. */
+    .v3-wrap, .v3-plat .v3-wrap, .v3-svc-inner, .hero-fan-inner { padding-inline: 15px; }
+    /* The 20px rail inset is a desktop measure; on a phone it only eats gutter.
+       .v3-rail sits on .v3-steps, so the line and the dots shift together. */
+    .v3-timeline { padding-left: 0; }
     .v3-svc-grid { display: none; }
     .v3-svc-shot { margin-top: 18px; width: 100%; }
     /* 8.4vw pins the title to its 40px floor with half the panel left empty. */
@@ -1041,7 +1046,7 @@
         /* Full height, with the block centred and the spacing opened up so it
            does not read as three things clustered in the middle. */
         .hero-fan-inner { justify-content: center; text-align: center;
-                          padding: 40px 20px 56px; min-height: 100svh; }
+                          padding: 40px 15px 56px; min-height: 100svh; }
         .hero-fan-eyebrow { margin-bottom: clamp(22px,3.4vh,32px); }
         /* The deck used to be the gap between the headline and the buttons; with
            it hidden the CTA sat flush against the last line of the h1. */
@@ -1304,7 +1309,41 @@
       <div class="v3-case-slider" data-v3-feat>
         <div class="v3-case-view">
           <article class="v3-case-slide is-on" data-v3-fslide>
-            <div class="v3-case-shot"><img src="images/work/gpsfdk.avif" alt="Canvas luxury ecommerce website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200"></div>
+            <div class="v3-case-shot"><img src="images/work/thumbs/automa.webp" alt="Automa marketing agency landing page by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Landing page &middot; Live</span>
+                <h3>Automa</h3>
+                <p class="v3-txt">A marketing agency landing page built in Webflow &mdash; one scroll that states the offer, proves it, and hands the visitor a single next step.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>Webflow</b>
+                <span class="v3-txt">One scroll, one next step</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="https://automabydevsuraj.webflow.io/" target="_blank" rel="noopener">Visit the site
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/thumbs/nocturne-nft.webp" alt="Nocturne NFT marketplace landing page by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Landing page &middot; Live</span>
+                <h3>Nocturne NFT</h3>
+                <p class="v3-txt">A digital collectibles marketplace landing page &mdash; the drop, the collection and the price in view straight away, on a dark layout built to let the art carry it.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>Web3</b>
+                <span class="v3-txt">The collection, front and centre</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="https://nocturnenftdevsuraj.webflow.io/" target="_blank" rel="noopener">Visit the site
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/thumbs/canvas.webp" alt="Canvas luxury ecommerce website by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
             <div class="v3-case-info">
               <div>
                 <span class="v3-case-live">Website &middot; Live</span>
@@ -1321,34 +1360,68 @@
             </div>
           </article>
           <article class="v3-case-slide" data-v3-fslide>
-            <div class="v3-case-shot"><img src="images/work/rightway.avif" alt="Rightway Purifier website by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1067"></div>
+            <div class="v3-case-shot"><img src="images/work/thumbs/narseva.webp" alt="Nar Seva Foundation nonprofit website by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
             <div class="v3-case-info">
               <div>
-                <span class="v3-case-live">Website &middot; Live</span>
-                <h3>Rightway Purifier</h3>
-                <p class="v3-txt">A commercial site for a water purifier brand, built to turn product interest into enquiries rather than just look the part.</p>
+                <span class="v3-case-live">Nonprofit website &middot; Live</span>
+                <h3>Nar Seva Foundation</h3>
+                <p class="v3-txt">A site for a Ludhiana nonprofit running a free dialysis centre &mdash; the work on the ground up front, and a donation path that never makes a supporter hunt for it.</p>
               </div>
               <div class="v3-case-metric">
-                <b>Leads</b>
-                <span class="v3-txt">Product pages built to convert</span>
-                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-rightway">View case study
+                <b>Donations</b>
+                <span class="v3-txt">Built to earn a supporter&rsquo;s trust</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="https://www.narsevafoundation.com/" target="_blank" rel="noopener">Visit the site
                   <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a></p>
               </div>
             </div>
           </article>
           <article class="v3-case-slide" data-v3-fslide>
-            <div class="v3-case-shot"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200"></div>
+            <div class="v3-case-shot"><img src="images/work/thumbs/katyal-gym.webp" alt="Katyal Fitness Gym website by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
             <div class="v3-case-info">
               <div>
-                <span class="v3-case-live">Custom software &middot; Live</span>
-                <h3>Canvas ERP One</h3>
-                <p class="v3-txt">A custom ERP bringing HR, projects and finance into one place, replacing the spreadsheets that were holding the operation together.</p>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>Katyal Fitness Gym</h3>
+                <p class="v3-txt">A website with the energy of the floor it sells &mdash; two Ludhiana branches, membership tiers and timings laid out so a walk-in decides before they call.</p>
               </div>
               <div class="v3-case-metric">
-                <b>3-in-1</b>
-                <span class="v3-txt">HR, projects and finance</span>
-                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-erp">View case study
+                <b>2 branches</b>
+                <span class="v3-txt">Memberships, plainly explained</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="work">See the work
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/thumbs/raman-metals.webp" alt="Raman Metal Industries manufacturing website by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>Raman Metal Industries</h3>
+                <p class="v3-txt">A manufacturing site that reads as seriously as the product line &mdash; ranges browsable by category, with a request-a-quote route running through every page.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>Quotes</b>
+                <span class="v3-txt">A catalogue that asks for the enquiry</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="work">See the work
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/thumbs/fantastic-balloon.webp" alt="Fantastic Balloon Artistry event design website by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>Fantastic Balloon Artistry</h3>
+                <p class="v3-txt">A bespoke event-design studio, given an editorial site where the gallery does the selling and every page ends on the same ask &mdash; book a consultation.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>Bookings</b>
+                <span class="v3-txt">A gallery that leads to a consultation</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="work">See the work
                   <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a></p>
               </div>
