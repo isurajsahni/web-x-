@@ -533,8 +533,38 @@
       if (banner.classList.contains('is-on')) return collapse();
     });
 
-    /* First visit opens on the pill, not the panel. */
-    if (!choice) showPill();
+    /* First visit opens the panel itself, not the pill.
+
+       The pill alone was too quiet to do its job. Measured on the built
+       site: a new visitor got no prompt at all, only a small control in
+       the bottom corner. Analytics therefore fired for the handful of
+       people who went looking for it and for nobody else, which is why
+       the GA4 property read as empty while the tags were in fact wired
+       correctly the whole time. A consent control that nothing routes
+       people to is not a choice being offered, it is a choice being
+       avoided.
+
+       This is still opt-in and the legal basis is unchanged. Nothing
+       loads until Accept all, Necessary only or Save preferences is
+       pressed, and dismissing the panel still stores nothing and grants
+       nothing - see the PRESELECT note above, which all still holds. The
+       panel is simply visible rather than hidden behind a click.
+
+       Focus is deliberately NOT moved into the panel, which is why this
+       does not just call expand(). expand() focuses its first button
+       because someone pressed the pill and expects to land there; doing
+       that on load would pull focus off the document before the visitor
+       has read a word, and drop a screen reader into a dialog nobody
+       asked to open. The panel is still reachable by Tab and by the pill,
+       and Escape still collapses it. */
+    function autoOpen() {
+      pill.setAttribute('aria-expanded', 'true');
+      slideIn(banner);
+    }
+
+    /* A beat after paint, so the panel reads as a considered prompt
+       rather than a flash competing with the hero for first attention. */
+    if (!choice) setTimeout(autoOpen, 700);
   }
 
   /* The banner needs <body>; the consent defaults above did not, which is

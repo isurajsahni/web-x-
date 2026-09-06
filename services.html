@@ -10,31 +10,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
-<title>Web Design, UX/UI, Branding &amp; SEO Services</title>
-<meta name="description" content="UX/UI design, branding, responsive web development, e-commerce, ERP and technical SEO - one international digital agency for founders worldwide.">
-<meta name="keywords" content="web design services, web development services, SEO services, ERP development, figma to webflow, figma to wordpress, web design agency India, international web studio, thewebxstudio, the webx studio, webx studio, webx, thewebxstudio.com">
+<title>Web Design, Development, SEO &amp; Web Apps | Web{X} Studio</title>
+<meta name="description" content="Everything we design and build in one place — website design, web development, SEO and performance, and custom ERP and web apps, from one team.">
+<meta name="keywords" content="web design services, web development services, website design and development, seo services, ecommerce web development, erp development, custom web apps, figma to webflow, figma to wordpress, design agency india, thewebxstudio, the webx studio, webx studio, webx, thewebxstudio.com">
 <meta name="author" content="Web{X} Studio">
+
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://www.thewebxstudio.com/services">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Web{X} Studio">
 <meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Web Design, UX/UI, Branding &amp; SEO Services">
-<meta property="og:description" content="UX/UI design, branding, responsive web development, e-commerce, ERP and technical SEO - one international digital agency for founders worldwide.">
-<meta property="og:url" content="https://www.thewebxstudio.com/services">
+<meta property="og:title" content="Web Design, Development, SEO &amp; Web Apps | Web{X} Studio">
+<meta property="og:description" content="Everything we design and build in one place — website design, web development, SEO and performance, and custom ERP and web apps, from one team.">
 <meta property="og:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Web{X} Studio services overview">
+<meta property="og:image:alt" content="Web design, development, SEO and web app services by Web{X} Studio">
+<meta property="og:url" content="https://www.thewebxstudio.com/services">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Web Design, UX/UI, Branding &amp; SEO Services">
-<meta name="twitter:description" content="UX/UI design, branding, responsive web development, e-commerce, ERP and technical SEO - one international digital agency for founders worldwide.">
+<meta name="twitter:title" content="Web Design, Development, SEO &amp; Web Apps | Web{X} Studio">
+<meta name="twitter:description" content="Everything we design and build in one place — website design, web development, SEO and performance, and custom ERP and web apps, from one team.">
 <meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta name="twitter:site" content="@Thewebxstudio">
 
-<meta name="theme-color" content="#0A0A0A">
+<meta name="theme-color" content="#F3F4F6">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -42,11 +43,27 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<!-- Same pairing as home-v3: Instrument Serif stands in for Ivyora Display,
+     Manrope for Neue Montreal. Swap both if the real licences get bought. -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
 
+<!-- webx.css carries the Satoshi @font-face block, the reveal helpers and the
+     focus ring, so it has to load before the page-local styles below. -->
 <link rel="stylesheet" href="assets/css/webx.css">
-<script src="assets/js/webx.js" defer></script>
 
+<!-- The hero image is the LCP element. Preload it so the fetch starts with the
+     HTML rather than waiting for the layout to reach the <img>. -->
+<link rel="preload" as="image" href="images/service/service-hero-thumbnail.webp" fetchpriority="high">
+
+<!-- Structured data. The @graph is carried over from the live services.html
+     rather than the template's bare FAQPage: the Organization, CollectionPage,
+     BreadcrumbList and ItemList are already indexed markup, and the ItemList is
+     the only place the full service range is enumerated for machines. Four of
+     those services now have detail pages of their own, so they carry a url the
+     old markup had nothing to point at.
+     The FAQPage answers are the first paragraph of each accordion panel
+     verbatim — Google requires the markup to match what the visitor sees, so
+     if an answer changes on the page it has to change here too. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -61,10 +78,12 @@
     {
       "@type": "CollectionPage",
       "@id": "https://www.thewebxstudio.com/services#page",
-      "name": "Web{X} Studio Services",
-      "description": "Website design, web development, SEO & performance, ERP & web apps, and Figma to Webflow / WordPress conversion by Web{X} Studio.",
       "url": "https://www.thewebxstudio.com/services",
-      "isPartOf": { "@id": "https://www.thewebxstudio.com/#website" }
+      "name": "Web Design, Development, SEO & Web Apps | Web{X} Studio",
+      "description": "Everything we design and build in one place — website design, web development, SEO and performance, and custom ERP and web apps, from one team.",
+      "inLanguage": "en-IN",
+      "isPartOf": { "@id": "https://www.thewebxstudio.com/#website" },
+      "publisher": { "@id": "https://www.thewebxstudio.com/#organization" }
     },
     {
       "@type": "BreadcrumbList",
@@ -77,15 +96,72 @@
       "@type": "ItemList",
       "name": "Services offered by Web{X} Studio",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Website Design", "description": "Bespoke, conversion-focused UI/UX and interface design for landing pages and full websites.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Web Development", "description": "Fast, scalable builds on Webflow, WordPress, Shopify or fully custom code.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "SEO & Performance", "description": "Technical SEO, Core Web Vitals and speed optimisation for higher rankings.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "ERP & Web Apps", "description": "Custom dashboards, ERP systems and web applications that scale with your business.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Figma to Webflow", "url": "https://www.thewebxstudio.com/figma-to-webflow", "description": "Pixel-perfect, hand-built conversion of Figma designs into fast, CMS-ready Webflow sites.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Figma to WordPress", "url": "https://www.thewebxstudio.com/figma-to-wordpress", "description": "Custom-built conversion of Figma designs into fast, easy-to-edit WordPress sites.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Figma to Shopify", "url": "https://www.thewebxstudio.com/figma-to-shopify", "description": "Pixel-perfect conversion of Figma designs into fast, conversion-ready Shopify stores with editable Online Store 2.0 sections.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Figma to Framer", "url": "https://www.thewebxstudio.com/figma-to-framer", "description": "Pixel-perfect conversion of Figma designs into fast, motion-rich Framer sites with the Framer CMS.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
-        { "@type": "ListItem", "position": 9, "item": { "@type": "Service", "name": "Figma to Unbounce", "url": "https://www.thewebxstudio.com/figma-to-unbounce", "description": "Pixel-perfect conversion of Figma designs into fast, high-converting Unbounce landing pages ready for A/B testing and paid campaigns.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } }
+        { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "UI/UX Design", "url": "https://www.thewebxstudio.com/ui-ux-design", "description": "UI/UX and product design for SaaS dashboards, multi-role interfaces, onboarding flows and design systems.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Web Design", "url": "https://www.thewebxstudio.com/web-design", "description": "Conversion-focused web design for marketing sites — responsive layouts, brand identity and design systems.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "Web Development", "url": "https://www.thewebxstudio.com/web-development", "description": "Fast, accessible, scalable builds on Webflow, WordPress, Shopify or fully custom code, front end to back end.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "SEO & Performance", "description": "Technical SEO, Core Web Vitals, conversion rate optimisation and answer engine optimisation.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "ERP & Web Apps", "url": "https://www.thewebxstudio.com/web-apps", "description": "Custom dashboards, ERP systems, B2B SaaS platforms and internal tools that scale with your business.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Branding", "description": "Brand identity, visual systems and messaging that stay consistent across every screen.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Ecommerce Development", "description": "Shopify and WooCommerce storefronts, from catalogue structure through to checkout.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Landing Page Design", "url": "https://www.thewebxstudio.com/landing-page-design", "description": "Conversion-focused landing pages for paid campaigns, launches and lead generation.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 9, "item": { "@type": "Service", "name": "Figma to Webflow", "url": "https://www.thewebxstudio.com/figma-to-webflow", "description": "Pixel-perfect, hand-built conversion of Figma designs into fast, CMS-ready Webflow sites.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 10, "item": { "@type": "Service", "name": "Figma to WordPress", "url": "https://www.thewebxstudio.com/figma-to-wordpress", "description": "Custom-built conversion of Figma designs into fast, easy-to-edit WordPress sites.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 11, "item": { "@type": "Service", "name": "Figma to Shopify", "url": "https://www.thewebxstudio.com/figma-to-shopify", "description": "Pixel-perfect conversion of Figma designs into fast, conversion-ready Shopify stores with editable Online Store 2.0 sections.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 12, "item": { "@type": "Service", "name": "Figma to Framer", "url": "https://www.thewebxstudio.com/figma-to-framer", "description": "Pixel-perfect conversion of Figma designs into fast, motion-rich Framer sites with the Framer CMS.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } },
+        { "@type": "ListItem", "position": 13, "item": { "@type": "Service", "name": "Figma to Unbounce", "url": "https://www.thewebxstudio.com/figma-to-unbounce", "description": "Pixel-perfect conversion of Figma designs into fast, high-converting Unbounce landing pages ready for A/B testing and paid campaigns.", "provider": { "@id": "https://www.thewebxstudio.com/#organization" } } }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between UI/UX design and web design?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Web design is usually about the site people land on — the pages that explain what you do and ask for the enquiry. UI/UX design is about the thing they use once they are in: the dashboard, the signup, the settings screen, the flow with fifteen states nobody wants to draw."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a UI/UX design project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A focused piece — a single flow, an onboarding sequence, a pricing page — is usually 1–2 weeks. A full marketing site is typically 2–4 weeks through design and build. A product interface with several user roles and real edge cases runs 4–10 weeks depending on how many screens have to exist before it hangs together."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with our existing developers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often, yes. When you already have a development team we design to what they build in — matching the component library, naming things the way the codebase does, and handing over files, prototypes and specs they can work from without having to interpret anything."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you redesign an existing site or product?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and it is a good part of what we do. A redesign starts by finding out where the current version loses people rather than by opening a blank canvas — which screens get abandoned, which features never get found, which questions support keeps answering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every project is quoted as a fixed price agreed before any work begins — no hourly billing and no surprise change orders. The quote covers design, build, responsive testing and launch, with anything that recurs annually (hosting, premium plugins, paid assets) listed separately so you can see it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from us to get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A conversation first: what the product does, who it is for, and what a good outcome actually looks like. After that, your brand assets if they exist, any current analytics or session recordings, and access to the existing site or staging environment."
+          }
+        }
       ]
     }
   ]
@@ -93,628 +169,1274 @@
 </script>
 
 <style>
-  /* Page ground. webx.css still paints <body> black for the site at large,
-     so a light page has to claim it back until every page has moved over. */
-  :root{ --wx-sec-y: 120px; }
-  /* Turned down on phones: see the mobile section rhythm block at the
-     end of webx.css. */
-  @media (max-width: 820px){ :root{ --wx-sec-y: 60px; } }
-  body{background:#FFFFFF;color:#1A1A1A}
+  /* ============================================================
+     UI/UX design service page. Written in the home-v3 design
+     language — the same Manrope / Instrument Serif pairing, the
+     same purple CTA system and the same 1460px container — so the
+     page reads as part of that family rather than a one-off.
+
+     The v3 tokens and the button / pill components are duplicated
+     here rather than shared, matching how home-v3, home-v4 and
+     services.html each carry their own. Prefix: .uxd-
+     ============================================================ */
+  :root {
+    interpolate-size: allow-keywords;   /* lets the FAQ panels animate to auto */
+
+    --v3-cta-shadow: 0 0 #0000, -1.1px 1.2px .1px #00000003, -2.2px 2.4px .3px #00000005,
+                        -3.3px 3.7px .5px #00000005, -4.6px 5.1px .7px #00000008, -6px 6.6px .9px #00000008,
+                        -7.6px 8.4px 1.3px #00000008, -9.5px 10.5px 1.8px #00000008, -11.8px 13px 2.4px #00000008,
+                        -14.7px 16.2px 3.2px #00000008, -18.3px 20.2px 4.4px #0000000a, -23px 25.4px 6px #0000000a,
+                        -29.3px 32.3px 8.2px #0000000a, -37.8px 41.8px 11.3px #0000000a, -49.9px 55.1px 15.9px #0000000a;
+
+    --v3-ink:    #000000;
+    --v3-body:   rgba(0,0,0,.8);
+    --v3-dim:    rgba(0,0,0,.7);
+    --v3-line:   #E6E6E6;
+    --v3-grey:   #F3F4F6;
+    --v3-dark:   #010101;
+    --v3-accent: #9D5CFF;   /* the mark's purple — the page's one accent */
+    /* White on the accent is only 3.88:1, which fails AA for button labels, so
+       buttons use the darkened twin (5.5:1) and the accent stays put elsewhere. */
+    --v3-cta:    #8438EE;
+
+    --v3-accent-w: rgba(157,92,255,.18);   /* the marker halo */
+
+    --v3-g80:  clamp(40px,5.56vw,80px);
+    --v3-g60:  clamp(32px,4.17vw,60px);
+
+    --v3-h5:   clamp(20px,2.08vw,30px);
+    --v3-lead: clamp(18px,1.67vw,24px);
+    --v3-txt:  clamp(15px,1.25vw,18px);
+    --v3-lg:   clamp(16px,1.39vw,20px);
+    --v3-sm:   clamp(14px,1.11vw,16px);
+  }
+
+  /* The small grey pill home-v3 uses for step labels. */
+  .v3-tag { display: inline-flex; align-items: center; background: #E8E8E8; border-radius: 50px; padding: 6px 16px;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; line-height: 1.45;
+            color: var(--v3-ink); text-transform: capitalize; }
+
+  body { background: #FFFFFF; color: var(--v3-ink); }
+
+  /* Text links inside running copy, same as the rest of the v3 family: the
+     sentence keeps its ink and the accent lives in the underline. */
+  .uxd-a { color: inherit; text-decoration: underline;
+           text-decoration-color: rgba(157,92,255,.55);
+           text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+           transition: text-decoration-color .25s ease; }
+  .uxd-a:hover { text-decoration-color: var(--v3-accent); }
+
+  /* ---- Shared v3 pill ----
+     The white fill only reads on the grey sections. On the white ones it was
+     dissolving into the ground and leaving the icon disc floating on its own,
+     so the pill carries a hairline and a soft lift as well: that holds its
+     shape on white without changing how it looks on grey, and it keeps
+     working if a section's background is ever switched. */
+  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 99px;
+             padding: 4px 18px 4px 4px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm);
+             font-weight: 400; color: var(--v3-dim);
+             border: 1px solid rgba(26,20,48,.10);
+             box-shadow: 0 1px 2px rgba(26,20,48,.04), 0 10px 24px -16px rgba(26,20,48,.30); }
+  /* Tinted rather than the old flat #EFEFEF, so the disc reads as part of the
+     pill instead of the only visible part of it. */
+  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: var(--v3-accent-w);
+               display: grid; place-items: center; color: var(--v3-accent); }
+  /* The dark-section variant. This page used the --dark class in its markup
+     but never defined it, so the pill was rendering as the solid white base on
+     near-black. It now gets the translucent fill home-v3 uses, which sits on
+     the section rather than punching a hole in it. */
+  .v3-pill--dark { background: rgba(255,255,255,.14); color: rgba(255,255,255,.9);
+                   border-color: rgba(255,255,255,.18); box-shadow: none; }
+  .v3-pill--dark i { background: rgba(255,255,255,.12); color: #FFFFFF; }
+
+  /* ---- Shared v3 buttons: purple pill, label, white circular icon ---- */
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta); color: #FFFFFF;
+            border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
+            box-shadow: var(--v3-cta-shadow);
+            transition: transform .25s cubic-bezier(.16,1,.3,1); }
+  .v3-btn:hover { transform: translateY(-2px); }
+  .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF;
+                color: var(--v3-ink); display: grid; place-items: center; }
+  .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
+  .v3-btn:hover .v3-btn-ico svg, .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }
+  /* Ghost twin for light grounds — same geometry, hairline instead of fill. */
+  .v3-btn--ghost { background: #FFFFFF; color: var(--v3-ink); border: 1px solid rgba(0,0,0,.14); }
+  .v3-btn--ghost .v3-btn-ico { background: var(--v3-accent); color: #FFFFFF; }
+  .v3-btn--ghost:hover { background: rgba(157,92,255,.05); border-color: rgba(157,92,255,.45); }
+  /* A calendar spun 45deg reads as a glitch, not a flourish — the rotation is
+     for the arrow glyphs only. Same exception home-v3 makes for WhatsApp. */
+  .v3-btn--cal:hover .v3-btn-ico svg, .v3-btn--cal:focus-visible .v3-btn-ico svg { transform: none; }
 
   /* ============================================================
-     Services hub — polished / atmospheric redesign
+     HERO — copy left, product mockup right.
      ============================================================ */
+  .uxd-hero {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: var(--v3-grey);
+    /* svh, not vh: mobile browser chrome must not cause a jump on scroll —
+       the same reason .wx-hero and .v3-svc use it. min-height, not height, so
+       the phone layout (copy stacked above the mockup, ~918px) can still grow
+       past it instead of overflowing. */
+    min-height: 100svh;
+    display: flex; align-items: center;
+    /* The padding is a floor, not the position: it keeps the copy clear of the
+       fixed nav (top:24px, ~72px tall) on short viewports, while the centring
+       above does the work on tall ones. Kept asymmetric so the block settles
+       just below true centre, where the nav is not crowding it. */
+    padding: clamp(112px,14vh,144px) 0 clamp(56px,8vh,92px);
+  }
+  /* Two soft accent washes, echoing the reference's blurred background shapes.
+     Kept behind everything and non-interactive. */
+  .uxd-hero::before, .uxd-hero::after {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    border-radius: 50%; filter: blur(90px);
+  }
+  .uxd-hero::before { width: 46vw; height: 46vw; max-width: 640px; max-height: 640px;
+                      top: -16%; right: -8%; background: rgba(157,92,255,.16); }
+  .uxd-hero::after  { width: 34vw; height: 34vw; max-width: 460px; max-height: 460px;
+                      bottom: -20%; left: -10%; background: rgba(110,139,255,.14); }
 
-  /* ---- Ambient page glow (sits above black body bg, below content) ---- */
-  .svcx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .svcx-bg span{position:absolute;border-radius:50%;filter:blur(130px);opacity:.3}
-  .svcx-bg .g1{top:-14%;left:-8%;width:60vw;height:60vw;max-width:840px;max-height:840px;background:radial-gradient(circle,rgba(157,92,255,.20),transparent 68%)}
-  .svcx-bg .g2{top:26%;right:-14%;width:56vw;height:56vw;max-width:760px;max-height:760px;background:radial-gradient(circle,rgba(124,58,237,.14),transparent 70%);opacity:.4}
-  .svcx-bg .g3{bottom:-18%;left:22%;width:52vw;height:52vw;max-width:700px;max-height:700px;background:radial-gradient(circle,rgba(192,38,211,.10),transparent 72%);opacity:.35}
-  main#main{position:relative;z-index:1}
+  /* The split favours the copy because the h1's first line is the widest thing
+     on the page, but it no longer has to be tuned around it: the headline sizes
+     itself off this column (see the container query below), so the ratio is now
+     free to be picked for how the two halves look rather than for whether the
+     text happens to fit. */
+  /* The header's own wrapper, copied from nav.js (.wx-nav-container): a 1340px
+     cap with 20px gutters. Using the same formula rather than the v3 1460/30
+     container means the hero's copy starts on exactly the same line as the nav
+     pill above it, at every width. */
+  .uxd-hero-inner {
+    width: min(100% - 40px, 1340px); margin: 0 auto; padding: 0;
+    display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr);
+    /* A generous gutter: at the old 50px the headline and the mockup read as
+       one crowded block on wide screens. The headline sizes off its column, so
+       widening this costs nothing — the type just follows. */
+    align-items: center; gap: clamp(28px,4.5vw,76px);
+  }
 
-  .svcx-eyebrow{display:inline-flex;align-items:center;gap:11px;margin-bottom:clamp(16px,2.5vh,24px);padding:7px 14px 7px 12px;border:1px solid rgba(157,92,255,.22);border-radius:100px;background:rgba(157,92,255,.06)}
-  .svcx-eyebrow span{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-  .svcx-eyebrow .svcx-eyebrow-num{color:#7C3AED;font-family:'JetBrains Mono',monospace}
-  .svcx-eyebrow .svcx-eyebrow-txt{color:#43434D}
-  .svcx-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#9D5CFF;box-shadow:0 0 0 4px rgba(157,92,255,.16)}
+  .uxd-hero-copy { display: flex; flex-direction: column; align-items: flex-start; }
 
-  .svcx-section{padding:var(--wx-sec-y) 20px;max-width:1340px;margin:0 auto;position:relative}
+  .uxd-hero h1 {
+    font-family: 'Manrope', sans-serif; font-size: clamp(34px,4.6vw,68px); font-weight: 700;
+    line-height: 1.06; letter-spacing: -.042em; color: var(--v3-ink);
+    margin: clamp(20px,2.6vh,30px) 0 0;
+    /* No ch cap and no balance: the column width is the constraint and the <br>
+       sets the break. Left to wrap normally on purpose — if a viewport ever
+       does squeeze line one, a third line is a far better failure than the
+       horizontal overflow a nowrap would cause. */
+  }
 
-  /* ---- Core services: two-up editorial cards ----
-     Four services in a 3-4 column auto-fit grid left each card too narrow to
-     say much, so the media, the title and four tag pills all fought for the
-     same width. Two up gives each one room and drops the density. */
-  .svcx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,1.8vw,26px);margin-top:clamp(36px,5vh,60px)}
-  @media (max-width:860px){ .svcx-grid{grid-template-columns:1fr} }
+  /* ---- Headline sized by its own column, not by the viewport --------------
+     A vw-based clamp only fits because the grid ratio, the gutters and the
+     container cap happen to resolve to a column wide enough for it — change
+     any one of those and the first line silently drops to a third. Sizing off
+     the column instead (1cqi = 1% of .uxd-hero-copy's width) makes that
+     impossible: line one measures ~11.1x the font size, so 8.6cqi always
+     leaves it room whatever the column turns out to be.
+     The vw clamp above stays as the fallback — with no container query support
+     container-type never applies, so cqi never resolves. */
+  @supports (container-type: inline-size) {
+    .uxd-hero-copy { container-type: inline-size; }
+    .uxd-hero h1 { font-size: clamp(34px, 8.6cqi, 68px); }
+  }
 
-  .svcx-card{position:relative;isolation:isolate;display:flex;flex-direction:column;border:1px solid rgba(0,0,0,.08);border-radius:clamp(20px,2vw,28px);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28);text-decoration:none;color:inherit;padding:clamp(12px,1.1vw,16px);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .4s ease}
-  .svcx-card:hover{transform:translateY(-6px);border-color:rgba(157,92,255,.3);box-shadow:0 30px 60px -30px rgba(40,16,90,.32)}
+  /* The phone break is off by default; the wide one carries the headline. */
+  .uxd-br-sm { display: none; }
+  /* The accent phrase runs in the same Instrument Serif italic as every heading
+     accent in the v3 family. That face ships a 400 only — Chrome will not
+     synthesise a bold — and it sets optically smaller than Manrope at this
+     scale, so the size lifts slightly and the tracking resets off the -.042em. */
+  .uxd-hero h1 em {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.04em;
+    /* The brand purple, as on every other serif accent. It clears 3:1 on both
+       the white and the grey ground, which is the AA floor for display sizes —
+       it would not at body size, which is why only the big type carries it. */
+    color: var(--v3-accent);
+  }
 
-  /* Media sits inset, so the card reads as a frame around the plate */
-  .svcx-card-media{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:clamp(12px,1.2vw,18px);background:#F4F2F8}
-  .svcx-card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
-  .svcx-card:hover .svcx-card-media img{transform:scale(1.05)}
+  .uxd-hero-lead {
+    font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg); font-weight: 400;
+    line-height: 1.55; letter-spacing: -.01em; color: rgba(0,0,0,.62);
+    margin: clamp(18px,2.4vh,26px) 0 0; max-width: 52ch;
+  }
 
-  .svcx-card-body{display:flex;flex-direction:column;flex-grow:1;padding:clamp(22px,2vw,30px) clamp(8px,0.7vw,12px) clamp(10px,0.8vw,14px)}
-  .svcx-card-kicker{font-family:'Satoshi',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7C3AED;margin:0 0 10px}
-  .svcx-card-body h3{font-family:'Manrope',sans-serif;font-size:clamp(23px,2.2vw,32px);font-weight:700;letter-spacing:-.035em;line-height:1.1;margin:0 0 12px;color:#1A1A1A}
-  .svcx-card-body p{font-family:'Satoshi',sans-serif;font-size:15px;line-height:1.65;color:#6B6B75;margin:0 0 22px;max-width:46ch}
+  .uxd-hero-cta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+    margin: clamp(26px,3.4vh,38px) 0 0;
+  }
 
-  /* Tags read as one quiet meta line rather than four competing chips */
-  .svcx-tags{display:flex;flex-wrap:wrap;align-items:center;gap:0 9px;margin-top:auto}
-  .svcx-tag{font-family:'Satoshi',sans-serif;font-size:12.5px;letter-spacing:.01em;color:#6B6B75;border:0;background:none;padding:0;border-radius:0;transition:color .35s ease}
-  .svcx-tag+.svcx-tag::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:#CFC9DC;margin-right:9px;vertical-align:middle}
-  .svcx-card:hover .svcx-tag{color:#43434D}
+  /* The reference puts a star rating and two review-platform logos below the
+     CTAs. Web{X} has no Clutch or GoodFirms profile, so a rating was never an
+     option, and the client marks now have their own band below the hero — which
+     is where the reference puts its logo grid too. */
 
-  /* Foot: a text link, not a button parked in the corner */
-  .svcx-card-foot{display:flex;align-items:center;gap:9px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.07)}
-  .svcx-card-foot span{font-family:'Satoshi',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7C3AED}
-  .svcx-card-arrow{display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;background:none;border:0;color:#7C3AED;transition:transform .35s cubic-bezier(.16,1,.3,1)}
-  .svcx-card-arrow svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2}
-  .svcx-card:hover .svcx-card-arrow{transform:translate(3px,-3px)}
-  /* ---- Figma-to-X conversion cards ---- */
-  .svcx-conv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.6vw,24px);margin-top:clamp(36px,5vh,60px)}
-  @media (max-width:960px){ .svcx-conv-grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:600px){ .svcx-conv-grid{grid-template-columns:1fr} }
-  .svcx-conv{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;gap:16px;padding:clamp(22px,2vw,28px);border:1px solid rgba(0,0,0,.08);border-radius:clamp(16px,1.5vw,22px);background:#FFFFFF;box-shadow:0 14px 34px -22px rgba(40,16,90,.28);text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s ease,box-shadow .5s ease}
-  .svcx-conv:hover{transform:translateY(-6px);border-color:rgba(157,92,255,.3);box-shadow:0 30px 60px -30px rgba(40,16,90,.32)}
-  .svcx-conv-head{display:flex;align-items:center;gap:14px}
-  .svcx-conv-logo{width:46px;height:46px;border-radius:13px;flex-shrink:0;display:grid;place-items:center;background:#F5F4F9;border:1px solid rgba(0,0,0,.08);transition:border-color .4s,background .4s}
-  .svcx-conv:hover .svcx-conv-logo{border-color:rgba(157,92,255,.35);background:rgba(157,92,255,.09)}
-  .svcx-conv-logo img{width:56%;height:56%;object-fit:contain}
-  .svcx-conv-flow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.02em;color:#6B6B75}
-  .svcx-conv-flow b{color:#1A1A1A;font-weight:500}
-  .svcx-conv h3{font-family:'Manrope',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin:0;color:#1A1A1A}
-  .svcx-conv p{font-family:'Satoshi',sans-serif;font-size:14px;line-height:1.6;color:#6B6B75;margin:0}
-  .svcx-conv-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px}
-  .svcx-conv-live{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;color:#12A150}
-  .svcx-conv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#43D391;box-shadow:0 0 0 4px rgba(67,211,145,.14)}
-  .svcx-conv-soon{font-family:'Satoshi',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#6B6B75;border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:5px 11px}
-  .svcx-conv-arrow{color:#7C3AED;font-size:15px;transition:transform .35s}
-  .svcx-conv:hover .svcx-conv-arrow{transform:translateX(4px)}
-  .svcx-conv--soon{opacity:.66}
-  .svcx-conv--soon:hover{opacity:1}
+  /* ---- Hero visual ---- */
+  .uxd-hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+  /* A soft bloom under the transparent mockup so it sits on the grey instead of
+     floating flat on it. */
+  .uxd-hero-visual::before {
+    content: ""; position: absolute; z-index: 0; inset: 12% 4% 8%;
+    border-radius: 50%; filter: blur(60px);
+    background: radial-gradient(closest-side, rgba(157,92,255,.22), rgba(157,92,255,0));
+  }
+  .uxd-hero-visual img {
+    position: relative; z-index: 1;
+    width: 100%; height: auto; display: block;
+    /* The mockup already carries its own device shadows in the artwork. */
+    filter: drop-shadow(0 40px 60px rgba(20,10,45,.16));
+  }
 
-  /* ---- Custom build: the sixth card in the set ----
-     It used to be a full-width strip under the grid, which read as a separate
-     component. Same shell as the other five now, marked out by tint rather
-     than by shape — and it completes the 3x2. */
-  .svcx-conv--custom{border-color:rgba(157,92,255,.28);background:linear-gradient(150deg,rgba(157,92,255,.10),rgba(157,92,255,.03) 58%,#FFFFFF)}
-  .svcx-conv--custom:hover{border-color:rgba(157,92,255,.48)}
-  .svcx-conv--custom .svcx-conv-logo{background:rgba(157,92,255,.12);border-color:rgba(157,92,255,.22);color:#7C3AED}
-  .svcx-conv--custom .svcx-conv-logo svg{width:22px;height:22px}
-  .svcx-conv-note{font-family:'Satoshi',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#7C3AED}
+  /* ---- Hero entrance. Reuses the wx-hero-in keyframes from webx.css rather
+     than the [data-reveal] IntersectionObserver: hero content is above the fold
+     and must animate on load, not on scroll. ---- */
+  html.js .uxd-hero [data-reveal] { opacity: 0; animation: wx-hero-in .7s cubic-bezier(.16,1,.3,1) forwards; }
+  html.js .uxd-hero [data-reveal-delay="40"]  { animation-delay: .04s }
+  html.js .uxd-hero [data-reveal-delay="80"]  { animation-delay: .08s }
+  html.js .uxd-hero [data-reveal-delay="140"] { animation-delay: .14s }
+  html.js .uxd-hero [data-reveal-delay="200"] { animation-delay: .20s }
+  html.js .uxd-hero [data-reveal-delay="260"] { animation-delay: .26s }
+
+  /* ---- Desktop: the mockup leaves the grid and anchors to the hero's
+     bottom-right, so it rises off the section edge and bleeds past the 1460px
+     container on wide screens the way the reference's phone does.
+
+     Being absolute, it no longer reserves a grid column — so the copy has to
+     be capped by hand or the two run into each other. 50% is the widest the
+     copy can run before they collide at the narrow end of this range (~1025px),
+     and the 44vw term on the mockup is what holds the gap open below ~1700px,
+     where a flat 750px would overlap the copy. Because the headline sizes off
+     its own column, capping the copy re-scales the type to match for free. ---- */
+  @media (min-width: 1025px) {
+    .uxd-hero-inner  { grid-template-columns: 1fr; }
+    .uxd-hero-copy   { max-width: 44%; }
+    /* Both offsets are written against the hero's own width, not vw, so they
+       land on the wrapper edge exactly: vw counts the scrollbar and the wrapper
+       does not, which would leave the mockup ~7px past the nav's right edge.
+       right: the wrapper's own gutter, so the mockup stops on the wrapper edge
+              instead of bleeding to the viewport.
+       width: 50% of the wrapper, so it grows and shrinks with it.
+       The third term is there because this mockup is near-square (943x1005)
+       rather than the wide laptop render it replaced: at 50% of a full 1340px
+       wrapper it would stand ~714px tall and crowd the nav on a short laptop.
+       76svh (times the .94 aspect, so the cap is written as a width) sizes it
+       off the viewport height instead, which is the axis that actually runs
+       out here — so it clears the nav at every window height. 76 is as high as
+       that term goes before the gap to the nav closes up on a 640px-tall
+       window, which is the shortest one this branch has to hold. */
+    .uxd-hero-visual {
+      /* Lifted off the section edge rather than sitting flush on it, so the
+         mockup reads as placed in the hero instead of cropped by it. */
+      position: absolute; bottom: clamp(24px,5vh,64px); margin: 0;
+      right: max(20px, calc((100% - 1340px) / 2));
+      width: min(680px, calc((100% - 40px) * .50), calc(76svh * .94));
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .uxd-hero-inner { grid-template-columns: 1fr; gap: clamp(30px,5vw,48px); }
+    .uxd-hero-copy  { align-items: center; text-align: center; }
+    .uxd-hero h1    { max-width: 20ch; }
+    .uxd-hero-lead  { margin-inline: auto; }
+    .uxd-hero-cta { justify-content: center; }
+    /* 460, not the old 720: stacked under the copy, a near-square mockup at
+       720px would run ~767px tall and push the whole hero off a tablet screen. */
+    .uxd-hero-visual { order: 2; max-width: 460px; margin-inline: auto; width: 100%; }
+  }
+
+  @media (max-width: 720px) {
+    /* No gutter override here any more: the header wrapper's own
+       min(100% - 40px, ...) already sets a 20px edge at every width, and adding
+       padding on top of it would just narrow the content inside that edge. */
+    /* Swap which break is live. */
+    .uxd-br-lg { display: none; }
+    .uxd-br-sm { display: inline; }
+    /* Sized so "UI/UX Design Services" clears the wrapper on one line at 375px
+       — the old 9.2vw needed ~377px of the 335px available and spilled. */
+    .uxd-hero h1 { font-size: clamp(26px,8vw,46px); max-width: 100%; }
+    .uxd-hero-cta { width: 100%; flex-direction: column; align-items: stretch; }
+    .uxd-hero-cta > a { justify-content: space-between; }
+  }
+
+  /* ============================================================
+     SHOWCASE — a single piece of work straight after the hero, the
+     way the reference drops its dashboard shot in below the fold.
+     No heading: the shot is the argument.
+     ============================================================ */
+  /* Grey, the same ground as the hero above it — with the trust band gone the
+     two now read as one continuous opening block, and the switch to white at
+     the issues section is what marks the end of it. */
+  .uxd-showcase { background: var(--v3-grey); padding: clamp(48px,7vw,96px) 0 clamp(56px,8vw,110px); }
+  /* Same header wrapper as the hero, so the showcase frame's edges line up with
+     the hero copy above it and the nav pill above that. */
+  .uxd-showcase-inner { width: min(100% - 40px, 1340px); margin: 0 auto; padding: 0; }
+  .uxd-showcase-frame {
+    margin: 0 auto;
+    border-radius: clamp(14px,1.6vw,24px); overflow: hidden;
+    /* The shot carries its own warm ground, so the frame only needs to lift it
+       off the grey — a hairline plus a soft drop, no fill of its own. */
+    border: 1px solid rgba(26,20,48,.07);
+    box-shadow: 0 2px 4px rgba(26,20,48,.04), 0 30px 70px -30px rgba(26,20,48,.30);
+  }
+  .uxd-showcase-frame img { width: 100%; height: auto; display: block; }
+
+  /* ============================================================
+     SHARED SECTION HEAD — pill, two-line heading, lead.
+     ============================================================ */
+  .uxd-head { display: flex; flex-direction: column; align-items: center; text-align: center;
+              max-width: 760px; margin: 0 auto clamp(38px,5vw,64px); }
+  .uxd-h2 {
+    font-family: 'Manrope', sans-serif; font-weight: 700;
+    font-size: clamp(30px,4.4vw,58px); line-height: 1.08; letter-spacing: -.04em;
+    color: var(--v3-ink); margin: clamp(18px,2.2vw,26px) 0 0; text-wrap: balance;
+  }
+  .uxd-h2 em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic;
+               font-weight: 400; letter-spacing: 0; font-size: 1.04em; color: var(--v3-accent); }
+  .uxd-head p {
+    font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6;
+    color: rgba(0,0,0,.6); margin: clamp(14px,1.6vw,20px) 0 0; max-width: 60ch;
+  }
+
+  /* ============================================================
+     SERVICES — the colour grid. A 4-column bed carrying a 1/2/1,
+     2/1/1, 1/2/1 rhythm, so no row is three equal boxes.
+     ============================================================ */
+  .uxd-serv { background: var(--v3-grey); padding: clamp(56px,7.5vw,110px) 0; }
+  .uxd-serv-inner { width: min(100% - 40px, 1340px); margin: 0 auto; }
+  .uxd-serv-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(12px,1.2vw,18px); }
+  /* One surface, not two: the shot IS the card, and the copy sits on top of it.
+     Each image is composed with clear space at the head for exactly that, so
+     stacking a separate text block above the art would read as two cards. */
+  .uxd-serv-card {
+    position: relative; grid-column: span 1; display: block; overflow: hidden;
+    text-decoration: none; border-radius: clamp(14px,1.4vw,20px);
+    /* Only ever seen behind the art while it loads. */
+    background: var(--sv,#E8F1F8); color: var(--sv-ink,var(--v3-ink));
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  }
+  .uxd-serv-card--wide { grid-column: span 2; }
+  .uxd-serv-card:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -26px rgba(26,20,48,.45); }
+  /* A scrim under the copy. Not every shot has clear space where the text
+     lands — the landscape ones start their artwork almost at the top edge, and
+     the copy was sitting straight on the mockups. This fades out well before
+     the art, so it reads as the shot's own light or shade rather than a panel,
+     and it means legibility no longer depends on how each image was cropped. */
+  .uxd-serv-card::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 60%; z-index: 1; pointer-events: none;
+    /* Fallback for no color-mix: a neutral veil. */
+    background: linear-gradient(180deg, rgba(8,14,26,.92) 0%, rgba(8,14,26,.92) 40%, rgba(8,14,26,0) 100%);
+  }
+  .uxd-serv-card--onlight::before {
+    background: linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.95) 40%, rgba(255,255,255,0) 100%);
+  }
+  /* Tinted with the shot's OWN sampled top colour rather than neutral black or
+     white, so the band reads as the image continuing rather than a panel laid
+     over it. Each --sv is pushed toward black (or white) far enough for the
+     type to clear AA on it — several of the raw colours do not: white on the
+     branding blue is 3.9:1 and on the full-stack green 3.2:1. */
+  @supports (background: color-mix(in srgb, red 50%, blue)) {
+    .uxd-serv-card::before {
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--sv) 62%, #000) 0%,
+        color-mix(in srgb, var(--sv) 62%, #000) 40%,
+        transparent 100%);
+    }
+    .uxd-serv-card--onlight::before {
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--sv) 55%, #FFF) 0%,
+        color-mix(in srgb, var(--sv) 55%, #FFF) 40%,
+        transparent 100%);
+    }
+  }
+  .uxd-serv-copy {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+    padding: clamp(20px,2.2vw,32px);
+  }
+  .uxd-serv-copy h3 {
+    font-family: 'Manrope', sans-serif; font-size: clamp(16px,1.35vw,19px); font-weight: 700;
+    letter-spacing: -.025em; line-height: 1.3; margin: 0; color: inherit;
+  }
+  .uxd-serv-copy p {
+    font-family: 'Satoshi', sans-serif; font-size: clamp(12.5px,1vw,14px); line-height: 1.55;
+    color: var(--sv-body,rgba(0,0,0,.58)); margin: 8px 0 0; max-width: 44ch;
+  }
+  /* The shot fills the whole card and crops to it. At its natural height it
+     stopped short of the card's foot — the grid stretches every card in a row
+     to the tallest, and the leftover showed as a band of --sv under the art.
+     Height now comes from the aspect ratios below instead. */
+  .uxd-serv-shot { position: absolute; inset: 0; z-index: 0; }
+  .uxd-serv-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Every row holds exactly one 2-column card, so its 3:2 ratio sets that row's
+     height and the 1-column cards stretch to meet it. */
+  .uxd-serv-card--wide { aspect-ratio: 3 / 2; }
+  /* Type colour follows the scrim, set in one place rather than per card. */
+  .uxd-serv-card          { --sv-ink:#FFFFFF; --sv-body:rgba(255,255,255,.80); }
+  .uxd-serv-card--onlight { --sv-ink:var(--v3-ink); --sv-body:rgba(0,0,0,.62); }
+
+  /* The old /services page listed the sub-disciplines under each of the four
+     core cards as tag pills, and those terms are the reason the page ranks for
+     anything narrower than "web design". They live inside the scrim here rather
+     than under the card, so they are capped at four and set small enough that
+     the copy block still finishes well before the fade does. Only the core
+     cards carry them; the conversion cards are already named by their platform. */
+  .uxd-serv-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+  .uxd-serv-tags span {
+    font-family: 'Satoshi', sans-serif; font-size: clamp(10.5px,.85vw,12px); line-height: 1.4;
+    padding: 4px 10px; border-radius: 50px; white-space: nowrap; color: var(--sv-ink);
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.28);
+  }
+  .uxd-serv-card--onlight .uxd-serv-tags span { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.14); }
+  /* A tagged card's copy block is a tag row taller, and on the narrow layouts
+     the card is shorter too — at 60% the pills were finishing past the fade and
+     landing on the mockup. Dropping the scrim rather than hiding the tags keeps
+     the terms on the page at every width, which is the whole point of them. */
+  .uxd-serv-card--tagged::before { height: 78%; }
+
+  /* Three cards have no photograph in the shot library: the WordPress and
+     Framer conversions — only the Webflow and Unbounce mockups were made — and
+     SEO, which has no mockup at all. Borrowing another platform's screenshot
+     would caption the wrong product, so these carry a mark on the card's own
+     --sv ground instead, which is how the old /services page showed all five
+     conversions. The white chip means a mark reads on any ground it is put on. */
+  .uxd-serv-card--mark .uxd-serv-shot {
+    display: flex; align-items: flex-end; justify-content: flex-end;
+    padding: clamp(20px,2.2vw,32px);
+  }
+  .uxd-serv-mark {
+    display: grid; place-items: center; flex: 0 0 auto;
+    width: clamp(56px,6vw,84px); aspect-ratio: 1 / 1; border-radius: 24%;
+    background: #FFFFFF; box-shadow: 0 16px 34px -16px rgba(0,0,0,.55);
+  }
+  .uxd-serv-shot .uxd-serv-mark img,
+  .uxd-serv-shot .uxd-serv-mark svg {
+    width: 62%; height: auto; object-fit: contain; display: block; color: #1A1A1A;
+  }
+
+  /* ============================================================
+     PROCESS — a sticky pitch on the left, a scroll-driven timeline
+     on the right. Same mechanic as home-v3's process rail.
+     ============================================================ */
+  /* Ported wholesale from home-v3's process rail so the two pages read as one
+     system: the label column, the marker that opens into a haloed accent
+     circle, and the rail that deepens as it descends. */
+  .uxd-process { background: #FFFFFF; padding: clamp(56px,7.5vw,110px) 0; }
+  .uxd-process-inner { width: min(100% - 40px, 1340px); margin: 0 auto;
+                       display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  .uxd-process-inner .uxd-head { margin-bottom: 0; }
+  .uxd-process-inner .v3-btn { margin-top: clamp(20px,2.4vw,30px); }
+
+  /* Rail and rows share one grid cell so the line runs behind the markers. */
+  .uxd-timeline { position: relative; width: 100%; max-width: 1219px; margin-inline: auto; padding-left: 20px; }
+  /* top/height are re-measured in JS so the rail spans marker to marker; these
+     values only have to hold for the first paint and for no-JS. */
+  .uxd-rail { position: absolute; top: 24px; bottom: 24px;
+              left: calc(var(--uxd-col1) + var(--uxd-gap) + 16px); width: 6px; margin-left: -3px; }
+  .uxd-rail-line { position: absolute; inset: 0; background: var(--v3-line); border-radius: 6px; }
+  /* Deepens as it descends, so the leading edge stays the bright accent. */
+  .uxd-rail-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0; border-radius: 6px;
+                   background: linear-gradient(180deg,#C9A6FF 0%,var(--v3-accent) 42%,#5B21B6 100%);
+                   transition: height .12s linear; }
+  .no-js .uxd-rail-fill { height: 100%; }
+
+  .uxd-steps { --uxd-col1: clamp(90px,14.65vw,211px); --uxd-gap: clamp(16px,3.89vw,56px);
+               display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px); position: relative; }
+  /* Every cell in a row centres on the shot, so the marker, the step label and
+     the copy stay level and short copy leaves no hole under itself. */
+  .uxd-step { display: grid; grid-template-columns: var(--uxd-col1) 32px minmax(0,1fr);
+              gap: var(--uxd-gap); align-items: center; }
+  .uxd-step-n { display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 16px; }
+  .uxd-step-n b { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 700;
+                  font-size: clamp(24px,2.5vw,36px); line-height: 1.1; color: rgba(0,0,0,.45);
+                  transition: color .5s ease; }
+  /* Marker: a grey dot that opens into a haloed accent circle when the step lands. */
+  .uxd-step-dot { position: relative; width: 32px; height: 48px; display: grid; place-items: center; justify-self: center; }
+  /* The halo grows past this 32px cell, and an over-sized grid item is pinned to
+     the cell's start edge — which would push it right of the rail. Centred off
+     the box instead, so any size keeps its middle on the line. */
+  .uxd-step-dot i { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+                    width: 22px; height: 22px; border-radius: 50%; background: #DADADA;
+                    display: grid; place-items: center;
+                    transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1),
+                                background-color .4s ease, box-shadow .5s ease; }
+  .uxd-step-dot i b { width: 22px; height: 22px; border-radius: 50%; background: transparent;
+                      display: grid; place-items: center; color: #FFFFFF;
+                      transition: width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1), background-color .4s ease; }
+  .uxd-step-dot svg { opacity: 0; transform: scale(.4);
+                      transition: opacity .3s ease .12s, transform .4s cubic-bezier(.22,1,.36,1) .12s; }
+  .uxd-step.is-on .uxd-step-dot i,   .no-js .uxd-step .uxd-step-dot i   { width: 48px; height: 48px; background: var(--v3-accent-w); }
+  .uxd-step.is-on .uxd-step-dot i b, .no-js .uxd-step .uxd-step-dot i b { width: 32px; height: 32px; background: var(--v3-accent); }
+  .uxd-step.is-on .uxd-step-dot svg, .no-js .uxd-step .uxd-step-dot svg { opacity: 1; transform: none; }
+  .uxd-step.is-on .uxd-step-n b,     .no-js .uxd-step .uxd-step-n b     { color: var(--v3-accent); }
+  .uxd-step-item { display: flex; align-items: center; justify-content: space-between; gap: clamp(24px,6.1vw,88px); }
+  .uxd-step-copy { max-width: 420px; display: flex; flex-direction: column; gap: 12px; }
+  .uxd-step-copy h3 { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400;
+                      line-height: 1.3; letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
+  .uxd-step-copy p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.45;
+                     letter-spacing: -.01em; color: var(--v3-body); margin: 0; }
+  /* The shot sits inside a padded frame instead of bleeding to its own edge. */
+  .uxd-step-media { flex: 0 0 auto; width: clamp(200px,24vw,344px); border-radius: 18px; padding: 10px;
+                    background: var(--v3-grey); border: .8px solid var(--v3-line); }
+  .uxd-step-media img { width: 100%; height: auto; display: block; aspect-ratio: 378/280;
+                        object-fit: cover; border-radius: 12px; }
+
+  /* ============================================================
+     TEAM — numbered reasons, two photos and a dark CTA, woven
+     through one 3-column bed.
+     ============================================================ */
+  .uxd-team { background: #FFFFFF; padding: clamp(56px,7.5vw,110px) 0; }
+  .uxd-team-inner { width: min(100% - 40px, 1340px); margin: 0 auto; }
+  .uxd-team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,1.2vw,18px); }
+  .uxd-team-cell {
+    border-radius: clamp(14px,1.4vw,20px); overflow: hidden;
+    min-height: clamp(196px,19vw,232px);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .uxd-team-card { background: #F4F4F5; padding: clamp(20px,2.1vw,30px); }
+  .uxd-team-num {
+    width: clamp(36px,3.5vw,48px); height: clamp(36px,3.5vw,48px); flex: 0 0 auto;
+    border-radius: clamp(10px,1vw,14px); background: #FFFFFF; display: grid; place-items: center;
+    font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.1vw,15px);
+    color: var(--v3-ink); letter-spacing: -.01em;
+  }
+  .uxd-team-card h3 {
+    font-family: 'Manrope', sans-serif; font-size: clamp(15px,1.3vw,18px); font-weight: 700;
+    letter-spacing: -.022em; line-height: 1.3; color: var(--v3-ink); margin: clamp(28px,3.4vw,52px) 0 0;
+  }
+  .uxd-team-card p {
+    font-family: 'Satoshi', sans-serif; font-size: clamp(12.5px,1vw,14px); line-height: 1.6;
+    color: rgba(0,0,0,.58); margin: 9px 0 0;
+  }
+  /* The team shots are all portrait (roughly 4:5) and these cells are wider
+     than they are tall, so the crop is pulled up off centre — dead centre on a
+     standing portrait lands on the torso and cuts the face off. */
+  .uxd-team-photo { background: #E8E6E4; padding: 0; }
+  .uxd-team-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; }
+  /* The dark CTA cell. The dot field stands in for the reference's world map —
+     a two-line CSS texture rather than another image to download. */
+  .uxd-team-cta {
+    background: var(--v3-dark); color: #FFFFFF; padding: clamp(20px,2.1vw,30px);
+    background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
+    background-size: 9px 9px; background-position: 0 0;
+  }
+  .uxd-team-cta .uxd-team-num { background: rgba(255,255,255,.10); color: #FFFFFF; }
+  .uxd-team-cta h3 {
+    font-family: 'Manrope', sans-serif; font-size: clamp(17px,1.6vw,22px); font-weight: 700;
+    letter-spacing: -.028em; line-height: 1.25; color: #FFFFFF; margin: clamp(28px,3.4vw,52px) 0 0;
+  }
+  .uxd-team-cta a {
+    display: inline-flex; align-items: center; align-self: flex-start; margin-top: clamp(14px,1.6vw,20px);
+    background: #FFFFFF; color: var(--v3-ink); border-radius: 99px; padding: 10px 20px;
+    font-family: 'Satoshi', sans-serif; font-size: clamp(12.5px,1vw,14px); text-decoration: none;
+    transition: transform .25s cubic-bezier(.16,1,.3,1);
+  }
+  .uxd-team-cta a:hover { transform: translateY(-2px); }
+
+  /* ============================================================
+     FAQ — the home-v3 accordion: a pitch column on the left, the
+     questions on the right.
+     ============================================================ */
+  /* Ported from home-v3's FAQ: a 550px pitch column carrying the heading and
+     the gradient call card, with the accordion filling the rest. */
+  .uxd-faq { background: var(--v3-grey); padding: clamp(56px,7.5vw,110px) 0; }
+  .uxd-faq-inner { width: min(100% - 40px, 1340px); margin: 0 auto;
+                   display: grid; grid-template-columns: 550px minmax(0,1fr);
+                   gap: clamp(36px,6.94vw,100px); align-items: start; }
+  .uxd-faq-left { display: flex; flex-direction: column; gap: var(--v3-g60); }
+  .uxd-faq-heading { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+  .uxd-faq-heading .uxd-h2 { text-align: left; margin: 0; }
+  .uxd-faq-heading p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg); font-weight: 400;
+                       line-height: 1.45; color: var(--v3-body); margin: 0; }
+  .uxd-call { max-width: 436px; border-radius: 32px; padding: 32px 60px 32px 32px;
+              display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px);
+              background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
+  .uxd-call-top { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+  .uxd-call-copy { display: flex; flex-direction: column; gap: 8px; }
+  .uxd-call-copy h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500;
+                      letter-spacing: -.0173em; line-height: 1.24; margin: 0; }
+  .uxd-call-copy p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.45;
+                     letter-spacing: -.01em; color: var(--v3-body); margin: 0; }
+  .uxd-call-mail { display: flex; align-items: center; gap: 12px; }
+  .uxd-call-mail i { width: 50px; height: 50px; flex: 0 0 auto; border-radius: 99px; background: #FFFFFF;
+                     display: grid; place-items: center; }
+  .uxd-call-mail div { display: flex; flex-direction: column; gap: 6px; }
+  .uxd-call-mail span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); line-height: 1; }
+  .uxd-call-mail a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-ink);
+                     text-decoration: none; font-weight: 500; line-height: 1; }
+
+  .uxd-faq-list { display: flex; flex-direction: column; }
+  .uxd-faq-item { border-bottom: .8px solid rgba(0,0,0,.12); }
+  .uxd-faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center;
+                          justify-content: space-between; gap: 40px; padding: 20px 0;
+                          font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500;
+                          letter-spacing: -.01em; line-height: 1.4; }
+  .uxd-faq-item:first-child summary { padding: 10px 0 20px; }
+  .uxd-faq-item summary::-webkit-details-marker { display: none; }
+  .uxd-faq-item summary::after { content: ""; flex: 0 0 auto; width: 14px; height: 14px;
+                                 border-right: 1.8px solid var(--v3-ink); border-bottom: 1.8px solid var(--v3-ink);
+                                 transform: rotate(45deg) translate(-3px,-3px); transition: transform .3s ease; }
+  .uxd-faq-item[open] summary::after { transform: rotate(225deg) translate(-4px,-4px); }
+  /* <details> would snap open. Animating its own content box keeps the native
+     keyboard and screen-reader behaviour and cannot get stuck half-open the way
+     a scripted height can; browsers without ::details-content just snap. */
+  .uxd-faq-item::details-content { block-size: 0; overflow: hidden;
+                                   transition: block-size .38s cubic-bezier(.16,1,.3,1), content-visibility .38s allow-discrete; }
+  .uxd-faq-item[open]::details-content { block-size: auto; }
+  /* One answer at a time comes from the shared name="uxd-faq" on the <details>
+     themselves, not from script — the browser closes the open sibling by
+     clearing [open], so the transition above runs on the way out too. */
+  .uxd-faq-a { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6;
+               color: var(--v3-dim); padding: 0 40px 0 0; margin: 0 0 14px; }
+  .uxd-faq-a:last-child { margin-bottom: 24px; }
+
+
+  @media (max-width: 1024px) {
+    /* Two columns, and every card spans one — the 1/2/1 rhythm needs four
+       tracks to work, so below that it flattens rather than half-collapsing.
+       With no 2-column card left in a row, nothing is setting the row height,
+       so every card carries its own ratio here. */
+    .uxd-serv-grid { grid-template-columns: repeat(2,1fr); }
+    .uxd-serv-card, .uxd-serv-card--wide { grid-column: span 1; aspect-ratio: 4 / 3; }
+    /* This band is where a tagged card is worst off: it lost the 2-column width
+       that let the pills sit on one line and it is only 4/3 tall, so at 700px
+       the SEO card's copy was running the full height of the card. Square gives
+       it back the room, and its row-mate stretches to match. */
+    .uxd-serv-card--tagged { aspect-ratio: 1 / 1; }
+    .uxd-faq-inner { grid-template-columns: 1fr; gap: clamp(28px,5vw,44px); }
+    .uxd-team-grid { grid-template-columns: repeat(2,1fr); }
+  }
+
+  @media (max-width: 680px) {
+    .uxd-serv-grid    { grid-template-columns: 1fr; }
+    /* Squarer on a phone: at 4/3 the card is short enough that the copy band
+       eats half of it and there is little shot left to see. */
+    .uxd-serv-card, .uxd-serv-card--wide { aspect-ratio: 1 / 1; }
+    .uxd-team-grid    { grid-template-columns: 1fr; }
+    .uxd-team-cell    { min-height: 0; }
+    .uxd-team-photo   { min-height: clamp(200px,55vw,280px); }
+    /* The 20px rail inset is a desktop measure; on a phone it only eats gutter.
+       .uxd-rail sits on .uxd-steps, so the line and the dots shift together. */
+    .uxd-timeline     { padding-left: 0; }
+    .uxd-rail         { left: 16px; }
+    .uxd-step         { grid-template-columns: 32px minmax(0,1fr); gap: 14px; }
+    .uxd-step-n       { grid-column: 2; grid-row: 1; align-items: flex-start; text-align: left; gap: 8px; }
+    .uxd-step-dot     { grid-column: 1; grid-row: 1 / span 2; }
+    .uxd-step-item    { grid-column: 2; grid-row: 2; flex-direction: column; align-items: stretch; gap: 18px; }
+    .uxd-step-media   { width: 100%; }
+    .uxd-faq-item summary { gap: 18px; }
+    .uxd-faq-a        { padding-right: 8px; }
+  }
+
+  /* Scroll reveal for everything below the hero. The hero's own reveal is a
+     load animation (above the fold, must not wait for a scroll); this is the
+     [data-reveal] initial state webx.js clears on intersection. */
+  html.js .uxd-rise { opacity: 0; transform: translateY(28px);
+                      transition: opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1); }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .v3-btn, .v3-btn-ico svg { transition: none; }
+    .v3-btn:hover { transform: none; }
+    html.js .uxd-rise { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 </head>
+
 <body>
-<header data-header data-static-shell>
-  <nav aria-label="Primary">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/work">Work</a>
-    <a href="/studio">About</a>
-    <a href="/blog">Journal</a>
-    <a href="/careers">Careers</a>
-    <a href="/contact">Contact</a>
-  </nav>
-</header>
 <a class="wx-skip" href="#main">Skip to content</a>
 
-<!-- ============ GLOBAL FLOATING GLASS NAVIGATION (nav.js) ============ -->
-<script src="nav.js" defer></script>
-
 <main id="main">
-<!-- ambient page glow -->
-<div class="svcx-bg" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
-<article>
 
-<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
-<section class="wx-hero" data-hero-section>
-  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
-    <img src="images/work/automa.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
-  </div>
-  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
-    <img src="images/work/kavya-portfolio.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
-  </div>
+  <!-- ============ 1. HERO ============ -->
+  <section class="uxd-hero" aria-labelledby="uxd-hero-h">
+    <div class="uxd-hero-inner">
 
-  <div class="wx-hero-inner">
-    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
-      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Services</span>
-    </nav>
-
-    <span class="wx-pill" data-reveal data-reveal-delay="40">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
-      What we do
-    </span>
-
-    <h1 data-reveal data-reveal-delay="80">Everything we build, <em>in one place</em></h1>
-
-    <p data-reveal data-reveal-delay="140">From a high-converting landing page to a custom ERP &mdash; plus the pixel-perfect Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you&rsquo;re after.</p>
-
-    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
-        <span class="wx-btn-label">Start a project</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-          </svg>
+      <div class="uxd-hero-copy">
+        <span class="v3-pill" data-reveal>
+          <i>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M13.5 3.5c3.4-1.2 6.1-.9 7 0 .9.9 1.2 3.6 0 7-1 2.8-3.3 5.6-6.1 7.3l-3.6.9-3.5-3.5.9-3.6c1.7-2.8 4.5-5.1 7.3-6.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <circle cx="14.8" cy="9.2" r="1.9" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M7.3 15.1c-1.3.5-2.2 1.6-2.6 4.2 2.6-.4 3.7-1.3 4.2-2.6M5.5 12 3 11l2-2.6M12 18.5l1 2.5 2.6-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </i>
+          Everything We Build
         </span>
-      </a>
+
+        <!-- Two break points, one per breakpoint. Wide: after "we build",
+             giving "Everything we build," / "in one place". Phone: after
+             "Everything", so the long first line does not force a third.
+             The space before each <br> is load-bearing: whichever one is hidden
+             leaves its space behind, which is what keeps the words apart. -->
+        <h1 id="uxd-hero-h" data-reveal data-reveal-delay="40">Everything<br class="uxd-br-sm"> we build,<br class="uxd-br-lg"> <em>in one place</em></h1>
+
+        <p class="uxd-hero-lead" data-reveal data-reveal-delay="80">From a high-converting landing page to a custom ERP &mdash; design, development, SEO and the Figma-to-code conversions in between. Pick the service that fits, or tell us the outcome you are after.</p>
+
+        <div class="uxd-hero-cta" data-reveal data-reveal-delay="140">
+          <!-- No --cal here, unlike the "Book a call" button further down: that
+               modifier only exists to hold a calendar still on hover, and this
+               one carries the house arrow, which is meant to straighten. -->
+          <a class="v3-btn" href="contact">Start a project
+            <span class="v3-btn-ico">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <a class="v3-btn v3-btn--ghost" href="work">View Our Work
+            <span class="v3-btn-ico">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="uxd-hero-visual" data-reveal data-reveal-delay="140">
+        <img src="images/service/service-hero-thumbnail.webp"
+             alt="Full-page screens from a website designed and built by Web{X} Studio, layered as a collage"
+             width="943" height="1005" loading="eager" fetchpriority="high" decoding="async">
+      </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ CORE SERVICES ============ -->
-<section class="svcx-section" aria-labelledby="svcx-core-h">
-  <div style="max-width:760px" data-reveal style="opacity:0">
-    <div class="svcx-eyebrow">
-      <span class="svcx-eyebrow-num">(01)</span>
-      <span class="svcx-eyebrow-txt">Core services</span>
+  <!-- ============ 2. SHOWCASE ============ -->
+  <section class="uxd-showcase" aria-label="Recent work">
+    <div class="uxd-showcase-inner">
+      <figure class="uxd-showcase-frame uxd-rise" data-reveal style="margin:0 auto">
+        <img src="images/work/thumbs/nocturne-nft.webp"
+             alt="The Nocturne NFT marketplace site designed by Web{X} Studio, shown on a laptop and a phone"
+             width="1928" height="1040" loading="lazy" decoding="async">
+      </figure>
     </div>
-    <h2 id="svcx-core-h" data-reveal data-reveal-delay="60" style="font-family:'Manrope', sans-serif;font-size:clamp(28px,3.6vw,46px);line-height:1.08;font-weight:700;letter-spacing:-.035em;margin:0;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;color:#1A1A1A">Design, build, rank &amp; automate.</h2>
-  </div>
+  </section>
 
-  <div class="svcx-grid">
-
-    <a data-transition href="contact" class="svcx-card" data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Website design service by Web{X} Studio">
-      <div class="svcx-card-media">
-        <img src="images/cap-design.webp" alt="Website design service - bespoke UI/UX and interface design by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
-      </div>
-      <div class="svcx-card-body">
-        <p class="svcx-card-kicker">Design</p>
-        <h3>Website Design</h3>
-        <p>Bespoke UX/UI design and brand identity work that turns visitors into clients &mdash; from responsive landing pages to full design systems.</p>
-        <div class="svcx-tags">
-          <span class="svcx-tag">UX/UI design</span>
-          <span class="svcx-tag">Branding</span>
-          <span class="svcx-tag">Landing pages</span>
-          <span class="svcx-tag">Responsive design</span>
-          <span class="svcx-tag">Design systems</span>
-        </div>
-        <div class="svcx-card-foot">
-          <span>Talk design &rarr;</span>
-          <span class="svcx-card-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
-        </div>
-      </div>
-    </a>
-
-    <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Web development service by Web{X} Studio">
-      <div class="svcx-card-media">
-        <img src="images/cap-development.webp" alt="Web development service - fast, scalable builds on Webflow, WordPress, Shopify and custom code by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
-      </div>
-      <div class="svcx-card-body">
-        <p class="svcx-card-kicker">Build</p>
-        <h3>Web Development</h3>
-        <p>Fast, accessible, scalable code on the platform that fits your goals &mdash; Webflow, WordPress, Shopify e-commerce or fully custom.</p>
-        <div class="svcx-tags">
-          <span class="svcx-tag">Webflow</span>
-          <span class="svcx-tag">WordPress</span>
-          <span class="svcx-tag">Shopify e-commerce</span>
-          <span class="svcx-tag">Custom code</span>
-          <span class="svcx-tag">WCAG accessibility</span>
-        </div>
-        <div class="svcx-card-foot">
-          <span>Talk build &rarr;</span>
-          <span class="svcx-card-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
-        </div>
-      </div>
-    </a>
-
-    <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="SEO and performance optimisation service by Web{X} Studio">
-      <div class="svcx-card-media">
-        <img src="images/cap-seo.webp" alt="SEO and performance service - Core Web Vitals, technical SEO and speed optimisation by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
-      </div>
-      <div class="svcx-card-body">
-        <p class="svcx-card-kicker">Rank</p>
-        <h3>SEO &amp; Performance</h3>
-        <p>Rank higher, load faster, convert more. Technical SEO, conversion optimisation and answer-engine optimisation (AEO) baked in from day one.</p>
-        <div class="svcx-tags">
-          <span class="svcx-tag">Technical SEO</span>
-          <span class="svcx-tag">Core Web Vitals</span>
-          <span class="svcx-tag">Conversion rate optimisation</span>
-          <span class="svcx-tag">Analytics</span>
-          <span class="svcx-tag">Answer engine optimisation</span>
-        </div>
-        <div class="svcx-card-foot">
-          <span>Talk SEO &rarr;</span>
-          <span class="svcx-card-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
-        </div>
-      </div>
-    </a>
-
-    <a data-transition href="contact" class="svcx-card" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="ERP and web app development service by Web{X} Studio">
-      <div class="svcx-card-media">
-        <img src="images/cap-erp.webp" alt="ERP and web app development service - custom dashboards and business software by Web{X} Studio" loading="lazy" decoding="async" width="1536" height="1024">
-      </div>
-      <div class="svcx-card-body">
-        <p class="svcx-card-kicker">Automate</p>
-        <h3>ERP &amp; Web Apps</h3>
-        <p>Custom dashboards, ERP systems, B2B SaaS platforms and mobile web apps that scale with your business, built end-to-end.</p>
-        <div class="svcx-tags">
-          <span class="svcx-tag">ERP systems</span>
-          <span class="svcx-tag">B2B SaaS</span>
-          <span class="svcx-tag">Automation</span>
-          <span class="svcx-tag">Mobile web apps</span>
-          <span class="svcx-tag">Custom software</span>
-        </div>
-        <div class="svcx-card-foot">
-          <span>Talk apps &rarr;</span>
-          <span class="svcx-card-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M6 4h6v6"/></svg></span>
-        </div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ============ FIGMA TO PRODUCTION ============ -->
-<section class="svcx-section" aria-labelledby="svcx-conv-h">
-  <div style="max-width:760px">
-    <div class="svcx-eyebrow" data-reveal style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-      <span class="svcx-eyebrow-num">(02)</span>
-      <span class="svcx-eyebrow-txt">Figma to production</span>
-    </div>
-    <h2 id="svcx-conv-h" data-reveal data-reveal-delay="60" style="font-family:'Manrope', sans-serif;font-size:clamp(28px,3.6vw,46px);line-height:1.08;font-weight:700;letter-spacing:-.035em;margin:0 0 18px;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;color:#1A1A1A">Bring your design to life.</h2>
-    <p data-reveal data-reveal-delay="120" style="font-family:'Satoshi',sans-serif;font-size:clamp(15px,1.1vw,17px);line-height:1.7;color:#6B6B75;margin:0;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Already have a Figma, Photoshop or Canva design? We rebuild it as a fast, responsive, hand-coded site on the platform you want &mdash; pixel-perfect and easy to edit.</p>
-  </div>
-
-  <div class="svcx-conv-grid">
-
-    <a href="figma-to-webflow" class="svcx-conv" data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Webflow conversion service">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo"><img src="images/tools/webflow.png" alt="Webflow" width="96" height="96" loading="lazy" decoding="async"></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>Webflow</b></span>
-      </div>
-      <h3>Figma to Webflow</h3>
-      <p>Pixel-perfect, hand-built Webflow with the CMS set up for your team.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-live">Live</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="figma-to-wordpress" class="svcx-conv" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to WordPress conversion service">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo"><img src="images/tools/wordpress.png" alt="WordPress" width="96" height="96" loading="lazy" decoding="async"></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>WordPress</b></span>
-      </div>
-      <h3>Figma to WordPress</h3>
-      <p>Custom-built WordPress that&rsquo;s fast, SEO-clean and genuinely easy to edit.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-live">Live</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="figma-to-shopify" class="svcx-conv" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Shopify conversion service">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo"><img src="images/tools/shopify.png" alt="Shopify" width="96" height="96" loading="lazy" decoding="async"></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>Shopify</b></span>
-      </div>
-      <h3>Figma to Shopify</h3>
-      <p>Conversion-ready storefronts with editable Online Store 2.0 sections.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-live">Live</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="figma-to-framer" class="svcx-conv" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Framer conversion service">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo"><img src="images/tools/framer.svg" alt="Framer" loading="lazy" decoding="async"></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>Framer</b></span>
-      </div>
-      <h3>Figma to Framer</h3>
-      <p>Motion-rich Framer sites, hand-built with the CMS set up for your team.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-live">Live</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-
-    <a href="figma-to-unbounce" class="svcx-conv" data-reveal data-reveal-delay="320" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Figma to Unbounce conversion service">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo"><img src="images/tools/unbounce.png" alt="Unbounce" width="96" height="96" loading="lazy" decoding="async"></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>Unbounce</b></span>
-      </div>
-      <h3>Figma to Unbounce</h3>
-      <p>High-converting landing pages, A/B-ready and built for paid campaigns.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-live">Live</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-
-
-    <a data-transition href="contact" class="svcx-conv svcx-conv--custom" data-reveal data-reveal-delay="360" style="opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)" aria-label="Custom build service by Web{X} Studio">
-      <div class="svcx-conv-head">
-        <span class="svcx-conv-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 17 3 12l5-5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
-        <span class="svcx-conv-flow">Figma &rarr; <b>Custom code</b></span>
-      </div>
-      <h3>No platform fits? We build from scratch.</h3>
-      <p>Custom web apps, SaaS and ERP systems engineered end-to-end in React, Vue, Next.js, Node &amp; Python.</p>
-      <div class="svcx-conv-foot">
-        <span class="svcx-conv-note">Discuss a custom build</span>
-        <span class="svcx-conv-arrow" aria-hidden="true">&rarr;</span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- ============ CTA (mirrors the home page) ============ -->
-<section class="wx-cta4" aria-label="Start a project">
-  <style>
-    /* .fan-card base, mirrored from the home page hero so the deck renders
-       here too. It is not in webx.css, so the two copies must stay in step. */
-    .fan-card {
-      position: relative;
-      width: clamp(124px, 20vw, 262px) !important;
-      aspect-ratio: 3 / 3.5;
-      flex: 0 0 auto;
-      margin-inline: clamp(-34px, -2.6vw, -18px);
-      border-radius: clamp(12px, 1.1vw, 18px);
-      overflow: hidden;
-      background: #F4F2F8;
-      border: 3px solid #FFFFFF;
-      box-shadow: 0 18px 38px -16px rgba(26, 20, 48, 0.34);
-      transform: rotate(var(--r)) translateY(var(--y));
-      transform-origin: 50% 100%;
-      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
-    }
-    .fan-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .fan-card:hover {
-      transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
-      box-shadow: 0 26px 52px -18px rgba(157, 92, 255, 0.5);
-      z-index: 20;
-    }
-    .wx-cta4 {
-      background: #FFFFFF;
-      padding: var(--wx-sec-y) 20px;
-    }
-    .wx-cta4-card {
-      position: relative;
-      max-width: 1340px;
-      margin: 0 auto;
-      background: #9D5CFF;
-      border-radius: clamp(24px,3vw,40px);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: clamp(20px,3vw,48px);
-      color: #FFFFFF;
-    }
-
-    /* ---------------- Left: the copy ---------------- */
-    .wx-cta4-copy {
-      position: relative;
-      z-index: 2;
-      padding: clamp(40px,5.4vw,90px) 0 clamp(40px,5.4vw,90px) clamp(28px,5vw,80px);
-    }
-    .wx-cta4-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: clamp(20px,3vh,32px);
-    }
-    .wx-cta4-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 100px;
-      padding: 8px 15px;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #FFFFFF;
-    }
-    .wx-cta4-badge i {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #00FF66;
-      animation: wx-pulse 1.6s ease-in-out infinite;
-    }
-    .wx-cta4-kicker {
-      font-family: 'Satoshi', sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.72);
-    }
-    .wx-cta4-copy h2 {
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(30px,4.2vw,60px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.04;
-      margin: 0;
-      color: #FFFFFF;
-      text-wrap: balance;
-    }
-    .wx-cta4-copy p {
-      font-family: 'Satoshi', sans-serif;
-      font-size: clamp(14px,1.1vw,16px);
-      line-height: 1.6;
-      color: rgba(255,255,255,0.82);
-      max-width: 42ch;
-      margin: clamp(16px,2.4vh,24px) 0 clamp(26px,3.6vh,38px);
-    }
-
-    /* ---------------- Right: the fanned deck ----------------
-       Same .fan-card language as the hero. The two outer cards splay and sit
-       low; the middle one stays upright, rides higher and takes the front, so
-       the group reads as a stack rather than a row. The card's overflow crops
-       the bottom edge, which is what makes it feel like it carries on. */
-    .wx-cta4-deck {
-      position: relative;
-      z-index: 1;
-      align-self: end;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 0;
-      padding-top: clamp(40px,5vw,86px);
-      margin-bottom: clamp(-20px, -5.4vw, -36px);
-      margin-right: 46px;
-    }
-    /* Bloom so the stack sits on the purple rather than floating over it */
-    .wx-cta4-deck::before {
-      content: '';
-      position: absolute;
-      left: 50%; bottom: 6%;
-      width: 116%; aspect-ratio: 1.2;
-      transform: translateX(-50%);
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 66%);
-      pointer-events: none;
-    }
-    /* Outranks the global .fan-card width, including its 860px override. */
-    .wx-cta4-deck .fan-card {
-      width: clamp(136px,18vw,270px) !important;
-      /* The global .fan-card pulls a negative margin-inline for the hero deck.
-         Here the gap is the layout, and on the absolute centre that margin
-         would also drag it off the midpoint — so clear it. */
-      margin-inline: 0;
-      box-shadow: 0 30px 60px -26px rgba(28,6,68,0.55);
-    }
-    /* The centre card: upright, smaller, raised, and in front. */
-    .wx-cta4-deck .fan-card--lead {
-      /* Required. Without it the card does not go static — it falls back to the
-         global .fan-card position:relative, which keeps it in flow and turns
-         left:50% into a 429px nudge instead of a placement. */
-      position: absolute;
-      left: 50%;
-      bottom: -60px;
-      /* Centring uses translate so the rotate/raise keeps transform to itself. */
-      translate: -50% 0;
-      width: clamp(136px,18.5vw,278px) !important;
-      aspect-ratio: 3 / 3.75;
-      /* Clears the taller outer cards and then some, so it breaks the skyline. */
-      --y: clamp(-150px,-9.2vw,-60px);
-      z-index: 3;
-    }
-
-    .wx-cta4-deck:not(.is-in) .fan-card {
-      opacity: 0;
-      transform: translate3d(var(--fx), var(--fy), 0) rotate(var(--fr)) scale(.9);
-    }
-    .wx-cta4-deck.is-in .fan-card {
-      opacity: 1;
-      transform: rotate(var(--r)) translateY(var(--y));
-      transition: transform .9s cubic-bezier(.18,.82,.28,1), opacity .5s ease;
-      transition-delay: var(--d, 0s);
-    }
-    /* Hover must out-rank .is-in and must not inherit the entrance stagger. */
-    .wx-cta4-deck.is-in .fan-card:hover {
-      transform: rotate(var(--r)) translateY(calc(var(--y) - 14px));
-      transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
-      transition-delay: 0s;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .wx-cta4-deck .fan-card,
-      .wx-cta4-deck:not(.is-in) .fan-card {
-        opacity: 1;
-        transform: rotate(var(--r)) translateY(var(--y));
-        transition: none;
-      }
-    }
-
-    /* ---------------- Stacked ---------------- */
-    @media (max-width: 900px) {
-      .wx-cta4-card { grid-template-columns: 1fr; gap: 0; }
-      .wx-cta4-copy {
-        padding: clamp(32px,7vw,56px) clamp(24px,6vw,48px) 0;
-        text-align: center;
-      }
-      .wx-cta4-meta { justify-content: center; }
-      .wx-cta4-copy p { margin-inline: auto; }
-      .wx-cta4-copy .wx-btn-animated { margin: 0 auto; }
-      .wx-cta4-deck {
-        padding: 120px 5vw 0;
-        margin-bottom: -26px;
-      }
-      /* Cards are now wider than the column. min-width:0 lets the grid item
-         shrink to the track so the overflow centres, instead of the deck
-         growing past the panel and bleeding to the right only. */
-      .wx-cta4-deck { margin-right: 0; gap: clamp(6px,2.1vw,12px); min-width: 0; }
-      /* Both cards scale on the same vw ramp so the pair keeps its ratio
-         across the range. A flat outer against a fluid centre had the centre
-         at 1.8x the outer by 900px, with the row stranded in a wide panel. */
-      .wx-cta4-deck .fan-card { width: clamp(148px,29vw,250px) !important; }
-      .wx-cta4-deck .fan-card--lead { width: clamp(166px,32.5vw,280px) !important; --y: clamp(-96px,-13vw,-42px); bottom: -10px; }
-    }
-  </style>
-
-  <div class="wx-cta4-card">
-    <div class="wx-cta4-copy">
-      <div class="wx-cta4-meta">
-        <span class="wx-cta4-badge"><i aria-hidden="true"></i>Booking Q3 2026</span>
-        <span class="wx-cta4-kicker">Have a project in mind?</span>
-      </div>
-      <h2 data-reveal>Ready to grow your business online?</h2>
-      <p>Tell us what you're working on. We reply to every inquiry within two business days — with a real opinion, not a form letter.</p>
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-        <span class="wx-btn-label">Start a project</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-          </svg>
+  <!-- ============ 3. SERVICES ============
+       The hub's internal-linking payoff: every service with a page of its own
+       points at it — /ui-ux-design, /web-design, /web-development, /web-apps,
+       /landing-page-design and all five Figma conversion pages. The rest go to
+       /contact rather than to a URL that does not exist.
+       Layout: a 4-column bed running a 1/2/1, 2/1/1, 1/2/1, 2/1/1 rhythm. Every
+       row holds exactly one 2-column card because its 3:2 ratio is what gives
+       the row its height, so cards come and go three at a time — one wide, two
+       single — or a row is left with nothing setting its height.
+       The four cards the old /services page called its core services (web
+       design, web development, SEO, ERP and web apps) keep their tag lists;
+       .uxd-serv-card--tagged goes with them. -->
+  <section class="uxd-serv" aria-labelledby="uxd-serv-h">
+    <div class="uxd-serv-inner">
+      <div class="uxd-head uxd-rise" data-reveal>
+        <span class="v3-pill">
+          <i>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/>
+              <rect x="13.6" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/>
+              <rect x="3" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/>
+              <rect x="13.6" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/>
+            </svg>
+          </i>
+          Our Services
         </span>
-      </a>
-    </div>
+        <h2 class="uxd-h2" id="uxd-serv-h">Design And Build Better<br><em>Digital Products</em></h2>
+        <p>From strategy through design, development and the SEO that keeps it found &mdash; one team, so nothing gets lost between the people who draw it and the people who build it.</p>
+      </div>
 
-    <div class="wx-cta4-deck">
-      <div class="fan-card" style="--r:-9deg; --y:0px; --fx:-70px; --fy:46px; --fr:-30deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="lazy" decoding="async" width="1600" height="1067"></div>
-      <div class="fan-card fan-card--lead" style="--r:0deg; --fx:0px; --fy:70px; --fr:10deg; --d:.14s;"><img src="images/work/fitness-tracker.avif" alt="Innovative Fitness app project preview" loading="lazy" decoding="async" width="1600" height="1066"></div>
-      <div class="fan-card" style="--r:9deg; --y:0px; --fx:70px; --fy:46px; --fr:30deg; --d:.07s;"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project preview" loading="lazy" decoding="async" width="1600" height="1200"></div>
-    </div>
-  </div>
+      <div class="uxd-serv-grid uxd-rise" data-reveal data-reveal-delay="120">
 
-  <script>
-    /* Release the deck when the CTA scrolls up — same .is-in contract the hero
-       uses, just triggered by view rather than by the intro overlay. */
-    (function () {
-      var deck = document.querySelector('.wx-cta4-deck');
-      if (!deck) return;
-      if (!window.IntersectionObserver) { deck.classList.add('is-in'); return; }
-      new IntersectionObserver(function (entries, obs) {
-        if (!entries[0].isIntersecting) return;
-        deck.classList.add('is-in');
-        obs.disconnect();
-      }, { threshold: 0.25 }).observe(deck);
-    })();
-  </script>
-</section>
-</article>
+        <!-- /ui-ux-design covers UI/UX and product design only — the web design
+             terms it used to share now belong to /web-design, and this card is
+             worded so the two do not compete for the same search. -->
+        <a class="uxd-serv-card" href="ui-ux-design" style="--sv:#27416D">
+          <div class="uxd-serv-copy">
+            <h3>UI/UX Design</h3>
+            <p>Product design for SaaS and B2B &mdash; dashboards, onboarding and the multi-role screens people work in all day.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-ui-ux.webp" alt="A Web{X} Studio site design shown on a phone" loading="lazy" decoding="async" width="559" height="704"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--onlight uxd-serv-card--wide uxd-serv-card--tagged" href="web-design" style="--sv:#8DB0DF">
+          <div class="uxd-serv-copy">
+            <h3>Web Design</h3>
+            <p>A good website should do more than look good. We design pages that explain your offer clearly and guide visitors toward action.</p>
+            <div class="uxd-serv-tags">
+              <span>UX/UI design</span>
+              <span>Branding</span>
+              <span>Landing pages</span>
+              <span>Responsive design</span>
+              <span>Design systems</span>
+            </div>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-web-design.webp" alt="Three responsive websites designed by Web{X} Studio" loading="lazy" decoding="async" width="768" height="512"></div>
+        </a>
+
+        <a class="uxd-serv-card" href="contact" style="--sv:#1584C6">
+          <div class="uxd-serv-copy">
+            <h3>Branding</h3>
+            <p>Build a clear brand identity with consistent visuals and memorable messaging.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-branding.webp" alt="Brand identity and packaging design by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--wide uxd-serv-card--tagged" href="web-development" style="--sv:#509B51">
+          <div class="uxd-serv-copy">
+            <h3>Web Development</h3>
+            <p>Everything behind your product, from front-end and back-end development to APIs, databases and third-party integrations.</p>
+            <div class="uxd-serv-tags">
+              <span>Webflow</span>
+              <span>WordPress</span>
+              <span>Shopify e-commerce</span>
+              <span>Custom code</span>
+              <span>WCAG accessibility</span>
+            </div>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-full-stack.webp" alt="Front-end, back-end and API development work by Web{X} Studio" loading="lazy" decoding="async" width="768" height="512"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--onlight" href="figma-to-shopify" style="--sv:#CED7FD">
+          <div class="uxd-serv-copy">
+            <h3>Ecommerce</h3>
+            <p>Shopify and WooCommerce storefronts, from catalogue structure through to checkout.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-ecommerce.webp" alt="An ecommerce storefront built by Web{X} Studio" loading="lazy" decoding="async" width="552" height="713"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--onlight uxd-serv-card--tagged" href="web-apps" style="--sv:#B7E7D1">
+          <div class="uxd-serv-copy">
+            <h3>ERP &amp; Web Apps</h3>
+            <p>Dashboards, ERP systems and B2B SaaS platforms &mdash; logins, roles and real data, built to stay fast as the records pile up.</p>
+            <div class="uxd-serv-tags">
+              <span>ERP systems</span>
+              <span>B2B SaaS</span>
+              <span>Automation</span>
+              <span>Mobile web apps</span>
+              <span>Custom software</span>
+            </div>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-saas-design.webp" alt="A SaaS product dashboard designed and built by Web{X} Studio" loading="lazy" decoding="async" width="555" height="709"></div>
+        </a>
+
+        <a class="uxd-serv-card" href="figma-to-webflow" style="--sv:#44A1F3">
+          <div class="uxd-serv-copy">
+            <h3>Figma to Webflow</h3>
+            <p>Pixel-accurate conversions with clean classes and a CMS your team can edit.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-figma-webflow.webp" alt="A Figma design converted to Webflow by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--onlight uxd-serv-card--wide" href="landing-page-design" style="--sv:#B8D5FD">
+          <div class="uxd-serv-copy">
+            <h3>Landing Page Design</h3>
+            <p>One page, one offer, one next step &mdash; built for paid campaigns and launches, and measured on the enquiries it brings in rather than how it looks.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-landing-page.webp" alt="A high-converting landing page designed by Web{X} Studio" loading="lazy" decoding="async" width="798" height="493"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--onlight" href="figma-to-unbounce" style="--sv:#FEDAB3">
+          <div class="uxd-serv-copy">
+            <h3>Figma to Unbounce</h3>
+            <p>Your design rebuilt as an Unbounce page, ready to test and iterate on.</p>
+          </div>
+          <div class="uxd-serv-shot"><img src="images/service/sv-figma-unbounce.webp" alt="A Figma design converted to an Unbounce landing page by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--wide uxd-serv-card--mark uxd-serv-card--tagged" href="contact" style="--sv:#3B2E6E">
+          <div class="uxd-serv-copy">
+            <h3>SEO &amp; Performance</h3>
+            <p>Rank higher, load faster, convert more &mdash; technical SEO and Core Web Vitals built in from day one rather than bolted on at launch.</p>
+            <div class="uxd-serv-tags">
+              <span>Technical SEO</span>
+              <span>Core Web Vitals</span>
+              <span>Conversion rate optimisation</span>
+              <span>Analytics</span>
+              <span>Answer engine optimisation</span>
+            </div>
+          </div>
+          <div class="uxd-serv-shot">
+            <span class="uxd-serv-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="1.8"/>
+                <path d="m20.5 20.5-4.7-4.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="m7.2 12.6 2.4-2.8 2 1.8 2.6-3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14.2 8.2h-2.1M14.2 8.2v2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--mark" href="figma-to-wordpress" style="--sv:#1B5E7C">
+          <div class="uxd-serv-copy">
+            <h3>Figma to WordPress</h3>
+            <p>Custom-built WordPress that is fast, SEO-clean and genuinely easy to edit.</p>
+          </div>
+          <div class="uxd-serv-shot">
+            <span class="uxd-serv-mark"><img src="images/tools/wordpress.png" alt="" width="96" height="96" loading="lazy" decoding="async"></span>
+          </div>
+        </a>
+
+        <a class="uxd-serv-card uxd-serv-card--mark" href="figma-to-framer" style="--sv:#101B33">
+          <div class="uxd-serv-copy">
+            <h3>Figma to Framer</h3>
+            <p>Motion-rich Framer sites, hand-built with the CMS set up for your team.</p>
+          </div>
+          <div class="uxd-serv-shot">
+            <span class="uxd-serv-mark"><img src="images/tools/framer.svg" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. PROCESS ============ -->
+  <section class="uxd-process" aria-labelledby="uxd-process-h">
+    <div class="uxd-process-inner">
+
+      <div class="uxd-head uxd-rise" data-reveal>
+        <span class="v3-pill">
+          <i>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M7 5.5H4.5v1A3.5 3.5 0 0 0 7 9.85M17 5.5h2.5v1A3.5 3.5 0 0 1 17 9.85M10 14h4M9.5 20h5M12 14v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </i>
+          Our Process
+        </span>
+        <h2 class="uxd-h2" id="uxd-process-h">How We Bring<br>Your <em>Product To Life</em></h2>
+        <p>From the first conversation to a design your developers can build from without a single round of guesswork.</p>
+        <a class="v3-btn v3-btn--cal" href="contact">Book a call
+          <span class="v3-btn-ico">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- Timeline: one rail behind the rows, filling as each step lands. With
+           no JS every step renders in its finished state. -->
+      <div class="uxd-timeline">
+        <div class="uxd-steps" data-uxd-timeline>
+          <span class="uxd-rail" aria-hidden="true"><span class="uxd-rail-line"></span><span class="uxd-rail-fill" data-uxd-fill></span></span>
+
+          <div class="uxd-step" data-uxd-step data-reveal>
+            <div class="uxd-step-n"><span class="v3-tag">Step 1</span><b>Understand</b></div>
+            <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="uxd-step-item">
+              <div class="uxd-step-copy">
+                <h3>Understand your product</h3>
+                <p>We learn the product, the people buying it and the problem the design has to solve &mdash; before anyone opens a design file.</p>
+              </div>
+              <div class="uxd-step-media"><img src="images/service/process-understand.webp" alt="A team reviewing product sketches and wireframes together at a desk" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
+          </div>
+
+          <div class="uxd-step" data-uxd-step data-reveal>
+            <div class="uxd-step-n"><span class="v3-tag">Step 2</span><b>Plan</b></div>
+            <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="uxd-step-item">
+              <div class="uxd-step-copy">
+                <h3>Plan the experience</h3>
+                <p>Key features agreed, the structure mapped and the main journeys planned, so the screens that follow have something to answer to.</p>
+              </div>
+              <div class="uxd-step-media"><img src="images/service/process-plan.webp" alt="Wireframe printouts and sticky notes mapping user research, prototypes and usability" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
+          </div>
+
+          <div class="uxd-step" data-uxd-step data-reveal>
+            <div class="uxd-step-n"><span class="v3-tag">Step 3</span><b>Design</b></div>
+            <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="uxd-step-item">
+              <div class="uxd-step-copy">
+                <h3>Design the product</h3>
+                <p>User flows, wireframes, prototypes and high-fidelity UI &mdash; the stage where how it looks and how it works get decided together.</p>
+              </div>
+              <div class="uxd-step-media"><img src="images/service/process-design.webp" alt="A designer working on high-fidelity app screens beside a whiteboard of user flows" loading="lazy" decoding="async" width="1536" height="1024"></div>
+            </div>
+          </div>
+
+          <div class="uxd-step" data-uxd-step data-reveal>
+            <div class="uxd-step-n"><span class="v3-tag">Step 4</span><b>Refine</b></div>
+            <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="uxd-step-item">
+              <div class="uxd-step-copy">
+                <h3>Refine the design</h3>
+                <p>Reusable components, every breakpoint drawn rather than squeezed, and the rough edges taken off once real feedback lands.</p>
+              </div>
+              <div class="uxd-step-media"><img src="images/service/process-refine.webp" alt="A laptop showing user interface layouts beside a notebook of design notes" loading="lazy" decoding="async" width="2048" height="1367"></div>
+            </div>
+          </div>
+
+          <div class="uxd-step" data-uxd-step data-reveal>
+            <div class="uxd-step-n"><span class="v3-tag">Step 5</span><b>Handoff</b></div>
+            <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
+            <div class="uxd-step-item">
+              <div class="uxd-step-copy">
+                <h3>Handoff to developers</h3>
+                <p>Final files, prototypes, named components and specs, so the build matches the design without anyone having to interpret it.</p>
+              </div>
+              <div class="uxd-step-media"><img src="images/service/process-handoff.webp" alt="A designer and developer checking a component spec sheet against the code" loading="lazy" decoding="async" width="1400" height="932"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 5. TEAM ============ -->
+  <section class="uxd-team" aria-labelledby="uxd-team-h">
+    <div class="uxd-team-inner">
+      <div class="uxd-head uxd-rise" data-reveal>
+        <span class="v3-pill">
+          <i>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M7 5.5H4.5v1A3.5 3.5 0 0 0 7 9.85M17 5.5h2.5v1A3.5 3.5 0 0 1 17 9.85M10 14h4M9.5 20h5M12 14v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </i>
+          Why Work With Us
+        </span>
+        <h2 class="uxd-h2" id="uxd-team-h">A Design Team You Can<br><em>Always Rely On</em></h2>
+        <p>Good design is the easy part to promise. What you actually need is a team that understands the goal, says what it is doing, owns the result and hands you work you do not have to check.</p>
+      </div>
+
+      <div class="uxd-team-grid uxd-rise" data-reveal data-reveal-delay="120">
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">01</span>
+          <div>
+            <h3>Experienced Designers</h3>
+            <p>A team that has shipped real products since 2019, from first concept through to the polished interface people actually use.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-photo">
+          <img src="images/service/team-brainstorming.webp" alt="Colleagues sitting together with laptops and notes, working through a brief" loading="lazy" decoding="async" width="2048" height="1366">
+        </div>
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">02</span>
+          <div>
+            <h3>Product-Focused Approach</h3>
+            <p>Your users, your goals and your commercial reality all sit in the brief, so every design decision has a reason behind it.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-photo">
+          <img src="images/service/team-collaboration.webp" alt="A team in conversation around a table in an open office" loading="lazy" decoding="async" width="2048" height="1366">
+        </div>
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">03</span>
+          <div>
+            <h3>Talk Directly To The Team</h3>
+            <p>You speak to the people doing the work, not an account manager relaying it. Questions get answered by whoever drew the screen.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">04</span>
+          <div>
+            <h3>Flexible Engagement</h3>
+            <p>A single project or ongoing monthly support &mdash; whichever suits where the product is and how fast it needs to move.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">05</span>
+          <div>
+            <h3>Clear From The Start</h3>
+            <p>Every project is quoted as a fixed price before we start, so you know what is included and what it costs before any work begins.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-card">
+          <span class="uxd-team-num">06</span>
+          <div>
+            <h3>Start With A Call</h3>
+            <p>A free call first, to look at what you have and say plainly whether we are the right team for it &mdash; before anyone commits.</p>
+          </div>
+        </div>
+
+        <div class="uxd-team-cell uxd-team-cta">
+          <span class="uxd-team-num">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>Sounds Like A<br>Good Fit?</h3>
+            <a href="contact">Talk To Our Team</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. FAQ ============ -->
+  <section class="uxd-faq" aria-labelledby="uxd-faq-h">
+    <div class="uxd-faq-inner">
+
+      <div class="uxd-faq-left uxd-rise" data-reveal>
+        <div class="uxd-faq-heading">
+          <h2 class="uxd-h2" id="uxd-faq-h">Got Questions?<br><em>We&rsquo;ve Got Answers</em></h2>
+          <p>If you are not sure where to start, or want to know whether this is the right fit, reach out and we will walk you through it.</p>
+        </div>
+        <div class="uxd-call">
+          <div class="uxd-call-top">
+            <div class="uxd-call-copy">
+              <h3>Book an intro call</h3>
+              <p>Let&rsquo;s talk through your product, your timeline, and how Web{X} Studio can help.</p>
+            </div>
+            <a class="v3-btn" href="contact">Book a free call
+              <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+          </div>
+          <div class="uxd-call-mail">
+            <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="m3 7 9 6 9-6" stroke="currentColor" stroke-width="1.6"/></svg></i>
+            <div>
+              <span>Prefer email instead?</span>
+              <a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uxd-faq-list uxd-rise" data-reveal data-reveal-delay="120">
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>What is the difference between UI/UX design and web design?</summary>
+          <p class="uxd-faq-a">Web design is usually about the site people land on &mdash; the pages that explain what you do and ask for the enquiry. UI/UX design is about the thing they use once they are in: the dashboard, the signup, the settings screen, the flow with fifteen states nobody wants to draw.</p>
+          <p class="uxd-faq-a">Most companies need both, and they need them to agree with each other. There is a page for each &mdash; <a class="uxd-a" href="web-design">web design</a> and <a class="uxd-a" href="ui-ux-design">UI/UX design</a> &mdash; but it is one team either way, so the language, the type scale and the components carry across instead of the product feeling like a different company&rsquo;s work.</p>
+        </details>
+
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>How long does a UI/UX design project take?</summary>
+          <p class="uxd-faq-a">A focused piece &mdash; a single flow, an onboarding sequence, a pricing page &mdash; is usually 1&ndash;2 weeks. A full marketing site is typically 2&ndash;4 weeks through design and build. A product interface with several user roles and real edge cases runs 4&ndash;10 weeks depending on how many screens have to exist before it hangs together.</p>
+          <p class="uxd-faq-a">You get a written milestone plan before we start, with the review dates fixed. The most common delay is not design &mdash; it is waiting on content and feedback, so nominating one decision-maker for approvals is the single fastest thing you can do.</p>
+        </details>
+
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>Do you work with our existing developers?</summary>
+          <p class="uxd-faq-a">Often, yes. When you already have a development team we design to what they build in &mdash; matching the component library, naming things the way the codebase does, and handing over files, prototypes and specs they can work from without having to interpret anything.</p>
+          <p class="uxd-faq-a">If you would rather one team carried it end to end, we build as well, and the handoff step simply disappears.</p>
+        </details>
+
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>Can you redesign an existing site or product?</summary>
+          <p class="uxd-faq-a">Yes, and it is a good part of what we do. A redesign starts by finding out where the current version loses people rather than by opening a blank canvas &mdash; which screens get abandoned, which features never get found, which questions support keeps answering.</p>
+          <p class="uxd-faq-a">That usually means the rebuild is smaller than expected. Fixing the three screens that are actually costing you conversions beats redrawing forty that were fine.</p>
+        </details>
+
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>How much does it cost?</summary>
+          <p class="uxd-faq-a">Every project is quoted as a fixed price agreed before any work begins &mdash; no hourly billing and no surprise change orders. The quote covers design, build, responsive testing and launch, with anything that recurs annually (hosting, premium plugins, paid assets) listed separately so you can see it.</p>
+          <p class="uxd-faq-a">Scope is what moves the number, so if your budget is fixed, say so on the first call and we will scope to it rather than quote past it.</p>
+        </details>
+
+        <details class="uxd-faq-item" name="uxd-faq">
+          <summary>What do you need from us to get started?</summary>
+          <p class="uxd-faq-a">A conversation first: what the product does, who it is for, and what a good outcome actually looks like. After that, your brand assets if they exist, any current analytics or session recordings, and access to the existing site or staging environment.</p>
+          <p class="uxd-faq-a">None of it is a blocker. If there are no brand guidelines we work from what you already use. If the copy does not exist we write it.</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- The reference layout closes on a full-width "we design, fix and improve
+       digital products" CTA band. None of the pages in this family carry it yet
+       — /web-design, /web-development, /ui-ux-design, /web-apps and
+       /landing-page-design all end here too — so it wants doing across the set
+       in one pass rather than only here. Until then the page closes on the FAQ
+       section's "Book an intro call" card and the footer's own CTA. -->
+
 </main>
 
 <!-- ============ GLOBAL FOOTER (footer.js) ============ -->
 <script src="footer.js" defer></script>
-<footer data-wx-footer data-static-shell>
-  <nav aria-label="Footer">
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/work">Work</a>
-    <a href="/studio">About</a>
-    <a href="/blog">Journal</a>
-    <a href="/careers">Careers</a>
-    <a href="/contact">Contact</a>
-    <a href="/landing-page-design">Landing Page Design</a>
-    <a href="/figma-to-webflow">Figma to Webflow</a>
-    <a href="/figma-to-wordpress">Figma to WordPress</a>
-    <a href="/figma-to-shopify">Figma to Shopify</a>
-    <a href="/figma-to-framer">Figma to Framer</a>
-    <a href="/figma-to-unbounce">Figma to Unbounce</a>
-    <a href="/web-development-agency-ludhiana">Web Development Agency in Ludhiana</a>
-  </nav>
-  <p>Web{X} Studio &middot; Model Town, Ludhiana, Punjab 141002, India &middot;
-    <a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a> &middot;
-    <a href="tel:+919780651142">+91 97806 51142</a></p>
-</footer>
+
+<script>
+/* Page-local: the process rail fills with the scroll and each marker lights as
+   the fill reaches it. Kept here rather than in assets/js/webx.js because no
+   other page uses it. Ported from home-v3's timeline, including the reason it
+   re-measures on every paint: measuring once left the rail height stale as the
+   sticky column settled, and since the fill is capped at that height the last
+   marker could never be reached. */
+(function () {
+  var track = document.querySelector('[data-uxd-timeline]');
+  if (!track) return;
+
+  var steps = [].slice.call(track.querySelectorAll('[data-uxd-step]'));
+  var rail  = track.querySelector('.uxd-rail');
+  var fill  = track.querySelector('[data-uxd-fill]');
+  var dots  = steps.map(function (s) { return s.querySelector('.uxd-step-dot'); });
+  if (!steps.length || !rail || !fill) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var railTop = 0, railH = 0;
+
+  // The rail runs first marker centre to last marker centre. Left to CSS it
+  // would stretch the full block and dangle past the final dot with nothing
+  // to point at.
+  function measure() {
+    var box = track.getBoundingClientRect();
+    var a = dots[0].getBoundingClientRect();
+    var z = dots[dots.length - 1].getBoundingClientRect();
+    railTop = (a.top - box.top) + (a.height / 2);
+    railH = Math.max(0, (z.top - box.top) + (z.height / 2) - railTop);
+    rail.style.top = railTop + 'px';
+    // The CSS anchors the rail top and bottom for the no-JS case; releasing
+    // bottom is what lets the measured height actually apply.
+    rail.style.bottom = 'auto';
+    rail.style.height = railH + 'px';
+  }
+
+  function paint() {
+    measure();
+    var box = track.getBoundingClientRect();
+    // The fill chases a line 62% down the viewport.
+    var reached = Math.max(0, Math.min(railH, (window.innerHeight * 0.62) - box.top - railTop));
+    // The last marker sits exactly at railH, so it would only ever turn on at
+    // an exact float match against the clamp — snap the final pixel.
+    if (railH - reached < 1) reached = railH;
+    fill.style.height = reached + 'px';
+    steps.forEach(function (s, k) {
+      var d = dots[k].getBoundingClientRect();
+      s.classList.toggle('is-on', (d.top - box.top) + (d.height / 2) - railTop <= reached + 0.5);
+    });
+  }
+
+  if (reduce) {
+    measure();
+    fill.style.height = '100%';
+    steps.forEach(function (s) { s.classList.add('is-on'); });
+    return;
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    // Cleared before painting: a throw inside paint() would otherwise wedge
+    // this true and freeze the rail for the rest of the page's life.
+    requestAnimationFrame(function () { ticking = false; paint(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', paint);
+  window.addEventListener('load', paint);
+  // Fonts landing changes the step heights, which moves every dot under the fill.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
+  paint();
+})();
+</script>
+
+<script src="assets/js/webx.js" defer></script>
+<script src="nav.js" defer></script>
 </body>
 </html>

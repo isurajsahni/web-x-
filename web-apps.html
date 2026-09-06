@@ -10,28 +10,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 
-<title>Landing Page Design &amp; Development Services | Web{X} Studio</title>
-<meta name="description" content="Hire a landing page design and development team that ships in 2-3 weeks. Conversion-focused landing pages for paid campaigns, launches and lead generation.">
-<meta name="keywords" content="landing page design services, landing page development company, landing page design agency, hire landing page designer, landing page developer, custom landing page design, high converting landing page, cro agency, conversion rate optimisation, thewebxstudio, the webx studio, webx studio, webx, thewebxstudio.com">
+<title>Web App Development Services for Dashboards &amp; Portals | Web{X} Studio</title>
+<meta name="description" content="Web application development for dashboards, customer portals and internal tools — logins, roles and real data, built to stay fast as the records pile up.">
+<meta name="keywords" content="web application development, web app development company, custom web application development, saas application development, dashboard development, customer portal development, internal tool development, database driven web app, user roles and permissions, thewebxstudio, the webx studio, webx studio, webx, thewebxstudio.com">
 <meta name="author" content="Web{X} Studio">
 
+<!-- This page owns the application-software query set: web apps, dashboards,
+     customer portals and internal tools — anything with accounts, roles and a
+     database behind it. Marketing-site building belongs to /web-development,
+     visual and site design to /web-design, and product interface design to
+     /ui-ux-design; this page links to those rather than competing for them.
+     Hero image: this page borrows the Canvas ERP One dashboard from the work
+     grid because there is no purpose-made web-app collage in images/service/ —
+     every one of those is spoken for by services-v2, ui-ux-design, web-design
+     and web-development. It is a real Web{X} project and the alt matches how
+     the same shot is described on case-study-erp.html, so it is fine as it
+     stands. Swapping in a purpose-made one later is a two-line change (the
+     <img> in the hero and the preload in this head), but the hero sizing below
+     is tuned for a 4:3 opaque shot: a wide transparent render would want the
+     template defaults back, i.e. drop the svh term and the opaque-image block
+     in the CSS. -->
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<link rel="canonical" href="https://www.thewebxstudio.com/landing-page-design">
+<link rel="canonical" href="https://www.thewebxstudio.com/web-apps">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Web{X} Studio">
 <meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Landing Page Design &amp; Development Services | Web{X} Studio">
-<meta property="og:description" content="Hire a landing page design and development team that ships in 2-3 weeks. Conversion-focused landing pages for paid campaigns, launches and lead generation.">
+<meta property="og:title" content="Web App Development Services for Dashboards &amp; Portals | Web{X} Studio">
+<meta property="og:description" content="Web application development for dashboards, customer portals and internal tools — logins, roles and real data, built to stay fast as the records pile up.">
 <meta property="og:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Landing page design and development services by Web{X} Studio">
-<meta property="og:url" content="https://www.thewebxstudio.com/landing-page-design">
+<meta property="og:image:alt" content="Web application development for dashboards, portals and internal tools by Web{X} Studio">
+<meta property="og:url" content="https://www.thewebxstudio.com/web-apps">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Landing Page Design &amp; Development Services | Web{X} Studio">
-<meta name="twitter:description" content="Hire a landing page design and development team that ships in 2-3 weeks. Conversion-focused landing pages for paid campaigns, launches and lead generation.">
+<meta name="twitter:title" content="Web App Development Services for Dashboards &amp; Portals | Web{X} Studio">
+<meta name="twitter:description" content="Web application development for dashboards, customer portals and internal tools — logins, roles and real data, built to stay fast as the records pile up.">
 <meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta name="twitter:site" content="@Thewebxstudio">
 
@@ -53,170 +68,63 @@
 
 <!-- The hero image is the LCP element. Preload it so the fetch starts with the
      HTML rather than waiting for the layout to reach the <img>. -->
-<link rel="preload" as="image" href="images/work/thumbs/narseva.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/work/erp-gpsfdk.avif" fetchpriority="high">
 
-<!-- Structured data. The @graph carried over from the previous version of this
-     page (Organization, Service, WebPage, FAQPage, BreadcrumbList) rather than
-     the template's bare FAQPage — it is live, indexed markup.
-     The FAQPage answers are the first paragraph of each accordion panel
-     verbatim, entities decoded — Google requires the markup to match what the
-     visitor sees, so both are generated from one array in the build script and
-     an answer cannot change on the page without changing here too. -->
+<!-- FAQPage. The answers here are the first paragraph of each accordion panel
+     verbatim — Google requires the markup to match what the visitor sees, so
+     if an answer changes on the page it has to change here too. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@type": "Organization",
-      "@id": "https://www.thewebxstudio.com/#organization",
-      "name": "Web{X} Studio",
-      "url": "https://www.thewebxstudio.com/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.thewebxstudio.com/favicon.svg"
+      "@type": "Question",
+      "name": "What counts as a web app rather than a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A website mostly shows the same thing to everyone. A web app has accounts, so what you see depends on who you are — your records, your permissions, your half-finished work — and it remembers state between visits: a dashboard, a client portal, a booking system, an internal tool."
       }
     },
     {
-      "@type": "Service",
-      "@id": "https://www.thewebxstudio.com/landing-page-design#service",
-      "name": "Landing Page Design & Development Services",
-      "serviceType": "Landing page design services, landing page development and conversion rate optimisation",
-      "description": "Hire a landing page design and development team that ships in 2-3 weeks. Conversion-focused landing pages for paid campaigns, launches and lead generation.",
-      "provider": {
-        "@id": "https://www.thewebxstudio.com/#organization"
-      },
-      "areaServed": [
-        {
-          "@type": "Country",
-          "name": "India"
-        },
-        {
-          "@type": "Country",
-          "name": "United Kingdom"
-        },
-        {
-          "@type": "Country",
-          "name": "United States"
-        },
-        {
-          "@type": "Country",
-          "name": "United Arab Emirates"
-        },
-        {
-          "@type": "Country",
-          "name": "Australia"
-        },
-        {
-          "@type": "Country",
-          "name": "Canada"
-        }
-      ]
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.thewebxstudio.com/landing-page-design#webpage",
-      "url": "https://www.thewebxstudio.com/landing-page-design",
-      "name": "Landing Page Design & Development Services | Web{X} Studio",
-      "description": "Hire a landing page design and development team that ships in 2-3 weeks. Conversion-focused landing pages for paid campaigns, launches and lead generation.",
-      "inLanguage": "en-IN",
-      "isPartOf": {
-        "@id": "https://www.thewebxstudio.com/#website"
-      },
-      "publisher": {
-        "@id": "https://www.thewebxstudio.com/#organization"
+      "@type": "Question",
+      "name": "How long does building a web app take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A small internal tool with one kind of user is usually 4–6 weeks. A customer portal with roles, notifications and a payment step is typically 8–14 weeks. A full SaaS product with billing, teams and an admin side starts at around four months."
       }
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is landing page design?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Landing page design is building a single, focused page aimed at one audience and one action — a signup, a demo request, a purchase. Unlike a homepage, it has no competing navigation, so every element on it exists to move the visitor toward that one goal."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is a landing page different from a website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A website serves many audiences and many goals across multiple pages. A landing page serves one campaign, one audience and one conversion. That focus is why landing pages typically convert far better than sending paid traffic to a homepage."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How much does landing page design cost?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A single landing page usually runs ₹40,000–₹1,20,000 in India, or roughly $450–$1,500 for international clients. The range depends on how much of the copy, design and custom interaction we build from scratch versus adapt from brand assets you already have. Every project is quoted as a fixed price before we start — we don’t bill hourly."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is CRO and do you include it?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "CRO is conversion rate optimisation — improving the share of visitors who take the action you want. It is built into every landing page we ship: message hierarchy, form design, proof placement and page speed, then measurement after launch so the page keeps improving."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How long does a landing page take to build?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A focused landing page is usually 2–3 weeks from brief to live, including design, build, responsive testing and analytics setup. Turnaround depends on how ready your copy and brand assets are."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Are the pages A/B testing ready?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Pages are built so variants can be swapped without a redevelopment cycle, and we set up the analytics and event tracking needed to tell which variant actually won."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which platforms do you build landing pages on?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Webflow, WordPress, Shopify, Framer, Unbounce, or fully custom — chosen for how your team needs to edit and test the page, not for our convenience."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you work with clients outside India?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. We work with founders and marketing teams across the UK, the US, the Gulf, Australia and Canada as well as India, running projects remotely with async updates and calls that fit your hours."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "Can it connect to the systems we already use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually. Payment gateways, accounting software, CRMs, email and SMS providers, spreadsheets, messaging apps — if it exposes an API it can be joined up, and most business tools now do."
+      }
     },
     {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.thewebxstudio.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Services",
-          "item": "https://www.thewebxstudio.com/services"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Landing Page Design",
-          "item": "https://www.thewebxstudio.com/landing-page-design"
-        }
-      ]
+      "@type": "Question",
+      "name": "How do you handle user roles and permissions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roles are designed in rather than added later. We agree who the user types are and exactly what each one may see, create, edit and delete before the first screen is built, because retrofitting permissions onto an app that assumed one kind of user is close to a rewrite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who owns the data once it is live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You do. The database sits in an account in your name, and you can export the whole thing whenever you like without asking us first. Nothing is held back as leverage and nothing is reused elsewhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need from us to get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A walk through how the work happens today — the spreadsheet, the group chat, the person who checks everything before it goes out. The app has to replace a real process, not an idealised one."
+      }
     }
   ]
 }
@@ -224,7 +132,7 @@
 
 <style>
   /* ============================================================
-     Landing page design service page. Written in the home-v3 design
+     Web application development service page. Written in the home-v3 design
      language — the same Manrope / Instrument Serif pairing, the
      same purple CTA system and the same 1460px container — so the
      page reads as part of that family rather than a one-off.
@@ -313,6 +221,15 @@
   /* A calendar spun 45deg reads as a glitch, not a flourish — the rotation is
      for the arrow glyphs only. Same exception home-v3 makes for WhatsApp. */
   .v3-btn--cal:hover .v3-btn-ico svg, .v3-btn--cal:focus-visible .v3-btn-ico svg { transform: none; }
+
+  /* Inline link inside body copy. Same rule landing-page-design.html carries:
+     the underline is the accent rather than the text, so a link inside a
+     paragraph reads as one without breaking the colour of the sentence. */
+  .uxd-a { color: inherit; text-decoration: underline;
+           text-decoration-color: rgba(157,92,255,.55);
+           text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+           transition: text-decoration-color .25s ease; }
+  .uxd-a:hover { text-decoration-color: var(--v3-accent); }
 
   /* ============================================================
      HERO — copy left, product mockup right.
@@ -433,7 +350,7 @@
      around a hard rectangle reads as a mistake, and the drop-shadow is
      replaced by the same radius / hairline / soft drop the showcase frame
      below uses — which makes the straight edge look deliberate instead.
-     If a transparent landing-page collage ever replaces this image, delete
+     If a transparent web-app collage ever replaces this image, delete
      this block and the template default comes back. */
   .uxd-hero-visual::before { display: none; }
   .uxd-hero-visual img {
@@ -472,13 +389,20 @@
        does not, which would leave the mockup ~7px past the nav's right edge.
        right: the wrapper's own gutter, so the mockup stops on the wrapper edge
               instead of bleeding to the viewport.
-       width: 51% of the wrapper, so it grows and shrinks with it. */
+       width: 51% of the wrapper, so it grows and shrinks with it.
+       The third term is there because this shot is 4:3 (1600x1200) rather
+       than the wide laptop render the template was built around: height is
+       the axis that runs out first on a short laptop, and at the full 684px
+       it would stand 513px tall and push up into the nav. 82svh is that
+       height cap written as a width — 82 x 3/4 lands a hair over 61svh of
+       height — so the visual clears the nav at every window height. Multiply
+       by the aspect ratio if the image is ever swapped. */
     .uxd-hero-visual {
       /* Lifted off the section edge rather than sitting flush on it, so the
          mockup reads as placed in the hero instead of cropped by it. */
       position: absolute; bottom: clamp(24px,5vh,64px); margin: 0;
       right: max(20px, calc((100% - 1340px) / 2));
-      width: min(684px, calc((100% - 40px) * .51));
+      width: min(684px, calc((100% - 40px) * .51), 82svh);
     }
   }
 
@@ -488,7 +412,9 @@
     .uxd-hero h1    { max-width: 20ch; }
     .uxd-hero-lead  { margin-inline: auto; }
     .uxd-hero-cta { justify-content: center; }
-    .uxd-hero-visual { order: 2; max-width: 720px; margin-inline: auto; width: 100%; }
+    /* 600, not the template's 720: stacked under the copy, a 4:3 shot at 720px
+       would run 540px tall and push the CTAs off a tablet screen. */
+    .uxd-hero-visual { order: 2; max-width: 600px; margin-inline: auto; width: 100%; }
   }
 
   @media (max-width: 720px) {
@@ -498,7 +424,7 @@
     /* Swap which break is live. */
     .uxd-br-lg { display: none; }
     .uxd-br-sm { display: inline; }
-    /* Sized so "Landing Page Design" clears the wrapper on one line at 375px
+    /* Sized so "Log Into Every Day" clears the wrapper on one line at 375px
        — the old 9.2vw needed ~377px of the 335px available and spilled. */
     .uxd-hero h1 { font-size: clamp(26px,8vw,46px); max-width: 100%; }
     .uxd-hero-cta { width: 100%; flex-direction: column; align-items: stretch; }
@@ -543,23 +469,6 @@
     font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.6;
     color: rgba(0,0,0,.6); margin: clamp(14px,1.6vw,20px) 0 0; max-width: 60ch;
   }
-
-  /* ---- Inline prose link ----
-     The template has no links inside body copy, so an <a> in a section lead or
-     a tile would fall back to the browser's default blue underline — webx.css
-     sets no base anchor colour. This page carries several in-copy links to the
-     landing-page guides and the service index that are worth keeping visible
-     rather than burying in the FAQ panels, so they get the ink-plus-accent
-     underline the rest of the v3 family uses for text links. */
-  .uxd-a { color: inherit; text-decoration: underline;
-           text-decoration-color: rgba(157,92,255,.55);
-           text-decoration-thickness: 1.5px; text-underline-offset: 3px;
-           transition: text-decoration-color .25s ease; }
-  .uxd-a:hover { text-decoration-color: var(--v3-accent); }
-  /* On the near-black section the inherited 62% white is too dim to read as a
-     link, so it goes full white with the lavender the dark heading accent uses. */
-  .uxd-diff .uxd-a { color: #FFFFFF; text-decoration-color: rgba(201,166,255,.7); }
-  .uxd-diff .uxd-a:hover { text-decoration-color: #C9A6FF; }
 
   /* ============================================================
      ISSUES — a 2x2 of symptoms, split by hairlines rather than
@@ -1011,21 +920,23 @@
               <path d="M7.3 15.1c-1.3.5-2.2 1.6-2.6 4.2 2.6-.4 3.7-1.3 4.2-2.6M5.5 12 3 11l2-2.6M12 18.5l1 2.5 2.6-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </i>
-          Landing Page Design Services
+          Web App Development Services
         </span>
 
-        <!-- Two break points, one per breakpoint. Both land in the same place
-             here: "Landing Page Design" is the head term and has to stay whole,
-             and at 19 characters it is already at the ~20-21 the copy column
-             affords, so there is no shorter first line for the phone to fall
-             back to. The structure is kept rather than collapsed to a single
-             <br> so the split stays tunable if the headline is ever reworded.
+        <!-- Two break points, one per breakpoint. Wide: after "Log", giving
+             "Web Apps People Log" / "Into Every Day". Phone: after "People",
+             giving the more even "Web Apps People" / "Log Into Every Day" —
+             breaking after "Log" there would strand a three-letter verb at the
+             end of the first line with its object on the next.
+             Both halves are kept to ~20 characters because the headline sizes
+             off the copy column, which is capped at 44% of the wrapper: much
+             past that and the first line wraps on its own into a third.
              The space before each <br> is load-bearing: whichever one is hidden
-             leaves its space behind, which is what keeps "Design" and "Built"
-             from butting together. -->
-        <h1 id="uxd-hero-h" data-reveal data-reveal-delay="40">Landing Page Design<br class="uxd-br-sm"> <br class="uxd-br-lg"><em>Built to Convert</em></h1>
+             leaves its space behind, which is what keeps "People Log" and
+             "Log Into" from butting together. -->
+        <h1 id="uxd-hero-h" data-reveal data-reveal-delay="40">Web Apps People<br class="uxd-br-sm"> <em>Log</em> <br class="uxd-br-lg"><em>Into Every Day</em></h1>
 
-        <p class="uxd-hero-lead" data-reveal data-reveal-delay="80">One page, one audience, one action. We design and build landing pages for paid campaigns, launches and lead generation &mdash; then measure them, so the next version is informed rather than guessed at.</p>
+        <p class="uxd-hero-lead" data-reveal data-reveal-delay="80">Dashboards, customer portals and internal tools &mdash; the software a business actually runs on, with the accounts, roles and reporting designed in from the start rather than bolted on once it hurts.</p>
 
         <div class="uxd-hero-cta" data-reveal data-reveal-delay="140">
           <a class="v3-btn v3-btn--cal" href="contact">Book a Call
@@ -1048,21 +959,23 @@
       </div>
 
       <div class="uxd-hero-visual" data-reveal data-reveal-delay="140">
-        <img src="images/work/thumbs/narseva.webp"
-             alt="The Nar Seva Foundation site built by Web{X} Studio, shown on a laptop and a phone"
-             width="1928" height="1040" loading="eager" fetchpriority="high" decoding="async">
+        <img src="images/work/erp-gpsfdk.avif"
+             alt="The Canvas ERP One dashboard built by Web{X} Studio &mdash; a custom ERP covering HR, projects, finance and tenders"
+             width="1600" height="1200" loading="eager" fetchpriority="high" decoding="async">
       </div>
 
     </div>
   </section>
 
   <!-- ============ 2. SHOWCASE ============ -->
-  <section class="uxd-showcase" aria-label="Recent landing page work">
+  <section class="uxd-showcase" aria-label="Recent web application work">
     <div class="uxd-showcase-inner">
       <figure class="uxd-showcase-frame uxd-rise" data-reveal style="margin:0 auto">
-        <img src="images/work/kavya-portfolio.avif"
-             alt="The Kavya portfolio site built by Web{X} Studio, shown as a full-page layout"
-             width="2400" height="1600" loading="lazy" decoding="async">
+        <!-- Not narseva.webp: that is the hero of landing-page-design.html, and
+             two sibling service pages should not open on the same mockup. -->
+        <img src="images/work/thumbs/katyal-gym.webp"
+             alt="The Katyal Fitness Gym site built by Web{X} Studio, shown on a laptop and a phone"
+             width="1928" height="1040" loading="lazy" decoding="async">
       </figure>
     </div>
   </section>
@@ -1080,8 +993,8 @@
           </i>
           How We Help
         </span>
-        <h2 class="uxd-h2" id="uxd-issues-h">Is Your Landing Page<br><em>Leaking Conversions?</em></h2>
-        <p>A landing page is not a smaller website. It serves one campaign, one audience and one action &mdash; and most of what stops it converting is structural, not cosmetic. Still deciding which you need? Start with <a class="uxd-a" href="/blog-landing-page-vs-website">landing page vs website</a>.</p>
+        <h2 class="uxd-h2" id="uxd-issues-h">Is The Software<br><em>Getting In The Way?</em></h2>
+        <p>When the team works around the tool instead of inside it &mdash; exporting to a spreadsheet, chasing an approval over chat, keying the same record in twice &mdash; the tool is the thing that needs fixing.</p>
       </div>
 
       <div class="uxd-issues-grid uxd-rise" data-reveal data-reveal-delay="120">
@@ -1093,8 +1006,8 @@
               <path d="M6.6 19a5.8 5.8 0 0 1 10.8 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
           </span>
-          <h3>The Page Does Not Match The Ad</h3>
-          <p>Someone clicks a promise and lands on different words. The first three seconds go on checking they are in the right place instead of reading the offer &mdash; and a good share never get past that.</p>
+          <h3>Everything Lives In Spreadsheets</h3>
+          <p>Five versions of the same file, one person who understands the formulas, and no way to tell which row changed last or who changed it.</p>
         </div>
 
         <div class="uxd-issue">
@@ -1106,8 +1019,8 @@
               <circle cx="16" cy="16" r="3.4" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </span>
-          <h3>Too Many Ways Off The Page</h3>
-          <p>A full site navigation, a footer of links and a second call to action all pulling elsewhere. Every extra exit is a share of the traffic you just paid for leaving without converting.</p>
+          <h3>Nobody Sees The Same Numbers</h3>
+          <p>Sales quotes one figure, finance quotes another, and both were pulled by hand. With no single record behind them, every meeting starts by arguing about the data.</p>
         </div>
 
         <div class="uxd-issue">
@@ -1117,8 +1030,8 @@
               <circle cx="12" cy="12" r="2.9" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </span>
-          <h3>The Form Asks For Too Much</h3>
-          <p>Nine fields where four would do, half of them things nobody on your team ever reads. Every extra field costs conversions, and the ones marked optional still slow people down.</p>
+          <h3>One Login For The Whole Team</h3>
+          <p>Shared credentials, because proper roles were never built. Workable at five people; an audit finding and a resignation risk at fifty.</p>
         </div>
 
         <div class="uxd-issue">
@@ -1129,8 +1042,8 @@
               <circle cx="12" cy="17.4" r="1.05" fill="currentColor"/>
             </svg>
           </span>
-          <h3>It Is Slow On A Phone</h3>
-          <p>Most paid traffic arrives on mobile data. If the page takes four seconds to paint, a lot of the clicks you just bought are gone before the headline ever reaches them.</p>
+          <h3>It Slows Down As You Grow</h3>
+          <p>Quick at two hundred records, crawling at twenty thousand. Queries nobody planned for are the usual reason a tool that worked quietly stops working.</p>
         </div>
       </div>
     </div>
@@ -1148,8 +1061,8 @@
           </i>
           Our Services
         </span>
-        <h2 class="uxd-h2" id="uxd-impact-h">The Business Impact of<br><em>a Page That Converts</em></h2>
-        <p>A landing page is the cheapest place to make paid traffic worth more: the same spend and the same audience, with a higher share taking the action. Need more than one page? See the <a class="uxd-a" href="/services">full service range</a>.</p>
+        <h2 class="uxd-h2" id="uxd-impact-h">The Business Impact of<br><em>a Real Web App</em></h2>
+        <p>One place holding the records, the rules and the permissions ends the copying, the chasing and the arguing about whose figure is right. That time comes straight back to the people doing the work. A brochure or marketing site is a different job &mdash; that is <a class="uxd-a" href="/web-development">web development</a>.</p>
       </div>
 
       <div class="uxd-bento uxd-rise" data-reveal data-reveal-delay="120">
@@ -1157,19 +1070,14 @@
         <div class="uxd-tile uxd-tile--photo">
           <img src="images/service/services-web-design.webp" alt="A client smiling during a phone call about her new website" loading="lazy" decoding="async" width="1004" height="1502">
           <div class="uxd-tile-foot">
-            <h3>Landing Page Design</h3>
-            <p>Single-purpose pages for campaigns, launches and lead generation &mdash; designed, written, built and then measured.</p>
+            <h3>Web App Development</h3>
+            <p>Dashboards, portals and internal tools, holding the accounts, records and reporting your team currently works around.</p>
           </div>
         </div>
 
-        <!-- These tiles carried 85% / 50% / 70% taken from the reference layout,
-             not from Web{X} data and unattributed there. They are replaced with
-             commitments this page already makes in its own FAQ and meta
-             description, so the bento states things the studio can stand behind
-             rather than borrowed figures on an indexed page. -->
         <div class="uxd-tile uxd-tile--blue">
-          <p class="uxd-stat uxd-stat--xl">2&ndash;3</p>
-          <p>Weeks from kickoff to a live page &mdash; written, designed, built and measured.</p>
+          <p class="uxd-stat uxd-stat--xl">4&ndash;6</p>
+          <p>Weeks to a working first version of a small internal tool, in front of the people who will use it before it grows.</p>
         </div>
 
         <div class="uxd-tile uxd-tile--violet">
@@ -1190,13 +1098,13 @@
                 <path d="M14.6 27.5h34.8l-.5 4.6H15.1z" fill="#FFFFFF" opacity=".26"/>
               </svg>
             </span>
-            <p class="uxd-stat uxd-stat--lg">No</p>
-            <span>No rebuild to test</span>
+            <p class="uxd-stat uxd-stat--lg">Once</p>
+            <span>Entered once, then reused</span>
           </div>
           <div>
-            <span class="uxd-chip"><i aria-hidden="true"></i>Campaigns / Testing</span>
-            <h3 style="margin-top:12px">Test Without A Rebuild</h3>
-            <p>A headline, a hero or a whole variant can be swapped without a development cycle &mdash; which is what makes A/B testing something you do rather than plan.</p>
+            <span class="uxd-chip"><i aria-hidden="true"></i>Admin / Handovers</span>
+            <h3 style="margin-top:12px">Cut The Copying And Chasing</h3>
+            <p>Records entered once, approvals that move on their own, and a report that is already written when someone asks for it. Fewer handovers, fewer places for a job to stall.</p>
             <a class="uxd-tile-link" href="work">View Our Work
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8h11M9.5 4.5 13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
@@ -1204,23 +1112,23 @@
         </div>
 
         <div class="uxd-tile uxd-tile--wide">
-          <h3>Message Match, Not Guesswork</h3>
-          <p style="max-width:46ch">The page opens with what the ad promised, in the same words &mdash; the change that most often moves a campaign. More of them in <a class="uxd-a" href="/blog-landing-page-best-practices">landing page best practices</a>.</p>
+          <h3>Modelling That Earns Its Keep</h3>
+          <p style="max-width:46ch">We settle who the users are and what a record has to hold before anything is built, so the data model answers a real question about the business &mdash; not one invented at the keyboard.</p>
           <span class="uxd-tile-wash" aria-hidden="true"></span>
           <span class="uxd-float uxd-float--a">
             <i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.7"/></svg></i>
-            <span style="text-align:left"><b>Proof Placement</b><span>Evidence sits next to the ask</span></span>
+            <span style="text-align:left"><b>Data Modelling</b><span>Decide what a record must hold</span></span>
           </span>
           <span class="uxd-float uxd-float--b">
             <i><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8.4" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M5.6 19.2a6.4 6.4 0 0 1 12.8 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></i>
-            <span style="text-align:left"><b>One Audience</b><span>Written for whoever clicked the ad</span></span>
+            <span style="text-align:left"><b>Role Mapping</b><span>Agree who may do what</span></span>
           </span>
         </div>
 
         <div class="uxd-tile uxd-tile--amber">
           <span class="uxd-orb" aria-hidden="true"></span>
-          <p class="uxd-stat uxd-stat--xl">Fixed</p>
-          <p>Price agreed before we start, so the cost is settled before any work begins. We don&rsquo;t bill hourly.</p>
+          <p class="uxd-stat uxd-stat--xl">Roles</p>
+          <p>Who may see, create, edit and delete each record is agreed before the first screen, then enforced on the server.</p>
         </div>
 
       </div>
@@ -1240,8 +1148,8 @@
           </i>
           Our Difference
         </span>
-        <h2 class="uxd-h2" id="uxd-diff-h">What Makes Our<br><em>Landing Pages Convert</em></h2>
-        <p>Conversion rate optimisation, not decoration. What the headline promises, how far the proof sits from the ask and how fast the page paints are structural decisions, not finishing touches. The method in full: <a class="uxd-a" href="/blog-landing-page-conversion-rate">how to increase landing page conversion rate</a>.</p>
+        <h2 class="uxd-h2" id="uxd-diff-h">What Makes Our<br><em>Approach Different</em></h2>
+        <p>Strategy, design and development sit in the same room, so problems get solved on the page rather than discovered in the build &mdash; and what ships works for the business as well as the people using it.</p>
       </div>
 
       <div class="uxd-diff-grid uxd-rise" data-reveal data-reveal-delay="120">
@@ -1254,8 +1162,8 @@
               <path d="m19 19 2.2 2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
             </svg>
           </span>
-          <h3>Message Match</h3>
-          <p>The page opens with what the ad promised, in the same words. No translation step between the click and the offer, and nothing to make the visitor wonder whether this is the right place.</p>
+          <h3>The Real Process First</h3>
+          <p>We sit with how the work happens today &mdash; who touches what, which step everyone dreads, where the exceptions hide &mdash; before deciding what the software should do about it.</p>
         </div>
 
         <div class="uxd-diff-card">
@@ -1265,8 +1173,8 @@
               <path d="M12 6.6V12l3.4 2.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <h3>One Action, No Detours</h3>
-          <p>The competing navigation comes off and one call to action stays. Everything left on the page has to earn its place by moving someone toward that single goal.</p>
+          <h3>A Data Model That Holds</h3>
+          <p>Tables, relationships and indexes settled before the screens, so the tenth feature costs a fraction of the first and the app is as quick at twenty thousand records as at two hundred.</p>
         </div>
 
         <div class="uxd-diff-card">
@@ -1276,8 +1184,8 @@
               <path d="M10.8 18.6h2.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
             </svg>
           </span>
-          <h3>Proof Where The Doubt Is</h3>
-          <p>Testimonials, logos and numbers sit next to the ask rather than three screens below it &mdash; because that is the moment the visitor is deciding whether to believe you.</p>
+          <h3>Roles Built In, Not Bolted On</h3>
+          <p>Who may see, create, edit and delete is agreed before the first screen exists, and enforced on the server rather than merely hidden in the interface.</p>
         </div>
 
         <div class="uxd-diff-card">
@@ -1287,8 +1195,8 @@
               <path d="M15.4 7H20v4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <h3>Forms That Ask Less</h3>
-          <p>Every extra field costs conversions, so the form asks only for what you will actually use, and the rest gets collected later, once the person has already said yes.</p>
+          <h3>Joined To What You Run</h3>
+          <p>Payments, accounting, CRM, email and messaging wired in during the build rather than promised for phase two &mdash; because an app that cannot talk to anything just adds another place to type.</p>
         </div>
 
         <div class="uxd-diff-card">
@@ -1299,8 +1207,8 @@
               <path d="m10 14 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
             </svg>
           </span>
-          <h3>Fast And Accessible</h3>
-          <p>Core Web Vitals treated as a conversion input, because it is one &mdash; with WCAG contrast, focus states and keyboard paths in from the first commit rather than retrofitted.</p>
+          <h3>An Admin Side You Own</h3>
+          <p>Users, permissions, content and settings all changeable from inside the app, so day-to-day running never needs a developer &mdash; or an invoice from us.</p>
         </div>
 
         <div class="uxd-diff-card">
@@ -1310,8 +1218,8 @@
               <path d="m8.4 12.2 2.5 2.5 4.7-4.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
-          <h3>Measured, Then Improved</h3>
-          <p>Event tracking set up at launch and variants ready to swap, so the next version is informed by what people actually did rather than by whoever spoke loudest in the room.</p>
+          <h3>Post-Launch Support</h3>
+          <p>Launch is the middle of the job, not the end. We stay on for the fixes, the next module and the awkward cases that only surface once real people put real data in.</p>
         </div>
       </div>
     </div>
@@ -1331,8 +1239,8 @@
           </i>
           Our Process
         </span>
-        <h2 class="uxd-h2" id="uxd-process-h">How We Bring<br>Your <em>Campaign To Life</em></h2>
-        <p>From the first conversation to a live page with the tracking wired up and the next test already possible.</p>
+        <h2 class="uxd-h2" id="uxd-process-h">How We Bring<br>Your <em>Web App To Life</em></h2>
+        <p>From the first conversation to a working tool your team logs into on Monday morning without being trained twice.</p>
         <a class="v3-btn v3-btn--cal" href="contact">Book a call
           <span class="v3-btn-ico">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1354,10 +1262,10 @@
             <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
             <div class="uxd-step-item">
               <div class="uxd-step-copy">
-                <h3>Understand the campaign</h3>
-                <p>We learn who the traffic is, what the ad promised them and what actually counts as a conversion &mdash; before anyone opens a design file.</p>
+                <h3>Map how the work happens</h3>
+                <p>We learn the process as it is really run today, who does each part of it, and which step is costing the most &mdash; before anyone proposes software.</p>
               </div>
-              <div class="uxd-step-media"><img src="images/service/process-understand.webp" alt="A team reviewing product sketches and wireframes together at a desk" loading="lazy" decoding="async" width="1536" height="1024"></div>
+              <div class="uxd-step-media"><img src="images/service/process-understand.webp" alt="A team mapping an existing business process together at a desk" loading="lazy" decoding="async" width="1536" height="1024"></div>
             </div>
           </div>
 
@@ -1366,46 +1274,46 @@
             <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
             <div class="uxd-step-item">
               <div class="uxd-step-copy">
-                <h3>Plan the one action</h3>
-                <p>The single goal agreed, the message hierarchy mapped and the proof and the form placed, so the page that follows has something to answer to.</p>
+                <h3>Model the data and roles</h3>
+                <p>User types agreed, permissions written down and the records defined, so every screen that follows has something solid underneath it.</p>
               </div>
-              <div class="uxd-step-media"><img src="images/service/process-plan.webp" alt="Wireframe printouts and sticky notes mapping user research, prototypes and usability" loading="lazy" decoding="async" width="1536" height="1024"></div>
+              <div class="uxd-step-media"><img src="images/service/process-plan.webp" alt="Printouts and sticky notes mapping user roles, records and permissions" loading="lazy" decoding="async" width="1536" height="1024"></div>
             </div>
           </div>
 
           <div class="uxd-step" data-uxd-step data-reveal>
-            <div class="uxd-step-n"><span class="v3-tag">Step 3</span><b>Design</b></div>
+            <div class="uxd-step-n"><span class="v3-tag">Step 3</span><b>Build</b></div>
             <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
             <div class="uxd-step-item">
               <div class="uxd-step-copy">
-                <h3>Design and write it</h3>
-                <p>Copy and layout decided together, because on a landing page the words are the design &mdash; and every section either moves someone forward or comes off.</p>
+                <h3>Build the application</h3>
+                <p>Screens, database, permissions and the integrations between them &mdash; delivered module by module, so you are clicking around in it long before it is finished.</p>
               </div>
-              <div class="uxd-step-media"><img src="images/service/process-design.webp" alt="A designer working on high-fidelity app screens beside a whiteboard of user flows" loading="lazy" decoding="async" width="1536" height="1024"></div>
+              <div class="uxd-step-media"><img src="images/service/process-design.webp" alt="A developer building application screens beside a whiteboard of user flows" loading="lazy" decoding="async" width="1536" height="1024"></div>
             </div>
           </div>
 
           <div class="uxd-step" data-uxd-step data-reveal>
-            <div class="uxd-step-n"><span class="v3-tag">Step 4</span><b>Build</b></div>
+            <div class="uxd-step-n"><span class="v3-tag">Step 4</span><b>Trial</b></div>
             <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
             <div class="uxd-step-item">
               <div class="uxd-step-copy">
-                <h3>Build, test and harden</h3>
-                <p>Every breakpoint checked on real devices, the form exercised end to end, and the performance budget held before anyone signs it off.</p>
+                <h3>Trial it on real data</h3>
+                <p>A pilot group, your actual records and the awkward cases deliberately thrown at it &mdash; the stage that finds the rule nobody thought to mention.</p>
               </div>
-              <div class="uxd-step-media"><img src="images/service/process-refine.webp" alt="A laptop showing user interface layouts beside a notebook of design notes" loading="lazy" decoding="async" width="2048" height="1367"></div>
+              <div class="uxd-step-media"><img src="images/service/process-refine.webp" alt="A laptop showing application screens beside a notebook of testing notes" loading="lazy" decoding="async" width="2048" height="1367"></div>
             </div>
           </div>
 
           <div class="uxd-step" data-uxd-step data-reveal>
-            <div class="uxd-step-n"><span class="v3-tag">Step 5</span><b>Measure</b></div>
+            <div class="uxd-step-n"><span class="v3-tag">Step 5</span><b>Rollout</b></div>
             <span class="uxd-step-dot" aria-hidden="true"><i><b><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></b></i></span>
             <div class="uxd-step-item">
               <div class="uxd-step-copy">
-                <h3>Launch and measure</h3>
-                <p>Deployed with analytics and event tracking connected, and the page structured so the next variant is a swap rather than a rebuild.</p>
+                <h3>Roll it out and hand over</h3>
+                <p>Data migrated, accounts created, the team walked through it once, and the keys to the hosting and the repository put in your name.</p>
               </div>
-              <div class="uxd-step-media"><img src="images/service/process-handoff.webp" alt="A designer and developer checking a component spec sheet against the code" loading="lazy" decoding="async" width="1400" height="932"></div>
+              <div class="uxd-step-media"><img src="images/service/process-handoff.webp" alt="A developer walking a colleague through the finished application" loading="lazy" decoding="async" width="1400" height="932"></div>
             </div>
           </div>
         </div>
@@ -1427,8 +1335,8 @@
           </i>
           Why Work With Us
         </span>
-        <h2 class="uxd-h2" id="uxd-team-h">A Landing Page Team<br><em>You Can Rely On</em></h2>
-        <p>A prettier page is the easy part to promise. What you actually need is a team that knows what the page has to do, says what it is doing, owns the number afterwards and hands you work you do not have to check.</p>
+        <h2 class="uxd-h2" id="uxd-team-h">An App Team You Can<br><em>Always Rely On</em></h2>
+        <p>Shipping a demo is the easy part to promise. What you actually need is a team that understands the process, says what it is doing, owns the result and hands you something your staff will keep using in a year.</p>
       </div>
 
       <div class="uxd-team-grid uxd-rise" data-reveal data-reveal-delay="120">
@@ -1436,8 +1344,8 @@
         <div class="uxd-team-cell uxd-team-card">
           <span class="uxd-team-num">01</span>
           <div>
-            <h3>Experienced Designers</h3>
-            <p>A team that has shipped real pages since 2019, from the first wireframe through to the version that is still converting a year later.</p>
+            <h3>Experienced Builders</h3>
+            <p>A team that has shipped working software since 2019, from the first data model through to the tool a company runs its day on.</p>
           </div>
         </div>
 
@@ -1448,8 +1356,8 @@
         <div class="uxd-team-cell uxd-team-card">
           <span class="uxd-team-num">02</span>
           <div>
-            <h3>Conversion-Focused Approach</h3>
-            <p>Your audience, your offer and the number the page has to move all sit in the brief, so every design decision has a reason behind it.</p>
+            <h3>Process-Focused Approach</h3>
+            <p>Your people, your rules and your commercial reality all sit in the brief, so every technical decision has a reason behind it.</p>
           </div>
         </div>
 
@@ -1461,7 +1369,7 @@
           <span class="uxd-team-num">03</span>
           <div>
             <h3>Talk Directly To The Team</h3>
-            <p>You speak to the people doing the work, not an account manager relaying it. Questions get answered by whoever built the page.</p>
+            <p>You speak to the people doing the work, not an account manager relaying it. Questions get answered by whoever built the module.</p>
           </div>
         </div>
 
@@ -1469,7 +1377,7 @@
           <span class="uxd-team-num">04</span>
           <div>
             <h3>Flexible Engagement</h3>
-            <p>One page for one campaign, or an ongoing plan while the tests keep running &mdash; whichever suits how fast the campaign has to move.</p>
+            <p>A single build or ongoing monthly support &mdash; whichever suits where the app is and how fast it needs to grow.</p>
           </div>
         </div>
 
@@ -1513,13 +1421,13 @@
       <div class="uxd-faq-left uxd-rise" data-reveal>
         <div class="uxd-faq-heading">
           <h2 class="uxd-h2" id="uxd-faq-h">Got Questions?<br><em>We&rsquo;ve Got Answers</em></h2>
-          <p>If you are not sure whether you need a landing page or a whole website, or what either would cost, reach out and we will walk you through it.</p>
+          <p>If you are not sure where to start, or want to know whether this is the right fit, reach out and we will walk you through it.</p>
         </div>
         <div class="uxd-call">
           <div class="uxd-call-top">
             <div class="uxd-call-copy">
               <h3>Book an intro call</h3>
-              <p>Let&rsquo;s talk through your campaign, your timeline, and how Web{X} Studio can help.</p>
+              <p>Let&rsquo;s talk through what the app has to do, your timeline, and how Web{X} Studio can help.</p>
             </div>
             <a class="v3-btn" href="contact">Book a free call
               <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1537,62 +1445,50 @@
 
       <div class="uxd-faq-list uxd-rise" data-reveal data-reveal-delay="120">
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>What is landing page design?</summary>
-          <p class="uxd-faq-a">Landing page design is building a single, focused page aimed at one audience and one action &mdash; a signup, a demo request, a purchase. Unlike a homepage, it has no competing navigation, so every element on it exists to move the visitor toward that one goal.</p>
-          <p class="uxd-faq-a">That focus is the whole point. A homepage has to serve everyone who might arrive; a landing page only has to serve the person who just clicked one specific ad, which is why it can afford to say one thing and say it properly.</p>
+          <summary>What counts as a web app rather than a website?</summary>
+          <p class="uxd-faq-a">A website mostly shows the same thing to everyone. A web app has accounts, so what you see depends on who you are &mdash; your records, your permissions, your half-finished work &mdash; and it remembers state between visits: a dashboard, a client portal, a booking system, an internal tool.</p>
+          <p class="uxd-faq-a">The difference that matters is underneath. A site needs pages and a CMS; an app needs a database, a login, roles and rules about who may change what. That is why it gets scoped, quoted and built differently from a marketing site.</p>
         </details>
 
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>How is a landing page different from a website?</summary>
-          <p class="uxd-faq-a">A website serves many audiences and many goals across multiple pages. A landing page serves one campaign, one audience and one conversion. That focus is why landing pages typically convert far better than sending paid traffic to a homepage.</p>
-          <p class="uxd-faq-a">Most businesses end up needing both, and they need to agree with each other. If you are weighing the two up, <a class="uxd-a" href="/blog-landing-page-vs-website">landing page vs website</a> goes through it properly.</p>
+          <summary>How long does building a web app take?</summary>
+          <p class="uxd-faq-a">A small internal tool with one kind of user is usually 4&ndash;6 weeks. A customer portal with roles, notifications and a payment step is typically 8&ndash;14 weeks. A full SaaS product with billing, teams and an admin side starts at around four months.</p>
+          <p class="uxd-faq-a">The honest variable is how many of your rules are already written down. We would rather put a narrow first version in front of real users in six weeks and grow it from what actually gets used, than hand over a complete one in six months.</p>
         </details>
 
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>How much does landing page design cost?</summary>
-          <p class="uxd-faq-a">A single landing page usually runs ₹40,000&ndash;₹1,20,000 in India, or roughly $450&ndash;$1,500 for international clients. The range depends on how much of the copy, design and custom interaction we build from scratch versus adapt from brand assets you already have. Every project is quoted as a fixed price before we start &mdash; we don&rsquo;t bill hourly.</p>
-          <p class="uxd-faq-a">Scope is what moves the number, so if your budget is fixed, say so on the first call and we will scope to it rather than quote past it.</p>
+          <summary>Can it connect to the systems we already use?</summary>
+          <p class="uxd-faq-a">Usually. Payment gateways, accounting software, CRMs, email and SMS providers, spreadsheets, messaging apps &mdash; if it exposes an API it can be joined up, and most business tools now do.</p>
+          <p class="uxd-faq-a">Where there is no API we look at exports, webhooks or a scheduled sync before suggesting anything gets replaced. Integrations are mapped in the planning step on purpose: discovering in week six that a system is closed is what wrecks a timeline.</p>
         </details>
 
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>What is CRO and do you include it?</summary>
-          <p class="uxd-faq-a">CRO is conversion rate optimisation &mdash; improving the share of visitors who take the action you want. It is built into every landing page we ship: message hierarchy, form design, proof placement and page speed, then measurement after launch so the page keeps improving.</p>
-          <p class="uxd-faq-a">It is never a separate line on the quote, because a landing page that is not built to convert is just a page. If you want the detail, <a class="uxd-a" href="/blog-landing-page-conversion-rate">how to increase landing page conversion rate</a> and <a class="uxd-a" href="/blog-landing-page-best-practices">landing page best practices</a> go deeper.</p>
+          <summary>How do you handle user roles and permissions?</summary>
+          <p class="uxd-faq-a">Roles are designed in rather than added later. We agree who the user types are and exactly what each one may see, create, edit and delete before the first screen is built, because retrofitting permissions onto an app that assumed one kind of user is close to a rewrite.</p>
+          <p class="uxd-faq-a">Every check is enforced on the server as well as reflected in the interface. Hiding a button is a convenience; the rule that actually protects the record has to sit behind the request.</p>
         </details>
 
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>How long does a landing page take to build?</summary>
-          <p class="uxd-faq-a">A focused landing page is usually 2&ndash;3 weeks from brief to live, including design, build, responsive testing and analytics setup. Turnaround depends on how ready your copy and brand assets are.</p>
-          <p class="uxd-faq-a">You get a written milestone plan before we start, with the review dates fixed. The most common delay is not the build &mdash; it is waiting on approvals, so nominating one decision-maker is the single fastest thing you can do.</p>
+          <summary>Who owns the data once it is live?</summary>
+          <p class="uxd-faq-a">You do. The database sits in an account in your name, and you can export the whole thing whenever you like without asking us first. Nothing is held back as leverage and nothing is reused elsewhere.</p>
+          <p class="uxd-faq-a">Backups run on a schedule from the first day rather than being added after the first scare, and access to live data is limited to the people who genuinely need it &mdash; which, once you are running, should not be us.</p>
         </details>
 
         <details class="uxd-faq-item" name="uxd-faq">
-          <summary>Are the pages A/B testing ready?</summary>
-          <p class="uxd-faq-a">Yes. Pages are built so variants can be swapped without a redevelopment cycle, and we set up the analytics and event tracking needed to tell which variant actually won.</p>
-          <p class="uxd-faq-a">That covers the usual candidates &mdash; the headline, the hero, the form length and the call to action &mdash; plus whatever the first month of data says is worth trying next.</p>
-        </details>
-
-        <details class="uxd-faq-item" name="uxd-faq">
-          <summary>Which platforms do you build landing pages on?</summary>
-          <p class="uxd-faq-a">Webflow, WordPress, Shopify, Framer, Unbounce, or fully custom &mdash; chosen for how your team needs to edit and test the page, not for our convenience.</p>
-          <p class="uxd-faq-a">If you already have a design in Figma, we build straight from it. If you do not, we design it first and the platform question waits until it matters.</p>
-        </details>
-
-        <details class="uxd-faq-item" name="uxd-faq">
-          <summary>Do you work with clients outside India?</summary>
-          <p class="uxd-faq-a">Yes. We work with founders and marketing teams across the UK, the US, the Gulf, Australia and Canada as well as India, running projects remotely with async updates and calls that fit your hours.</p>
-          <p class="uxd-faq-a">Campaign work in particular runs well remotely &mdash; the brief, the review and the launch are all things that happen in a shared document and a call, not a room.</p>
+          <summary>What do you need from us to get started?</summary>
+          <p class="uxd-faq-a">A walk through how the work happens today &mdash; the spreadsheet, the group chat, the person who checks everything before it goes out. The app has to replace a real process, not an idealised one.</p>
+          <p class="uxd-faq-a">After that: who will use it, what each of them is allowed to do, and access to anything it has to talk to. If none of that is written down yet, working it out is the first thing we do together.</p>
         </details>
       </div>
 
     </div>
   </section>
 
-  <!-- ============ 9. NEXT SECTIONS GO HERE ============
-       Still to build, following the reference:
-         - "We design, build and test landing pages" (CTA band)
-         - testimonials
-       ============================================================ -->
+  <!-- The page closes on the booking card inside the FAQ section above, which
+       is the same closing CTA landing-page-design.html ships with. A separate
+       testimonials block is deliberately not here: there are no client quotes
+       cleared for use yet, and inventing them is not an option. Add one when
+       real quotes exist. -->
 
 </main>
 

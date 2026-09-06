@@ -3,7 +3,7 @@
    Single source of truth for the header across every page.
    Include on any page with:  <script src="nav.js" defer></script>
    Injects its own CSS + markup, then wires scroll / active-link /
-   mobile menu / Resources mega-dropdown behaviour.
+   mobile menu / mega-dropdown behaviour (Services + Resources).
    ===================================================================== */
 (function () {
   if (window.__wxNavLoaded) return;
@@ -139,7 +139,7 @@
   .wx-nav-caret { transition: transform 0.3s ease; opacity: 0.7; }
   .wx-nav-item.wx-open .wx-nav-caret { transform: rotate(180deg); }
 
-  /* ---------- Resources mega dropdown ---------- */
+  /* ---------- Mega dropdowns (Services, Resources) ---------- */
   .wx-mega {
     position: absolute;
     top: 100%;
@@ -196,6 +196,9 @@
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25);
   }
+  /* The Services menu holds five cards, so the odd one out spans the row
+     rather than sitting next to a hole. Resources (four cards) never uses it. */
+  .wx-mega-card--wide { grid-column: 1 / -1; }
   .wx-mega-cat {
     font-family: 'Satoshi', sans-serif;
     font-size: 11px;
@@ -402,6 +405,11 @@
     transform: translateX(100%);
     transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease;
     z-index: 9401;
+    /* The nested Services list pushes the content past a short phone's
+       viewport, so let the panel scroll instead of clipping the socials. */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   .wx-drawer.wx-open {
     transform: translateX(0);
@@ -436,16 +444,46 @@
     opacity: 1;
     transform: translateX(0);
   }
+  /* Stagger runs over every child slot, not just the first few: the nested
+     Services list occupies one slot and pushes the links below it along. */
   .wx-drawer.wx-open .wx-drawer-link:nth-child(2) { transition-delay: 0.06s; }
   .wx-drawer.wx-open .wx-drawer-link:nth-child(3) { transition-delay: 0.12s; }
   .wx-drawer.wx-open .wx-drawer-link:nth-child(4) { transition-delay: 0.18s; }
   .wx-drawer.wx-open .wx-drawer-link:nth-child(5) { transition-delay: 0.24s; }
   .wx-drawer.wx-open .wx-drawer-link:nth-child(6) { transition-delay: 0.30s; }
+  .wx-drawer.wx-open .wx-drawer-link:nth-child(7) { transition-delay: 0.36s; }
+  .wx-drawer.wx-open .wx-drawer-link:nth-child(8) { transition-delay: 0.42s; }
   .wx-drawer-link:hover { color: #ffffff; }
   .wx-drawer-link .wx-drawer-arrow { color: #9D5CFF; opacity: 0; transform: translateX(-8px); transition: opacity 0.25s ease, transform 0.25s ease; }
   .wx-drawer-link:hover .wx-drawer-arrow { opacity: 1; transform: translateX(0); }
   .wx-drawer-link.wx-current { color: #ffffff; }
   .wx-drawer-link.wx-current .wx-drawer-arrow { opacity: 1; transform: translateX(0); }
+
+  /* Nested service pages under the Services row — the drawer's stand-in for
+     the desktop mega dropdown, which is hidden below 820px. */
+  .wx-drawer-sub {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 14px 14px;
+    border-left: 1px solid rgba(157, 92, 255, 0.35);
+    margin: 4px 0 6px 2px;
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .wx-drawer.wx-open .wx-drawer-sub { opacity: 1; transform: translateX(0); transition-delay: 0.18s; }
+  .wx-drawer-sublink {
+    padding: 8px 0;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .wx-drawer-sublink:hover { color: #ffffff; }
+  .wx-drawer-sublink.wx-current { color: #9D5CFF; font-weight: 600; }
 
   .wx-drawer-socials {
     display: flex;
@@ -549,6 +587,46 @@
     .wx-wa-fab { width: 52px; height: 52px; right: 16px; bottom: 16px; }
     .wx-wa-fab svg { width: 27px; height: 27px; }
   }
+
+  /* ==================================================================
+     Bar treatment promoted from home-v3, where it lived as a page-local
+     override. It used to need an \`html\` prefix to outrank the rules
+     above, because nav.js appended its <style> after the page's own —
+     now that it IS those rules, ordinary specificity is enough.
+     ================================================================== */
+
+  /* Tighter than the 24px the floating header sat at before. */
+  @media (min-width: 821px) { .wx-nav-container { top: 10px; } }
+
+  /* Mobile: one inset rounded panel holding the mark and the burger,
+     instead of the edge-to-edge translucent strip. */
+  @media (max-width: 820px) {
+    .wx-nav-container {
+      top: 12px;
+      width: min(100% - 24px, 1340px);
+      border-radius: 22px !important;
+    }
+    .wx-navbar {
+      padding: 9px 9px 9px 12px;
+      border-radius: 22px !important;
+      background: #F4F5FD !important;
+      border: 1px solid rgba(0,0,0,.05) !important;
+      box-shadow: 0 10px 30px -12px rgba(23,18,54,.30) !important;
+      /* The panel is opaque now, so the blur behind it costs a paint for
+         nothing — and on iOS it tints the solid fill slightly grey. */
+      -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+    .wx-navbar.wx-scrolled {
+      background: #F4F5FD !important;
+      box-shadow: 0 14px 34px -12px rgba(23,18,54,.36) !important;
+    }
+    .wx-nav-logo-svg { width: 46px; height: 46px; }
+    /* Rounded square rather than a circle, echoing the mark's own tile. */
+    .wx-nav-hamburger {
+      width: 46px; height: 46px; border-radius: 14px;
+      box-shadow: 0 8px 20px -8px rgba(157,92,255,.85), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+  }
   `;
 
   /* ------------------------------------------------------------------ */
@@ -564,10 +642,46 @@
 
       <div class="wx-nav-links-wrap" id="wx-nav-links-wrap">
         <div class="wx-nav-item"><a href="/" class="wx-nav-link" data-nav="home">Home</a></div>
-        <div class="wx-nav-item"><a href="/services" class="wx-nav-link" data-nav="services">Services</a></div>
+        <div class="wx-nav-item" id="wx-svc-item" data-mega="services">
+          <a href="/services" class="wx-nav-link" data-nav="services">
+            Services
+            <svg class="wx-nav-caret" width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <div class="wx-mega" id="wx-mega-services">
+            <a class="wx-mega-card" href="/web-design">
+              <span class="wx-mega-cat">Design</span>
+              <span class="wx-mega-title">Web Design</span>
+              <span class="wx-mega-desc">Sites that read clearly on every screen — and still do the selling.</span>
+            </a>
+            <a class="wx-mega-card" href="/web-development">
+              <span class="wx-mega-cat">Engineering</span>
+              <span class="wx-mega-title">Web Development</span>
+              <span class="wx-mega-desc">Custom builds that stay fast, accessible and yours to maintain.</span>
+            </a>
+            <a class="wx-mega-card" href="/ui-ux-design">
+              <span class="wx-mega-cat">Product &amp; SaaS</span>
+              <span class="wx-mega-title">UI/UX Design</span>
+              <span class="wx-mega-desc">Product interfaces, dashboards and design systems for SaaS teams.</span>
+            </a>
+            <a class="wx-mega-card" href="/web-apps">
+              <span class="wx-mega-cat">Software</span>
+              <span class="wx-mega-title">Web Apps</span>
+              <span class="wx-mega-desc">Portals and internal tools with logins, roles and real data behind them.</span>
+            </a>
+            <a class="wx-mega-card wx-mega-card--wide" href="/landing-page-design">
+              <span class="wx-mega-cat">Conversion</span>
+              <span class="wx-mega-title">Landing Page Design</span>
+              <span class="wx-mega-desc">Conversion-focused pages for paid campaigns and launches, live in 2-3 weeks.</span>
+            </a>
+            <a class="wx-mega-foot" href="/services">
+              <span>All services</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
         <div class="wx-nav-item"><a href="/work" class="wx-nav-link" data-nav="work">Work</a></div>
         <div class="wx-nav-item"><a href="/studio" class="wx-nav-link" data-nav="about">About</a></div>
-        <div class="wx-nav-item" id="wx-res-item">
+        <div class="wx-nav-item" id="wx-res-item" data-mega="resources">
           <a href="/blog" class="wx-nav-link" data-nav="resources">
             Resources
             <svg class="wx-nav-caret" width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -627,6 +741,13 @@
     <span class="wx-drawer-eyebrow">Menu</span>
     <a href="/" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="/services" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
+    <div class="wx-drawer-sub">
+      <a href="/web-design" class="wx-drawer-sublink" data-sub="web-design.html">Web design</a>
+      <a href="/web-development" class="wx-drawer-sublink" data-sub="web-development.html">Web development</a>
+      <a href="/ui-ux-design" class="wx-drawer-sublink" data-sub="ui-ux-design.html">UI/UX design</a>
+      <a href="/web-apps" class="wx-drawer-sublink" data-sub="web-apps.html">Web apps</a>
+      <a href="/landing-page-design" class="wx-drawer-sublink" data-sub="landing-page-design.html">Landing page design</a>
+    </div>
     <a href="/work" class="wx-drawer-link" data-nav="work">Work <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="/studio" class="wx-drawer-link" data-nav="about">About <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="/blog" class="wx-drawer-link" data-nav="resources">Resources <span class="wx-drawer-arrow">&#8599;</span></a>
@@ -674,9 +795,19 @@
     if (file === '' || file === './') file = 'index.html';
     if (file && file.indexOf('.') === -1) file += '.html';
 
+    // Individual service pages live under the Services dropdown, so they light
+    // up the Services nav item rather than nothing.
+    var SERVICE_PAGES = [
+      'web-design.html',
+      'web-development.html',
+      'ui-ux-design.html',
+      'web-apps.html',
+      'landing-page-design.html'
+    ];
+
     var match = 'home';
     if (file === 'index.html') match = 'home';
-    else if (file === 'services.html' || file.indexOf('figma-to') === 0) match = 'services';
+    else if (file === 'services.html' || SERVICE_PAGES.indexOf(file) !== -1 || file.indexOf('figma-to') === 0) match = 'services';
     else if (file === 'work.html' || file.indexOf('case-study') === 0) match = 'work';
     else if (file === 'studio.html') match = 'about';
     else if (file === 'blog.html' || file.indexOf('blog-') === 0) match = 'resources';
@@ -688,6 +819,14 @@
       if (active) active.classList.add('wx-current');
       var activeDrawer = drawer && drawer.querySelector('.wx-drawer-link[data-nav="' + match + '"]');
       if (activeDrawer) activeDrawer.classList.add('wx-current');
+    }
+
+    // Mark the current page inside the drawer's nested service list. Compared
+    // rather than fed into a selector, since `file` comes from the URL.
+    if (drawer) {
+      drawer.querySelectorAll('.wx-drawer-sublink').forEach(function (l) {
+        if (l.getAttribute('data-sub') === file) l.classList.add('wx-current');
+      });
     }
 
     // -- Scroll: glass darkens at 20px; past 300px the bar folds into the
@@ -751,7 +890,7 @@
         else openDrawer();
       });
       scrim.addEventListener('click', closeDrawer);
-      drawer.querySelectorAll('.wx-drawer-link').forEach(function (l) {
+      drawer.querySelectorAll('.wx-drawer-link, .wx-drawer-sublink').forEach(function (l) {
         l.addEventListener('click', closeDrawer);
       });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
@@ -762,17 +901,30 @@
       });
     }
 
-    // -- Resources mega dropdown (desktop hover) --
-    var resItem = header.querySelector('#wx-res-item');
-    if (resItem) {
+    // -- Mega dropdowns, Services + Resources (desktop hover / keyboard focus) --
+    //    Driven off [data-mega] rather than a single id, so both menus share one
+    //    implementation. Each gets its own closeTimer via the closure, otherwise
+    //    moving between them would cancel the other's hover-intent delay.
+    var megaItems = Array.prototype.slice.call(header.querySelectorAll('.wx-nav-item[data-mega]'));
+    megaItems.forEach(function (item) {
       var closeTimer = null;
-      var open = function () { clearTimeout(closeTimer); resItem.classList.add('wx-open'); };
-      var close = function () { closeTimer = setTimeout(function () { resItem.classList.remove('wx-open'); }, 160); };
-      resItem.addEventListener('mouseenter', open);
-      resItem.addEventListener('mouseleave', close);
-      resItem.addEventListener('focusin', open);
-      resItem.addEventListener('focusout', close);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') resItem.classList.remove('wx-open'); });
+      var open = function () {
+        clearTimeout(closeTimer);
+        // Only one menu open at a time — hovering Services must dismiss Resources.
+        megaItems.forEach(function (other) { if (other !== item) other.classList.remove('wx-open'); });
+        item.classList.add('wx-open');
+      };
+      var close = function () { closeTimer = setTimeout(function () { item.classList.remove('wx-open'); }, 160); };
+      item.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', close);
+      item.addEventListener('focusin', open);
+      item.addEventListener('focusout', close);
+    });
+    if (megaItems.length) {
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        megaItems.forEach(function (item) { item.classList.remove('wx-open'); });
+      });
     }
   }
 

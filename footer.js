@@ -2,306 +2,258 @@
    Web{X} — Global Footer
    Single source of truth for the footer across every page.
    Include on any page with:  <script src="footer.js" defer></script>
-   Injects its own CSS + markup, then appends the footer to <body>.
+   Injects its own fonts + CSS + markup, then appends the footer to <body>.
+
+   This is home-v3's footer, promoted to the whole site. Two things that
+   made it page-local had to be solved before it could travel:
+
+   1. It was written against home-v3's :root tokens (--v3-ink, --v3-accent,
+      --v3-line and friends) and against .v3-wrap / .v3-txt / .v3-btn. None
+      of those exist on the other 45 pages, so every one is redeclared below,
+      scoped to .v3-foot. Scoping matters both ways: it stops these generic
+      names leaking onto pages that have their own, and it keeps the footer
+      identical on the three pages that DO define them.
+
+   2. It sets headings in Instrument Serif and the brand name in Manrope.
+      Manrope is linked on some pages, Instrument Serif on only three — so
+      the font link is injected here rather than assumed. That is the exact
+      trap the previous version of this file avoided by staying on Satoshi;
+      loading the faces ourselves is what makes the richer footer portable.
    ===================================================================== */
 (function () {
   if (window.__wxFooterLoaded) return;
   window.__wxFooterLoaded = true;
 
   /* ------------------------------------------------------------------ */
-  /* 1. Styles                                                          */
+  /* 1. Fonts                                                           */
   /* ------------------------------------------------------------------ */
-  var CSS = `
-  /* Ground is the same paper texture the hero and closing CTA use, so the
-     page ends on one continuous surface. Type stays on Satoshi, which webx.css
-     loads on every page; Manrope is only linked on the homepage, so using it
-     here would silently fall back to system sans site-wide. */
-  .wx-footer {
-    --ink: #FFFFFF;
-    --raise: #F5F4F9;
-    --line: rgba(0,0,0,.10);
-    --text: #1A1A1A;
-    --muted: #55555F;
-    --dim: #6B6B75;
-    --brand: #9D5CFF;
-    --brand-lo: #9BB0FF;
-    --brand-hi: #C061FF;
-    position: relative;
-    background: var(--ink) url('images/hero-bg.webp') center bottom / cover no-repeat;
-    color: var(--text);
-    border-top: 1px solid var(--line);
-    padding: clamp(56px,8vh,96px) 20px 34px;
-    overflow: hidden;
-    font-family: 'Satoshi', sans-serif;
-  }
-  /* Texture is faint, but a top-down wash keeps the join with the CTA above
-     invisible and stops the artwork competing with the small print. */
-  .wx-footer::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(255,255,255,.42) 20%, rgba(255,255,255,.12) 55%, rgba(255,255,255,.12) 100%);
-    pointer-events: none;
-  }
-  .wx-footer-inner { position: relative; z-index: 1; max-width: 1340px; margin: 0 auto; }
+  /* Non-blocking: parsed as print, promoted to all once it lands, so it
+     never delays first paint. Skipped when the page already links them. */
+  function loadFonts() {
+    var need = ['Manrope', 'Instrument+Serif'];
+    var links = [].slice.call(document.querySelectorAll('link[href*="fonts.googleapis.com"]'));
+    var have = links.map(function (l) { return l.getAttribute('href') || ''; }).join(' ');
+    if (need.every(function (f) { return have.indexOf(f) > -1; })) return;
 
-
-  /* ---- Main ---- */
-  .wx-footer-main {
-    display: grid;
-    grid-template-columns: 1.25fr 2fr;
-    gap: clamp(36px,5vw,80px);
-    padding-bottom: clamp(34px,5vh,54px);
-    border-bottom: 1px solid var(--line);
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap';
+    l.media = 'print';
+    l.onload = function () { this.media = 'all'; };
+    document.head.appendChild(l);
   }
-  .wx-footer-brand { display: inline-flex; text-decoration: none; }
-  .wx-footer-brand img { display: block; border-radius: 10px; }
-  .wx-footer-desc {
-    margin: 20px 0 26px;
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 38ch;
-  }
-  .wx-footer-socials { display: flex; gap: 10px; }
-  .wx-social-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,.65);
-    color: var(--text);
-    transition: color .25s ease, background-color .25s ease, border-color .25s ease, transform .25s ease;
-  }
-  .wx-social-btn:hover { color: #fff; background: var(--brand); border-color: var(--brand); transform: translateY(-2px); }
-
-  .wx-footer-cols {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(20px,3vw,40px);
-  }
-  .wx-footer-col { display: flex; flex-direction: column; gap: 13px; align-items: flex-start; }
-  .wx-footer-heading {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 3px;
-  }
-  .wx-footer-link {
-    font-size: 14.5px;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color .2s ease, transform .2s ease;
-  }
-  .wx-footer-link:hover { color: var(--text); transform: translateX(3px); }
-
-  /* ---- Contact row ---- */
-  /* Email pinned left, phone pinned right */
-  .wx-footer-contact {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px clamp(18px,4vw,64px);
-    padding: clamp(26px,4vh,38px) 0;
-    border-bottom: 1px solid var(--line);
-  }
-  .wx-footer-contact-item { display: flex; gap: 13px; align-items: flex-start; text-decoration: none; }
-  .wx-c-ico {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    flex: 0 0 auto;
-    border-radius: 10px;
-    background: rgba(157,92,255,.14);
-    color: var(--brand);
-  }
-  .wx-c-ico svg { flex-shrink: 0; }
-  .wx-c-key {
-    display: block;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--dim);
-    margin-bottom: 4px;
-  }
-  .wx-c-val {
-    display: block;
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-    transition: color .2s ease;
-  }
-  .wx-footer-contact-item:hover .wx-c-val { color: var(--brand); }
-
-  /* ---- Legal bar ---- */
-  .wx-footer-bottom {
-    padding-top: 26px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 8px 18px;
-    text-align: center;
-    font-size: 12.5px;
-    color: var(--dim);
-  }
-  .wx-footer-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; }
-  .wx-footer-legal a,
-  .wx-footer-legal button {
-    padding: 0; border: 0; background: none; cursor: pointer;
-    font-family: inherit; font-size: 12.5px; color: var(--dim);
-    text-decoration: none; transition: color .2s ease;
-  }
-  .wx-footer-legal a:hover,
-  .wx-footer-legal button:hover { color: var(--brand); }
-
-  /* ---- Closing wordmark ---- */
-  .wx-footer-mega {
-    margin-top: clamp(26px,5vh,54px);
-    font-family: 'Satoshi', sans-serif;
-    font-weight: 700;
-    font-size: clamp(72px,23vw,340px);
-    line-height: .82;
-    letter-spacing: -.055em;
-    text-align: center;
-    white-space: nowrap;
-    user-select: none;
-    background: linear-gradient(180deg, var(--brand-lo) 0%, var(--brand) 42%, var(--brand-hi) 72%, rgba(157,92,255,.05) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .wx-footer a:focus-visible {
-    outline: 2px solid var(--brand);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .wx-footer * { transition: none !important; }
-  }
-  @media (max-width: 900px) {
-    .wx-footer-main { grid-template-columns: 1fr; }
-    .wx-footer-cols { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
-  }
-  @media (max-width: 560px) {
-    /* Side-by-side contact would squeeze both to a couple of words per line */
-    .wx-footer-contact { justify-content: flex-start; }
-  }`;
 
   /* ------------------------------------------------------------------ */
-  /* 2. Markup                                                          */
+  /* 2. Styles                                                          */
   /* ------------------------------------------------------------------ */
-  var HTML = `
-  <footer class="wx-footer" data-wx-footer>
-    <div class="wx-footer-inner">
+  var CSS = [
+    /* Every token the footer needs, declared on the footer itself. */
+    '.v3-foot {',
+    '  --v3-ink:      #000000;',
+    '  --v3-body:     rgba(0,0,0,.8);',
+    '  --v3-dim:      rgba(0,0,0,.7);',
+    '  --v3-line:     #E6E6E6;',
+    '  --v3-accent:   #9D5CFF;',
+    '  --v3-accent-w: rgba(157,92,255,.18);',
+    /* White on #9D5CFF is 3.88:1 and fails AA for a 16px/400 label, so the
+       button uses this darkened twin and the accent stays put elsewhere. */
+    '  --v3-cta:      #8438EE;',
+    '  --v3-lg:       clamp(16px,1.39vw,20px);',
+    '  --v3-txt:      clamp(15px,1.25vw,18px);',
+    '  --v3-sm:       clamp(14px,1.11vw,16px);',
+    '  background: #FFFFFF; padding: clamp(64px,9vw,120px) 0 0;',
+    '}',
 
-      <div class="wx-footer-main">
-        <div class="wx-footer-left">
-          <a href="/" class="wx-footer-brand" aria-label="Web{X} Studio — home">
-            <img src="logo-black.svg" alt="Web{X} Studio" width="40" height="40" />
-          </a>
-          <p class="wx-footer-desc">
-            A digital design &amp; development agency building high-performance websites, custom products, and the SEO that keeps them found.
-          </p>
-          <div class="wx-footer-socials">
-            <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            </a>
-            <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener" class="wx-social-btn" aria-label="X (Twitter)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"></path></svg>
-            </a>
-            <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" class="wx-social-btn" aria-label="Dribbble">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path></svg>
-            </a>
-          </div>
-        </div>
+    /* Scoped copies of the three shared components the markup leans on. */
+    '.v3-foot .v3-wrap { max-width: 1460px; margin: 0 auto; padding: 0 30px; }',
+    '.v3-foot .v3-txt { font-family: \'Satoshi\', sans-serif; font-size: var(--v3-txt); font-weight: 400;',
+    '                   line-height: 1.45; letter-spacing: -.01em; color: var(--v3-body); margin: 0; }',
+    '.v3-foot .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta);',
+    '                   color: #FFFFFF; border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;',
+    '                   font-family: \'Satoshi\', sans-serif; font-size: var(--v3-txt); font-weight: 400;',
+    '                   line-height: 1.45; box-shadow: 0 18px 34px -20px rgba(23,18,54,.55);',
+    '                   transition: transform .25s cubic-bezier(.16,1,.3,1); }',
+    '.v3-foot .v3-btn:hover { transform: translateY(-2px); }',
+    '.v3-foot .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF;',
+    '                       color: var(--v3-ink); display: grid; place-items: center; }',
+    '.v3-foot .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }',
+    '.v3-foot .v3-btn:hover .v3-btn-ico svg,',
+    '.v3-foot .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }',
 
-        <nav class="wx-footer-cols" aria-label="Footer">
-          <div class="wx-footer-col">
-            <span class="wx-footer-heading">Company</span>
-            <a data-transition href="./" class="wx-footer-link">Home</a>
-            <a data-transition href="studio" class="wx-footer-link">About us</a>
-            <a data-transition href="work" class="wx-footer-link">Work</a>
-            <a data-transition href="careers" class="wx-footer-link">Careers</a>
-          </div>
+    '.v3-foot-inner { display: grid; grid-template-columns: 1.35fr 1.75fr .85fr .8fr;',
+    '                 gap: clamp(32px,4.4vw,64px); align-items: start; }',
 
-          <div class="wx-footer-col">
-            <span class="wx-footer-heading">Services</span>
-            <a data-transition href="services" class="wx-footer-link">All services</a>
-            <a data-transition href="figma-to-webflow" class="wx-footer-link">Figma to Webflow</a>
-            <a data-transition href="figma-to-wordpress" class="wx-footer-link">Figma to WordPress</a>
-            <a data-transition href="figma-to-shopify" class="wx-footer-link">Figma to Shopify</a>
-          </div>
+    /* ---- Brand block ---- */
+    '.v3-foot-brand { display: flex; flex-direction: column; align-items: flex-start; }',
+    '.v3-foot-mark { display: inline-flex; text-decoration: none; }',
+    '.v3-foot-mark img { display: block; width: 46px; height: auto; }',
+    '.v3-foot-name { font-family: \'Manrope\', sans-serif; font-size: var(--v3-lg); font-weight: 500;',
+    '                line-height: 1.2; letter-spacing: -.01em; color: var(--v3-ink); margin: 26px 0 0; }',
+    '.v3-foot-desc { max-width: 310px; margin: 14px 0 30px; }',
 
-          <div class="wx-footer-col">
-            <span class="wx-footer-heading">Resources</span>
-            <a data-transition href="blog" class="wx-footer-link">Blog</a>
-            <a data-transition href="work" class="wx-footer-link">Case studies</a>
-            <a data-transition href="blog-website-cost" class="wx-footer-link">What a website costs</a>
-            <a data-transition href="blog-core-web-vitals" class="wx-footer-link">Core Web Vitals</a>
-            <a data-transition href="landing-page-design" class="wx-footer-link">Landing page design</a>
-            <a data-transition href="web-development-agency-ludhiana" class="wx-footer-link">Web development in Ludhiana</a>
-          </div>
+    /* ---- Link columns: Services runs two sub-columns, the rest single files ---- */
+    '.v3-foot-col { display: flex; flex-direction: column; }',
+    '.v3-foot-h { font-family: \'Instrument Serif\', Georgia, serif; font-style: italic; font-weight: 400;',
+    '             font-size: clamp(20px,1.6vw,23px); line-height: 1.1; color: var(--v3-ink);',
+    '             margin: 0 0 clamp(30px,3vw,44px); }',
+    '.v3-foot-list { display: grid; grid-template-columns: 1fr; gap: 22px 30px; }',
+    '.v3-foot-list--2 { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(6,auto); }',
+    '.v3-foot-list a { text-decoration: none; color: var(--v3-body); font-family: \'Satoshi\', sans-serif;',
+    '                  font-size: var(--v3-txt); line-height: 1.3; letter-spacing: -.01em; width: fit-content;',
+    '                  transition: color .2s ease; }',
+    '.v3-foot-list a:hover { color: var(--v3-accent); }',
 
-          <div class="wx-footer-col">
-            <span class="wx-footer-heading">Get in touch</span>
-            <a data-transition href="contact" class="wx-footer-link">Contact us</a>
-            <a data-transition href="contact" class="wx-footer-link">Start a project</a>
-            <a href="mailto:hello@thewebxstudio.com" class="wx-footer-link">Email us</a>
-          </div>
-        </nav>
-      </div>
+    /* ---- Contact row: badge, tiny key, bold value — spread across the width ---- */
+    '.v3-foot-contact { margin-top: clamp(48px,6vw,86px); border-top: .8px solid var(--v3-line);',
+    '                   border-bottom: .8px solid var(--v3-line); padding: clamp(24px,3vw,34px) 0;',
+    '                   display: flex; align-items: center; justify-content: space-between;',
+    '                   gap: 20px clamp(18px,4vw,64px); flex-wrap: wrap; }',
+    '.v3-foot-c { display: flex; align-items: flex-start; gap: 13px; text-decoration: none; }',
+    '.v3-foot-c i { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 10px; display: grid; place-items: center;',
+    '               background: var(--v3-accent-w); color: var(--v3-accent); }',
+    '.v3-foot-c b { display: block; font-family: \'Satoshi\', sans-serif; font-size: 10.5px; font-weight: 700;',
+    '               letter-spacing: .15em; text-transform: uppercase; color: var(--v3-dim); margin-bottom: 4px; }',
+    '.v3-foot-c span span { display: block; font-family: \'Satoshi\', sans-serif; font-size: 14.5px; font-weight: 600;',
+    '                       color: var(--v3-ink); font-variant-numeric: tabular-nums; transition: color .2s ease; }',
+    '.v3-foot-c:hover span span { color: var(--v3-accent); }',
 
-      <div class="wx-footer-contact">
-        <a href="mailto:hello@thewebxstudio.com" class="wx-footer-contact-item">
-          <span class="wx-c-ico" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </span>
-          <span>
-            <span class="wx-c-key">Email</span>
-            <span class="wx-c-val">hello@thewebxstudio.com</span>
-          </span>
-        </a>
-        <a href="tel:+919780651142" class="wx-footer-contact-item">
-          <span class="wx-c-ico" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          </span>
-          <span>
-            <span class="wx-c-key">Phone</span>
-            <span class="wx-c-val">+91 97806 51142</span>
-          </span>
-        </a>
-      </div>
+    '.v3-foot-copy { display: flex; flex-wrap: wrap; align-items: center; justify-content: center;',
+    '                gap: 8px 18px; text-align: center; padding: 26px 0 0; margin: 0;',
+    '                font-family: \'Satoshi\', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); }',
+    /* The preferences button carries the same data-wx-open-prefs hook the
+       banner uses, so consent.js finds it through its delegated listener. */
+    '.v3-foot-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; }',
+    '.v3-foot-legal a, .v3-foot-legal button { padding: 0; border: 0; background: none; cursor: pointer;',
+    '                  font-family: inherit; font-size: inherit; color: var(--v3-dim);',
+    '                  text-decoration: none; transition: color .2s ease; }',
+    '.v3-foot-legal a:hover, .v3-foot-legal button:hover { color: var(--v3-accent); }',
 
-      <div class="wx-footer-bottom">
-        <span>&copy; 2026 Web{X} Studio &mdash; All rights reserved.</span>
-        <span class="wx-footer-legal">
-          <a data-transition href="privacy-policy">Privacy Policy</a>
-          <a data-transition href="terms-and-conditions">Terms &amp; Conditions</a>
-          <button type="button" data-wx-open-prefs>Cookie preferences</button>
-        </span>
-      </div>
+    /* ---- Closing wordmark: gradient clipped to the type, fading out at the foot ---- */
+    '.v3-foot-mega { opacity: .2; margin-top: clamp(22px,4vw,46px); font-family: \'Manrope\', sans-serif; font-weight: 700;',
+    '                font-size: clamp(72px,23vw,340px); line-height: .82; letter-spacing: -.055em;',
+    '                text-align: center; white-space: nowrap; user-select: none; overflow: hidden;',
+    '                background: linear-gradient(180deg, #9BB0FF 0%, var(--v3-accent) 42%, #C061FF 72%, rgba(157,92,255,.05) 100%);',
+    '                -webkit-background-clip: text; background-clip: text; color: transparent; }',
 
-    </div>
-
-    <div class="wx-footer-mega" aria-hidden="true">Web{X}</div>
-  </footer>`;
+    /* ---- Responsive, carried over from home-v3 ---- */
+    '@media (max-width: 1180px) {',
+    '  .v3-foot-inner { grid-template-columns: repeat(3,1fr); }',
+    '  .v3-foot-brand { grid-column: 1 / -1; margin-bottom: clamp(20px,3vw,36px); }',
+    '}',
+    '@media (max-width: 720px) {',
+    '  .v3-foot .v3-wrap { padding-inline: 15px; }',
+    /* Tighter rows, but each link keeps a 44px-tall tap target via padding. */
+    '  .v3-foot-list { gap: 2px 30px; }',
+    '  .v3-foot-list a { padding: 12px 0; }',
+    '  .v3-foot-inner { grid-template-columns: 1fr 1fr; gap: 40px 24px; }',
+    '  .v3-foot-list--2 { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }',
+    /* Three contact items would each get a sliver on a phone — stack them. */
+    '  .v3-foot-contact { flex-direction: column; align-items: flex-start; gap: 18px; }',
+    '  .v3-foot-c { padding-block: 3px; }',
+    '}',
+    '@media (prefers-reduced-motion: reduce) {',
+    '  .v3-foot .v3-btn, .v3-foot .v3-btn-ico svg { transition: none; }',
+    '  .v3-foot .v3-btn:hover { transform: none; }',
+    '}'
+  ].join('\n');
 
   /* ------------------------------------------------------------------ */
-  /* 3. Init                                                            */
+  /* 3. Markup                                                          */
+  /* ------------------------------------------------------------------ */
+  /* Root-relative hrefs throughout: this file is included from pages at the
+     site root today, but a relative "contact" would break the moment one
+     lives in a subdirectory. */
+  var HTML = [
+    '<footer class="v3-foot" data-wx-footer aria-label="Site footer">',
+    '  <div class="v3-wrap v3-foot-inner">',
+
+    '    <div class="v3-foot-brand">',
+    '      <a class="v3-foot-mark" href="/" aria-label="Web{X} Studio — home">',
+    '        <img src="/logo-black.svg" alt="Web{X} Studio" width="46" height="46">',
+    '      </a>',
+    '      <p class="v3-foot-name">Web{X} Studio</p>',
+    '      <p class="v3-txt v3-foot-desc">A digital design &amp; development agency building high-performance websites, custom products, and the SEO that keeps them found.</p>',
+    '      <a class="v3-btn" href="/contact">Start a project',
+    '        <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>',
+    '      </a>',
+    '    </div>',
+
+    '    <nav class="v3-foot-col" aria-label="Services">',
+    '      <h2 class="v3-foot-h">Services</h2>',
+    '      <div class="v3-foot-list v3-foot-list--2">',
+    '        <a href="/web-design">Web design</a>',
+    '        <a href="/web-development">Web development</a>',
+    '        <a href="/web-apps">Web apps</a>',
+    '        <a href="/figma-to-shopify">Ecommerce</a>',
+    '        <a href="/ui-ux-design">UI/UX design</a>',
+    '        <a href="/services">Graphic design</a>',
+    '        <a href="/landing-page-design">Landing page</a>',
+    '        <a href="/figma-to-webflow">Webflow</a>',
+    '        <a href="/figma-to-wordpress">WordPress</a>',
+    '        <a href="/figma-to-shopify">Shopify</a>',
+    '        <a href="/services">All services</a>',
+    '      </div>',
+    '    </nav>',
+
+    '    <nav class="v3-foot-col" aria-label="Quick links">',
+    '      <h2 class="v3-foot-h">Quick Links</h2>',
+    '      <div class="v3-foot-list">',
+    '        <a href="/work">Case studies</a>',
+    '        <a href="/studio">About</a>',
+    '        <a href="/blog-website-cost">Pricing</a>',
+    '        <a href="/careers">Careers</a>',
+    '        <a href="/blog">Blog</a>',
+    '        <a href="/contact">Contact</a>',
+    '      </div>',
+    '    </nav>',
+
+    '    <nav class="v3-foot-col" aria-label="Follow us">',
+    '      <h2 class="v3-foot-h">Follow Us</h2>',
+    '      <div class="v3-foot-list">',
+    '        <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">Instagram</a>',
+    '        <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">(X) Twitter</a>',
+    '        <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">Dribbble</a>',
+    '        <a href="mailto:hello@thewebxstudio.com">Email us</a>',
+    '        <a href="tel:+919780651142">+91 97806 51142</a>',
+    '      </div>',
+    '    </nav>',
+
+    '  </div>',
+    '  <div class="v3-wrap">',
+    '    <div class="v3-foot-contact">',
+    '      <a class="v3-foot-c" href="mailto:hello@thewebxstudio.com">',
+    '        <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></i>',
+    '        <span><b>Email</b><span>hello@thewebxstudio.com</span></span>',
+    '      </a>',
+    '      <a class="v3-foot-c" href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">',
+    '        <i aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></i>',
+    '        <span><b>WhatsApp</b><span>+91 97806 51142</span></span>',
+    '      </a>',
+    '      <a class="v3-foot-c" href="tel:+919780651142">',
+    '        <i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></i>',
+    '        <span><b>Phone</b><span>+91 97806 51142</span></span>',
+    '      </a>',
+    '    </div>',
+    '    <p class="v3-foot-copy">',
+    '      <span>&copy; 2026 Web{X} Studio &mdash; All rights reserved.</span>',
+    '      <span class="v3-foot-legal">',
+    '        <a href="/privacy-policy">Privacy Policy</a>',
+    '        <a href="/terms-and-conditions">Terms &amp; Conditions</a>',
+    '        <button type="button" data-wx-open-prefs>Cookie preferences</button>',
+    '      </span>',
+    '    </p>',
+    '  </div>',
+
+    '  <div class="v3-foot-mega" aria-hidden="true">Web{X}</div>',
+    '</footer>'
+  ].join('\n');
+
+  /* ------------------------------------------------------------------ */
+  /* 4. Init                                                            */
   /* ------------------------------------------------------------------ */
   function init() {
+    loadFonts();
+
     var style = document.createElement('style');
     style.setAttribute('data-wx-footer-css', '');
     style.textContent = CSS;

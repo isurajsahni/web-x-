@@ -31,14 +31,19 @@ Web{X} Studio works remotely with founders and brands in:
 Engagements run async across time zones with scheduled milestones and written updates.
 
 ## Core pages
-- [Home](https://www.thewebxstudio.com/): International web design, landing page & SEO agency.
-- [Services](https://www.thewebxstudio.com/services): Website design, web development, SEO & performance, ERP & web apps, and Figma-to-code conversion.
+- [Home](https://www.thewebxstudio.com/): Web design and development agency building fast, search-ready websites, ecommerce stores and web apps — design, build and SEO from one team.
+- [Services](https://www.thewebxstudio.com/services): Everything the studio designs and builds in one place — web design, web development, UI/UX and product design, web apps, and SEO and performance.
 - [Work](https://www.thewebxstudio.com/work): Selected web design, development and SEO projects built to convert and rank.
 - [Studio](https://www.thewebxstudio.com/studio): About Web{X} Studio — a small, senior team of designers and engineers.
 - [Contact](https://www.thewebxstudio.com/contact): Start a project or request a quote (reply within 2 business days).
 - [Careers](https://www.thewebxstudio.com/careers): Open roles at the studio.
 - [Web Development Agency in Ludhiana](https://www.thewebxstudio.com/web-development-agency-ludhiana): Local service page — websites, SEO and web apps in Ludhiana.
 
+## Service pages
+- [Web Design](https://www.thewebxstudio.com/web-design): Web design for businesses that need the site to do some selling — strategy, design and build from one team, clear and fast on every screen.
+- [Web Development](https://www.thewebxstudio.com/web-development): Custom web development from the team that designed it too — websites, ecommerce and web apps, accessible and yours to maintain after launch.
+- [UI/UX & Product Design](https://www.thewebxstudio.com/ui-ux-design): UI/UX and product design for SaaS and B2B — product interfaces, dashboards and design systems built to be understood at a glance.
+- [Web App Development](https://www.thewebxstudio.com/web-apps): Web apps for dashboards, customer portals and internal tools — logins, roles and real data, built to stay fast as the records pile up.
 - [Landing Page Design & CRO](https://www.thewebxstudio.com/landing-page-design): High-converting landing page design, build and conversion rate optimisation.
 
 ## Case studies
