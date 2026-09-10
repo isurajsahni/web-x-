@@ -406,7 +406,13 @@
     transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s ease;
     z-index: 9401;
     /* The nested Services list pushes the content past a short phone's
-       viewport, so let the panel scroll instead of clipping the socials. */
+       viewport, so let the panel scroll instead of clipping the socials.
+       overflow-y alone was not enough on desktop: webx.js runs Lenis with
+       smoothWheel, which preventDefaults wheel events document-wide, so the
+       page scrolled behind the drawer while the drawer itself stayed put.
+       The markup carries data-lenis-prevent (Lenis skips subtrees marked
+       with it) — that attribute is what makes the wheel reach this scroller.
+       Touch was always fine, which is why it only showed up on desktop. */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
@@ -737,7 +743,7 @@
 
   <div class="wx-drawer-scrim" id="wx-drawer-scrim"></div>
 
-  <aside class="wx-drawer" id="wx-drawer" aria-hidden="true" inert>
+  <aside class="wx-drawer" id="wx-drawer" aria-hidden="true" inert data-lenis-prevent>
     <span class="wx-drawer-eyebrow">Menu</span>
     <a href="/" class="wx-drawer-link" data-nav="home">Home <span class="wx-drawer-arrow">&#8599;</span></a>
     <a href="/services" class="wx-drawer-link" data-nav="services">Services <span class="wx-drawer-arrow">&#8599;</span></a>
