@@ -400,10 +400,10 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-blog-meta{position:relative;margin-top:auto;font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .wx-blog-arrow{color:#9D5CFF;font-size:18px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .wx-blog-card:hover .wx-blog-arrow{transform:translateX(5px)}
-.wx-blog-card-feat{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:clamp(20px,4vw,60px);background:linear-gradient(160deg,#F6F2FF 0%,#FFFFFF 70%)}
-.wx-blog-card-feat>div{flex:1 1 340px;min-width:0}
-.wx-blog-card-feat h2{font-size:clamp(26px,3.4vw,44px);line-height:1.1}
-.wx-blog-card-feat p{font-size:clamp(15px,1.2vw,18px)}
+.wx-blog-card-feat{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:clamp(20px,4vw,60px);background:linear-gradient(160deg,#F6F2FF 0%,#FFFFFF 70%);overflow:hidden}
+.wx-blog-card-feat>div{flex:1 1 340px;min-width:0;max-width:100%}
+.wx-blog-card-feat h2{font-size:clamp(22px,3.4vw,44px);line-height:1.15;word-wrap:break-word;overflow-wrap:break-word}
+.wx-blog-card-feat p{font-size:clamp(14px,1.2vw,18px);word-wrap:break-word;overflow-wrap:break-word}
 
 /* card thumbnail image */
 .wx-blog-card-media{position:relative;margin:calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) clamp(20px,2.2vw,26px);aspect-ratio:1.35;overflow:hidden;background:transparent}
@@ -415,10 +415,12 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-related{max-width:1340px;margin:0 auto;padding:clamp(30px,6vh,72px) 20px clamp(10px,2vh,24px);border-top:1px solid rgba(0,0,0,.10)}
 .wx-related-label{font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75;margin-bottom:clamp(22px,3vh,34px)}
 
-@media (max-width:600px){
+@media (max-width:768px){
   .wx-prose blockquote{padding-left:18px}
-  .wx-blog-card-feat{flex-direction:column;align-items:stretch}
-  .wx-blog-card-feat .wx-blog-card-media{margin:calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) clamp(20px,2.2vw,26px);border-radius:0;aspect-ratio:1.35}
+  .wx-blog-card-feat{flex-direction:column-reverse;align-items:stretch;padding:24px;gap:20px}
+  .wx-blog-card-feat .wx-blog-card-media{margin:-24px -24px 20px -24px;width:calc(100% + 48px);border-radius:0;aspect-ratio:1.35;flex:none}
+  .wx-blog-card-feat h2{font-size:clamp(20px,5.5vw,26px);line-height:1.2;margin-bottom:12px}
+  .wx-blog-card-feat p{font-size:14px;line-height:1.5;margin-bottom:18px}
 }
 
 /* ---------- Multilingual greeting preloader ----------
