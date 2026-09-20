@@ -388,39 +388,129 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-article-cta p{margin:0 0 24px;color:#6B6B75;font-size:clamp(15px,1.1vw,17px);line-height:1.6}
 .wx-article-cta a:not(.wx-btn-animated){display:inline-flex;align-items:center;gap:12px;background:#9D5CFF;color:#FFFFFF;text-decoration:none;padding:15px 28px;border-radius:100px;font-size:15px;font-weight:600;border:0}
 
-/* ---------- Blog index cards ---------- */
-.wx-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(20px,2.6vw,34px)}
-.wx-blog-card{position:relative;display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(0,0,0,.08);box-shadow:0 14px 34px -22px rgba(40,16,90,.28);border-radius:22px;padding:clamp(26px,3vw,40px);text-decoration:none;color:inherit;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease}
-.wx-blog-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 50% at 100% 0%,rgba(157,92,255,.12),transparent 60%);opacity:0;transition:opacity .35s ease}
-.wx-blog-card:hover{transform:translateY(-4px);border-color:rgba(157,92,255,.32);box-shadow:0 26px 56px -28px rgba(40,16,90,.30)}
-.wx-blog-card:hover::before{opacity:1}
-.wx-blog-cat{position:relative;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF;margin-bottom:18px}
-.wx-blog-card h2,.wx-blog-card h3{position:relative;font-size:clamp(21px,2.1vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
-.wx-blog-card p{position:relative;font-size:15px;line-height:1.6;color:#6B6B75;margin-bottom:24px}
-.wx-blog-meta{position:relative;margin-top:auto;font-family:'Satoshi', sans-serif;font-size:12px;color:#7A7A82;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.wx-blog-arrow{color:#9D5CFF;font-size:18px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.wx-blog-card:hover .wx-blog-arrow{transform:translateX(5px)}
-.wx-blog-card-feat{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:center;gap:clamp(20px,4vw,60px);background:linear-gradient(160deg,#F6F2FF 0%,#FFFFFF 70%);overflow:hidden}
-.wx-blog-card-feat>div{flex:1 1 340px;min-width:0;max-width:100%}
-.wx-blog-card-feat h2{font-size:clamp(22px,3.4vw,44px);line-height:1.15;word-wrap:break-word;overflow-wrap:break-word}
-.wx-blog-card-feat p{font-size:clamp(14px,1.2vw,18px);word-wrap:break-word;overflow-wrap:break-word}
+/* ---------- Blog index cards ----------
+   Chromeless: the thumbnail is the card. No plate, no border, no padding - the
+   image carries the weight and the three text lines hang off its left edge.
+   The DOM order is media / category / heading / copy / meta, but the design
+   wants category and meta reading as ONE line under the image, so the card is
+   a grid and the five children are placed by area. That keeps every existing
+   card markup - blog index and the related strip at the foot of each article -
+   on the same layout without touching twenty-two files. */
+.wx-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:clamp(28px,3vw,42px) clamp(20px,2.2vw,30px)}
+.wx-blog-card{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-areas:'media media' 'cat meta' 'title title' 'desc desc';align-content:start;column-gap:9px;background:none;border:0;border-radius:0;box-shadow:none;padding:0;overflow:visible;text-decoration:none;color:inherit}
+.wx-blog-card::before{content:none}
+.wx-blog-card:hover{transform:none;border-color:transparent;box-shadow:none}
 
 /* card thumbnail image */
-.wx-blog-card-media{position:relative;margin:calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) clamp(20px,2.2vw,26px);aspect-ratio:1.4;overflow:hidden;background:transparent}
-.wx-blog-card-media img{width:100%;height:100%;object-fit:cover;display:block}
-.wx-blog-card:hover .wx-blog-card-media img{transform:none}
-.wx-blog-card-feat .wx-blog-card-media{flex:1 1 340px;min-width:0;margin:calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) 0;border-radius:0;aspect-ratio:1.4;align-self:stretch}
+.wx-blog-card-media{grid-area:media;position:relative;margin:0 0 clamp(14px,1.4vw,18px);aspect-ratio:1.4;border-radius:14px;overflow:hidden;background:#EDEDF1}
+.wx-blog-card-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.wx-blog-card:hover .wx-blog-card-media img{transform:scale(1.04)}
+
+/* one meta line: category, then read time, split by a middot */
+.wx-blog-cat{grid-area:cat;position:relative;font-family:'Satoshi', sans-serif;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:#5A5A66;margin-bottom:10px}
+.wx-blog-cat::after{content:'\00B7';margin-left:9px;color:#B6B6C0}
+.wx-blog-meta{grid-area:meta;position:relative;margin:0 0 10px;font-family:'Satoshi', sans-serif;font-size:13px;color:#5A5A66;display:flex;justify-content:flex-start;align-items:center;gap:0}
+.wx-blog-arrow{display:none}
+
+.wx-blog-card h2,.wx-blog-card h3{grid-area:title;position:relative;font-size:clamp(19px,1.55vw,23px);font-weight:600;letter-spacing:-.02em;line-height:1.3;color:#141418;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:1;line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.wx-blog-card p{grid-area:desc;position:relative;font-size:15px;line-height:1.55;color:#6B6B75;margin:0;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---------- Article shell: sticky contents rail beside the body ----------
+   The rail is the whole point of this layout, so it gets the sticky treatment
+   and its own scroll: long guides run to a dozen H2s, which is taller than a
+   laptop viewport, and a rail that clips its own last three links is worse
+   than no rail. max-height + overflow-y lets it scroll internally once it
+   outgrows the screen, while position:sticky keeps it parked. */
+.wx-art-grid{max-width:1400px;margin:0 auto;padding:clamp(112px,16vh,180px) 24px clamp(40px,7vh,84px);
+             display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:clamp(34px,7vw,130px);align-items:start}
+.wx-art-main{min-width:0}
+.wx-art-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:34px;
+             max-height:calc(100vh - 124px);overflow-y:auto;overscroll-behavior:contain;padding-bottom:4px;
+             scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.18) transparent}
+.wx-art-side::-webkit-scrollbar{width:4px}
+.wx-art-side::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:4px}
+.wx-side-h{font-family:'Manrope', sans-serif;font-size:19px;font-weight:600;letter-spacing:-.02em;color:#1A1A1A;margin:0 0 15px;list-style:none}
+.wx-side-h::-webkit-details-marker{display:none}
+
+/* table of contents */
+.wx-toc{min-width:0}
+.wx-toc>ul{list-style:none;margin:0;padding:0;border-left:1px solid rgba(0,0,0,.11)}
+.wx-toc a{display:block;padding:8px 0 8px 19px;margin-left:-1px;border-left:2px solid transparent;
+          font-family:'Satoshi', sans-serif;font-size:14.5px;line-height:1.45;color:#6B6B75;text-decoration:none;
+          transition:color .25s ease,border-color .25s ease}
+.wx-toc a:hover{color:#1A1A1A}
+.wx-toc a.is-on{color:#1A1A1A;font-weight:600;border-left-color:#1A1A1A}
+
+/* hand the page to an assistant */
+.wx-ai-row{display:flex;flex-wrap:wrap;gap:8px}
+.wx-ai-chip{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:11px;
+            border:1px solid rgba(0,0,0,.12);background:#FFFFFF;text-decoration:none;
+            font-family:'Satoshi', sans-serif;font-size:13px;font-weight:500;color:#2A2A32;
+            transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+.wx-ai-chip:hover{border-color:rgba(157,92,255,.45);box-shadow:0 12px 26px -20px rgba(40,16,90,.6);transform:translateY(-1px)}
+.wx-ai-chip svg{flex:0 0 auto;width:14px;height:14px;color:var(--wx-chip,#9D5CFF)}
+
+/* rail CTA */
+.wx-side-cta{display:block;padding:24px;border-radius:22px;text-decoration:none;color:#FFFFFF;
+             background:radial-gradient(120% 90% at 100% 0%,rgba(157,92,255,.42),transparent 62%),#141118;
+             box-shadow:0 26px 54px -34px rgba(20,17,24,.9)}
+.wx-side-cta b{display:block;font-family:'Manrope', sans-serif;font-size:20px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.wx-side-cta span{display:block;margin-top:9px;font-family:'Satoshi', sans-serif;font-size:14px;line-height:1.55;color:rgba(255,255,255,.66)}
+.wx-side-cta i{display:inline-flex;align-items:center;gap:9px;margin-top:20px;padding:11px 20px;border-radius:99px;
+               background:#FFFFFF;color:#141118;font-family:'Satoshi', sans-serif;font-style:normal;font-size:14px;font-weight:600;
+               transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.wx-side-cta:hover i{transform:translateX(4px)}
+
+/* article head */
+.wx-art-crumb{font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6B6B75;margin-bottom:22px}
+.wx-art-meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:20px;
+             font-family:'Satoshi', sans-serif;font-size:14px;color:#6B6B75}
+.wx-art-meta b{color:#1A1A1A;font-weight:600}
+.wx-art-pill{display:inline-flex;align-items:center;padding:9px 19px;border-radius:99px;background:#141418;color:#FFFFFF;
+             font-size:13.5px;font-weight:500;letter-spacing:-.01em}
+.wx-art-head h1{font-size:clamp(32px,4.3vw,58px);font-weight:700;letter-spacing:-.035em;line-height:1.06;color:#141418;margin:0}
+.wx-art-head .wx-prose-lead{margin-top:24px}
+.wx-art-hero{margin:clamp(26px,3.6vh,40px) 0 0;border-radius:18px;overflow:hidden;background:#EDEDF1}
+.wx-art-hero img{width:100%;height:auto;display:block}
+.wx-art-main>.wx-prose{max-width:none;margin:clamp(30px,4.4vh,50px) 0 0}
+.wx-art-main>.wx-prose+.wx-prose,.wx-art-main>section.wx-prose{max-width:none;margin:clamp(30px,4.4vh,50px) 0 0}
+
+/* author card */
+.wx-author{display:flex;gap:clamp(18px,2vw,26px);align-items:flex-start;margin-top:clamp(40px,6vh,64px);
+           padding-top:clamp(30px,4vh,44px);border-top:1px solid rgba(0,0,0,.10)}
+.wx-author-av{flex:0 0 auto;width:78px;height:78px;border-radius:99px;display:grid;place-items:center;
+              background:#9D5CFF;color:#FFFFFF;font-family:'Manrope', sans-serif;font-size:29px;font-weight:600}
+.wx-author-b{min-width:0}
+.wx-author-b h2{font-family:'Manrope', sans-serif;font-size:clamp(20px,2vw,25px);font-weight:600;letter-spacing:-.02em;color:#141418;margin:0}
+.wx-author-role{font-family:'Satoshi', sans-serif;font-size:15px;color:#6B6B75;margin:5px 0 0}
+.wx-author-b p{font-size:15.5px;line-height:1.7;color:#55555F;margin:14px 0 0;max-width:62ch}
+.wx-author-soc{display:flex;gap:9px;margin-top:16px}
+.wx-author-soc a{width:36px;height:36px;border-radius:9px;border:1px solid rgba(0,0,0,.12);display:grid;place-items:center;
+                 color:#4A4A55;transition:border-color .25s ease,color .25s ease,transform .25s ease}
+.wx-author-soc a:hover{border-color:rgba(157,92,255,.5);color:#9D5CFF;transform:translateY(-1px)}
+.wx-author-soc svg{width:16px;height:16px}
+
+@media (max-width:1080px){
+  .wx-art-grid{grid-template-columns:minmax(0,1fr);gap:clamp(34px,5vh,50px);padding-left:20px;padding-right:20px}
+  /* Below the rail breakpoint the contents list is moved into the body by JS,
+     right under the hero, and the rest of the rail drops past the article. */
+  .wx-art-side{position:static;order:2;max-height:none;overflow:visible;gap:28px}
+  .wx-art-main{order:1}
+  .wx-toc{border:1px solid rgba(0,0,0,.10);border-radius:16px;padding:18px 20px;margin:clamp(26px,3.4vh,34px) 0 0;background:#FAFAFC}
+  .wx-toc .wx-side-h{margin:0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .wx-toc .wx-side-h::after{content:'';width:9px;height:9px;flex:0 0 auto;border-right:2px solid #6B6B75;border-bottom:2px solid #6B6B75;
+                            transform:rotate(45deg) translate(-2px,-2px);transition:transform .3s ease}
+  .wx-toc[open] .wx-side-h::after{transform:rotate(-135deg) translate(-2px,-2px)}
+  .wx-toc>ul{margin-top:14px}
+}
 
 /* ---------- Related posts (end of article) ---------- */
 .wx-related{max-width:1340px;margin:0 auto;padding:clamp(30px,6vh,72px) 20px clamp(10px,2vh,24px);border-top:1px solid rgba(0,0,0,.10)}
-.wx-related-label{font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75;margin-bottom:clamp(22px,3vh,34px)}
+.wx-related-label{font-family:'Manrope', sans-serif;font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;text-transform:none;color:#141418;margin:0 0 clamp(26px,3.6vh,42px)}
 
 @media (max-width:768px){
   .wx-prose blockquote{padding-left:18px}
-  .wx-blog-card-feat{flex-direction:column-reverse;align-items:stretch;gap:20px}
-  .wx-blog-card-feat .wx-blog-card-media{margin:calc(-1 * clamp(26px,3vw,40px)) calc(-1 * clamp(26px,3vw,40px)) 20px calc(-1 * clamp(26px,3vw,40px));width:calc(100% + 2 * clamp(26px,3vw,40px));max-width:calc(100% + 2 * clamp(26px,3vw,40px));border-radius:0;aspect-ratio:1.4;flex:none}
-  .wx-blog-card-feat h2{font-size:clamp(20px,5.5vw,26px);line-height:1.2;margin-bottom:12px}
-  .wx-blog-card-feat p{font-size:14px;line-height:1.5;margin-bottom:18px}
+  .wx-blog-card h2,.wx-blog-card h3{font-size:20px}
 }
 
 /* ---------- Multilingual greeting preloader ----------

@@ -174,8 +174,12 @@
   .v3-trust-label { margin: 0 0 clamp(20px,2.4vw,30px); text-align: center;
                     font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600;
                     letter-spacing: .14em; text-transform: uppercase; color: var(--v3-dim); }
-  .v3-trust-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .v3-trust-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+  /* flex, not a 6-up grid: with seven marks a grid leaves the last one
+     stranded hard-left on its own row at every breakpoint. flex-basis sets
+     the row count and justify-content centres whatever ends up orphaned. */
   .v3-trust-cell {
+    flex: 0 1 calc((100% - 6 * 16px) / 7);
     display: grid; place-items: center;
     height: clamp(104px,10vw,152px); padding: 18px 16px;
     border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(26,20,48,.055);
@@ -297,52 +301,6 @@
   .v3-who b { display: block; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.2; }
   .v3-who span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
   .v3-award-top p { max-width: 900px; }
-
-  /* ============ 3. CASE STUDIES  (ref .our-projects-section) ============ */
-  .v3-cases-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
-  .v3-cases-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-  /* The reference pins ONE media height across the whole grid (440px at a 1365
-     container) rather than an aspect ratio per card — that is what keeps the
-     wide card level with the card beside it instead of leaving a step. */
-  .v3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px 20px; --v3-shot: clamp(200px,30.56vw,440px); }
-  .v3-case { text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
-  .v3-case-media { position: relative; border-radius: 16px; overflow: hidden; background: #E4E4E9; height: var(--v3-shot); flex: 0 0 auto; }
-  .v3-case-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  /* Hover reveal: a frosted slab rises from the bottom edge of the card.
-     The scrim sits on ::before rather than on .v3-case-over itself, because an
-     ancestor with opacity < 1 becomes a backdrop root — the slab's
-     backdrop-filter would then have only the scrim to blur instead of the
-     photograph behind it, and the glass would read as flat grey. The slab parks
-     a full height plus the overlay's padding below its resting place, so
-     .v3-case-media's overflow clips it out of sight until the pointer lands. */
-  .v3-case-over { --v3-over-pad: clamp(14px,1.25vw,20px);
-                  position: absolute; inset: 0; border-radius: 16px; padding: var(--v3-over-pad);
-                  display: flex; align-items: flex-end; }
-  .v3-case-over::before { content: ''; position: absolute; inset: 0; border-radius: inherit;
-                          background: linear-gradient(to top, rgba(12,8,26,.46), rgba(12,8,26,0) 64%);
-                          opacity: 0; transition: opacity .4s ease; }
-  .v3-case-over span { position: relative; display: block; width: 100%;
-                       padding: clamp(13px,1.05vw,17px) clamp(15px,1.25vw,20px); border-radius: 12px;
-                       background: rgba(255,255,255,.13);
-                       -webkit-backdrop-filter: blur(16px) saturate(150%);
-                       backdrop-filter: blur(16px) saturate(150%);
-                       border: 1px solid rgba(255,255,255,.22);
-                       box-shadow: 0 16px 34px -18px rgba(12,8,26,.75), inset 0 1px 0 rgba(255,255,255,.26);
-                       font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 500; line-height: 1.4;
-                       letter-spacing: -.0133em; color: var(--v3-over,#FFFFFF);
-                       transform: translateY(calc(100% + var(--v3-over-pad)));
-                       transition: transform .55s cubic-bezier(.16,1,.3,1); }
-  .v3-case:hover .v3-case-over::before, .v3-case:focus-visible .v3-case-over::before { opacity: 1; }
-  .v3-case:hover .v3-case-over span, .v3-case:focus-visible .v3-case-over span { transform: translateY(0); }
-  /* With no backdrop-filter the slab is a faint white wash over a photograph,
-     which the copy cannot be read against. Fall back to a solid enough plate. */
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .v3-case-over span { background: rgba(18,12,34,.74); }
-  }
-  .v3-case-name { display: flex; flex-direction: column; justify-content: space-between; padding-right: 20px; }
-  .v3-case-name b { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.3; }
-  .v3-case-name span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-body); line-height: 1.45; }
-  .v3-case--wide { grid-column: span 2; }
 
   /* ============ 4. STORY  (ref .who-we-are) ============ */
   .v3-story-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
@@ -582,9 +540,10 @@
   /* ============ RESPONSIVE ============ */
   /* The trust row reflows before anything else: six cards across stop being
      legible long before the rest of the page feels tight. */
-  @media (max-width: 1100px) { .v3-trust-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1100px) { .v3-trust-cell { flex-basis: calc((100% - 3 * 16px) / 4); } }
   @media (max-width: 560px)  {
-    .v3-trust-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .v3-trust-grid { gap: 12px; }
+    .v3-trust-cell { flex-basis: calc((100% - 12px) / 2); }
     /* Two-up on a phone leaves each mark about 120px of room. Trimming the
        side padding and lifting the cap buys the crests back the detail they
        lose at 40px, where Uttam's ring text stops resolving. */
@@ -611,11 +570,6 @@
        panels to their own padding. They size to content once they stand alone. */
     .v3-panel { flex: 0 0 auto; }
     .v3-blog-grid { grid-template-columns: 1fr 1fr; }
-    .v3-grid { grid-template-columns: 1fr 1fr; }
-    /* Two columns fit the four single cards plus the wide one exactly — but
-       only if the wide card drops to the end, else it orphans two half rows. */
-    .v3-case--wide { grid-column: span 2; order: 1; }
-    .v3-grid { --v3-shot: clamp(220px,42vw,420px); }
     .v3-sup-grid { grid-template-columns: 1fr 1fr; }
     .v3-sup-cell:not(:nth-child(3n)) { border-right: 0; }
     .v3-sup-cell:nth-child(odd) { border-right: .8px solid var(--v3-line); }
@@ -654,15 +608,13 @@
     .v3-svc-title { font-size: clamp(38px,12.5vw,64px); }
     .v3-svc-top { flex-direction: column; align-items: flex-start; gap: 8px; }
     .v3-svc-link { text-align: left; }
-    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
+    .v3-cards4, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
     .v3-panel-top { flex-direction: column; align-items: flex-start; gap: 16px; }
     .v3-faces b { width: 40px; height: 40px; }
     .v3-cell:nth-child(odd) { border-right: 0; }
     .v3-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
     .v3-sup-cell, .v3-sup-cell:nth-child(odd) { border-right: 0; }
     .v3-sup-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
-    .v3-case--wide { grid-column: span 1; order: 0; }
-    .v3-grid { --v3-shot: clamp(230px,62vw,360px); }
     /* 70px discs cover most of a phone-width shot. */
     .v3-case-arrow { width: 46px; height: 46px; top: 24%; }
     .v3-case-arrow svg { width: 22px; height: 22px; }
@@ -683,8 +635,7 @@
   @media (prefers-reduced-motion: reduce) {
     .v3-faq-item::details-content,
     .v3-btn, .v3-btn-ico svg, .v3-rail-fill,
-    .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide,
-    .v3-case-over::before, .v3-case-over span { transition: none; }
+    .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide { transition: none; }
     .v3-btn:hover { transform: none; }
   }
 </style>
@@ -969,10 +920,10 @@
 
       <div class="hero-fan-deck">
         <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager" width="1600" height="1067"></div>
-        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/gpsfdk.avif" alt="Canvas project preview" loading="eager" width="1600" height="1200"></div>
-        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="eager" fetchpriority="high" width="1280" height="853"></div>
-        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation project preview" loading="eager" width="1280" height="853"></div>
-        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project preview" loading="eager" width="1600" height="1200"></div>
+        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/vibely.avif" alt="Vibely project preview" loading="eager" width="2400" height="1600"></div>
+        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/automa.avif" alt="Automa project preview" loading="eager" fetchpriority="high" width="2400" height="1600"></div>
+        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT project preview" loading="eager" width="2400" height="1600"></div>
+        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/tmc.avif" alt="TMC Consulting project preview" loading="eager" width="1600" height="1066"></div>
       </div>
 
       <div class="hero-fan-cta">
@@ -1020,6 +971,7 @@
         <div class="v3-trust-cell" data-reveal data-reveal-delay="180"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></div>
         <div class="v3-trust-cell" data-reveal data-reveal-delay="240"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></div>
         <div class="v3-trust-cell" data-reveal data-reveal-delay="300"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="360"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260"></div>
       </div>
     </div>
   </section>
@@ -1367,55 +1319,6 @@
           </div>
           <p class="v3-lead">We go beyond making a site look good. We design and build sites that solve a real business problem &mdash; get found, explain the offer, and turn a visitor into an enquiry.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 6. CASE STUDIES ============ -->
-  <section class="v3-sec v3-sec--grey v3-cases" aria-label="Featured case studies">
-    <div class="v3-wrap v3-cases-inner">
-      <div class="v3-cases-head">
-        <h2 class="v3-h2" data-reveal>Featured <em>Case Studies</em></h2>
-        <a class="v3-btn" href="work">See all work
-          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-      </div>
-      <div class="v3-grid">
-        <a class="v3-case" href="case-study-rightway" data-reveal style="--v3-over:#DDE6FF">
-          <div class="v3-case-media">
-            <img src="images/work/rightway.avif" alt="Rightway Purifier website" loading="lazy" decoding="async" width="1600" height="1067">
-            <span class="v3-case-over"><span>A commercial site for a water purifier brand, built to turn product interest into enquiries.</span></span>
-          </div>
-          <div class="v3-case-name"><b>Rightway Purifier</b><span>Web design</span></div>
-        </a>
-        <a class="v3-case" href="case-study-erp" data-reveal data-reveal-delay="80" style="--v3-over:#D9F7E4">
-          <div class="v3-case-media">
-            <img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard" loading="lazy" decoding="async" width="1600" height="1200">
-            <span class="v3-case-over"><span>HR, projects and finance in one custom ERP, replacing the spreadsheets behind the business.</span></span>
-          </div>
-          <div class="v3-case-name"><b>Canvas ERP One</b><span>Custom software</span></div>
-        </a>
-        <a class="v3-case" href="work" data-reveal data-reveal-delay="160" style="--v3-over:#FFE3E8">
-          <div class="v3-case-media">
-            <img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School website" loading="lazy" decoding="async" width="1280" height="853">
-            <span class="v3-case-over"><span>A school site that answers parents before they call &mdash; curriculum, facilities and admissions.</span></span>
-          </div>
-          <div class="v3-case-name"><b>Uttam Public High School</b><span>Web design</span></div>
-        </a>
-        <a class="v3-case v3-case--wide" href="work" data-reveal style="--v3-over:#E8E1D2">
-          <div class="v3-case-media">
-            <img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation website" loading="lazy" decoding="async" width="1280" height="853">
-            <span class="v3-case-over"><span>An NGO site that shows the work on the ground: programmes, people, and where donations actually go.</span></span>
-          </div>
-          <div class="v3-case-name"><b>Nar Seva Foundation</b><span>Web design</span></div>
-        </a>
-        <a class="v3-case" href="work" data-reveal data-reveal-delay="80" style="--v3-over:#F5D8FF">
-          <div class="v3-case-media">
-            <img src="images/work/vibely.avif" alt="Vibely SaaS landing page" loading="lazy" decoding="async" width="2400" height="1600">
-            <span class="v3-case-over"><span>A SaaS landing page built around one decision: understand the product, then start the trial.</span></span>
-          </div>
-          <div class="v3-case-name"><b>Vibely</b><span>Landing page</span></div>
-        </a>
       </div>
     </div>
   </section>

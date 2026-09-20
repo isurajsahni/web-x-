@@ -119,16 +119,45 @@
 <main id="main">
 <article>
 <!-- hero -->
-<section style="padding:clamp(130px,20vh,220px) 20px clamp(20px,4vh,48px);max-width:860px;margin:0 auto">
-  <nav aria-label="Breadcrumb" data-reveal style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6B6B75;margin-bottom:28px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <a href="blog" class="wx-uline" style="color:#6B6B75;text-decoration:none">Journal</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Web Development</span>
-  </nav>
-  <h1 data-reveal data-reveal-delay="60" style="font-size:clamp(34px,5.6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1.02;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">How long does website development take?</h1>
-  <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="margin-top:26px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">&ldquo;When will it be live?&rdquo; is the question every client asks. Here are realistic 2026 timelines for every type of website - and the honest truth about what actually speeds a project up or drags it out (hint: it&rsquo;s usually not the code).</p>
-  <div data-reveal data-reveal-delay="200" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:30px;font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
-    <span>By Web{X} Studio</span><span aria-hidden="true">·</span><span>Updated July 2026</span><span aria-hidden="true">·</span><span>7 min read</span>
-  </div>
-</section>
+<article class="wx-art">
+<div class="wx-art-grid">
+
+  <!-- Contents rail. webx.css pins it; webx.js builds the list from the H2s
+       below and drops it into the body on narrow screens. -->
+  <aside class="wx-art-side" data-art-side>
+    <div>
+      <p class="wx-side-h">Summarise with AI</p>
+      <div class="wx-ai-row">
+          <a class="wx-ai-chip" style="--wx-chip:#10A37F" href="https://chatgpt.com/?q=Read%20https%3A%2F%2Fwww.thewebxstudio.com%2Fblog-how-long-website-development-takes%20and%20give%20me%20a%20short%20summary%20of%20the%20key%20points." target="_blank" rel="noopener nofollow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l1.9 6.1 6.1 1.9-6.1 1.9L12 18.2l-1.9-6.1L4 10.2l6.1-1.9L12 2.2z"/></svg>ChatGPT</a>
+          <a class="wx-ai-chip" style="--wx-chip:#D97757" href="https://claude.ai/new?q=Read%20https%3A%2F%2Fwww.thewebxstudio.com%2Fblog-how-long-website-development-takes%20and%20give%20me%20a%20short%20summary%20of%20the%20key%20points." target="_blank" rel="noopener nofollow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l1.9 6.1 6.1 1.9-6.1 1.9L12 18.2l-1.9-6.1L4 10.2l6.1-1.9L12 2.2z"/></svg>Claude</a>
+          <a class="wx-ai-chip" style="--wx-chip:#20808D" href="https://www.perplexity.ai/search?q=Read%20https%3A%2F%2Fwww.thewebxstudio.com%2Fblog-how-long-website-development-takes%20and%20give%20me%20a%20short%20summary%20of%20the%20key%20points." target="_blank" rel="noopener nofollow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l1.9 6.1 6.1 1.9-6.1 1.9L12 18.2l-1.9-6.1L4 10.2l6.1-1.9L12 2.2z"/></svg>Perplexity</a>
+          <a class="wx-ai-chip" style="--wx-chip:#1A1A1A" href="https://grok.com/?q=Read%20https%3A%2F%2Fwww.thewebxstudio.com%2Fblog-how-long-website-development-takes%20and%20give%20me%20a%20short%20summary%20of%20the%20key%20points." target="_blank" rel="noopener nofollow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l1.9 6.1 6.1 1.9-6.1 1.9L12 18.2l-1.9-6.1L4 10.2l6.1-1.9L12 2.2z"/></svg>Grok</a>
+      </div>
+    </div>
+    <a data-transition href="contact" class="wx-side-cta">
+      <b>Got a project in mind?</b>
+      <span>Design, build and launch with one team.</span>
+      <i>Talk to our team <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
+    </a>
+  </aside>
+
+  <div class="wx-art-main">
+    <header class="wx-art-head">
+      <nav aria-label="Breadcrumb" class="wx-art-crumb" data-reveal style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
+        <a href="blog" class="wx-uline" style="color:#6B6B75;text-decoration:none">Journal</a> &nbsp;/&nbsp; <span style="color:#9D5CFF">Web Development</span>
+      </nav>
+      <div class="wx-art-meta" data-reveal data-reveal-delay="40" style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
+        <span>Last Update: <b>Jul 28, 2026</b></span>
+        <span class="wx-art-pill">Web Development</span>
+        <span>7 min read</span>
+      </div>
+      <h1 data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">How long does website development take?</h1>
+      <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">&ldquo;When will it be live?&rdquo; is the question every client asks. Here are realistic 2026 timelines for every type of website - and the honest truth about what actually speeds a project up or drags it out (hint: it&rsquo;s usually not the code).</p>
+      <figure class="wx-art-hero" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
+        <img src="images/cap-01.avif" alt="How long does website development take? cover" width="1200" height="900" fetchpriority="high" decoding="async">
+      </figure>
+    </header>
+
 
 <!-- hero image -->
 <figure data-reveal style="max-width:1000px;margin:0 auto;padding:0 20px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
@@ -137,8 +166,6 @@
   </div>
 </figure>
 
-<!-- body -->
-<section style="padding:clamp(20px,4vh,40px) 20px clamp(60px,10vh,110px)">
   <div class="wx-prose" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
 
     <p>&ldquo;<strong>How long does website development take?</strong>&rdquo; sounds like it should have a simple answer, and in a way it does - as long as you know what kind of website you&rsquo;re building. A one-page campaign site and a custom SaaS platform are separated by months. Here are the real ranges, and what moves them.</p>
@@ -203,7 +230,7 @@
     <p>For the full picture of what happens during that time - and what you&rsquo;re paying for - see <a href="blog-website-development-process">the website development process</a> and our <a href="blog-website-cost">website cost guide</a>.</p>
 
   </div>
-</section>
+
 
 <!-- related articles -->
 
@@ -223,8 +250,25 @@
     </details>
   </section>
 
+
+    <div class="wx-author" data-reveal style="opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease">
+      <span class="wx-author-av" aria-hidden="true">S</span>
+      <div class="wx-author-b">
+        <h2>Suraj Sahni</h2>
+        <p class="wx-author-role">Founder, Web{X} Studio</p>
+        <p>Founder of Web{X} Studio &mdash; a small, senior team in Ludhiana working with founders across India, the UK, the US and the Gulf. Writes here about design, development and search: the parts of a website that decide whether it earns its keep.</p>
+        <div class="wx-author-soc">
+            <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener" aria-label="Web{X} Studio on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 2h3.2l-7 8 8.3 12h-6.5l-5-7.3L4.6 22H1.4l7.6-8.7L1 2h6.6l4.6 6.7L17.5 2zm-1.1 18h1.8L7.7 3.9H5.8L16.4 20z"/></svg></a>
+            <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener" aria-label="Web{X} Studio on Instagram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.05 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 3.2a6.6 6.6 0 100 13.2 6.6 6.6 0 000-13.2zm0 10.9a4.3 4.3 0 110-8.6 4.3 4.3 0 010 8.6zm8.4-11.2a1.55 1.55 0 11-3.1 0 1.55 1.55 0 013.1 0z"/></svg></a>
+            <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener" aria-label="Web{X} Studio on Dribbble"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.6 4.6a8.3 8.3 0 011.9 5.2c-.3-.06-3.1-.63-5.9-.28-.06-.14-.12-.3-.19-.45-.18-.42-.37-.83-.57-1.23 3.1-1.26 4.5-3.08 4.76-3.24zM12 3.5c2.1 0 4 .8 5.4 2.1-.22.3-1.48 2-4.46 3.12A43 43 0 009.5 4.02 8.5 8.5 0 0112 3.5zM7.85 4.6a51 51 0 013.4 4.66c-3.9 1.04-7.34 1.02-7.7 1.02a8.5 8.5 0 014.3-5.68zM3.5 12v-.26c.36.01 4.4.06 8.56-1.19.24.47.47.94.68 1.42l-.33.1c-4.3 1.39-6.6 5.18-6.79 5.5A8.46 8.46 0 013.5 12zM12 20.5a8.46 8.46 0 01-5.2-1.79c.15-.3 1.8-3.48 6.5-5.12l.06-.02a35 35 0 011.8 6.42c-1 .33-2.06.51-3.16.51zm4.6-1.3a36.6 36.6 0 00-1.64-6.09c2.64-.42 4.95.27 5.24.36a8.5 8.5 0 01-3.6 5.73z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="wx-related" aria-label="Related articles">
-  <div class="wx-related-label">Related articles</div>
+  <h2 class="wx-related-label">Read our latest blogs</h2>
   <div class="wx-blog-grid">
     <a data-transition href="blog-what-is-website-development" class="wx-blog-card" aria-label="Read: What is website development">
       <div class="wx-blog-card-media"><img src="images/cap-development.webp" alt="" width="640" height="360" loading="lazy" decoding="async"></div>
@@ -237,6 +281,12 @@
       <span class="wx-blog-cat">Web Development</span>
       <h3>The Website Development Process: 7 Steps</h3>
       <span class="wx-blog-meta"><span>9 min read</span><span class="wx-blog-arrow" aria-hidden="true">→</span></span>
+    </a>
+    <a data-transition href="blog-web-development-trends-2026" class="wx-blog-card" aria-label="Read: Web Development Trends in 2026 That Actually Matter for Your Business">
+      <div class="wx-blog-card-media"><img src="images/cap-web-development-trends-2026.jpg" alt="" width="640" height="360" loading="lazy" decoding="async"></div>
+      <span class="wx-blog-cat">Web Development</span>
+      <h3>Web Development Trends in 2026 That Actually Matter for Your Business</h3>
+      <span class="wx-blog-meta"><span>10 min read</span><span class="wx-blog-arrow" aria-hidden="true">→</span></span>
     </a>
   </div>
 </section>

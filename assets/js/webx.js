@@ -918,6 +918,91 @@
 
 
 
+  /* ---------- Article contents rail ----------
+     Builds the table of contents from the H2s the article already has, so no
+     blog page has to carry a hand-written list that goes stale the moment a
+     section is renamed. Below the rail breakpoint the same element is moved
+     into the body under the hero and collapsed, because a contents list is
+     only ever useful *before* the thing it indexes. */
+  function initArticleToc() {
+    var main = document.querySelector('.wx-art-main');
+    var side = document.querySelector('[data-art-side]');
+    if (!main || !side) return;
+
+    var heads = [];
+    main.querySelectorAll('.wx-prose').forEach(function (block) {
+      block.querySelectorAll(':scope > h2').forEach(function (h) { heads.push(h); });
+    });
+    if (heads.length < 3) return;
+
+    var used = {};
+    var wrap = document.createElement('details');
+    wrap.className = 'wx-toc';
+    var sum = document.createElement('summary');
+    sum.className = 'wx-side-h';
+    sum.textContent = 'Table of Contents';
+    var list = document.createElement('ul');
+    wrap.appendChild(sum); wrap.appendChild(list);
+
+    var links = heads.map(function (h) {
+      var id = h.id;
+      if (!id) {
+        id = (h.textContent || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48) || 'section';
+        while (used[id] || document.getElementById(id)) { id = id.replace(/-\d+$/, '') + '-' + ((used[id] || 1) + 1); }
+        h.id = id;
+      }
+      used[id] = 1;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = h.textContent;
+      li.appendChild(a); list.appendChild(li);
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var y = h.getBoundingClientRect().top + window.scrollY - 96;
+        window.WebX.scrollTo(y);
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+      });
+      return a;
+    });
+
+    /* Desktop: first block of the sticky rail. Mobile: a closed disclosure
+       sitting between the hero image and the first paragraph. */
+    var mq = window.matchMedia('(max-width: 1080px)');
+    var body = main.querySelector('.wx-prose');
+    function place() {
+      if (mq.matches) {
+        if (wrap.parentNode !== main) { main.insertBefore(wrap, body); wrap.open = false; }
+      } else if (wrap.parentNode !== side) {
+        side.insertBefore(wrap, side.firstChild); wrap.open = true;
+      }
+    }
+    place();
+    (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(place);
+    /* A summary is a button; on the rail it is only a heading. */
+    sum.addEventListener('click', function (e) { if (!mq.matches) e.preventDefault(); });
+
+    var ticking = false;
+    function spy() {
+      ticking = false;
+      var best = -1;
+      for (var i = 0; i < heads.length; i++) {
+        if (heads[i].getBoundingClientRect().top <= 150) best = i; else break;
+      }
+      /* The last section is usually too short to ever clear the line. */
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 220) best = heads.length - 1;
+      links.forEach(function (a, i) { a.classList.toggle('is-on', i === best); });
+      if (best > -1 && !mq.matches && side.scrollHeight > side.clientHeight) {
+        var t = links[best].offsetTop - side.clientHeight / 2;
+        if (Math.abs(side.scrollTop - t) > 60) side.scrollTo({ top: t, behavior: reduce ? 'auto' : 'smooth' });
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(spy); }
+    }, { passive: true });
+    spy();
+  }
+
   /* ---------- Public API ---------- */
   window.WebX = {
     initAll: function () {
@@ -938,7 +1023,7 @@
     window.WebX.initAll();
     initClock(); initProcessBar();
     initWorkPreview(); initContactForm(); wireBackTop(); initFaq();
-    initCardSpotlight(); initCardTilt(); initScrollGuard();
+    initCardSpotlight(); initCardTilt(); initScrollGuard(); initArticleToc();
   }
   if (document.readyState !== 'loading') boot();
   else document.addEventListener('DOMContentLoaded', boot);
