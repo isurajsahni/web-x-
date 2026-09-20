@@ -371,9 +371,26 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-prose hr{border:0;border-top:1px solid rgba(0,0,0,.10);margin:2.2em 0}
 .wx-prose-lead{font-size:clamp(19px,1.7vw,25px);line-height:1.5;color:#555560;font-weight:400;letter-spacing:-.01em}
 
-/* table for comparison posts */
-.wx-prose table{width:100%;border-collapse:collapse;font-size:clamp(14px,1.05vw,16px)}
+/* table for comparison posts ----------------------------------------------
+   A three or four column table cannot shrink past the widest word in each
+   cell, so on a phone it used to be wider than the article column and pushed
+   the whole document sideways - the page itself scrolled, not the table. The
+   wrapper gives the table its own scroll box, and the gradients are the
+   classic scroll-shadow trick: the two white panes are attached to the
+   content, the two dark ones to the box, so a shadow shows only on a side
+   that still has table left to reveal. */
+.wx-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+  background:
+    linear-gradient(to right,#FFFFFF 40%,rgba(255,255,255,0)) left center,
+    linear-gradient(to left,#FFFFFF 40%,rgba(255,255,255,0)) right center,
+    radial-gradient(farthest-side at 0 50%,rgba(26,20,48,.20),rgba(26,20,48,0)) left center,
+    radial-gradient(farthest-side at 100% 50%,rgba(26,20,48,.20),rgba(26,20,48,0)) right center;
+  background-repeat:no-repeat;
+  background-size:34px 100%,34px 100%,17px 100%,17px 100%;
+  background-attachment:local,local,scroll,scroll}
+.wx-prose table{width:100%;border-collapse:collapse;font-size:clamp(14px,1.05vw,16px);background:transparent}
 .wx-prose th,.wx-prose td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(0,0,0,.10);vertical-align:top}
+.wx-prose tbody td:last-child,.wx-prose thead th:last-child{padding-right:20px}
 .wx-prose thead th{font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9D5CFF;font-weight:500}
 .wx-prose tbody td:first-child{color:#1A1A1A;font-weight:500}
 
@@ -510,6 +527,7 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 
 @media (max-width:768px){
   .wx-prose blockquote{padding-left:18px}
+  .wx-prose th,.wx-prose td{padding:12px 13px}
   .wx-blog-card h2,.wx-blog-card h3{font-size:20px}
 }
 
