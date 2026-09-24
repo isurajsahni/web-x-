@@ -10,8 +10,8 @@
    Microsoft Clarity snippets that used to sit at the top of every page.
    Those snippets fired on page one of a visit, before anyone had been
    asked anything — which is exactly the thing a banner is supposed to
-   prevent. Here the tags do not exist until there is a stored choice
-   that allows them, so declining actually means nothing loads.
+   prevent. The tags are now loaded from here, gated by the stored choice
+   - or, while DEFAULT_ON is set, loaded until the visitor declines.
 
    Categories
      necessary  — always on: the site itself, the form handler, fonts,
@@ -34,6 +34,7 @@
   /* ------------------------------------------------------------------ */
   var GTM_ID     = 'GTM-M6TBLLFK';
   var CLARITY_ID = 'xzhktb4dc0';
+  var GA4_ID     = 'G-WDDCVR4C7T';
   var STORE_KEY  = 'wx-consent';
   var STORE_VER  = 1;
   var MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000;   /* re-ask after 12 months */
@@ -56,6 +57,19 @@
 
      Set to false to return to opt-in defaults. Nothing else needs editing. */
   var PRESELECT  = true;
+
+  /* Load analytics (GTM / GA4) and Clarity on arrival, before any choice,
+     and treat the banner as an opt-out. Set on request (2026-09-24) so
+     tracking covers every visit, not only the visitors who open the pill.
+
+     The cost: for visitors in the UK and EU this is not valid consent
+     under the GDPR / PECR, and India's DPDP Act asks for "clear
+     affirmative action" too. A stored choice always wins - "Necessary
+     only" still turns everything off - and nothing is written to storage
+     until the visitor actually chooses, so the pill keeps offering it.
+
+     Set to false to go back to strict opt-in. Nothing else needs editing. */
+  var DEFAULT_ON = true;
 
   /* ------------------------------------------------------------------ */
   /* 2. Stored choice                                                   */
@@ -85,8 +99,8 @@
   /* ------------------------------------------------------------------ */
   /* 3. Google Consent Mode v2                                          */
   /* ------------------------------------------------------------------ */
-  /* Declared before anything else so that if a tag ever does load, it
-     starts in the denied state rather than inheriting a default grant. */
+  /* Declared before anything else. With DEFAULT_ON, analytics starts
+     granted; a stored refusal is applied below before GTM can load. */
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
@@ -95,7 +109,7 @@
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
-    analytics_storage: 'denied',
+    analytics_storage: DEFAULT_ON ? 'granted' : 'denied',
     functionality_storage: 'granted',
     security_storage: 'granted',
     personalization_storage: 'denied',
@@ -105,7 +119,7 @@
   /* ------------------------------------------------------------------ */
   /* 4. Tag loaders — called only once a category is granted            */
   /* ------------------------------------------------------------------ */
-  var loaded = { gtm: false, clarity: false };
+  var loaded = { gtm: false, clarity: false, ga4: false };
 
   function loadGTM() {
     if (loaded.gtm) return;
@@ -114,6 +128,25 @@
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    s.onload = s.onerror = ensureGA4;
+    document.head.appendChild(s);
+  }
+
+  /* GA4. The hardcoded gtag snippet was removed on 2026-09-01 so GA4 would
+     come only from the GTM container, but the published container carries
+     no GA4 tag (checked 2026-09-24: gtm.js registers only Clarity), so
+     nothing was being collected. Configure the property here once GTM has
+     run - unless the container has registered it itself, so re-adding a
+     GA4 tag in GTM later can never double-count. */
+  function ensureGA4() {
+    var gtm = window.google_tag_manager;
+    if (loaded.ga4 || (gtm && gtm[GA4_ID])) return;
+    loaded.ga4 = true;
+    gtag('js', new Date());
+    gtag('config', GA4_ID);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
     document.head.appendChild(s);
   }
 
@@ -212,7 +245,11 @@
       (c.analytics ? 'a' : '') + (c.behaviour ? 'b' : '') || 'none');
   }
 
+  /* A stored choice always wins. Without one, DEFAULT_ON runs both
+     categories for this page view but stores nothing, so the visitor is
+     still asked and can switch them off. */
   if (choice) apply(choice);
+  else if (DEFAULT_ON) apply({ analytics: true, behaviour: true });
 
   /* ------------------------------------------------------------------ */
   /* 5. Styles                                                          */
@@ -359,9 +396,9 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
     </button>
     <h2 id="wx-ck-t">We use a few cookies</h2>
-    <p>Necessary ones keep the site working. Beyond that, we would like to measure which
-       pages are useful and watch anonymised replays of how the layout gets used &mdash;
-       only if you are happy with it. See the
+    <p>Necessary ones keep the site working. We also measure which pages are useful
+       and watch anonymised replays of how the layout gets used. You can switch these
+       off at any time with &ldquo;Necessary only&rdquo;. See the
        <a href="${POLICY_URL}">Privacy Policy</a>.</p>
     <div class="wx-ck-row">
       <button type="button" class="wx-ck-btn wx-ck-btn--yes" data-wx-accept>Accept all</button>
@@ -536,13 +573,10 @@
     /* First visit shows the pill only. The panel opens when the pill is
        pressed, never on its own, so nothing covers the page on arrival.
 
-       What that costs: nothing optional loads until a choice is made, so
-       analytics and Clarity only run for visitors who open the pill and
-       accept. GA4 will read lower than it did while the panel opened by
-       itself - the tags are still wired correctly, fewer people are
-       simply being asked. To prompt every new visitor again, open the
-       banner here with slideIn(banner) after a short delay, without
-       moving focus into it the way expand() does. */
+       With DEFAULT_ON the tags are already running by this point, so the
+       pill is the opt-out. To prompt every new visitor, open the banner
+       here with slideIn(banner) after a short delay, without moving focus
+       into it the way expand() does. */
     if (!choice) showPill();
   }
 
