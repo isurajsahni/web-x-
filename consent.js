@@ -164,6 +164,10 @@
 
   function loadClarity() {
     allowClarity = true;
+    /* Consent API v2 with both flags granted = Clarity's full mode:
+       cookies, session replay and heatmaps, plus the ad-storage signal it
+       needs for Microsoft Ads linking. The v1 call stays for older builds. */
+    clarityStub()('consentv2', { ad_Storage: 'granted', analytics_Storage: 'granted' });
     clarityStub()('consent');
     if (loaded.clarity) return;
     loaded.clarity = true;
@@ -177,7 +181,10 @@
   /* Revoking cannot unload a script already in the page, but it does stop
      collection, and it reaches a container-fired Clarity too. */
   function denyClarity() {
-    try { clarityStub()('consent', false); } catch (e) {}
+    try {
+      clarityStub()('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+      clarityStub()('consent', false);
+    } catch (e) {}
   }
 
   /* ---- Script guard --------------------------------------------------
