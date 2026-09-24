@@ -219,6 +219,8 @@
     '        <a href="/blog-website-cost">Pricing</a>',
     '        <a href="/careers">Careers</a>',
     '        <a href="/blog">Blog</a>',
+    '        <a href="/web-development-agency-ludhiana">Ludhiana web development</a>',
+    '        <a href="/web-design-company-punjab">Web design in Punjab</a>',
     '        <a href="/contact">Contact</a>',
     '      </div>',
     '    </nav>',

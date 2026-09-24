@@ -399,6 +399,16 @@ input:focus,textarea:focus{outline:none;border-color:#9D5CFF !important}
 .wx-callout-label{display:block;color:#9D5CFF;font-family:'Satoshi', sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:12px}
 .wx-callout p{font-size:clamp(15px,1.15vw,18px);line-height:1.7;color:#43434D;margin:0}
 
+/* process flowchart - an ordered list drawn as connected boxes, so it reads
+   as a real list to screen readers and search engines, not an image */
+.wx-prose .wx-flow{list-style:none;margin:1.6em 0;padding:0;display:flex;flex-direction:column;gap:30px;counter-reset:wxflow}
+.wx-flow li{position:relative;counter-increment:wxflow;border:1px solid rgba(157,92,255,.28);background:#FFFFFF;border-radius:16px;
+  padding:16px 18px 16px 64px;margin:0!important;line-height:1.55;color:#43434D}
+.wx-flow li::before{content:counter(wxflow,decimal-leading-zero);position:absolute;left:16px;top:15px;width:34px;height:34px;border-radius:10px;
+  background:#F6F2FF;color:#7C3AED;font-family:'JetBrains Mono',monospace;font-size:13px;display:grid;place-items:center}
+.wx-flow li:not(:last-child)::after{content:"";position:absolute;left:32px;bottom:-26px;width:2px;height:22px;background:rgba(157,92,255,.45)}
+.wx-flow li b{display:block;color:#1A1A1A;font-weight:600}
+
 /* in-article CTA strip */
 .wx-article-cta{margin-top:2.4em;border:1px solid rgba(157,92,255,.22);border-radius:22px;background:linear-gradient(160deg,#F6F2FF 0%,#FFFFFF 75%);padding:clamp(28px,4vw,44px);text-align:center}
 .wx-article-cta h3{margin:0 0 12px!important;font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.025em;color:#1A1A1A}

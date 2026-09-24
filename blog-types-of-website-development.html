@@ -56,7 +56,10 @@
       "@id": "https://www.thewebxstudio.com/#organization",
       "name": "Web{X} Studio",
       "url": "https://www.thewebxstudio.com/",
-      "logo": { "@type": "ImageObject", "url": "https://www.thewebxstudio.com/favicon.svg" }
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.thewebxstudio.com/favicon.svg"
+      }
     },
     {
       "@type": "BlogPosting",
@@ -68,26 +71,75 @@
       "dateModified": "2026-07-28",
       "inLanguage": "en",
       "wordCount": 1600,
-      "author": { "@id": "https://www.thewebxstudio.com/#organization" },
-      "publisher": { "@id": "https://www.thewebxstudio.com/#organization" },
-      "isPartOf": { "@id": "https://www.thewebxstudio.com/blog#blog" },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.thewebxstudio.com/studio#suraj-sahni",
+        "name": "Suraj Sahni",
+        "jobTitle": "Founder",
+        "url": "https://www.thewebxstudio.com/studio",
+        "worksFor": {
+          "@id": "https://www.thewebxstudio.com/#organization"
+        }
+      },
+      "publisher": {
+        "@id": "https://www.thewebxstudio.com/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://www.thewebxstudio.com/blog#blog"
+      },
       "mainEntityOfPage": "https://www.thewebxstudio.com/blog-types-of-website-development",
       "keywords": "types of website development, front end development, back end development, full stack development"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thewebxstudio.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://www.thewebxstudio.com/blog" },
-        { "@type": "ListItem", "position": 3, "name": "Types of Website Development", "item": "https://www.thewebxstudio.com/blog-types-of-website-development" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.thewebxstudio.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journal",
+          "item": "https://www.thewebxstudio.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Types of Website Development",
+          "item": "https://www.thewebxstudio.com/blog-types-of-website-development"
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "What are the main types of website development?", "acceptedAnswer": { "@type": "Answer", "text": "By role, the types are front-end (the visible interface), back-end (servers and databases) and full-stack (both). By website type, they include static sites, dynamic/CMS sites, ecommerce stores, web applications and headless builds. Most projects combine several." } },
-        { "@type": "Question", "name": "What is the difference between front-end and back-end development?", "acceptedAnswer": { "@type": "Answer", "text": "Front-end development builds what users see and interact with, using HTML, CSS and JavaScript. Back-end development builds the server, database and logic that power the site, using languages like Node.js, PHP or Python. Full-stack developers do both." } },
-        { "@type": "Question", "name": "What type of website development do I need?", "acceptedAnswer": { "@type": "Answer", "text": "A brochure or marketing site usually needs a static or CMS-driven build; an online store needs ecommerce development; a product with logins, dashboards or real-time data needs web app development. The right type follows from what your site must do, not from a preference." } }
+        {
+          "@type": "Question",
+          "name": "What are the main types of website development?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By role, the types are front-end (the visible interface), back-end (servers and databases) and full-stack (both). By website type, they include static sites, dynamic/CMS sites, ecommerce stores, web applications and headless builds. Most projects combine several."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between front-end and back-end development?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Front-end development builds what users see and interact with, using HTML, CSS and JavaScript. Back-end development builds the server, database and logic that power the site, using languages like Node.js, PHP or Python. Full-stack developers do both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What type of website development do I need?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A brochure or marketing site usually needs a static or CMS-driven build; an online store needs ecommerce development; a product with logins, dashboards or real-time data needs web app development. The right type follows from what your site must do, not from a preference."
+          }
+        }
       ]
     }
   ]
@@ -154,17 +206,11 @@
       <h1 data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">Types of website development, explained</h1>
       <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">&ldquo;Website development&rdquo; covers everything from a one-page site to a full SaaS platform. Here are the main types - by developer role and by website type - so you can name exactly what your project needs and hire the right skills.</p>
       <figure class="wx-art-hero" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-        <img src="images/cap-types-of-website-development.jpg" alt="Types of Website Development thumbnail" width="1024" height="750" fetchpriority="high" decoding="async">
+        <img src="images/cap-types-of-website-development.jpg" alt="Cover illustration for Types of Website Development" width="1024" height="750" fetchpriority="high" decoding="async">
       </figure>
     </header>
 
 
-<!-- hero image -->
-<figure data-reveal style="max-width:1000px;margin:0 auto;padding:0 20px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-  <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:clamp(14px,2vw,22px);border:1px solid rgba(0,0,0,.08);background:#FFFFFF">
-    <img src="images/cap-erp.webp" alt="Types of website development - custom web application and dashboard development" width="1200" height="675" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover">
-  </div>
-</figure>
 
   <div class="wx-prose" data-reveal style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
 
@@ -320,7 +366,8 @@
     <a href="/figma-to-shopify">Figma to Shopify</a>
     <a href="/figma-to-framer">Figma to Framer</a>
     <a href="/figma-to-unbounce">Figma to Unbounce</a>
-    <a href="/web-development-agency-ludhiana">Web Development Agency in Ludhiana</a>
+    <a href="/web-development-agency-ludhiana">Web Development Company in Ludhiana</a>
+    <a href="/web-design-company-punjab">Web Design Company in Punjab</a>
   </nav>
   <p>Web{X} Studio &middot; Model Town, Ludhiana, Punjab 141002, India &middot;
     <a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a> &middot;

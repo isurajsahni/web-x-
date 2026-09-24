@@ -56,7 +56,10 @@
       "@id": "https://www.thewebxstudio.com/#organization",
       "name": "Web{X} Studio",
       "url": "https://www.thewebxstudio.com/",
-      "logo": { "@type": "ImageObject", "url": "https://www.thewebxstudio.com/favicon.svg" }
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.thewebxstudio.com/favicon.svg"
+      }
     },
     {
       "@type": "BlogPosting",
@@ -68,26 +71,75 @@
       "dateModified": "2026-06-22",
       "inLanguage": "en",
       "wordCount": 1900,
-      "author": { "@id": "https://www.thewebxstudio.com/#organization" },
-      "publisher": { "@id": "https://www.thewebxstudio.com/#organization" },
-      "isPartOf": { "@id": "https://www.thewebxstudio.com/blog#blog" },
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.thewebxstudio.com/studio#suraj-sahni",
+        "name": "Suraj Sahni",
+        "jobTitle": "Founder",
+        "url": "https://www.thewebxstudio.com/studio",
+        "worksFor": {
+          "@id": "https://www.thewebxstudio.com/#organization"
+        }
+      },
+      "publisher": {
+        "@id": "https://www.thewebxstudio.com/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://www.thewebxstudio.com/blog#blog"
+      },
       "mainEntityOfPage": "https://www.thewebxstudio.com/blog-website-cost",
       "keywords": "website cost, web design pricing, ecommerce cost, landing page cost"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thewebxstudio.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://www.thewebxstudio.com/blog" },
-        { "@type": "ListItem", "position": 3, "name": "How Much Does a Website Cost in 2026?", "item": "https://www.thewebxstudio.com/blog-website-cost" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.thewebxstudio.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Journal",
+          "item": "https://www.thewebxstudio.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How Much Does a Website Cost in 2026?",
+          "item": "https://www.thewebxstudio.com/blog-website-cost"
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How much does a basic website cost in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A simple professional website of 3-5 pages typically costs ₹40,000-₹1,20,000 (roughly $500-$1,500) when built by a studio. A single high-converting landing page starts lower, around ₹40,000. Costs scale with custom design, motion, integrations and content." } },
-        { "@type": "Question", "name": "Why are website prices so different between agencies?", "acceptedAnswer": { "@type": "Answer", "text": "Price reflects scope, not just hours: custom design vs templates, number of pages, integrations, motion, SEO depth, performance engineering and post-launch support. A ₹30,000 template site and a ₹5,00,000 custom build are different products solving different problems." } },
-        { "@type": "Question", "name": "Is a cheap website worth it?", "acceptedAnswer": { "@type": "Answer", "text": "A cheap template can work for validating an idea, but it rarely ranks, converts or scales. If the website is a real sales channel, the cost of a slow, generic site - in lost leads - usually dwarfs the saving." } }
+        {
+          "@type": "Question",
+          "name": "How much does a basic website cost in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A simple professional website of 3-5 pages typically costs ₹40,000-₹1,20,000 (roughly $500-$1,500) when built by a studio. A single high-converting landing page starts lower, around ₹40,000. Costs scale with custom design, motion, integrations and content."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are website prices so different between agencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Price reflects scope, not just hours: custom design vs templates, number of pages, integrations, motion, SEO depth, performance engineering and post-launch support. A ₹30,000 template site and a ₹5,00,000 custom build are different products solving different problems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a cheap website worth it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A cheap template can work for validating an idea, but it rarely ranks, converts or scales. If the website is a real sales channel, the cost of a slow, generic site - in lost leads - usually dwarfs the saving."
+          }
+        }
       ]
     }
   ]
@@ -161,7 +213,7 @@
       <h1 data-reveal data-reveal-delay="60" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">How much does a website cost in 2026?</h1>
       <p data-reveal data-reveal-delay="140" class="wx-prose-lead" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">The honest answer is &ldquo;it depends&rdquo; - but that&rsquo;s a cop-out. Here are real 2026 price ranges, what actually moves the number, and how to brief a project so you pay for outcomes, not hours.</p>
       <figure class="wx-art-hero" data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">
-        <img src="images/cap-website-cost.jpg" alt="How Much Does a Website Cost in 2026 thumbnail" width="1024" height="682" fetchpriority="high" decoding="async">
+        <img src="images/cap-website-cost.jpg" alt="Cover illustration for How Much Does a Website Cost in 2026" width="1024" height="682" fetchpriority="high" decoding="async">
       </figure>
     </header>
 
@@ -343,7 +395,8 @@
     <a href="/figma-to-shopify">Figma to Shopify</a>
     <a href="/figma-to-framer">Figma to Framer</a>
     <a href="/figma-to-unbounce">Figma to Unbounce</a>
-    <a href="/web-development-agency-ludhiana">Web Development Agency in Ludhiana</a>
+    <a href="/web-development-agency-ludhiana">Web Development Company in Ludhiana</a>
+    <a href="/web-design-company-punjab">Web Design Company in Punjab</a>
   </nav>
   <p>Web{X} Studio &middot; Model Town, Ludhiana, Punjab 141002, India &middot;
     <a href="mailto:hello@thewebxstudio.com">hello@thewebxstudio.com</a> &middot;

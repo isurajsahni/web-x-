@@ -66,6 +66,8 @@
 }
 .svcp-lead{font-family:'Satoshi',sans-serif;font-size:clamp(16px,1.25vw,19px);line-height:1.65;
   color:var(--svc-body);max-width:640px;margin:20px 0 0}
+/* In-copy links: --svc-deep holds AA on white; underline so colour is not the only cue. */
+.svcp-lead a{color:var(--svc-deep);text-decoration:underline;text-underline-offset:3px}
 
 /* ============ HERO ============
    Two-up: copy left, the Figma-to-platform conversion visual right. The
@@ -276,6 +278,42 @@
    hover/focus so the affordance is not colour alone. */
 .svcp-price-note a{color:var(--svc-deep);text-decoration:none}
 .svcp-price-note a:hover,.svcp-price-note a:focus-visible{text-decoration:underline}
+
+/* ============ QUICK ANSWER ============
+   A direct answer to the page's main question ("how long does it take?"),
+   placed right under the stats strip so it is the first thing read. */
+.svcp-answer{max-width:1340px;margin:clamp(40px,6vh,64px) auto 0;padding:0 20px}
+.svcp-answer-box{border:1px solid var(--svc-line);border-radius:24px;padding:clamp(26px,3.4vw,44px);
+  background:linear-gradient(160deg,#F6F2FF,#FFFFFF 70%);box-shadow:var(--svc-shadow)}
+.svcp-answer-box h2{font-family:'Manrope',sans-serif;font-size:clamp(22px,2.6vw,32px);font-weight:700;
+  letter-spacing:-.025em;color:var(--svc-ink);margin:0 0 12px}
+.svcp-answer-box p{font-family:'Satoshi',sans-serif;font-size:clamp(15.5px,1.15vw,18px);line-height:1.65;
+  color:var(--svc-body);margin:0;max-width:880px}
+.svcp-answer-box a{color:var(--svc-deep)}
+.svcp-answer-grid{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.svcp-answer-grid li{border:1px solid var(--svc-hair);border-radius:16px;background:var(--svc-card);padding:16px 18px;
+  font-family:'Satoshi',sans-serif;font-size:14px;line-height:1.5;color:var(--svc-soft-ink)}
+.svcp-answer-grid b{display:block;font-family:'Manrope',sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:700;
+  letter-spacing:-.02em;color:var(--svc-ink);margin-bottom:4px}
+@media (max-width:760px){.svcp-answer-grid{grid-template-columns:1fr}}
+
+/* ============ MAP ============ */
+.svcp-map{margin-top:clamp(32px,5vh,48px);display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(16px,1.6vw,22px)}
+.svcp-map-frame{border:1px solid var(--svc-hair-strong);border-radius:24px;overflow:hidden;background:var(--svc-well);
+  box-shadow:var(--svc-shadow);aspect-ratio:16/10}
+.svcp-map-frame iframe{display:block;width:100%;height:100%;border:0}
+/* Click-to-load: no Google iframe (or its cookies) until the visitor asks. */
+.svcp-map-load{width:100%;height:100%;display:grid;place-items:center;align-content:center;gap:10px;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,var(--svc-soft),transparent 60%),var(--svc-well);
+  font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;color:var(--svc-ink)}
+.svcp-map-load small{font-family:'Satoshi',sans-serif;font-size:13px;font-weight:400;color:var(--svc-mute)}
+.svcp-map-load:focus-visible{outline:2px solid var(--svc-deep);outline-offset:-4px}
+.svcp-map-card{border:1px solid var(--svc-hair);border-radius:24px;padding:clamp(24px,3vw,36px);background:var(--svc-card);
+  box-shadow:var(--svc-shadow);font-family:'Satoshi',sans-serif;font-size:15px;line-height:1.6;color:var(--svc-body)}
+.svcp-map-card h3{font-family:'Manrope',sans-serif;font-size:19px;font-weight:700;color:var(--svc-ink);margin:0 0 14px}
+.svcp-map-card p{margin:0 0 14px}
+.svcp-map-card a{color:var(--svc-deep)}
+@media (max-width:860px){.svcp-map{grid-template-columns:1fr}}
 
 /* ============ RELATED PLATFORMS ============ */
 .svcp-rel{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.2vw,18px);
