@@ -202,7 +202,7 @@
     '        <a href="/web-apps">Web apps</a>',
     '        <a href="/figma-to-shopify">Ecommerce</a>',
     '        <a href="/ui-ux-design">UI/UX design</a>',
-    '        <a href="/services">Graphic design</a>',
+    '        <a href="/graphic-design">Graphic design</a>',
     '        <a href="/landing-page-design">Landing page</a>',
     '        <a href="/figma-to-webflow">Webflow</a>',
     '        <a href="/figma-to-wordpress">WordPress</a>',

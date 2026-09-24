@@ -998,7 +998,7 @@
                 <span class="wx-mcard-tags"><i>Paid campaigns</i><i>Launches</i><i>Lead generation</i><i>A/B-ready</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
-              <a class="wx-mcard" href="/services" data-i style="--i:5">
+              <a class="wx-mcard" href="/graphic-design" data-i style="--i:5">
                 <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span><span class="wx-mcard-txt"><b>Graphic Design</b><small>Brand visuals that hold up everywhere</small></span></span>
                 <span class="wx-mcard-tags"><i>Brand identity</i><i>Logo design</i><i>Packaging</i><i>Marketing graphics</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
@@ -1090,7 +1090,7 @@
               <a href="/ui-ux-design" class="wx-drawer-sublink" data-sub="ui-ux-design.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>UI/UX design</a>
               <a href="/web-apps" class="wx-drawer-sublink" data-sub="web-apps.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Web apps &amp; ERP</a>
               <a href="/landing-page-design" class="wx-drawer-sublink" data-sub="landing-page-design.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span>Landing pages</a>
-              <a href="/services" class="wx-drawer-sublink"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span>Graphic design</a>
+              <a href="/graphic-design" class="wx-drawer-sublink" data-sub="graphic-design.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span>Graphic design</a>
             </div>
             <span class="wx-dsub-h">Build from your Figma</span>
             <div class="wx-dsub-tools">
@@ -1169,6 +1169,7 @@
       'web-design.html',
       'web-development.html',
       'ui-ux-design.html',
+      'graphic-design.html',
       'web-apps.html',
       'landing-page-design.html'
     ];
