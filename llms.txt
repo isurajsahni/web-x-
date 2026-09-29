@@ -45,6 +45,7 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Web Development](https://www.thewebxstudio.com/web-development): Custom web development from the team that designed it too — websites, ecommerce and web apps, accessible and yours to maintain after launch.
 - [UI/UX & Product Design](https://www.thewebxstudio.com/ui-ux-design): UI/UX and product design for SaaS and B2B — product interfaces, dashboards and design systems built to be understood at a glance.
 - [Graphic Design & Branding](https://www.thewebxstudio.com/graphic-design): Brand identity, logo design, brand guidelines, packaging and marketing graphics.
+- [SEO Services](https://www.thewebxstudio.com/seo-services): SEO agency services — technical SEO, Core Web Vitals, local and ecommerce SEO, content and answer engine optimisation, reported on leads.
 - [Web App Development](https://www.thewebxstudio.com/web-apps): Web apps for dashboards, customer portals and internal tools — logins, roles and real data, built to stay fast as the records pile up.
 - [Landing Page Design & CRO](https://www.thewebxstudio.com/landing-page-design): High-converting landing page design, build and conversion rate optimisation.
 

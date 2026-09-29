@@ -259,6 +259,11 @@
   .wx-marr svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .wx-mcard:hover .wx-marr, .wx-mrow:hover .wx-marr { background: #1A1A1A; color: #FFFFFF; transform: rotate(45deg); }
   .wx-mcard-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  /* The seventh card would sit alone on a third row, so it runs the full
+     width as a short banner with its tags beside the title. Scoped under the
+     grid so it outranks the .wx-mcard base rule above. */
+  .wx-mega-grid .wx-mcard--wide { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: center; gap: 24px; }
+  .wx-mega-grid .wx-mcard--wide .wx-mcard-tags { justify-content: flex-end; margin-right: 34px; }
   .wx-mcard-tags i {
     font-style: normal;
     font-family: 'Satoshi', sans-serif; font-size: 12.5px; font-weight: 500; line-height: 1;
@@ -398,6 +403,8 @@
     .wx-mcard { min-height: 0; gap: 20px; padding: 16px; }
     .wx-mcard-txt b { font-size: 16.5px; }
     .wx-mcard-tags { gap: 6px; }
+    .wx-mega-grid .wx-mcard--wide { flex-direction: column; align-items: stretch; gap: 20px; }
+    .wx-mega-grid .wx-mcard--wide .wx-mcard-tags { justify-content: flex-start; margin-right: 0; }
     .wx-mcard-tags i { font-size: 12px; padding: 7px 10px; }
     .wx-mega-side { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
     .wx-mega-side-h { grid-column: 1 / -1; }
@@ -1003,15 +1010,20 @@
                 <span class="wx-mcard-tags"><i>Brand identity</i><i>Logo design</i><i>Packaging</i><i>Marketing graphics</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
+              <a class="wx-mcard wx-mcard--wide" href="/seo-services" data-i style="--i:6">
+                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 5.1 5.1M7.6 12.2 9.7 10l1.7 1.6 2.3-2.6"/></svg></span><span class="wx-mcard-txt"><b>SEO Services</b><small>Get found by the buyers already searching</small></span></span>
+                <span class="wx-mcard-tags"><i>Technical SEO</i><i>Core Web Vitals</i><i>Local SEO</i><i>Content</i><i>AI search</i></span>
+                <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+              </a>
             </div>
             <div class="wx-mega-side">
-              <span class="wx-mega-side-h" data-i style="--i:6">Build from your Figma</span>
-              <a class="wx-mrow" href="/figma-to-webflow" data-i style="--i:7"><span class="wx-mrow-ic"><img src="/images/tools/webflow.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Webflow</b><small>CMS-ready, editable without code</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-              <a class="wx-mrow" href="/figma-to-wordpress" data-i style="--i:8"><span class="wx-mrow-ic"><img src="/images/tools/wordpress.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to WordPress</b><small>Custom themes your team can edit</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-              <a class="wx-mrow" href="/figma-to-shopify" data-i style="--i:9"><span class="wx-mrow-ic"><img src="/images/tools/shopify.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Shopify</b><small>Online Store 2.0 storefronts</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-              <a class="wx-mrow" href="/figma-to-framer" data-i style="--i:10"><span class="wx-mrow-ic"><img src="/images/tools/framer.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Framer</b><small>Motion-rich, fast marketing sites</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-              <a class="wx-mrow" href="/figma-to-unbounce" data-i style="--i:11"><span class="wx-mrow-ic"><img src="/images/tools/unbounce.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Unbounce</b><small>A/B-ready campaign pages</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
-              <a class="wx-mrow wx-mrow--all" href="/services" data-i style="--i:12"><span class="wx-mrow-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="wx-mrow-txt"><b>All services</b><small>Everything we design and build</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <span class="wx-mega-side-h" data-i style="--i:7">Build from your Figma</span>
+              <a class="wx-mrow" href="/figma-to-webflow" data-i style="--i:8"><span class="wx-mrow-ic"><img src="/images/tools/webflow.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Webflow</b><small>CMS-ready, editable without code</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <a class="wx-mrow" href="/figma-to-wordpress" data-i style="--i:9"><span class="wx-mrow-ic"><img src="/images/tools/wordpress.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to WordPress</b><small>Custom themes your team can edit</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <a class="wx-mrow" href="/figma-to-shopify" data-i style="--i:10"><span class="wx-mrow-ic"><img src="/images/tools/shopify.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Shopify</b><small>Online Store 2.0 storefronts</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <a class="wx-mrow" href="/figma-to-framer" data-i style="--i:11"><span class="wx-mrow-ic"><img src="/images/tools/framer.svg" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Framer</b><small>Motion-rich, fast marketing sites</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <a class="wx-mrow" href="/figma-to-unbounce" data-i style="--i:12"><span class="wx-mrow-ic"><img src="/images/tools/unbounce.png" alt="" width="20" height="20" loading="lazy" decoding="async"></span><span class="wx-mrow-txt"><b>Figma to Unbounce</b><small>A/B-ready campaign pages</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
+              <a class="wx-mrow wx-mrow--all" href="/services" data-i style="--i:13"><span class="wx-mrow-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="wx-mrow-txt"><b>All services</b><small>Everything we design and build</small></span><span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
             </div>
           </div>
         </div>
@@ -1091,6 +1103,7 @@
               <a href="/web-apps" class="wx-drawer-sublink" data-sub="web-apps.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Web apps &amp; ERP</a>
               <a href="/landing-page-design" class="wx-drawer-sublink" data-sub="landing-page-design.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span>Landing pages</a>
               <a href="/graphic-design" class="wx-drawer-sublink" data-sub="graphic-design.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span>Graphic design</a>
+              <a href="/seo-services" class="wx-drawer-sublink" data-sub="seo-services.html"><span class="wx-dsub-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 5.1 5.1M7.6 12.2 9.7 10l1.7 1.6 2.3-2.6"/></svg></span>SEO services</a>
             </div>
             <span class="wx-dsub-h">Build from your Figma</span>
             <div class="wx-dsub-tools">
@@ -1170,6 +1183,7 @@
       'web-development.html',
       'ui-ux-design.html',
       'graphic-design.html',
+      'seo-services.html',
       'web-apps.html',
       'landing-page-design.html'
     ];
