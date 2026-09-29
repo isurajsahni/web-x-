@@ -18,7 +18,6 @@ index.html                      Home (hero, services, work, process, stats, test
 work.html                       Portfolio / project list
 studio.html                     About the studio + team
 contact.html                    Contact details + working contact form
-case-study-nova-finance.html    Example case study
 404.html                        Branded not-found page
 assets/css/webx.css             All styles (shared across every page)
 assets/js/webx.js               All motion + interactions (shared)

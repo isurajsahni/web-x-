@@ -52,7 +52,6 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Canvas — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
 - [Canvas ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
 - [Rightway Water Purifier — Brand & Website](https://www.thewebxstudio.com/case-study-rightway)
-- [Nova Finance — Fintech Web Design & Development](https://www.thewebxstudio.com/case-study-nova-finance)
 
 ## Figma-to-code services
 - [Figma to Webflow](https://www.thewebxstudio.com/figma-to-webflow): Pixel-perfect Webflow conversion.
@@ -63,6 +62,7 @@ Engagements run async across time zones with scheduled milestones and written up
 
 ## Blog & guides
 - [Blog home](https://www.thewebxstudio.com/blog): Practical guides on web design, development, conversion and SEO.
+- [How to Hire a Web Development, Landing Page & SEO Agency as a US Business (2026)](https://www.thewebxstudio.com/blog-hire-web-development-seo-agency-usa)
 - [Webflow vs WordPress for Dubai Businesses: Which One Is Right for You?](https://www.thewebxstudio.com/blog-webflow-vs-wordpress-dubai)
 - [What Is Website Development? A Complete 2026 Guide](https://www.thewebxstudio.com/blog-what-is-website-development)
 - [The Website Development Process: 7 Steps to Launch (2026)](https://www.thewebxstudio.com/blog-website-development-process)
