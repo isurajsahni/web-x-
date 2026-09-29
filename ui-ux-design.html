@@ -446,8 +446,10 @@
     /* Sized so "UI/UX Design Services" clears the wrapper on one line at 375px
        — the old 9.2vw needed ~377px of the 335px available and spilled. */
     .uxd-hero h1 { font-size: clamp(26px,8vw,46px); max-width: 100%; }
-    .uxd-hero-cta { width: 100%; flex-direction: column; align-items: stretch; }
-    .uxd-hero-cta > a { justify-content: space-between; }
+    /* Stacked and centred, each button sized to its own label rather than
+       filling the column, as on the homepage hero. */
+    .uxd-hero-cta { width: 100%; flex-direction: column; align-items: center; }
+    .uxd-hero-cta > a { width: fit-content; }
   }
 
   /* ============================================================
