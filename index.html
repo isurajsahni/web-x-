@@ -174,12 +174,25 @@
   .v3-trust-label { margin: 0 0 clamp(20px,2.4vw,30px); text-align: center;
                     font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600;
                     letter-spacing: .14em; text-transform: uppercase; color: var(--v3-dim); }
-  .v3-trust-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-  /* flex, not a 6-up grid: with seven marks a grid leaves the last one
-     stranded hard-left on its own row at every breakpoint. flex-basis sets
-     the row count and justify-content centres whatever ends up orphaned. */
+  /* Infinite marquee: the track holds the logo list twice and slides left by
+     exactly one copy (-50%), so the loop seam is invisible. The spacing lives
+     in each group's padding-right, not in a gap between the groups, so both
+     halves are the same width and -50% lands on the same pixel every cycle. */
+  .v3-trust-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .v3-trust-track { display: flex; width: max-content; padding: 6px 0 12px;
+                    animation: v3-trust-scroll 40s linear infinite; }
+  .v3-trust-marquee:hover .v3-trust-track { animation-play-state: paused; }
+  .v3-trust-group { display: flex; gap: 16px; padding: 0 16px 0 0; margin: 0; list-style: none; }
+  @keyframes v3-trust-scroll { to { transform: translateX(-50%); } }
+  /* One white plate per client, fixed size: these marks disagree about
+     everything — Tukunen is a 6.4:1 wordmark, Uttam is square, VFM is a wide
+     lockup — and a uniform plate is what stops that reading as a ransom note. */
   .v3-trust-cell {
-    flex: 0 1 calc((100% - 6 * 16px) / 7);
+    flex: 0 0 auto; width: clamp(150px,14vw,210px);
     display: grid; place-items: center;
     height: clamp(104px,10vw,152px); padding: 18px 16px;
     border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(26,20,48,.055);
@@ -189,14 +202,18 @@
   .v3-trust-cell:hover { transform: translateY(-3px);
                          box-shadow: 0 2px 4px rgba(26,20,48,.05), 0 18px 34px -18px rgba(26,20,48,.36); }
   /* Both bounds, and each mark settles wherever its own aspect ratio hits one
-     first. That produces a deliberate split rather than a uniform height:
-     Uttam's crest and Nar Seva's emblem carry ring text and a curved tagline,
-     so they run the full 60px and need it to stay readable; Tukunen and VFM
-     are bare wordmarks with no fine detail, so they bind on width at roughly
-     half that and lose nothing. Forcing one shared height would either crush
-     the crests or blow the wordmarks up to a shout. */
+     first: the crests run the full height to keep their ring text readable,
+     the bare wordmarks bind on width and lose nothing. */
   .v3-trust-cell img { max-width: 100%; max-height: clamp(40px,4.4vw,60px);
                        width: auto; height: auto; object-fit: contain; display: block; }
+  /* VCS ships as a full-bleed blue tile, so round it to sit inside the plate. */
+  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; max-height: clamp(64px,6.4vw,92px); }
+  @media (prefers-reduced-motion: reduce) {
+    .v3-trust-marquee { -webkit-mask-image: none; mask-image: none; }
+    .v3-trust-track { animation: none; width: auto; justify-content: center; }
+    .v3-trust-group { flex-wrap: wrap; justify-content: center; padding: 0; }
+    .v3-trust-group[aria-hidden="true"] { display: none; }
+  }
 
   /* ============ 1. VALUE GRID  (ref .trusted-section) ============ */
   .v3-value-inner { display: flex; flex-direction: column; gap: var(--v3-g80); }
@@ -539,16 +556,10 @@
 
   /* The footer now comes from footer.js, shared with every other page. */
   /* ============ RESPONSIVE ============ */
-  /* The trust row reflows before anything else: six cards across stop being
-     legible long before the rest of the page feels tight. */
-  @media (max-width: 1100px) { .v3-trust-cell { flex-basis: calc((100% - 3 * 16px) / 4); } }
   @media (max-width: 560px)  {
-    .v3-trust-grid { gap: 12px; }
-    .v3-trust-cell { flex-basis: calc((100% - 12px) / 2); }
-    /* Two-up on a phone leaves each mark about 120px of room. Trimming the
-       side padding and lifting the cap buys the crests back the detail they
-       lose at 40px, where Uttam's ring text stops resolving. */
-    .v3-trust-cell { padding: 16px 12px; }
+    .v3-trust-group { gap: 12px; padding-right: 12px; }
+    .v3-trust-track { animation-duration: 30s; }
+    .v3-trust-cell { width: 140px; height: 96px; padding: 16px 12px; }
     .v3-trust-cell img { max-height: 46px; }
   }
 
@@ -1058,14 +1069,29 @@
   <section class="v3-sec-trust v3-trust" aria-label="Clients we have built for">
     <div class="v3-wrap">
       <p class="v3-trust-label" data-reveal>Trusted by teams across India and beyond</p>
-      <div class="v3-trust-grid">
-        <div class="v3-trust-cell" data-reveal><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="454" height="156"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="60"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="240" height="193"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="120"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="180"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="240"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="300"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></div>
-        <div class="v3-trust-cell" data-reveal data-reveal-delay="360"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260"></div>
+      <div class="v3-trust-marquee" data-reveal>
+        <div class="v3-trust-track">
+        <ul class="v3-trust-group">
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="454" height="156"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="240" height="193"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391"></li>
+        </ul>
+        <ul class="v3-trust-group" aria-hidden="true">
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="454" height="156"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="240" height="193"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="219" height="219"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="231" height="195"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="" loading="lazy" decoding="async" width="630" height="98"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="" loading="lazy" decoding="async" width="734" height="130"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391"></li>
+        </ul>
+        </div>
       </div>
     </div>
   </section>
