@@ -230,6 +230,7 @@
     '      <h2 class="v3-foot-h">Follow Us</h2>',
     '      <div class="v3-foot-list">',
     '        <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">Instagram</a>',
+    '        <a href="https://www.linkedin.com/company/the-webx-studio/" target="_blank" rel="noopener">LinkedIn</a>',
     '        <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">(X) Twitter</a>',
     '        <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">Dribbble</a>',
     '        <a href="mailto:hello@thewebxstudio.com">Email us</a>',
