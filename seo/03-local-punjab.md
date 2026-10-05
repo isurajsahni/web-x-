@@ -74,7 +74,7 @@ Root-flat, matching your convention. Each = `Service` + `LocalBusiness/Professio
   "@type": "ProfessionalService",
   "@id": "https://www.thewebxstudio.com/#localbusiness",
   "name": "Web{X} Studio",
-  "image": "https://www.thewebxstudio.com/og-nocturne.jpg",
+  "image": "https://www.thewebxstudio.com/og-nocturne-mockup.jpg",
   "logo": "https://www.thewebxstudio.com/logo-mark.svg",
   "url": "https://www.thewebxstudio.com/",
   "telephone": "+91-{{PHONE}}",
