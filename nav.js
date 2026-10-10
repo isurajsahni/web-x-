@@ -651,7 +651,7 @@
             <a class="wx-mega-card" href="/web-design">
               <span class="wx-mega-cat">Design</span>
               <span class="wx-mega-title">Web Design</span>
-              <span class="wx-mega-desc">Sites that read clearly on every screen — and still do the selling.</span>
+              <span class="wx-mega-desc">Sites that are easy to read on any screen and bring in enquiries.</span>
             </a>
             <a class="wx-mega-card" href="/web-development">
               <span class="wx-mega-cat">Engineering</span>
@@ -690,7 +690,7 @@
             <a class="wx-mega-card" href="/blog-core-web-vitals">
               <span class="wx-mega-cat">Site speed &amp; SEO</span>
               <span class="wx-mega-title">Core Web Vitals in 2026</span>
-              <span class="wx-mega-desc">LCP, INP &amp; CLS in plain English — and the fixes that pass Google.</span>
+              <span class="wx-mega-desc">LCP, INP &amp; CLS in plain English, plus the fixes that pass Google.</span>
             </a>
             <a class="wx-mega-card" href="/blog-website-cost">
               <span class="wx-mega-cat">Pricing</span>
@@ -700,7 +700,7 @@
             <a class="wx-mega-card" href="/blog-landing-page-vs-website">
               <span class="wx-mega-cat">Strategy</span>
               <span class="wx-mega-title">Landing Page vs Website</span>
-              <span class="wx-mega-desc">Which does your business need — and how choosing wrong loses leads.</span>
+              <span class="wx-mega-desc">Which one your business needs, and how the wrong pick costs you leads.</span>
             </a>
             <a class="wx-mega-card" href="/blog-choosing-web-design-agency">
               <span class="wx-mega-cat">Hiring</span>
