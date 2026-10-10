@@ -87,9 +87,9 @@
     '.v3-foot-brand { display: flex; flex-direction: column; align-items: flex-start; }',
     '.v3-foot-mark { display: inline-flex; text-decoration: none; }',
     '.v3-foot-mark img { display: block; width: 46px; height: auto; }',
-    '.v3-foot-name { font-family: \'Manrope\', sans-serif; font-size: var(--v3-lg); font-weight: 500;',
-    '                line-height: 1.2; letter-spacing: -.01em; color: var(--v3-ink); margin: 26px 0 0; }',
-    '.v3-foot-desc { max-width: 310px; margin: 14px 0 30px; }',
+    '.v3-foot .v3-foot-name { font-family: \'Manrope\', sans-serif; font-size: var(--v3-lg); font-weight: 600;',
+    '                         line-height: 1.3; letter-spacing: -.01em; color: var(--v3-ink); margin: 22px 0 12px; }',
+    '.v3-foot .v3-foot-desc { max-width: 320px; margin: 0 0 28px !important; line-height: 1.6; }',
 
     /* ---- Link columns: Services runs two sub-columns, the rest single files ---- */
     '.v3-foot-col { display: flex; flex-direction: column; }',
