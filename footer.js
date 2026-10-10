@@ -62,23 +62,12 @@
     '  --v3-txt:      clamp(15px,1.25vw,18px);',
     '  --v3-sm:       clamp(14px,1.11vw,16px);',
     '  background: #FFFFFF; padding: clamp(64px,9vw,120px) 0 0;',
-    /* The footer is injected as a plain static block, so it paints in the
-       normal flow — below any positioned layer. contact.html parks an opaque
-       white .contact-mesh-bg (fixed, inset 0, z-index 0) behind its content
-       and lifts its own sections to z-index 2 to clear it; the footer never
-       got that treatment and was painted over completely. Lifting it here
-       fixes contact and inoculates the footer against any other page that
-       adds a fixed backdrop. Stays well under nav (9000) and the overlays. */
-    '  position: relative; z-index: 1;',
     '}',
 
     /* Scoped copies of the three shared components the markup leans on. */
     '.v3-foot .v3-wrap { max-width: 1460px; margin: 0 auto; padding: 0 30px; }',
     '.v3-foot .v3-txt { font-family: \'Satoshi\', sans-serif; font-size: var(--v3-txt); font-weight: 400;',
     '                   line-height: 1.45; letter-spacing: -.01em; color: var(--v3-body); margin: 0; }',
-    /* Padding/gap deliberately match the page-level .v3-btn (index.html and
-       the service pages) so the footer pill is the same object as every
-       other CTA on the site. Change both together or not at all. */
     '.v3-foot .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta);',
     '                   color: #FFFFFF; border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;',
     '                   font-family: \'Satoshi\', sans-serif; font-size: var(--v3-txt); font-weight: 400;',
@@ -100,12 +89,7 @@
     '.v3-foot-mark img { display: block; width: 46px; height: auto; }',
     '.v3-foot-name { font-family: \'Manrope\', sans-serif; font-size: var(--v3-lg); font-weight: 500;',
     '                line-height: 1.2; letter-spacing: -.01em; color: var(--v3-ink); margin: 26px 0 0; }',
-    /* Must out-specify '.v3-foot .v3-txt { margin: 0 }' above: this paragraph
-       carries both classes, and at 0-1-0 the bare .v3-foot-desc lost, so the
-       margin silently never applied and the CTA sat flush against the copy
-       with a 0px gap. Scoping it to .v3-foot makes it 0-2-0 and later, so it
-       wins. Keep the .v3-foot prefix if you touch this rule. */
-    '.v3-foot .v3-foot-desc { max-width: 310px; margin: 14px 0 34px; }',
+    '.v3-foot-desc { max-width: 310px; margin: 14px 0 30px; }',
 
     /* ---- Link columns: Services runs two sub-columns, the rest single files ---- */
     '.v3-foot-col { display: flex; flex-direction: column; }',
@@ -202,9 +186,8 @@
     '        <a href="/web-apps">Web apps</a>',
     '        <a href="/figma-to-shopify">Ecommerce</a>',
     '        <a href="/ui-ux-design">UI/UX design</a>',
-    '        <a href="/graphic-design">Graphic design</a>',
+    '        <a href="/services">Graphic design</a>',
     '        <a href="/landing-page-design">Landing page</a>',
-    '        <a href="/seo-services">SEO services</a>',
     '        <a href="/figma-to-webflow">Webflow</a>',
     '        <a href="/figma-to-wordpress">WordPress</a>',
     '        <a href="/figma-to-shopify">Shopify</a>',
@@ -220,8 +203,6 @@
     '        <a href="/blog-website-cost">Pricing</a>',
     '        <a href="/careers">Careers</a>',
     '        <a href="/blog">Blog</a>',
-    '        <a href="/web-development-agency-ludhiana">Ludhiana web development</a>',
-    '        <a href="/web-design-company-punjab">Web design in Punjab</a>',
     '        <a href="/contact">Contact</a>',
     '      </div>',
     '    </nav>',
@@ -230,9 +211,8 @@
     '      <h2 class="v3-foot-h">Follow Us</h2>',
     '      <div class="v3-foot-list">',
     '        <a href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">Instagram</a>',
-    '        <a href="https://www.linkedin.com/company/the-webx-studio/" target="_blank" rel="noopener">LinkedIn</a>',
     '        <a href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">(X) Twitter</a>',
-    '        <a href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">Dribbble</a>',
+    '        <a href="https://dribbble.com/WebXStudio" target="_blank" rel="noopener">Dribbble</a>',
     '        <a href="mailto:hello@thewebxstudio.com">Email us</a>',
     '        <a href="tel:+919780651142">+91 97806 51142</a>',
     '      </div>',

@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="Web{X} Studio">
 <meta property="og:title" content="Web design &amp; development agency that grows your business | Web{X} Studio">
 <meta property="og:description" content="Fast, search-ready websites, ecommerce stores and web apps. Design, development and SEO from one team, at a fixed price agreed before we start.">
-<meta property="og:image" content="https://www.thewebxstudio.com/og-nocturne-mockup.jpg">
+<meta property="og:image" content="https://www.thewebxstudio.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Web{X} Studio — web design, development and SEO agency">
@@ -33,7 +33,7 @@
 <meta name="twitter:site" content="@Thewebxstudio">
 <meta name="twitter:title" content="Web design &amp; development agency that grows your business | Web{X} Studio">
 <meta name="twitter:description" content="Fast, search-ready websites, ecommerce stores and web apps. Design, development and SEO from one team, at a fixed price agreed before we start.">
-<meta name="twitter:image" content="https://www.thewebxstudio.com/og-nocturne-mockup.jpg">
+<meta name="twitter:image" content="https://www.thewebxstudio.com/og-image.png">
 
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -174,25 +174,8 @@
   .v3-trust-label { margin: 0 0 clamp(20px,2.4vw,30px); text-align: center;
                     font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600;
                     letter-spacing: .14em; text-transform: uppercase; color: var(--v3-dim); }
-  /* Infinite marquee: the track holds the logo list twice and slides left by
-     exactly one copy (-50%), so the loop seam is invisible. The spacing lives
-     in each group's padding-right, not in a gap between the groups, so both
-     halves are the same width and -50% lands on the same pixel every cycle. */
-  .v3-trust-marquee {
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  }
-  .v3-trust-track { display: flex; width: max-content; padding: 6px 0 12px;
-                    animation: v3-trust-scroll 40s linear infinite; }
-  .v3-trust-marquee:hover .v3-trust-track { animation-play-state: paused; }
-  .v3-trust-group { display: flex; gap: 16px; padding: 0 16px 0 0; margin: 0; list-style: none; }
-  @keyframes v3-trust-scroll { to { transform: translateX(-50%); } }
-  /* One white plate per client, fixed size: these marks disagree about
-     everything — Tukunen is a 6.4:1 wordmark, Uttam is square, VFM is a wide
-     lockup — and a uniform plate is what stops that reading as a ransom note. */
+  .v3-trust-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
   .v3-trust-cell {
-    flex: 0 0 auto; width: clamp(150px,14vw,210px);
     display: grid; place-items: center;
     height: clamp(104px,10vw,152px); padding: 18px 16px;
     border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(26,20,48,.055);
@@ -202,18 +185,14 @@
   .v3-trust-cell:hover { transform: translateY(-3px);
                          box-shadow: 0 2px 4px rgba(26,20,48,.05), 0 18px 34px -18px rgba(26,20,48,.36); }
   /* Both bounds, and each mark settles wherever its own aspect ratio hits one
-     first: the crests run the full height to keep their ring text readable,
-     the bare wordmarks bind on width and lose nothing. */
+     first. That produces a deliberate split rather than a uniform height:
+     Uttam's crest and Nar Seva's emblem carry ring text and a curved tagline,
+     so they run the full 60px and need it to stay readable; Tukunen and VFM
+     are bare wordmarks with no fine detail, so they bind on width at roughly
+     half that and lose nothing. Forcing one shared height would either crush
+     the crests or blow the wordmarks up to a shout. */
   .v3-trust-cell img { max-width: 100%; max-height: clamp(40px,4.4vw,60px);
                        width: auto; height: auto; object-fit: contain; display: block; }
-  /* VCS ships as a full-bleed blue tile, so round it to sit inside the plate. */
-  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; max-height: clamp(64px,6.4vw,92px); }
-  @media (prefers-reduced-motion: reduce) {
-    .v3-trust-marquee { -webkit-mask-image: none; mask-image: none; }
-    .v3-trust-track { animation: none; width: auto; justify-content: center; }
-    .v3-trust-group { flex-wrap: wrap; justify-content: center; padding: 0; }
-    .v3-trust-group[aria-hidden="true"] { display: none; }
-  }
 
   /* ============ 1. VALUE GRID  (ref .trusted-section) ============ */
   .v3-value-inner { display: flex; flex-direction: column; gap: var(--v3-g80); }
@@ -318,6 +297,52 @@
   .v3-who b { display: block; font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.2; }
   .v3-who span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: rgba(255,255,255,.7); }
   .v3-award-top p { max-width: 900px; }
+
+  /* ============ 3. CASE STUDIES  (ref .our-projects-section) ============ */
+  .v3-cases-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
+  .v3-cases-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  /* The reference pins ONE media height across the whole grid (440px at a 1365
+     container) rather than an aspect ratio per card — that is what keeps the
+     wide card level with the card beside it instead of leaving a step. */
+  .v3-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px 20px; --v3-shot: clamp(200px,30.56vw,440px); }
+  .v3-case { text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+  .v3-case-media { position: relative; border-radius: 16px; overflow: hidden; background: #E4E4E9; height: var(--v3-shot); flex: 0 0 auto; }
+  .v3-case-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Hover reveal: a frosted slab rises from the bottom edge of the card.
+     The scrim sits on ::before rather than on .v3-case-over itself, because an
+     ancestor with opacity < 1 becomes a backdrop root — the slab's
+     backdrop-filter would then have only the scrim to blur instead of the
+     photograph behind it, and the glass would read as flat grey. The slab parks
+     a full height plus the overlay's padding below its resting place, so
+     .v3-case-media's overflow clips it out of sight until the pointer lands. */
+  .v3-case-over { --v3-over-pad: clamp(14px,1.25vw,20px);
+                  position: absolute; inset: 0; border-radius: 16px; padding: var(--v3-over-pad);
+                  display: flex; align-items: flex-end; }
+  .v3-case-over::before { content: ''; position: absolute; inset: 0; border-radius: inherit;
+                          background: linear-gradient(to top, rgba(12,8,26,.46), rgba(12,8,26,0) 64%);
+                          opacity: 0; transition: opacity .4s ease; }
+  .v3-case-over span { position: relative; display: block; width: 100%;
+                       padding: clamp(13px,1.05vw,17px) clamp(15px,1.25vw,20px); border-radius: 12px;
+                       background: rgba(255,255,255,.13);
+                       -webkit-backdrop-filter: blur(16px) saturate(150%);
+                       backdrop-filter: blur(16px) saturate(150%);
+                       border: 1px solid rgba(255,255,255,.22);
+                       box-shadow: 0 16px 34px -18px rgba(12,8,26,.75), inset 0 1px 0 rgba(255,255,255,.26);
+                       font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 500; line-height: 1.4;
+                       letter-spacing: -.0133em; color: var(--v3-over,#FFFFFF);
+                       transform: translateY(calc(100% + var(--v3-over-pad)));
+                       transition: transform .55s cubic-bezier(.16,1,.3,1); }
+  .v3-case:hover .v3-case-over::before, .v3-case:focus-visible .v3-case-over::before { opacity: 1; }
+  .v3-case:hover .v3-case-over span, .v3-case:focus-visible .v3-case-over span { transform: translateY(0); }
+  /* With no backdrop-filter the slab is a faint white wash over a photograph,
+     which the copy cannot be read against. Fall back to a solid enough plate. */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .v3-case-over span { background: rgba(18,12,34,.74); }
+  }
+  .v3-case-name { display: flex; flex-direction: column; justify-content: space-between; padding-right: 20px; }
+  .v3-case-name b { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; line-height: 1.3; }
+  .v3-case-name span { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-body); line-height: 1.45; }
+  .v3-case--wide { grid-column: span 2; }
 
   /* ============ 4. STORY  (ref .who-we-are) ============ */
   .v3-story-inner { display: flex; flex-direction: column; gap: var(--v3-g60); }
@@ -522,7 +547,6 @@
   .v3-faq-item summary::after { content: ""; flex: 0 0 auto; width: 14px; height: 14px; border-right: 1.8px solid var(--v3-ink);
                                 border-bottom: 1.8px solid var(--v3-ink); transform: rotate(45deg) translate(-3px,-3px); transition: transform .3s ease; }
   .v3-faq-item[open] summary::after { transform: rotate(225deg) translate(-4px,-4px); }
-  .v3-faq-a a { color: #7C3AED; text-decoration: underline; text-underline-offset: 3px; }
   /* <details> would snap open. Animating its own content box keeps the native
      keyboard and screen-reader behaviour and cannot get stuck half-open the way
      a scripted height can; browsers without ::details-content just snap, which
@@ -545,7 +569,7 @@
   .v3-plat .v3-wrap { max-width: 1440px; padding: 0 20px; }
   .v3-plat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g60); }
   .v3-plat-title { font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.89vw,56px); font-weight: 500; line-height: 1.1; text-align: center; margin: 0; }
-  .v3-plat-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; width: 100%; }
+  .v3-plat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; width: 100%; }
   .v3-plat-cell { position: relative; min-height: 84px; background: rgba(9,9,9,.2); border: .8px solid #202020;
                   display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: #FFFFFF;
                   font-family: 'Manrope', sans-serif; font-size: var(--v3-txt); font-weight: 500;
@@ -556,10 +580,15 @@
 
   /* The footer now comes from footer.js, shared with every other page. */
   /* ============ RESPONSIVE ============ */
+  /* The trust row reflows before anything else: six cards across stop being
+     legible long before the rest of the page feels tight. */
+  @media (max-width: 1100px) { .v3-trust-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px)  {
-    .v3-trust-group { gap: 12px; padding-right: 12px; }
-    .v3-trust-track { animation-duration: 30s; }
-    .v3-trust-cell { width: 140px; height: 96px; padding: 16px 12px; }
+    .v3-trust-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    /* Two-up on a phone leaves each mark about 120px of room. Trimming the
+       side padding and lifting the cap buys the crests back the detail they
+       lose at 40px, where Uttam's ring text stops resolving. */
+    .v3-trust-cell { padding: 16px 12px; }
     .v3-trust-cell img { max-height: 46px; }
   }
 
@@ -582,6 +611,11 @@
        panels to their own padding. They size to content once they stand alone. */
     .v3-panel { flex: 0 0 auto; }
     .v3-blog-grid { grid-template-columns: 1fr 1fr; }
+    .v3-grid { grid-template-columns: 1fr 1fr; }
+    /* Two columns fit the four single cards plus the wide one exactly — but
+       only if the wide card drops to the end, else it orphans two half rows. */
+    .v3-case--wide { grid-column: span 2; order: 1; }
+    .v3-grid { --v3-shot: clamp(220px,42vw,420px); }
     .v3-sup-grid { grid-template-columns: 1fr 1fr; }
     .v3-sup-cell:not(:nth-child(3n)) { border-right: 0; }
     .v3-sup-cell:nth-child(odd) { border-right: .8px solid var(--v3-line); }
@@ -589,7 +623,6 @@
     .v3-step-item { flex-direction: column; }
     .v3-step-media { width: 100%; max-width: 460px; }
     .v3-plat-grid { grid-template-columns: 1fr 1fr; }
-    .v3-plat-cell:last-child { grid-column: 1 / -1; }
   }
   @media (max-width: 820px) {
     /* The two rails become a centred pair of pills under the card. Nothing
@@ -621,13 +654,15 @@
     .v3-svc-title { font-size: clamp(38px,12.5vw,64px); }
     .v3-svc-top { flex-direction: column; align-items: flex-start; gap: 8px; }
     .v3-svc-link { text-align: left; }
-    .v3-cards4, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
+    .v3-cards4, .v3-grid, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
     .v3-panel-top { flex-direction: column; align-items: flex-start; gap: 16px; }
     .v3-faces b { width: 40px; height: 40px; }
     .v3-cell:nth-child(odd) { border-right: 0; }
     .v3-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
     .v3-sup-cell, .v3-sup-cell:nth-child(odd) { border-right: 0; }
     .v3-sup-cell:not(:last-child) { border-bottom: .8px solid var(--v3-line); }
+    .v3-case--wide { grid-column: span 1; order: 0; }
+    .v3-grid { --v3-shot: clamp(230px,62vw,360px); }
     /* 70px discs cover most of a phone-width shot. */
     .v3-case-arrow { width: 46px; height: 46px; top: 24%; }
     .v3-case-arrow svg { width: 22px; height: 22px; }
@@ -648,7 +683,8 @@
   @media (prefers-reduced-motion: reduce) {
     .v3-faq-item::details-content,
     .v3-btn, .v3-btn-ico svg, .v3-rail-fill,
-    .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide { transition: none; }
+    .v3-step-dot i, .v3-step-dot i b, .v3-step-dot svg, .v3-tm-slide, .v3-case-slide,
+    .v3-case-over::before, .v3-case-over span { transition: none; }
     .v3-btn:hover { transform: none; }
   }
 </style>
@@ -658,115 +694,29 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   "@id": "https://www.thewebxstudio.com/#organization",
   "name": "Web{X} Studio",
-  "alternateName": "The Web{X} Studio",
-  "url": "https://www.thewebxstudio.com/",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://www.thewebxstudio.com/icon-512.png",
-    "width": 512,
-    "height": 512
-  },
-  "image": "https://www.thewebxstudio.com/og-nocturne-mockup.jpg",
   "description": "Web design and development agency building fast, search-ready websites, ecommerce stores and web applications, with the SEO that keeps them found.",
+  "url": "https://www.thewebxstudio.com/",
   "email": "hello@thewebxstudio.com",
   "telephone": "+91-97806-51142",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Model Town",
-    "addressLocality": "Ludhiana",
-    "addressRegion": "Punjab",
-    "postalCode": "141002",
-    "addressCountry": "IN"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "sales",
-    "telephone": "+91-97806-51142",
-    "email": "hello@thewebxstudio.com",
-    "areaServed": [
-      "IN",
-      "GB",
-      "US",
-      "CA",
-      "AU",
-      "AE",
-      "SG"
-    ],
-    "availableLanguage": [
-      "English"
-    ]
-  },
-  "areaServed": [
-    "IN",
-    "GB",
-    "US",
-    "CA",
-    "AU",
-    "AE",
-    "SG"
-  ],
+  "priceRange": "₹₹",
+  "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+  "areaServed": ["IN", "GB", "US", "CA", "AU", "AE", "SG"],
   "sameAs": [
     "https://www.instagram.com/thewebx.studio",
     "https://x.com/Thewebxstudio",
-    "https://www.linkedin.com/company/the-webx-studio/",
-    "https://dribbble.com/hello-webx"
+    "https://dribbble.com/WebXStudio"
   ],
-  "subOrganization": {
-    "@id": "https://www.thewebxstudio.com/web-development-agency-ludhiana#localbusiness"
-  },
   "makesOffer": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Web design"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Web development"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Ecommerce website development"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Web application development"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "UI/UX design"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Landing page design"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "SEO and performance"
-      }
-    }
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ecommerce website development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web application development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing page design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO and performance" } }
   ]
 }
 </script>
@@ -798,7 +748,7 @@
         "name": "How much does a website cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It depends on what you need. A landing page, a business website, an ecommerce store and a custom web application are very different amounts of work. The price is driven by page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce adds catalogue structure, payment and shipping integrations and checkout testing, and custom web applications and ERP builds are scoped after a discovery call. Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it."
+          "text": "A single landing page starts around ₹40,000. A business website typically runs ₹40,000–₹2,00,000 depending on page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce website development starts higher — around ₹1,50,000 — because catalogue structure, payment and shipping integrations and checkout testing all add real scope. Custom web applications and ERP builds are quoted per project after a discovery call. Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it."
         }
       },
       {
@@ -831,14 +781,6 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Speed and SEO are part of the build, not something bolted on afterwards. Every page ships with semantic HTML, a correct heading hierarchy, descriptive image alt text, structured data where it applies, clean internal linking, and meta titles and descriptions written per page rather than generated from a template. On performance we budget for Core Web Vitals from the first design decision: images served in modern formats at the sizes actually used, fonts preloaded with a sensible fallback, no render-blocking scripts, and layout stability protected by explicit image dimensions. We test on real mobile hardware and throttled connections, not just a desktop Lighthouse score. After launch we submit the XML sitemap, connect Google Search Console and Analytics, and send you a baseline report — then measure again at 30 days rather than assuming it worked."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Web{X} Studio based?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our studio is in Model Town, Ludhiana, Punjab, open Monday to Saturday from 10:00 to 19:00. Local businesses can meet us in person, and we work with clients across the state from Amritsar to Bathinda, as well as remotely with teams across India, the UK, the US and the Gulf."
         }
       },
       {
@@ -1027,10 +969,10 @@
 
       <div class="hero-fan-deck">
         <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager" width="1600" height="1067"></div>
-        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/vibely.avif" alt="Vibely project preview" loading="eager" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/automa.avif" alt="Automa project preview" loading="eager" fetchpriority="high" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT project preview" loading="eager" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/tmc.avif" alt="TMC Consulting project preview" loading="eager" width="1600" height="1066"></div>
+        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/gpsfdk.avif" alt="Canvas project preview" loading="eager" width="1600" height="1200"></div>
+        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="eager" fetchpriority="high" width="1280" height="853"></div>
+        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation project preview" loading="eager" width="1280" height="853"></div>
+        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project preview" loading="eager" width="1600" height="1200"></div>
       </div>
 
       <div class="hero-fan-cta">
@@ -1071,29 +1013,13 @@
   <section class="v3-sec-trust v3-trust" aria-label="Clients we have built for">
     <div class="v3-wrap">
       <p class="v3-trust-label" data-reveal>Trusted by teams across India and beyond</p>
-      <div class="v3-trust-marquee" data-reveal>
-        <div class="v3-trust-track">
-        <ul class="v3-trust-group">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="454" height="156"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="240" height="193"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391"></li>
-        </ul>
-        <ul class="v3-trust-group" aria-hidden="true">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="454" height="156"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="240" height="193"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="219" height="219"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="231" height="195"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="" loading="lazy" decoding="async" width="630" height="98"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="" loading="lazy" decoding="async" width="734" height="130"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391"></li>
-        </ul>
-        </div>
+      <div class="v3-trust-grid">
+        <div class="v3-trust-cell" data-reveal><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="454" height="156"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="60"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="240" height="193"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="120"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="180"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="240"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></div>
+        <div class="v3-trust-cell" data-reveal data-reveal-delay="300"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></div>
       </div>
     </div>
   </section>
@@ -1160,7 +1086,7 @@
           <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
           <div class="v3-svc-top">
             <span class="v3-svc-no">(01)</span>
-            <a class="v3-svc-link" href="web-design">Explore Website Design</a>
+            <a class="v3-svc-link" href="services">Explore Website Design</a>
           </div>
           <h3 class="v3-svc-title">Website <em>Design</em></h3>
           <div class="v3-svc-shot">
@@ -1176,7 +1102,7 @@
           <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
           <div class="v3-svc-top">
             <span class="v3-svc-no">(02)</span>
-            <a class="v3-svc-link" href="web-development">Explore Web Development</a>
+            <a class="v3-svc-link" href="services">Explore Web Development</a>
           </div>
           <h3 class="v3-svc-title">Web <em>Development</em></h3>
           <div class="v3-svc-shot">
@@ -1192,7 +1118,7 @@
           <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
           <div class="v3-svc-top">
             <span class="v3-svc-no">(03)</span>
-            <a class="v3-svc-link" href="seo-services">Explore SEO &amp; Performance</a>
+            <a class="v3-svc-link" href="services">Explore SEO &amp; Performance</a>
           </div>
           <h3 class="v3-svc-title">SEO &amp; <em>Performance</em></h3>
           <div class="v3-svc-shot">
@@ -1208,7 +1134,7 @@
           <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
           <div class="v3-svc-top">
             <span class="v3-svc-no">(04)</span>
-            <a class="v3-svc-link" href="web-apps">Explore ERP &amp; Web Apps</a>
+            <a class="v3-svc-link" href="services">Explore ERP &amp; Web Apps</a>
           </div>
           <h3 class="v3-svc-title">ERP &amp; <em>Web Apps</em></h3>
           <div class="v3-svc-shot">
@@ -1224,7 +1150,7 @@
           <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
           <div class="v3-svc-top">
             <span class="v3-svc-no">(05)</span>
-            <a class="v3-svc-link" href="graphic-design">Explore Graphic Design</a>
+            <a class="v3-svc-link" href="services">Explore Graphic Design</a>
           </div>
           <h3 class="v3-svc-title">Graphic <em>Design</em></h3>
           <div class="v3-svc-shot">
@@ -1435,8 +1361,61 @@
 
       <div class="v3-award">
         <div class="v3-award-top">
+          <div class="v3-who">
+            <span class="v3-who-av" aria-hidden="true">S</span>
+            <span><b>Suraj Sahni</b><span>Founder, Web{X} Studio</span></span>
+          </div>
           <p class="v3-lead">We go beyond making a site look good. We design and build sites that solve a real business problem &mdash; get found, explain the offer, and turn a visitor into an enquiry.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. CASE STUDIES ============ -->
+  <section class="v3-sec v3-sec--grey v3-cases" aria-label="Featured case studies">
+    <div class="v3-wrap v3-cases-inner">
+      <div class="v3-cases-head">
+        <h2 class="v3-h2" data-reveal>Featured <em>Case Studies</em></h2>
+        <a class="v3-btn" href="work">See all work
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+      <div class="v3-grid">
+        <a class="v3-case" href="case-study-rightway" data-reveal style="--v3-over:#DDE6FF">
+          <div class="v3-case-media">
+            <img src="images/work/rightway.avif" alt="Rightway Purifier website" loading="lazy" decoding="async" width="1600" height="1067">
+            <span class="v3-case-over"><span>A commercial site for a water purifier brand, built to turn product interest into enquiries.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Rightway Purifier</b><span>Web design</span></div>
+        </a>
+        <a class="v3-case" href="case-study-erp" data-reveal data-reveal-delay="80" style="--v3-over:#D9F7E4">
+          <div class="v3-case-media">
+            <img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One dashboard" loading="lazy" decoding="async" width="1600" height="1200">
+            <span class="v3-case-over"><span>HR, projects and finance in one custom ERP, replacing the spreadsheets behind the business.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Canvas ERP One</b><span>Custom software</span></div>
+        </a>
+        <a class="v3-case" href="work" data-reveal data-reveal-delay="160" style="--v3-over:#FFE3E8">
+          <div class="v3-case-media">
+            <img src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School website" loading="lazy" decoding="async" width="1280" height="853">
+            <span class="v3-case-over"><span>A school site that answers parents before they call &mdash; curriculum, facilities and admissions.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Uttam Public High School</b><span>Web design</span></div>
+        </a>
+        <a class="v3-case v3-case--wide" href="work" data-reveal style="--v3-over:#E8E1D2">
+          <div class="v3-case-media">
+            <img src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation website" loading="lazy" decoding="async" width="1280" height="853">
+            <span class="v3-case-over"><span>An NGO site that shows the work on the ground: programmes, people, and where donations actually go.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Nar Seva Foundation</b><span>Web design</span></div>
+        </a>
+        <a class="v3-case" href="work" data-reveal data-reveal-delay="80" style="--v3-over:#F5D8FF">
+          <div class="v3-case-media">
+            <img src="images/work/vibely.avif" alt="Vibely SaaS landing page" loading="lazy" decoding="async" width="2400" height="1600">
+            <span class="v3-case-over"><span>A SaaS landing page built around one decision: understand the product, then start the trial.</span></span>
+          </div>
+          <div class="v3-case-name"><b>Vibely</b><span>Landing page</span></div>
+        </a>
       </div>
     </div>
   </section>
@@ -1741,12 +1720,11 @@
 
       <div class="v3-faq-list">
         <details class="v3-faq-item" name="v3-faq"><summary>How long does a website project take?</summary><p class="v3-faq-a">A landing page is usually 3&ndash;5 business days from kickoff to launch. A standard business website &mdash; five to twelve pages with custom design, responsive layouts and on-page SEO &mdash; takes 1&ndash;3 weeks. An ecommerce website build on Shopify or WooCommerce runs 3&ndash;6 weeks once product data, payment gateways and shipping rules are in scope, and a custom web application or ERP dashboard 6&ndash;12 weeks depending on how many user roles and third-party integrations it has to carry.</p><p class="v3-faq-a">Those timelines assume content and brand assets arrive on schedule. The most common delay on any web development project is not design or code &mdash; it is waiting on copy and product photography, so we start those conversations in week one. You get a written milestone plan before we begin, with design review, build, QA and launch dates fixed, plus a shared board so you can see what stage every page is at without chasing an update.</p></details>
-        <details class="v3-faq-item" name="v3-faq"><summary>How much does a website cost?</summary><p class="v3-faq-a">It depends on what you need. A landing page, a business website, an ecommerce store and a custom web application are very different amounts of work. The price is driven by page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce adds catalogue structure, payment and shipping integrations and checkout testing, and custom web applications and ERP builds are scoped after a discovery call.</p><p class="v3-faq-a">Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it.</p></details>
+        <details class="v3-faq-item" name="v3-faq"><summary>How much does a website cost?</summary><p class="v3-faq-a">A single landing page starts around &#8377;40,000. A business website typically runs &#8377;40,000&ndash;&#8377;2,00,000 depending on page count, how much custom design and illustration is involved, and whether you need a CMS your team can edit without us. Ecommerce website development starts higher &mdash; around &#8377;1,50,000 &mdash; because catalogue structure, payment and shipping integrations and checkout testing all add real scope. Custom web applications and ERP builds are quoted per project after a discovery call.</p><p class="v3-faq-a">Every project is a fixed price agreed before a line of code is written: no hourly billing and no surprise change orders. The quote covers UI/UX design, development, responsive testing across devices, on-page SEO and launch. Hosting, premium plugins and paid stock assets are listed separately so you can see exactly what recurs each year. If your budget is fixed, say so on the first call and we will scope to it rather than quote past it.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>What do you need from us to get started?</summary><p class="v3-faq-a">A conversation first: what the business does, who the website is for, what a good enquiry actually looks like, and which pages have to earn their place. From there we need three things &mdash; your brand assets (logo files, fonts, colour palette if they exist), any existing copy or product data, and access to your domain and hosting.</p><p class="v3-faq-a">Nothing on that list is a blocker. If you have no brand guidelines we work from what your current site and marketing already use. If the copy does not exist we write it, structured around the keywords your customers actually search for. If product photography is thin we will tell you exactly what to shoot. The single fastest thing you can do is nominate one decision-maker for approvals &mdash; web design projects that stall almost always stall in feedback rounds, not in design or development.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Do you handle both web design and development?</summary><p class="v3-faq-a">Yes. UI/UX design, front-end and back-end development, and the SEO that keeps the site found all happen inside the same team.</p><p class="v3-faq-a">That matters more than it sounds. When a design agency hands static mockups to a separate development shop, the things lost in the gap are exactly the things that decide whether a site performs: responsive behaviour at awkward breakpoints, real content lengths versus placeholder text, image weight, accessible focus states, and how the CMS actually gets edited day to day. Designing and building in one place means those are resolved as decisions rather than discovered as bugs. You get one point of contact, one timeline and one invoice &mdash; and nobody in the middle explaining that the other party caused the delay.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Which platforms do you build websites on?</summary><p class="v3-faq-a">Webflow, WordPress, Shopify, Framer, or a fully custom stack &mdash; chosen for how your team needs to run the site, not for our convenience. Webflow suits marketing sites where you want visual editing and clean hosting without plugin maintenance. WordPress makes sense for a large content library, multilingual requirements, or a plugin ecosystem you already depend on. Shopify is the default for ecommerce unless your catalogue or checkout is genuinely unusual. Framer is fast for launch pages and product sites that lean on motion. Custom React or Next.js builds are for web applications and dashboards where a CMS would only get in the way.</p><p class="v3-faq-a">We will tell you honestly when a cheaper platform does the job. At launch you get full admin access, the source files, and a short training session &mdash; the website belongs to you, not to us, and moving it elsewhere later stays entirely your decision.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Will the website be fast and search-engine ready?</summary><p class="v3-faq-a">Speed and SEO are part of the build, not something bolted on afterwards. Every page ships with semantic HTML, a correct heading hierarchy, descriptive image alt text, structured data where it applies, clean internal linking, and meta titles and descriptions written per page rather than generated from a template.</p><p class="v3-faq-a">On performance we budget for Core Web Vitals from the first design decision: images served in modern formats at the sizes actually used, fonts preloaded with a sensible fallback, no render-blocking scripts, and layout stability protected by explicit image dimensions. We test on real mobile hardware and throttled connections, not just a desktop Lighthouse score.</p><p class="v3-faq-a">After launch we submit the XML sitemap, connect Google Search Console and Analytics, and send you a baseline report &mdash; then measure again at 30 days rather than assuming it worked.</p></details>
-        <details class="v3-faq-item" name="v3-faq"><summary>Where is Web{X} Studio based?</summary><p class="v3-faq-a">Our studio is in Model Town, Ludhiana, Punjab, open Monday to Saturday from 10:00 to 19:00. Local businesses can meet us in person &mdash; see our <a href="/web-development-agency-ludhiana">web development company in Ludhiana</a> page &mdash; and we work with clients across the state from Amritsar to Bathinda as a <a href="/web-design-company-punjab">web design company in Punjab</a>, as well as remotely with teams across India, the UK, the US and the Gulf.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Do you work with clients outside India?</summary><p class="v3-faq-a">Yes. A large share of our work is for founders and marketing teams outside India &mdash; across the UK, the US, Canada, Australia, the UAE and the wider Gulf, and Singapore.</p><p class="v3-faq-a">We keep working hours that overlap your morning, run projects asynchronously on a shared board so progress stays visible without a standing call, and schedule reviews at times that are not midnight for you. Invoicing is available in INR, USD, GBP, EUR or AED, and contracts, scope documents and handover documentation are all in English. Time zones have never been the hard part of remote work &mdash; unclear scope is, which is why every project starts with a written brief both sides sign off before design begins.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Can you work with our existing in-house team?</summary><p class="v3-faq-a">Often that is exactly the arrangement. We slot in alongside an in-house marketer, founder or developer and take the design and build load, which is usually faster and cheaper than hiring a designer and a developer outright.</p><p class="v3-faq-a">In practice that looks like one of a few things: we design and your developer implements; we build on top of a design system your team already owns; we absorb overflow when your internal roadmap is full; or we act as the entire web function while you focus on the product. We work inside your tools &mdash; Figma, Slack, Notion, Jira, GitHub &mdash; rather than asking you to adopt ours, and we document what we build so your team is never dependent on us to make a change.</p></details>
         <details class="v3-faq-item" name="v3-faq"><summary>Do you offer website support and maintenance after launch?</summary><p class="v3-faq-a">Yes. Monthly website support covers content and design changes, new landing pages, plugin and platform updates, security patching, uptime monitoring, performance tuning and ongoing SEO work.</p><p class="v3-faq-a">It runs as a fixed monthly rate with a defined turnaround rather than an hourly retainer you have to police. Most clients use it for the steady drip a live website needs &mdash; a new case study, a seasonal campaign page, a pricing change, a Core Web Vitals regression after a platform update. You can scale up during a campaign and back down afterwards, and you can stop any month: there is no lock-in and no exit fee.</p><p class="v3-faq-a">If you would rather run the site yourself that is fine too &mdash; full access and documentation are handed over at launch either way.</p></details>      </div>
@@ -1758,7 +1736,7 @@
     <div class="v3-wrap v3-plat-inner">
       <h2 class="v3-plat-title" data-reveal>Present on top creative platforms</h2>
       <div class="v3-plat-grid">
-        <a class="v3-plat-cell" href="https://dribbble.com/hello-webx" target="_blank" rel="noopener">
+        <a class="v3-plat-cell" href="https://dribbble.com/WebXStudio" target="_blank" rel="noopener">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg>
           Dribbble
         </a>
@@ -1769,10 +1747,6 @@
         <a class="v3-plat-cell" href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg>
           X (Twitter)
-        </a>
-        <a class="v3-plat-cell" href="https://www.linkedin.com/company/the-webx-studio/" target="_blank" rel="noopener">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          LinkedIn
         </a>
         <a class="v3-plat-cell" href="work">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
