@@ -981,12 +981,12 @@
           <div class="wx-mega wx-mega--svc" id="wx-mega-services">
             <div class="wx-mega-grid">
               <a class="wx-mcard" href="/web-design" data-i style="--i:0">
-                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="wx-mcard-txt"><b>Web Design</b><small>Websites that read clearly and sell</small></span></span>
+                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="wx-mcard-txt"><b>Web Design</b><small>Business sites that are easy to follow</small></span></span>
                 <span class="wx-mcard-tags"><i>Business websites</i><i>Redesigns</i><i>Responsive layouts</i><i>Conversion design</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
               <a class="wx-mcard" href="/web-development" data-i style="--i:1">
-                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><span class="wx-mcard-txt"><b>Web Development</b><small>Custom builds, fast and yours to own</small></span></span>
+                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><span class="wx-mcard-txt"><b>Web Development</b><small>Custom code, and you own all of it</small></span></span>
                 <span class="wx-mcard-tags"><i>Custom code</i><i>Ecommerce</i><i>CMS setup</i><i>Speed &amp; SEO</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
@@ -1006,12 +1006,12 @@
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
               <a class="wx-mcard" href="/graphic-design" data-i style="--i:5">
-                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span><span class="wx-mcard-txt"><b>Graphic Design</b><small>Brand visuals that hold up everywhere</small></span></span>
+                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span><span class="wx-mcard-txt"><b>Graphic Design</b><small>Logos, packaging and brand graphics</small></span></span>
                 <span class="wx-mcard-tags"><i>Brand identity</i><i>Logo design</i><i>Packaging</i><i>Marketing graphics</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
               <a class="wx-mcard wx-mcard--wide" href="/seo-services" data-i style="--i:6">
-                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 5.1 5.1M7.6 12.2 9.7 10l1.7 1.6 2.3-2.6"/></svg></span><span class="wx-mcard-txt"><b>SEO Services</b><small>Get found by the buyers already searching</small></span></span>
+                <span class="wx-mcard-head"><span class="wx-mcard-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 5.1 5.1M7.6 12.2 9.7 10l1.7 1.6 2.3-2.6"/></svg></span><span class="wx-mcard-txt"><b>SEO Services</b><small>Show up when customers search for you</small></span></span>
                 <span class="wx-mcard-tags"><i>Technical SEO</i><i>Core Web Vitals</i><i>Local SEO</i><i>Content</i><i>AI search</i></span>
                 <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
               </a>
@@ -1037,7 +1037,7 @@
           <div class="wx-mega wx-mega--res" id="wx-mega">
             <div class="wx-mega-intro" data-i style="--i:0">
               <p class="wx-mega-big">The <em>Journal</em></p>
-              <p class="wx-mega-lead">Practical guides on design, development and SEO &mdash; the parts of a website that decide whether it earns its keep.</p>
+              <p class="wx-mega-lead">Practical guides on design, development and SEO, for anyone trying to work out what their website actually needs.</p>
               <div class="wx-mega-quick"><a href="/blog-website-cost">What a website costs</a><a href="/blog-core-web-vitals">Core Web Vitals, explained</a><a href="/work">Case studies</a></div>
               <a class="wx-mega-browse" href="/blog">Browse all articles <span class="wx-marr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
             </div>
@@ -1123,7 +1123,7 @@
     </nav>
     <div class="wx-drawer-cta" data-d style="--d:7">
       <p class="wx-dcta-k">Have a project in mind?</p>
-      <p class="wx-dcta-t">Tell us what you&rsquo;re building &mdash; get a fixed quote within 48 hours.</p>
+      <p class="wx-dcta-t">Tell us what you&rsquo;re building and we&rsquo;ll send a fixed quote within 48 hours.</p>
       <div class="wx-dcta-row">
         <a href="/contact" class="wx-dcta-btn">Start a project <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span></a>
         <a href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="wx-dcta-wa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm4.52 12c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74 1.49.64 2.07.7 2.81.59.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>WhatsApp</a>
