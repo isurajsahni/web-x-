@@ -40,6 +40,36 @@
       "source": "/case-study-nova-finance",
       "destination": "/work",
       "statusCode": 301
+    },
+    {
+      "source": "/blog-landing-page-vs-homepage",
+      "destination": "/blog-landing-page-vs-website",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-landing-page-vs-homepage.html",
+      "destination": "/blog-landing-page-vs-website",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-how-long-website-development-takes",
+      "destination": "/blog-website-development-process",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-how-long-website-development-takes.html",
+      "destination": "/blog-website-development-process",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-punjab-business-website",
+      "destination": "/blog-website-development-punjab-cities",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-punjab-business-website.html",
+      "destination": "/blog-website-development-punjab-cities",
+      "statusCode": 301
     }
   ],
   "headers": [

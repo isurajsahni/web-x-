@@ -72,14 +72,12 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Types of Website Development: Front-End, Back-End & Full-Stack](https://www.thewebxstudio.com/blog-types-of-website-development)
 - [Website Development Services: What's Included & How to Choose](https://www.thewebxstudio.com/blog-website-development-services)
 - [Custom Website Development vs Website Builders (2026)](https://www.thewebxstudio.com/blog-custom-website-development-vs-builders)
-- [How Long Does Website Development Take? A 2026 Timeline](https://www.thewebxstudio.com/blog-how-long-website-development-takes)
 - [How Much Does a Website Cost in 2026? A Transparent Pricing Guide](https://www.thewebxstudio.com/blog-website-cost)
 - [Landing Page vs Website: Which Does Your Business Need?](https://www.thewebxstudio.com/blog-landing-page-vs-website)
 - [Core Web Vitals in 2026: How Site Speed Decides Your Google Ranking](https://www.thewebxstudio.com/blog-core-web-vitals)
 - [How to Choose a Web Design Agency: A Founder's Guide to Hiring Globally](https://www.thewebxstudio.com/blog-choosing-web-design-agency)
 - [Landing Page Best Practices: 11 Elements of a High-Converting Page](https://www.thewebxstudio.com/blog-landing-page-best-practices)
 - [How to Increase Landing Page Conversion Rate: A CRO Playbook](https://www.thewebxstudio.com/blog-landing-page-conversion-rate)
-- [Landing Page vs Homepage: What's the Difference & When to Use Each](https://www.thewebxstudio.com/blog-landing-page-vs-homepage)
 - [Web Development Trends in 2026: What Businesses Should Know](https://www.thewebxstudio.com/blog-web-development-trends-2026)
 - [Static vs Dynamic Websites: Which Is Right for Your Business?](https://www.thewebxstudio.com/blog-static-vs-dynamic-websites)
 
@@ -88,7 +86,6 @@ Engagements run async across time zones with scheduled milestones and written up
 - [How Much Does a Website Cost in Punjab? 2026 Price Guide](https://www.thewebxstudio.com/blog-website-cost-punjab)
 - [Website Development in Amritsar, Jalandhar & Mohali (2026)](https://www.thewebxstudio.com/blog-website-development-punjab-cities)
 - [How to Find the Best Web Design Company in Punjab (2026)](https://www.thewebxstudio.com/blog-best-web-design-company-punjab)
-- [Why Every Punjab Business Needs an SEO-Ready Website in 2026](https://www.thewebxstudio.com/blog-punjab-business-website)
 
 ## Common questions
 **What does Web{X} Studio do?**
