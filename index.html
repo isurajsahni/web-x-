@@ -661,7 +661,7 @@
   "@type": "Organization",
   "@id": "https://www.thewebxstudio.com/#organization",
   "name": "Web{X} Studio",
-  "alternateName": "The Web{X} Studio",
+  "alternateName": ["The Web{X} Studio", "WebX Studio", "Web X Studio", "WebX Studio Ludhiana"],
   "url": "https://www.thewebxstudio.com/",
   "logo": {
     "@type": "ImageObject",
@@ -778,6 +778,44 @@
   "url": "https://www.thewebxstudio.com/",
   "name": "Web{X} Studio",
   "publisher": { "@id": "https://www.thewebxstudio.com/#organization" }
+}
+</script>
+<!-- The Ludhiana studio as a local business. Same @id as the node on
+     web-development-agency-ludhiana, so search engines read one business. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.thewebxstudio.com/web-development-agency-ludhiana#localbusiness",
+  "name": "The Web{X} Studio",
+  "alternateName": ["Web{X} Studio", "WebX Studio", "Web X Studio", "WebX Studio Ludhiana"],
+  "url": "https://www.thewebxstudio.com/web-development-agency-ludhiana",
+  "logo": "https://www.thewebxstudio.com/icon-512.png",
+  "image": "https://www.thewebxstudio.com/og-nocturne-mockup.jpg",
+  "email": "hello@thewebxstudio.com",
+  "telephone": "+91-97806-51142",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Model Town",
+    "addressLocality": "Ludhiana",
+    "addressRegion": "Punjab",
+    "postalCode": "141002",
+    "addressCountry": "IN"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 30.901, "longitude": 75.8573 },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "10:00",
+    "closes": "19:00"
+  }],
+  "parentOrganization": { "@id": "https://www.thewebxstudio.com/#organization" },
+  "sameAs": [
+    "https://www.instagram.com/thewebx.studio",
+    "https://x.com/Thewebxstudio",
+    "https://www.linkedin.com/company/the-webx-studio/",
+    "https://dribbble.com/WebXStudio"
+  ]
 }
 </script>
 <script type="application/ld+json">

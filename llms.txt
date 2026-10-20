@@ -2,6 +2,8 @@
 
 > Web{X} Studio is an international web design, development and SEO agency based in Ludhiana, India, building high-converting landing pages, websites and search-optimised digital products for founders and brands across India and worldwide.
 
+The official name is The Web{X} Studio. It is also written Web{X} Studio, WebX Studio or Web X Studio (WebX Studio Ludhiana). It is not affiliated with other companies or products called "webx".
+
 Web{X} Studio (https://www.thewebxstudio.com) delivers website design, web development, SEO & performance, ERP & web apps, and pixel-perfect Figma-to-code conversion (Webflow, WordPress, Shopify, Framer, Unbounce). Design, engineering and motion under one roof. The studio serves founders and brands in India, the UK, the US and the Gulf. Contact: hello@thewebxstudio.com.
 
 ## Services offered
