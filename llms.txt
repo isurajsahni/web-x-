@@ -52,6 +52,11 @@ Engagements run async across time zones with scheduled milestones and written up
 - [Landing Page Design & CRO](https://www.thewebxstudio.com/landing-page-design): High-converting landing page design, build and conversion rate optimisation.
 
 ## Case studies
+- [JAVIQ Natural Beauty — WooCommerce Store Rebuild](https://www.thewebxstudio.com/case-study-javiq)
+- [Elite Manuals — SEO & Redesign for a 25,000-Product Store](https://www.thewebxstudio.com/case-study-elite-manuals)
+- [GS Associates — Architecture, Construction & Interiors Website](https://www.thewebxstudio.com/case-study-gs-associates)
+- [AEO Audit — AI Search Audit Tool](https://www.thewebxstudio.com/case-study-aeo-audit)
+- [VCS Immigration Consultants — Website](https://www.thewebxstudio.com/case-study-vcs)
 - [Canvas — Luxury Ecommerce Brand & Website](https://www.thewebxstudio.com/case-study-gpsfdk)
 - [Canvas ERP One — Custom ERP Software](https://www.thewebxstudio.com/case-study-erp)
 - [Rightway Water Purifier — Brand & Website](https://www.thewebxstudio.com/case-study-rightway)
