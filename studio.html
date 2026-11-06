@@ -47,7 +47,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
 
 <link rel="stylesheet" href="assets/css/webx.css">
 <script src="assets/js/webx.js" defer></script>
@@ -152,10 +152,268 @@
   ]
 }
 </script>
+
 <style>
-  /* Headings share the face the home hero uses. Declared once here rather than
-     per-heading: none of these set font-family inline, so the rule wins. */
-  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+  /* ============================================================
+     About page, in the home page's v3 design language. Tokens and
+     shared components are duplicated from work.html, as every page
+     carries its own copy.
+     ============================================================ */
+  :root {
+    interpolate-size: allow-keywords;   /* lets the FAQ panels animate to auto */
+
+    --v3-cta-shadow: 0 0 #0000, -1.1px 1.2px .1px #00000003, -2.2px 2.4px .3px #00000005,
+                        -3.3px 3.7px .5px #00000005, -4.6px 5.1px .7px #00000008, -6px 6.6px .9px #00000008,
+                        -7.6px 8.4px 1.3px #00000008, -9.5px 10.5px 1.8px #00000008, -11.8px 13px 2.4px #00000008,
+                        -14.7px 16.2px 3.2px #00000008, -18.3px 20.2px 4.4px #0000000a, -23px 25.4px 6px #0000000a,
+                        -29.3px 32.3px 8.2px #0000000a, -37.8px 41.8px 11.3px #0000000a, -49.9px 55.1px 15.9px #0000000a;
+
+    --v3-ink:    #000000;
+    --v3-body:   rgba(0,0,0,.8);
+    --v3-dim:    rgba(0,0,0,.7);
+    --v3-line:   #E6E6E6;
+    --v3-grey:   #F3F4F6;
+    --v3-dark:   #010101;
+    --v3-accent: #9D5CFF;
+    --v3-cta:    #8438EE;
+    --v3-accent-w: rgba(157,92,255,.18);
+    --v3-err:    #D92D20;
+
+    --v3-sec:  clamp(72px,12.5vw,180px);
+    --v3-g80:  clamp(40px,5.56vw,80px);
+    --v3-g60:  clamp(32px,4.17vw,60px);
+    --v3-g44:  clamp(22px,3.06vw,44px);
+    --v3-g32:  clamp(20px,2.22vw,32px);
+    --v3-g24:  clamp(16px,1.67vw,24px);
+
+    --v3-h2:   clamp(32px,5vw,72px);
+    --v3-h5:   clamp(20px,2.08vw,30px);
+    --v3-lead: clamp(18px,1.67vw,24px);
+    --v3-txt:  clamp(15px,1.25vw,18px);
+    --v3-lg:   clamp(16px,1.39vw,20px);
+    --v3-sm:   clamp(14px,1.11vw,16px);
+  }
+  body { background: #FFFFFF; color: var(--v3-ink); }
+
+  .v3-wrap { max-width: 1460px; margin: 0 auto; padding: 0 30px; }
+  .v3-sec  { padding: var(--v3-sec) 0; }
+  .v3-sec--grey { background: var(--v3-grey); }
+  .v3-sec--dark { background: var(--v3-dark); color: #FFFFFF; }
+
+  /* ---- Headings: a tight sans whose accent phrase drops into serif italic ---- */
+  .v3-h2, .v3-h5 { font-family: 'Manrope', sans-serif; font-weight: 500; margin: 0; text-wrap: balance; }
+  .v3-h2 { font-size: var(--v3-h2); line-height: 1.14; letter-spacing: -.0128em; }
+  .v3-h5 { font-size: var(--v3-h5); line-height: 1.24; letter-spacing: -.0173em; }
+  .v3-h2 em, .v3-h5 em {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--v3-accent);
+  }
+  .v3-lead { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3; letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
+  .v3-txt  { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt);  font-weight: 400; line-height: 1.45; letter-spacing: -.01em; color: var(--v3-body); margin: 0; }
+  .v3-lg   { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg);   font-weight: 400; line-height: 1.45; color: var(--v3-body); margin: 0; }
+  .v3-sec--dark .v3-h2 { color: #FFFFFF; }
+
+  .v3-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); margin-inline: auto; }
+  .v3-head--780 { max-width: 780px; }
+  .v3-head p { max-width: 680px; }
+
+  /* ---- Eyebrow pill: grey on white, white on grey, translucent on dark ---- */
+  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: var(--v3-grey); border-radius: 99px; padding: 4px 14px 4px 4px;
+             font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; color: var(--v3-dim); }
+  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: #FFFFFF; display: grid; place-items: center; color: var(--v3-ink); }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) { background: #FFFFFF; }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) i { background: var(--v3-grey); }
+  .v3-pill--dark { background: rgba(255,255,255,.2); color: rgba(255,255,255,.9); gap: 10px; }
+  .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
+
+  /* ---- Buttons: the home page's purple pill with a white arrow disc ---- */
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta); color: #FFFFFF;
+            border: 0; cursor: pointer; border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
+            box-shadow: var(--v3-cta-shadow); transition: transform .25s cubic-bezier(.16,1,.3,1), opacity .2s ease; }
+  .v3-btn:hover { transform: translateY(-2px); }
+  .v3-btn:disabled { opacity: .7; cursor: progress; transform: none; padding: 16px 28px; }
+  .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF; color: var(--v3-ink); display: grid; place-items: center; }
+  .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
+  .v3-btn:hover .v3-btn-ico svg, .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }
+  .v3-btn--ghost { background: #FFFFFF; color: var(--v3-ink); border: 1px solid rgba(0,0,0,.14); }
+  .v3-btn--ghost .v3-btn-ico { background: var(--v3-accent); color: #FFFFFF; }
+  .v3-btn--ghost:hover { background: rgba(157,92,255,.05); border-color: rgba(157,92,255,.45); }
+  .v3-btn--ghost:hover .v3-btn-ico svg { transform: none; }
+
+  /* ============ HERO — the home hero's type, without the card deck ============ */
+  .ab-hero { background: #FFFFFF; }
+  .ab-hero-inner { max-width: 1460px; margin: 0 auto; text-align: center;
+                   padding: clamp(150px,17vw,220px) 30px clamp(64px,8vw,110px);
+                   display: flex; flex-direction: column; align-items: center; }
+  .ab-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(18px,2.4vh,26px);
+                font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.05vw,16px); font-weight: 600; letter-spacing: .01em; color: var(--v3-ink); }
+  .ab-eyebrow svg { flex: 0 0 auto; color: var(--v3-accent); }
+  .ab-hero h1 { font-family: 'Manrope', sans-serif; font-size: clamp(38px,5.4vw,76px); font-weight: 700;
+                letter-spacing: -.045em; line-height: 1.04; color: var(--v3-ink); margin: 0; max-width: 16ch; text-wrap: balance; }
+  .wx-grad-text {
+    font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.02em;
+    background: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 42%,#C061FF 72%,rgba(157,92,255,.06) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    padding-right: .06em;
+  }
+  .ab-hero .v3-lead { max-width: 640px; margin-top: clamp(20px,2.6vh,28px); }
+  .ab-hero-cta { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: clamp(28px,4vh,44px); }
+
+
+
+
+  /* ============ INTRO — one large two-tone statement ============ */
+  .ab-intro { padding-top: 0; }
+  .ab-intro-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g44); text-align: center; }
+  .ab-statement { font-family: 'Manrope', sans-serif; font-size: clamp(24px,3.1vw,46px); font-weight: 500; line-height: 1.25;
+                  letter-spacing: -.02em; color: var(--v3-ink); margin: 0; max-width: 24em; text-wrap: balance; }
+  .ab-statement span { color: rgba(0,0,0,.42); }
+
+  /* ============ VALUES — three numbered cards on grey ============ */
+  .ab-sec-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  .ab-values { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(16px,1.6vw,24px); width: 100%; margin: 0; padding: 0; list-style: none; }
+  .ab-value { background: #FFFFFF; border-radius: 28px; padding: clamp(26px,3vw,44px); display: flex; flex-direction: column; gap: 14px; }
+  .ab-value-n { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(44px,4.4vw,64px); line-height: 1; color: var(--v3-accent); }
+  .ab-value h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.24; margin: 8px 0 0; }
+
+  /* ============ TEAM — six photo cards, 3 x 2 ============ */
+  .ab-team { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(28px,3vw,44px) clamp(16px,1.6vw,24px); width: 100%; margin: 0; padding: 0; list-style: none; }
+  .ab-person { display: flex; flex-direction: column; gap: 6px; }
+  .ab-photo { display: block; overflow: hidden; border-radius: clamp(20px,2.2vw,32px); aspect-ratio: 4 / 5; margin-bottom: 14px;
+              background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
+  .ab-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+  .ab-person:hover .ab-photo img { transform: scale(1.035); }
+  .ab-person h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.2; margin: 0; }
+  .ab-role { font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+             color: var(--v3-dim); border-left: 2px solid var(--v3-accent); padding-left: 8px; align-self: flex-start; }
+  .ab-person p { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.5; color: var(--v3-body); margin: 6px 0 0; max-width: 40ch; }
+
+  /* ============ CLIENTS — the home page's logo strip ============ */
+  .v3-trust { padding: clamp(40px,5.5vw,72px) 0 clamp(44px,6vw,84px); background: var(--v3-grey); }
+  .v3-trust-label { margin: 0 0 clamp(20px,2.4vw,30px); text-align: center;
+                    font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600;
+                    letter-spacing: .14em; text-transform: uppercase; color: var(--v3-dim); }
+  /* Infinite marquee: the track holds the logo list twice and slides left by
+     exactly one copy (-50%), so the loop seam is invisible. The spacing lives
+     in each group's padding-right, not in a gap between the groups, so both
+     halves are the same width and -50% lands on the same pixel every cycle. */
+  .v3-trust-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .v3-trust-track { display: flex; width: max-content; padding: 6px 0 12px;
+                    animation: v3-trust-scroll 40s linear infinite; }
+  .v3-trust-marquee:hover .v3-trust-track { animation-play-state: paused; }
+  .v3-trust-group { display: flex; gap: 16px; padding: 0 16px 0 0; margin: 0; list-style: none; }
+  @keyframes v3-trust-scroll { to { transform: translateX(-50%); } }
+  /* Bare logos, no plate. Each one still gets a fixed-size slot so the wide
+     wordmarks (Tukunen, VFM) and the square crests keep an even rhythm. */
+  .v3-trust-cell {
+    flex: 0 0 auto; width: clamp(150px,14vw,210px);
+    display: grid; place-items: center;
+    height: clamp(104px,10vw,152px); padding: 18px 16px;
+  }
+  /* Optical sizing. A shared height cap made the wide wordmarks (Tukunen, VFM)
+     huge and the round badges tiny, so each logo instead takes its height from
+     its own shape: --k on the img is aspect^-0.55, set in the markup, which
+     gives every mark roughly the same area. A square logo is --trust-logo
+     tall; a 6:1 wordmark about a third of that. The files are trimmed to
+     their artwork, so no padding skews this. */
+  .v3-trust { --trust-logo: clamp(72px,6.6vw,96px); }
+  .v3-trust-cell img { height: calc(var(--trust-logo) * var(--k,.6)); width: auto;
+                       max-width: 100%; object-fit: contain; display: block; }
+  /* VCS ships as a full-bleed blue tile; soften its corners. */
+  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; }
+  @media (prefers-reduced-motion: reduce) {
+    .v3-trust-marquee { -webkit-mask-image: none; mask-image: none; }
+    .v3-trust-track { animation: none; width: auto; justify-content: center; }
+    .v3-trust-group { flex-wrap: wrap; justify-content: center; padding: 0; }
+    .v3-trust-group[aria-hidden="true"] { display: none; }
+  }
+
+  /* ============ CTA — a lavender panel with a fanned stack of shots ============ */
+  /* clip, not hidden: hidden makes the panel a scroll container, and the glows
+     below its edge give it 220px to scroll when something inside takes focus. */
+  .ab-cta-card { position: relative; overflow: clip; border-radius: clamp(28px,3vw,44px);
+                 display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: clamp(32px,4vw,64px);
+                 padding: clamp(36px,5vw,80px); background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
+  /* Two soft glows in the brand purple and pink, behind everything. */
+  .ab-cta-card::before, .ab-cta-card::after { content: ""; position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+  .ab-cta-card::before { width: 420px; height: 420px; right: -80px; top: -120px; background: rgba(157,92,255,.32); }
+  .ab-cta-card::after  { width: 360px; height: 360px; left: 30%; bottom: -220px; background: rgba(255,120,200,.24); }
+  .ab-cta-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--v3-g24); }
+  .ab-cta-copy .v3-pill { background: #FFFFFF; }
+  .ab-cta-copy .v3-pill i { background: var(--v3-grey); }
+  .ab-cta-copy .v3-lg { max-width: 46ch; }
+  .ab-cta-points { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .ab-cta-points li { display: flex; align-items: center; gap: 10px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-body); }
+  .ab-cta-points svg { width: 22px; height: 22px; padding: 4px; border-radius: 99px; background: var(--v3-cta); color: #FFFFFF; flex: 0 0 auto; }
+  .ab-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+  .ab-cta-deck { position: relative; z-index: 1; height: clamp(260px,26vw,380px); }
+  .ab-cta-shot { position: absolute; left: 50%; top: 50%; width: 66%; aspect-ratio: 1928 / 1040; border-radius: 18px; overflow: hidden;
+                 border: 4px solid #FFFFFF; background: #FFFFFF; box-shadow: 0 30px 60px -28px rgba(40,20,80,.55);
+                 transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r));
+                 transition: transform .6s cubic-bezier(.16,1,.3,1); }
+  .ab-cta-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ab-cta-shot--front { z-index: 2; width: 78%; }
+  .ab-cta-card:hover .ab-cta-shot:not(.ab-cta-shot--front) { transform: translate(calc(-50% + var(--x) * 1.12), calc(-50% + var(--y))) rotate(calc(var(--r) * 1.4)); }
+  .ab-cta-card:hover .ab-cta-shot--front { transform: translate(-50%, calc(-50% + var(--y) - 10px)); }
+
+  /* Team photos are portrait, so the fanned stack uses 4:5 cards. */
+  .ab-cta-shot { aspect-ratio: 4 / 5 !important; width: 40% !important; }
+  .ab-cta-shot--front { width: 44% !important; }
+  .ab-cta-shot img { object-position: center top; }
+
+  /* ============ FIND US — the home page's closing band ============ */
+  .v3-plat .v3-wrap { max-width: 1440px; padding: 0 20px; }
+  .v3-plat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g60); }
+  .v3-plat-inner > .v3-pill { margin-bottom: calc(var(--v3-g24) - var(--v3-g60)); }
+  .v3-plat-title { font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.89vw,56px); font-weight: 500; line-height: 1.1; text-align: center; margin: 0; }
+  .v3-plat-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; width: 100%; }
+  .v3-plat-cell { position: relative; min-height: 84px; background: rgba(9,9,9,.2); border: .8px solid #202020;
+                  display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: #FFFFFF;
+                  font-family: 'Manrope', sans-serif; font-size: var(--v3-txt); font-weight: 500;
+                  transition: background-color .25s ease, border-color .25s ease; }
+  .v3-plat-cell:hover { background: rgba(255,255,255,.06); border-color: #3A3A3A; }
+  .v3-plat-cell::after { content: ""; position: absolute; right: 0; top: 50%; margin-top: -9px; width: 2px; height: 18px; background: #ECFBA9; }
+
+
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .ab-values { grid-template-columns: 1fr; }
+    .ab-team { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .v3-plat-grid { grid-template-columns: 1fr 1fr; }
+    .v3-plat-cell:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 900px) {
+    .ab-cta-card { grid-template-columns: 1fr; }
+    .ab-cta-deck { height: clamp(260px,62vw,380px); }
+  }
+  @media (max-width: 700px) {
+    .v3-wrap, .v3-plat .v3-wrap { padding-inline: 15px; }
+    .ab-hero-inner { padding: 120px 15px 56px; }
+    .ab-hero-cta { flex-direction: column; align-items: center; gap: 14px; }
+    .ab-cta-card { padding: 30px 20px 26px; gap: 8px; }
+    .ab-cta-deck { height: 230px; }
+    .ab-cta-btns { flex-direction: column; align-items: flex-start; }
+    .v3-plat-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .ab-team { grid-template-columns: 1fr; }
+    .v3-trust { --trust-logo: 56px; }
+    .v3-trust-group { gap: 12px; padding-right: 12px; }
+    .v3-trust-track { animation-duration: 30s; }
+    .v3-trust-cell { width: 140px; height: 96px; padding: 16px 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v3-btn, .v3-btn-ico svg, .ab-photo img, .ab-cta-shot { transition: none; }
+    .v3-btn:hover { transform: none; }
+    .ab-person:hover .ab-photo img { transform: none; }
+    .ab-cta-card:hover .ab-cta-shot { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)); }
+  }
 </style>
 </head>
 <body>
@@ -175,157 +433,204 @@
 <!-- ============ GLOBAL FLOATING GLASS NAVIGATION (nav.js) ============ -->
 <script src="nav.js" defer></script>
 
-
-
-
-
-
-
-
 <main id="main">
-<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
-<section class="wx-hero" data-hero-section>
-  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
-    <img src="images/work/tmc.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
-  </div>
-  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
-    <img src="images/work/nocturne-nft.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
-  </div>
 
-  <div class="wx-hero-inner">
-    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
-      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>About</span>
-    </nav>
-
-    <span class="wx-pill" data-reveal data-reveal-delay="40">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
-      The studio
-    </span>
-
-    <h1 data-reveal data-reveal-delay="80">We&rsquo;re a small studio, and <em>we like it that way</em></h1>
-
-    <p data-reveal data-reveal-delay="140">We&rsquo;re The Web{X} Studio, also written WebX Studio, based in Model Town, Ludhiana. We work with founders in India, the UK, the US and the Gulf. The same people design and build your site. Nobody passes it along halfway.</p>
-
-    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
-        <span class="wx-btn-label">Work with us</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-          </svg>
-        </span>
-      </a>
+  <!-- ============ HERO ============ -->
+  <section class="ab-hero" aria-labelledby="ab-hero-h">
+    <div class="ab-hero-inner">
+      <p class="ab-eyebrow" data-reveal><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg> The studio <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg></p>
+      <h1 id="ab-hero-h" data-reveal>We&rsquo;re a small studio, and <span class="wx-grad-text">we like it that way</span></h1>
+      <p class="v3-lead" data-reveal data-reveal-delay="80">We&rsquo;re The Web{X} Studio, also written WebX Studio, based in Model Town, Ludhiana. We work with founders in India, the UK, the US and the Gulf. The same people design and build your site. Nobody passes it along halfway.</p>
+      <div class="ab-hero-cta" data-reveal data-reveal-delay="140">
+        <a class="v3-btn" href="contact" data-transition>Work with us
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="v3-btn v3-btn--ghost" href="work" data-transition>See our work
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- intro statement -->
-<!-- Top padding is the normal section rhythm now that the .wx-hero sits above
-     this and already carries its own bottom padding + white fade-out. -->
-<section style="padding:clamp(60px,10vh,120px) 20px;max-width:1300px;margin:0 auto">
-  <p style="font-size:clamp(24px,3.4vw,52px);line-height:1.25;font-weight:500;letter-spacing:-.02em">
-    <span data-reveal style="display:inline;opacity:0;transition:opacity .7s ease">We're designers and engineers. We think a website should feel like something when you use it. </span>
-    <span data-reveal data-reveal-delay="120" style="display:inline;color:#6B6B75;opacity:0;transition:opacity .7s ease">So we spend a silly amount of time on small stuff: how a menu eases open, what an empty page says, where a heading breaks. Most visitors won't notice any of it. They'll just find the site easier to use.</span>
-  </p>
-</section>
+  <!-- ============ INTRO ============ -->
+  <section class="v3-sec ab-intro" aria-label="How we work">
+    <div class="v3-wrap ab-intro-inner">
+      <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 15.2c.8-.7 1.7-1 2.5-1 2 0 3.5 1.4 4 3.8"/></svg></i>Who we are</span>
+      <p class="ab-statement" data-reveal>We&rsquo;re designers and engineers. We think a website should feel like something when you use it. <span>So we spend a silly amount of time on small stuff: how a menu eases open, what an empty page says, where a heading breaks. Most visitors won&rsquo;t notice any of it. They&rsquo;ll just find the site easier to use.</span></p>
+    </div>
+  </section>
 
-<!-- values -->
-<section aria-label="What we believe" style="padding:clamp(60px,10vh,120px) 20px;max-width:1340px;margin:0 auto;border-top:1px solid rgba(0,0,0,.08)">
-  <h2 style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF;margin-bottom:50px;font-weight:500">What we believe</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,4vw,70px)">
-    <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease"><div aria-hidden="true" style="font-size:clamp(48px,5vw,80px);font-weight:700;color:#9D5CFF;letter-spacing:-.04em;line-height:1">01</div><h3 style="font-size:24px;font-weight:600;margin:18px 0 12px;letter-spacing:-.02em">Taste is a skill</h3><p style="font-size:16px;line-height:1.6;color:#6B6B75">The first idea is usually the safe one. We try a few more before we settle, and sometimes the third one is the keeper.</p></div>
-    <div data-reveal data-reveal-delay="100" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease"><div aria-hidden="true" style="font-size:clamp(48px,5vw,80px);font-weight:700;color:#9D5CFF;letter-spacing:-.04em;line-height:1">02</div><h3 style="font-size:24px;font-weight:600;margin:18px 0 12px;letter-spacing:-.02em">Design is how it works</h3><p style="font-size:16px;line-height:1.6;color:#6B6B75">A pretty page that loads slowly still loses people. Our designers and developers sit together for the whole project, so speed gets thought about early.</p></div>
-    <div data-reveal data-reveal-delay="200" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease"><div aria-hidden="true" style="font-size:clamp(48px,5vw,80px);font-weight:700;color:#9D5CFF;letter-spacing:-.04em;line-height:1">03</div><h3 style="font-size:24px;font-weight:600;margin:18px 0 12px;letter-spacing:-.02em">You talk to us directly</h3><p style="font-size:16px;line-height:1.6;color:#6B6B75">There&rsquo;s no account manager in between. The person you speak to on a call is the one doing the work.</p></div>
-  </div>
-</section>
+  <!-- ============ VALUES ============ -->
+  <section class="v3-sec v3-sec--grey" aria-labelledby="ab-values-h">
+    <div class="v3-wrap ab-sec-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.3 1.7 2.8-.1.9 2.7 2.3 1.6-.9 2.7.9 2.7-2.3 1.6-.9 2.7-2.8-.1L12 21.2l-2.3-1.7-2.8.1-.9-2.7-2.3-1.6.9-2.7-.9-2.7 2.3-1.6.9-2.7 2.8.1z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg></i>What we believe</span>
+        <h2 class="v3-h2" id="ab-values-h" data-reveal>Three things <em>we hold to</em></h2>
+      </div>
+      <ol class="ab-values">
+        <li class="ab-value" data-reveal>
+          <span class="ab-value-n" aria-hidden="true">01</span>
+          <h3>Taste is a skill</h3>
+          <p class="v3-txt">The first idea is usually the safe one. We try a few more before we settle, and sometimes the third one is the keeper.</p>
+        </li>
+        <li class="ab-value" data-reveal data-reveal-delay="80">
+          <span class="ab-value-n" aria-hidden="true">02</span>
+          <h3>Design is how it works</h3>
+          <p class="v3-txt">A pretty page that loads slowly still loses people. Our designers and developers sit together for the whole project, so speed gets thought about early.</p>
+        </li>
+        <li class="ab-value" data-reveal data-reveal-delay="160">
+          <span class="ab-value-n" aria-hidden="true">03</span>
+          <h3>You talk to us directly</h3>
+          <p class="v3-txt">There&rsquo;s no account manager in between. The person you speak to on a call is the one doing the work.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-<!-- team -->
-<section aria-label="The people" style="padding:clamp(60px,10vh,120px) 20px;max-width:1340px;margin:0 auto;border-top:1px solid rgba(0,0,0,.08)">
-  <style>
-    /* Page ground. webx.css still paints the body element black for the site at large. */
-    body{background:#FFFFFF;color:#1A1A1A}
+  <!-- ============ TEAM ============ -->
+  <section class="v3-sec" aria-labelledby="ab-team-h">
+    <div class="v3-wrap ab-sec-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.8-4 3.8-6.2 7.5-6.2s6.7 2.2 7.5 6.2"/></svg></i>The people</span>
+        <h2 class="v3-h2" id="ab-team-h" data-reveal>Six people. <em>One small studio.</em></h2>
+        <p class="v3-txt">There are six of us, covering design, engineering, front-end and marketing. Each card below is the person who actually looks after that part of your project. We work side by side, so questions don&rsquo;t sit around waiting for a reply.</p>
+      </div>
+      <ul class="ab-team">
+        <li class="ab-person" data-reveal>
+          <span class="ab-photo"><img src="images/Team/suraj.avif" alt="Suraj, Lead Engineer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></span>
+          <h3>Suraj</h3>
+          <span class="ab-role">Lead Engineer</span>
+          <p>Looks after the build from the first commit to launch day. Anything that goes to production goes past this desk first.</p>
+        </li>
+        <li class="ab-person" data-reveal data-reveal-delay="80">
+          <span class="ab-photo"><img src="images/Team/kavya.avif" alt="Kavya, Lead UI/UX Designer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></span>
+          <h3>Kavya</h3>
+          <span class="ab-role">Lead UI/UX Designer</span>
+          <p>Leads design. Works out how each screen looks, and how people get from one screen to the next.</p>
+        </li>
+        <li class="ab-person" data-reveal data-reveal-delay="160">
+          <span class="ab-photo"><img src="images/Team/Anurag.avif" alt="Anurag, Frontend Developer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></span>
+          <h3>Anurag</h3>
+          <span class="ab-role">Frontend Developer</span>
+          <p>Half designer, half developer. Takes the finished designs and turns them into fast front-ends that match them closely.</p>
+        </li>
+        <li class="ab-person" data-reveal>
+          <span class="ab-photo"><img src="images/Team/gurman.avif" alt="Gurman, Digital Marketing Expert at Web{X} Studio" width="1086" height="1448" loading="lazy" decoding="async"></span>
+          <h3>Gurman</h3>
+          <span class="ab-role">Digital Marketing Expert</span>
+          <p>Handles SEO and campaigns once a site is live. The job is bringing the right people in, and then getting them to enquire.</p>
+        </li>
+        <li class="ab-person" data-reveal data-reveal-delay="80">
+          <span class="ab-photo"><img src="images/Team/simarjot.avif" alt="Simarjot, Web Developer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></span>
+          <h3>Simarjot</h3>
+          <span class="ab-role">Web Developer</span>
+          <p>Builds a lot of the pages you&rsquo;ll actually see. Responsive layouts, tidy markup, and sites that don&rsquo;t fall over when traffic picks up.</p>
+        </li>
+        <li class="ab-person" data-reveal data-reveal-delay="160">
+          <span class="ab-photo"><img src="images/Team/nikita.avif" alt="Nikita, Web Designer and Developer at Web{X} Studio" width="1086" height="1448" loading="lazy" decoding="async"></span>
+          <h3>Nikita</h3>
+          <span class="ab-role">Web Designer &amp; Developer</span>
+          <p>Does both the design and the build, so a screen goes from wireframe to working page without changing hands.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    .wx-team{display:flex;flex-direction:column}
-    .wx-team-photo{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:linear-gradient(160deg,#F4F2F8,#EAE3FB);transition:border-color .4s ease}
-    .wx-team-photo{aspect-ratio:4/5}
-    .wx-team-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-    .wx-team:hover .wx-team-photo{border-color:rgba(157,92,255,.45)}
-    .wx-team:hover .wx-team-photo img{transform:scale(1.04)}
-    .wx-team-name{margin-top:18px;font-size:19px;font-weight:600;letter-spacing:-.02em;color:#1A1A1A}
-    .wx-team-role{font-family:'Satoshi',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9D5CFF;margin-top:6px}
-    .wx-team-bio{font-family:'Satoshi',sans-serif;font-size:13.5px;line-height:1.55;color:#6B6B75;margin:10px 0 0}
-    /* A balanced 3 × 2 desktop layout for the six team members. */
-    .wx-team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.5vw,40px)}
-    @media (max-width:1000px){ .wx-team-grid{grid-template-columns:repeat(2,1fr)} }
-    @media (max-width:520px) { .wx-team-grid{grid-template-columns:1fr} }
-  </style>
-  <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9D5CFF;font-weight:500">The people</span>
-  </div>
-  <h2 data-reveal style="font-size:clamp(30px,4.4vw,58px);font-weight:600;letter-spacing:-.04em;line-height:1.05;margin:0 0 18px;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease">Six people. <span style="color:#9D5CFF">One small studio.</span></h2>
-  <p data-reveal data-reveal-delay="80" style="max-width:640px;font-family:'Satoshi', sans-serif;font-size:clamp(15px,1.1vw,17px);line-height:1.7;color:#6B6B75;margin:0 0 clamp(40px,6vh,64px);opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease">There are six of us, covering design, engineering, front-end and marketing. Each card below is the person who actually looks after that part of your project. We work side by side, so questions don&rsquo;t sit around waiting for a reply.</p>
-  <div class="wx-team-grid">
-    <div class="wx-team" data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/suraj.avif" alt="Suraj, Lead Engineer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Suraj</div>
-      <div class="wx-team-role">Lead Engineer</div>
-      <p class="wx-team-bio">Looks after the build from the first commit to launch day. Anything that goes to production goes past this desk first.</p>
+  <!-- ============ CLIENTS (same strip as the home page) ============ -->
+  <section class="v3-sec-trust v3-trust" aria-label="Clients we have built for">
+    <div class="v3-wrap">
+      <p class="v3-trust-label" data-reveal>Some of the businesses we&rsquo;ve built for</p>
+      <div class="v3-trust-marquee" data-reveal>
+        <div class="v3-trust-track">
+        <ul class="v3-trust-group">
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="JAVIQ Natural Beauty" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="Elite Manuals" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="GS Associates" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="Sure Manuals" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
+        </ul>
+        <ul class="v3-trust-group" aria-hidden="true">
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
+        </ul>
+        </div>
+      </div>
     </div>
-    <div class="wx-team" data-reveal data-reveal-delay="80" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/kavya.avif" alt="Kavya, Lead UI/UX Designer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Kavya</div>
-      <div class="wx-team-role">Lead UI/UX Designer</div>
-      <p class="wx-team-bio">Leads design. Works out how each screen looks, and how people get from one screen to the next.</p>
-    </div>
-    <div class="wx-team" data-reveal data-reveal-delay="160" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/Anurag.avif" alt="Anurag, Frontend Developer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Anurag</div>
-      <div class="wx-team-role">Frontend Developer</div>
-      <p class="wx-team-bio">Half designer, half developer. Takes the finished designs and turns them into fast front-ends that match them closely.</p>
-    </div>
-    <div class="wx-team" data-reveal data-reveal-delay="240" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/gurman.avif" alt="Gurman, Digital Marketing Expert at Web{X} Studio" width="1086" height="1448" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Gurman</div>
-      <div class="wx-team-role">Digital Marketing Expert</div>
-      <p class="wx-team-bio">Handles SEO and campaigns once a site is live. The job is bringing the right people in, and then getting them to enquire.</p>
-    </div>
-    <div class="wx-team" data-reveal data-reveal-delay="320" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/simarjot.avif" alt="Simarjot, Web Developer at Web{X} Studio" width="1122" height="1402" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Simarjot</div>
-      <div class="wx-team-role">Web Developer</div>
-      <p class="wx-team-bio">Builds a lot of the pages you&rsquo;ll actually see. Responsive layouts, tidy markup, and sites that don&rsquo;t fall over when traffic picks up.</p>
-    </div>
-    <div class="wx-team" data-reveal data-reveal-delay="400" style="opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease">
-      <div class="wx-team-photo"><img src="images/Team/nikita.avif" alt="Nikita, Web Designer and Developer at Web{X} Studio" width="1086" height="1448" loading="lazy" decoding="async"></div>
-      <div class="wx-team-name">Nikita</div>
-      <div class="wx-team-role">Web Designer &amp; Developer</div>
-      <p class="wx-team-bio">Does both the design and the build, so a screen goes from wireframe to working page without changing hands.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- clients marquee -->
-<section aria-label="Trusted by" style="padding:clamp(50px,8vh,100px) 0;border-top:1px solid rgba(0,0,0,.08);overflow:hidden">
-  <h2 style="font-family:'Satoshi', sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B6B75;margin:0 20px 40px;font-weight:500">Trusted by</h2>
-  <div aria-hidden="true" style="display:flex;gap:clamp(40px,5vw,90px);width:max-content;animation:wx-marquee 36s linear infinite;align-items:center;font-size:clamp(28px,4vw,56px);font-weight:600;letter-spacing:-.02em;color:#8E8896">
-    <span>Nova</span><span>Atlas</span><span>Halcyon</span><span>Lumen</span><span>Marble&amp;Co</span><span>Field Goods</span><span>Nova</span><span>Atlas</span><span>Halcyon</span><span>Lumen</span><span>Marble&amp;Co</span><span>Field Goods</span>
-  </div>
-</section>
+  <!-- ============ CTA ============ -->
+  <section class="v3-sec ab-cta" aria-labelledby="ab-cta-h">
+    <div class="v3-wrap">
+      <div class="ab-cta-card" data-reveal>
+        <div class="ab-cta-copy">
+          <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>Work with us</span>
+          <h2 class="v3-h2" id="ab-cta-h">Like how we <em>think?</em></h2>
+          <p class="v3-lg">Tell us what you&rsquo;re building. You&rsquo;ll talk to the people who&rsquo;ll actually do the work.</p>
+          <ul class="ab-cta-points">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Reply within 24 hours</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Fixed price, agreed upfront</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>One team from design to launch</li>
+          </ul>
+          <div class="ab-cta-btns">
+            <a class="v3-btn" href="contact" data-transition>Start a project
+              <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <a class="v3-btn v3-btn--ghost" href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Chat on WhatsApp
+              <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></span>
+            </a>
+          </div>
+        </div>
+        <div class="ab-cta-deck" aria-hidden="true">
+          <span class="ab-cta-shot" style="--r:-9deg;--x:-46%;--y:16px"><img src="images/Team/kavya.avif" alt="" loading="lazy" decoding="async" width="1122" height="1402"></span>
+          <span class="ab-cta-shot" style="--r:8deg;--x:46%;--y:22px"><img src="images/Team/Anurag.avif" alt="" loading="lazy" decoding="async" width="1122" height="1402"></span>
+          <span class="ab-cta-shot ab-cta-shot--front" style="--r:0deg;--x:0%;--y:-10px"><img src="images/Team/suraj.avif" alt="" loading="lazy" decoding="async" width="1122" height="1402"></span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- CTA -->
-<section style="padding:clamp(80px,14vh,180px) 20px;text-align:center;border-top:1px solid rgba(0,0,0,.08)">
-  <h2 data-reveal style="font-size:clamp(40px,8vw,128px);font-weight:700;letter-spacing:-.04em;line-height:.96;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Like how we<br>think<span style="color:#9D5CFF">?</span></h2>
-  <div style="display:flex;justify-content:center;margin-top:48px">
-    <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-      <span class="wx-btn-label">Start a project</span>
-      <span class="wx-btn-circle">
-        <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-        </svg>
-      </span>
-    </a>
-  </div>
-</section>
+  <!-- ============ FIND US (same band as the home page) ============ -->
+  <section class="v3-sec v3-sec--dark v3-plat" aria-label="Where to find us">
+    <div class="v3-wrap v3-plat-inner">
+      <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></i>Find us</span>
+      <h2 class="v3-plat-title" data-reveal>You can also find us here</h2>
+      <div class="v3-plat-grid">
+        <a class="v3-plat-cell" href="https://dribbble.com/WebXStudio" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg>
+          Dribbble
+        </a>
+        <a class="v3-plat-cell" href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a class="v3-plat-cell" href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg>
+          X (Twitter)
+        </a>
+        <a class="v3-plat-cell" href="https://www.linkedin.com/company/the-webx-studio/" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="v3-plat-cell" href="work">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          See the full portfolio
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ============ GLOBAL FOOTER (footer.js) ============ -->
