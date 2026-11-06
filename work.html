@@ -398,7 +398,9 @@
   .wk-case:first-child h3 { font-size: clamp(26px,2.8vw,40px); }
 
   /* ============ CTA — a lavender panel with a fanned stack of shots ============ */
-  .wk-cta-card { position: relative; overflow: hidden; border-radius: clamp(28px,3vw,44px);
+  /* clip, not hidden: hidden makes the panel a scroll container, and the glows
+     below its edge give it 220px to scroll when something inside takes focus. */
+  .wk-cta-card { position: relative; overflow: clip; border-radius: clamp(28px,3vw,44px);
                  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: clamp(32px,4vw,64px);
                  padding: clamp(36px,5vw,80px); background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
   /* Two soft glows in the brand purple and pink, behind everything. */
