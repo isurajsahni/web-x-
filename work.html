@@ -42,7 +42,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
 
 <link rel="stylesheet" href="assets/css/webx.css">
 <script src="assets/js/webx.js" defer></script>
@@ -254,10 +254,186 @@
   ]
 }
 </script>
+
 <style>
-  /* Headings share the face the home hero uses. Declared once here rather than
-     per-heading: none of these set font-family inline, so the rule wins. */
-  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+  /* ============================================================
+     Work page, in the home page's v3 design language. The tokens and
+     shared components are duplicated from contact.html (each page
+     carries its own copy, as services.html does).
+     ============================================================ */
+  :root {
+    interpolate-size: allow-keywords;   /* lets the FAQ panels animate to auto */
+
+    --v3-cta-shadow: 0 0 #0000, -1.1px 1.2px .1px #00000003, -2.2px 2.4px .3px #00000005,
+                        -3.3px 3.7px .5px #00000005, -4.6px 5.1px .7px #00000008, -6px 6.6px .9px #00000008,
+                        -7.6px 8.4px 1.3px #00000008, -9.5px 10.5px 1.8px #00000008, -11.8px 13px 2.4px #00000008,
+                        -14.7px 16.2px 3.2px #00000008, -18.3px 20.2px 4.4px #0000000a, -23px 25.4px 6px #0000000a,
+                        -29.3px 32.3px 8.2px #0000000a, -37.8px 41.8px 11.3px #0000000a, -49.9px 55.1px 15.9px #0000000a;
+
+    --v3-ink:    #000000;
+    --v3-body:   rgba(0,0,0,.8);
+    --v3-dim:    rgba(0,0,0,.7);
+    --v3-line:   #E6E6E6;
+    --v3-grey:   #F3F4F6;
+    --v3-dark:   #010101;
+    --v3-accent: #9D5CFF;
+    --v3-cta:    #8438EE;
+    --v3-accent-w: rgba(157,92,255,.18);
+    --v3-err:    #D92D20;
+
+    --v3-sec:  clamp(72px,12.5vw,180px);
+    --v3-g80:  clamp(40px,5.56vw,80px);
+    --v3-g60:  clamp(32px,4.17vw,60px);
+    --v3-g44:  clamp(22px,3.06vw,44px);
+    --v3-g32:  clamp(20px,2.22vw,32px);
+    --v3-g24:  clamp(16px,1.67vw,24px);
+
+    --v3-h2:   clamp(32px,5vw,72px);
+    --v3-h5:   clamp(20px,2.08vw,30px);
+    --v3-lead: clamp(18px,1.67vw,24px);
+    --v3-txt:  clamp(15px,1.25vw,18px);
+    --v3-lg:   clamp(16px,1.39vw,20px);
+    --v3-sm:   clamp(14px,1.11vw,16px);
+  }
+  body { background: #FFFFFF; color: var(--v3-ink); }
+
+  .v3-wrap { max-width: 1460px; margin: 0 auto; padding: 0 30px; }
+  .v3-sec  { padding: var(--v3-sec) 0; }
+  .v3-sec--grey { background: var(--v3-grey); }
+  .v3-sec--dark { background: var(--v3-dark); color: #FFFFFF; }
+
+  /* ---- Headings: a tight sans whose accent phrase drops into serif italic ---- */
+  .v3-h2, .v3-h5 { font-family: 'Manrope', sans-serif; font-weight: 500; margin: 0; text-wrap: balance; }
+  .v3-h2 { font-size: var(--v3-h2); line-height: 1.14; letter-spacing: -.0128em; }
+  .v3-h5 { font-size: var(--v3-h5); line-height: 1.24; letter-spacing: -.0173em; }
+  .v3-h2 em, .v3-h5 em {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic; font-weight: 400; letter-spacing: 0; color: var(--v3-accent);
+  }
+  .v3-lead { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lead); font-weight: 400; line-height: 1.3; letter-spacing: -.0133em; color: var(--v3-body); margin: 0; }
+  .v3-txt  { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt);  font-weight: 400; line-height: 1.45; letter-spacing: -.01em; color: var(--v3-body); margin: 0; }
+  .v3-lg   { font-family: 'Satoshi', sans-serif; font-size: var(--v3-lg);   font-weight: 400; line-height: 1.45; color: var(--v3-body); margin: 0; }
+  .v3-sec--dark .v3-h2 { color: #FFFFFF; }
+
+  .v3-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--v3-g32); margin-inline: auto; }
+  .v3-head--780 { max-width: 780px; }
+  .v3-head p { max-width: 680px; }
+
+  /* ---- Eyebrow pill: grey on white, white on grey, translucent on dark ---- */
+  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: var(--v3-grey); border-radius: 99px; padding: 4px 14px 4px 4px;
+             font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; color: var(--v3-dim); }
+  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: #FFFFFF; display: grid; place-items: center; color: var(--v3-ink); }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) { background: #FFFFFF; }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) i { background: var(--v3-grey); }
+  .v3-pill--dark { background: rgba(255,255,255,.2); color: rgba(255,255,255,.9); gap: 10px; }
+  .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
+
+  /* ---- Buttons: the home page's purple pill with a white arrow disc ---- */
+  .v3-btn { display: inline-flex; align-items: center; gap: 16px; background: var(--v3-cta); color: #FFFFFF;
+            border: 0; cursor: pointer; border-radius: 99px; padding: 8px 8px 8px 24px; text-decoration: none;
+            font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); font-weight: 400; line-height: 1.45;
+            box-shadow: var(--v3-cta-shadow); transition: transform .25s cubic-bezier(.16,1,.3,1), opacity .2s ease; }
+  .v3-btn:hover { transform: translateY(-2px); }
+  .v3-btn:disabled { opacity: .7; cursor: progress; transform: none; padding: 16px 28px; }
+  .v3-btn-ico { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 40px; background: #FFFFFF; color: var(--v3-ink); display: grid; place-items: center; }
+  .v3-btn-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
+  .v3-btn:hover .v3-btn-ico svg, .v3-btn:focus-visible .v3-btn-ico svg { transform: rotate(45deg); }
+  .v3-btn--ghost { background: #FFFFFF; color: var(--v3-ink); border: 1px solid rgba(0,0,0,.14); }
+  .v3-btn--ghost .v3-btn-ico { background: var(--v3-accent); color: #FFFFFF; }
+  .v3-btn--ghost:hover { background: rgba(157,92,255,.05); border-color: rgba(157,92,255,.45); }
+  .v3-btn--ghost:hover .v3-btn-ico svg { transform: none; }
+
+  /* ============ HERO — the home hero's type, without the card deck ============ */
+  .wk-hero { background: #FFFFFF; }
+  .wk-hero-inner { max-width: 1460px; margin: 0 auto; text-align: center;
+                   padding: clamp(150px,17vw,220px) 30px clamp(64px,8vw,110px);
+                   display: flex; flex-direction: column; align-items: center; }
+  .wk-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(18px,2.4vh,26px);
+                font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.05vw,16px); font-weight: 600; letter-spacing: .01em; color: var(--v3-ink); }
+  .wk-eyebrow svg { flex: 0 0 auto; color: var(--v3-accent); }
+  .wk-hero h1 { font-family: 'Manrope', sans-serif; font-size: clamp(38px,5.4vw,76px); font-weight: 700;
+                letter-spacing: -.045em; line-height: 1.04; color: var(--v3-ink); margin: 0; max-width: 16ch; text-wrap: balance; }
+  .wx-grad-text {
+    font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.02em;
+    background: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 42%,#C061FF 72%,rgba(157,92,255,.06) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    padding-right: .06em;
+  }
+  .wk-hero .v3-lead { max-width: 640px; margin-top: clamp(20px,2.6vh,28px); }
+  .wk-hero-cta { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: clamp(28px,4vh,44px); }
+
+
+
+  /* ============ CASE STUDIES — two-up image cards ============ */
+  .wk-sec-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  .wk-cases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(28px,3vw,44px) clamp(20px,2.2vw,32px); width: 100%; }
+  .wk-case { display: flex; flex-direction: column; gap: clamp(18px,1.8vw,24px); text-decoration: none; color: var(--v3-ink); }
+  .wk-shot { display: block; overflow: hidden; border-radius: clamp(20px,2.2vw,32px); background: var(--v3-grey); aspect-ratio: 16 / 10; }
+  .wk-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+  .wk-case:hover .wk-shot img, .wk-mini:hover .wk-shot img { transform: scale(1.035); }
+  .wk-case-body { display: flex; flex-direction: column; gap: 10px; padding: 0 4px; }
+  .wk-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .wk-tag { font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+            color: var(--v3-dim); border-left: 2px solid var(--v3-accent); padding-left: 8px; }
+  .wk-year { font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); }
+  .wk-case h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-h5); font-weight: 500; letter-spacing: -.0173em; line-height: 1.2; margin: 2px 0 0; }
+  .wk-desc { font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); line-height: 1.5; color: var(--v3-body); max-width: 56ch; }
+  .wk-more { display: inline-flex; align-items: center; gap: 12px; margin-top: 6px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-txt); color: var(--v3-ink); }
+  .wk-more-ico { width: 36px; height: 36px; border-radius: 99px; background: var(--v3-cta); color: #FFFFFF; display: grid; place-items: center; }
+  .wk-more-ico svg { transition: transform .38s cubic-bezier(.16,1,.3,1); }
+  .wk-case:hover .wk-more-ico svg, .wk-case:focus-visible .wk-more-ico svg { transform: rotate(45deg); }
+
+  /* ============ MORE PROJECTS — three-up cards on grey ============ */
+  .wk-minis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(16px,1.6vw,24px); width: 100%; }
+  .wk-mini { display: flex; flex-direction: column; gap: 14px; padding: 10px 10px 18px; border-radius: 28px; background: #FFFFFF;
+             text-decoration: none; color: var(--v3-ink); transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+  a.wk-mini:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -26px rgba(26,20,48,.35); }
+  .wk-mini .wk-shot { border-radius: 20px; }
+  .wk-mini-body { display: flex; flex-direction: column; gap: 10px; padding: 0 10px; }
+  .wk-mini-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .wk-mini h3 { font-family: 'Manrope', sans-serif; font-size: var(--v3-lg); font-weight: 500; letter-spacing: -.01em; line-height: 1.25; margin: 0; }
+  .wk-ext { width: 32px; height: 32px; flex: 0 0 auto; border-radius: 99px; background: var(--v3-grey); display: grid; place-items: center; transition: background .2s ease, color .2s ease; }
+  a.wk-mini:hover .wk-ext { background: var(--v3-accent); color: #FFFFFF; }
+  .wk-case:focus-visible, .wk-mini:focus-visible { outline: 2px solid var(--v3-accent); outline-offset: 6px; border-radius: 28px; }
+
+  /* ============ CTA ============ */
+  .wk-cta .v3-head { gap: var(--v3-g44); }
+  .wk-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+  /* ============ FIND US — the home page's closing band ============ */
+  .v3-plat .v3-wrap { max-width: 1440px; padding: 0 20px; }
+  .v3-plat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g60); }
+  .v3-plat-inner > .v3-pill { margin-bottom: calc(var(--v3-g24) - var(--v3-g60)); }
+  .v3-plat-title { font-family: 'Manrope', sans-serif; font-size: clamp(28px,3.89vw,56px); font-weight: 500; line-height: 1.1; text-align: center; margin: 0; }
+  .v3-plat-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; width: 100%; }
+  .v3-plat-cell { position: relative; min-height: 84px; background: rgba(9,9,9,.2); border: .8px solid #202020;
+                  display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: #FFFFFF;
+                  font-family: 'Manrope', sans-serif; font-size: var(--v3-txt); font-weight: 500;
+                  transition: background-color .25s ease, border-color .25s ease; }
+  .v3-plat-cell:hover { background: rgba(255,255,255,.06); border-color: #3A3A3A; }
+  .v3-plat-cell::after { content: ""; position: absolute; right: 0; top: 50%; margin-top: -9px; width: 2px; height: 18px; background: #ECFBA9; }
+
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .wk-minis { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .v3-plat-grid { grid-template-columns: 1fr 1fr; }
+    .v3-plat-cell:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 760px) {
+    .wk-cases, .wk-minis { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .v3-wrap, .v3-plat .v3-wrap { padding-inline: 15px; }
+    .wk-hero-inner { padding: 120px 15px 56px; }
+    .wk-hero-cta, .wk-cta-btns { flex-direction: column; align-items: center; gap: 14px; }
+    .v3-plat-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .v3-btn, .v3-btn-ico svg, .wk-shot img, .wk-mini, .wk-more-ico svg { transition: none; }
+    .v3-btn:hover, a.wk-mini:hover { transform: none; }
+    .wk-case:hover .wk-shot img, .wk-mini:hover .wk-shot img { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -277,219 +453,233 @@
 <!-- ============ GLOBAL FLOATING GLASS NAVIGATION (nav.js) ============ -->
 <script src="nav.js" defer></script>
 
-
-
-
-
-
-
-
-<div data-preview aria-hidden="true" style="position:fixed;top:0;left:0;width:340px;height:240px;border-radius:14px;overflow:hidden;pointer-events:none;z-index:8000;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .4s ease,transform .5s cubic-bezier(.16,1,.3,1);will-change:transform">
-  <div data-preview-img style="position:absolute;inset:0;background:#222"></div>
-</div>
-
 <main id="main">
-<!-- ============ HERO (shared .wx-hero component in webx.css) ============ -->
-<section class="wx-hero" data-hero-section>
-  <div class="wx-hero-edge wx-hero-edge--l" aria-hidden="true">
-    <img src="images/work/rightway.avif" alt="" loading="lazy" decoding="async" width="1600" height="1067">
-  </div>
-  <div class="wx-hero-edge wx-hero-edge--r" aria-hidden="true">
-    <img src="images/work/nocturne-nft.avif" alt="" loading="lazy" decoding="async" width="2400" height="1600">
-  </div>
 
-  <div class="wx-hero-inner">
-    <nav class="wx-crumb" aria-label="Breadcrumb" data-reveal>
-      <a href="./" class="wx-uline">Home</a> &nbsp;/&nbsp; <span>Work</span>
-    </nav>
-
-    <span class="wx-pill" data-reveal data-reveal-delay="40">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
-      Selected projects &mdash; 2021 / 2026
-    </span>
-
-    <h1 data-reveal data-reveal-delay="80">Work that <em>earns its place</em></h1>
-
-    <p data-reveal data-reveal-delay="140">A selection of recent web design, development and SEO partnerships across brand, product and motion &mdash; for clients in India and worldwide.</p>
-
-    <div class="wx-hero-cta" data-reveal data-reveal-delay="200">
-      <a data-transition href="contact" data-magnetic class="wx-btn-animated wx-btn-animated--purple">
-        <span class="wx-btn-label">Start a project</span>
-        <span class="wx-btn-circle">
-          <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="currentColor"/>
-          </svg>
-        </span>
-      </a>
+  <!-- ============ HERO ============ -->
+  <section class="wk-hero" aria-labelledby="wk-hero-h">
+    <div class="wk-hero-inner">
+      <p class="wk-eyebrow" data-reveal><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg> Selected projects, 2021&ndash;2026 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg></p>
+      <h1 id="wk-hero-h" data-reveal>Work that <span class="wx-grad-text">earns its place</span></h1>
+      <p class="v3-lead" data-reveal data-reveal-delay="80">A selection of recent web design, development and SEO projects across brand, product and motion, for clients in India and worldwide.</p>
+      <div class="wk-hero-cta" data-reveal data-reveal-delay="140">
+        <a class="v3-btn" href="contact" data-transition>Start a project
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a class="v3-btn v3-btn--ghost" href="#case-studies">See the case studies
+          <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
     </div>
+  </section>
 
-    <div class="wx-hero-meta" data-reveal data-reveal-delay="260">
-      <div><b>17</b>selected projects</div>
-      <div><b>8</b>in-depth case studies</div>
-      <div><b>2021</b>shipping since</div>
+  <!-- ============ CASE STUDIES ============ -->
+  <section class="v3-sec wk-cases-sec" id="case-studies" aria-labelledby="wk-cases-h" style="padding-top:0;scroll-margin-top:90px">
+    <div class="v3-wrap wk-sec-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></i>Case studies</span>
+        <h2 class="v3-h2" id="wk-cases-h" data-reveal>The full story, <em>start to launch</em></h2>
+        <p class="v3-txt">What the client needed, what we built, and what changed once it went live.</p>
+      </div>
+      <div class="wk-cases">
+        <a class="wk-case" href="case-study-javiq" data-transition data-reveal>
+          <span class="wk-shot"><img src="images/work/javiq.webp" alt="JAVIQ Natural Beauty project by Web{X} Studio" loading="eager" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Ecommerce &middot; WooCommerce</span><span class="wk-year">2026</span></span>
+            <h3>JAVIQ Natural Beauty</h3>
+            <span class="wk-desc">An Ayurvedic personal-care brand moved off a hosted storefront to a custom WooCommerce store it owns, with Razorpay and Cash on Delivery.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-elite-manuals" data-transition data-reveal data-reveal-delay="80">
+          <span class="wk-shot"><img src="images/work/elite-manuals.webp" alt="Elite Manuals project by Web{X} Studio" loading="eager" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Ecommerce &middot; SEO</span><span class="wk-year">2026</span></span>
+            <h3>Elite Manuals</h3>
+            <span class="wk-desc">SEO, information architecture and a redesign for a 25,185-product store: 152 categories, 90% lighter images and no URLs lost.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-gs-associates" data-transition data-reveal>
+          <span class="wk-shot"><img src="images/work/gs-associates.webp" alt="GS Associates project by Web{X} Studio" loading="lazy" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Website &middot; Interactive 3D</span><span class="wk-year">2026</span></span>
+            <h3>GS Associates</h3>
+            <span class="wk-desc">A photo-led site for a Ludhiana architecture, construction and interiors firm, with a 3D section that turns a floor plan into a finished villa.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-aeo-audit" data-transition data-reveal data-reveal-delay="80">
+          <span class="wk-shot"><img src="images/work/aeo-audit.webp" alt="AEO Audit project by Web{X} Studio" loading="lazy" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Web app &middot; AI search</span><span class="wk-year">2026</span></span>
+            <h3>AEO Audit</h3>
+            <span class="wk-desc">A tool that scores how well a site can be found, understood and cited by AI assistants, then ranks what to fix first.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-vcs" data-transition data-reveal>
+          <span class="wk-shot"><img src="images/work/vcs.webp" alt="VCS Immigration project by Web{X} Studio" loading="lazy" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Website &middot; Front-end</span><span class="wk-year">2026</span></span>
+            <h3>VCS Immigration</h3>
+            <span class="wk-desc">One fast website for a visa and travel consultancy in Ludhiana and the school support brand it runs from the same office.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-gpsfdk" data-transition data-reveal data-reveal-delay="80">
+          <span class="wk-shot"><img src="images/work/thumbs/canvas.webp" alt="Canvas project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Brand &middot; Ecommerce</span><span class="wk-year">2026</span></span>
+            <h3>Canvas</h3>
+            <span class="wk-desc">A luxury nameplate and canvas brand, from identity to a fast, SEO-ready storefront.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-erp" data-transition data-reveal>
+          <span class="wk-shot"><img src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1200"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">ERP &middot; Web app</span><span class="wk-year">2026</span></span>
+            <h3>Canvas ERP One</h3>
+            <span class="wk-desc">A custom ERP that brings HR, projects, finance and tenders into one dashboard.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+        <a class="wk-case" href="case-study-rightway" data-transition data-reveal data-reveal-delay="80">
+          <span class="wk-shot"><img src="images/work/thumbs/rightway.webp" alt="Rightway Purifier project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-case-body">
+            <span class="wk-meta"><span class="wk-tag">Brand &middot; Website</span><span class="wk-year">2025</span></span>
+            <h3>Rightway Purifier</h3>
+            <span class="wk-desc">The brand and commercial website for a water purifier company, built to turn visitors into enquiries.</span>
+            <span class="wk-more">View case study <span class="wk-more-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+          </span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- project list -->
-<style>
-  /* Page ground. webx.css still paints the body element black for the site at large. */
-  body{background:#FFFFFF;color:#1A1A1A}
-  /* .wx-row-name paints its label in a ::before so it can roll on hover; the
-     shared rule still uses the dark-theme ink, so re-point it for this page. */
-  .wx-project-list .wx-row-name::before{color:#1A1A1A}
+  <!-- ============ MORE PROJECTS ============ -->
+  <section class="v3-sec v3-sec--grey" aria-labelledby="wk-more-h">
+    <div class="v3-wrap wk-sec-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/></svg></i>More projects</span>
+        <h2 class="v3-h2" id="wk-more-h" data-reveal>Websites and <em>landing pages</em></h2>
+        <p class="v3-txt">Live sites for schools, nonprofits, stores and product launches. Each one opens in a new tab.</p>
+      </div>
+      <div class="wk-minis">
+        <a class="wk-mini" href="https://suremanuals.com/" target="_blank" rel="noopener" aria-label="Sure Manuals, opens the live site in a new tab" data-reveal>
+          <span class="wk-shot"><img src="images/work/sure-manuals.webp" alt="Sure Manuals project by Web{X} Studio" loading="lazy" decoding="async" width="2000" height="1080"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Sure Manuals</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">Ecommerce &middot; Web design</span><span class="wk-year">2026</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://uttampublichighschool.vercel.app/" target="_blank" rel="noopener" aria-label="Uttam Public High School, opens the live site in a new tab" data-reveal data-reveal-delay="60">
+          <span class="wk-shot"><img src="images/work/thumbs/uttam-public-school.webp" alt="Uttam Public High School project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Uttam Public High School</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">Education &middot; Website</span><span class="wk-year">2026</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://www.narsevafoundation.com/" target="_blank" rel="noopener" aria-label="Nar Seva Foundation, opens the live site in a new tab" data-reveal data-reveal-delay="120">
+          <span class="wk-shot"><img src="images/work/thumbs/narseva.webp" alt="Nar Seva Foundation project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Nar Seva Foundation</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">NGO &middot; Website</span><span class="wk-year">2026</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://innovative-fitness-tracker-e00dd7.webflow.io/" target="_blank" rel="noopener" aria-label="Innovative Fitness, opens the live site in a new tab" data-reveal>
+          <span class="wk-shot"><img src="images/work/thumbs/innovative-fitness.webp" alt="Innovative Fitness project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Innovative Fitness</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">UI &middot; Webflow</span><span class="wk-year">2025</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://nocturnenftdevsuraj.webflow.io/" target="_blank" rel="noopener" aria-label="Nocturne NFT, opens the live site in a new tab" data-reveal data-reveal-delay="60">
+          <span class="wk-shot"><img src="images/work/thumbs/nocturne-nft.webp" alt="Nocturne NFT project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Nocturne NFT</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">Web3 &middot; Webflow</span><span class="wk-year">2025</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://vibelybydevsuraj.webflow.io/" target="_blank" rel="noopener" aria-label="Vibely, opens the live site in a new tab" data-reveal data-reveal-delay="120">
+          <span class="wk-shot"><img src="images/work/thumbs/vibely.webp" alt="Vibely project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Vibely</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">SaaS &middot; Landing page</span><span class="wk-year">2025</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://automabydevsuraj.webflow.io/" target="_blank" rel="noopener" aria-label="Automa, opens the live site in a new tab" data-reveal>
+          <span class="wk-shot"><img src="images/work/thumbs/automa.webp" alt="Automa project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Automa</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">Webflow &middot; Landing page</span><span class="wk-year">2025</span></span>
+          </span>
+        </a>
+        <a class="wk-mini" href="https://kavya-protfolio.webflow.io/" target="_blank" rel="noopener" aria-label="Kavya Portfolio, opens the live site in a new tab" data-reveal data-reveal-delay="60">
+          <span class="wk-shot"><img src="images/work/thumbs/kavya-portfolio.webp" alt="Kavya Portfolio project by Web{X} Studio" loading="lazy" decoding="async" width="1928" height="1040"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>Kavya Portfolio</h3><span class="wk-ext" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+            <span class="wk-meta"><span class="wk-tag">Portfolio &middot; Webflow</span><span class="wk-year">2024</span></span>
+          </span>
+        </a>
+        <div class="wk-mini wk-mini--static" data-reveal data-reveal-delay="120">
+          <span class="wk-shot"><img src="images/work/tmc.avif" alt="TMC Consulting project by Web{X} Studio" loading="lazy" decoding="async" width="1600" height="1066"></span>
+          <span class="wk-mini-body">
+            <span class="wk-mini-top"><h3>TMC Consulting</h3></span>
+            <span class="wk-meta"><span class="wk-tag">Business &middot; Website</span><span class="wk-year">2024</span></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  .wx-project-thumb{display:none}
-  @media (max-width:600px){
-    .wx-project-list{padding-top:28px!important;border-top:0!important}
-    .wx-project-list .wx-row{position:relative;display:grid!important;grid-template-columns:28px minmax(0,1fr) auto!important;grid-template-rows:minmax(180px,45vw) auto auto!important;column-gap:14px!important;row-gap:0!important;align-items:center!important;margin-bottom:18px;padding:0!important;overflow:hidden;border:1px solid rgba(0,0,0,.12)!important;border-radius:16px;background:#FFFFFF;transition:border-color .25s ease,background .25s ease!important}
-    .wx-project-list .wx-row::after{display:none}
-    .wx-project-list .wx-row:active{border-color:rgba(157,92,255,.65);background:#F5F0FF}
-    .wx-project-list .wx-row:hover{padding-left:0!important}
-    .wx-project-list .wx-project-thumb{display:block;position:static;grid-column:1/4;grid-row:1;width:100%;height:100%;object-fit:cover;border-radius:15px 15px 0 0;border-bottom:1px solid rgba(0,0,0,.10);opacity:1}
-    .wx-project-list .wx-row>span:nth-child(1){grid-column:1;grid-row:2/4;align-self:start;padding:24px 0 0 18px;font-size:11px!important;color:#9D5CFF!important}
-    .wx-project-list .wx-row-name{grid-column:2;grid-row:2;min-width:0;padding-top:20px;overflow:visible!important;color:#1A1A1A!important;font-size:clamp(23px,7vw,32px)!important;line-height:1.05!important;white-space:normal!important}
-    .wx-project-list .wx-row-name::before,.wx-project-list .wx-row-name::after{content:none!important}
-    .wx-project-list .wx-row>span:nth-child(3){display:block!important;grid-column:2;grid-row:3;padding:10px 0 22px;font-family:'Satoshi',sans-serif;font-size:10px!important;line-height:1.4;color:#555560!important;letter-spacing:.08em!important;text-transform:uppercase}
-    .wx-project-list .wx-row>span:nth-child(4){display:none!important}
-  }
-</style>
-<section class="wx-project-list" aria-label="Projects" style="max-width:1340px;margin:0 auto;padding:clamp(30px,5vh,60px) 20px clamp(80px,12vh,140px)">
-  <a data-transition href="case-study-javiq" class="wx-row" data-img="images/work/javiq.webp" aria-label="JAVIQ Natural Beauty - WooCommerce store rebuild case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">01</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="JAVIQ Natural Beauty">JAVIQ Natural Beauty</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Ecommerce · WooCommerce · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/javiq.webp" alt="JAVIQ Natural Beauty project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a data-transition href="case-study-elite-manuals" class="wx-row" data-img="images/work/elite-manuals.webp" aria-label="Elite Manuals - SEO and redesign case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">02</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Elite Manuals">Elite Manuals</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Ecommerce · SEO · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/elite-manuals.webp" alt="Elite Manuals project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a data-transition href="case-study-gs-associates" class="wx-row" data-img="images/work/gs-associates.webp" aria-label="GS Associates - architecture and construction website case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">03</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="GS Associates">GS Associates</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Architecture · Website · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/gs-associates.webp" alt="GS Associates project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a href="https://suremanuals.com/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/sure-manuals.webp" aria-label="Sure Manuals - heavy equipment manuals store, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">04</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Sure Manuals">Sure Manuals</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Ecommerce · Web design · Development</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/sure-manuals.webp" alt="Sure Manuals project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a data-transition href="case-study-aeo-audit" class="wx-row" data-img="images/work/aeo-audit.webp" aria-label="AEO Audit - AI search audit tool case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">05</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="AEO Audit">AEO Audit</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Web app · AI search · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/aeo-audit.webp" alt="AEO Audit project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a data-transition href="case-study-vcs" class="wx-row" data-img="images/work/vcs.webp" aria-label="VCS Immigration Consultants - website case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">06</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="VCS Immigration">VCS Immigration</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Immigration · Website · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/vcs.webp" alt="VCS Immigration project preview" loading="lazy" decoding="async" width="2000" height="1080">
-  </a>
-  <a href="https://uttampublichighschool.vercel.app/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/Uttam%20Public%20High%20School.webp" aria-label="Uttam Public High School - school website design & development, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">07</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Uttam Public School">Uttam Public School</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Education · Web design · Development</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/Uttam%20Public%20High%20School.webp" alt="Uttam Public High School project preview" loading="lazy" decoding="async" width="1280" height="853">
-  </a>
-  <a href="https://www.narsevafoundation.com/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/Narseva%20Foundation.webp" aria-label="Nar Seva Foundation - NGO website design & development, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">08</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Nar Seva Foundation">Nar Seva Foundation</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">NGO · Web design · Development</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/Narseva%20Foundation.webp" alt="Nar Seva Foundation project preview" loading="lazy" decoding="async" width="1280" height="853">
-  </a>
-  <a data-transition href="case-study-gpsfdk" class="wx-row" data-img="images/work/gpsfdk.avif" aria-label="Canvas - luxury brand & ecommerce case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">09</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Canvas">Canvas</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Brand · Ecommerce · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/gpsfdk.avif" alt="Canvas project preview" loading="lazy" decoding="async" width="1600" height="1200">
-  </a>
-  <a data-transition href="case-study-erp" class="wx-row" data-img="images/work/erp-gpsfdk.avif" aria-label="Canvas ERP One - custom ERP software case study, 2026" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">10</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Canvas ERP One">Canvas ERP One</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">ERP · Web app · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'26</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/erp-gpsfdk.avif" alt="Canvas ERP One project preview" loading="lazy" decoding="async" width="1600" height="1200">
-  </a>
-  <a data-transition href="case-study-rightway" class="wx-row" data-img="images/work/rightway.avif" aria-label="Rightway Water Purifier - brand & website case study, 2025" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">11</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Rightway Purifier">Rightway Purifier</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;letter-spacing:.04em;text-transform:uppercase;display:none">Brand · Web · Case study</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'25</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="lazy" decoding="async" width="1600" height="1067">
-  </a>
-  <a href="https://innovative-fitness-tracker-e00dd7.webflow.io/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/fitness-tracker.avif" aria-label="Innovative Fitness Tracker - UI and Webflow build, 2025" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">12</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Innovative Fitness">Innovative Fitness</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">UI · Webflow · Product</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'25</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/fitness-tracker.avif" alt="Innovative Fitness project preview" loading="lazy" decoding="async" width="1600" height="1066">
-  </a>
-  <a href="https://nocturnenftdevsuraj.webflow.io/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/nocturne-nft.avif" aria-label="Nocturne NFT - landing page, 2025" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">13</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Nocturne NFT">Nocturne NFT</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">Web3 · Webflow · Motion</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'25</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/nocturne-nft.avif" alt="Nocturne NFT project preview" loading="lazy" decoding="async" width="2400" height="1600">
-  </a>
-  <a href="https://vibelybydevsuraj.webflow.io/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/vibely.avif" aria-label="Vibely - SaaS landing page in Webflow, 2025" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">14</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Vibely">Vibely</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">SaaS · Webflow · Landing</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'25</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/vibely.avif" alt="Vibely project preview" loading="lazy" decoding="async" width="2400" height="1600">
-  </a>
-  <a href="https://automabydevsuraj.webflow.io/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/automa.avif" aria-label="Automa - landing page in Webflow, 2025" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">15</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Automa">Automa</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">Webflow · Landing</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'25</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/automa.avif" alt="Automa project preview" loading="lazy" decoding="async" width="2400" height="1600">
-  </a>
-  <a href="https://kavya-protfolio.webflow.io/" target="_blank" rel="noopener" class="wx-row" data-img="images/work/kavya-portfolio.avif" aria-label="Kavya - designer portfolio in Webflow, 2024" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">16</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="Kavya Portfolio">Kavya Portfolio</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">Portfolio · Webflow</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'24</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">↗</span></span>
-    <img class="wx-project-thumb" src="images/work/kavya-portfolio.avif" alt="Kavya Portfolio project preview" loading="lazy" decoding="async" width="2400" height="1600">
-  </a>
-  <a href="#" class="wx-row" data-img="images/work/tmc.avif" aria-label="TMC - Today Management Consultation, 2024" style="display:grid;grid-template-columns:60px 1fr auto auto;align-items:center;gap:20px;padding:clamp(24px,3.4vh,42px) 0;border-bottom:1px solid rgba(0,0,0,.10);text-decoration:none;color:inherit">
-    <span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">17</span>
-    <span class="wx-row-name" style="font-size:clamp(28px,4.4vw,64px);font-weight:600;letter-spacing:-.03em" data-text="TMC Consulting">TMC Consulting</span>
-    <span style="font-family:'Satoshi', sans-serif;font-size:12px;color:#6B6B75;display:none">Business · Web</span>
-    <span style="display:flex;align-items:center;gap:18px"><span style="font-family:'Satoshi', sans-serif;font-size:13px;color:#6B6B75">'24</span><span class="wx-row-arrow" aria-hidden="true" style="font-size:22px;color:#9D5CFF;opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s">→</span></span>
-    <img class="wx-project-thumb" src="images/work/tmc.avif" alt="TMC Consulting project preview" loading="lazy" decoding="async" width="1600" height="1066">
-  </a>
-</section>
+  <!-- ============ CTA ============ -->
+  <section class="v3-sec wk-cta" aria-labelledby="wk-cta-h">
+    <div class="v3-wrap">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>Your turn</span>
+        <h2 class="v3-h2" id="wk-cta-h" data-reveal>Want to be <em>project &numero;&nbsp;18?</em></h2>
+        <div class="wk-cta-btns">
+          <a class="v3-btn" href="contact" data-transition>Start a project
+            <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a class="v3-btn v3-btn--ghost" href="https://wa.me/919780651142?text=Hi%20Web%7BX%7D%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Chat on WhatsApp
+            <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 0 16.47Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- CTA -->
-<section style="padding:clamp(80px,14vh,180px) 20px;text-align:center;border-top:1px solid rgba(0,0,0,.08)">
-  <h2 data-reveal style="font-size:clamp(36px,7vw,112px);font-weight:700;letter-spacing:-.04em;line-height:.96;opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease">Want to be<br>project <span style="color:#9D5CFF">№ 18?</span></h2>
-  <div style="display:flex;justify-content:center;margin-top:48px">
-    <a data-transition href="contact" data-magnetic class="wx-btn-animated">
-      <span class="wx-btn-label">Start a project</span>
-      <span class="wx-btn-circle">
-        <svg class="wx-btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6Z" fill="white"/>
-        </svg>
-      </span>
-    </a>
-  </div>
-</section>
+  <!-- ============ FIND US (same band as the home page) ============ -->
+  <section class="v3-sec v3-sec--dark v3-plat" aria-label="Where to find us">
+    <div class="v3-wrap v3-plat-inner">
+      <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></i>Find us</span>
+      <h2 class="v3-plat-title" data-reveal>You can also find us here</h2>
+      <div class="v3-plat-grid">
+        <a class="v3-plat-cell" href="https://dribbble.com/WebXStudio" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M5 8.5c3.8 1 8.9 1.2 13-.4M3.4 13.4c4-1 7.9-.5 11 1.8M9 3.6c3 3.6 5.4 8 6.2 16" stroke-linecap="round"/></svg>
+          Dribbble
+        </a>
+        <a class="v3-plat-cell" href="https://www.instagram.com/thewebx.studio" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a class="v3-plat-cell" href="https://x.com/Thewebxstudio" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2.5h3.3l-7.2 8.24L23.5 21.5h-6.63l-5.2-6.79-5.94 6.79H2.42l7.7-8.8L1.5 2.5h6.8l4.7 6.2 5.9-6.2Zm-1.16 17.02h1.83L7.34 4.38H5.38l12.36 15.14Z"/></svg>
+          X (Twitter)
+        </a>
+        <a class="v3-plat-cell" href="https://www.linkedin.com/company/the-webx-studio/" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="v3-plat-cell" href="work">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          See the full portfolio
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ============ GLOBAL FOOTER (footer.js) ============ -->
