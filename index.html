@@ -138,9 +138,19 @@
   /* ---- Pills ---- */
   .v3-tag { display: inline-flex; align-items: center; background: var(--v3-tagbg); border-radius: 50px; padding: 6px 16px;
             font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; line-height: 1.45; color: var(--v3-ink); text-transform: capitalize; }
-  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 99px; padding: 4px 14px 4px 4px;
+  /* The eyebrow above each section heading. On a white section it takes the
+     grey and its icon disc goes white; on a grey section it flips, so the
+     pill always reads against whatever it sits on. */
+  .v3-pill { display: inline-flex; align-items: center; gap: 12px; background: var(--v3-grey); border-radius: 99px; padding: 4px 14px 4px 4px;
              font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); font-weight: 400; color: var(--v3-dim); }
-  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: #EFEFEF; display: grid; place-items: center; color: var(--v3-ink); }
+  .v3-pill i { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 99px; background: #FFFFFF; display: grid; place-items: center; color: var(--v3-ink); }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) { background: #FFFFFF; }
+  .v3-sec--grey .v3-pill:not(.v3-pill--dark) i { background: var(--v3-grey); }
+  /* Left-aligned heads are flex columns that would stretch the pill full
+     width, and two of them space their children wider than a pill wants. */
+  .v3-value-left > .v3-pill, .v3-faq-heading > .v3-pill { align-self: flex-start; }
+  .v3-value-left > .v3-pill { margin-bottom: calc(var(--v3-g24) - var(--v3-g44)); }
+  .v3-plat-inner > .v3-pill { margin-bottom: calc(var(--v3-g24) - var(--v3-g60)); }
   .v3-pill--dark { background: rgba(255,255,255,.2); color: rgba(255,255,255,.9); gap: 10px; }
   .v3-pill--dark i { background: rgba(255,255,255,.1); color: #FFFFFF; }
 
@@ -188,26 +198,24 @@
   .v3-trust-marquee:hover .v3-trust-track { animation-play-state: paused; }
   .v3-trust-group { display: flex; gap: 16px; padding: 0 16px 0 0; margin: 0; list-style: none; }
   @keyframes v3-trust-scroll { to { transform: translateX(-50%); } }
-  /* One white plate per client, fixed size: these marks disagree about
-     everything — Tukunen is a 6.4:1 wordmark, Uttam is square, VFM is a wide
-     lockup — and a uniform plate is what stops that reading as a ransom note. */
+  /* Bare logos, no plate. Each one still gets a fixed-size slot so the wide
+     wordmarks (Tukunen, VFM) and the square crests keep an even rhythm. */
   .v3-trust-cell {
     flex: 0 0 auto; width: clamp(150px,14vw,210px);
     display: grid; place-items: center;
     height: clamp(104px,10vw,152px); padding: 18px 16px;
-    border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(26,20,48,.055);
-    box-shadow: 0 1px 2px rgba(26,20,48,.04), 0 10px 24px -18px rgba(26,20,48,.28);
-    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
   }
-  .v3-trust-cell:hover { transform: translateY(-3px);
-                         box-shadow: 0 2px 4px rgba(26,20,48,.05), 0 18px 34px -18px rgba(26,20,48,.36); }
-  /* Both bounds, and each mark settles wherever its own aspect ratio hits one
-     first: the crests run the full height to keep their ring text readable,
-     the bare wordmarks bind on width and lose nothing. */
-  .v3-trust-cell img { max-width: 100%; max-height: clamp(40px,4.4vw,60px);
-                       width: auto; height: auto; object-fit: contain; display: block; }
-  /* VCS ships as a full-bleed blue tile, so round it to sit inside the plate. */
-  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; max-height: clamp(64px,6.4vw,92px); }
+  /* Optical sizing. A shared height cap made the wide wordmarks (Tukunen, VFM)
+     huge and the round badges tiny, so each logo instead takes its height from
+     its own shape: --k on the img is aspect^-0.55, set in the markup, which
+     gives every mark roughly the same area. A square logo is --trust-logo
+     tall; a 6:1 wordmark about a third of that. The files are trimmed to
+     their artwork, so no padding skews this. */
+  .v3-trust { --trust-logo: clamp(72px,6.6vw,96px); }
+  .v3-trust-cell img { height: calc(var(--trust-logo) * var(--k,.6)); width: auto;
+                       max-width: 100%; object-fit: contain; display: block; }
+  /* VCS ships as a full-bleed blue tile; soften its corners. */
+  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; }
   @media (prefers-reduced-motion: reduce) {
     .v3-trust-marquee { -webkit-mask-image: none; mask-image: none; }
     .v3-trust-track { animation: none; width: auto; justify-content: center; }
@@ -249,42 +257,116 @@
   .v3-cell-copy { display: flex; flex-direction: column; align-items: center; gap: 14px; }
   .v3-cell-copy p { max-width: 420px; }
 
-  /* ============ 1b. SERVICES  (sticky stack, ref Orbix services) ============
-     Each panel is sticky at the top of the viewport, so the next one scrolls up
-     and covers the one before it. Nothing in the ancestor chain may clip
-     overflow or the stickiness dies silently. */
-  .v3-svc-stack { position: relative; }
-  .v3-svc { position: sticky; top: 0; min-height: 100svh; display: flex;
-            background: var(--v3-svc-bg,#101014); color: #FFFFFF; }
-  .v3-svc-inner { position: relative; width: 100%; max-width: 1460px; margin: 0 auto;
-                  padding: clamp(28px,5vh,64px) 30px clamp(24px,4vh,48px);
-                  display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  /* Faint crosshair behind the type — the reference's layout grid, showing. */
-  .v3-svc-grid { position: absolute; inset: 0; pointer-events: none; }
-  .v3-svc-grid::before { content: ""; position: absolute; left: 24%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.16); }
-  .v3-svc-grid::after  { content: ""; position: absolute; left: 0; right: 0; top: 62%; height: 1px; background: rgba(255,255,255,.16); }
-  .v3-svc-dot { position: absolute; left: 24%; top: 62%; width: 12px; height: 12px; margin: -6px 0 0 -6px;
-                border-radius: 50%; background: rgba(255,255,255,.9); }
-  .v3-svc-top { position: relative; z-index: 1; width: 100%; display: flex; align-items: flex-start;
-                justify-content: space-between; gap: 20px; }
-  .v3-svc-no { font-family: 'Manrope', sans-serif; font-size: clamp(15px,1.4vw,20px); font-weight: 500; color: rgba(255,255,255,.75); }
-  .v3-svc-link { font-family: 'Manrope', sans-serif; font-size: clamp(16px,2.08vw,30px); font-weight: 500; letter-spacing: -.02em;
-                 color: #FFFFFF; text-decoration: none; text-align: right;
-                 border-bottom: 1px solid transparent; transition: border-color .25s ease; }
-  .v3-svc-link:hover, .v3-svc-link:focus-visible { border-bottom-color: rgba(255,255,255,.7); }
-  .v3-svc-title { position: relative; z-index: 1; font-family: 'Manrope', sans-serif;
-                  font-size: clamp(40px,8.4vw,124px); font-weight: 600; line-height: 1; letter-spacing: -.04em;
-                  text-align: center; text-wrap: balance; margin: clamp(14px,3.5vh,44px) 0 0; }
-  .v3-svc-title em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
-  /* Pulled up under the headline's descenders. */
-  .v3-svc-shot { position: relative; z-index: 2; width: min(100%,760px); margin-top: -17px;
-                 border-radius: 16px; overflow: hidden; background: rgba(255,255,255,.12);
-                 box-shadow: 0 40px 90px -34px rgba(0,0,0,.55); }
-  .v3-svc-shot img,
-  .v3-svc-shot video { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 16/10; }
-  /* The poster carries the panel until the clip is fetched, so the frame never
-     flashes the card's background between paint and play. */
-  .v3-svc-shot video { background: rgba(255,255,255,.12); }
+  /* ============================================================
+     SERVICES — the colour grid, ported from services.html. A 4-column bed carrying a 1/2/1,
+     2/1/1, 1/2/1 rhythm, so no row is three equal boxes.
+     ============================================================ */
+  .v3-serv-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
+  /* The heading runs on one line here, so the head drops its 780px cap; the
+     lead is 10% wider than the shared 680px measure. */
+  /* The value section below is white too, so the two paddings stacked into a
+     double gap. Its top padding alone does the spacing. */
+  .v3-serv { padding-bottom: 0; }
+  .v3-serv .v3-head { max-width: none; }
+  .v3-serv .v3-head p { max-width: 748px; }
+  .v3-serv-grid { width: 100%; }
+  .v3-serv-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(12px,1.2vw,18px); }
+  /* One surface, not two: the shot IS the card, and the copy sits on top of it.
+     Each image is composed with clear space at the head for exactly that, so
+     stacking a separate text block above the art would read as two cards. */
+  .v3-serv-card {
+    position: relative; grid-column: span 1; display: block; overflow: hidden;
+    text-decoration: none; border-radius: clamp(14px,1.4vw,20px);
+    /* Only ever seen behind the art while it loads. */
+    background: var(--sv,#E8F1F8); color: var(--sv-ink,var(--v3-ink));
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
+  }
+  .v3-serv-card--wide { grid-column: span 2; }
+  .v3-serv-card:hover { transform: translateY(-4px); box-shadow: 0 26px 50px -26px rgba(26,20,48,.45); }
+  /* A scrim under the copy. Not every shot has clear space where the text
+     lands — the landscape ones start their artwork almost at the top edge, and
+     the copy was sitting straight on the mockups. This fades out well before
+     the art, so it reads as the shot's own light or shade rather than a panel,
+     and it means legibility no longer depends on how each image was cropped. */
+  .v3-serv-card::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 60%; z-index: 1; pointer-events: none;
+    /* Fallback for no color-mix: a neutral veil. */
+    background: linear-gradient(180deg, rgba(8,14,26,.92) 0%, rgba(8,14,26,.92) 40%, rgba(8,14,26,0) 100%);
+  }
+  .v3-serv-card--onlight::before {
+    background: linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.95) 40%, rgba(255,255,255,0) 100%);
+  }
+  /* Tinted with the shot's OWN sampled top colour rather than neutral black or
+     white, so the band reads as the image continuing rather than a panel laid
+     over it. Each --sv is pushed toward black (or white) far enough for the
+     type to clear AA on it — several of the raw colours do not: white on the
+     branding blue is 3.9:1 and on the full-stack green 3.2:1. */
+  @supports (background: color-mix(in srgb, red 50%, blue)) {
+    .v3-serv-card::before {
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--sv) 62%, #000) 0%,
+        color-mix(in srgb, var(--sv) 62%, #000) 40%,
+        transparent 100%);
+    }
+    .v3-serv-card--onlight::before {
+      background: linear-gradient(180deg,
+        color-mix(in srgb, var(--sv) 55%, #FFF) 0%,
+        color-mix(in srgb, var(--sv) 55%, #FFF) 40%,
+        transparent 100%);
+    }
+  }
+  .v3-serv-copy {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+    padding: clamp(20px,2.2vw,32px);
+  }
+  .v3-serv-copy h3 {
+    font-family: 'Manrope', sans-serif; font-size: clamp(16px,1.35vw,19px); font-weight: 700;
+    letter-spacing: -.025em; line-height: 1.3; margin: 0; color: inherit;
+  }
+  .v3-serv-copy p {
+    font-family: 'Satoshi', sans-serif; font-size: clamp(12.5px,1vw,14px); line-height: 1.55;
+    color: var(--sv-body,rgba(0,0,0,.58)); margin: 8px 0 0; max-width: 44ch;
+  }
+  /* The shot fills the whole card and crops to it. At its natural height it
+     stopped short of the card's foot — the grid stretches every card in a row
+     to the tallest, and the leftover showed as a band of --sv under the art.
+     Height now comes from the aspect ratios below instead. */
+  .v3-serv-shot { position: absolute; inset: 0; z-index: 0; }
+  .v3-serv-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Every row holds exactly one 2-column card, so its 3:2 ratio sets that row's
+     height and the 1-column cards stretch to meet it. */
+  .v3-serv-card--wide { aspect-ratio: 3 / 2; }
+  /* Type colour follows the scrim, set in one place rather than per card. */
+  .v3-serv-card          { --sv-ink:#FFFFFF; --sv-body:rgba(255,255,255,.80); }
+  .v3-serv-card--onlight { --sv-ink:var(--v3-ink); --sv-body:rgba(0,0,0,.62); }
+
+  /* The old /services page listed the sub-disciplines under each of the four
+     core cards as tag pills, and those terms are the reason the page ranks for
+     anything narrower than "web design". They live inside the scrim here rather
+     than under the card, so they are capped at four and set small enough that
+     the copy block still finishes well before the fade does. Only the core
+     cards carry them; the conversion cards are already named by their platform. */
+  .v3-serv-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+  .v3-serv-tags span {
+    font-family: 'Satoshi', sans-serif; font-size: clamp(10.5px,.85vw,12px); line-height: 1.4;
+    padding: 4px 10px; border-radius: 50px; white-space: nowrap; color: var(--sv-ink);
+    background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.28);
+  }
+  .v3-serv-card--onlight .v3-serv-tags span { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.14); }
+  /* A tagged card's copy block is a tag row taller, and on the narrow layouts
+     the card is shorter too — at 60% the pills were finishing past the fade and
+     landing on the mockup. Dropping the scrim rather than hiding the tags keeps
+     the terms on the page at every width, which is the whole point of them. */
+  .v3-serv-card--tagged::before { height: 78%; }
+  @media (max-width: 1024px) {
+    .v3-serv-grid { grid-template-columns: repeat(2,1fr); }
+    .v3-serv-card, .v3-serv-card--wide { grid-column: span 1; aspect-ratio: 4 / 3; }
+    .v3-serv-card--tagged { aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 680px) {
+    .v3-serv-grid { grid-template-columns: 1fr; }
+    .v3-serv-card, .v3-serv-card--wide { aspect-ratio: 1 / 1; }
+  }
 
   /* ============ 2. FEATURED WORK  (ref .service-case-section) ============ */
   .v3-feat-inner { display: flex; flex-direction: column; align-items: center; gap: var(--v3-g80); }
@@ -503,6 +585,9 @@
   .v3-faq-inner { display: grid; grid-template-columns: 550px minmax(0,1fr); gap: clamp(36px,6.94vw,100px); align-items: start; }
   .v3-faq-left { display: flex; flex-direction: column; gap: var(--v3-g60); }
   .v3-faq-heading { display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+  /* Sized down from the shared h2 so "Questions People" holds one line in the
+     550px column and the heading reads as two lines, not three. */
+  .v3-faq-heading .v3-h2 { font-size: clamp(32px,3.9vw,56px); }
   .v3-call { max-width: 436px; border-radius: 32px; padding: 32px 60px 32px 32px; display: flex; flex-direction: column; gap: clamp(28px,3.61vw,52px);
              background: linear-gradient(150deg,#EDE7FF 0%,#F6EDFF 48%,#FFEBFA 100%); }
   .v3-call-top { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
@@ -560,7 +645,7 @@
     .v3-trust-group { gap: 12px; padding-right: 12px; }
     .v3-trust-track { animation-duration: 30s; }
     .v3-trust-cell { width: 140px; height: 96px; padding: 16px 12px; }
-    .v3-trust-cell img { max-height: 46px; }
+    .v3-trust { --trust-logo: 56px; }
   }
 
   @media (max-width: 1180px) {
@@ -601,26 +686,14 @@
     .v3-tm-nav { position: static; order: 1; width: auto; height: auto;
                  padding: 14px 20px; border-radius: 99px; }
     .v3-tm-nav span { position: static; transform: none; }
-    /* The mobile header is a flush bar rather than a floating pill, and every
-       service panel sticks to y=0 underneath it. */
-    .v3-svc-inner { padding-block: clamp(84px,13vh,104px) clamp(28px,5vh,44px); }
   }
   @media (max-width: 700px) {
-    /* 20px link rows are well under the 44px touch minimum. Pad them out and
-       take the space back off the gap so the columns keep their rhythm. */
-    .v3-svc-link { padding-block: 10px; }
     /* Phone gutters: one 15px edge shared by every section container, so the
-       hero, the sticky services panel and every .v3-wrap section line up. */
-    .v3-wrap, .v3-plat .v3-wrap, .v3-svc-inner, .hero-fan-inner { padding-inline: 15px; }
+       hero and every .v3-wrap section line up. */
+    .v3-wrap, .v3-plat .v3-wrap, .hero-fan-inner { padding-inline: 15px; }
     /* The 20px rail inset is a desktop measure; on a phone it only eats gutter.
        .v3-rail sits on .v3-steps, so the line and the dots shift together. */
     .v3-timeline { padding-left: 0; }
-    .v3-svc-grid { display: none; }
-    .v3-svc-shot { margin-top: 18px; width: 100%; }
-    /* 8.4vw pins the title to its 40px floor with half the panel left empty. */
-    .v3-svc-title { font-size: clamp(38px,12.5vw,64px); }
-    .v3-svc-top { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .v3-svc-link { text-align: left; }
     .v3-cards4, .v3-blog-grid, .v3-plat-grid, .v3-sup-grid { grid-template-columns: 1fr; }
     .v3-panel-top { flex-direction: column; align-items: flex-start; gap: 16px; }
     .v3-faces b { width: 40px; height: 40px; }
@@ -1273,24 +1346,28 @@
       <div class="v3-trust-marquee" data-reveal>
         <div class="v3-trust-track">
         <ul class="v3-trust-group">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="454" height="156"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="240" height="193"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="219" height="219"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="231" height="195"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="Tukunen" loading="lazy" decoding="async" width="630" height="98"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="VFM" loading="lazy" decoding="async" width="734" height="130"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="JAVIQ Natural Beauty" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="Elite Manuals" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="GS Associates" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="Sure Manuals" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
         </ul>
         <ul class="v3-trust-group" aria-hidden="true">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="454" height="156"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="240" height="193"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="219" height="219"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="231" height="195"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/TUKUNEN-logo.webp" alt="" loading="lazy" decoding="async" width="630" height="98"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vfm-logo.png" alt="" loading="lazy" decoding="async" width="734" height="130"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
+          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
         </ul>
         </div>
       </div>
@@ -1298,7 +1375,8 @@
   </section>
 
   <!-- ============ 2. STORY / WHAT WE DO ============ -->
-  <section class="v3-sec v3-sec--dark v3-story" aria-label="About Web{X} Studio">
+  <!-- Hidden for now; delete the hidden attribute to bring it back. -->
+  <section class="v3-sec v3-sec--dark v3-story" aria-label="About Web{X} Studio" hidden>
     <div class="v3-wrap v3-story-inner">
       <div class="v3-story-head">
         <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z"/></svg></i>What we do</span>
@@ -1352,87 +1430,143 @@
     </div>
   </section>
 
-  <!-- ============ 3. SERVICES (sticky stack) ============ -->
-  <section class="v3-svc-stack" aria-label="What we build">
-      <article class="v3-svc" style="--v3-svc-bg:#9D5CFF">
-        <div class="v3-svc-inner">
-          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
-          <div class="v3-svc-top">
-            <span class="v3-svc-no">(01)</span>
-            <a class="v3-svc-link" href="web-design">Explore Website Design</a>
-          </div>
-          <h3 class="v3-svc-title">Website <em>Design</em></h3>
-          <div class="v3-svc-shot">
-            <video data-v3-svcvid src="video/cap-design.mp4" poster="images/cap-design.webp"
-                   width="1050" height="720" muted loop playsinline preload="none"
-                   disablepictureinpicture aria-label="Website design work by Web{X} Studio"></video>
-          </div>
-        </div>
-      </article>
+  <!-- ============ 3. SERVICES (colour grid, same cards as services.html) ============ -->
+  <section class="v3-sec v3-serv" aria-labelledby="v3-serv-h">
+    <div class="v3-wrap v3-serv-inner">
+      <div class="v3-head v3-head--780">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="2" stroke="currentColor" stroke-width="1.7"/></svg></i>Our services</span>
+        <h2 class="v3-h2" id="v3-serv-h" data-reveal>The work <em>we take on</em></h2>
+        <p class="v3-txt">Strategy, design, development and the SEO afterwards. It&rsquo;s the same team the whole way through, which means nobody has to explain your design to a developer they&rsquo;ve never met.</p>
+      </div>
 
-      <article class="v3-svc" style="--v3-svc-bg:#101014">
-        <div class="v3-svc-inner">
-          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
-          <div class="v3-svc-top">
-            <span class="v3-svc-no">(02)</span>
-            <a class="v3-svc-link" href="web-development">Explore Web Development</a>
-          </div>
-          <h3 class="v3-svc-title">Web <em>Development</em></h3>
-          <div class="v3-svc-shot">
-            <video data-v3-svcvid src="video/cap-development.mp4" poster="images/cap-development.webp"
-                   width="1050" height="720" muted loop playsinline preload="none"
-                   disablepictureinpicture aria-label="Web development work by Web{X} Studio"></video>
-          </div>
-        </div>
-      </article>
+      <div class="v3-serv-grid">
 
-      <article class="v3-svc" style="--v3-svc-bg:#6E8BFF">
-        <div class="v3-svc-inner">
-          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
-          <div class="v3-svc-top">
-            <span class="v3-svc-no">(03)</span>
-            <a class="v3-svc-link" href="seo-services">Explore SEO &amp; Performance</a>
+        <a class="v3-serv-card" href="ui-ux-design" style="--sv:#27416D">
+          <div class="v3-serv-copy">
+            <h3>UI/UX Design</h3>
+            <p>Product design for SaaS and B2B tools. Mostly dashboards, onboarding, and the multi-role screens people sit in all day at work.</p>
           </div>
-          <h3 class="v3-svc-title">SEO &amp; <em>Performance</em></h3>
-          <div class="v3-svc-shot">
-            <video data-v3-svcvid src="video/cap-seo.mp4" poster="images/cap-seo.webp"
-                   width="1050" height="720" muted loop playsinline preload="none"
-                   disablepictureinpicture aria-label="SEO and performance work by Web{X} Studio"></video>
-          </div>
-        </div>
-      </article>
+          <div class="v3-serv-shot"><img src="images/service/sv-ui-ux.webp" alt="A Web{X} Studio site design shown on a phone" loading="lazy" decoding="async" width="559" height="704"></div>
+        </a>
 
-      <article class="v3-svc" style="--v3-svc-bg:#2B1B54">
-        <div class="v3-svc-inner">
-          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
-          <div class="v3-svc-top">
-            <span class="v3-svc-no">(04)</span>
-            <a class="v3-svc-link" href="web-apps">Explore ERP &amp; Web Apps</a>
+        <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--wide v3-serv-card--tagged" href="web-design" style="--sv:#8DB0DF">
+          <div class="v3-serv-copy">
+            <h3>Web Design</h3>
+            <p>Looking good is the minimum. We design pages that make your offer easy to understand and make it obvious what to do next.</p>
+            <div class="v3-serv-tags">
+              <span>UX/UI design</span>
+              <span>Branding</span>
+              <span>Landing pages</span>
+              <span>Responsive design</span>
+              <span>Design systems</span>
+            </div>
           </div>
-          <h3 class="v3-svc-title">ERP &amp; <em>Web Apps</em></h3>
-          <div class="v3-svc-shot">
-            <video data-v3-svcvid src="video/cap-erp.mp4" poster="images/cap-erp.webp"
-                   width="1050" height="720" muted loop playsinline preload="none"
-                   disablepictureinpicture aria-label="ERP and web app work by Web{X} Studio"></video>
-          </div>
-        </div>
-      </article>
+          <div class="v3-serv-shot"><img src="images/service/sv-web-design.webp" alt="Three responsive websites designed by Web{X} Studio" loading="lazy" decoding="async" width="768" height="512"></div>
+        </a>
 
-      <article class="v3-svc" style="--v3-svc-bg:#8438EE">
-        <div class="v3-svc-inner">
-          <span class="v3-svc-grid" aria-hidden="true"><span class="v3-svc-dot"></span></span>
-          <div class="v3-svc-top">
-            <span class="v3-svc-no">(05)</span>
-            <a class="v3-svc-link" href="graphic-design">Explore Graphic Design</a>
+        <a class="v3-serv-card" href="graphic-design" style="--sv:#1584C6">
+          <div class="v3-serv-copy">
+            <h3>Branding &amp; Graphic Design</h3>
+            <p>A brand identity people remember, with visuals and wording that stay consistent.</p>
           </div>
-          <h3 class="v3-svc-title">Graphic <em>Design</em></h3>
-          <div class="v3-svc-shot">
-            <video data-v3-svcvid src="video/cap-graphic.mp4" poster="images/cap-01.avif"
-                   width="1050" height="720" muted loop playsinline preload="none"
-                   disablepictureinpicture aria-label="Graphic design work by Web{X} Studio"></video>
+          <div class="v3-serv-shot"><img src="images/service/sv-branding.webp" alt="Brand identity and packaging design by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--wide v3-serv-card--tagged" href="web-development" style="--sv:#509B51">
+          <div class="v3-serv-copy">
+            <h3>Web Development</h3>
+            <p>The front end, the back end, and the APIs and databases behind them. We'll also plug in the third-party services you rely on.</p>
+            <div class="v3-serv-tags">
+              <span>Webflow</span>
+              <span>WordPress</span>
+              <span>Shopify e-commerce</span>
+              <span>Custom code</span>
+              <span>WCAG accessibility</span>
+            </div>
           </div>
-        </div>
-      </article>
+          <div class="v3-serv-shot"><img src="images/service/sv-full-stack.webp" alt="Front-end, back-end and API development work by Web{X} Studio" loading="lazy" decoding="async" width="768" height="512"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--onlight" href="figma-to-shopify" style="--sv:#CED7FD">
+          <div class="v3-serv-copy">
+            <h3>Ecommerce</h3>
+            <p>Shopify and WooCommerce stores. We set the catalogue up properly and take it all the way to checkout.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/sv-ecommerce.webp" alt="An ecommerce storefront built by Web{X} Studio" loading="lazy" decoding="async" width="552" height="713"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--tagged" href="web-apps" style="--sv:#B7E7D1">
+          <div class="v3-serv-copy">
+            <h3>ERP &amp; Web Apps</h3>
+            <p>Dashboards, ERP systems and B2B SaaS platforms with logins, user roles and real data. Built so they don't slow down as the records pile up.</p>
+            <div class="v3-serv-tags">
+              <span>ERP systems</span>
+              <span>B2B SaaS</span>
+              <span>Automation</span>
+              <span>Mobile web apps</span>
+              <span>Custom software</span>
+            </div>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/sv-saas-design.webp" alt="A SaaS product dashboard designed and built by Web{X} Studio" loading="lazy" decoding="async" width="555" height="709"></div>
+        </a>
+
+        <a class="v3-serv-card" href="figma-to-webflow" style="--sv:#44A1F3">
+          <div class="v3-serv-copy">
+            <h3>Webflow</h3>
+            <p>Your Figma file turned into Webflow, with tidy class names and a CMS your team can edit.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/sv-figma-webflow.webp" alt="A Figma design converted to Webflow by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--wide" href="landing-page-design" style="--sv:#B8D5FD">
+          <div class="v3-serv-copy">
+            <h3>Landing Page Design</h3>
+            <p>A single page for a single offer, usually for a paid campaign or a launch. We judge it by how many enquiries it brings in. How pretty it is comes second.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/sv-landing-page.webp" alt="A high-converting landing page designed by Web{X} Studio" loading="lazy" decoding="async" width="798" height="493"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--onlight" href="figma-to-unbounce" style="--sv:#FEDAB3">
+          <div class="v3-serv-copy">
+            <h3>Unbounce</h3>
+            <p>We rebuild your design in Unbounce so you can start A/B testing it.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/sv-figma-unbounce.webp" alt="A Figma design converted to an Unbounce landing page by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+        </a>
+
+        <a class="v3-serv-card v3-serv-card--wide v3-serv-card--tagged" href="seo-services" style="--sv:#3B2E6E">
+          <div class="v3-serv-copy">
+            <h3>SEO &amp; Performance</h3>
+            <p>Technical SEO and Core Web Vitals go in while we build. That's a lot easier than trying to fix them after launch.</p>
+            <div class="v3-serv-tags">
+              <span>Technical SEO</span>
+              <span>Core Web Vitals</span>
+              <span>Conversion rate optimisation</span>
+              <span>Analytics</span>
+              <span>Answer engine optimisation</span>
+            </div>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/seo.webp" alt="An SEO dashboard on a laptop showing search traffic climbing, beside a magnifier over the Google logo" loading="lazy" decoding="async" width="1448" height="1086"></div>
+        </a>
+
+        <a class="v3-serv-card" href="figma-to-wordpress" style="--sv:#1B5E7C">
+          <div class="v3-serv-copy">
+            <h3>WordPress</h3>
+            <p>Custom WordPress builds that load quickly. And yes, your team will find them easy to edit.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/wordpress.webp" alt="The WordPress block editor open on a laptop beside the WordPress logo" loading="lazy" decoding="async" width="1086" height="1448"></div>
+        </a>
+
+        <a class="v3-serv-card" href="figma-to-framer" style="--sv:#101B33">
+          <div class="v3-serv-copy">
+            <h3>Framer</h3>
+            <p>Framer sites with plenty of motion, built by hand, with the CMS ready for your team.</p>
+          </div>
+          <div class="v3-serv-shot"><img src="images/service/framer.webp" alt="The Framer editor on a laptop with a matching mobile preview, beside the Framer logo" loading="lazy" decoding="async" width="1086" height="1448"></div>
+        </a>
+
+      </div>
+    </div>
   </section>
 
   <!-- ============ 4. VALUE GRID ============ -->
@@ -1440,6 +1574,7 @@
     <div class="v3-wrap v3-value-inner">
       <div class="v3-value-top">
         <div class="v3-value-left">
+          <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l2.3 1.7 2.8-.1.9 2.7 2.3 1.6-.9 2.7.9 2.7-2.3 1.6-.9 2.7-2.8-.1L12 21.2l-2.3-1.7-2.8.1-.9-2.7-2.3-1.6.9-2.7-.9-2.7 2.3-1.6.9-2.7 2.8.1z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg></i>Why Web{X}</span>
           <h2 class="v3-h3" data-reveal>A Full Design &amp; Dev Team, <em>For Less Than Hiring Your Own</em></h2>
           <div class="v3-value-copy">
             <p class="v3-txt" data-reveal data-reveal-delay="80">Hiring a designer and a developer separately sounds simple. Then you spend weeks passing messages between them. With us it&rsquo;s one team on your project, so you have one person to talk to and the site still gets built and launched.</p>
@@ -1550,6 +1685,23 @@
                 <b>3D</b>
                 <span class="v3-txt">From floor plan to finished villa</span>
                 <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-gs-associates">View case study
+                  <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a></p>
+              </div>
+            </div>
+          </article>
+          <article class="v3-case-slide" data-v3-fslide>
+            <div class="v3-case-shot"><img src="images/work/vcs.webp" alt="VCS Immigration Consultants website on laptop and phone, built by Web{X} Studio" loading="lazy" decoding="async" width="2000" height="1080"></div>
+            <div class="v3-case-info">
+              <div>
+                <span class="v3-case-live">Website &middot; Live</span>
+                <h3>VCS Immigration</h3>
+                <p class="v3-txt">A visa and travel consultancy in Mullanpur Dakha, Ludhiana, with a school support brand run from the same office. One fast site gives each offer its own clear path.</p>
+              </div>
+              <div class="v3-case-metric">
+                <b>2.2 MB</b>
+                <span class="v3-txt">Every image and icon on the site, combined</span>
+                <p style="margin-top:18px"><a class="v3-btn v3-btn--light" href="case-study-vcs">View case study
                   <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a></p>
               </div>
@@ -1712,7 +1864,7 @@
   <section class="v3-sec v3-proc" aria-label="Our process">
     <div class="v3-wrap v3-proc-inner">
       <div class="v3-head v3-head--780">
-        <span class="v3-tag">Our process</span>
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6h3a2 2 0 0 1 2 2v2M14 12h3a2 2 0 0 1 2 2v2"/></svg></i>Our process</span>
         <h2 class="v3-h2" data-reveal>How We Design<br><em>And Build Your Website</em></h2>
         <p class="v3-txt" data-reveal data-reveal-delay="80">Design and development happen in the same team here. You see the work at each step, so it never goes quiet on you for a month at a time.</p>
       </div>
@@ -1764,6 +1916,7 @@
   <section class="v3-sec v3-sec--grey v3-tm" aria-label="What clients say">
     <div class="v3-wrap v3-tm-inner">
       <div class="v3-head v3-head--980">
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h5v6H4zM13 11h5v6h-5z"/><path d="M5 11V8a4 4 0 0 1 4-4M14 11V8a4 4 0 0 1 4-4"/></svg></i>Testimonials</span>
         <h2 class="v3-h2" data-reveal>What Our Clients<br><em>Have Said About Us</em></h2>
       </div>
 
@@ -1926,12 +2079,12 @@
             <p>LCP, INP and CLS explained without the jargon. What Google measures, and what we change to get a failing page into the green.</p>
           </span>
         </a>
-        <a class="v3-post" href="blog-choosing-web-design-agency" data-reveal data-reveal-delay="160">
-          <span class="v3-post-media"><img src="images/cap-01.avif" alt="Guide to choosing a web design agency" loading="lazy" decoding="async" width="1200" height="900"></span>
-          <span class="v3-post-meta">Hiring <em>9 min</em></span>
+        <a class="v3-post" href="blog-what-is-website-development" data-reveal data-reveal-delay="160">
+          <span class="v3-post-media"><img src="images/cap-what-is-website-development.jpg" alt="Guide to what website development is" loading="lazy" decoding="async" width="1024" height="749"></span>
+          <span class="v3-post-meta">Web development <em>8 min</em></span>
           <span class="v3-post-body">
-            <h3>Choosing a Web Design Agency</h3>
-            <p>What to ask, and what should worry you, when you&rsquo;re hiring an agency. Applies whether the studio&rsquo;s in India or somewhere else.</p>
+            <h3>What Is Website Development?</h3>
+            <p>Front-end, back-end and full-stack, plus the process, tools and costs. A plain explanation of how websites actually get built.</p>
           </span>
         </a>
       </div>
@@ -1945,7 +2098,7 @@
   <section class="v3-sec v3-sec--grey v3-sup" aria-label="Ongoing support">
     <div class="v3-wrap v3-sup-inner">
       <div class="v3-head v3-head--680">
-        <span class="v3-tag">Ongoing support</span>
+        <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="m5.6 5.6 3.9 3.9M14.5 14.5l3.9 3.9M18.4 5.6l-3.9 3.9M9.5 14.5l-3.9 3.9"/></svg></i>Ongoing support</span>
         <h2 class="v3-h2" data-reveal>Monthly Website<br>Support <em>After Launch</em></h2>
         <p class="v3-txt" data-reveal data-reveal-delay="80">We don&rsquo;t disappear once the site is live. You can keep us on for edits and new pages, and we&rsquo;ll keep an eye on speed.</p>
       </div>
@@ -1983,6 +2136,7 @@
     <div class="v3-wrap v3-faq-inner">
       <div class="v3-faq-left">
         <div class="v3-faq-heading">
+          <span class="v3-pill"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><path d="M12 17.2h.01"/></svg></i>FAQ</span>
           <h2 class="v3-h2" data-reveal>Questions People<br><em>Usually Ask Us</em></h2>
           <p class="v3-lg">Not sure where to start? That&rsquo;s normal. Send us a message and we&rsquo;ll talk it through with you.</p>
         </div>
@@ -2023,6 +2177,7 @@
   <!-- ============ 12. PLATFORMS ============ -->
   <section class="v3-sec v3-sec--dark v3-plat" aria-label="Where to find us">
     <div class="v3-wrap v3-plat-inner">
+      <span class="v3-pill v3-pill--dark"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></i>Find us</span>
       <h2 class="v3-plat-title" data-reveal>You can also find us here</h2>
       <div class="v3-plat-grid">
         <a class="v3-plat-cell" href="https://dribbble.com/WebXStudio" target="_blank" rel="noopener">
@@ -2155,50 +2310,6 @@
         if (!im.complete) im.addEventListener('load', function () { measure(); paint(); }, { once: true });
       });
       paint();
-    }
-  }
-
-  /* ---- Service clips. preload="none" on the markup means nothing is fetched
-     until we call play(), so the four cards cost only their posters up front.
-
-     The cards are sticky and stack, so geometry alone cannot say which one the
-     visitor is looking at: card 1 stays pinned at top:0, fully inside the
-     viewport, long after card 2 has slid over and hidden it. Later siblings
-     paint on top, so among the cards currently crossing the middle band the
-     LAST in DOM order is the visible one — that is the only one we play. ---- */
-  var svcVids = [].slice.call(document.querySelectorAll('[data-v3-svcvid]'));
-  if (svcVids.length && !reduce) {
-    function playSvc(v) {
-      v.muted = true;                 // the attribute alone is not enough for
-                                      // programmatic play in every browser
-      var pr = v.play();
-      // Rejects on a backgrounded tab or a still-pending decode; the poster
-      // stays up either way, so there is nothing to recover from.
-      if (pr && pr.catch) pr.catch(function () {});
-    }
-    if (!('IntersectionObserver' in window)) {
-      svcVids.forEach(playSvc);
-    } else {
-      var band = [];
-      function syncSvc() {
-        var active = -1;
-        for (var k = 0; k < svcVids.length; k++) { if (band[k]) active = k; }
-        svcVids.forEach(function (v, k) {
-          if (k === active) playSvc(v);
-          else if (!v.paused) v.pause();
-        });
-      }
-      var svcIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { band[svcVids.indexOf(e.target)] = e.isIntersecting; });
-        syncSvc();
-      }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
-      svcVids.forEach(function (v) { svcIO.observe(v); });
-      // Chrome pauses muted video in a backgrounded tab to save power. Nothing
-      // re-fires the observer on return, so without this the visitor comes back
-      // to a frozen frame. Re-assert on the way back in.
-      document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) syncSvc();
-      });
     }
   }
 
