@@ -268,9 +268,6 @@
   .ct-hero-inner { max-width: 1460px; margin: 0 auto; text-align: center;
                    padding: clamp(150px,17vw,220px) 30px clamp(64px,8vw,110px);
                    display: flex; flex-direction: column; align-items: center; }
-  .ct-crumb { font-family: 'Satoshi', sans-serif; font-size: 14px; color: var(--v3-dim); margin: 0 0 clamp(18px,2.4vh,26px); }
-  .ct-crumb a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.2); }
-  .ct-crumb a:hover { color: var(--v3-ink); border-color: var(--v3-ink); }
   .ct-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(18px,2.4vh,26px);
                 font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.05vw,16px); font-weight: 600; letter-spacing: .01em; color: var(--v3-ink); }
   .ct-eyebrow svg { flex: 0 0 auto; color: var(--v3-accent); }
@@ -290,24 +287,10 @@
   .ct-facts li { display: inline-flex; align-items: center; gap: 8px; font-family: 'Satoshi', sans-serif; font-size: var(--v3-sm); color: var(--v3-dim); }
   .ct-facts svg { color: var(--v3-accent); flex: 0 0 auto; }
 
-  /* ============ TRUST BAR — same as the home page ============ */
-  .v3-trust { padding: clamp(40px,5.5vw,72px) 0 clamp(44px,6vw,84px); background: var(--v3-grey); --trust-logo: clamp(72px,6.6vw,96px); }
-  .v3-trust-label { margin: 0 0 clamp(20px,2.4vw,30px); text-align: center;
-                    font-family: 'Satoshi', sans-serif; font-size: 12px; font-weight: 600;
-                    letter-spacing: .14em; text-transform: uppercase; color: var(--v3-dim); }
-  .v3-trust-marquee { overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .v3-trust-track { display: flex; width: max-content; padding: 6px 0 12px; animation: v3-trust-scroll 40s linear infinite; }
-  .v3-trust-marquee:hover .v3-trust-track { animation-play-state: paused; }
-  .v3-trust-group { display: flex; gap: 16px; padding: 0 16px 0 0; margin: 0; list-style: none; }
-  @keyframes v3-trust-scroll { to { transform: translateX(-50%); } }
-  .v3-trust-cell { flex: 0 0 auto; width: clamp(150px,14vw,210px); display: grid; place-items: center;
-                   height: clamp(104px,10vw,152px); padding: 18px 16px; }
-  .v3-trust-cell img { height: calc(var(--trust-logo) * var(--k,.6)); width: auto; max-width: 100%; object-fit: contain; display: block; }
-  .v3-trust-cell img[src*="vcs-logo"] { border-radius: 10px; }
 
   /* ============ CONTACT — form card beside the ways to reach us ============ */
+  /* The hero is white too, so its bottom padding already does the spacing. */
+  .ct-main { padding-top: 0; }
   .ct-main-inner { display: flex; flex-direction: column; gap: var(--v3-g80); }
   .ct-grid { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,1fr); gap: clamp(20px,2.2vw,32px); align-items: start; }
 
@@ -452,17 +435,7 @@
     .v3-faq-item summary { gap: 18px; }
     .v3-faq-a { padding-right: 8px; }
   }
-  @media (max-width: 560px) {
-    .v3-trust { --trust-logo: 56px; }
-    .v3-trust-group { gap: 12px; padding-right: 12px; }
-    .v3-trust-track { animation-duration: 30s; }
-    .v3-trust-cell { width: 140px; height: 96px; padding: 16px 12px; }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .v3-trust-marquee { -webkit-mask-image: none; mask-image: none; }
-    .v3-trust-track { animation: none; width: auto; justify-content: center; }
-    .v3-trust-group { flex-wrap: wrap; justify-content: center; padding: 0; }
-    .v3-trust-group[aria-hidden="true"] { display: none; }
     .v3-faq-item::details-content, .v3-btn, .v3-btn-ico svg, .ct-channel, .ct-arrow { transition: none; }
     .v3-btn:hover, a.ct-channel:hover { transform: none; }
   }
@@ -490,9 +463,6 @@
   <!-- ============ HERO ============ -->
   <section class="ct-hero" aria-labelledby="ct-hero-h">
     <div class="ct-hero-inner">
-      <nav class="ct-crumb" aria-label="Breadcrumb" data-reveal>
-        <a href="./">Home</a> &nbsp;/&nbsp; <span>Contact</span>
-      </nav>
       <p class="ct-eyebrow" data-reveal>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
         Let&rsquo;s talk
@@ -515,41 +485,6 @@
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Fixed price, agreed upfront</li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Model Town, Ludhiana</li>
       </ul>
-    </div>
-  </section>
-
-  <!-- ============ TRUST (same strip as the home page) ============ -->
-  <section class="v3-sec-trust v3-trust" aria-label="Clients we have built for">
-    <div class="v3-wrap">
-      <p class="v3-trust-label" data-reveal>Some of the businesses we&rsquo;ve built for</p>
-      <div class="v3-trust-marquee" data-reveal>
-        <div class="v3-trust-track">
-        <ul class="v3-trust-group">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="Katyal Fitness Gym" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="Rightway Purifier" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="Uttam Public High School" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="Nar Seva Foundation" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="Aastha" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="VCS Immigration Consultants" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="JAVIQ Natural Beauty" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="Elite Manuals" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="GS Associates" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="Sure Manuals" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
-        </ul>
-        <ul class="v3-trust-group" aria-hidden="true">
-          <li class="v3-trust-cell"><img src="images/trust-logo/katyal-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="150" style="--k:0.547"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/right-way-logo.webp" alt="" loading="lazy" decoding="async" width="236" height="187" style="--k:0.88"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/uttam-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="212" style="--k:0.985"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/narseva-logo.webp" alt="" loading="lazy" decoding="async" width="218" height="178" style="--k:0.894"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/aastha-logo.png" alt="" loading="lazy" decoding="async" width="260" height="260" style="--k:1.0"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/vcs-logo.webp" alt="" loading="lazy" decoding="async" width="400" height="391" style="--k:0.81"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/javiq-logo.webp" alt="" loading="lazy" decoding="async" width="449" height="211" style="--k:0.66"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/elite-manuals-logo.webp" alt="" loading="lazy" decoding="async" width="353" height="118" style="--k:0.52"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/gs-associates-logo.webp" alt="" loading="lazy" decoding="async" width="495" height="254" style="--k:0.693"></li>
-          <li class="v3-trust-cell"><img src="images/trust-logo/sure-manuals-logo.png" alt="" loading="lazy" decoding="async" width="125" height="92" style="--k:0.845"></li>
-        </ul>
-        </div>
-      </div>
     </div>
   </section>
 
