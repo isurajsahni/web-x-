@@ -362,10 +362,16 @@
     .v3-serv-grid { grid-template-columns: repeat(2,1fr); }
     .v3-serv-card, .v3-serv-card--wide { grid-column: span 1; aspect-ratio: 4 / 3; }
     .v3-serv-card--tagged { aspect-ratio: 1 / 1; }
+    /* Every card square here, so the tagged Web Development card and its
+       row-mate come out the same height. */
+    .v3-serv-card { aspect-ratio: 1 / 1; }
+    /* Five cards in two columns would strand the last one; it spans the row. */
+    .v3-serv-card:last-child { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
   }
   @media (max-width: 680px) {
     .v3-serv-grid { grid-template-columns: 1fr; }
     .v3-serv-card, .v3-serv-card--wide { aspect-ratio: 1 / 1; }
+    .v3-serv-card:last-child { grid-column: auto; aspect-ratio: 1 / 1; }
   }
 
   /* ============ 2. FEATURED WORK  (ref .service-case-section) ============ */
@@ -1439,39 +1445,9 @@
         <p class="v3-txt">Strategy, design, development and the SEO afterwards. It&rsquo;s the same team the whole way through, which means nobody has to explain your design to a developer they&rsquo;ve never met.</p>
       </div>
 
+      <!-- Five core services on the home page: two rows on the 4-column bed,
+           2+1+1 then 2+2. The full set lives on /services. -->
       <div class="v3-serv-grid">
-
-        <a class="v3-serv-card" href="ui-ux-design" style="--sv:#27416D">
-          <div class="v3-serv-copy">
-            <h3>UI/UX Design</h3>
-            <p>Product design for SaaS and B2B tools. Mostly dashboards, onboarding, and the multi-role screens people sit in all day at work.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-ui-ux.webp" alt="A Web{X} Studio site design shown on a phone" loading="lazy" decoding="async" width="559" height="704"></div>
-        </a>
-
-        <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--wide v3-serv-card--tagged" href="web-design" style="--sv:#8DB0DF">
-          <div class="v3-serv-copy">
-            <h3>Web Design</h3>
-            <p>Looking good is the minimum. We design pages that make your offer easy to understand and make it obvious what to do next.</p>
-            <div class="v3-serv-tags">
-              <span>UX/UI design</span>
-              <span>Branding</span>
-              <span>Landing pages</span>
-              <span>Responsive design</span>
-              <span>Design systems</span>
-            </div>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-web-design.webp" alt="Three responsive websites designed by Web{X} Studio" loading="lazy" decoding="async" width="768" height="512"></div>
-        </a>
-
-        <a class="v3-serv-card" href="graphic-design" style="--sv:#1584C6">
-          <div class="v3-serv-copy">
-            <h3>Branding &amp; Graphic Design</h3>
-            <p>A brand identity people remember, with visuals and wording that stay consistent.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-branding.webp" alt="Brand identity and packaging design by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
-        </a>
-
         <a class="v3-serv-card v3-serv-card--wide v3-serv-card--tagged" href="web-development" style="--sv:#509B51">
           <div class="v3-serv-copy">
             <h3>Web Development</h3>
@@ -1489,49 +1465,26 @@
 
         <a class="v3-serv-card v3-serv-card--onlight" href="figma-to-shopify" style="--sv:#CED7FD">
           <div class="v3-serv-copy">
-            <h3>Ecommerce</h3>
+            <h3>Ecommerce Websites</h3>
             <p>Shopify and WooCommerce stores. We set the catalogue up properly and take it all the way to checkout.</p>
           </div>
           <div class="v3-serv-shot"><img src="images/service/sv-ecommerce.webp" alt="An ecommerce storefront built by Web{X} Studio" loading="lazy" decoding="async" width="552" height="713"></div>
         </a>
 
-        <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--tagged" href="web-apps" style="--sv:#B7E7D1">
+        <a class="v3-serv-card" href="ui-ux-design" style="--sv:#27416D">
           <div class="v3-serv-copy">
-            <h3>ERP &amp; Web Apps</h3>
-            <p>Dashboards, ERP systems and B2B SaaS platforms with logins, user roles and real data. Built so they don't slow down as the records pile up.</p>
-            <div class="v3-serv-tags">
-              <span>ERP systems</span>
-              <span>B2B SaaS</span>
-              <span>Automation</span>
-              <span>Mobile web apps</span>
-              <span>Custom software</span>
-            </div>
+            <h3>UI/UX Design</h3>
+            <p>Product design for SaaS and B2B tools. Mostly dashboards, onboarding, and the multi-role screens people sit in all day at work.</p>
           </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-saas-design.webp" alt="A SaaS product dashboard designed and built by Web{X} Studio" loading="lazy" decoding="async" width="555" height="709"></div>
-        </a>
-
-        <a class="v3-serv-card" href="figma-to-webflow" style="--sv:#44A1F3">
-          <div class="v3-serv-copy">
-            <h3>Webflow</h3>
-            <p>Your Figma file turned into Webflow, with tidy class names and a CMS your team can edit.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-figma-webflow.webp" alt="A Figma design converted to Webflow by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
+          <div class="v3-serv-shot"><img src="images/service/sv-ui-ux.webp" alt="A Web{X} Studio site design shown on a phone" loading="lazy" decoding="async" width="559" height="704"></div>
         </a>
 
         <a class="v3-serv-card v3-serv-card--onlight v3-serv-card--wide" href="landing-page-design" style="--sv:#B8D5FD">
           <div class="v3-serv-copy">
-            <h3>Landing Page Design</h3>
+            <h3>Landing Page Design &amp; Development</h3>
             <p>A single page for a single offer, usually for a paid campaign or a launch. We judge it by how many enquiries it brings in. How pretty it is comes second.</p>
           </div>
           <div class="v3-serv-shot"><img src="images/service/sv-landing-page.webp" alt="A high-converting landing page designed by Web{X} Studio" loading="lazy" decoding="async" width="798" height="493"></div>
-        </a>
-
-        <a class="v3-serv-card v3-serv-card--onlight" href="figma-to-unbounce" style="--sv:#FEDAB3">
-          <div class="v3-serv-copy">
-            <h3>Unbounce</h3>
-            <p>We rebuild your design in Unbounce so you can start A/B testing it.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/sv-figma-unbounce.webp" alt="A Figma design converted to an Unbounce landing page by Web{X} Studio" loading="lazy" decoding="async" width="551" height="714"></div>
         </a>
 
         <a class="v3-serv-card v3-serv-card--wide v3-serv-card--tagged" href="seo-services" style="--sv:#3B2E6E">
@@ -1548,24 +1501,11 @@
           </div>
           <div class="v3-serv-shot"><img src="images/service/seo.webp" alt="An SEO dashboard on a laptop showing search traffic climbing, beside a magnifier over the Google logo" loading="lazy" decoding="async" width="1448" height="1086"></div>
         </a>
-
-        <a class="v3-serv-card" href="figma-to-wordpress" style="--sv:#1B5E7C">
-          <div class="v3-serv-copy">
-            <h3>WordPress</h3>
-            <p>Custom WordPress builds that load quickly. And yes, your team will find them easy to edit.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/wordpress.webp" alt="The WordPress block editor open on a laptop beside the WordPress logo" loading="lazy" decoding="async" width="1086" height="1448"></div>
-        </a>
-
-        <a class="v3-serv-card" href="figma-to-framer" style="--sv:#101B33">
-          <div class="v3-serv-copy">
-            <h3>Framer</h3>
-            <p>Framer sites with plenty of motion, built by hand, with the CMS ready for your team.</p>
-          </div>
-          <div class="v3-serv-shot"><img src="images/service/framer.webp" alt="The Framer editor on a laptop with a matching mobile preview, beside the Framer logo" loading="lazy" decoding="async" width="1086" height="1448"></div>
-        </a>
-
       </div>
+
+      <a class="v3-btn" href="services" data-transition>View all services
+        <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
     </div>
   </section>
 
