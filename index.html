@@ -1191,145 +1191,122 @@
   <!-- ============ 1. HERO  (ported from index.html, minus the background art) ============ -->
   <section class="hero-fan" data-hero-section>
     <style>
-      /* Self-contained, as on v1 — the only changes are the dropped background
-         image and v3's own ink/gutter values. */
-      /* The floating header, its 10px desktop offset and the inset mobile
-         panel all live in nav.js now — they were promoted out of here. */
-
-      .hero-fan { position: relative; background: #FFFFFF; overflow: hidden; }
+      /* Hero: copy and buttons on top, then a showcase stage. One project sits
+         in the middle at full size; the ones either side step back, shrink and
+         soften, so the stage reads as depth rather than a row of thumbnails.
+         The pieces rotate through the middle every 3s (pausable), and every
+         piece links to the Work page. Soft brand-colour glows sit
+         behind the stage. The floating header lives in nav.js. */
+      .hero-fan { position: relative; background: #FFFFFF; overflow: clip; }
       .hero-fan-inner {
         position: relative; z-index: 1; max-width: 1460px; margin: 0 auto;
-        padding: calc(clamp(60px,8vw,120px) - 20px) 30px clamp(60px,8vw,120px);
-        min-height: 100svh; display: flex; flex-direction: column;
-        align-items: center; justify-content: center; text-align: center;
+        padding: clamp(120px,11vw,160px) 30px clamp(28px,3vw,48px);
+        display: flex; flex-direction: column; align-items: center; text-align: center;
       }
       .hero-fan h1 {
-        font-family: 'Manrope', sans-serif; font-size: clamp(34px,5.4vw,68px); font-weight: 700;
-        letter-spacing: -.045em; line-height: 1.04; color: var(--v3-ink); margin: 0; max-width: 34ch;
+        font-family: 'Manrope', sans-serif; font-size: clamp(36px,5vw,72px); font-weight: 700;
+        letter-spacing: -.045em; line-height: 1.02; color: var(--v3-ink); margin: 0; max-width: 22ch;
         text-wrap: balance;
       }
-      /* Eyebrow above the heading — sparkle · label · sparkle */
       .hero-fan-eyebrow {
         display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(18px,2.4vh,26px);
         font-family: 'Manrope', sans-serif; font-size: clamp(13px,1.05vw,16px); font-weight: 600;
         letter-spacing: .01em; color: var(--v3-ink);
       }
       .hero-fan-eyebrow svg { flex: 0 0 auto; color: var(--v3-accent); }
-      /* Brand gradient clipped to the glyphs. Angled off pure vertical so the
-         near-transparent tail stop clears the baseline instead of washing out
-         the bottom of the letters. */
       .wx-grad-text {
         background: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 42%,#C061FF 72%,rgba(157,92,255,.06) 100%);
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent; color: transparent;
       }
-      /* The accent phrase runs in the same Instrument Serif italic as every other
-         heading accent on the page (.v3-h2 em and friends), so the hero belongs to
-         the same type system instead of reading as a one-off. That face ships a 400
-         only — Chrome will not synthesise a bold for it — and the rest of the page
-         sets its accents at 400 anyway. Tracking resets off the h1's -.045em, and
-         the size lifts slightly because the serif sets optically smaller than
-         Manrope at this scale. */
       .hero-fan h1 .wx-grad-text {
         font-family: 'Instrument Serif', Georgia, serif;
         font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 1.02em;
       }
-
-      /* ---------- Fanned card deck ---------- */
-      .hero-fan-deck {
-        position: relative; display: flex; justify-content: center; align-items: flex-start;
-        margin: calc(clamp(38px,6vh,64px) - 35px) 0 0;
-        padding: 34px 0 60px;          /* room for the outer cards' rotation + drop */
-      }
-      .fan-card {
-        position: relative; width: clamp(124px,20vw,262px) !important; aspect-ratio: 2.8 / 3;
-        flex: 0 0 auto; margin-inline: clamp(-34px,-2.6vw,-18px); border-radius: clamp(12px,1.1vw,18px);
-        overflow: hidden; background: #F4F2F8; border: 3px solid #FFFFFF;
-        box-shadow: 0 18px 38px -16px rgba(26,20,48,.34);
-        /* --r and --y are set per card so the deck reads as a smooth arc */
-        transform: rotate(var(--r)) translateY(var(--y)); transform-origin: 50% 100%;
-        transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
-      }
-      .fan-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
-      /* ---------- Entrance: cards fly in from off-screen and stack ----------
-         Parked state uses --fx/--fy/--fr (a distinct origin per card). The deck
-         gets .is-in once the intro overlay clears, and each card transitions to
-         its resting --r/--y. Guarded by :not(.is-in) so the resting transform
-         above stays the single source of truth for the final position. */
-      .hero-fan-deck:not(.is-in) .fan-card {
-        opacity: 0; transform: translate3d(var(--fx),var(--fy),0) rotate(var(--fr)) scale(.88);
-      }
-      .hero-fan-deck.is-in .fan-card {
-        opacity: 1; transform: rotate(var(--r)) translateY(var(--y));
-        transition: transform 1s cubic-bezier(.18,.82,.28,1), opacity .55s ease;
-        transition-delay: var(--d,0s);
-      }
-      /* Hover must out-rank .is-in (same specificity would let source order win)
-         and must not inherit the entrance stagger delay. */
-      .hero-fan-deck.is-in .fan-card:hover {
-        transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
-        transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
-        transition-delay: 0s;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        /* No flight — cards are simply present, wherever the deck state is. */
-        .hero-fan-deck .fan-card,
-        .hero-fan-deck:not(.is-in) .fan-card {
-          opacity: 1; transform: rotate(var(--r)) translateY(var(--y)); transition: none;
-        }
-      }
-      /* Lift only — no scale, matching the rest of the hero */
-      .fan-card:hover {
-        transform: rotate(var(--r)) translateY(calc(var(--y) - 16px));
-        box-shadow: 0 26px 52px -18px rgba(157,92,255,.5); z-index: 20;
-      }
-
-      /* With the deck's bottom margin gone the cards run under this row, and a
-         hovered card lifts to z-index 20 — so keep the buttons above it. */
-      /* The buttons themselves are the page's own .v3-btn, so the hero opens on
-         the same CTA the rest of the page uses. */
       .hero-fan-cta {
-        position: relative; z-index: 30;
-        display: flex; align-items: center; justify-content: center; gap: 14px;
-        flex-wrap: wrap; margin: 0;
+        position: relative; z-index: 30; display: flex; align-items: center; justify-content: center;
+        gap: 14px; flex-wrap: wrap; margin: clamp(28px,4vh,40px) 0 0;
       }
 
-      @media (max-width: 860px) {
-        /* All 5 cards fit at mobile width, so the deck stays whole — it just
-           scales down and overlaps a little tighter. !important is required to
-           beat the base rule's own !important width. */
-        .fan-card { width: clamp(84px,23vw,130px) !important; margin-inline: -12px; }
+      /* ---------- Glows behind the stage ---------- */
+      .hero-glow { position: absolute; inset: auto 0 0 0; height: 78%; z-index: 0; pointer-events: none; }
+      .hero-glow i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .7; }
+      .hero-glow i:nth-child(1) { width: 46vw; height: 30vw; left: 4%;  bottom: 6%;  background: #C9A6FF; }
+      .hero-glow i:nth-child(2) { width: 40vw; height: 28vw; right: 2%; bottom: 10%; background: #9BB0FF; }
+      .hero-glow i:nth-child(3) { width: 36vw; height: 22vw; left: 32%; bottom: -4%; background: #FFD3B8; opacity: .6; }
+
+      /* ---------- Stage ---------- */
+      .hero-stage {
+        --w: min(62vw, 900px);                 /* width of the centre piece */
+        position: relative; z-index: 1; width: 100%; height: calc(var(--w) * .565);
+        margin: clamp(28px,4vh,52px) auto 0;
+      }
+      .hero-shot {
+        --tx: 0%; --ty: 0%; --s: .3; --b: 0px; --o: 0; --z: 1;
+        position: absolute; left: 50%; top: 0; width: var(--w); aspect-ratio: 1400 / 790; margin: 0;
+        transform-origin: 50% 100%;
+        transform: translateX(calc(-50% + var(--tx))) translateY(var(--ty)) scale(calc(var(--s) * var(--grow, 1)));
+        filter: blur(var(--b)) drop-shadow(0 34px 44px rgba(40,20,80,.22));
+        opacity: var(--o); z-index: var(--z);
+        transition: transform 1.05s cubic-bezier(.22,.9,.24,1), filter .9s ease, opacity .8s ease;
+        cursor: pointer; will-change: transform; display: block; text-decoration: none;
+      }
+      .hero-shot:focus-visible { outline: none; }
+      .hero-shot:focus-visible img { outline: 3px solid var(--v3-accent); outline-offset: 6px; border-radius: 12px; }
+      .hero-shot img { width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; display: block;
+                        -webkit-user-drag: none; user-select: none; }
+      .hero-shot[data-slot="0"]  { --tx: 0%;   --ty: 0%;  --s: 1;   --b: 0px; --o: 1;   --z: 5; }
+      .hero-shot[data-slot="-1"] { --tx: -60%; --ty: 4%;  --s: .62; --b: 1.5px; --o: .92; --z: 4; }
+      .hero-shot[data-slot="1"]  { --tx: 60%;  --ty: 4%;  --s: .62; --b: 1.5px; --o: .92; --z: 4; }
+      .hero-shot[data-slot="-2"] { --tx: -94%; --ty: 7%; --s: .44; --b: 5px; --o: .6;  --z: 3; }
+      .hero-shot[data-slot="2"]  { --tx: 94%;  --ty: 7%; --s: .44; --b: 5px; --o: .6;  --z: 3; }
+      .hero-shot[data-slot="-3"] { --tx: -104%; --ty: 9%; --s: .3; --b: 8px; --o: 0; --z: 2; }
+      .hero-shot[data-slot="3"]  { --tx: 104%;  --ty: 9%; --s: .3; --b: 8px; --o: 0; --z: 2; }
+      .hero-shot[data-slot="-1"]:hover, .hero-shot[data-slot="1"]:hover { --b: 0px; --o: 1; }
+      /* Scroll: the centre piece grows a touch and the sides ease outward. */
+      .hero-shot[data-slot="0"] { --grow: calc(1 + var(--p, 0) * .06); }
+
+      /* Before the intro overlay clears, the stage waits low and transparent. */
+      .hero-fan:not(.is-in) .hero-stage { opacity: 0; transform: translateY(48px); }
+      .hero-stage { transition: opacity .9s ease .1s, transform 1.1s cubic-bezier(.16,1,.3,1) .1s; }
+
+      .hero-pause {
+        position: absolute; right: clamp(15px,3vw,40px); bottom: 14px; z-index: 10;
+        width: 40px; height: 40px; border-radius: 99px; border: 0; cursor: pointer;
+        display: grid; place-items: center; background: rgba(255,255,255,.85); color: var(--v3-ink);
+        box-shadow: 0 6px 18px -10px rgba(26,20,48,.4); backdrop-filter: blur(6px);
+      }
+      .hero-pause:hover { background: #FFFFFF; }
+      .hero-pause:focus-visible { outline: 2px solid var(--v3-accent); outline-offset: 3px; }
+      .hero-pause .i-play { display: none; }
+      .hero-pause[aria-pressed="true"] .i-play { display: block; }
+      .hero-pause[aria-pressed="true"] .i-pause { display: none; }
+
+      @media (max-width: 900px) {
+        .hero-stage { --w: 82vw; }
+        .hero-shot[data-slot="-1"] { --tx: -58%; --s: .6; --b: 2px; --o: .75; }
+        .hero-shot[data-slot="1"]  { --tx: 58%;  --s: .6; --b: 2px; --o: .75; }
+        .hero-shot[data-slot="-2"], .hero-shot[data-slot="2"] { --o: 0; }
       }
       @media (max-width: 620px) {
-        /* The forced break is tuned for desktop measure; on a phone it strands
-           "agency that" on its own line, so let the copy wrap naturally. */
         .hero-fan h1 br { display: none; }
-        .hero-fan h1 { max-width: 18ch; }
-        /* The accent phrase wraps to two lines here, so the gradient spans both
-           and its near-transparent tail lands on the whole second line. Drop the
-           tail stop — the fade only ever worked on a single line. */
-        .hero-fan .wx-grad-text {
-          background-image: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 45%,#C061FF 100%);
-        }
-        /* The fanned deck is dropped on phones — at this width the cards are
-           too small to read as work samples. Left in the DOM for wider screens. */
-        .hero-fan-deck { display: none; }
-        /* Full height, with the block centred and the spacing opened up so it
-           does not read as three things clustered in the middle. */
-        .hero-fan-inner { justify-content: center; text-align: center;
-                          padding: 40px 15px 56px; min-height: 100svh; }
-        .hero-fan-eyebrow { margin-bottom: clamp(22px,3.4vh,32px); }
-        /* The deck used to be the gap between the headline and the buttons; with
-           it hidden the CTA sat flush against the last line of the h1. */
-        .hero-fan-cta { width: 100%; flex-direction: column; align-items: center;
-                        gap: 16px; margin-top: clamp(34px,6.2vh,52px); }
-        /* Each button sizes to its own label rather than filling the column. */
+        .hero-fan-inner { padding: 116px 15px 28px; }
+        .hero-fan .wx-grad-text { background-image: linear-gradient(160deg,#9BB0FF 0%,#9D5CFF 45%,#C061FF 100%); }
+        .hero-fan-cta { flex-direction: column; gap: 14px; }
         .hero-fan-cta > a { width: fit-content; }
+        .hero-stage { --w: 94vw; margin-top: 34px; }
+        .hero-shot[data-slot="-1"] { --tx: -64%; --s: .5; --o: .5; }
+        .hero-shot[data-slot="1"]  { --tx: 64%;  --s: .5; --o: .5; }
+        .hero-glow i { filter: blur(60px); }
       }
       @media (prefers-reduced-motion: reduce) {
-        .fan-card { transition: none; }
+        .hero-shot, .hero-stage { transition: none; }
+        .hero-fan:not(.is-in) .hero-stage { opacity: 1; transform: none; }
+        .hero-shot[data-slot="0"] { --grow: 1; }
       }
     </style>
+
+    <div class="hero-glow" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <div class="hero-fan-inner">
       <p class="hero-fan-eyebrow" data-reveal>
@@ -1338,15 +1315,6 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 0l1.6 4.9a2 2 0 0 0 1.5 1.5L16 8l-4.9 1.6a2 2 0 0 0-1.5 1.5L8 16l-1.6-4.9a2 2 0 0 0-1.5-1.5L0 8l4.9-1.6a2 2 0 0 0 1.5-1.5L8 0z" fill="currentColor"/></svg>
       </p>
       <h1 data-reveal>Web design &amp; development <br>agency that <span class="wx-grad-text">brings in more enquiries</span></h1>
-
-      <div class="hero-fan-deck">
-        <div class="fan-card" style="--r:-16deg; --y:45px; --fx:-46vw; --fy:34vh;  --fr:-52deg; --d:0s;"><img src="images/work/rightway.avif" alt="Rightway Purifier project preview" loading="eager" width="1600" height="1067"></div>
-        <div class="fan-card" style="--r:-8deg;  --y:20px; --fx:-22vw; --fy:-52vh; --fr:34deg;  --d:.09s;"><img src="images/work/vibely.avif" alt="Vibely project preview" loading="eager" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:0deg;   --y:0px;  --fx:0vw;   --fy:58vh;  --fr:-24deg; --d:.18s;"><img src="images/work/automa.avif" alt="Automa project preview" loading="eager" fetchpriority="high" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:8deg;   --y:20px; --fx:26vw;  --fy:-48vh; --fr:-38deg; --d:.27s;"><img src="images/work/nocturne-nft.avif" alt="Nocturne NFT project preview" loading="eager" width="2400" height="1600"></div>
-        <div class="fan-card" style="--r:16deg;  --y:45px; --fx:48vw;  --fy:36vh;  --fr:56deg;  --d:.36s;"><img src="images/work/tmc.avif" alt="TMC Consulting project preview" loading="eager" width="1600" height="1066"></div>
-      </div>
-
       <div class="hero-fan-cta">
         <a class="v3-btn" href="contact">Book a free call
           <span class="v3-btn-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1357,26 +1325,108 @@
       </div>
     </div>
 
+    <div class="hero-stage" role="group" aria-roledescription="carousel" aria-label="Recent websites by Web{X} Studio" data-hero-stage>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="JAVIQ Natural Beauty store on laptop and phone. See our work">
+          <img src="images/hero/javiq.webp" alt="JAVIQ Natural Beauty store on laptop and phone, built by Web{X} Studio" width="1400" height="790" fetchpriority="high" loading="eager" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="GS Associates website on laptop and phone. See our work">
+          <img src="images/hero/gs-associates.webp" alt="GS Associates website on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Automa landing page on laptop and phone. See our work">
+          <img src="images/hero/automa.webp" alt="Automa landing page on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Elite Manuals store on laptop and phone. See our work">
+          <img src="images/hero/elite-manuals.webp" alt="Elite Manuals store on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Nar Seva Foundation website on laptop and phone. See our work">
+          <img src="images/hero/nar-seva.webp" alt="Nar Seva Foundation website on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Katyal Fitness Gym website on laptop and phone. See our work">
+          <img src="images/hero/katyal-gym.webp" alt="Katyal Fitness Gym website on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Fantastic Balloon Artistry website on laptop and phone. See our work">
+          <img src="images/hero/fantastic-balloon.webp" alt="Fantastic Balloon Artistry website on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Nocturne NFT landing page on laptop and phone. See our work">
+          <img src="images/hero/nocturne-nft.webp" alt="Nocturne NFT landing page on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Sure Manuals store on laptop and phone. See our work">
+          <img src="images/hero/sure-manuals.webp" alt="Sure Manuals store on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+        <a class="hero-shot" href="work" data-transition data-hero-shot aria-label="Raman Metal Industries website on laptop and phone. See our work">
+          <img src="images/hero/raman-metals.webp" alt="Raman Metal Industries website on laptop and phone, built by Web{X} Studio" width="1400" height="790" loading="lazy" decoding="async">
+        </a>
+      <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause the project showcase" data-hero-pause>
+        <svg class="i-pause" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="2" y="1" width="3.4" height="12" rx="1"/><rect x="8.6" y="1" width="3.4" height="12" rx="1"/></svg>
+        <svg class="i-play" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 1.6v10.8a.8.8 0 0 0 1.2.7l8.6-5.4a.8.8 0 0 0 0-1.4L4.2.9A.8.8 0 0 0 3 1.6Z"/></svg>
+      </button>
+    </div>
+
     <script>
-      /* Deal the deck once the intro overlay clears. webx.js fires wx:intro-done
-         and sets __wxIntroDone, so this works whether the script runs before or
-         after that moment. The timeout is a safety net: if the intro never fires
-         (script error, blocked asset) the cards must still appear — a hero that
-         stays invisible is far worse than one that skips its animation. */
+      /* Stage controller. Every piece gets a slot relative to the current
+         centre (-3..3, wrapping round); CSS turns the slot into position,
+         scale, blur and opacity. Rotates every 3s, pauses in a background tab
+         and when the visitor presses pause; never auto-rotates for
+         reduced-motion users. Every piece links to the Work page. The stage enters
+         once the intro overlay clears (wx:intro-done), with a 4s safety net. */
       (function () {
         var hero = document.currentScript.parentNode;
-        var deck = hero.querySelector('.hero-fan-deck');
-        if (!deck) return;
-        var dealt = false;
-        function deal() {
-          if (dealt) return;
-          dealt = true;
-          deck.classList.add('is-in');
-          hero.classList.add('is-in');
+        var stage = hero.querySelector('[data-hero-stage]');
+        var shots = [].slice.call(stage.querySelectorAll('[data-hero-shot]'));
+        var btn = stage.querySelector('[data-hero-pause]');
+        var n = shots.length, i = 0, timer = null, userPaused = false;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function place() {
+          shots.forEach(function (el, k) {
+            var d = ((k - i) % n + n) % n;      // 0..n-1 steps after the centre
+            if (d > n / 2) d -= n;              // nearest way round: -n/2..n/2
+            var slot = Math.max(-3, Math.min(3, d));
+            el.setAttribute('data-slot', String(slot));
+            el.setAttribute('aria-hidden', slot === 0 ? 'false' : 'true');
+            el.tabIndex = slot === 0 ? 0 : -1;   // one tab stop: the piece in the middle
+            var img = el.querySelector('img');
+            if (Math.abs(slot) <= 2 && img.loading === 'lazy') img.loading = 'eager';
+          });
         }
-        if (window.__wxIntroDone) requestAnimationFrame(deal);
-        else document.addEventListener('wx:intro-done', deal, { once: true });
-        setTimeout(deal, 4000);
+        function go(k) { i = ((k % n) + n) % n; place(); }
+        function running() { return !reduce && !userPaused && !document.hidden; }
+        function tick() { if (running()) go(i + 1); }
+        function start() { stop(); timer = setInterval(tick, 3000); }
+        function stop() { if (timer) clearInterval(timer); timer = null; }
+
+        btn.addEventListener('click', function () {
+          userPaused = !userPaused;
+          btn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+          btn.setAttribute('aria-label', userPaused ? 'Play the project showcase' : 'Pause the project showcase');
+        });
+        if (reduce) btn.hidden = true;
+
+        // Scroll: 0 at the top of the page, 1 once the hero has scrolled half away.
+        var ticking = false;
+        function onScroll() {
+          if (ticking || reduce) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            var r = hero.getBoundingClientRect();
+            var p = Math.max(0, Math.min(1, -r.top / (r.height * .5)));
+            stage.style.setProperty('--p', p.toFixed(3));
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        place();
+        var shown = false;
+        function enter() {
+          if (shown) return;
+          shown = true;
+          hero.classList.add('is-in');
+          start();
+        }
+        if (window.__wxIntroDone) requestAnimationFrame(enter);
+        else document.addEventListener('wx:intro-done', enter, { once: true });
+        setTimeout(enter, 4000);
       })();
     </script>
   </section>
