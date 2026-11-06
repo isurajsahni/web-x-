@@ -806,7 +806,10 @@
           form.hidden = true; success.hidden = false;
           [].slice.call(success.querySelectorAll('[data-name-slot]')).forEach(function (s) { s.textContent = name ? (', ' + name.split(' ')[0]) : ''; });
         }
-        WebX.scrollTo(0);
+        // Bring the thank-you into view rather than the top of the page, where
+        // the hero would hide it. 110px clears the floating nav.
+        var card = (success && success.parentNode) || form;
+        WebX.scrollTo(Math.max(0, card.getBoundingClientRect().top + window.pageYOffset - 110));
       }
       var btn = form.querySelector('button[type="submit"]');
       if (endpoint) {
